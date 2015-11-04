@@ -1,0 +1,40 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uel0203",						#UEF T2 Hover Tank
+	AI = {
+		TargetBones = {
+			'UEL0203',
+			'Turret_Muzzle_01',
+			'Turret_Muzzle_02',
+		},
+	},
+	CollisionOffsetY = -0.1,
+	SizeY = 0.65,
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xal0203",						#Aeon T2 Hover Tank
+	AI = {
+		TargetBones = {
+			'XAL0203',
+			'Gun_Turret',
+		},
+	},
+	CollisionOffsetY = -0.1,
+	SizeY = 0.7,
+	SizeZ = 1.4,
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsl0203",						#Seraphim T2 Hover Tank
+	AI = {
+		TargetBones = {
+			'XSL0203',
+			'Turret',
+		},
+	},
+	CollisionOffsetX = 0.14,
+	CollisionOffsetY = -0.1,
+	SizeX = 0.7,
+	SizeY = 0.7,
+}

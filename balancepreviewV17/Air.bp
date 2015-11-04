@@ -1,0 +1,132 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uea0303",						#UEF ASF
+    Air = {
+        MaxAirspeed = 23,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uaa0303",						#Aeon ASF
+    Air = {
+        MaxAirspeed = 23,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "ura0303",						#Cybran ASF
+    Air = {
+        MaxAirspeed = 23,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsa0303",						#Seraphim ASF
+    Air = {
+        MaxAirspeed = 23,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uea0304",						#UEF Strategic Bomber
+    Air = {
+        MaxAirspeed = 16,
+    },
+    Economy = {
+        BuildCostEnergy = 154000,
+    },
+    Weapon = {
+        {
+        },
+        {
+            Damage = 50,
+            MaxRadius = 30,
+            RateOfFire = 1,
+        },
+        {
+            Damage = 50,
+            MaxRadius = 30,
+            RateOfFire = 1,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uca0304",						#Cybran Strategic Bomber
+    Air = {
+        MaxAirspeed = 16,
+    },
+    Economy = {
+        BuildCostEnergy = 154000,
+    },
+    Weapon = {
+        {
+        },
+        {
+            Damage = 20,
+            MaxRadius = 30,
+            RateOfFire = 1,
+        },
+        {
+            Damage = 20,
+            MaxRadius = 30,
+            RateOfFire = 1,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uaa0304",						#Aeon Strategic Bomber
+    Air = {
+        MaxAirspeed = 16,
+    },
+    Economy = {
+        BuildCostEnergy = 154000,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsa0304",						#Seraphim Strategic Bomber
+    Air = {
+        MaxAirspeed = 16,
+    },
+    Economy = {
+        BuildCostEnergy = 154000,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "dea0202",						#Janus
+    Air = {
+        MaxAirspeed = 16,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "dra0202",						#Corsair
+    Air = {
+        MaxAirspeed = 16,
+    },
+    Weapon = {
+        {
+            Damage = 76,
+        },
+        {
+            MuzzleVelocity = 30,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsa0202",						#Notha
+    Air = {
+        MaxAirspeed = 16,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xaa0202",						#Swift Wind
+    Air = {
+        MaxAirspeed = 19,
+    },
+}
