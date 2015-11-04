@@ -96,8 +96,7 @@ Unit = Class(oldUnit) {
         local buffName = false
         local subSection = false
         if buffType == 'VETERANCYREGEN' and techLevel ~= ("EXPERIMENTAL" or "COMMAND" or "SUBCOMMANDER")then
-            local ID = self:GetUnitId()
-            subSection = typeTable.ID -- Will be 1 through 6
+            subSection = typeTable[self:GetUnitId()] -- Will be 1 through 6
             buffName = techLevel .. subSection .. buffType .. vetLevel
         else
             buffName = techLevel .. buffType .. vetLevel
@@ -158,8 +157,8 @@ Unit = Class(oldUnit) {
         -- Set up Veterancy tracking here. Avoids needing to check completion later.
         -- Do all this here so we only have to do for things which get completed        
         -- Don't need to track damage for things which cannot attack!
-        local ID = self:GetUnitId()
-        if typeTable.ID then
+        if typeTable[self:GetUnitId()] then
+            local bp = self:GetBlueprint()
             self.Sync.totalMassKilled = 0
             self.Sync.VeteranLevel = 0
             
