@@ -71,130 +71,200 @@ TypeTable = {
 -- Now for the units which do need typing
 -- COMBAT
     -- PD
-    UAB2101 = 1
-    UEB2101 = 1
-    URB2101 = 1
-    XSB2101 = 1
-    UAB2301
-    UEB2301
-    URB2301
-    XSB2301
+    UAB2101 = 1,
+    UEB2101 = 1,
+    URB2101 = 1,
+    XSB2101 = 1,
+    UAB2301 = 1,
+    UEB2301 = 1,
+    URB2301 = 1,
+    XSB2301 = 1,
+    XEB2306 = 1,
     -- AA
-    UAB2104 = 1
-    UEB2104 = 1
-    URB2104 = 1
-    XSB2104 = 1
-    UAB2204
-    UEB2204
-    URB2204
-    XSB2204
+    UAB2104 = 1,
+    UEB2104 = 1,
+    URB2104 = 1,
+    XSB2104 = 1,
+    UAB2204 = 1,
+    UEB2204 = 1,
+    URB2204 = 1,
+    XSB2204 = 1,
+    UAB2304 = 1,
+    UEB2304 = 1,
+    URB2304 = 1,
+    XSB2304 = 1,
     -- Torp
-    UAB2109 = 1
-    UEB2109 = 1
-    URB2109 = 1
-    XSB2109 = 1
-    UAB2205
-    UEB2205
-    URB2205
-    XSB2205
+    UAB2109 = 1,
+    UEB2109 = 1,
+    URB2109 = 1,
+    XSB2109 = 1,
+    UAB2205 = 1,
+    UEB2205 = 1,
+    URB2205 = 1,
+    XSB2205 = 1,
+    XRB2308 = 1,
     -- Bomber
-    UAA0103 = 1
-    UEA0103 = 1
-    URA0103 = 1
-    XSA0103 = 1
+    UAA0103 = 1,
+    UEA0103 = 1,
+    URA0103 = 1,
+    XSA0103 = 1,
     -- Jester
-    XRA0105 = 1
+    XRA0105 = 1,
     -- Tanks
-    UAL0201 = 1
-    UEL0201 = 1
-    URL0107 = 1
-    XSL0201 = 1
+    UAL0201 = 1,
+    UEL0201 = 1,
+    URL0107 = 1,
+    XSL0201 = 1,
+    UAL0202 = 1,
+    UEL0202 = 1,
+    URL0202 = 1,
+    XSL0202 = 1,
+    XAL0203 = 1,
+    UEL0203 = 1,
+    URL0203 = 1,
+    XSL0203 = 1,
+    UAL0303 = 1,
+    XEL0305 = 1,
+    XRL0305 = 1,
+    XSL0303 = 1,
     -- T2 F/B
-    XAA0202
-    DEA0202
-    DRA0202
-    XSA0202
+    DEA0202 = 1,
+    DRA0202 = 1,
+    XSA0202 = 1,
     -- T2 Gunship
-    UAA0203
-    UEA0203
-    URA0203
-    XSA0203
-    -- ASF
-    UAA0303
-    UEA0303
-    URA0303
-    XSA0303
+    UAA0203 = 1,
+    UEA0203 = 1,
+    URA0203 = 1,
+    XSA0203 = 1,
     -- Strats
-    UAA0304
-    UEA0304
-    URA0304
-    XSA0304
+    UAA0304 = 1,
+    UEA0304 = 1,
+    URA0304 = 1,
+    XSA0304 = 1,
     -- T3 Gunship
-    XAA0305
-    XRA0305
-    UEA0305
+    XAA0305 = 1,
+    XRA0305 = 1,
+    UEA0305 = 1,
     
 -- RAIDER
     -- Intie
-    UAA0102 = 2
-    UEA0102 = 2
-    URA0102 = 2
-    XSA0102 = 2
-    -- Scout
-    UAL0101 = 2
-    UEL0101 = 2
-    XSL0101 = 2
-    -- Arty
-    UAL0103 = 2
-    UEL0103 = 2
-    URL0103 = 2
-    XSL0103 = 2
+    UAA0102 = 2,
+    UEA0102 = 2,
+    URA0102 = 2,
+    XSA0102 = 2,
+    XAA0202 = 2,
+    UAA0303 = 2,
+    UEA0303 = 2,
+    URA0303 = 2,
+    XSA0303 = 2,
+    -- Land Scout
+    UAL0101 = 2,
+    UEL0101 = 2,
+    XSL0101 = 2,
+    -- Mobile Arty
+    UAL0103 = 2,
+    UEL0103 = 2,
+    URL0103 = 2,
+    XSL0103 = 2,
+    UAL0111 = 2,
+    UEL0111 = 2,
+    URL0111 = 2,
+    XSL0111 = 2,
+    UAL0304 = 2,
+    UEL0304 = 2,
+    URL0304 = 2,
+    XSL0304 = 2,
+    XEL0306 = 2,
+    XAL0305 = 2,
+    XSL0305 = 2,
+    DAL0310 = 2,
+    -- Raid Bots
+    DRL0204 = 2,
+    DEL0204 = 2,
     -- LAB
-    UAL0106 = 2
-    UEL0106 = 2
-    URL0106 = 2
+    UAL0106 = 2,
+    UEL0106 = 2,
+    URL0106 = 2,
     -- MAA
-    UAL0104 = 2
-    UEL0104 = 2
-    URL0104 = 2
-    XSL0104 = 2
+    UAL0104 = 2,
+    UEL0104 = 2,
+    URL0104 = 2,
+    XSL0104 = 2,
+    UAL0205 = 2,
+    UEL0205 = 2,
+    URL0205 = 2,
+    XSL0205 = 2,
+    DRLK001 = 2,
+    DSLK004 = 2,
+    DALK003 = 2,
+    DELK002 = 2,
     -- T2 Arty
-    UAB2303
-    UEB2303
-    URB2303
-    XSB2303
+    UAB2303 = 2,
+    UEB2303 = 2,
+    URB2303 = 2,
+    XSB2303 = 2,
+    -- T3 Arty
+    UAB2302 = 2,
+    UEB2302 = 2,
+    URB2302 = 2,
+    XSB2302 = 2,
+    XAB2307 = 2,
+    -- Nukes
+    UAB2305 = 2,
+    UEB2305 = 2,
+    URB2305 = 2,
+    XSB2305 = 2,
     -- TML
-    UAB2108
-    UEB2108
-    URB2108
-    XSB2108
-    -- T2 Transports
-    UAA0104
-    UEA0104
-    URA0104
-    XSA0104
+    UAB2108 = 2,
+    UEB2108 = 2,
+    URB2108 = 2,
+    XSB2108 = 2,
+    -- Transports
+    UAA0104 = 2,
+    UEA0104 = 2,
+    URA0104 = 2,
+    XSA0104 = 2,
+    XEA0306 = 2,
     -- Torp Bombers
-    UAA0204
-    UEA0204
-    URA0204
-    XSA0204
-    XAA0306
-    
-    
-    
-    -- Cont
-    XEA0306
+    UAA0204 = 2,
+    UEA0204 = 2,
+    URA0204 = 2,
+    XSA0204 = 2,
+    XAA0306 = 2,
     
 -- SHIP
-    UAS0102 = 3
-    UAS0103 = 3
-    UES0103 = 3
-    URS0103 = 3
-    XSS0103 = 3
-    
+    UAS0102 = 3,
+    UAS0103 = 3,
+    UES0103 = 3,
+    URS0103 = 3,
+    XSS0103 = 3,
+    UAS0201 = 3,
+    UES0201 = 3,
+    URS0201 = 3,
+    XSS0201 = 3,
+    UAS0202 = 3,
+    UES0202 = 3,
+    URS0202 = 3,
+    XSS0202 = 3,
+    XES0102 = 3,
+    UAS0302 = 3,
+    UES0302 = 3,
+    URS0302 = 3,
+    XSS0302 = 3,
+    UAS0303 = 3,
+    URS0303 = 3,
+    XSS0303 = 3,
+    XAS0306 = 3,
+    XES0307 = 3,
 -- SUB
-    UAS0203 = 4
-    UES0203 = 4
-    URS0203 = 4
-    XSS0203 = 4
+    UAS0203 = 4,
+    UES0203 = 4,
+    URS0203 = 4,
+    XSS0203 = 4,
+    XAS0204 = 4,
+    XRS0204 = 4,
+    XSS0304 = 4,
+    UAS0304 = 4,
+    UES0304 = 4,
+    URS0304 = 4,
 }
