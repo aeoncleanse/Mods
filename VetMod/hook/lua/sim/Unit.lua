@@ -129,7 +129,7 @@ Unit = Class(oldUnit) {
         affects[effectType] = {
             DoNotFill = effectType == 'MaxHealth',
             Add = 0,
-            Mult = 1,
+            Mult = 0,
         }
         affects[effectType][mathType] = val
         
