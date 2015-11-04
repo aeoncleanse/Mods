@@ -94,9 +94,9 @@ Unit = Class(oldUnit) {
         local vetLevel = self.Sync.VeteranLevel
         
         local buffName = false
-        if buffType == 'VETERANCYREGEN' then
-            -- Weight is 2 for assigned units with very high HP
-            local subSection = typeTable.self:GetUnitId()
+        local subSection = false
+        if buffType == 'VETERANCYREGEN' and techLevel ~= ("EXPERIMENTAL" or "COMMAND" or "SUBCOMMANDER")then
+            subSection = typeTable.self:GetUnitId() -- Will be 1 through 6
             buffName = techLevel .. subSection .. buffType .. vetLevel
         else
             buffName = techLevel .. buffType .. vetLevel
@@ -112,14 +112,14 @@ Unit = Class(oldUnit) {
         if buffType == 'VETERANCYMAXHEALTH' then
             val = 1 + ((multsTable[buffType][techLevel] - 1) * vetLevel)
         else
-            if subSection == 'COMBAT' then
+            if subSection == 1 or 3 then -- Combat or Ship
                 val = multsTable[buffType][techLevel][subSection][vetLevel]
-            elseif techLevel == 'EXPERIMENTAL' or 'SUBCOMMANDER' then
-                val = multsTable[buffType][techLevel][vetLevel]
-            elseif techLevel == 'COMMAND' then
-                val = multsTable[buffType][techLevel] * vetLevel
-            else
+            elseif subSection == 2 or 4 then -- Raider or Sub 
                 val = multsTable[buffType][techLevel][subSection] * vetLevel
+            elseif subSection == 5 then -- Experimental or sACU
+                val = multsTable[buffType][techLevel][vetLevel]
+            else -- ACU
+                val = multsTable[buffType][techLevel] * vetLevel
             end
         end
 
