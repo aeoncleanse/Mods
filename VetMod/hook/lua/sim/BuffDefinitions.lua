@@ -6,6 +6,8 @@
 --      2 = RAIDER
 --      3 = SHIP
 --      4 = SUB
+--      5 = SCU and EXPERIMENTAL
+--      6 = ACU
 MultsTable = {
     VETERANCYREGEN = {
         TECH1 = {
