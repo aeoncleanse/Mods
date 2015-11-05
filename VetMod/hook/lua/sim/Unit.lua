@@ -95,7 +95,7 @@ Unit = Class(oldUnit) {
         
         local buffName = false
         local subSection = false
-        if buffType == 'VETERANCYREGEN' and techLevel ~= ("EXPERIMENTAL" or "COMMAND" or "SUBCOMMANDER")then
+        if buffType == 'VETERANCYREGEN' then
             subSection = typeTable[self:GetUnitId()] -- Will be 1 through 6
             buffName = techLevel .. subSection .. buffType .. vetLevel
         else
@@ -112,9 +112,9 @@ Unit = Class(oldUnit) {
         if buffType == 'VETERANCYMAXHEALTH' then
             val = 1 + ((multsTable[buffType][techLevel] - 1) * vetLevel)
         else
-            if subSection == (1 or 3) then -- Combat or Ship
+            if subSection == 1 or subSection == 3 then -- Combat or Ship
                 val = multsTable[buffType][techLevel][subSection][vetLevel]
-            elseif subSection == (2 or 4) then -- Raider or Sub
+            elseif subSection == 2 or subSection == 4 then -- Raider or Sub
                 val = multsTable[buffType][techLevel][subSection] * vetLevel
             elseif subSection == 5 then -- Experimental or sACU
                 val = multsTable[buffType][techLevel][vetLevel]
