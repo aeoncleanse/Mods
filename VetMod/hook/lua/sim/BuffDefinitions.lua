@@ -17,7 +17,7 @@ MultsTable = {
         TECH2 = {
             {2, 6, 12, 20, 30},
             4,
-            {3, 9, 18, 30, 45},
+            {4, 12, 24, 40, 60},
             6,
         },
         TECH3 = {
@@ -119,10 +119,6 @@ TypeTable = {
     uel0202 = 1,
     url0202 = 1,
     xsl0202 = 1,
-    xal0203 = 1,
-    uel0203 = 1,
-    url0203 = 1,
-    xsl0203 = 1,
     ual0303 = 1,
     xel0305 = 1,
     xrl0305 = 1,
@@ -147,6 +143,11 @@ TypeTable = {
     uea0305 = 1,
     
 -- RAIDER
+    -- Hovertanks
+    xal0203 = 2,
+    uel0203 = 2,
+    url0203 = 2,
+    xsl0203 = 2,
     -- Intie
     uaa0102 = 2,
     uea0102 = 2,
