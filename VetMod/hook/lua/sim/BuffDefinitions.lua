@@ -232,6 +232,9 @@ TypeTable = {
     ura0204 = 2,
     xsa0204 = 2,
     xaa0306 = 2,
+    --T3 Bots
+    UEL0303 = 2,
+    URL0303 = 2,
     
 -- SHIP
     uas0102 = 3,
