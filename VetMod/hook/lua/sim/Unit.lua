@@ -112,9 +112,9 @@ Unit = Class(oldUnit) {
         if buffType == 'VETERANCYMAXHEALTH' then
             val = 1 + ((multsTable[buffType][techLevel] - 1) * vetLevel)
         else
-            if subSection == 1 or 3 then -- Combat or Ship
+            if subSection == (1 or 3) then -- Combat or Ship
                 val = multsTable[buffType][techLevel][subSection][vetLevel]
-            elseif subSection == 2 or 4 then -- Raider or Sub 
+            elseif subSection == (2 or 4) then -- Raider or Sub
                 val = multsTable[buffType][techLevel][subSection] * vetLevel
             elseif subSection == 5 then -- Experimental or sACU
                 val = multsTable[buffType][techLevel][vetLevel]
