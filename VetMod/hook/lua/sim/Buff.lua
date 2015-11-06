@@ -211,14 +211,10 @@ function BuffCalculate(unit, buffName, affectType, initialVal, initialBool, addM
         if v.Mult then
             if affectType == 'Regen' then
                 -- Regen mults use MaxHp as base, so should always be <1
+                if v.Mult >= 1 then WARN('Regen mult too high, should be <1, for unit ' .. unit:GetUnitId() .. ' and buff ' .. buffName) return end
                 local maxHealth = unit:GetBlueprint().Defense.MaxHealth
                 for i=1,v.Count do
-                    if v.Mult >= 1 then WARN('Regen mult too high, should be <1, for unit ' .. unit:GetUnitId() .. ' and buff ' .. buffName) return end
-                    local toAdd = (v.Mult * maxHealth)
-                    if v.Ceil then
-                        toAdd = math.min(toAdd, v.Ceil)
-                    end
-                    multsTotal = multsTotal + toAdd
+                    multsTotal = multsTotal + math.min((v.Mult * maxHealth), v.Ceil or 999999)
                 end
             else
                 for i=1,v.Count do
