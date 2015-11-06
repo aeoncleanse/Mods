@@ -16,7 +16,7 @@ ACUUnit = Class(oldACUUnit) {
             massKilled = massKilled / techIndex()
             
             if unitKilled.Sync.VeteranLevel then
-                massKilled = massKilled * math.max((unitKilled.Sync.VeteranLevel - self.Sync.VeteranLevel), 1)
+                massKilled = massKilled *             massKilled = massKilled * (1 + (0.25 * math.max((unitKilled.Sync.VeteranLevel - self.Sync.VeteranLevel), 0)))
             end
 
             self:CalculateVeterancyLevel(massKilled) -- Bails if we've not gone up

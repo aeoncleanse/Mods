@@ -52,7 +52,7 @@ Unit = Class(oldUnit) {
         if not massKilled then return end -- Make sure engine calls aren't passed with massKilled == 0
         
         if unitKilled.Sync.VeteranLevel then
-            massKilled = massKilled * math.max((unitKilled.Sync.VeteranLevel - self.Sync.VeteranLevel), 1)
+            massKilled = massKilled * (1 + (0.25 * math.max((unitKilled.Sync.VeteranLevel - self.Sync.VeteranLevel), 0)))
         end
         
         if not IsAlly(self:GetArmy(), unitKilled:GetArmy()) then
