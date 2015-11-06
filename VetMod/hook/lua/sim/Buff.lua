@@ -195,7 +195,7 @@ function BuffAffectUnit(unit, buffName, instigator, afterRemove)
 end
 
 --Calculates the buff from all the buffs of the same time the unit has.
-function BuffCalculate(unit, buffName, affectType, initialVal, initialBool, addMults)
+function BuffCalculate(unit, buffName, affectType, initialVal, initialBool)
     local adds = 0
     local mults = 1.0
     local multsTotal = 0 -- Used only for regen buffs
