@@ -51,6 +51,10 @@ Unit = Class(oldUnit) {
     OnKilledUnit = function(self, unitKilled, massKilled)
         if not massKilled then return end -- Make sure engine calls aren't passed with massKilled == 0
         
+        if unitKilled.Sync.VeteranLevel then
+            massKilled = massKilled * math.max((unitKilled.Sync.VeteranLevel - self.Sync.VeteranLevel), 1)
+        end
+        
         if not IsAlly(self:GetArmy(), unitKilled:GetArmy()) then
             self:CalculateVeterancyLevel(massKilled) -- Bails if we've not gone up
         end
