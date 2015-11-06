@@ -211,7 +211,12 @@ function BuffCalculate(unit, buffName, affectType, initialVal, initialBool, addM
         if v.Mult then
             if affectType == 'Regen' then
                 -- Regen mults use MaxHp as base, so should always be <1
-                if v.Mult >= 1 then WARN('Regen mult too high, should be <1, for unit ' .. unit:GetUnitId() .. ' and buff ' .. buffName) return end
+                -- GPG default for mult is 1. To avoid changing loads of scripts for now, let's do this
+                if v.Mult == 1 then v.Mult = 0 end
+                
+                -- Otherwise, it's probably deliberate, so let's bail
+                if v.Mult > 1 then WARN('Regen mult too high, should be <1, for unit ' .. unit:GetUnitId() .. ' and buff ' .. buffName) return end
+                
                 local maxHealth = unit:GetBlueprint().Defense.MaxHealth
                 for i=1,v.Count do
                     multsTotal = multsTotal + math.min((v.Mult * maxHealth), v.Ceil or 999999)
