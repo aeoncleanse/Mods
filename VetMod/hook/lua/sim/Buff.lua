@@ -232,11 +232,7 @@ function BuffCalculate(unit, buffName, affectType, initialVal, initialBool, addM
     
     -- Adds are calculated first, then the mults.  May want to expand that later.
     local returnVal = false
-    if affectType == 'Regen' then
-        returnVal = initialVal + adds + multsTotal
-    else
-        returnVal = (initialVal + adds) * mults
-    end
+    returnVal = (initialVal + adds + multsTotal) * mults
 
     return returnVal, bool
 end
