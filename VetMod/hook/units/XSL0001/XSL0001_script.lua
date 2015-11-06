@@ -24,6 +24,7 @@ XSL0001 = Class(oldXSL0001) {
                         Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond or 0.1,
+                            Ceil = bp.RegenCeiling or 0.1,
                         },
                     },
                 }
