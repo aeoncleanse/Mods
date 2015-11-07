@@ -1,16 +1,3 @@
-#****************************************************************************
-#**
-#**  File     :  Hooked Adjecency file for BlackOps Mod pack
-#**
-#**  Copyright © 2008 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
-
-local AdjBuffFuncs = import('/lua/sim/AdjacencyBuffFunctions.lua')
-
-##################################################################
-## TIER 3 MASS $ ENERGY STORAGE
-##################################################################
-
 T3MassEnergyStorageAdjacencyBuffs = {
     'T1MassStorageMassProductionBonusSize4',
     'T1MassStorageMassProductionBonusSize8',
