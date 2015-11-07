@@ -33,24 +33,25 @@ Unit = Class(oldUnit) {
     end,
 
     -- Overrode this so that there will be no doubt if the cloak effect is active or not
+    -- This is an engine function
     SetMesh = function(self, meshBp, keepActor)
         oldUnit.SetMesh(self, meshBp, keepActor)
         self.CloakEffectEnabled = false;
     end,
 
     -- While the CloakEffectControlThread will activate the cloak effect eventually,
-    -- this method tries to provide faster a response time to intel changes
+    -- this method tries to provide a faster response time to intel changes
     OnIntelEnabled = function(self)
-            oldUnit.OnIntelEnabled(self)
+        oldUnit.OnIntelEnabled(self)
         if not self:IsDead() then
             self:UpdateCloakEffect()
         end
     end,
 
     -- While the CloakEffectControlThread will deactivate the cloak effect eventually,
-    -- this method tries to provide faster a response time to intel changes
+    -- this method tries to provide a faster response time to intel changes
     OnIntelDisabled = function(self)
-            oldUnit.OnIntelDisabled(self)
+        oldUnit.OnIntelDisabled(self)
         if not self:IsDead() then
             self:UpdateCloakEffect()
         end
@@ -63,6 +64,7 @@ Unit = Class(oldUnit) {
     
     OnTeleportUnit = function(self, teleporter, location, orientation)
         local id = self:GetEntityId()
+        
         -- Teleport Cooldown Charge
         -- Range Check to location
         local maxRange = self:GetBlueprint().Defense.MaxTeleRange
@@ -72,28 +74,30 @@ Unit = Class(oldUnit) {
             FloatingEntityText(id,'Destination Out Of Range')
             return
         end
-        -- Teleport Interdiction Check
+        
+        -- Teleport Blocker Check
         for num, brain in ArmyBrains do
             local unitList = brain:GetListOfUnits(categories.ANTITELEPORT, false)
             for i, unit in unitList do
-                --    if it's an ally, then we skip.
-                if not IsEnemy(self:GetArmy(), unit:GetArmy()) then 
-                    continue
-                end
-                local noTeleDistance = unit:GetBlueprint().Defense.NoTeleDistance
-                local atposition = unit:GetPosition()
-                local selfpos = self:GetPosition()
-                local targetdest = VDist2(location[1], location[3], atposition[1], atposition[3])
-                local sourcecheck = VDist2(selfpos[1], selfpos[3], atposition[1], atposition[3])
-                if noTeleDistance and noTeleDistance > targetdest then
-                    FloatingEntityText(id,'Teleport Destination Scrambled')
-                    return
-                elseif noTeleDistance and noTeleDistance >= sourcecheck then
-                    FloatingEntityText(id,'Teleport Generator Scrambled')
-                    return
+                -- If it's an ally, then we skip.
+                if IsEnemy(self:GetArmy(), unit:GetArmy()) then
+                    local blockerRange = unit:GetBlueprint().Defense.blockerRange
+                    if blockerRange then
+                        local blockerPosition = unit:GetPosition()
+                        local targetDest = VDist2(location[1], location[3], blockerPosition[1], blockerPosition[3])
+                        local sourceCheck = VDist2(myposition[1], myposition[3], blockerPosition[1], blockerPosition[3])
+                        if blockerRange and blockerRange >= targetDest then
+                            FloatingEntityText(id, 'Teleport Destination Scrambled')
+                            return
+                        elseif blockerRange and blockerRange >= sourceCheck then
+                            FloatingEntityText(id, 'Teleport Source Location Scrambled')
+                            return
+                        end
+                    end
                 end
             end
         end
+        
         -- Economy Check and Drain
         local bp = self:GetBlueprint()
         local telecost = bp.Economy.TeleportBurstEnergyCost or 0
@@ -113,26 +117,26 @@ Unit = Class(oldUnit) {
 
     PlayTeleportChargeEffects = function(self, location)
         oldUnit.PlayTeleportChargeEffects(self, location) 
-        if not self:IsDead() and not self.EXPhaseEnabled == true then
+        if not self.Dead and self.EXPhaseEnabled == false then
             self.EXTeleportChargeEffects(self)
         end
     end,
 
     OnFailedTeleport = function(self)
         oldUnit.OnFailedTeleport(self) 
-        if not self:IsDead() and not self.EXPhaseEnabled == false then   
+        if not self.Dead and self.EXPhaseEnabled == true then   
             self.EXPhaseEnabled = false
             self.EXPhaseCharge = 0
             self.EXPhaseShieldPercentage = 0
-            local bp = self:GetBlueprint()
-            local bpDisplay = bp.Display
-            if self.EXPhaseCharge == 0 then self:SetMesh(bpDisplay.MeshBlueprint, true) end
+            
+            local bpDisplay = self:GetBlueprint().Display
+            self:SetMesh(bpDisplay.MeshBlueprint, true)
         end
     end,
 
     PlayTeleportInEffects = function(self)
         oldUnit.PlayTeleportInEffects(self) 
-        if not self:IsDead() and not self.EXPhaseEnabled == false then   
+        if not self.Dead and self.EXPhaseEnabled == true then
             self.EXTeleportCooldownEffects(self)
         end
     end,
@@ -141,7 +145,7 @@ Unit = Class(oldUnit) {
         if self.DisallowCollisions then
             return false
         end
-        -- Run a modified CollideFriendly check first that allows for allied passthrough
+        -- Run a modified CollideFriendly check first that allows for allied phasing
         if EntityCategoryContains(categories.PROJECTILE, other) then
             if not self:GetShouldCollide(other:GetCollideFriendly(), self:GetArmy(), other:GetArmy()) then
                 return false
@@ -152,7 +156,7 @@ Unit = Class(oldUnit) {
             return false
         end
         
-        if not self:IsDead() and self.EXPhaseEnabled == true then
+        if not self.Dead and self.EXPhaseEnabled == true then
             if EntityCategoryContains(categories.PROJECTILE, other) then 
                 local random = Random(1,100)
                 -- Allows % of projectiles to pass
@@ -173,14 +177,17 @@ Unit = Class(oldUnit) {
         if self.DisallowCollisions then
             return false
         end
-        -- Run a modified CollideFriendly check first that allows for allied passthrough
+        
+        -- Run a modified CollideFriendly check first that allows for allied phasing
         if not self:GetShouldCollide(firingWeapon:GetBlueprint().CollideFriendly, self:GetArmy(), firingWeapon.unit:GetArmy()) then
             return false
         end
+        
         return oldUnit.OnCollisionCheckWeapon(self, firingWeapon)
     end,
     
     -- Partially working code to add an effect to the stun buff
+    -- This is an engine function
     SetStunned = function(self, time)
         oldUnit.SetStunned(self, time)
         local totalBones = self:GetBoneCount() - 1
