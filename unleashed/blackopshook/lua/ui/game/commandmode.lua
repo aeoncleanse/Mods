@@ -8,10 +8,10 @@
 --------------------------------------------------------------------
 
 do
-  local oldOnCommandIssued = OnCommandIssued
+    local oldOnCommandIssued = OnCommandIssued
 
-  function OnCommandIssued(command)
-    oldOnCommandIssued(command)
-    import('/lua/spreadattack.lua').MakeShadowCopyOrders(command)
-  end
+    function OnCommandIssued(command)
+        oldOnCommandIssued(command)
+        import('/lua/spreadattack.lua').MakeShadowCopyOrders(command)
+    end
 end
