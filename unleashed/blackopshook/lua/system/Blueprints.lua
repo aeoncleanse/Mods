@@ -125,7 +125,6 @@ do
 					if wep.RangeCategory == 'UWRC_AntiAir' then
 						if not wep.AntiSat == true then
 							wep.TargetRestrictDisallow = wep.TargetRestrictDisallow .. ', SATELLITE'
-							--LOG('*ADDING RESTRICTION : ' .. bp.BlueprintId .. " : " .. wep.DisplayName)
 						end
 					end
 				end
