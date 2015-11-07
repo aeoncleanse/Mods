@@ -111,15 +111,7 @@ do
             if table.find(bp.Categories, 'SUBCOMMANDER') then
 				table.insert(bp.Categories, 'ANTITELEPORT')
             end
-		end
-	end
-end
-
-do
-    local oldModBlueprints = ModBlueprints
-    function ModBlueprints(all_bps)
-	    oldModBlueprints(all_bps)
-        for id, bp in all_bps.Unit do
+            
             if bp.Weapon then
                 for ik, wep in bp.Weapon do
 					if wep.RangeCategory == 'UWRC_AntiAir' then
@@ -130,6 +122,5 @@ do
 				end
 			end
 		end
-    end
+	end
 end
-
