@@ -12,72 +12,17 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
 
 local oldUnit = Unit
-Unit = Class(oldUnit) {    
+Unit = Class(oldUnit) {
 
+    -----------------------------------------------------------
+    -- First, all the functions which are hooking the originals
+    -----------------------------------------------------------
+    
     OnCreate = function(self)
         oldUnit.OnCreate(self)
         self.StunEffectsBag = {}
     end,
     
-    -- This thread runs constantly in the background for all units. It ensures that the cloak effect and cloak field are always in the correct state
-    CloakEffectControlThread = function(self)
-        if not self:IsDead() then
-            local bp = self:GetBlueprint()
-            if not bp.Intel.CustomCloak then
-                local bpDisplay = bp.Display
-                while not (self == nil or self:GetHealth() <= 0 or self:IsDead()) do
-                    WaitSeconds(0.2)
-                    self:UpdateCloakEffect()
-                    local CloakFieldIsActive = self:IsIntelEnabled('CloakField')
-                    if CloakFieldIsActive then
-                        local position = self:GetPosition(0)
-                        -- Range must be (radius - 2) because it seems GPG did that for the actual field for some reason.
-                        -- Anything beyond (radius - 2) is not cloaked by the cloak field
-                        local range = bp.Intel.CloakFieldRadius - 2
-                        local brain = self:GetAIBrain()
-                        local UnitsInRange = brain:GetUnitsAroundPoint( categories.ALLUNITS, position, range, 'Ally' )
-                        for num, unit in UnitsInRange do
-                            unit:MarkUnitAsInCloakField()
-                        end
-                    end
-                end
-            end
-        end
-    end,
-
-    -- Fork the thread that will deactivate the cloak effect, killing any previous threads that may be running
-    MarkUnitAsInCloakField = function(self)
-        self.InCloakField = true
-        if self.InCloakFieldThread then
-            KillThread(self.InCloakFieldThread)
-            self.InCloakFieldThread = nil
-        end
-        self.InCloakFieldThread = self:ForkThread(self.InCloakFieldWatchThread)
-    end,
-
-    -- Will deactive the cloak effect if it is not renewed by the cloak field
-    InCloakFieldWatchThread = function(self)
-        WaitSeconds(0.2)
-        self.InCloakField = false
-    end,
-
-    -- This is the core of the entire mod. The effect is actually applied here.
-    UpdateCloakEffect = function(self)
-        if not self:IsDead() then
-            local bp = self:GetBlueprint()
-            local bpDisplay = bp.Display
-            if not bp.Intel.CustomCloak then
-                local cloaked = self:IsIntelEnabled('Cloak') or self.InCloakField
-                if (not cloaked and self.CloakEffectEnabled) or self:GetHealth() <= 0 then
-                    self:SetMesh(bpDisplay.MeshBlueprint, true)
-                elseif cloaked and not self.CloakEffectEnabled then
-                    self:SetMesh(bpDisplay.CloakMeshBlueprint , true)
-                    self.CloakEffectEnabled = true
-                end
-            end
-        end
-    end,
-
     OnStopBeingBuilt = function(self,builder,layer)
         oldUnit.OnStopBeingBuilt(self,builder,layer)
         self.EXPhaseShieldPercentage = 0
@@ -87,14 +32,12 @@ Unit = Class(oldUnit) {
         self:ForkThread(self.CloakEffectControlThread)
     end,
 
-    -- Overridden Function:
     -- Overrode this so that there will be no doubt if the cloak effect is active or not
     SetMesh = function(self, meshBp, keepActor)
         oldUnit.SetMesh(self, meshBp, keepActor)
         self.CloakEffectEnabled = false;
     end,
 
-    -- Overridden Function:
     -- While the CloakEffectControlThread will activate the cloak effect eventually,
     -- this method tries to provide faster a response time to intel changes
     OnIntelEnabled = function(self)
@@ -104,7 +47,6 @@ Unit = Class(oldUnit) {
         end
     end,
 
-    -- Overridden Function:
     -- While the CloakEffectControlThread will deactivate the cloak effect eventually,
     -- this method tries to provide faster a response time to intel changes
     OnIntelDisabled = function(self)
@@ -118,7 +60,7 @@ Unit = Class(oldUnit) {
         self.TeleportCostPaid = false
         oldUnit.CleanupTeleportChargeEffects(self)
     end,
-
+    
     OnTeleportUnit = function(self, teleporter, location, orientation)
         local id = self:GetEntityId()
         -- Teleport Cooldown Charge
@@ -195,6 +137,177 @@ Unit = Class(oldUnit) {
         end
     end,
     
+    OnCollisionCheck = function(self, other, firingWeapon)
+        if self.DisallowCollisions then
+            return false
+        end
+        -- Run a modified CollideFriendly check first that allows for allied passthrough
+        if EntityCategoryContains(categories.PROJECTILE, other) then
+            if not self:GetShouldCollide(other:GetCollideFriendly(), self:GetArmy(), other:GetArmy()) then
+                return false
+            end
+        end
+        
+        if other.lastimpact and other.lastimpact == self:GetEntityId() then
+            return false
+        end
+        
+        if not self:IsDead() and self.EXPhaseEnabled == true then
+            if EntityCategoryContains(categories.PROJECTILE, other) then 
+                local random = Random(1,100)
+                -- Allows % of projectiles to pass
+                if random <= self.EXPhaseShieldPercentage then   
+                    -- Returning false allows the projectile to pass thru
+                    return false       
+                else
+                    -- Projectile impacts normally
+                    return true 
+                end
+            end
+        end
+        
+        return oldUnit.OnCollisionCheck(self, other, firingWeapon) 
+    end,  
+
+    OnCollisionCheckWeapon = function(self, firingWeapon)
+        if self.DisallowCollisions then
+            return false
+        end
+        -- Run a modified CollideFriendly check first that allows for allied passthrough
+        if not self:GetShouldCollide(firingWeapon:GetBlueprint().CollideFriendly, self:GetArmy(), firingWeapon.unit:GetArmy()) then
+            return false
+        end
+        return oldUnit.OnCollisionCheckWeapon(self, firingWeapon)
+    end,
+    
+    -- Partially working code to add an effect to the stun buff
+    SetStunned = function(self, time)
+        oldUnit.SetStunned(self, time)
+        local totalBones = self:GetBoneCount() - 1
+        local army = self:GetArmy()
+        
+        self:ForkThread(function()        
+            if self.StunEffectsBag then
+                for k, v in self.StunEffectsBag do
+                    v:Destroy()
+                end
+                self.StunEffectsBag = {}
+            end
+            
+            for k, v in BlackOpsEffectTemplate.EMPEffect do
+                for bone = 1, totalBones do
+                    table.insert(self.StunEffectsBag, CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(0.1))
+                end
+            end
+            
+            self:DisableIntel('Radar')                -- Disable intel a unit has
+            self:DisableIntel('Sonar')
+            self:DisableIntel('Omni')
+            self:DisableIntel('RadarStealth')
+            self:DisableIntel('SonarStealth')
+            self:DisableIntel('RadarStealthField')
+            self:DisableIntel('SonarStealthField')
+            self:DisableIntel('Cloak')
+            self:DisableIntel('CloakField')
+            self:DisableIntel('Spoof')
+            self:DisableIntel('Jammer')
+            
+            self:SetUnitState('building', false)
+            self:SetProductionActive(false)
+            self:SetConsumptionActive(false)
+            self:DisableShield()
+            
+            WaitSeconds(time)
+            
+            self:SetProductionActive(true)
+            self:SetConsumptionActive(true)
+            self:SetUnitState('building', true)
+            self:EnableShield()
+            
+            self:EnableIntel('Radar')                -- Enable intel a unit has
+            self:EnableIntel('Sonar')
+            self:EnableIntel('Omni')
+            self:EnableIntel('RadarStealth')
+            self:EnableIntel('SonarStealth')
+            self:EnableIntel('RadarStealthField')
+            self:EnableIntel('SonarStealthField')
+            self:EnableIntel('Cloak')
+            self:EnableIntel('CloakField')
+            self:EnableIntel('Spoof')
+            self:EnableIntel('Jammer')
+            
+            if self.StunEffectsBag then
+                for k, v in self.StunEffectsBag do
+                    v:Destroy()
+                end
+                self.StunEffectsBag = {}
+            end
+        )
+    end,
+    
+    -------------------------------------------------------
+    -- The rest of the functions are added anew by BlackOps
+    -------------------------------------------------------
+    
+    -- This thread runs constantly in the background for all units. It ensures that the cloak effect and cloak field are always in the correct state
+    CloakEffectControlThread = function(self)
+        if not self:IsDead() then
+            local bp = self:GetBlueprint()
+            if not bp.Intel.CustomCloak then
+                local bpDisplay = bp.Display
+                while not (self == nil or self:GetHealth() <= 0 or self:IsDead()) do
+                    WaitSeconds(0.2)
+                    self:UpdateCloakEffect()
+                    local CloakFieldIsActive = self:IsIntelEnabled('CloakField')
+                    if CloakFieldIsActive then
+                        local position = self:GetPosition(0)
+                        -- Range must be (radius - 2) because it seems GPG did that for the actual field for some reason.
+                        -- Anything beyond (radius - 2) is not cloaked by the cloak field
+                        local range = bp.Intel.CloakFieldRadius - 2
+                        local brain = self:GetAIBrain()
+                        local UnitsInRange = brain:GetUnitsAroundPoint( categories.ALLUNITS, position, range, 'Ally' )
+                        for num, unit in UnitsInRange do
+                            unit:MarkUnitAsInCloakField()
+                        end
+                    end
+                end
+            end
+        end
+    end,
+
+    -- Fork the thread that will deactivate the cloak effect, killing any previous threads that may be running
+    MarkUnitAsInCloakField = function(self)
+        self.InCloakField = true
+        if self.InCloakFieldThread then
+            KillThread(self.InCloakFieldThread)
+            self.InCloakFieldThread = nil
+        end
+        self.InCloakFieldThread = self:ForkThread(self.InCloakFieldWatchThread)
+    end,
+
+    -- Will deactive the cloak effect if it is not renewed by the cloak field
+    InCloakFieldWatchThread = function(self)
+        WaitSeconds(0.2)
+        self.InCloakField = false
+    end,
+
+    -- This is the core of the entire mod. The effect is actually applied here.
+    UpdateCloakEffect = function(self)
+        if not self:IsDead() then
+            local bp = self:GetBlueprint()
+            local bpDisplay = bp.Display
+            if not bp.Intel.CustomCloak then
+                local cloaked = self:IsIntelEnabled('Cloak') or self.InCloakField
+                if (not cloaked and self.CloakEffectEnabled) or self:GetHealth() <= 0 then
+                    self:SetMesh(bpDisplay.MeshBlueprint, true)
+                elseif cloaked and not self.CloakEffectEnabled then
+                    self:SetMesh(bpDisplay.CloakMeshBlueprint , true)
+                    self.CloakEffectEnabled = true
+                end
+            end
+        end
+    end,
+    
     EXTeleportChargeEffects = function(self)
         if not self:IsDead() then
             local bpe = self:GetBlueprint().Economy
@@ -264,49 +377,6 @@ Unit = Class(oldUnit) {
         end
     end,
 
-    OnCollisionCheck = function(self, other, firingWeapon)
-        if self.DisallowCollisions then
-            return false
-        end
-        -- Run a modified CollideFriendly check first that allows for allied passthrough
-        if EntityCategoryContains(categories.PROJECTILE, other) then
-            if not self:GetShouldCollide(other:GetCollideFriendly(), self:GetArmy(), other:GetArmy()) then
-                return false
-            end
-        end
-        
-        if other.lastimpact and other.lastimpact == self:GetEntityId() then
-            return false
-        end
-        
-        if not self:IsDead() and self.EXPhaseEnabled == true then
-            if EntityCategoryContains(categories.PROJECTILE, other) then 
-                local random = Random(1,100)
-                -- Allows % of projectiles to pass
-                if random <= self.EXPhaseShieldPercentage then   
-                    -- Returning false allows the projectile to pass thru
-                    return false       
-                else
-                    -- Projectile impacts normally
-                    return true 
-                end
-            end
-        end
-        
-        return oldUnit.OnCollisionCheck(self, other, firingWeapon) 
-    end,  
-
-    OnCollisionCheckWeapon = function(self, firingWeapon)
-        if self.DisallowCollisions then
-            return false
-        end
-        -- Run a modified CollideFriendly check first that allows for allied passthrough
-        if not self:GetShouldCollide(firingWeapon:GetBlueprint().CollideFriendly, self:GetArmy(), firingWeapon.unit:GetArmy()) then
-            return false
-        end
-        return oldUnit.OnCollisionCheckWeapon(self, firingWeapon)
-    end,
-
     GetShouldCollide = function(self, collidefriendly, army1, army2)
         if not collidefriendly then
             if army1 == army2 or IsAlly(army1, army2) then
@@ -314,70 +384,5 @@ Unit = Class(oldUnit) {
             end
         end
         return true
-    end,
-    
-    -- Partially working code to add an effect to the stun buff
-    SetStunned = function(self, time)
-        oldUnit.SetStunned(self, time)
-        local totalBones = self:GetBoneCount() - 1
-        local army = self:GetArmy()
-        
-        self:ForkThread(function()        
-            if self.StunEffectsBag then
-                for k, v in self.StunEffectsBag do
-                    v:Destroy()
-                end
-                self.StunEffectsBag = {}
-            end
-            
-            for k, v in BlackOpsEffectTemplate.EMPEffect do
-                for bone = 1, totalBones do
-                    table.insert(self.StunEffectsBag, CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(0.1))
-                end
-            end
-            
-            self:DisableIntel('Radar')                -- Disable intel a unit has
-            self:DisableIntel('Sonar')
-            self:DisableIntel('Omni')
-            self:DisableIntel('RadarStealth')
-            self:DisableIntel('SonarStealth')
-            self:DisableIntel('RadarStealthField')
-            self:DisableIntel('SonarStealthField')
-            self:DisableIntel('Cloak')
-            self:DisableIntel('CloakField')
-            self:DisableIntel('Spoof')
-            self:DisableIntel('Jammer')
-            
-            self:SetUnitState('building', false)
-            self:SetProductionActive(false)
-            self:SetConsumptionActive(false)
-            self:DisableShield()
-            
-            WaitSeconds(time)
-            
-            self:SetProductionActive(true)
-            self:SetConsumptionActive(true)
-            self:SetUnitState('building', true)
-            self:EnableShield()
-            
-            self:EnableIntel('Radar')                -- Enable intel a unit has
-            self:EnableIntel('Sonar')
-            self:EnableIntel('Omni')
-            self:EnableIntel('RadarStealth')
-            self:EnableIntel('SonarStealth')
-            self:EnableIntel('RadarStealthField')
-            self:EnableIntel('SonarStealthField')
-            self:EnableIntel('Cloak')
-            self:EnableIntel('CloakField')
-            self:EnableIntel('Spoof')
-            self:EnableIntel('Jammer')
-            
-            if self.StunEffectsBag then
-                for k, v in self.StunEffectsBag do
-                    v:Destroy()
-                end
-                self.StunEffectsBag = {}
-            end
-        )
-    end,    
+    end, 
 }
