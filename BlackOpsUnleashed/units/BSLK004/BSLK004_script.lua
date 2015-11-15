@@ -6,7 +6,7 @@
 
 local SLandUnit = import('/lua/seraphimunits.lua').SLandUnit
 local SDFUnstablePhasonBeam = import('/lua/kirvesweapons.lua').SDFUnstablePhasonBeamBO
-local Dummy = import('/lua/kirvesweapons.lua').Dummy
+local Dummy = import('/lua/kirvesweapons.lua').DummyBO
 local EffectTemplate = import('/lua/kirveseffects.lua')
 
 BSLK004 = Class(SLandUnit) {
