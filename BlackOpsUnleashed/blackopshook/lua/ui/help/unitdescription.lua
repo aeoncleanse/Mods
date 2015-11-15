@@ -5,7 +5,6 @@
 -----------------------------------------------
  
 -- Cybran
-
 Description['brl0205'] = "<LOC Unit_Description_20001> Ambush Assault unit.The Scorpion is equipped with a personal stealth field, and becomes cloaked when standing still; allowing for ambushes against enemy forces."
 Description['brl0307'] = "<LOC Unit_Description_20002> Medium Range Artillery Unit. The Hailfire fires a slavo of rockets at the target which detonate in a Low Yield EMP Blast stunning enemy units."
 Description['brl0401'] = "<LOC Unit_Description_20003> Ultimate weapon in the Cybran Military, derived from the original Basilisk design, while in assault mode it is armed with an Experimental Electron Accelerator Cannon, a pair of Electron Scrambler Cannons, two Electron Bolters, Nanite swarm missiles and Microwave Nanite Anti-air missiles. In Siege mode it sports the original Plasma cannon and LOA TML system. The AI is still known to occasionally wander off on its own to attack the enemy."
@@ -77,7 +76,7 @@ Description['bsb1106'] = "<LOC Unit_Description_40019> Advanced Storage building
 Description['bsb2303'] = "<LOC Unit_Description_40020> Launches a tactical missile, that when impacts the target area, creates a large amount of mines."
 Description['bsl0401'] = "<LOC Unit_Description_40021> Experimental hover tank, carries small beam drones into battle, also armed with an experimental Phason Beam which increases in damage the longer the beam is active."
 
--- Hawkeye Upgrades
+-- Upgrades
 Description['uel0001-hues'] = "Replaces the Tech 3 Engineering Suite. Allows the ACU to contruct Experimental class units and further increases the ACU's build speed and maximum health."
 Description['url0001-hres'] = "Replaces the Tech 3 Engineering Suite. Allows the ACU to contruct Experimental class units and further increases the ACU's build speed and maximum health."
 Description['ual0001-haes'] = "Replaces the Tech 3 Engineering Suite. Allows the ACU to contruct Experimental class units and further increases the ACU's build speed and maximum health."
