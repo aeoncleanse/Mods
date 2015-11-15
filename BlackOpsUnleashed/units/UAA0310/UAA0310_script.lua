@@ -61,7 +61,7 @@ UAA0310 = Class(AAirUnit) {
 
     OnAnimTerrainCollision = function(self, bone,x,y,z)
         DamageArea(self, {x,y,z}, 5, 1000, 'Default', true, false)
-        explosion.CreateDefaultHitExplosionAtBone( self, bone, 5.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, bone, 5.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
     
@@ -91,7 +91,7 @@ UAA0310 = Class(AAirUnit) {
             --LOG('OH NOES CZAR BUILT BY AI, TIME FOR OWNAGE')
             
             self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0.2)
-            self:AddBuildRestriction( categories.BUILTBYTIER3FACTORY )
+            self:AddBuildRestriction(categories.BUILTBYTIER3FACTORY)
             WaitSeconds(self.AnimationManipulator:GetAnimationDuration()*4)
             self:SetSpeedMult(0.75)
             self:SetWeaponEnabledByLabel('SuperQuantumBeamGeneratorWeapon', true)
@@ -163,7 +163,7 @@ UAA0310 = Class(AAirUnit) {
             self:SetSpeedMult(0.25)
             
             self:ForkThread(function()
-                self:AddBuildRestriction( categories.BUILTBYTIER3FACTORY )
+                self:AddBuildRestriction(categories.BUILTBYTIER3FACTORY)
                 self:RemoveToggleCap('RULEUTC_WeaponToggle')
                 self:SetWeaponEnabledByLabel('SuperQuantumBeamGeneratorWeapon', false)
                 self:SetWeaponEnabledByLabel('QuantumBeamGeneratorWeapon', false)
@@ -189,7 +189,7 @@ UAA0310 = Class(AAirUnit) {
                 WaitSeconds(self.Animator:GetAnimationDuration()*4)
                 self:SetWeaponEnabledByLabel('QuantumBeamGeneratorWeapon', true)
                 self:AddToggleCap('RULEUTC_WeaponToggle')
-                self:RemoveBuildRestriction( categories.BUILTBYTIER3FACTORY )
+                self:RemoveBuildRestriction(categories.BUILTBYTIER3FACTORY)
                 self:SetSpeedMult(1.0)
             end)
         end

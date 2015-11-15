@@ -48,7 +48,7 @@ AntiTeleport = {
             self.AntiTeleportBag = {}
         end
         for k, v in self.AntiTeleport do
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Light01', self:GetArmy(), v ):ScaleEmitter(0.5) )
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Light01', self:GetArmy(), v):ScaleEmitter(0.5))
         end
     end,
     

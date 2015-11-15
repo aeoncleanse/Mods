@@ -28,8 +28,8 @@ CDFProtonCannon05 = Class(CDFHvyProtonCannonProjectile) {
     FxWaterHitScale = 1.5,
 
     OnImpact = function(self, TargetType, TargetEntity) 
-        ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )
-        self:ShakeCamera( 15, 0.25, 0, 0.2 )
+        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
+        self:ShakeCamera(15, 0.25, 0, 0.2)
         CDFHvyProtonCannonProjectile.OnImpact (self, TargetType, TargetEntity)
     end,
 }

@@ -157,7 +157,7 @@ SeraHeavyLightningCannonChild01 = Class(SeraHeavyLightningCannonChildProjectile)
     --    local rotation = RandomFloat(0,2*math.pi)       
     --    CreateDecal(self:GetPosition(), rotation, 'crater_radial01_normals', '', 'Alpha Normals', 5, 5, 300, 0, self:GetArmy())
     --    CreateDecal(self:GetPosition(), rotation, 'crater_radial01_albedo', '', 'Albedo', 6, 6, 300, 0, self:GetArmy())
-    --    SeraHeavyLightningCannonChildProjectile.OnImpact( self, TargetType, targetEntity )
+    --    SeraHeavyLightningCannonChildProjectile.OnImpact(self, TargetType, targetEntity)
     --end,
 }
 

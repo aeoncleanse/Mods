@@ -57,7 +57,7 @@ BEA0005 = Class(TAirUnit) {
         -- set up the thursting arcs for the engines
         for key,value in self.EngineManipulators do
             --                          XMAX, XMIN, YMAX,YMIN, ZMAX,ZMIN, TURNMULT, TURNSPEED
-            value:SetThrustingParam( -0.0, 0.0, -0.25, 0.25, -0.1, 0.1, 1.0,      0.25 )
+            value:SetThrustingParam(-0.0, 0.0, -0.25, 0.25, -0.1, 0.1, 1.0,      0.25)
         end
         
         for k, v in self.EngineManipulators do
@@ -82,7 +82,7 @@ BEA0005 = Class(TAirUnit) {
 
     --Monitors drone distance from the carrier, issuing recalls and releases as necessary
     DroneLinkHeartbeat = function(self)
-        while ( self and not self:IsDead() ) and ( self.Carrier and not self.Carrier:IsDead() ) do
+        while (self and not self:IsDead()) and (self.Carrier and not self.Carrier:IsDead()) do
             local distance = self:GetDistanceFromAttachpoint()
             if distance > self.MaxRange and self.AwayFromCarrier == false then
                 self:DroneRecall()

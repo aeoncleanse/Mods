@@ -45,10 +45,10 @@ BRB2306 = Class(CRadarUnit) {
                     self.unit.ChargeEffects01Bag = {}
                 end
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'FocusBeam01_start', self.unit:GetArmy(), v ):ScaleEmitter(0.2))
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'FocusBeam02_start', self.unit:GetArmy(), v ):ScaleEmitter(0.2))
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'FocusBeam01_end', self.unit:GetArmy(), v ):ScaleEmitter(0.2))
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'FocusBeam02_end', self.unit:GetArmy(), v ):ScaleEmitter(0.2))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'FocusBeam01_start', self.unit:GetArmy(), v):ScaleEmitter(0.2))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'FocusBeam02_start', self.unit:GetArmy(), v):ScaleEmitter(0.2))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'FocusBeam01_end', self.unit:GetArmy(), v):ScaleEmitter(0.2))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'FocusBeam02_end', self.unit:GetArmy(), v):ScaleEmitter(0.2))
                 end
                 if self.unit.BeamChargeEffects then
                     for k, v in self.unit.BeamChargeEffects do
@@ -56,8 +56,8 @@ BRB2306 = Class(CRadarUnit) {
                     end
                     self.unit.BeamChargeEffects = {}
                 end
-                    table.insert( self.unit.BeamChargeEffects, AttachBeamEntityToEntity(self.unit, 'FocusBeam01_start', self.unit, 'FocusBeam01_end', self.unit:GetArmy(), '/effects/emitters/manticore_charge_beam_01_emit.bp') )
-                    table.insert( self.unit.BeamChargeEffects, AttachBeamEntityToEntity(self.unit, 'FocusBeam02_start', self.unit, 'FocusBeam02_end', self.unit:GetArmy(), '/effects/emitters/manticore_charge_beam_01_emit.bp') )
+                    table.insert(self.unit.BeamChargeEffects, AttachBeamEntityToEntity(self.unit, 'FocusBeam01_start', self.unit, 'FocusBeam01_end', self.unit:GetArmy(), '/effects/emitters/manticore_charge_beam_01_emit.bp'))
+                    table.insert(self.unit.BeamChargeEffects, AttachBeamEntityToEntity(self.unit, 'FocusBeam02_start', self.unit, 'FocusBeam02_end', self.unit:GetArmy(), '/effects/emitters/manticore_charge_beam_01_emit.bp'))
                 self:ForkThread(self.ArrayEffectsCleanup)
             end,
             

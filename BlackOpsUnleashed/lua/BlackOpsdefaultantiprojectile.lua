@@ -13,7 +13,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
     EndPointEffects = {'/effects/emitters/particle_cannon_end_01_emit.bp',},
     LambdaEffects = BlackOpsEffectTemplate.EXLambdaRedirector,
     
-    --AttachBone = function( AttachBone )
+    --AttachBone = function(AttachBone)
     --    self:AttachTo(spec.Owner, self.AttachBone)
     --end, 
 
@@ -48,7 +48,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
         OnCollisionCheck = function(self, other)
             --LOG('*DEBUG MISSILE REDIRECT COLLISION CHECK')
             if EntityCategoryContains(categories.PROJECTILE, other) and not EntityCategoryContains(categories.STRATEGIC, other) 
-                        and other != self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
+                        and other != self.EnemyProj and IsEnemy(self:GetArmy(), other:GetArmy()) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
                 --NOTE: Fix me We need to test enemy validity if there is no enemy 
@@ -95,7 +95,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
             end
             if self.Enemy and not self.Enemy:BeenDestroyed() then
                 for k, v in self.LambdaEffects do
-                    table.insert( self.LambdaEffectsBag, CreateEmitterOnEntity( self.EnemyProj, self:GetArmy(), v ):ScaleEmitter(0.2) )
+                    table.insert(self.LambdaEffectsBag, CreateEmitterOnEntity(self.EnemyProj, self:GetArmy(), v):ScaleEmitter(0.2))
                 end
                 WaitTicks(self.RedirectRateOfFire)
                 if not self.EnemyProj:BeenDestroyed() then
@@ -103,7 +103,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
                 end
             else
                 for k, v in self.LambdaEffects do
-                    table.insert( self.LambdaEffectsBag, CreateEmitterOnEntity( self.EnemyProj, self:GetArmy(), v ):ScaleEmitter(0.2) )
+                    table.insert(self.LambdaEffectsBag, CreateEmitterOnEntity(self.EnemyProj, self:GetArmy(), v):ScaleEmitter(0.2))
                 end
                 WaitTicks(self.RedirectRateOfFire)
                 local vectordam = {}
@@ -133,7 +133,7 @@ SeraLambdaFieldDestroyer = Class(Entity) {
     EndPointEffects = {'/effects/emitters/particle_cannon_end_01_emit.bp',},
     LambdaEffects = BlackOpsEffectTemplate.EXLambdaDestoyer,
     
-    --AttachBone = function( AttachBone )
+    --AttachBone = function(AttachBone)
     --    self:AttachTo(spec.Owner, self.AttachBone)
     --end, 
 
@@ -169,7 +169,7 @@ SeraLambdaFieldDestroyer = Class(Entity) {
         OnCollisionCheck = function(self, other)
             --LOG('*DEBUG MISSILE REDIRECT COLLISION CHECK')
             if EntityCategoryContains(categories.PROJECTILE, other) and not EntityCategoryContains(categories.STRATEGIC, other) and not EntityCategoryContains(categories.ANTINAVY, other) 
-                        and other != self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
+                        and other != self.EnemyProj and IsEnemy(self:GetArmy(), other:GetArmy()) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
                 --NOTE: Fix me We need to test enemy validity if there is no enemy 
@@ -213,7 +213,7 @@ SeraLambdaFieldDestroyer = Class(Entity) {
             end
             if self.Enemy and not self.Enemy:BeenDestroyed() then
                 for k, v in self.LambdaEffects do
-                    table.insert( self.LambdaEffectsBag, CreateEmitterAtEntity( self.EnemyProj, self:GetArmy(), v ):ScaleEmitter(0.2) )
+                    table.insert(self.LambdaEffectsBag, CreateEmitterAtEntity(self.EnemyProj, self:GetArmy(), v):ScaleEmitter(0.2))
                 end
                 self.EnemyProj:Destroy()
                 WaitTicks(self.RedirectRateOfFire)
@@ -222,7 +222,7 @@ SeraLambdaFieldDestroyer = Class(Entity) {
                 --end
             else
                 for k, v in self.LambdaEffects do
-                    table.insert( self.LambdaEffectsBag, CreateEmitterAtEntity( self.EnemyProj, self:GetArmy(), v ):ScaleEmitter(0.2) )
+                    table.insert(self.LambdaEffectsBag, CreateEmitterAtEntity(self.EnemyProj, self:GetArmy(), v):ScaleEmitter(0.2))
                 end
                 self.EnemyProj:Destroy()
                 WaitTicks(self.RedirectRateOfFire)
@@ -252,7 +252,7 @@ TorpRedirectField = Class(Entity) {
     EndPointEffects = {'/effects/emitters/particle_cannon_end_01_emit.bp',},
     --LambdaEffects = BlackOpsEffectTemplate.EXLambdaRedirector,
     
-    --AttachBone = function( AttachBone )
+    --AttachBone = function(AttachBone)
     --    self:AttachTo(spec.Owner, self.AttachBone)
     --end, 
 
@@ -287,7 +287,7 @@ TorpRedirectField = Class(Entity) {
         OnCollisionCheck = function(self, other)
             --LOG('*DEBUG MISSILE REDIRECT COLLISION CHECK')
             if EntityCategoryContains(categories.TORPEDO, other) and not EntityCategoryContains(categories.STRATEGIC, other) 
-                        and other != self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
+                        and other != self.EnemyProj and IsEnemy(self:GetArmy(), other:GetArmy()) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
                 --NOTE: Fix me We need to test enemy validity if there is no enemy 
@@ -334,7 +334,7 @@ TorpRedirectField = Class(Entity) {
             end
             if self.Enemy and not self.Enemy:BeenDestroyed() then
                 --for k, v in self.LambdaEffects do
-                --    table.insert( self.LambdaEffectsBag, CreateEmitterOnEntity( self.EnemyProj, self:GetArmy(), v ):ScaleEmitter(0.2) )
+                --    table.insert(self.LambdaEffectsBag, CreateEmitterOnEntity(self.EnemyProj, self:GetArmy(), v):ScaleEmitter(0.2))
                 --end
                 WaitTicks(self.RedirectRateOfFire)
                 if not self.EnemyProj:BeenDestroyed() then
@@ -342,7 +342,7 @@ TorpRedirectField = Class(Entity) {
                 end
             else
                 --for k, v in self.LambdaEffects do
-                --    table.insert( self.LambdaEffectsBag, CreateEmitterOnEntity( self.EnemyProj, self:GetArmy(), v ):ScaleEmitter(0.2) )
+                --    table.insert(self.LambdaEffectsBag, CreateEmitterOnEntity(self.EnemyProj, self:GetArmy(), v):ScaleEmitter(0.2))
                 --end
                 WaitTicks(self.RedirectRateOfFire)
                 local vectordam = {}

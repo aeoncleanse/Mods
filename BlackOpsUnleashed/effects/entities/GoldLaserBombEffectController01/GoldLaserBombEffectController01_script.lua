@@ -27,7 +27,7 @@ GoldLaserBombEffectController01 = Class(NullShell) {
     NukeOuterRingTicks = 1,
     NukeOuterRingTotalTime = 0,
     
-    OnCreate = function( self )  
+    OnCreate = function(self)  
         NullShell.OnCreate(self)
         local army = self:GetArmy()
 
@@ -52,8 +52,8 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -71,8 +71,8 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -85,14 +85,14 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         end
     end,   
     
-    MainBlast = function( self, army )
+    MainBlast = function(self, army)
         --WaitSeconds(2.5)
         
         --------Create a light for this thing's flash.
-        CreateLightParticle(self, -1, self:GetArmy(), 40, 7, 'flare_lens_add_03', 'ramp_white_07' )
+        CreateLightParticle(self, -1, self:GetArmy(), 40, 7, 'flare_lens_add_03', 'ramp_white_07')
         
         -- Create our decals
-        CreateDecal( self:GetPosition(), RandomFloat(0.0,6.28), 'Scorch_012_albedo', '', 'Albedo', 30, 30, 500, 0, self:GetArmy())          
+        CreateDecal(self:GetPosition(), RandomFloat(0.0,6.28), 'Scorch_012_albedo', '', 'Albedo', 30, 30, 500, 0, self:GetArmy())          
 
         -- Create explosion effects
         for k, v in BlackOpsEffectTemplate.GoldLaserBombDetonate01 do
@@ -101,8 +101,8 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         
         self:CreatePlumes()
         
-        ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )
-        self:ShakeCamera( 7, 2.5, 0, 0.7 )        
+        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
+        self:ShakeCamera(7, 2.5, 0, 0.7)        
 
         WaitSeconds(0.3)
         --[[
@@ -111,7 +111,7 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         local vx, vy, vz = self:GetVelocity()
         local num_projectiles = 16        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, zVec
         local offsetMultiple = 2.0
         local px, pz
@@ -122,7 +122,7 @@ GoldLaserBombEffectController01 = Class(NullShell) {
             px = (offsetMultiple*xVec)
             pz = (offsetMultiple*zVec)
             
-            local proj = self:CreateProjectile( GoldLaserBombEffect06, px, 1, pz, xVec, 0, zVec )
+            local proj = self:CreateProjectile(GoldLaserBombEffect06, px, 1, pz, xVec, 0, zVec)
             proj:SetLifetime(2.0)
             proj:SetVelocity(5.0)
             proj:SetAcceleration(-5.0)            
@@ -134,21 +134,21 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         -- Create fireball plumes to accentuate the explosive detonation
         local num_projectiles = 12        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, yVec, zVec
         local angleVariation = 0.5        
         local px, py, pz        
      
         for i = 0, (num_projectiles -1) do            
-            xVec = math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation) ) 
-            yVec = RandomFloat( 0.7, 2.8 ) + 2.0
-            zVec = math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation) ) 
-            px = RandomFloat( 0.5, 1.0 ) * xVec
-            py = RandomFloat( 0.5, 1.0 ) * yVec
-            pz = RandomFloat( 0.5, 1.0 ) * zVec
+            xVec = math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation)) 
+            yVec = RandomFloat(0.7, 2.8) + 2.0
+            zVec = math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation)) 
+            px = RandomFloat(0.5, 1.0) * xVec
+            py = RandomFloat(0.5, 1.0) * yVec
+            pz = RandomFloat(0.5, 1.0) * zVec
             
-            local proj = self:CreateProjectile( GoldLaserBombEffect01, px, py, pz, xVec, yVec, zVec )
-            proj:SetVelocity(RandomFloat( 2, 10  ))
+            local proj = self:CreateProjectile(GoldLaserBombEffect01, px, py, pz, xVec, yVec, zVec)
+            proj:SetVelocity(RandomFloat(2, 10 ))
             proj:SetBallisticAcceleration(-4.8)            
         end        
     end,

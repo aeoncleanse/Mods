@@ -249,7 +249,7 @@ Unit = Class(oldUnit) {
                 end
                 self.StunEffectsBag = {}
             end
-        )
+       )
     end,
     
     -------------------------------------------------------
@@ -272,7 +272,7 @@ Unit = Class(oldUnit) {
                         -- Anything beyond (radius - 2) is not cloaked by the cloak field
                         local range = bp.Intel.CloakFieldRadius - 2
                         local brain = self:GetAIBrain()
-                        local UnitsInRange = brain:GetUnitsAroundPoint( categories.ALLUNITS, position, range, 'Ally' )
+                        local UnitsInRange = brain:GetUnitsAroundPoint(categories.ALLUNITS, position, range, 'Ally')
                         for num, unit in UnitsInRange do
                             unit:MarkUnitAsInCloakField()
                         end

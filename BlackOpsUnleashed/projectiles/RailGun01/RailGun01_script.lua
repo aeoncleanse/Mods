@@ -7,12 +7,12 @@ local RailGun01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojecti
 RailGun01 = Class(RailGun01Projectile) {
 
     OnImpact = function(self, TargetType, TargetEntity) 
-        ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )
-        self:ShakeCamera( 15, 0.25, 0, 0.2 )
+        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
+        self:ShakeCamera(15, 0.25, 0, 0.2)
         RailGun01Projectile.OnImpact (self, TargetType, TargetEntity)
     end,
     
-    OnImpactDestroy = function( self, targetType, targetEntity )
+    OnImpactDestroy = function(self, targetType, targetEntity)
         if targetEntity and not IsUnit(targetEntity) then
             RailGun01Projectile.OnImpactDestroy(self, targetType, targetEntity)
         return

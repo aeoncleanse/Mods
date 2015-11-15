@@ -7,11 +7,11 @@
 local XCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').XCannonProjectile
 XCannon01 = Class(XCannonProjectile) {
     OnImpact = function(self, TargetType, TargetEntity) 
-        ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )
-        self:ShakeCamera( 15, 0.25, 0, 0.2 )
+        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
+        self:ShakeCamera(15, 0.25, 0, 0.2)
         XCannonProjectile.OnImpact (self, TargetType, TargetEntity)
     end,
-OnImpactDestroy = function( self, targetType, targetEntity )
+OnImpactDestroy = function(self, targetType, targetEntity)
 
    if targetEntity and not IsUnit(targetEntity) then
       XCannonProjectile.OnImpactDestroy(self, targetType, targetEntity)

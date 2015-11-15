@@ -48,7 +48,7 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
         if launcher and not launcher:IsDead() and launcher.EventCallbacks.ProjectileDamaged then
             self.ProjectileDamaged = {}
             for k,v in launcher.EventCallbacks.ProjectileDamaged do
-                table.insert( self.ProjectileDamaged, v )
+                table.insert(self.ProjectileDamaged, v)
             end
         end
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)

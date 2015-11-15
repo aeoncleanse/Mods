@@ -56,7 +56,7 @@ EXSingleBeamProjectile = Class(EXEmitterProjectile) {
     OnCreate = function(self)
         EmitterProjectile.OnCreate(self)
         if self.BeamName then
-            CreateBeamEmitterOnEntity( self, -1, self:GetArmy(), self.BeamName )
+            CreateBeamEmitterOnEntity(self, -1, self:GetArmy(), self.BeamName)
         end
     end,
 }
@@ -71,7 +71,7 @@ EXMultiBeamProjectile = Class(EXEmitterProjectile) {
         local beam = nil
         local army = self:GetArmy()
         for k, v in self.Beams do
-            CreateBeamEmitterOnEntity( self, -1, army, v )
+            CreateBeamEmitterOnEntity(self, -1, army, v)
         end
     end,
 }
@@ -102,18 +102,18 @@ EXMultiPolyTrailProjectile = Class(EXEmitterProjectile) {
     OnCreate = function(self)
         EmitterProjectile.OnCreate(self)
         if self.PolyTrails then
-            local NumPolyTrails = table.getn( self.PolyTrails )
+            local NumPolyTrails = table.getn(self.PolyTrails)
             local army = self:GetArmy()
 
             if self.RandomPolyTrails != 0 then
                 local index = nil
                 for i = 1, self.RandomPolyTrails do
-                    index = math.floor( Random( 1, NumPolyTrails))
-                    CreateTrail(self, -1, army, self.PolyTrails[index] ):OffsetEmitter(0, 0, self.PolyTrailOffset[index])
+                    index = math.floor(Random(1, NumPolyTrails))
+                    CreateTrail(self, -1, army, self.PolyTrails[index]):OffsetEmitter(0, 0, self.PolyTrailOffset[index])
                 end
             else
                 for i = 1, NumPolyTrails do
-                    CreateTrail(self, -1, army, self.PolyTrails[i] ):OffsetEmitter(0, 0, self.PolyTrailOffset[i])
+                    CreateTrail(self, -1, army, self.PolyTrails[i]):OffsetEmitter(0, 0, self.PolyTrailOffset[i])
                 end
             end
         end
@@ -135,7 +135,7 @@ EXSingleCompositeEmitterProjectile = Class(EXSinglePolyTrailProjectile) {
     OnCreate = function(self)
         SinglePolyTrailProjectile.OnCreate(self)
         if self.BeamName != '' then
-            CreateBeamEmitterOnEntity( self, -1, self:GetArmy(), self.BeamName )
+            CreateBeamEmitterOnEntity(self, -1, self:GetArmy(), self.BeamName)
         end
     end,
 }
@@ -153,7 +153,7 @@ EXMultiCompositeEmitterProjectile = Class(EXMultiPolyTrailProjectile) {
         local beam = nil
         local army = self:GetArmy()
         for k, v in self.Beams do
-            CreateBeamEmitterOnEntity( self, -1, army, v )
+            CreateBeamEmitterOnEntity(self, -1, army, v)
         end
     end,
 }
@@ -188,7 +188,7 @@ MiniRocketPRojectile = Class(SingleBeamProjectile) {
         SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
     end,
 
-    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
+    CreateImpactEffects = function(self, army, EffectTable, EffectScale)
         local emit = nil
         for k, v in EffectTable do
             emit = CreateEmitterAtEntity(self,army,v)
@@ -216,7 +216,7 @@ MiniRocket03PRojectile = Class(SingleBeamProjectile) {
         SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
     end,
 
-    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
+    CreateImpactEffects = function(self, army, EffectTable, EffectScale)
         local emit = nil
         for k, v in EffectTable do
             emit = CreateEmitterAtEntity(self,army,v)
@@ -236,7 +236,7 @@ MiniRocket04PRojectile = Class(SingleBeamProjectile) {
         SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
     end,
 
-    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
+    CreateImpactEffects = function(self, army, EffectTable, EffectScale)
         local emit = nil
         for k, v in EffectTable do
             emit = CreateEmitterAtEntity(self,army,v)
@@ -259,7 +259,7 @@ MiniRocket02Projectile = Class(SingleBeamProjectile) {
     FxImpactNone = EffectTemplate.CMissileLOAHit01,
     FxImpactUnderWater = {},
     
-    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
+    CreateImpactEffects = function(self, army, EffectTable, EffectScale)
         local emit = nil
         for k, v in EffectTable do
             emit = CreateEmitterAtEntity(self,army,v)
@@ -300,8 +300,8 @@ SeaDragonShell = Class(SinglePolyTrailProjectile) {
     end,
 
     DelayedDestroyThread = function(self)
-        WaitSeconds( 0.3 )
-        self.CreateImpactEffects( self, self:GetArmy(), self.FxImpactUnit, self.FxUnitHitScale )
+        WaitSeconds(0.3)
+        self.CreateImpactEffects(self, self:GetArmy(), self.FxImpactUnit, self.FxUnitHitScale)
         self:Destroy()
     end,
 
@@ -310,7 +310,7 @@ SeaDragonShell = Class(SinglePolyTrailProjectile) {
             self.Impacted = true
             if TargetType == 'Terrain' then
                 SinglePolyTrailProjectile.OnImpact(self, TargetType, TargetEntity)
-                self:ForkThread( self.DelayedDestroyThread )
+                self:ForkThread(self.DelayedDestroyThread)
             else
                 SinglePolyTrailProjectile.OnImpact(self, TargetType, TargetEntity)
                 self:Destroy()
@@ -369,8 +369,8 @@ ZCannon01Projectile = Class(MultiPolyTrailProjectile) {
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
         if targetType == 'Terrain' then
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0,2*math.pi), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 50, army )
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0,2*math.pi), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 50, army )
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0,2*math.pi), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 50, army)
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0,2*math.pi), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 50, army)
             self:ShakeCamera(20, 1, 0, 1)
         end
         local pos = self:GetPosition()
@@ -931,12 +931,12 @@ MGQAIPlasmaArtyProjectile = Class(EmitterProjectile) {
     end,
     
     -- Overiding Destruction
-    OnImpactDestroy = function( self, TargetType, TargetEntity)
-        self:ForkThread( self.DelayedDestroyThread )
+    OnImpactDestroy = function(self, TargetType, TargetEntity)
+        self:ForkThread(self.DelayedDestroyThread)
     end,
 
     DelayedDestroyThread = function(self)
-        WaitSeconds( 0.5 )
+        WaitSeconds(0.5)
         self:Destroy()
     end,
 }
@@ -1012,7 +1012,7 @@ TAAHeavyFragmentationProjectile = Class(SingleCompositeEmitterProjectile) {
 --------------------------------------------------------------------------
 --  UEF ACU Antimatter Cannon
 --------------------------------------------------------------------------
-UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile ) {
+UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
     PolyTrails = BlackOpsEffectTemplate.ZCannonPolytrail02,
     PolyTrailOffset = {0,0,0},
     FxTrails = BlackOpsEffectTemplate.ZCannonFxtrail02,
@@ -1027,10 +1027,10 @@ UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile ) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle( self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02' )
+        --CreateLightParticle(self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02')
         if targetType == 'Terrain' then
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army )
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army )
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army)
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
             self:ShakeCamera(20, 1, 0, 1)
         end
         local pos = self:GetPosition()
@@ -1166,7 +1166,7 @@ GargEMPWarheadProjectile = Class(SingleBeamProjectile) {
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
         local blanketVelocity = 2
-        CreateLightParticle( self, -1, -1, 80, 200, 'flare_lens_add_02', 'ramp_red_10' )
+        CreateLightParticle(self, -1, -1, 80, 200, 'flare_lens_add_02', 'ramp_red_10')
 
         for i = 0, (blanketSides-1) do
             local blanketX = math.sin(i*blanketAngle)

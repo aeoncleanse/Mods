@@ -46,7 +46,7 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
             WaitSeconds(self.WaitTime)
         end
     end,
-    CreateEffects = function( self, EffectTable, army, scale)
+    CreateEffects = function(self, EffectTable, army, scale)
         for k, v in EffectTable do
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
         end
@@ -73,9 +73,9 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
             WaitSeconds(0.1)
             self:SetTurnRate(90)
             --speed boost!! and effects
-            self.CreateEffects( self, self.InitialEffects, army, 1 )
-            self.CreateEffects( self, self.LaunchEffects, army, 1 )
-            self.CreateEffects( self, self.ThrustEffects, army, 3 )
+            self.CreateEffects(self, self.InitialEffects, army, 1)
+            self.CreateEffects(self, self.LaunchEffects, army, 1)
+            self.CreateEffects(self, self.ThrustEffects, army, 3)
             self:SetMaxSpeed(70)
             self:SetAcceleration(50)
             self:SetTurnRate(150)

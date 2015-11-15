@@ -257,7 +257,7 @@ BSA0001 = Class(SAirUnit) {
                 end
 
                 ------ Sets cruise thrust effect post afterburn
-                table.insert(self.BeamExhaustEffectsBag, CreateBeamEmitterOnEntity( self, 'XSA0001', self:GetArmy(), self.BeamCruise):ScaleEmitter(0.1))
+                table.insert(self.BeamExhaustEffectsBag, CreateBeamEmitterOnEntity(self, 'XSA0001', self:GetArmy(), self.BeamCruise):ScaleEmitter(0.1))
 
                 ------ Resets the speed and turn rates
                 self:SetSpeedMult(1.0)

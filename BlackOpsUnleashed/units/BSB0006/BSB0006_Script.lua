@@ -39,7 +39,7 @@ ShieldEffects = {
         --    self.ShieldEffectsBag = {}
         --end
         --for k, v in self.ShieldEffects do
-        --    table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ):ScaleEmitter(0.7) )
+        --    table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.7))
         --end
     end,
     --Make this unit invulnerable

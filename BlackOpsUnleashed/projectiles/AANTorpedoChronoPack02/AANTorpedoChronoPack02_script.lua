@@ -35,15 +35,15 @@ AANTorpedoChronoPack01 = Class(ATorpedoShipProjectile) {
         local TrackingTarget = self:GetTrackingTarget()
         local SplitWaitTime = 1.0
 
-        if( TrackingTarget != nil ) then
-            SplitWaitTime = (VDist3( self:GetPosition(), TrackingTarget:GetPosition() ) * self.DistanceBeforeSplitRatio) / self.VelocityOnEnterWater
+        if(TrackingTarget != nil) then
+            SplitWaitTime = (VDist3(self:GetPosition(), TrackingTarget:GetPosition()) * self.DistanceBeforeSplitRatio) / self.VelocityOnEnterWater
         end
 
         WaitSeconds(SplitWaitTime)
         local Velx, Vely, Velz = self:GetVelocity()
         local angleRange = math.pi
         local angleInitial = -angleRange / 2
-        local angleIncrement = angleRange / (self.NumberOfChildProjectiles - 1 )
+        local angleIncrement = angleRange / (self.NumberOfChildProjectiles - 1)
         local angle, ca, sa, x, z, proj
         for i = 0, (self.NumberOfChildProjectiles - 1) do
             angle = angleInitial + (i*angleIncrement)
@@ -52,7 +52,7 @@ AANTorpedoChronoPack01 = Class(ATorpedoShipProjectile) {
             x = Velx * ca - Velz * sa
             z = Velx * sa + Velz * ca
             proj = self:CreateChildProjectile('/projectiles/AANTorpedo01/AANTorpedo01_proj.bp')
-            proj:SetVelocity( x * 2, Vely, z * 2 )
+            proj:SetVelocity(x * 2, Vely, z * 2)
         end
         self:Destroy()
     end,

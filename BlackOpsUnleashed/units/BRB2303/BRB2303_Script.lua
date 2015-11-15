@@ -56,7 +56,7 @@ BRB2303 = Class(CStructureUnit) {
                 recoilTbl.MuzzleBones = muzzleBones[self.CurrentBarrel]                
                 recoilTbl.RackBone = recoilgroup1[self.CurrentBarrel] 
                 --recoilTbl.TelescopeBone = recoilgroup2[self.CurrentBarrel]              
-                table.insert( rackList, recoilTbl ) 
+                table.insert(rackList, recoilTbl) 
                                 
                 HailfireLauncherWeapon.PlayRackRecoil(self, rackList)
                 -- Perform recoil shake

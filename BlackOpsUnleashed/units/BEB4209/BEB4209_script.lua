@@ -50,20 +50,20 @@ BEB4209 = Class(TStructureUnit) {
             self.AntiTeleportBag = {}
         end
         for k, v in self.AntiTeleport do
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect03', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect03', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect04', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect04', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect05', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect05', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect06', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect06', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect03', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect03', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect05', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect05', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect06', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect06', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
         end
     end,
     

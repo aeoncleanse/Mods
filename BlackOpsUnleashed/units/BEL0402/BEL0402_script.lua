@@ -132,8 +132,8 @@ BEL0402 = Class(TWalkingLandUnit) {
                 self.FlamerEffectsBag = {}
             end
             for k, v in self.FlamerEffects do
-                table.insert( self.FlamerEffectsBag, CreateAttachedEmitter( self, 'Right_Pilot_Light', self:GetArmy(), v ):ScaleEmitter(0.0625) )
-                table.insert( self.FlamerEffectsBag, CreateAttachedEmitter( self, 'Left_Pilot_Light', self:GetArmy(), v ):ScaleEmitter(0.0625) )
+                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Right_Pilot_Light', self:GetArmy(), v):ScaleEmitter(0.0625))
+                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Left_Pilot_Light', self:GetArmy(), v):ScaleEmitter(0.0625))
             end
             TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
     end,
@@ -776,19 +776,19 @@ BEL0402 = Class(TWalkingLandUnit) {
     },
     
     
-    CreateDamageEffects = function(self, bone, army )
+    CreateDamageEffects = function(self, bone, army)
         for k, v in EffectTemplate.DamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(3.0)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(3.0)
         end
     end,
 
-    CreateExplosionDebris = function( self, bone, Army )
+    CreateExplosionDebris = function(self, bone, Army)
         for k, v in EffectTemplate.ExplosionEffectsSml01 do
-            CreateAttachedEmitter( self, bone, Army, v ):ScaleEmitter(2.0)
+            CreateAttachedEmitter(self, bone, Army, v):ScaleEmitter(2.0)
         end
     end,
     
-    CreateDeathExplosionDustRing = function( self )
+    CreateDeathExplosionDustRing = function(self)
         local blanketSides = 18
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
@@ -803,16 +803,16 @@ BEL0402 = Class(TWalkingLandUnit) {
         end        
     end,
 
-    CreateAmmoCookOff = function( self, Army, bones, yBoneOffset )
+    CreateAmmoCookOff = function(self, Army, bones, yBoneOffset)
         ------ Fire plume effects
         local basePosition = self:GetPosition()
         for k, vBone in bones do
             local position = self:GetPosition(vBone)
-            local offset = utilities.GetDifferenceVector( position, basePosition )
-            velocity = utilities.GetDirectionVector( position, basePosition ) 
+            local offset = utilities.GetDifferenceVector(position, basePosition)
+            velocity = utilities.GetDirectionVector(position, basePosition) 
             velocity.x = velocity.x + utilities.GetRandomFloat(-0.45, 0.45)
             velocity.z = velocity.z + utilities.GetRandomFloat(-0.45, 0.45)
-            velocity.y = velocity.y + utilities.GetRandomFloat( 0.0, 0.65)
+            velocity.y = velocity.y + utilities.GetRandomFloat(0.0, 0.65)
 
             ------ Ammo Cookoff projectiles and damage
             self.DamageData = {
@@ -837,7 +837,7 @@ BEL0402 = Class(TWalkingLandUnit) {
     
     CreateGroundPlumeConvectionEffects = function(self,army)
     for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-          CreateEmitterAtEntity(self, army, v ) 
+          CreateEmitterAtEntity(self, army, v) 
     end
     
     local sides = 10
@@ -858,7 +858,7 @@ BEL0402 = Class(TWalkingLandUnit) {
         local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
         local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-        local velocity = RandomFloat( 1, 3 ) * 3
+        local velocity = RandomFloat(1, 3) * 3
         self:CreateProjectile('/effects/entities/UEFNukeEffect05/UEFNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
             :SetVelocity(x * velocity, 0, z * velocity)
     end 
@@ -890,10 +890,10 @@ BEL0402 = Class(TWalkingLandUnit) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/entities/UEFNukeShockwave02/UEFNukeShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end  
         
-        WaitSeconds( 3 )
+        WaitSeconds(3)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -904,7 +904,7 @@ BEL0402 = Class(TWalkingLandUnit) {
     CreateFlavorPlumes = function(self)
         local numProjectiles = 8
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         local angleVariation = angle * 0.75
         local projectiles = {}
 
@@ -924,10 +924,10 @@ BEL0402 = Class(TWalkingLandUnit) {
             yVec = RandomFloat(0.2, 1)
             zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation)) 
             velocity = 3.4 + (yVec * RandomFloat(2,5))
-            table.insert(projectiles, self:CreateProjectile('/effects/entities/UEFNukeFlavorPlume01/UEFNukeFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity) )
+            table.insert(projectiles, self:CreateProjectile('/effects/entities/UEFNukeFlavorPlume01/UEFNukeFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity))
         end
 
-        WaitSeconds( 3 )
+        WaitSeconds(3)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -957,91 +957,91 @@ BEL0402 = Class(TWalkingLandUnit) {
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
         proj:SetVelocityAlign(false)
-        proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+        proj:SetOrientation(OrientFromDir(Util.Cross(Vector(x,0,z), Vector(0,1,0))),true)
         proj:SetVelocity(0,3,0) 
           proj:SetBallisticAcceleration(-0.05)            
         end   
     end,
     
     
-    DeathThread = function( self, overkillRatio , instigator)
+    DeathThread = function(self, overkillRatio , instigator)
     
         local army = self:GetArmy()
         local position = self:GetPosition()
-        local numExplosions =  math.floor( table.getn( self.DestructionEffectBones ) * Random(0.4, 1.0))
+        local numExplosions =  math.floor(table.getn(self.DestructionEffectBones) * Random(0.4, 1.0))
         self:PlayUnitSound('Destroyed')
         -- Create small explosions effects all over
-        local ranBone = utilities.GetRandomInt( 1, numExplosions )
-        CreateDeathExplosion( self, 'Torso', 6)
-        CreateAttachedEmitter(self, 'Torso', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter( 0, 0, 0 )
+        local ranBone = utilities.GetRandomInt(1, numExplosions)
+        CreateDeathExplosion(self, 'Torso', 6)
+        CreateAttachedEmitter(self, 'Torso', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 0, 0)
         self:ShakeCamera(20, 2, 1, 1)
         WaitSeconds(3)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Torso', 5.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Torso', 5.0)
         WaitSeconds(1)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Missile_Hatch_B', 5.0 )
-        self:CreateDamageEffects( 'Missile_Hatch_B', army )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Missile_Hatch_B', 5.0)
+        self:CreateDamageEffects('Missile_Hatch_B', army)
         self:ShakeCamera(20, 2, 1, 1.5)
         WaitSeconds(1)
-        CreateDeathExplosion( self, 'Left_Arm_Extra', 1.0 )
+        CreateDeathExplosion(self, 'Left_Arm_Extra', 1.0)
         WaitSeconds(0.5)
-        CreateDeathExplosion( self, 'Left_Arm_Muzzle', 1.0 )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
+        CreateDeathExplosion(self, 'Left_Arm_Muzzle', 1.0)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Left_Arm_Pitch', 1.0 )
-        self:CreateDamageEffects( 'Left_Arm_Pitch', army )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
+        CreateDeathExplosion(self, 'Left_Arm_Pitch', 1.0)
+        self:CreateDamageEffects('Left_Arm_Pitch', army)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Left_Leg_B', 1.0 )
-        self:CreateDamageEffects( 'Left_Leg_B', army )
+        CreateDeathExplosion(self, 'Left_Leg_B', 1.0)
+        self:CreateDamageEffects('Left_Leg_B', army)
         WaitSeconds(0.6)
-        CreateDeathExplosion( self, 'Right_Arm_Extra', 1.0 )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        CreateDeathExplosion( self, 'Left_Arm_Yaw', 1.0 )
+        CreateDeathExplosion(self, 'Right_Arm_Extra', 1.0)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        CreateDeathExplosion(self, 'Left_Arm_Yaw', 1.0)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Right_Leg_B', 1.0 )
+        CreateDeathExplosion(self, 'Right_Leg_B', 1.0)
         WaitSeconds(1)
-        CreateDeathExplosion( self, 'Pelvis', 1.0 )
-        CreateDeathExplosion( self, 'Beam_Barrel', 1.0 )
+        CreateDeathExplosion(self, 'Pelvis', 1.0)
+        CreateDeathExplosion(self, 'Beam_Barrel', 1.0)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Head', 1.0 )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
+        CreateDeathExplosion(self, 'Head', 1.0)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
         WaitSeconds(0.5)
-        CreateDeathExplosion( self, 'AttachSpecial01', 1.0 )
-        self:CreateDamageEffects( 'AttachSpecial01', army )
+        CreateDeathExplosion(self, 'AttachSpecial01', 1.0)
+        self:CreateDamageEffects('AttachSpecial01', army)
         WaitSeconds(0.3)
-        CreateDeathExplosion( self, 'TMD_Turret', 1.0 )
-        self:CreateDamageEffects( 'TMD_Turret', army )
+        CreateDeathExplosion(self, 'TMD_Turret', 1.0)
+        self:CreateDamageEffects('TMD_Turret', army)
         WaitSeconds(0.3)
-        CreateDeathExplosion( self, 'Left_Leg_C', 1.0 )
-        self:CreateDamageEffects( 'Left_Leg_C', army )
+        CreateDeathExplosion(self, 'Left_Leg_C', 1.0)
+        self:CreateDamageEffects('Left_Leg_C', army)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'L_FootFall', 1.0 )
-        CreateDeathExplosion( self, 'Left_Foot', 1.0 )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
+        CreateDeathExplosion(self, 'L_FootFall', 1.0)
+        CreateDeathExplosion(self, 'Left_Foot', 1.0)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
         WaitSeconds(0.1)
-        CreateDeathExplosion( self, 'Right_Foot', 1.0 )
+        CreateDeathExplosion(self, 'Right_Foot', 1.0)
         WaitSeconds(0.7)
-        CreateDeathExplosion( self, 'Beam_Turret', 2.0 )
-        self:CreateDamageEffects( 'Beam_Turret', army )
-        self:CreateDamageEffects( 'Right_Arm_Extra', army )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
+        CreateDeathExplosion(self, 'Beam_Turret', 2.0)
+        self:CreateDamageEffects('Beam_Turret', army)
+        self:CreateDamageEffects('Right_Arm_Extra', army)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
         WaitSeconds(0.7)
-        CreateDeathExplosion( self, 'Torso', 1.0 )
+        CreateDeathExplosion(self, 'Torso', 1.0)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Right_Leg_B', 1.0 )
-        self:CreateDamageEffects( 'Right_Leg_B', army )
+        CreateDeathExplosion(self, 'Right_Leg_B', 1.0)
+        self:CreateDamageEffects('Right_Leg_B', army)
         WaitSeconds(0.4)
-        CreateDeathExplosion( self, 'Right_Arm_Pitch', 1.0 )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        --self:CreateAmmoCookOff( self:GetArmy(), {ranBone}, Random(0,2) )
-        self:CreateDamageEffects( 'Right_Arm_Pitch', army )
+        CreateDeathExplosion(self, 'Right_Arm_Pitch', 1.0)
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        --self:CreateAmmoCookOff(self:GetArmy(), {ranBone}, Random(0,2))
+        self:CreateDamageEffects('Right_Arm_Pitch', army)
         WaitSeconds(2)
         
         local x, y, z = unpack(self:GetPosition())
@@ -1071,7 +1071,7 @@ BEL0402 = Class(TWalkingLandUnit) {
         end
         
         for k, v in EffectTemplate.TNukeRings01 do
-            CreateEmitterAtEntity(self, army, v )
+            CreateEmitterAtEntity(self, army, v)
         end
         
         self:CreateInitialFireballSmokeRing()
@@ -1080,7 +1080,7 @@ BEL0402 = Class(TWalkingLandUnit) {
         self:ForkThread(self.CreateFlavorPlumes)
         
         CreateLightParticle(self, -1, army, 200, 150, 'glow_03', 'ramp_nuke_04')
-        WaitSeconds( 1 )
+        WaitSeconds(1)
         WaitSeconds(0.1)
         --self:CreateFireBalls()
         WaitSeconds(0.1)

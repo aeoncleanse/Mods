@@ -16,7 +16,7 @@ MIRVChild01 = Class(MIRVChild01Projectile) {
         
         CreateDecal(self:GetPosition(), rotation, 'scorch_004_albedo', '', 'Albedo', 13, 13, 300, 15, self:GetArmy())
  
-        MIRVChild01Projectile.OnImpact( self, TargetType, targetEntity )
+        MIRVChild01Projectile.OnImpact(self, TargetType, targetEntity)
     end,    
 }
 

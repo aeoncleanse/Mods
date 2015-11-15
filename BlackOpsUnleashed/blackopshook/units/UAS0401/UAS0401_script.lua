@@ -62,7 +62,7 @@ UAS0401 = Class(ASubUnit) {
         ChangeState(self, self.IdleState)
     end,
 
-    OnMotionVertEventChange = function( self, new, old )
+    OnMotionVertEventChange = function(self, new, old)
         ASubUnit.OnMotionVertEventChange(self, new, old)
         if new == 'Top' then
             self:RestoreBuildRestrictions()
@@ -100,15 +100,15 @@ UAS0401 = Class(ASubUnit) {
             local bone = self.BuildAttachBone
             self:DetachAll(bone)
             if not self.UnitBeingBuilt:IsDead() then
-                unitBuilding:AttachBoneTo( -2, self, bone )
-                if EntityCategoryContains( categories.ENGINEER + categories.uas0102 + categories.uas0103, unitBuilding ) then
-                    unitBuilding:SetParentOffset( {0,0,1} )
-                elseif EntityCategoryContains( categories.TECH2 - categories.ENGINEER, unitBuilding ) then
-                    unitBuilding:SetParentOffset( {0,0,3} )
-                elseif EntityCategoryContains( categories.uas0203, unitBuilding ) then
-                    unitBuilding:SetParentOffset( {0,0,1.5} )
+                unitBuilding:AttachBoneTo(-2, self, bone)
+                if EntityCategoryContains(categories.ENGINEER + categories.uas0102 + categories.uas0103, unitBuilding) then
+                    unitBuilding:SetParentOffset({0,0,1})
+                elseif EntityCategoryContains(categories.TECH2 - categories.ENGINEER, unitBuilding) then
+                    unitBuilding:SetParentOffset({0,0,3})
+                elseif EntityCategoryContains(categories.uas0203, unitBuilding) then
+                    unitBuilding:SetParentOffset({0,0,1.5})
                 else
-                    unitBuilding:SetParentOffset( {0,0,2.5} )
+                    unitBuilding:SetParentOffset({0,0,2.5})
                 end
             end
             self.UnitDoneBeingBuilt = false

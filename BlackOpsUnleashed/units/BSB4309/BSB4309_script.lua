@@ -67,7 +67,7 @@ BSB4309 = Class(SStructureUnit) {
             self.AntiTeleportBag = {}
         end
         for k, v in self.AntiTeleport do
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Light02', self:GetArmy(), v ):ScaleEmitter(0.5):OffsetEmitter(0, -0.5, 0) )
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Light02', self:GetArmy(), v):ScaleEmitter(0.5):OffsetEmitter(0, -0.5, 0))
         end
         if self.AntiTeleportOrbsBag then
             for k, v in self.AntiTeleportOrbsBag do
@@ -76,24 +76,24 @@ BSB4309 = Class(SStructureUnit) {
             self.AntiTeleportOrbsBag = {}
         end
         for k, v in self.AntiTeleportOrbs do
-             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb01', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb01', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb01', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb04', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3) )
-             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb04', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb04', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb06', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3) )
-             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb06', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb06', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb03', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3) )
-             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb03', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb03', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb07', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3) )
-             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb07', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb07', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb05', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3) )
-             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb05', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0) )
-            table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb05', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
+             table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb01', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb01', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb01', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb04', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3))
+             table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb04', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb04', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb06', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3))
+             table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb06', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb06', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb03', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3))
+             table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb03', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb03', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb07', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3))
+             table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb07', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb07', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb05', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0, 0.3))
+             table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb05', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, -0.2, 0))
+            table.insert(self.AntiTeleportOrbsBag, CreateAttachedEmitter(self, 'Orb05', self:GetArmy(), v):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0))
         end
     end,
     

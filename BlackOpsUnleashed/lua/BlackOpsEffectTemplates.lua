@@ -112,7 +112,7 @@ ZCannonHit03 = {
     EmtBpPathAlt .. 'ZCannon_ring_01_emit.bp',    ----    ring14
     EmtBpPathAlt .. 'ZCannon_ring_02_emit.bp',    ----    ring11         
 }
-ZCannonHit01 = TableCat( ZCannonHit02, ZCannonHit03 ) 
+ZCannonHit01 = TableCat(ZCannonHit02, ZCannonHit03) 
 ZCannonChargeMuzzleFlash = { 
     EmtBpPathAlt .. 'ZCannon_flash_01_emit.bp',
     EmtBpPathAlt .. 'ZCannon_flash_02_emit.bp', 
@@ -148,7 +148,7 @@ SDFExperimentalPhasonProjHit02 = {
     EmtBpPath .. 'seraphim_experimental_phasonproj_hitunit_08_emit.bp',
 }
 
-SDFExperimentalPhasonProjHitUnit = TableCat( SDFExperimentalPhasonProjHit01, SDFExperimentalPhasonProjHit02, UnitHitShrapnel01 )
+SDFExperimentalPhasonProjHitUnit = TableCat(SDFExperimentalPhasonProjHit01, SDFExperimentalPhasonProjHit02, UnitHitShrapnel01)
 
 ShadowCannonPolyTrail = { 
     EmtBpPath .. 'electron_bolter_trail_01_emit.bp',
@@ -191,7 +191,7 @@ BassieCannonHit02 = {
     EmtBpPath .. 'hvyproton_cannon_hit_06_emit.bp',--black skrinking glow
     EmtBpPath .. 'hvyproton_cannon_hit_08_emit.bp',--black sparkle
 }
-BassieCannonHitLand = TableCat( BassieCannonHit01, BassieCannonHit02 )
+BassieCannonHitLand = TableCat(BassieCannonHit01, BassieCannonHit02)
 BassieCannonHitUnit01 = {
     EmtBpPath .. 'hvyproton_cannon_hitunit_01_emit.bp',
     EmtBpPathAlt .. 'bassie_cannon_hit_02_emit.bp', --embers
@@ -205,7 +205,7 @@ BassieCannonHitUnit01 = {
     EmtBpPath .. 'hvyproton_cannon_hit_10_emit.bp',
     EmtBpPath .. 'hvyproton_cannon_hit_distort_emit.bp',
 }
-BassieCannonHitUnit = TableCat( BassieCannonHitUnit01, UnitHitShrapnel01 )
+BassieCannonHitUnit = TableCat(BassieCannonHitUnit01, UnitHitShrapnel01)
 
 ACUShadowCannonHit01 = {
     EmtBpPath .. 'proton_bomb_hit_02_emit.bp',--sparks
@@ -334,7 +334,7 @@ DamageFire01 = {
     EmtBpPath .. 'destruction_damaged_fire_01_emit.bp',
     EmtBpPath .. 'destruction_damaged_fire_distort_01_emit.bp',
 }
-ArtemisDamageFireSmoke01 = TableCat( ArtemisDamageSmoke01, DamageFire01 )
+ArtemisDamageFireSmoke01 = TableCat(ArtemisDamageSmoke01, DamageFire01)
 
 
 NavalMineWaterImpact = {
@@ -348,7 +348,7 @@ NavalMineUnderWaterImpact = {
     EmtBpPathAlt .. 'naval_mine_underwater_explosion_splash_01_emit.bp',
 }
 
-NavalMineHit01 = TableCat( NavalMineWaterImpact, NavalMineUnderWaterImpact )
+NavalMineHit01 = TableCat(NavalMineWaterImpact, NavalMineUnderWaterImpact)
 
 GoldAAFxTrails = {
     EmtBpPathAlt .. 'gold_aa_fxtrail_01_emit.bp',
@@ -883,8 +883,8 @@ RailGunCannonHit03 = {
     EmtBpPath .. 'ionized_plasma_gatling_cannon_laser_hitunit_03_emit.bp',
     EmtBpPath .. 'ionized_plasma_gatling_cannon_laser_hitunit_06_emit.bp',
 }
-RailGunCannonUnitHit = TableCat( RailGunCannonHit01, RailGunCannonHit03, UnitHitShrapnel01 )
-RailGunCannonHit = TableCat( RailGunCannonHit01, RailGunCannonHit02 )
+RailGunCannonUnitHit = TableCat(RailGunCannonHit01, RailGunCannonHit03, UnitHitShrapnel01)
+RailGunCannonHit = TableCat(RailGunCannonHit01, RailGunCannonHit02)
 
 RailGunFxTrails = {
    EmtBpPath .. 'ionized_plasma_gatling_cannon_laser_fxtrail_01_emit.bp',

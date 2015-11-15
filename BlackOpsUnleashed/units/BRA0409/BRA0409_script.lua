@@ -83,15 +83,15 @@ BRA0409 = Class(CAirUnit) {
 
 
     -- Override air destruction effects so we can do something custom here
-    CreateUnitAirDestructionEffects = function( self, scale )
-        self:ForkThread(self.AirDestructionEffectsThread, self )
+    CreateUnitAirDestructionEffects = function(self, scale)
+        self:ForkThread(self.AirDestructionEffectsThread, self)
     end,
 
-    AirDestructionEffectsThread = function( self )
-        local numExplosions = math.floor( table.getn( self.AirDestructionEffectBones ) * 3 )
+    AirDestructionEffectsThread = function(self)
+        local numExplosions = math.floor(table.getn(self.AirDestructionEffectBones) * 3)
         for i = 0, numExplosions do
-            explosion.CreateDefaultHitExplosionAtBone( self, self.AirDestructionEffectBones[util.GetRandomInt( 3, numExplosions )], 4 )
-            WaitSeconds( util.GetRandomFloat( 0.5, 1.9 ))
+            explosion.CreateDefaultHitExplosionAtBone(self, self.AirDestructionEffectBones[util.GetRandomInt(3, numExplosions)], 4)
+            WaitSeconds(util.GetRandomFloat(0.5, 1.9))
         end
     end,
     
@@ -104,7 +104,7 @@ BRA0409 = Class(CAirUnit) {
     end,
     
     OnMotionHorzEventChange = function(self, new, old)
-        --LOG( 'OnMotionHorzEventChange, new = ', new, ', old = ', old )
+        --LOG('OnMotionHorzEventChange, new = ', new, ', old = ', old)
         CAirUnit.OnMotionHorzEventChange(self, new, old)
         if self.ThrustExhaustTT1 == nil then 
             if self.MovementAmbientExhaustEffectsBag then
@@ -138,12 +138,12 @@ BRA0409 = Class(CAirUnit) {
             
             for kE, vE in ExhaustEffects do
                 for kB, vB in self.MovementAmbientExhaustBones do
-                    table.insert( self.MovementAmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE ):ScaleEmitter(2))
-                    table.insert( self.MovementAmbientExhaustEffectsBag, CreateBeamEmitterOnEntity( self, vB, army, ExhaustBeamLarge ))
+                    table.insert(self.MovementAmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE):ScaleEmitter(2))
+                    table.insert(self.MovementAmbientExhaustEffectsBag, CreateBeamEmitterOnEntity(self, vB, army, ExhaustBeamLarge))
                 end
                 for kB, vB in self.MovementAmbientExhaustBones2 do
-                    table.insert( self.MovementAmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE ):ScaleEmitter(1))
-                    table.insert( self.MovementAmbientExhaustEffectsBag, CreateBeamEmitterOnEntity( self, vB, army, ExhaustBeamSmall ))
+                    table.insert(self.MovementAmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE):ScaleEmitter(1))
+                    table.insert(self.MovementAmbientExhaustEffectsBag, CreateBeamEmitterOnEntity(self, vB, army, ExhaustBeamSmall))
                 end
             end
             

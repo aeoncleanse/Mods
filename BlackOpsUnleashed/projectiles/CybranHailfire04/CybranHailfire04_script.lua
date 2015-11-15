@@ -13,7 +13,7 @@ CAANanoDart02 = Class(CybranHailfire04Projectile) {
    OnCreate = function(self)
         CybranHailfire04Projectile.OnCreate(self)
         for k, v in self.FxTrails do
-            CreateEmitterOnEntity(self,self:GetArmy(),v )
+            CreateEmitterOnEntity(self,self:GetArmy(),v)
         end
         --self.MoveThread = self:ForkThread(self.MovementThread)
    end,

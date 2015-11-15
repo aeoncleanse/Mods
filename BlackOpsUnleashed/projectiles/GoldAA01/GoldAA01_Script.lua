@@ -10,7 +10,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 GoldAA = Class(GoldAAProjectile) {
     OnCreate = function(self)
         GoldAAProjectile.OnCreate(self)
-        self:ForkThread( self.SplitThread )
+        self:ForkThread(self.SplitThread)
     end,
 
     SplitThread = function(self)
@@ -21,13 +21,13 @@ GoldAA = Class(GoldAAProjectile) {
         end
         
         
-        WaitSeconds( 0.1 )
+        WaitSeconds(0.1)
         -- Create several other projectiles in a dispersal pattern
         local vx, vy, vz = self:GetVelocity()
         local velocity = 16        
         local numProjectiles = 8
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandF( 0, angle )
+        local angleInitial = RandF(0, angle)
         local ChildProjectileBP = '/projectiles/GoldAA02/GoldAA02_proj.bp'          
         local spreadMul = 0.4 -- Adjusts the width of the dispersal        
        
@@ -43,11 +43,11 @@ GoldAA = Class(GoldAAProjectile) {
 
         -- Launch projectiles at semi-random angles away from split location
         for i = 0, (numProjectiles -1) do
-            xVec = vx + math.sin(angleInitial + (i*angle) ) * spreadMul * RandF( 0.6, 1.3 )
-            zVec = vz + math.cos(angleInitial + (i*angle) ) * spreadMul * RandF( 0.6, 1.3 )
+            xVec = vx + math.sin(angleInitial + (i*angle)) * spreadMul * RandF(0.6, 1.3)
+            zVec = vz + math.cos(angleInitial + (i*angle)) * spreadMul * RandF(0.6, 1.3)
             local proj = self:CreateChildProjectile(ChildProjectileBP)
-            proj:SetVelocity( xVec, yVec, zVec )
-            proj:SetVelocity( velocity * RandF( 0.8, 1.2 ) )
+            proj:SetVelocity(xVec, yVec, zVec)
+            proj:SetVelocity(velocity * RandF(0.8, 1.2))
             proj:PassDamageData(self.DamageData)                        
         end        
         self:Destroy()    

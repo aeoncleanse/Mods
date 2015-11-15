@@ -38,8 +38,8 @@ BAB2404 = Class(ALandFactoryUnit) {
         end
     end,
     
-    OnStartBuild = function(self, unitBeingBuilt, order )
-        ALandFactoryUnit.OnStartBuild(self, unitBeingBuilt, order )
+    OnStartBuild = function(self, unitBeingBuilt, order)
+        ALandFactoryUnit.OnStartBuild(self, unitBeingBuilt, order)
             --supposed to define drone variable as the unit currently being built and then add it to the DroneTable
             local drone = unitBeingBuilt
             self.PetDrone = drone
@@ -55,14 +55,14 @@ BAB2404 = Class(ALandFactoryUnit) {
                 self.BuildingEffect01Bag = {}
             end
             for k, v in self.BuildingEffect01 do
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight01', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight02', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight03', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight04', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight05', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight06', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight07', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect01Bag, CreateAttachedEmitter( self, 'BlinkyLight08', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight01', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight02', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight03', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight04', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight05', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight06', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight07', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect01Bag, CreateAttachedEmitter(self, 'BlinkyLight08', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
             end
             if self.BuildingEffect02Bag then
                 for k, v in self.BuildingEffect02Bag do
@@ -71,19 +71,19 @@ BAB2404 = Class(ALandFactoryUnit) {
                 self.BuildingEffect02Bag = {}
             end
             for k, v in self.BuildingEffect02 do
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight09', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight10', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight11', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight12', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight13', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight14', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight15', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
-                table.insert( self.BuildingEffect02Bag, CreateAttachedEmitter( self, 'BlinkyLight16', self:GetArmy(), v ):OffsetEmitter(0, 0, 0.01):ScaleEmitter( 1.00 ) )
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight09', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight10', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight11', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight12', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight13', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight14', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight15', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
+                table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight16', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
             end
     end,
     
-    OnStopBuild = function(self, unitBeingBuilt, order )
-        ALandFactoryUnit.OnStopBuild(self, unitBeingBuilt, order )
+    OnStopBuild = function(self, unitBeingBuilt, order)
+        ALandFactoryUnit.OnStopBuild(self, unitBeingBuilt, order)
         self.PetDrone = nil
         if self.BuildingEffect01Bag then
             for k, v in self.BuildingEffect01Bag do
@@ -99,12 +99,12 @@ BAB2404 = Class(ALandFactoryUnit) {
         end
     end,
     
-    FinishBuildThread = function(self, unitBeingBuilt, order )
-        ALandFactoryUnit.FinishBuildThread(self, unitBeingBuilt, order )
+    FinishBuildThread = function(self, unitBeingBuilt, order)
+        ALandFactoryUnit.FinishBuildThread(self, unitBeingBuilt, order)
         LOG('*SAT FINISHED BUILDING RESTRICT BUILD QUEUE')
         --LOG(repr(self.DroneTable))
             self:PlayUnitSound('LaunchSat')
-            self:AddBuildRestriction( categories.BUILTBYSTATION )
+            self:AddBuildRestriction(categories.BUILTBYSTATION)
     end,
     
     
@@ -112,7 +112,7 @@ BAB2404 = Class(ALandFactoryUnit) {
         ------ remove build restriction if sat has been lost
             LOG('*sat HAS BEEN LOST LETS MAKE ANOTHER')
             self.PetDrone = nil
-            self:RemoveBuildRestriction( categories.BUILTBYSTATION )
+            self:RemoveBuildRestriction(categories.BUILTBYSTATION)
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)

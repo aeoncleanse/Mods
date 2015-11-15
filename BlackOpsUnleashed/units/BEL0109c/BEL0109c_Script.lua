@@ -36,10 +36,10 @@ BEL0109c = Class(TLandUnit) {
         end
         self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(1.5)
         --Wait for animation to finish before reinstating toggle
-        self:ForkThread( function()
+        self:ForkThread(function()
             WaitFor(self.AnimationManipulator)
             self:AddToggleCap('RULEUTC_WeaponToggle')
-        end )
+        end)
     end,
         
     OnScriptBitSet = function(self, bit)

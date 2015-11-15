@@ -42,7 +42,7 @@ MiniQuantumBeamGenerator = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},--'/effects/emitters/quantum_generator_charge_01_emit.bp'},
     FxUpackingChargeEffectScale = 0.2,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -60,7 +60,7 @@ SuperQuantumBeamGenerator = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},--'/effects/emitters/quantum_generator_charge_01_emit.bp'},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -81,7 +81,7 @@ MiniPhasonLaser = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 0.002,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -132,7 +132,7 @@ MiniHeavyMicrowaveLaserGenerator = Class(DefaultBeamWeapon) {
         DefaultBeamWeapon.CreateProjectileAtMuzzle(self, muzzle)
     end,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -274,7 +274,7 @@ JuggLaserweapon = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},--'/effects/emitters/quantum_generator_charge_01_emit.bp'},
     FxUpackingChargeEffectScale = 0.2,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -407,7 +407,7 @@ TDFGoliathShoulderBeam = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -432,7 +432,7 @@ UEFNavyMineWeapon = Class(KamikazeWeapon){
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end   
-        --------CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+        --------CreateLightParticle(self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10') 
         KamikazeWeapon.OnFire(self)
     end,
 }
@@ -454,7 +454,7 @@ UEFNavyMineDeathWeapon = Class(BareBonesWeapon) {
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end 
-        ------CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' )  
+        ------CreateLightParticle(self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10')  
         local myBlueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
     end,    
@@ -479,7 +479,7 @@ SeraNavyMineWeapon = Class(KamikazeWeapon){
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end   
-        --------CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+        --------CreateLightParticle(self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10') 
         KamikazeWeapon.OnFire(self)
     end,
 }
@@ -501,7 +501,7 @@ SeraNavyMineDeathWeapon = Class(BareBonesWeapon) {
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end 
-        ------CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' )  
+        ------CreateLightParticle(self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10')  
         local myBlueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
     end,    
@@ -523,7 +523,7 @@ SeraMineDeathExplosion = Class(BareBonesWeapon) {
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end 
-        ------CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' )  
+        ------CreateLightParticle(self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10')  
         local myBlueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
     end,    
@@ -536,7 +536,7 @@ SeraMineExplosion = Class(KamikazeWeapon){
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end   
-        --------CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+        --------CreateLightParticle(self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10') 
         KamikazeWeapon.OnFire(self)
     end,
 }
@@ -596,7 +596,7 @@ YenzothaExperimentalLaser = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.SDFExperimentalPhasonProjChargeMuzzleFlash,
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -616,7 +616,7 @@ YenzothaExperimentalLaser02 = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.SDFExperimentalPhasonProjChargeMuzzleFlash,
     FxUpackingChargeEffectScale = 0.2,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -650,7 +650,7 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
                         local aiBrain = self.unit:GetAIBrain()
                         
                         if self:GetCurrentTarget() then
-                            PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.LAND + (categories.STRUCTURE) , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
+                            PossibleTargetTable = aiBrain:GetUnitsAroundPoint(categories.LAND + (categories.STRUCTURE) , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
                             --LOG('Getting possible Targets')
 
                             self.TargetTable = nil
@@ -776,7 +776,7 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
                         local aiBrain = self.unit:GetAIBrain()
                         
                         if self:GetCurrentTarget() then
-                            PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
+                            PossibleTargetTable = aiBrain:GetUnitsAroundPoint(categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
                             --LOG('Getting possible Targets')
 
                             self.TargetTable = nil
@@ -913,7 +913,7 @@ CitadelHVMWeapon = Class(DefaultProjectileWeapon) {
                         local aiBrain = self.unit:GetAIBrain()
                         
                         if self:GetCurrentTarget() then
-                            PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
+                            PossibleTargetTable = aiBrain:GetUnitsAroundPoint(categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
                             --LOG('Getting possible Targets')
 
                             self.TargetTable = nil

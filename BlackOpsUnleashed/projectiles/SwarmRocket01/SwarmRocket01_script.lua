@@ -48,7 +48,7 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
         
         -- Split effects
         for k, v in FxFragEffect do
-            CreateEmitterAtEntity( self, self:GetArmy(), v )
+            CreateEmitterAtEntity(self, self:GetArmy(), v)
         end
         
         local vx, vy, vz = self:GetVelocity()
@@ -60,7 +60,7 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
         -- Create several other projectiles in a dispersal pattern
         local numProjectiles = 3
         local angle = (5*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         
         -- Randomization of the spread
         local angleVariation = angle * 0.35 -- Adjusts angle variance spread

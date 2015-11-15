@@ -80,14 +80,14 @@ BAB4309 = Class(AStructureUnit) {
                 self.AntiTeleportEffectsBag = {}
         end
         for k, v in self.AntiTeleportEffects do
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect03', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect04', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect05', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect06', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect07', self:GetArmy(), v ):ScaleEmitter(0.3) )
-            table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect08', self:GetArmy(), v ):ScaleEmitter(0.3) )
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect03', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect05', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect06', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect07', self:GetArmy(), v):ScaleEmitter(0.3))
+            table.insert(self.AntiTeleportEffectsBag, CreateAttachedEmitter(self, 'Effect08', self:GetArmy(), v):ScaleEmitter(0.3))
         end
         if self.AmbientEffectsBag then
             for k, v in self.AmbientEffectsBag do
@@ -96,7 +96,7 @@ BAB4309 = Class(AStructureUnit) {
             self.AmbientEffectsBag = {}
         end
         for k, v in self.AmbientEffects do
-            table.insert( self.AmbientEffectsBag, CreateAttachedEmitter( self, 'XAB4309', self:GetArmy(), v ):ScaleEmitter(0.4) )
+            table.insert(self.AmbientEffectsBag, CreateAttachedEmitter(self, 'XAB4309', self:GetArmy(), v):ScaleEmitter(0.4))
         end
     end,
     

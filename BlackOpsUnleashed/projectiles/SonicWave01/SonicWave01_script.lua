@@ -8,11 +8,11 @@ local SonicWaveProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojecti
 SonicWave01 = Class(SonicWaveProjectile) {
 --[[
     OnImpact = function(self, TargetType, TargetEntity) 
-        ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )
-        self:ShakeCamera( 15, 0.25, 0, 0.2 )
+        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
+        self:ShakeCamera(15, 0.25, 0, 0.2)
         SonicWaveProjectile.OnImpact (self, TargetType, TargetEntity)
     end,
-        OnImpactDestroy = function( self, targetType, targetEntity )
+        OnImpactDestroy = function(self, targetType, targetEntity)
 
    if targetEntity and not IsUnit(targetEntity) then
       SonicWaveProjectile.OnImpactDestroy(self, targetType, targetEntity)

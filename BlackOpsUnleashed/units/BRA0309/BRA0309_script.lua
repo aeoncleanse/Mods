@@ -26,7 +26,7 @@ BRA0309 = Class(CAirUnit) {
     BeamExhaustIdle = '/effects/emitters/missile_exhaust_fire_beam_05_emit.bp',
     BeamExhaustCruise = '/effects/emitters/missile_exhaust_fire_beam_04_emit.bp',
     
-    OnCreate = function( self )
+    OnCreate = function(self)
         CAirUnit.OnCreate(self)
         if not self.OpenAnim then
             self.OpenAnim = CreateAnimator(self)
@@ -72,15 +72,15 @@ BRA0309 = Class(CAirUnit) {
 
 
     -- Override air destruction effects so we can do something custom here
-    CreateUnitAirDestructionEffects = function( self, scale )
-        self:ForkThread(self.AirDestructionEffectsThread, self )
+    CreateUnitAirDestructionEffects = function(self, scale)
+        self:ForkThread(self.AirDestructionEffectsThread, self)
     end,
 
-    AirDestructionEffectsThread = function( self )
-        local numExplosions = math.floor( table.getn( self.AirDestructionEffectBones ) * 0.5 )
+    AirDestructionEffectsThread = function(self)
+        local numExplosions = math.floor(table.getn(self.AirDestructionEffectBones) * 0.5)
         for i = 0, numExplosions do
-            explosion.CreateDefaultHitExplosionAtBone( self, self.AirDestructionEffectBones[util.GetRandomInt( 1, numExplosions )], 0.5 )
-            WaitSeconds( util.GetRandomFloat( 0.2, 0.9 ))
+            explosion.CreateDefaultHitExplosionAtBone(self, self.AirDestructionEffectBones[util.GetRandomInt(1, numExplosions)], 0.5)
+            WaitSeconds(util.GetRandomFloat(0.2, 0.9))
         end
     end,
 }

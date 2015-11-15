@@ -47,20 +47,20 @@ BSL0401 = Class(SHoverLandUnit) {
                     self.unit.BeamChargeEffects1 = {}
                 end
                 --WaitSeconds(1)
-                table.insert( self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter01', self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter01', self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam01_Emitter01', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam01_Emitter01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 --WaitSeconds(1)
-                table.insert( self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter02', self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter02', self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 --WaitSeconds(1)
-                table.insert( self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter03', self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter03', self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.ChargeEffects01Bag, CreateAttachedEmitter( self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
             end,
             
@@ -100,20 +100,20 @@ BSL0401 = Class(SHoverLandUnit) {
                     self.unit.BeamChargeEffects2 = {}
                 end
                 --WaitSeconds(2)
-                table.insert( self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter01', self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter01', self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects02Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam02_Emitter01', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam02_Emitter01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 --WaitSeconds(2)
-                table.insert( self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter02', self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter02', self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects02Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 --WaitSeconds(2)
-                table.insert( self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter03', self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter03', self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects02Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.ChargeEffects02Bag, CreateAttachedEmitter( self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
             end,
             
@@ -153,20 +153,20 @@ BSL0401 = Class(SHoverLandUnit) {
                     self.unit.BeamChargeEffects3 = {}
                 end
                 --WaitSeconds(3)
-                table.insert( self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter01', self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter01', self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects03Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam03_Emitter01', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam03_Emitter01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 --WaitSeconds(3)
-                table.insert( self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter02', self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter02', self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects03Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 --WaitSeconds(3)
-                table.insert( self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter03', self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp') )
+                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter03', self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
-                    table.insert( self.unit.ChargeEffects03Bag, CreateAttachedEmitter( self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.ChargeEffects03Bag, CreateAttachedEmitter( self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
             end,
             
@@ -197,7 +197,7 @@ BSL0401 = Class(SHoverLandUnit) {
     
     StartBeingBuiltEffects = function(self, builder, layer)
         SHoverLandUnit.StartBeingBuiltEffects(self, builder, layer)
-        self:ForkThread( EffectUtil.CreateSeraphimExperimentalBuildBaseThread, builder, self.OnBeingBuiltEffectsBag )
+        self:ForkThread(EffectUtil.CreateSeraphimExperimentalBuildBaseThread, builder, self.OnBeingBuiltEffectsBag)
     end,  
     
     --+ Unit Callbacks +--
@@ -729,19 +729,19 @@ BSL0401 = Class(SHoverLandUnit) {
         return itir
     end,
     
-    DeathThread = function( self, overkillRatio , instigator)
+    DeathThread = function(self, overkillRatio , instigator)
         local bigExplosionBones = {'BSL0401', 'Beam_Muzzle01'}
         local explosionBones = {'Focus_Beam02_Emitter03', 'Left_AA_Barrel',
                                 'Focus_Beam01_Emitter01', 'Right_AA_Turret', 'Beam_Point_Focus03'}
                                         
-        explosion.CreateDefaultHitExplosionAtBone( self, bigExplosionBones[Random(1,3)], 4.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, bigExplosionBones[Random(1,3)], 4.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
         WaitSeconds(0.2)
         
         local RandBoneIter = RandomIter(explosionBones)
         for i=1,Random(4,6) do
             local bone = RandBoneIter()
-            explosion.CreateDefaultHitExplosionAtBone( self, bone, 1.0 )
+            explosion.CreateDefaultHitExplosionAtBone(self, bone, 1.0)
             WaitTicks(Random(0.1,1))
         end
         
@@ -753,7 +753,7 @@ BSL0401 = Class(SHoverLandUnit) {
             end
         end
         WaitSeconds(0.5)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'BSL0401', 5.0 )        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'BSL0401', 5.0)        
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
@@ -761,21 +761,21 @@ BSL0401 = Class(SHoverLandUnit) {
 
     
         self:DestroyAllDamageEffects()
-        self:CreateWreckage( overkillRatio )
+        self:CreateWreckage(overkillRatio)
 
         -- CURRENTLY DISABLED UNTIL DESTRUCTION
         -- Create destruction debris out of the mesh, currently these projectiles look like crap,
         -- since projectile rotation and terrain collision doesn't work that great. These are left in
         -- hopes that this will look better in the future.. =)
-        if( self.ShowUnitDestructionDebris and overkillRatio ) then
+        if(self.ShowUnitDestructionDebris and overkillRatio) then
             if overkillRatio <= 1 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 2 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 3 then
-                self.CreateUnitDestructionDebris( self, true, true, true )
+                self.CreateUnitDestructionDebris(self, true, true, true)
             else --VAPORIZED
-                self.CreateUnitDestructionDebris( self, true, true, true )
+                self.CreateUnitDestructionDebris(self, true, true, true)
             end
         end
 
@@ -786,7 +786,7 @@ BSL0401 = Class(SHoverLandUnit) {
         
         -- Create effects for spawning of energy being
         for k, v in self.SpawnEffects do
-            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v )
+            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v)
         end    
         
         self:PlayUnitSound('Destroyed')

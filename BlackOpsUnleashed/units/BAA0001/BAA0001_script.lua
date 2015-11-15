@@ -50,7 +50,7 @@ BAA0001 = Class(AAirUnit) {
     end,
     
     OnMotionVertEventChange = function(self, new, old)
-        --LOG( 'OnMotionVertEventChange, new = ', new, ', old = ', old )
+        --LOG('OnMotionVertEventChange, new = ', new, ', old = ', old)
         AAirUnit.OnMotionVertEventChange(self, new, old)
         --Aborting a landing
         if ((new == 'Top' or new == 'Up') and old == 'Down') then
@@ -99,7 +99,7 @@ BAA0001 = Class(AAirUnit) {
 
     --Monitors drone distance from the carrier, issuing recalls and releases as necessary
     DroneLinkHeartbeat = function(self)
-        while ( self and not self:IsDead() ) and ( self.Carrier and not self.Carrier:IsDead() ) do
+        while (self and not self:IsDead()) and (self.Carrier and not self.Carrier:IsDead()) do
             local distance = self:GetDistanceFromAttachpoint()
             if distance > self.MaxRange and self.AwayFromCarrier == false then
                 self:DroneRecall()

@@ -22,7 +22,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
     OnCreate = function(self)
         SLaanseTacticalMissile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
-        self:ForkThread( self.MovementThread )
+        self:ForkThread(self.MovementThread)
     end,
     
     OnImpact = function(self, TargetType, TargetEntity) 
@@ -33,7 +33,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         
         -- Split effects
         for k, v in FxFragEffect do
-            CreateEmitterAtEntity( self, self:GetArmy(), v )
+            CreateEmitterAtEntity(self, self:GetArmy(), v)
         end
         
         local vx, vy, vz = self:GetVelocity()
@@ -45,7 +45,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         -- Create several other projectiles in a dispersal pattern
         local numProjectiles = 6
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         
         -- Randomization of the spread
         local angleVariation = angle * 0.35 -- Adjusts angle variance spread

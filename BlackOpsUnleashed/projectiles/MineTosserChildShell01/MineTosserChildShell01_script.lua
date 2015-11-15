@@ -20,7 +20,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
     OnCreate = function(self)
         SLaanseTacticalMissile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
-        self:ForkThread( self.MovementThread )
+        self:ForkThread(self.MovementThread)
     end,
     
     OnImpact = function(self, targetType, targetEntity)
@@ -35,11 +35,11 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         
         -- Create effects for spawning of energy being
         for k, v in BlackOpsEffectTemplate.SerMineRiftIn_Small do
-            CreateAttachedEmitter(spiritUnit1, -1, self:GetArmy(), v ):ScaleEmitter(1)
-            CreateAttachedEmitter(spiritUnit2, -1, self:GetArmy(), v ):ScaleEmitter(1)
-            CreateAttachedEmitter(spiritUnit3, -1, self:GetArmy(), v ):ScaleEmitter(1)
-            CreateAttachedEmitter(spiritUnit4, -1, self:GetArmy(), v ):ScaleEmitter(1)
-            CreateAttachedEmitter(spiritUnit5, -1, self:GetArmy(), v ):ScaleEmitter(1)
+            CreateAttachedEmitter(spiritUnit1, -1, self:GetArmy(), v):ScaleEmitter(1)
+            CreateAttachedEmitter(spiritUnit2, -1, self:GetArmy(), v):ScaleEmitter(1)
+            CreateAttachedEmitter(spiritUnit3, -1, self:GetArmy(), v):ScaleEmitter(1)
+            CreateAttachedEmitter(spiritUnit4, -1, self:GetArmy(), v):ScaleEmitter(1)
+            CreateAttachedEmitter(spiritUnit5, -1, self:GetArmy(), v):ScaleEmitter(1)
         end    
     end,
 

@@ -35,7 +35,7 @@ BRLK001 = Class(CWalkingLandUnit) {
             self:SetWeaponEnabledByLabel('GroundGun', true)
             self:SetWeaponEnabledByLabel('AAGun', false)
             self:SetWeaponEnabledByLabel('Lazor', false)
-            self:GetWeaponManipulatorByLabel('GroundGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAGun'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('GroundGun'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAGun'):GetHeadingPitch())
         end
     end,
 
@@ -45,7 +45,7 @@ BRLK001 = Class(CWalkingLandUnit) {
             self:SetWeaponEnabledByLabel('GroundGun', false)
             self:SetWeaponEnabledByLabel('AAGun', true)
             self:SetWeaponEnabledByLabel('Lazor', true)
-            self:GetWeaponManipulatorByLabel('AAGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('GroundGun'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('AAGun'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('GroundGun'):GetHeadingPitch())
         end
     end,
 }

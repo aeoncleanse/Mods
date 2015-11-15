@@ -23,7 +23,7 @@ AIFGuidedMissile02 = Class(AGuidedMissileProjectile) {
         
         -- Create effects for spawning of energy being
         for k, v in EffectTemplate.SerRiftIn_Small do
-            CreateAttachedEmitter(spiritUnit1, -1, self:GetArmy(), v ):ScaleEmitter(1)
+            CreateAttachedEmitter(spiritUnit1, -1, self:GetArmy(), v):ScaleEmitter(1)
         end    
     end,
     ]]--

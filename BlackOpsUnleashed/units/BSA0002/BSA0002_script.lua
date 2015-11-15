@@ -82,7 +82,7 @@ BSA0002 = Class(SConstructionUnit) {
 
     Patrolplatform = function(self, override)
         --Mithy: Now checks idle state, so drones can hover in place without being immediately told to patrol (often interrupting user orders)
-        if override or ( not self:IsDead() and not self.Parent:IsDead() and self:IsIdleState() ) then
+        if override or (not self:IsDead() and not self.Parent:IsDead() and self:IsIdleState()) then
             ------ Gets the current position of the parent platform in the game world
             local location = self.Parent:GetPosition()
 
@@ -123,7 +123,7 @@ BSA0002 = Class(SConstructionUnit) {
         end
         --Mithy: Run home to the platform if we take damage
         if not self:IsDead() and instigator and IsUnit(instigator) and not instigator:IsDead() and not self.EvadeThread then
-            self.EvadeThread = self:ForkThread( function()
+            self.EvadeThread = self:ForkThread(function()
                 self:SetSpeedMult(2.0)
                 self:SetAccMult(2.0)
                 IssueClearCommands({self})
@@ -132,7 +132,7 @@ BSA0002 = Class(SConstructionUnit) {
                 self:SetSpeedMult(1.0)
                 self:SetAccMult(1.0)
                 self.EvadeThread = nil
-            end )
+            end)
         end
         SConstructionUnit.OnDamage(self, instigator, amount, vector, damagetype)
     end,

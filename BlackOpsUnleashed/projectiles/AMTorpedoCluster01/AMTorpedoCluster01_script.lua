@@ -41,7 +41,7 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-            --proj:SetVelocity( x * mul, Vely * mul, z * mul )
+            --proj:SetVelocity(x * mul, Vely * mul, z * mul)
         end            
         
         local pos = self:GetPosition()

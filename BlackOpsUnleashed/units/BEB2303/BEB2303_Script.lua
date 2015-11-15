@@ -62,7 +62,7 @@ BEB2303 = Class(TStructureUnit) {
                 recoilTbl.MuzzleBones = muzzleBones[self.CurrentBarrel]                
                 recoilTbl.RackBone = recoilgroup1[self.CurrentBarrel] 
                 --recoilTbl.TelescopeBone = recoilgroup2[self.CurrentBarrel]              
-                table.insert( rackList, recoilTbl ) 
+                table.insert(rackList, recoilTbl) 
                                 
                 BOHellstormGun.PlayRackRecoil(self, rackList)
                 -- Perform recoil shake

@@ -22,7 +22,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
             nukeProjectile = self:CreateProjectile('/effects/entities/ArtemisBombEffectController01/ArtemisBombEffectController01_proj.bp', 0, 0, 0, 0, 0, 0):SetCollision(false)
             local pos = self:GetPosition()
             pos[2] = pos[2] + 10
-            Warp( nukeProjectile, pos)
+            Warp(nukeProjectile, pos)
             nukeProjectile:PassData(self.Data)
         end
         ArtemisCannonProjectile.OnImpact(self, TargetType, TargetEntity)
@@ -51,7 +51,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
         if launcher and not launcher:IsDead() and launcher.EventCallbacks.ProjectileDamaged then
             self.ProjectileDamaged = {}
             for k,v in launcher.EventCallbacks.ProjectileDamaged do
-                table.insert( self.ProjectileDamaged, v )
+                table.insert(self.ProjectileDamaged, v)
             end
         end
         --self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)

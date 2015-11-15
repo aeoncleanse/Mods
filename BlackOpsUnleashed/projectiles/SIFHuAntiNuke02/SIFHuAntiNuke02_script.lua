@@ -21,7 +21,7 @@ SIFHuAntiNuke01 = Class(SIFHuAntiNuke) {
        
         ------Play the hit effect for the core explosion on the anti nuke.
         for k, v in FxHitEffect do
-            CreateEmitterAtEntity( self, self:GetArmy(), v )
+            CreateEmitterAtEntity(self, self:GetArmy(), v)
         end
     
         local vx, vy, vz = self:GetVelocity()
@@ -30,7 +30,7 @@ SIFHuAntiNuke01 = Class(SIFHuAntiNuke) {
         -- Create several other projectiles in a dispersal pattern
         local num_projectiles = 5
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )
+        local angleInitial = RandomFloat(0, horizontal_angle)
         
         -- Randomization of the spread
         local angleVariation = horizontal_angle * 0.25  --Adjusts horizontal_angle variance spread
@@ -46,14 +46,14 @@ SIFHuAntiNuke01 = Class(SIFHuAntiNuke) {
             xVec = (math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation))) * RandomFloat(1,5)
             yVec =  RandomFloat(-3,33)
             zVec = (math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation))) * RandomFloat(1,5)
-            local proj = self:CreateChildProjectile(LargeTendrilProjectile):SetLifetime( RandomFloat(0.4,0.65) ) :SetVelocity(velocity)
+            local proj = self:CreateChildProjectile(LargeTendrilProjectile):SetLifetime(RandomFloat(0.4,0.65)) :SetVelocity(velocity)
             proj:SetBallisticAcceleration(0,-89.92,0)
             proj:SetVelocity(xVec,yVec,zVec)
                                    
         end
         
         ------Ensure that the number of smaller tendrils is more.
-        num_projectiles= RandomInt((num_projectiles + 3),(num_projectiles*2 + 3) )
+        num_projectiles= RandomInt((num_projectiles + 3),(num_projectiles*2 + 3))
         horizontal_angle = (2*math.pi) / num_projectiles
         
         ------------------------------------------------------------------------------------------

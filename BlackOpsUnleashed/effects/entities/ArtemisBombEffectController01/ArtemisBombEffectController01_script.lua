@@ -65,8 +65,8 @@ ArtemisBombEffectController01 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -84,8 +84,8 @@ ArtemisBombEffectController01 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -103,19 +103,19 @@ ArtemisBombEffectController01 = Class(NullShell) {
         local vx, vy, vz = self:GetVelocity()
         local num_projectiles = 10        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, zVec
         local offsetMultiple = 10.0
         local px, pz
 
-        --WaitSeconds( 3.5 )
+        --WaitSeconds(3.5)
         for i = 0, (num_projectiles -1) do            
             xVec = (math.sin(angleInitial + (i*horizontal_angle)))
             zVec = (math.cos(angleInitial + (i*horizontal_angle)))
             px = (offsetMultiple*xVec)
             pz = (offsetMultiple*zVec)
             
-            local proj = self:CreateProjectile( ArtemisBombEffect05, px, -10, pz, xVec, 0, zVec )
+            local proj = self:CreateProjectile(ArtemisBombEffect05, px, -10, pz, xVec, 0, zVec)
             proj:SetLifetime(5.0)
             proj:SetVelocity(7.0)
             proj:SetAcceleration(-0.35)            
@@ -128,21 +128,21 @@ ArtemisBombEffectController01 = Class(NullShell) {
         local vx, vy, vz = self:GetVelocity()
         local num_projectiles = 12        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, zVec
         local offsetMultiple = 0.0
         local px, pz
 
-        --WaitSeconds( 3.5 )
+        --WaitSeconds(3.5)
         for i = 0, (num_projectiles -1) do            
             xVec = (math.sin(angleInitial + (i*horizontal_angle)))
             zVec = (math.cos(angleInitial + (i*horizontal_angle)))
             px = (offsetMultiple*xVec)
             pz = (offsetMultiple*zVec)
             
-            local proj = self:CreateProjectile( ArtemisBombEffect06, px, -8, pz, xVec, 0, zVec )
+            local proj = self:CreateProjectile(ArtemisBombEffect06, px, -8, pz, xVec, 0, zVec)
             proj:SetLifetime(3.0)
-            proj:SetVelocity(RandomFloat( 11, 20 ))
+            proj:SetVelocity(RandomFloat(11, 20))
             proj:SetAcceleration(-0.35)            
         end
     end,  
@@ -154,10 +154,10 @@ ArtemisBombEffectController01 = Class(NullShell) {
         --WaitSeconds(2.5)
         
         --------Create a light for this thing's flash.
-        CreateLightParticle(self, -1, self:GetArmy(), 80, 14, 'flare_lens_add_03', 'ramp_white_07' )
+        CreateLightParticle(self, -1, self:GetArmy(), 80, 14, 'flare_lens_add_03', 'ramp_white_07')
         
         ---- Create our decals
-        --CreateDecal( self:GetPosition(), RandomFloat(0.0,6.28), 'Scorch_012_albedo', '', 'Albedo', 200, 200, 1000, 0, self:GetArmy())          
+        --CreateDecal(self:GetPosition(), RandomFloat(0.0,6.28), 'Scorch_012_albedo', '', 'Albedo', 200, 200, 1000, 0, self:GetArmy())          
         
         -- Create ground decals
         local orientation = RandomFloat(0,2*math.pi)  
@@ -180,8 +180,8 @@ ArtemisBombEffectController01 = Class(NullShell) {
             emit = CreateEmitterAtEntity(self,army,v):ScaleEmitter(0.3)
         end    
         
-        ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )
-        self:ShakeCamera( 15, 5, 0, 1.5 )        
+        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
+        self:ShakeCamera(15, 5, 0, 1.5)        
 
         WaitSeconds(0.3)
         
@@ -190,21 +190,21 @@ ArtemisBombEffectController01 = Class(NullShell) {
         -- Create fireball plumes to accentuate the explosive detonation
         local num_projectiles = 25        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, yVec, zVec
         local angleVariation = 0.5        
         local px, py, pz       
      
         for i = 0, (num_projectiles -1) do            
-            xVec = math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation) ) 
-            yVec = RandomFloat( 0.3, 1.5 ) + 1.2
-            zVec = math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation) ) 
-            px = RandomFloat( 0.5, 1.0 ) * xVec
-            py = RandomFloat( 0.5, 1.0 ) * yVec
-            pz = RandomFloat( 0.5, 1.0 ) * zVec
+            xVec = math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation)) 
+            yVec = RandomFloat(0.3, 1.5) + 1.2
+            zVec = math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation)) 
+            px = RandomFloat(0.5, 1.0) * xVec
+            py = RandomFloat(0.5, 1.0) * yVec
+            pz = RandomFloat(0.5, 1.0) * zVec
             
-            local proj = self:CreateProjectile( ArtemisBombEffect04, px, py, pz, xVec, yVec, zVec )
-            proj:SetVelocity(RandomFloat( 10, 25  ))
+            local proj = self:CreateProjectile(ArtemisBombEffect04, px, py, pz, xVec, yVec, zVec)
+            proj:SetVelocity(RandomFloat(10, 25 ))
             proj:SetBallisticAcceleration(-9.8)            
         end        
     end,

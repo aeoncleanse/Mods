@@ -16,7 +16,7 @@ TIFFragmentationSensorShell01 = Class(TArtilleryProjectile) {
         
         -- Split effects
         for k, v in FxFragEffect do
-            CreateEmitterAtEntity( self, self:GetArmy(), v )
+            CreateEmitterAtEntity(self, self:GetArmy(), v)
         end
         
         local vx, vy, vz = self:GetVelocity()
@@ -28,7 +28,7 @@ TIFFragmentationSensorShell01 = Class(TArtilleryProjectile) {
         -- Create several other projectiles in a dispersal pattern
         local numProjectiles = 4
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         
         -- Randomization of the spread
         local angleVariation = angle * 0.35 -- Adjusts angle variance spread

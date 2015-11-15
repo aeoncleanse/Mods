@@ -258,7 +258,7 @@ BRL0401 = Class(CWalkingLandUnit)
                 dummywep:ChangeMinRadius(minradius)
                 WaitSeconds(self.AnimationManipulator:GetAnimationDuration())
                 --local durTime = self.AnimationManipulator:GetAnimationDuration()
-                --LOG( durTime,'************Animation Duration**********')
+                --LOG(durTime,'************Animation Duration**********')
                 self:SetWeaponEnabledByLabel('ShoulderGuns', true)
                 local shoulderwep = self:GetWeaponByLabel('ShoulderGuns')
                 shoulderwep:ChangeMaxRadius(180)
@@ -327,7 +327,7 @@ BRL0401 = Class(CWalkingLandUnit)
         end
     end,
     
-    CreateDeathExplosionDustRing = function( self )
+    CreateDeathExplosionDustRing = function(self)
         local blanketSides = 18
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
@@ -347,19 +347,19 @@ BRL0401 = Class(CWalkingLandUnit)
         local vx, vy, vz = self:GetVelocity()
         local num_projectiles = 20        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, zVec
         local offsetMultiple = 5
         local px, pz
 
-        --WaitSeconds( 10 )
+        --WaitSeconds(10)
         for i = 0, (num_projectiles -1) do            
             xVec = (math.sin(angleInitial + (i*horizontal_angle)))
             zVec = (math.cos(angleInitial + (i*horizontal_angle)))
             px = 0--(offsetMultiple*xVec)
             pz = 0--(offsetMultiple*zVec)
             
-            local proj = self:CreateProjectile( BasiliskNukeEffect05, px, 2, pz, xVec, 0, zVec )
+            local proj = self:CreateProjectile(BasiliskNukeEffect05, px, 2, pz, xVec, 0, zVec)
             proj:SetLifetime(2.0)
             proj:SetVelocity(12.0)
             proj:SetAcceleration(-0.9)            
@@ -369,22 +369,22 @@ BRL0401 = Class(CWalkingLandUnit)
     CreateFireBalls = function(self)
         local num_projectiles = 2        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, yVec, zVec
         local angleVariation = 0.1        
         local px, pz       
         local py = 2
         
         for i = 0, (num_projectiles -1) do            
-            xVec = math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation) ) 
-            yVec = RandomFloat( 0.5, 1.7 ) + 1.2
-            zVec = math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation) ) 
-            px = RandomFloat( 0.5, 1.0 ) * xVec
-           -- py = RandomFloat( 0.5, 1.0 ) * yVec
-            pz = RandomFloat( 0.5, 1.0 ) * zVec
+            xVec = math.sin(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation)) 
+            yVec = RandomFloat(0.5, 1.7) + 1.2
+            zVec = math.cos(angleInitial + (i*horizontal_angle) + RandomFloat(-angleVariation, angleVariation)) 
+            px = RandomFloat(0.5, 1.0) * xVec
+           -- py = RandomFloat(0.5, 1.0) * yVec
+            pz = RandomFloat(0.5, 1.0) * zVec
             
-            local proj = self:CreateProjectile( BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec )
-            proj:SetVelocity(RandomFloat( 10, 20  ))
+            local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
+            proj:SetVelocity(RandomFloat(10, 20 ))
             proj:SetBallisticAcceleration(-9.8)            
         end        
     end,
@@ -411,21 +411,21 @@ BRL0401 = Class(CWalkingLandUnit)
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
         proj:SetVelocityAlign(false)
-        proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+        proj:SetOrientation(OrientFromDir(Util.Cross(Vector(x,0,z), Vector(0,1,0))),true)
         proj:SetVelocity(0,3,0) 
           proj:SetBallisticAcceleration(-0.05)            
         end   
     end,
     
-    CreateDamageEffects = function(self, bone, army )
+    CreateDamageEffects = function(self, bone, army)
         for k, v in EffectTemplate.DamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(5)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(5)
         end
     end,
     
-    CreateBlueFireDamageEffects = function(self, bone, army )
+    CreateBlueFireDamageEffects = function(self, bone, army)
         for k, v in BlacOpsEffectTemplate.DamageBlueFire do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(3)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(3)
         end
     end,
     
@@ -438,65 +438,65 @@ BRL0401 = Class(CWalkingLandUnit)
         local position = self:GetPosition()
 
         --Start off with a single Large explosion and several small ones
-        CreateDeathExplosion( self, 'BRL0401', 6)
-        CreateAttachedEmitter(self, 'BRL0401', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter( 0, 0, 0 )
+        CreateDeathExplosion(self, 'BRL0401', 6)
+        CreateAttachedEmitter(self, 'BRL0401', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 0, 0)
         self:ShakeCamera(20, 2, 1, 1.5)
         WaitSeconds(1)
-        CreateDeathExplosion( self, 'Torso', 1.5)
+        CreateDeathExplosion(self, 'Torso', 1.5)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Right_Side_Cannon_Arm', 1)
+        CreateDeathExplosion(self, 'Right_Side_Cannon_Arm', 1)
         WaitSeconds(0.5)
-        CreateDeathExplosion( self, 'Left_Side_Cannon_Arm', 1)
+        CreateDeathExplosion(self, 'Left_Side_Cannon_Arm', 1)
         WaitSeconds(1)
         
         --As the basilisk falls to the ground more small explosions + blue leaking fire effects and regular fire effects
-        CreateDeathExplosion( self, 'MainGun_Turret', 1)
-        self:CreateBlueFireDamageEffects( 'MainGun_Turret', army )--leaking blue fire
+        CreateDeathExplosion(self, 'MainGun_Turret', 1)
+        self:CreateBlueFireDamageEffects('MainGun_Turret', army)--leaking blue fire
         --explosions on right leg
         WaitSeconds(1.5)
-        CreateDeathExplosion( self, 'Right_Leg_3', 1)
-        self:CreateDamageEffects( 'Right_Piston_1B', army )
-        CreateDeathExplosion( self, 'Right_Piston_3A', 1)
-        self:CreateDamageEffects( 'Right_Cannon', army )
-        CreateDeathExplosion( self, 'Right_Leg_1', 1)
-        self:CreateDamageEffects( 'Right_Leg_2', army )
+        CreateDeathExplosion(self, 'Right_Leg_3', 1)
+        self:CreateDamageEffects('Right_Piston_1B', army)
+        CreateDeathExplosion(self, 'Right_Piston_3A', 1)
+        self:CreateDamageEffects('Right_Cannon', army)
+        CreateDeathExplosion(self, 'Right_Leg_1', 1)
+        self:CreateDamageEffects('Right_Leg_2', army)
         WaitSeconds(0.1)
-        CreateDeathExplosion( self, 'Right_Bolter', 1)
-        self:CreateDamageEffects( 'Right_Bolter', army )
-        CreateDeathExplosion( self, 'Right_Cannon', 1)
-        self:CreateDamageEffects( 'Right_Cannon', army )
+        CreateDeathExplosion(self, 'Right_Bolter', 1)
+        self:CreateDamageEffects('Right_Bolter', army)
+        CreateDeathExplosion(self, 'Right_Cannon', 1)
+        self:CreateDamageEffects('Right_Cannon', army)
         WaitSeconds(0.5)
-        CreateDeathExplosion( self, 'MainGun_Muzzle_Left', 1)
-        self:CreateBlueFireDamageEffects( 'Missile_7', army )--leaking blue fire
+        CreateDeathExplosion(self, 'MainGun_Muzzle_Left', 1)
+        self:CreateBlueFireDamageEffects('Missile_7', army)--leaking blue fire
         WaitSeconds(0.4)
-        CreateDeathExplosion( self, 'Left_Top_Cannon_Support', 1)
-        self:CreateDamageEffects( 'Left_Top_Cannon_Support', army )
+        CreateDeathExplosion(self, 'Left_Top_Cannon_Support', 1)
+        self:CreateDamageEffects('Left_Top_Cannon_Support', army)
         WaitSeconds(0.8)
-        CreateDeathExplosion( self, 'Right_Leg_2', 1)
-        self:CreateDamageEffects( 'Right_Leg_2', army )
+        CreateDeathExplosion(self, 'Right_Leg_2', 1)
+        self:CreateDamageEffects('Right_Leg_2', army)
         WaitSeconds(1)
-        CreateDeathExplosion( self, 'AA_Missile_3', 1)
-        self:CreateBlueFireDamageEffects( 'AA_Missile_3', army )--leaking blue fire
+        CreateDeathExplosion(self, 'AA_Missile_3', 1)
+        self:CreateBlueFireDamageEffects('AA_Missile_3', army)--leaking blue fire
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'Left_Cannon_Muzzle_1', 0.5)
-        self:CreateBlueFireDamageEffects( 'Left_Cannon_Muzzle_1', army )
-        CreateDeathExplosion( self, 'Left_Cannon_Recoil_2', 0.5)
+        CreateDeathExplosion(self, 'Left_Cannon_Muzzle_1', 0.5)
+        self:CreateBlueFireDamageEffects('Left_Cannon_Muzzle_1', army)
+        CreateDeathExplosion(self, 'Left_Cannon_Recoil_2', 0.5)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'MainGun_Muzzle_Right', 1)
+        CreateDeathExplosion(self, 'MainGun_Muzzle_Right', 1)
         WaitSeconds(0.6)
-        CreateDeathExplosion( self, 'Right_Bolter_Muzzle_3', 1)
-        CreateDeathExplosion( self, 'Missile_7', 3)
+        CreateDeathExplosion(self, 'Right_Bolter_Muzzle_3', 1)
+        CreateDeathExplosion(self, 'Missile_7', 3)
         WaitSeconds(0.5)
         --Knee hits the ground
         --self:ShakeCamera(40, 4, 1, 3.8)
-        CreateDeathExplosion( self, 'Head', 1)
-        self:CreateDeathExplosionDustRing( self, 'Right_Kneepad', 1)
+        CreateDeathExplosion(self, 'Head', 1)
+        self:CreateDeathExplosionDustRing(self, 'Right_Kneepad', 1)
        self:PlayUnitSound('DoneBeingBuilt')
        WaitSeconds(1)
         
         --Final Roar and then nuke explosion
-        CreateDeathExplosion( self, 'Head', 3)
-        self:CreateBlueFireDamageEffects( 'Head', army )--leaking blue fire
+        CreateDeathExplosion(self, 'Head', 3)
+        self:CreateBlueFireDamageEffects('Head', army)--leaking blue fire
         
         
         self:CreateLightning()
@@ -522,7 +522,7 @@ BRL0401 = Class(CWalkingLandUnit)
                 break
             end
         end
-        WaitSeconds( 1 )
+        WaitSeconds(1)
         WaitSeconds(0.1)
         self:CreateFireBalls()
         WaitSeconds(0.1)

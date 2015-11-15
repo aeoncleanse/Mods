@@ -41,12 +41,12 @@ GargEMPWarhead02 = Class(NullShell) {
     CreateNuclearExplosion = function(self)
         -- Light and Camera Shake
         --CreateLightParticle(self, -1, self:GetArmy(), 200, 200, 'beam_white_01', 'ramp_red_09')
-        --self:ShakeCamera( 75, 3, 0, 20 )
+        --self:ShakeCamera(75, 3, 0, 20)
 
         -- Mesh effects
         self.Plumeproj = self:CreateProjectile('/effects/GargEMPWarHead/GargEMPWarHeadEffect01_proj.bp')
         --self:ForkThread(self.PlumeThread, self.Plumeproj, self.Plumeproj:GetBlueprint().Display.UniformScale)
-        --self:ForkThread(self.PlumeVelocityThread, self.Plumeproj )
+        --self:ForkThread(self.PlumeVelocityThread, self.Plumeproj)
 
         -- Emitter Effects
         self:ForkThread(self.EmitterEffectsThread, self.Plumeproj)
@@ -61,8 +61,8 @@ GargEMPWarhead02 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -80,8 +80,8 @@ GargEMPWarhead02 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -104,11 +104,11 @@ GargEMPWarhead02 = Class(NullShell) {
         local army = self:GetArmy()
 
         for k, v in self.PlumeEffects do
-            CreateAttachedEmitter( plume, -1, army, v )
+            CreateAttachedEmitter(plume, -1, army, v)
         end
 
         for k, v in self.NormalEffects do
-            CreateEmitterAtEntity( self, army, v )
+            CreateEmitterAtEntity(self, army, v)
         end
 
     end,

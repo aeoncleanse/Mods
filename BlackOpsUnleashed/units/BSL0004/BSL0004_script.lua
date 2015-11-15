@@ -13,12 +13,12 @@ BSL0004 = Class(SLandUnit) {
     Weapons = {
         MissileRack = Class(SLaanseMissileWeapon) {
             OnLostTarget = function(self)
-                self:ForkThread( self.LostTargetThread )
+                self:ForkThread(self.LostTargetThread)
             end,
             
             RackSalvoFiringState = State(SLaanseMissileWeapon.RackSalvoFiringState) {
                 OnLostTarget = function(self)
-                    self:ForkThread( self.LostTargetThread )
+                    self:ForkThread(self.LostTargetThread)
                 end,            
             },            
 

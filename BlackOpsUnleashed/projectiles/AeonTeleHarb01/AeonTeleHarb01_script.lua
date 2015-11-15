@@ -9,7 +9,7 @@ AeonTeleHarb01 = Class(MGHeadshotProjectile) {
         MGHeadshotProjectile.OnImpact(self, targetType, targetEntity)
         local myBlueprint = self:GetBlueprint()
         self:PlaySound(myBlueprint.Audio.CommanderArrival)
-        self:CreateProjectile( '/effects/entities/AeonUnitTeleporter01/AeonUnitTeleporter01_proj.bp', 0, 1, 0, nil, nil, nil):SetCollision(false)
+        self:CreateProjectile('/effects/entities/AeonUnitTeleporter01/AeonUnitTeleporter01_proj.bp', 0, 1, 0, nil, nil, nil):SetCollision(false)
         --local position = self:GetPosition()
         --local spiritUnit1 = CreateUnitHPR('UAL0303', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
     end,

@@ -90,9 +90,9 @@ XRL0205 = Class(CWalkingLandUnit) {
 
     --+ Construction/Repair Handling +--
 
-    CreateBuildEffects = function( self, unitBeingBuilt, order )
-       EffectUtil.SpawnBuildBots( self, unitBeingBuilt, 1, self.BuildEffectsBag )
-       EffectUtil.CreateCybranBuildBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+       EffectUtil.SpawnBuildBots(self, unitBeingBuilt, 1, self.BuildEffectsBag)
+       EffectUtil.CreateCybranBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
     OnPrepareArmToBuild = function(self)
@@ -145,7 +145,7 @@ XRL0205 = Class(CWalkingLandUnit) {
                 self:BuildManipulatorSetEnabled(false)
                 self.BuildArmManipulator:SetPrecedence(0)
                 self:SetWeaponEnabledByLabel('LaserArms', true)
-                self:GetWeaponManipulatorByLabel('LaserArms'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+                self:GetWeaponManipulatorByLabel('LaserArms'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
             else
                 --Mark unit as building and issue decloak
                 self.Building = true
@@ -154,7 +154,7 @@ XRL0205 = Class(CWalkingLandUnit) {
                 self:BuildManipulatorSetEnabled(true)
                 self.BuildArmManipulator:SetPrecedence(20)
                 self:SetWeaponEnabledByLabel('LaserArms', false)
-                self.BuildArmManipulator:SetHeadingPitch( self:GetWeaponManipulatorByLabel('LaserArms'):GetHeadingPitch() )
+                self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('LaserArms'):GetHeadingPitch())
             end
         end
     end,

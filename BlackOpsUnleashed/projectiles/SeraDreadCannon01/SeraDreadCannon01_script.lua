@@ -29,7 +29,7 @@ SDFSinnuntheWeapon01 = Class(SDFSinnuntheWeaponProjectile) {
         
         -- Create effects for spawning of energy being
         for k, v in self.SpawnEffects do
-            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v ):ScaleEmitter(0.5)
+            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v):ScaleEmitter(0.5)
         end    
     end,
 

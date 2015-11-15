@@ -182,7 +182,7 @@ BAB5205 = Class(AAirFactoryUnit) {
         AAirFactoryUnit.OnCreate(self)
 
         self.DomeEntity1 = import('/lua/sim/Entity.lua').Entity({Owner = self,})
-        self.DomeEntity1:AttachBoneTo( -1, self, 'Torp_Turret01' )
+        self.DomeEntity1:AttachBoneTo(-1, self, 'Torp_Turret01')
         self.DomeEntity1:SetMesh('/effects/Entities/UAB2205_Dome/UAB2205_Dome_mesh')
         self.DomeEntity1:SetDrawScale(0.30)
         self.DomeEntity1:SetVizToAllies('Intel')
@@ -190,7 +190,7 @@ BAB5205 = Class(AAirFactoryUnit) {
         self.DomeEntity1:SetVizToEnemies('Intel')  
         
         self.DomeEntity2 = import('/lua/sim/Entity.lua').Entity({Owner = self,})
-        self.DomeEntity2:AttachBoneTo( -1, self, 'Torp_Turret02' )
+        self.DomeEntity2:AttachBoneTo(-1, self, 'Torp_Turret02')
         self.DomeEntity2:SetMesh('/effects/Entities/UAB2205_Dome/UAB2205_Dome_mesh')
         self.DomeEntity2:SetDrawScale(0.30)
         self.DomeEntity2:SetVizToAllies('Intel')
@@ -198,7 +198,7 @@ BAB5205 = Class(AAirFactoryUnit) {
         self.DomeEntity2:SetVizToEnemies('Intel')
         
         self.DomeEntity3 = import('/lua/sim/Entity.lua').Entity({Owner = self,})
-        self.DomeEntity3:AttachBoneTo( -1, self, 'Torp_Turret03' )
+        self.DomeEntity3:AttachBoneTo(-1, self, 'Torp_Turret03')
         self.DomeEntity3:SetMesh('/effects/Entities/UAB2205_Dome/UAB2205_Dome_mesh')
         self.DomeEntity3:SetDrawScale(0.30)
         self.DomeEntity3:SetVizToAllies('Intel')
@@ -206,7 +206,7 @@ BAB5205 = Class(AAirFactoryUnit) {
         self.DomeEntity3:SetVizToEnemies('Intel')
         
         self.DomeEntity4 = import('/lua/sim/Entity.lua').Entity({Owner = self,})
-        self.DomeEntity4:AttachBoneTo( -1, self, 'Torp_Turret04' )
+        self.DomeEntity4:AttachBoneTo(-1, self, 'Torp_Turret04')
         self.DomeEntity4:SetMesh('/effects/Entities/UAB2205_Dome/UAB2205_Dome_mesh')
         self.DomeEntity4:SetDrawScale(0.30)
         self.DomeEntity4:SetVizToAllies('Intel')

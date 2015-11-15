@@ -30,7 +30,7 @@ BES0402 = Class(TSeaUnit) {
                         fxname = 'AMC1Steam' .. i
                     end
                     for k, v in self.unit.SteamEffects do
-                        table.insert( self.unit.SteamEffectsBag, CreateAttachedEmitter( self.unit, fxname, self.unit:GetArmy(), v ))
+                        table.insert(self.unit.SteamEffectsBag, CreateAttachedEmitter(self.unit, fxname, self.unit:GetArmy(), v))
                     end
                 end
                 ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
@@ -46,7 +46,7 @@ BES0402 = Class(TSeaUnit) {
                         fxname = 'AMC2Steam' .. i
                     end
                     for k, v in self.unit.SteamEffects do
-                        table.insert( self.unit.SteamEffectsBag, CreateAttachedEmitter( self.unit, fxname, self.unit:GetArmy(), v ))
+                        table.insert(self.unit.SteamEffectsBag, CreateAttachedEmitter(self.unit, fxname, self.unit:GetArmy(), v))
                     end
                 end
                 ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
@@ -62,7 +62,7 @@ BES0402 = Class(TSeaUnit) {
                         fxname = 'AMC3Steam' .. i
                     end
                     for k, v in self.unit.SteamEffects do
-                        table.insert( self.unit.SteamEffectsBag, CreateAttachedEmitter( self.unit, fxname, self.unit:GetArmy(), v ))
+                        table.insert(self.unit.SteamEffectsBag, CreateAttachedEmitter(self.unit, fxname, self.unit:GetArmy(), v))
                     end
                 end
                 ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)

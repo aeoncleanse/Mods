@@ -40,7 +40,7 @@ ShieldEffects = {
             self.ShieldEffectsBag = {}
         end
         for k, v in self.ShieldEffects do
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ):ScaleEmitter(1) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(1))
         end
         local bp = self:GetBlueprint().Defense.SeraLambdaFieldRedirector01
         local bp2 = self:GetBlueprint().Defense.SeraLambdaFieldRedirector02

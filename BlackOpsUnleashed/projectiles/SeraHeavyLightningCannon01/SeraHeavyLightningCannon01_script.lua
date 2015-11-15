@@ -26,11 +26,11 @@ SDFHeavyQuarnonCannon01 = Class(SHeavyQuarnonCannon) {
         nukeProjectile = self:CreateProjectile('/projectiles/SeraHeavyLightningCannonChild01/SeraHeavyLightningCannonChild01_proj.bp', 0, 0, 0, nil, nil, nil)--:SetCollision(false)
         local pos = self:GetPosition()
         pos[2] = pos[2] + 4
-        Warp( nukeProjectile, pos)
+        Warp(nukeProjectile, pos)
         nukeProjectile:PassDamageData(self.DamageData) 
         ------ Split effects
         for k, v in FxFragEffect do
-            CreateEmitterAtEntity( self, self:GetArmy(), v )
+            CreateEmitterAtEntity(self, self:GetArmy(), v)
         end
         
         --[[
@@ -44,7 +44,7 @@ SDFHeavyQuarnonCannon01 = Class(SHeavyQuarnonCannon) {
         local numProjectiles = 1
         
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         
         -- Randomization of the spread
         local angleVariation = angle * 0.8 -- Adjusts angle variance spread

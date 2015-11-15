@@ -193,7 +193,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
             self.ShieldEffectsBag = {}
         end
         for k, v in self.ShieldEffects do
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 'Shield_Base', self:GetArmy(), v ) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'Shield_Base', self:GetArmy(), v))
         end
     end,
 

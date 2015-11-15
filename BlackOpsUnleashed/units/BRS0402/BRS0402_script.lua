@@ -41,7 +41,7 @@ BRS0402= Class(CSeaUnit) {
                     self.unit.MuzzleFlashWep1Effects01Bag = {}
                 end
                 for k, v in self.unit.MuzzleFlashEffects01 do
-                    table.insert( self.unit.MuzzleFlashWep1Effects01Bag, CreateAttachedEmitter( self.unit, 'Left_Railgun_Muzzle', self.unit:GetArmy(), v ):ScaleEmitter(1.2))
+                    table.insert(self.unit.MuzzleFlashWep1Effects01Bag, CreateAttachedEmitter(self.unit, 'Left_Railgun_Muzzle', self.unit:GetArmy(), v):ScaleEmitter(1.2))
                 end
                 
                 if self.unit.MuzzleFlashWep1Effects02Bag then
@@ -51,9 +51,9 @@ BRS0402= Class(CSeaUnit) {
                     self.unit.MuzzleFlashWep1Effects02Bag = {}
                 end
                 for k, v in self.unit.MuzzleFlashEffects02 do
-                    table.insert( self.unit.MuzzleFlashWep1Effects02Bag, CreateAttachedEmitter( self.unit, 'Left_Railgun_Effect03', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.MuzzleFlashWep1Effects02Bag, CreateAttachedEmitter( self.unit, 'Left_Railgun_Effect04', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.MuzzleFlashWep1Effects02Bag, CreateAttachedEmitter( self.unit, 'Left_Railgun_Effect05', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.MuzzleFlashWep1Effects02Bag, CreateAttachedEmitter(self.unit, 'Left_Railgun_Effect03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.MuzzleFlashWep1Effects02Bag, CreateAttachedEmitter(self.unit, 'Left_Railgun_Effect04', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.MuzzleFlashWep1Effects02Bag, CreateAttachedEmitter(self.unit, 'Left_Railgun_Effect05', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 self:ForkThread(self.MuzzleFlashEffectsWep1CleanUp)
             end,
@@ -88,8 +88,8 @@ BRS0402= Class(CSeaUnit) {
                     self.unit.MuzzleChargeEffectsWep1Bag = {}
                 end
                 for k, v in self.unit.MuzzleChargeEffects do
-                    table.insert( self.unit.MuzzleChargeEffectsWep1Bag, CreateAttachedEmitter( self.unit, 'Left_Railgun_Effect01', self.unit:GetArmy(), v ):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
-                    table.insert( self.unit.MuzzleChargeEffectsWep1Bag, CreateAttachedEmitter( self.unit, 'Left_Railgun_Effect02', self.unit:GetArmy(), v ):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
+                    table.insert(self.unit.MuzzleChargeEffectsWep1Bag, CreateAttachedEmitter(self.unit, 'Left_Railgun_Effect01', self.unit:GetArmy(), v):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
+                    table.insert(self.unit.MuzzleChargeEffectsWep1Bag, CreateAttachedEmitter(self.unit, 'Left_Railgun_Effect02', self.unit:GetArmy(), v):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
                 end
                 self:ForkThread(self.MuzzleChargeEffectsWep1CleanUp)
             end,
@@ -113,7 +113,7 @@ BRS0402= Class(CSeaUnit) {
                     self.unit.MuzzleFlashWep2Effects01Bag = {}
                 end
                 for k, v in self.unit.MuzzleFlashEffects01 do
-                    table.insert( self.unit.MuzzleFlashWep2Effects01Bag, CreateAttachedEmitter( self.unit, 'Right_Railgun_Muzzle', self.unit:GetArmy(), v ):ScaleEmitter(1.2))
+                    table.insert(self.unit.MuzzleFlashWep2Effects01Bag, CreateAttachedEmitter(self.unit, 'Right_Railgun_Muzzle', self.unit:GetArmy(), v):ScaleEmitter(1.2))
                 end
                 
                 if self.unit.MuzzleFlashWep2Effects02Bag then
@@ -123,9 +123,9 @@ BRS0402= Class(CSeaUnit) {
                     self.unit.MuzzleFlashWep2Effects02Bag = {}
                 end
                 for k, v in self.unit.MuzzleFlashEffects02 do
-                    table.insert( self.unit.MuzzleFlashWep2Effects02Bag, CreateAttachedEmitter( self.unit, 'Right_Railgun_Effect03', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.MuzzleFlashWep2Effects02Bag, CreateAttachedEmitter( self.unit, 'Right_Railgun_Effect04', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
-                    table.insert( self.unit.MuzzleFlashWep2Effects02Bag, CreateAttachedEmitter( self.unit, 'Right_Railgun_Effect05', self.unit:GetArmy(), v ):ScaleEmitter(0.5))
+                    table.insert(self.unit.MuzzleFlashWep2Effects02Bag, CreateAttachedEmitter(self.unit, 'Right_Railgun_Effect03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.MuzzleFlashWep2Effects02Bag, CreateAttachedEmitter(self.unit, 'Right_Railgun_Effect04', self.unit:GetArmy(), v):ScaleEmitter(0.5))
+                    table.insert(self.unit.MuzzleFlashWep2Effects02Bag, CreateAttachedEmitter(self.unit, 'Right_Railgun_Effect05', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
                 self:ForkThread(self.MuzzleFlashEffectsWep2CleanUp)
             end,
@@ -160,8 +160,8 @@ BRS0402= Class(CSeaUnit) {
                     self.unit.MuzzleChargeEffectsWep2Bag = {}
                 end
                 for k, v in self.unit.MuzzleChargeEffects do
-                    table.insert( self.unit.MuzzleChargeEffectsWep2Bag, CreateAttachedEmitter( self.unit, 'Right_Railgun_Effect01', self.unit:GetArmy(), v ):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
-                    table.insert( self.unit.MuzzleChargeEffectsWep2Bag, CreateAttachedEmitter( self.unit, 'Right_Railgun_Effect02', self.unit:GetArmy(), v ):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
+                    table.insert(self.unit.MuzzleChargeEffectsWep2Bag, CreateAttachedEmitter(self.unit, 'Right_Railgun_Effect01', self.unit:GetArmy(), v):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
+                    table.insert(self.unit.MuzzleChargeEffectsWep2Bag, CreateAttachedEmitter(self.unit, 'Right_Railgun_Effect02', self.unit:GetArmy(), v):ScaleEmitter(0.4):OffsetEmitter(0, 0, -0.9))
                 end
                 self:ForkThread(self.MuzzleChargeEffectsWep2CleanUp)
             end,
