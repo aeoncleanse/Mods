@@ -4,10 +4,6 @@ ProjectileBlueprint {
         Mesh = {
             LODs = {
                 {
-                    --MeshName = '/effects/Entities/Sphere01/Sphere01_lod0.scm',
-                    --ShaderName = 'TMeshOuterCloud',
-                    --AlbedoName = '/effects/Nuke/Plume02_Glow.dds',
-                    --NormalsName = '/effects/Nuke/Plume02_Alpha.dds',
                     LODCutoff = 1000.0,
                 },
             },
@@ -20,12 +16,6 @@ ProjectileBlueprint {
         CollideEntity = false,
         CollideSurface = false,
         DestroyOnWater = false,
-        --DirectionX = 0,
-        --DirectionXRange = 0,
-        --DirectionY = 0,
-        --DirectionYRange = 0,
-        --DirectionZ = 0,
-        --DirectionZRange = 0,
         InitialSpeed = 0,
         InitialSpeedRange = 0,
         Lifetime = 26,
