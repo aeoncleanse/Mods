@@ -10,8 +10,8 @@ UnitBlueprint {
     CollisionOffsetY = -1,
     Categories = {
         'PRODUCTSC1',
-        #'UNSELECTABLE',
-		'UNTARGETABLE',
+        --'UNSELECTABLE',
+        'UNTARGETABLE',
         'DRONE',
         'CYBRAN',
         'INTELLIGENCE',
@@ -33,21 +33,21 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
-    	NoTeleDistance = 25,
+        NoTeleDistance = 25,
     },
     Description = '<LOC brb0006_desc>Anti-Teleport Emitter',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
-        		{
-            	AlbedoName = '/units/bab0003/bab0003_albedo.dds',
-            	NormalsName = '/units/bab0003/bab0003_normalsTS.dds',
-            	SpecularName = '/units/bab0003/bab0003_specteam.dds',
-            	ShaderName = 'Unit',
-            	LODCutoff = 195,
-        		},
-        	},
+                {
+                AlbedoName = '/units/bab0003/bab0003_albedo.dds',
+                NormalsName = '/units/bab0003/bab0003_normalsTS.dds',
+                SpecularName = '/units/bab0003/bab0003_specteam.dds',
+                ShaderName = 'Unit',
+                LODCutoff = 195,
+                },
+            },
         },
         PlaceholderMeshName = 'UXB0000',
         SpawnRandomRotation = true,
@@ -59,7 +59,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-    	CapCost = 0,
+        CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {

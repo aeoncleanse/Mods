@@ -63,8 +63,8 @@ ProjectileBlueprint {
         HelpText = 0,
     },
     Physics = {
-    	DetonateBelowHeight = 15,
-    	Acceleration = 3,
+        DetonateBelowHeight = 15,
+        Acceleration = 3,
         InitialSpeed = 0,
         Lifetime = 600,
         MaxSpeed = 40,

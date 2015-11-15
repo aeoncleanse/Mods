@@ -82,16 +82,16 @@ UnitBlueprint {
                 {
                     LODCutoff = 215,
                     Scrolling = true,
-                    #MeshName = '/units/BEL0109/BEL0109_LOD0.scm',
+                    --MeshName = '/units/BEL0109/BEL0109_LOD0.scm',
                     ShaderName = 'Unit',
                 },
-               # {
-               #     AlbedoName = 'BEL0109c_lod1_albedo.dds',
-               #     LODCutoff = 215,
-                #    ShaderName = 'Unit',
-                #    #MeshName = '/units/BEL0109/BEL0109_LOD1.scm',
-                #    SpecularName = 'BEL0109c_lod1_specteam.dds',
-               # },
+               -- {
+               --     AlbedoName = 'BEL0109c_lod1_albedo.dds',
+               --     LODCutoff = 215,
+                --    ShaderName = 'Unit',
+                --    --MeshName = '/units/BEL0109/BEL0109_LOD1.scm',
+                --    SpecularName = 'BEL0109c_lod1_specteam.dds',
+               -- },
             },
         },
         MovementEffects = {

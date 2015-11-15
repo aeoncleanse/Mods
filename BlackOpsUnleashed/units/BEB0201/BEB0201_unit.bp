@@ -45,9 +45,9 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER2ENGINEER',
-		'BUILTBYTIER3ENGINEER',
-		'BUILTBYTIER2COMMANDER',
-		'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER3ENGINEER',
+        'BUILTBYTIER2COMMANDER',
+        'BUILTBYTIER3COMMANDER',
         'UEF',
         'STRUCTURE',
         'LAND',
@@ -104,20 +104,20 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-					AlbedoName = '/units/ueb0201/ueb0201_albedo.dds',
+                    AlbedoName = '/units/ueb0201/ueb0201_albedo.dds',
                     LODCutoff = 500,
-					MeshName = '/units/ueb0201/ueb0201_lod0.scm',
+                    MeshName = '/units/ueb0201/ueb0201_lod0.scm',
                     ShaderName = 'Insect',
-					SpecularName = '/units/ueb0201/ueb0201_specteam.dds',
-					#SpecularName = 'BEL0109b_lod1_specteam.dds',
+                    SpecularName = '/units/ueb0201/ueb0201_specteam.dds',
+                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/ueb0201/ueb0201_lod1_albedo.dds',
                     LODCutoff = 500,
-					MeshName = '/units/ueb0201/ueb0201_lod1.scm',
+                    MeshName = '/units/ueb0201/ueb0201_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0201/ueb0201_lod1_specteam.dds',
-					#SpecularName = 'BEL0109b_lod1_specteam.dds',
+                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -155,9 +155,9 @@ UnitBlueprint {
         },
         StorageEnergy = 800,
         StorageMass = 160,
-		RebuildBonusIds = {
+        RebuildBonusIds = {
             'ueb0201',
-			'ueb0301',
+            'ueb0301',
         },
     },
     Footprint = {
@@ -223,126 +223,126 @@ UnitBlueprint {
         MotionType = 'RULEUMT_None',
         RaisedPlatforms = {
 
-            # Platform 1
-            # TopLeft Offset From Center
+            -- Platform 1
+            -- TopLeft Offset From Center
             -1.1,
 
-            # x
+            -- x
             -1.6,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # TopRight Offset From Center
+            -- height
+            -- TopRight Offset From Center
             1.1,
 
-            # x
+            -- x
             -1.6,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # BottomLeft Offset From Center
+            -- height
+            -- BottomLeft Offset From Center
             -1.1,
 
-            # x
+            -- x
             1.9,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # BottomRight Offset From Center
+            -- height
+            -- BottomRight Offset From Center
             1.1,
 
-            # x
+            -- x
             1.9,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # Platform 2
-            # TopLeft Offset From Center
+            -- height
+            -- Platform 2
+            -- TopLeft Offset From Center
             -2,
 
-            # x
+            -- x
             -1.6,
 
-            # z
+            -- z
             0,
 
-            # height
-            # TopRight Offset From Center
+            -- height
+            -- TopRight Offset From Center
             -1.1,
 
-            # x
+            -- x
             -1.6,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # BottomLeft Offset From Center
+            -- height
+            -- BottomLeft Offset From Center
             -2,
 
-            # x
+            -- x
             1.9,
 
-            # z
+            -- z
             0,
 
-            # height
-            # BottomRight Offset From Center
+            -- height
+            -- BottomRight Offset From Center
             -1.1,
 
-            # x
+            -- x
             1.9,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # Platform 3
-            # TopLeft Offset From Center
+            -- height
+            -- Platform 3
+            -- TopLeft Offset From Center
             1.1,
 
-            # x
+            -- x
             -1.6,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # TopRight Offset From Center
+            -- height
+            -- TopRight Offset From Center
             2,
 
-            # x
+            -- x
             -1.6,
 
-            # z
+            -- z
             0,
 
-            # height
-            # BottomLeft Offset From Center
+            -- height
+            -- BottomLeft Offset From Center
             1.1,
 
-            # x
+            -- x
             1.9,
 
-            # z
+            -- z
             0.5,
 
-            # height
-            # BottomRight Offset From Center
+            -- height
+            -- BottomRight Offset From Center
             2,
 
-            # x
+            -- x
             1.9,
 
-            # z
+            -- z
             0,
         },
         RollOffPoints = {
@@ -360,7 +360,7 @@ UnitBlueprint {
             },
         },
 
-        # height
+        -- height
         SkirtOffsetX = -1.5,
         SkirtOffsetZ = -1.5,
         SkirtSizeX = 8,
@@ -371,7 +371,7 @@ UnitBlueprint {
     SelectionSizeZ = 3.3,
     SelectionThickness = 0.3,
 
-    # height
+    -- height
     SizeX = 4.2,
     SizeY = 0.6,
     SizeZ = 4.4,

@@ -1,5 +1,5 @@
 ProjectileBlueprint {
-	Audio = {
+    Audio = {
         NukeExplosion = Sound {
             Bank = 'Explosions',
             Cue = 'Aeon_Nuke_Impact',

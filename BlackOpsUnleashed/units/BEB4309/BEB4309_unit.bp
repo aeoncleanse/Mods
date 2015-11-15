@@ -52,7 +52,7 @@ UnitBlueprint {
     Description = '<LOC beb4309_desc>Anti-Teleport Field Tower',
     Display = {
         Abilities = {
-        	'<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
+            '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
             '<LOC ability_deathaoe>Volatile',
         },
         Mesh = {
@@ -62,12 +62,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Unit',
                 },
-               # {
-               #     AlbedoName = 'beb4309_lod1_albedo.dds',
-               #     LODCutoff = 300,
-               #     ShaderName = 'Unit',
-               #     SpecularName = 'beb4309_lod1_specteam.dds',
-               # },
+               -- {
+               --     AlbedoName = 'beb4309_lod1_albedo.dds',
+               --     LODCutoff = 300,
+               --     ShaderName = 'Unit',
+               --     SpecularName = 'beb4309_lod1_specteam.dds',
+               -- },
             },
         },
         PlaceholderMeshName = 'UXB0016',
@@ -140,7 +140,7 @@ UnitBlueprint {
         UpgradesFrom = 'beb4209',
     },
     Intel = {
-    	FreeIntel = true,
+        FreeIntel = true,
         VisionRadius = 25,
         CloakFieldRadius = 50,
     },

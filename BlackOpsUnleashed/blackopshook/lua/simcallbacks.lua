@@ -1,3 +1,3 @@
 do
-	Callbacks.GiveOrders = import('/lua/spreadattack.lua').GiveOrders
+    Callbacks.GiveOrders = import('/lua/spreadattack.lua').GiveOrders
 end

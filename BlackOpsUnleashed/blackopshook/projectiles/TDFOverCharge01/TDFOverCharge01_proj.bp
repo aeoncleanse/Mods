@@ -19,7 +19,7 @@ ProjectileBlueprint {
     Categories = {
         'UEF',
         'PROJECTILE',
-		'STRATEGIC',
+        'STRATEGIC',
         'DIRECTFIRE',
     },
     Display = {

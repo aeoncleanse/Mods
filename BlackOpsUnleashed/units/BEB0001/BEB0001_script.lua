@@ -1,19 +1,19 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/UEB5202/UEB5202_script.lua
-#**  Author(s):  John Comes, David Tomandl
-#**
-#**  Summary  :  UEF Air Staging Platform
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/UEB5202/UEB5202_script.lua
+--**  Author(s):  John Comes, David Tomandl
+--**
+--**  Summary  :  UEF Air Staging Platform
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local TAirStagingPlatformUnit = import('/lua/terranunits.lua').TAirStagingPlatformUnit
 
 BEB0001 = Class(TAirStagingPlatformUnit) {
-### File pathing and special paramiters called ###########################
+------ File pathing and special paramiters called ------------------------------------------------------
 
-### Setsup parent call backs between drone and parent
+------ Setsup parent call backs between drone and parent
 Parent = nil,
 
 SetParent = function(self, parent, droneName)
@@ -21,8 +21,8 @@ SetParent = function(self, parent, droneName)
     self.Drone = droneName
 end,
 
-##########################################################################
-	OnDamage = function()
+----------------------------------------------------------------------------------------------------------------------------------------------------
+    OnDamage = function()
     end,
 }
 

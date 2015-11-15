@@ -3,10 +3,10 @@ UnitBlueprint {
         TargetBones = {
             'Body',
             'Leg_A_1',
-			'Leg_B_1',
-			'Leg_B_1',
-			'Leg_D_1',
-            #'Spinner_Ball',
+            'Leg_B_1',
+            'Leg_B_1',
+            'Leg_D_1',
+            --'Spinner_Ball',
         },
         NeedUnpack = true,
     },
@@ -41,7 +41,7 @@ UnitBlueprint {
             Cue = 'Aeon_Select_Gun',
             LodCutoff = 'UnitMove_LodCutoff',
         },
-		WarpingProjectile = Sound {
+        WarpingProjectile = Sound {
             Bank = 'UALWeapon',
             Cue = 'UAB2302_Artillery_Sonance',
             LodCutoff = 'Weapon_LodCutoff',
@@ -66,7 +66,7 @@ UnitBlueprint {
         'AEON',
         'MOBILE',
         'LAND',
-		'DIRECTFIRE',
+        'DIRECTFIRE',
         'INDIRECTFIRE',
         'EXPERIMENTAL',
         'NEEDMOBILEBUILD',
@@ -74,7 +74,7 @@ UnitBlueprint {
         'RECLAIMABLE',
         'DRAGBUILD',
         'OVERLAYDIRECTFIRE',
-		'OVERLAYINDIRECTFIRE',
+        'OVERLAYINDIRECTFIRE',
     },
     CollisionOffsetY = 3.5,
     Defense = {
@@ -98,7 +98,7 @@ UnitBlueprint {
         AnimationDeath = {
             {
                 Animation = '/units/BAL0401/BAL0401_ADeath01.sca',
-				AnimationRateMax = 1.0,
+                AnimationRateMax = 1.0,
                 AnimationRateMin = 0.75,
                 Weight = 100,
             },
@@ -112,12 +112,12 @@ UnitBlueprint {
                     LODCutoff = 500,
                     ShaderName = 'Aeon',
                 },
-               # {
-               #     AlbedoName = 'BAL0401_lod1_albedo.dds',
-               #     LODCutoff = 500,
-               #     ShaderName = 'Aeon',
-               #     SpecularName = 'BAL0401_lod1_specteam.dds',
-               # },
+               -- {
+               --     AlbedoName = 'BAL0401_lod1_albedo.dds',
+               --     LODCutoff = 500,
+               --     ShaderName = 'Aeon',
+               --     SpecularName = 'BAL0401_lod1_specteam.dds',
+               -- },
             },
         },
         MovementEffects = {
@@ -244,14 +244,14 @@ UnitBlueprint {
         MaxAcceleration = 1.8,
         MaxSpeed = 1.8,
         MaxSpeedReverse = 0,
-		MaxSteerForce = 10,
+        MaxSteerForce = 10,
         MeshExtentsX = 2.75,
         MeshExtentsY = 6.75,
         MeshExtentsZ = 3,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Amphibious',
-        #SinkLower = true,
-		StandUpright = true,
+        --SinkLower = true,
+        StandUpright = true,
         SkirtOffsetX = 0,
         SkirtOffsetZ = 0,
         SkirtSizeX = 6,
@@ -276,7 +276,7 @@ UnitBlueprint {
         Level5 = 150,
     },
     Weapon = {
-		{
+        {
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
 
@@ -284,12 +284,12 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             Damage = 0,
-            #DamageRadius = 6,
+            --DamageRadius = 6,
             DamageType = 'Normal',
             DisplayName = 'Head weapon',
-			#EnergyDrainPerSecond = 10000,
-            #EnergyRequired = 50000,
-			DoNotCollideList = {
+            --EnergyDrainPerSecond = 10000,
+            --EnergyRequired = 50000,
+            DoNotCollideList = {
                 'MISSILE',
             },
             EnergyDrainPerSecond = 0,
@@ -310,7 +310,7 @@ UnitBlueprint {
             NotExclusive = true,
             ProjectileId = '/projectiles/GLaserShot01/GLaserShot01_proj.bp',
             ProjectilesPerOnFire = 1,
-			ProjectileLifetime = 120,
+            ProjectileLifetime = 120,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -327,21 +327,21 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.033,
-			#SlavedToBody = true,
-            #SlavedToBodyArcRange = 40,
-			RenderFireClock = true,
+            --SlavedToBody = true,
+            --SlavedToBodyArcRange = 40,
+            RenderFireClock = true,
             TargetCheckInterval = 0.25,
             TargetRestrictDisallow = 'UNTARGETABLE',
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'STRUCTURE DEFENSE',
-				'STRUCTURE TECH3',
-				'STRUCTURE TECH2',
-				'STRUCTURE TECH1',
+                'STRUCTURE TECH3',
+                'STRUCTURE TECH2',
+                'STRUCTURE TECH1',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
             },
-			TargetRestrictDisallow = 'UNTARGETABLE',
+            TargetRestrictDisallow = 'UNTARGETABLE',
             TurretDualManipulators = false,
             TurretPitch = 0,
             TurretPitchRange = 0,
@@ -357,7 +357,7 @@ UnitBlueprint {
             WeaponUnpackLocksMotion = true,
             WeaponUnpacks = true,
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -393,7 +393,7 @@ UnitBlueprint {
             DamageRadius = 0.5,
             DamageType = 'Normal',
             DisplayName = 'Heavy Microwave Laser',
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'MISSILE',
             },
             FireTargetLayerCapsTable = {
@@ -429,7 +429,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.3,
-			RenderFIreClock = false,
+            RenderFIreClock = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -454,7 +454,7 @@ UnitBlueprint {
             WeaponCategory = 'Direct Fire',
             WeaponUnpacks = false,
         },
-		
+        
         {
             AboveWaterTargetsOnly = true,
             Damage = 8000,

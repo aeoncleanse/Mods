@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/XSA0309/XSA0309_script.lua
-#**  Author(s):  Greg Kohne, Aaron Lundquist
-#**
-#**  Summary  : Seraphim T2 Transport Script
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/XSA0309/XSA0309_script.lua
+--**  Author(s):  Greg Kohne, Aaron Lundquist
+--**
+--**  Summary  : Seraphim T2 Transport Script
+--**
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
 local explosion = import('/lua/defaultexplosions.lua')
@@ -30,7 +30,7 @@ BSA0309 = Class(SAirUnit) {
         AALeft02 = Class(SAAShleoCannonWeapon) {},
         AARight02 = Class(SAAShleoCannonWeapon) {},
     },
-	OnStopBeingBuilt = function(self, builder, layer)
+    OnStopBeingBuilt = function(self, builder, layer)
         local bp = self:GetBlueprint().Defense.SeraLambdaFieldRedirector01
         local bp2 = self:GetBlueprint().Defense.SeraLambdaFieldRedirector02
         local bp3 = self:GetBlueprint().Defense.SeraLambdaFieldDestroyer01
@@ -58,7 +58,7 @@ BSA0309 = Class(SAirUnit) {
         self.UnitComplete = true
         SAirUnit.OnStopBeingBuilt(self,builder,layer)
     end,
-    # Override air destruction effects so we can do something custom here
+    -- Override air destruction effects so we can do something custom here
     CreateUnitAirDestructionEffects = function( self, scale )
         self:ForkThread(self.AirDestructionEffectsThread, self )
     end,

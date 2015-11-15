@@ -20,14 +20,14 @@ ProjectileBlueprint {
         'SERAPHIM',
         'PROJECTILE',
         'INDIRECTFIRE',
-        #'TACTICAL',
-       # 'MISSILE',
+        --'TACTICAL',
+       -- 'MISSILE',
         'NOSPLASHDAMAGE',
     },
-    #Defense = {
-   # #    Health = 1,
-   #     MaxHealth = 1,
-   # },
+    --Defense = {
+   -- --    Health = 1,
+   --     MaxHealth = 1,
+   -- },
     Display = {
         CameraFollowTimeout = 2,
         CameraFollowsProjectile = false,

@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /data/projectiles/AANTorpedoCluster01/AANTorpedoCluster01_script.lua
-#**  Author(s):  Gordon Duclos
-#**
-#**  Summary  :  Aeon Torpedo Cluster Projectile script, XAA0306
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /data/projectiles/AANTorpedoCluster01/AANTorpedoCluster01_script.lua
+--**  Author(s):  Gordon Duclos
+--**
+--**  Summary  :  Aeon Torpedo Cluster Projectile script, XAA0306
+--**
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local AMTorpedoCluster = import('/lua/BlackOpsprojectiles.lua').AMTorpedoCluster
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -20,7 +20,7 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
         AMTorpedoCluster.OnCreate(self)
         self.HasImpacted = false
 
-		CreateTrail(self, -1, self:GetArmy(), import('/lua/EffectTemplates.lua').ATorpedoPolyTrails01)
+        CreateTrail(self, -1, self:GetArmy(), import('/lua/EffectTemplates.lua').ATorpedoPolyTrails01)
         
     end,
 
@@ -45,7 +45,7 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-            #proj:SetVelocity( x * mul, Vely * mul, z * mul )
+            --proj:SetVelocity( x * mul, Vely * mul, z * mul )
         end            
         
         local pos = self:GetPosition()
@@ -71,7 +71,7 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
     end,
     
     OnLostTarget = function(self)
-    	self:Destroy()
+        self:Destroy()
     end,
 }
 TypeClass = AANTorpedoCluster01

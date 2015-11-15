@@ -16,20 +16,20 @@ BSA0002 = Class(SConstructionUnit) {
         self.Parent = parent
         self.Drone = droneName
         --Mithy: Now has launch effects from XSA0001 drone - this function handles initial movement as well
-        ### Start of launch special effects
+        ------ Start of launch special effects
         self.LaunchExhaustEffectsBag = {}
         self:ForkThread(self.LaunchEffects)
         --Mithy: Range limitation thread
         self.HeartBeatThread = self:ForkThread(self.DistanceHeartbeat)
     end,
 
-	--Mithy: Extra checks now done within patrolplatform
+    --Mithy: Extra checks now done within patrolplatform
     OnStopbuild = function(self, unitBeingBuilt)
         self:ForkThread(self.Patrolplatform)
         SConstructionUnit.OnStopBuild(self, unitBeingBuilt)
     end,
 
-	--Mithy: Extra checks now done within patrolplatform
+    --Mithy: Extra checks now done within patrolplatform
     OnMotionHorzEventChange = function(self, new, old)
         if new == 'Stopped' then
             self:ForkThread(self.Patrolplatform)
@@ -83,43 +83,43 @@ BSA0002 = Class(SConstructionUnit) {
     Patrolplatform = function(self, override)
         --Mithy: Now checks idle state, so drones can hover in place without being immediately told to patrol (often interrupting user orders)
         if override or ( not self:IsDead() and not self.Parent:IsDead() and self:IsIdleState() ) then
-            ### Gets the current position of the parent platform in the game world
+            ------ Gets the current position of the parent platform in the game world
             local location = self.Parent:GetPosition()
 
-            ###Repair drone patrol area if not currently building
+            ------Repair drone patrol area if not currently building
             --Mithy: Now a larger-area octagon instead of a small square
             IssueClearCommands({self})
             local patroltable = {
-	            {location[1]+15, location[2], location[3]-6},
-	            {location[1]+15, location[2], location[3]+6},
-	            {location[1]+6, location[2], location[3]+15},
-	            {location[1]-6, location[2], location[3]+15},
-	            {location[1]-15, location[2], location[3]+6},
-	            {location[1]-15, location[2], location[3]-6},
-	            {location[1]-6, location[2], location[3]-15},
-	            {location[1]+6, location[2], location[3]-15},
-	        }
+                {location[1]+15, location[2], location[3]-6},
+                {location[1]+15, location[2], location[3]+6},
+                {location[1]+6, location[2], location[3]+15},
+                {location[1]-6, location[2], location[3]+15},
+                {location[1]-15, location[2], location[3]+6},
+                {location[1]-15, location[2], location[3]-6},
+                {location[1]-6, location[2], location[3]-15},
+                {location[1]+6, location[2], location[3]-15},
+            }
             --Randomize drone's patrol startpoint
             local ppoint = math.random(1, 8)
             local pointsleft = 8
             while pointsleft > 0 do
-            	IssuePatrol({self}, patroltable[ppoint])
-            	if ppoint < 8 then
-            		ppoint = ppoint + 1
-            	else
-            		ppoint = 1
-            	end
-            	pointsleft = pointsleft - 1
+                IssuePatrol({self}, patroltable[ppoint])
+                if ppoint < 8 then
+                    ppoint = ppoint + 1
+                else
+                    ppoint = 1
+                end
+                pointsleft = pointsleft - 1
             end
        end
     end,
 
     OnDamage = function(self, instigator, amount, vector, damagetype)
         if self:IsDead() == false then
-            ###Base script for this script function was developed by Gilbot_x
-            ### sets the damage resistance of the rebuilder bot to 30%
-            #local rebuilerBot_DLS = 0.3
-            #amount = math.ceil(amount*rebuilerBot_DLS)
+            ------Base script for this script function was developed by Gilbot_x
+            ------ sets the damage resistance of the rebuilder bot to 30%
+            --local rebuilerBot_DLS = 0.3
+            --amount = math.ceil(amount*rebuilerBot_DLS)
         end
         --Mithy: Run home to the platform if we take damage
         if not self:IsDead() and instigator and IsUnit(instigator) and not instigator:IsDead() and not self.EvadeThread then
@@ -139,27 +139,27 @@ BSA0002 = Class(SConstructionUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
 
-        ### Clears the current RebuilderBot commands if any
+        ------ Clears the current RebuilderBot commands if any
         IssueClearCommands({self})
 
-        ### Notifies parent of RebuilderBot death and clears the dead unit from the parents table
+        ------ Notifies parent of RebuilderBot death and clears the dead unit from the parents table
         if not self.Parent:IsDead() then
             --Mithy: This table was mis-named
             table.removeByValue(self.Parent.RepairDroneTable, self)
             --Likewise, this function was mis-named, and doesn't need the droneName parameter as the staging facility has no specified drone slots
             self.Parent:NotifyOfRepairDroneDeath()
         end
-        ### Final command to finish off the drones death event
+        ------ Final command to finish off the drones death event
         SConstructionUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     --Mithy: Added launch effects from XSA0001 drone
     LaunchEffects = function(self)
-        ### Are we dead?
+        ------ Are we dead?
         if not self:IsDead() then
-        	--Force patrol order
+            --Force patrol order
             self:ForkThread(self.Patrolplatform, true)
-            ### Attaches effects to drone during launch
+            ------ Attaches effects to drone during launch
             table.insert(self.LaunchExhaustEffectsBag, CreateAttachedEmitter(self, 'XSA0002', self:GetArmy(), self.ExhaustLaunch01))
             table.insert(self.LaunchExhaustEffectsBag, CreateAttachedEmitter(self, 'XSA0002', self:GetArmy(), self.ExhaustLaunch02))
             table.insert(self.LaunchExhaustEffectsBag, CreateAttachedEmitter(self, 'XSA0002', self:GetArmy(), self.ExhaustLaunch03))

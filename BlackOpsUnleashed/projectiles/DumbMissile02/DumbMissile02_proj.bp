@@ -49,7 +49,7 @@ ProjectileBlueprint {
             'CYBRAN',
             'PROJECTILE',
             'DIRECTFIRE',
-	    'TACTICAL',
+        'TACTICAL',
         },
         Faction = 'Cybran',
         Weapon = 'Corsair Missile',

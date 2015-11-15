@@ -35,7 +35,7 @@ ProjectileBlueprint {
         StrategicIconSize = 1,
         UniformScale = 0.2,
     },
-	Economy = {
+    Economy = {
         BuildCostEnergy = 250,
         BuildCostMass = 25,
         BuildTime = 50,

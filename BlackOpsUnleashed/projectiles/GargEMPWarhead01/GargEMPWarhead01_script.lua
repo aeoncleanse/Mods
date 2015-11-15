@@ -1,6 +1,6 @@
-#
-# script for projectile Missile
-#
+--
+-- script for projectile Missile
+--
 local GargEMPWarheadProjectile = import('/lua/BlackOpsprojectiles.lua').GargEMPWarheadProjectile
 
 GargEMPWarhead01 = Class(GargEMPWarheadProjectile) {
@@ -27,7 +27,7 @@ GargEMPWarhead01 = Class(GargEMPWarheadProjectile) {
     
     OnImpact = function(self, TargetType, TargetEntity)
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
-            # Play the explosion sound
+            -- Play the explosion sound
             local myBlueprint = self:GetBlueprint()
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)

@@ -1,6 +1,6 @@
 UnitBlueprint {
     AI = {
-		GuardScanRadius = 300,
+        GuardScanRadius = 300,
         RefuelingMultiplier = 10,
         RefuelingRepairAmount = 600,
         RepairConsumeEnergy = 5,
@@ -32,12 +32,12 @@ UnitBlueprint {
         StartTurnDistance = 50,
     },
     Audio = {
-    	AirUnitWaterImpact = Sound {
+        AirUnitWaterImpact = Sound {
             Bank = 'Explosions',
             Cue = 'Expl_Water_Lrg_01',
             LodCutoff = 'UnitMove_LodCutoff',
         },
-		AmbientMove = Sound {
+        AmbientMove = Sound {
             Bank = 'UAA',
             Cue = 'UAA0310_Move_Loop',
             LodCutoff = 'UnitMove_LodCutoff',
@@ -132,9 +132,9 @@ UnitBlueprint {
         'NEEDMOBILEBUILD',
         'ANTIAIR',
         'VISIBLETORECON',
-		'STRATEGIC',
-		'AIRSTAGINGPLATFORM',
-		'REPAIR',
+        'STRATEGIC',
+        'AIRSTAGINGPLATFORM',
+        'REPAIR',
         'RECLAIMABLE',
         'DRAGBUILD',
         'OVERLAYANTIAIR',
@@ -142,7 +142,7 @@ UnitBlueprint {
         'OVERLAYDIRECTFIRE',
         'OVERLAYINDIRECTFIRE',
         'OVERLAYMISC',
-		'OVERLAYRADAR',
+        'OVERLAYRADAR',
     },
     CollisionOffsetY = -2,
     CollisionOffsetZ = 2.5,
@@ -163,56 +163,56 @@ UnitBlueprint {
             '<LOC ability_aa>Anti-Air',
         },
         AnimationOpen = '/units/BEA0402/BEA0402_Aactivate.sca',
-		AnimationActivate = '/units/BEA0402/BEA0402_ADeploy.sca',
+        AnimationActivate = '/units/BEA0402/BEA0402_ADeploy.sca',
         AttackReticle = 3,
-        #IdleEffects = {
-        #    Air = {
-        #        Effects = {
-        #            {
-        #                Bones = {
-        #                    'XEA0402',
-        #                    'Exhaust01',
-        #                    'Exhaust02',
-        #                    'Exhaust03',
-        #                    'Exhaust04',
-        #                   'Exhaust05',
-        #                    'Exhaust06',
-        #                    'Exhaust07',
-        #                    'Exhaust08',
-        #                    'Exhaust09',
-        #                    'Exhaust10',
-        #                    'Exhaust11',
-        #                },
-        #                Type = 'Hover03',
-        #                Scale = 0.35,
-        #            },
-        #        },
-        #    },
-        #},
-        #MovementEffects = {
-        #    Air = {
-        #        Effects = {
-        #            {
-        #                Bones = {
-        #                    'XEA0402',
-        #                    'Exhaust01',
-        #                    'Exhaust02',
-        #                    'Exhaust03',
-        #                    'Exhaust04',
-        #                    'Exhaust05',
-        #                    'Exhaust06',
-        #                    'Exhaust07',
-        #                    'Exhaust08',
-        #                    'Exhaust09',
-        #                    'Exhaust10',
-        #                    'Exhaust11',
-        #                },
-        #                Type = 'Hover03',
-        #                Scale = 0.35,
-        #           },
-        #        },
-        #    },
-        #},
+        --IdleEffects = {
+        --    Air = {
+        --        Effects = {
+        --            {
+        --                Bones = {
+        --                    'XEA0402',
+        --                    'Exhaust01',
+        --                    'Exhaust02',
+        --                    'Exhaust03',
+        --                    'Exhaust04',
+        --                   'Exhaust05',
+        --                    'Exhaust06',
+        --                    'Exhaust07',
+        --                    'Exhaust08',
+        --                    'Exhaust09',
+        --                    'Exhaust10',
+        --                    'Exhaust11',
+        --                },
+        --                Type = 'Hover03',
+        --                Scale = 0.35,
+        --            },
+        --        },
+        --    },
+        --},
+        --MovementEffects = {
+        --    Air = {
+        --        Effects = {
+        --            {
+        --                Bones = {
+        --                    'XEA0402',
+        --                    'Exhaust01',
+        --                    'Exhaust02',
+        --                    'Exhaust03',
+        --                    'Exhaust04',
+        --                    'Exhaust05',
+        --                    'Exhaust06',
+        --                    'Exhaust07',
+        --                    'Exhaust08',
+        --                    'Exhaust09',
+        --                    'Exhaust10',
+        --                    'Exhaust11',
+        --                },
+        --                Type = 'Hover03',
+        --                Scale = 0.35,
+        --           },
+        --        },
+        --    },
+        --},
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -221,12 +221,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Unit',
                 },
-               # {
-               #     AlbedoName = 'BEA0402_lod1_albedo.dds',
-                #    LODCutoff = 600,
-                #    ShaderName = 'Unit',
-               #     SpecularName = 'BEA0402_lod1_specteam.dds',
-               # },
+               -- {
+               --     AlbedoName = 'BEA0402_lod1_albedo.dds',
+                --    LODCutoff = 600,
+                --    ShaderName = 'Unit',
+               --     SpecularName = 'BEA0402_lod1_specteam.dds',
+               -- },
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -248,9 +248,9 @@ UnitBlueprint {
             RULEUCC_Guard = true,
             RULEUCC_Move = true,
             RULEUCC_Nuke = false,
-			RULEUCC_SiloBuildNuke = false,
-			RULEUCC_SiloBuildTactical = false,
-			RULEUCC_Tactical = false,
+            RULEUCC_SiloBuildNuke = false,
+            RULEUCC_SiloBuildTactical = false,
+            RULEUCC_Tactical = false,
             RULEUCC_Patrol = true,
             RULEUCC_Pause = false,
             RULEUCC_Reclaim = false,
@@ -273,8 +273,8 @@ UnitBlueprint {
     },
     Intel = {
         VisionRadius = 35,
-		RadarRadius = 100,
-		FreeIntel = true,
+        RadarRadius = 100,
+        FreeIntel = true,
     },
     Interface = {
         HelpText = '<LOC BEA0402_help>Experimental Aerial Fortress',
@@ -318,7 +318,7 @@ UnitBlueprint {
     SizeZ = 23,
     StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 45,
-	Transport = {
+    Transport = {
         Class1AttachSize = 1,
         Class2AttachSize = 1,
         Class3AttachSize = 1,
@@ -333,11 +333,11 @@ UnitBlueprint {
         Level4 = 120,
         Level5 = 150,
     },
-	ExperimentalDamage = {
+    ExperimentalDamage = {
         DamageAmount = 1000,
     },
     Weapon = {
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             Audio = {
@@ -375,9 +375,9 @@ UnitBlueprint {
             },
             FiringTolerance = 1,
             LeadTarget = true,
-            Label = 'MainTurret01',# approx 140 dps
+            Label = 'MainTurret01',-- approx 140 dps
             MaxRadius = 50,
-			HeadingArcCenter = 90,
+            HeadingArcCenter = 90,
             HeadingArcRange = 100,
             MuzzleChargeDelay = 1.5,
             MuzzleSalvoDelay = 0,
@@ -389,7 +389,7 @@ UnitBlueprint {
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
-                	HideMuzzle = true,
+                    HideMuzzle = true,
                     MuzzleBones = {
                         'Railgun_Muzzle_1',
                     },
@@ -434,7 +434,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             Audio = {
@@ -472,9 +472,9 @@ UnitBlueprint {
             },
             FiringTolerance = 1,
             LeadTarget = true,
-            Label = 'MainTurret02',# approx 140 dps
+            Label = 'MainTurret02',-- approx 140 dps
             MaxRadius = 50,
-			HeadingArcCenter = -90,
+            HeadingArcCenter = -90,
             HeadingArcRange = 100,
             MuzzleChargeDelay = 1.5,
             MuzzleSalvoDelay = 0,
@@ -486,7 +486,7 @@ UnitBlueprint {
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
-                	HideMuzzle = true,
+                    HideMuzzle = true,
                     MuzzleBones = {
                         'Railgun_Muzzle_2',
                     },
@@ -531,7 +531,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-    	{
+        {
             AlwaysRecheckTarget = true,
             Audio = {
                 Fire = Sound {
@@ -558,7 +558,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.6,
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
@@ -566,9 +566,9 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'HVM_Muzzle_A_1',
-						'HVM_Muzzle_B_1',
-						'HVM_Muzzle_C_1',
-						'HVM_Muzzle_D_1',
+                        'HVM_Muzzle_B_1',
+                        'HVM_Muzzle_C_1',
+                        'HVM_Muzzle_D_1',
                     },
                     RackBone = 'HVM_Barrel_1',
                 },
@@ -613,7 +613,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AlwaysRecheckTarget = true,
             Audio = {
                 Fire = Sound {
@@ -640,7 +640,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.6,
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
@@ -648,9 +648,9 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'HVM_Muzzle_A_2',
-						'HVM_Muzzle_B_2',
-						'HVM_Muzzle_C_2',
-						'HVM_Muzzle_D_2',
+                        'HVM_Muzzle_B_2',
+                        'HVM_Muzzle_C_2',
+                        'HVM_Muzzle_D_2',
                     },
                     RackBone = 'HVM_Barrel_2',
                 },
@@ -695,7 +695,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AlwaysRecheckTarget = true,
             Audio = {
                 Fire = Sound {
@@ -722,7 +722,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.6,
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
@@ -730,9 +730,9 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'HVM_Muzzle_A_3',
-						'HVM_Muzzle_B_3',
-						'HVM_Muzzle_C_3',
-						'HVM_Muzzle_D_3',
+                        'HVM_Muzzle_B_3',
+                        'HVM_Muzzle_C_3',
+                        'HVM_Muzzle_D_3',
                     },
                     RackBone = 'HVM_Barrel_3',
                 },
@@ -777,7 +777,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AlwaysRecheckTarget = true,
             Audio = {
                 Fire = Sound {
@@ -804,7 +804,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.6,
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
@@ -812,9 +812,9 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'HVM_Muzzle_A_4',
-						'HVM_Muzzle_B_4',
-						'HVM_Muzzle_C_4',
-						'HVM_Muzzle_D_4',
+                        'HVM_Muzzle_B_4',
+                        'HVM_Muzzle_C_4',
+                        'HVM_Muzzle_D_4',
                     },
                     RackBone = 'HVM_Barrel_4',
                 },
@@ -899,7 +899,7 @@ UnitBlueprint {
                     },
                     RackBone = 'Flak_Recoil_A_1',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Flak_Muzzle_B_1',
                     },
@@ -984,7 +984,7 @@ UnitBlueprint {
                     },
                     RackBone = 'Flak_Recoil_A_2',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Flak_Muzzle_B_2',
                     },
@@ -1069,7 +1069,7 @@ UnitBlueprint {
                     },
                     RackBone = 'Flak_Recoil_A_3',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Flak_Muzzle_B_3',
                     },
@@ -1154,7 +1154,7 @@ UnitBlueprint {
                     },
                     RackBone = 'Flak_Recoil_A_4',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Flak_Muzzle_B_4',
                     },
@@ -1353,7 +1353,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 3,
             WeaponUnpacks = true,
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             Damage = 8000,
             DamageFriendly = true,

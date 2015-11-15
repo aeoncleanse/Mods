@@ -71,7 +71,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_emp>Stun Weapon',
         },
-        #AnimationOpen = '/units/BRL0307/BRL0307_deploy.sca',
+        --AnimationOpen = '/units/BRL0307/BRL0307_deploy.sca',
         AnimationWalk = '/units/BRL0307/BRL0307_AWalk01.sca',
         AnimationWalkRate = 4.4,
         AnimationDeath = {

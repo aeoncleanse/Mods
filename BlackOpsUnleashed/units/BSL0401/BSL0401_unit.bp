@@ -1,16 +1,16 @@
 UnitBlueprint {
     AI = {
         TargetBones = {
-            #'Beam_Muzzle01',
-			'BSL0401',
-			#'Focus_Beam02_Emitter03',
-			#'Focus_Beam02_Emitter01',
-			#'Focus_Beam01_Emitter01',
+            --'Beam_Muzzle01',
+            'BSL0401',
+            --'Focus_Beam02_Emitter03',
+            --'Focus_Beam02_Emitter01',
+            --'Focus_Beam01_Emitter01',
         },
-		AssistHeartbeatInterval = 0.5, # def. 1, time in seconds between drone and carrier management heartbeats
-        DroneControlRange = 50, # def. 70,  maximum distance the drone can stray from the carrier before being recalled (70 is the goliath's radar range)
-        DroneReturnRange = 25, # def. control range / 2, radius at which returning drones will have command input and weapons re-enabled
-        AirMonitorRange = 30, # def. (control range + 10) / 2, radius that the drone heartbeat will check for hostile gunships 
+        AssistHeartbeatInterval = 0.5, -- def. 1, time in seconds between drone and carrier management heartbeats
+        DroneControlRange = 50, -- def. 70,  maximum distance the drone can stray from the carrier before being recalled (70 is the goliath's radar range)
+        DroneReturnRange = 25, -- def. control range / 2, radius at which returning drones will have command input and weapons re-enabled
+        AirMonitorRange = 30, -- def. (control range + 10) / 2, radius that the drone heartbeat will check for hostile gunships 
     },
     Audio = {
         FootFallGeneric = Sound {
@@ -61,7 +61,7 @@ UnitBlueprint {
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
         'SERAPHIM',
-		'HOVER',
+        'HOVER',
         'MOBILE',
         'LAND',
         'MASSIVE',
@@ -93,27 +93,27 @@ UnitBlueprint {
             '<LOC ability_massive>Massive',
             '<LOC ability_deathaoe>Volatile',
         },
-		AnimationDeath = {
+        AnimationDeath = {
             {
                 Animation = '/units/BSL0401/BSL0401_aDeath01.sca',
-				AnimationRateMax = 4.0,
+                AnimationRateMax = 4.0,
                 AnimationRateMin = 4.0,
                 Weight = 100,
             },
-			{
+            {
                 Animation = '/units/BSL0401/BSL0401_aDeath02.sca',
-				AnimationRateMax = 4.0,
+                AnimationRateMax = 4.0,
                 AnimationRateMin = 4.0,
                 Weight = 100,
             },
-			{
+            {
                 Animation = '/units/BSL0401/BSL0401_aDeath03.sca',
-				AnimationRateMax = 4.0,
+                AnimationRateMax = 4.0,
                 AnimationRateMin = 4.0,
                 Weight = 100,
             },
         },
-		IdleEffects = {
+        IdleEffects = {
             Land = {
                 Effects = {
                     {
@@ -125,7 +125,7 @@ UnitBlueprint {
                             -1.5,
                             0,
                         },
-						Scale = 3,
+                        Scale = 3,
                         Type = 'Hover01',
                     },
                 },
@@ -141,7 +141,7 @@ UnitBlueprint {
                             -1.5,
                             0,
                         },
-						Scale = 3,
+                        Scale = 3,
                         Type = 'Hover01',
                     },
                     {
@@ -153,7 +153,7 @@ UnitBlueprint {
                             -1.5,
                             0,
                         },
-						Scale = 3,
+                        Scale = 3,
                         Type = 'Hover01',
                     },
                 },
@@ -182,7 +182,7 @@ UnitBlueprint {
                             -1.5,
                             0,
                         },
-						Scale = 3,
+                        Scale = 3,
                         Type = 'Hover01',
                     },
                 },
@@ -205,7 +205,7 @@ UnitBlueprint {
                             -1.5,
                             0,
                         },
-						Scale = 3,
+                        Scale = 3,
                         Type = 'Hover01',
                     },
                 },
@@ -214,32 +214,32 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         UniformScale = 0.5,
     },
-	DroneData = {
+    DroneData = {
         Drone1 = {
             Attachpoint = 'AttachSpecial01',
             UnitID = 'BSA0004',
         },
-		Drone2 = {
+        Drone2 = {
             Attachpoint = 'AttachSpecial02',
             UnitID = 'BSA0004',
         },
-		Drone3 = {
+        Drone3 = {
             Attachpoint = 'AttachSpecial03',
             UnitID = 'BSA0004',
         },
-		Drone4 = {
+        Drone4 = {
             Attachpoint = 'AttachSpecial04',
             UnitID = 'BSA0004',
         },
-		Drone5 = {
+        Drone5 = {
             Attachpoint = 'AttachSpecial05',
             UnitID = 'BSA0004',
         },
-		Drone6 = {
+        Drone6 = {
             Attachpoint = 'AttachSpecial06',
             UnitID = 'BSA0004',
         },
-		Drone7 = {
+        Drone7 = {
             Attachpoint = 'AttachSpecial07',
             UnitID = 'BSA0004',
         },
@@ -248,7 +248,7 @@ UnitBlueprint {
         BuildCostEnergy = 156000,
         BuildCostMass = 15600,
         BuildTime = 11700,
-		BuildRate = 30, 
+        BuildRate = 30, 
     },
     General = {
         Category = 'Direct Fire',
@@ -272,7 +272,7 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC bsl0401_name>Yenzotha',
         UnitWeight = 1,
-		ToggleCaps = {
+        ToggleCaps = {
             RULEUTC_SpecialToggle = true,
             RULEUTC_WeaponToggle = true,
         },
@@ -298,7 +298,7 @@ UnitBlueprint {
     LifeBarSize = 3.25,
     Physics = {
         BankingSlope = 0,
-		BackUpDistance = 2,
+        BackUpDistance = 2,
         BuildOnLayerCaps = {
             LAYER_Air = false,
             LAYER_Land = true,
@@ -308,7 +308,7 @@ UnitBlueprint {
             LAYER_Water = true,
         },
         DragCoefficient = 0.2,
-		Elevation = 1,
+        Elevation = 1,
         MaxAcceleration = 1.0,
         MaxBrake = 2.8,
         MaxSpeed = 2.8,
@@ -324,10 +324,10 @@ UnitBlueprint {
         SkirtSizeX = 6,
         SkirtSizeZ = 8,
         RotateBodyWhileMoving = true,
-		TurnFacingRate = 90,
+        TurnFacingRate = 90,
         TurnRadius = 0,
         TurnRate = 90,
-		WobbleFactor = 0.05,
+        WobbleFactor = 0.05,
         WobbleSpeed = 0.001,
     },
     SelectionSizeX = 2.2,
@@ -364,21 +364,21 @@ UnitBlueprint {
                     Cue = 'XSL0401_Exp_Phason_Charge',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamLoop = Sound {
+                BeamLoop = Sound {
                     Bank = 'XSB_Weapon',
                     Cue = 'XSB2301_Ultrachromatic_Beam',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamStop = Sound {
+                BeamStop = Sound {
                     Bank = 'XSB_Weapon',
                     Cue = 'XSB2301_Ultrachromatic_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				#BeamStart = Sound {
-                #    Bank = 'XSB_Weapon',
-                #    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
-                #    LodCutoff = 'Weapon_LodCutoff',
-                #},
+                --BeamStart = Sound {
+                --    Bank = 'XSB_Weapon',
+                --    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
+                --    LodCutoff = 'Weapon_LodCutoff',
+                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
@@ -397,15 +397,15 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'EyeWeapon01',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 40,
             MinRadius = 3,
-			MuzzleChargeDelay = 3.0,
+            MuzzleChargeDelay = 3.0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',	
+                'MISSILE',    
             },
             NotExclusive = true,
             RackBones = {
@@ -438,7 +438,7 @@ UnitBlueprint {
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-			TrackingRadius = 1.2,
+            TrackingRadius = 1.2,
             TurretBoneMuzzle = 'Beam_Muzzle01',
             TurretBonePitch = 'Beam_Muzzle01',
             TurretBoneYaw = 'Beam_Muzzle01',
@@ -450,11 +450,11 @@ UnitBlueprint {
             TurretYawRange = 30,
             TurretYawSpeed = 180,
             Turreted = true,
-			WeaponRepackTimeout = 0,
+            WeaponRepackTimeout = 0,
             WeaponUnpacks = true,
             WeaponCategory = 'Direct Fire Experimental',
         },
-		{   
+        {   
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -469,21 +469,21 @@ UnitBlueprint {
                     Cue = 'XSL0401_Exp_Phason_Charge',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamLoop = Sound {
+                BeamLoop = Sound {
                     Bank = 'XSB_Weapon',
                     Cue = 'XSB2301_Ultrachromatic_Beam',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamStop = Sound {
+                BeamStop = Sound {
                     Bank = 'XSB_Weapon',
                     Cue = 'XSB2301_Ultrachromatic_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				#BeamStart = Sound {
-                #    Bank = 'XSB_Weapon',
-                #    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
-                #    LodCutoff = 'Weapon_LodCutoff',
-                #},
+                --BeamStart = Sound {
+                --    Bank = 'XSB_Weapon',
+                --    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
+                --    LodCutoff = 'Weapon_LodCutoff',
+                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
@@ -502,17 +502,17 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'EyeWeapon02',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 40,
             MinRadius = 4,
-			MuzzleChargeDelay = 6.0,
+            MuzzleChargeDelay = 6.0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			PrefersPrimaryWeaponTarget = true,
+            PrefersPrimaryWeaponTarget = true,
             NotExclusive = true,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',	
+                'MISSILE',    
             },
             RackBones = {
                 {
@@ -544,7 +544,7 @@ UnitBlueprint {
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-			TrackingRadius = 1.2,
+            TrackingRadius = 1.2,
             TurretBoneMuzzle = 'Beam_Muzzle02',
             TurretBonePitch = 'Beam_Muzzle02',
             TurretBoneYaw = 'Beam_Muzzle02',
@@ -556,11 +556,11 @@ UnitBlueprint {
             TurretYawRange = 30,
             TurretYawSpeed = 180,
             Turreted = true,
-			WeaponRepackTimeout = 0,
+            WeaponRepackTimeout = 0,
             WeaponUnpacks = true,
             WeaponCategory = 'Direct Fire Experimental',
         },
-		{   
+        {   
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -575,21 +575,21 @@ UnitBlueprint {
                     Cue = 'XSL0401_Exp_Phason_Charge',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamLoop = Sound {
+                BeamLoop = Sound {
                     Bank = 'XSB_Weapon',
                     Cue = 'XSB2301_Ultrachromatic_Beam',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamStop = Sound {
+                BeamStop = Sound {
                     Bank = 'XSB_Weapon',
                     Cue = 'XSB2301_Ultrachromatic_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				#BeamStart = Sound {
-                #    Bank = 'XSB_Weapon',
-                #    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
-                #    LodCutoff = 'Weapon_LodCutoff',
-                #},
+                --BeamStart = Sound {
+                --    Bank = 'XSB_Weapon',
+                --    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
+                --    LodCutoff = 'Weapon_LodCutoff',
+                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
@@ -608,17 +608,17 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'EyeWeapon03',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 40,
             MinRadius = 4,
-			MuzzleChargeDelay = 9.0,
+            MuzzleChargeDelay = 9.0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			PrefersPrimaryWeaponTarget = true,
+            PrefersPrimaryWeaponTarget = true,
             NotExclusive = true,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',	
+                'MISSILE',    
             },
             RackBones = {
                 {
@@ -650,7 +650,7 @@ UnitBlueprint {
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-			TrackingRadius = 1.2,
+            TrackingRadius = 1.2,
             TurretBoneMuzzle = 'Beam_Muzzle03',
             TurretBonePitch = 'Beam_Muzzle03',
             TurretBoneYaw = 'Beam_Muzzle03',
@@ -662,7 +662,7 @@ UnitBlueprint {
             TurretYawRange = 30,
             TurretYawSpeed = 180,
             Turreted = true,
-			WeaponRepackTimeout = 0,
+            WeaponRepackTimeout = 0,
             WeaponUnpacks = true,
             WeaponCategory = 'Direct Fire Experimental',
         },

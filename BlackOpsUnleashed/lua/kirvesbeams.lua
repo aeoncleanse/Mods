@@ -7,7 +7,7 @@ local Util = import('/lua/utilities.lua')
 
 EmptyCollisionBeam = Class(CollisionBeam) {
     FxImpactUnit = {},
-    FxImpactLand = {},#EffectTemplate.DefaultProjectileLandImpact,
+    FxImpactLand = {},--EffectTemplate.DefaultProjectileLandImpact,
     FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
     FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
     FxImpactAirUnit = {},
@@ -19,9 +19,9 @@ EmptyCollisionBeam = Class(CollisionBeam) {
 
 TargetingCollisionBeam = Class(EmptyCollisionBeam) {
     FxBeam = {
-		'/effects/emitters/particle_cannon_beam_01_emit.bp',
+        '/effects/emitters/particle_cannon_beam_01_emit.bp',
         '/effects/emitters/particle_cannon_beam_02_emit.bp'
-	},
+    },
 }
 
 UnstablePhasonLaserCollisionBeam = Class(SCCollisionBeam) {

@@ -63,7 +63,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
         },
-        #BuildAttachBone = 'Attachpoint',
+        --BuildAttachBone = 'Attachpoint',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -72,12 +72,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-               # {
-               #     AlbedoName = 'bab5205_lod1_albedo.dds',
-              #      LODCutoff = 300,
-               #     ShaderName = 'Aeon',
-               #     SpecularName = 'bab5205_lod1_specteam.dds',
-              #  },
+               -- {
+               --     AlbedoName = 'bab5205_lod1_albedo.dds',
+              --      LODCutoff = 300,
+               --     ShaderName = 'Aeon',
+               --     SpecularName = 'bab5205_lod1_specteam.dds',
+              --  },
             },
         },
         SpawnRandomRotation = true,
@@ -116,7 +116,7 @@ UnitBlueprint {
         },
     },
     General = {
-    	BuildBones = {
+        BuildBones = {
             BuildEffectBones = {
                 'Build_Muzzle_01',
                 'Build_Muzzle_02',
@@ -157,12 +157,12 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-    	FreeIntel = false,
-    	RadarRadius = 60,
-    	SonarRadius = 60,
-    	VisionRadius = 25,
-    	ShowIntelOnSelect = true,
-    	WaterVisionRadius = 25,
+        FreeIntel = false,
+        RadarRadius = 60,
+        SonarRadius = 60,
+        VisionRadius = 25,
+        ShowIntelOnSelect = true,
+        WaterVisionRadius = 25,
     },
     Interface = {
         HelpText = '<LOC bab5205_help>Advanced Air Staging Facility',

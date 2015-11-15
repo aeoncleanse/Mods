@@ -1,5 +1,5 @@
 UnitBlueprint {
-	AI = {
+    AI = {
         GuardScanRadius = 15,
         GuardReturnRadius = 20,
         InitialAutoMode = true,
@@ -95,7 +95,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
-		'DRONE',
+        'DRONE',
         'SERAPHIM',
         'MOBILE',
         'AIR',
@@ -121,7 +121,7 @@ UnitBlueprint {
     },
     Description = '<LOC bsa0002_desc>Repair Drone',
     Display = {
-    	Abilities = {
+        Abilities = {
             '<LOC ability_engineeringsuite>Engineering Suite',
         },
         LayerChangeEffects = {
@@ -154,12 +154,12 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-               # {
-               #     AlbedoName = 'BSA0002_lod1_albedo.dds',
-               #     LODCutoff = 215,
-               #     ShaderName = 'Seraphim',
-               #     SpecularName = 'BSA0002_lod1_specteam.dds',
-               # },
+               -- {
+               --     AlbedoName = 'BSA0002_lod1_albedo.dds',
+               --     LODCutoff = 215,
+               --     ShaderName = 'Seraphim',
+               --     SpecularName = 'BSA0002_lod1_specteam.dds',
+               -- },
             },
         },
         MovementEffects = {
@@ -190,7 +190,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
-    	BuildBones = {
+        BuildBones = {
             AimBone = 'BuildBall',
             BuildEffectBones = {
                 'BuildBall',

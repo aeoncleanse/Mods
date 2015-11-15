@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /units/BEB0005/BEB0005_script.lua
-#**  Author(s):  Dru Staltman
-#**
-#**  Summary  :  UEF Engineering tower
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /units/BEB0005/BEB0005_script.lua
+--**  Author(s):  Dru Staltman
+--**
+--**  Summary  :  UEF Engineering tower
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local TPodTowerUnit = import('/lua/terranunits.lua').TPodTowerUnit
 
 BEB0005 = Class(TPodTowerUnit) {
@@ -18,12 +18,12 @@ BEB0005 = Class(TPodTowerUnit) {
         end
         self.OpenAnim:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(0.4)
     end,
-	
-	--Make this unit invulnerable
+    
+    --Make this unit invulnerable
     OnDamage = function()
     end,
-	
-	Parent = nil,
+    
+    Parent = nil,
 
     SetParent = function(self, parent, droneName)
         self.Parent = parent

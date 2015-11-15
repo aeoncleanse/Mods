@@ -19,7 +19,7 @@ ProjectileBlueprint {
     Categories = {
         'SERAPHIM',
         'PROJECTILE',
-		'STRATEGIC',
+        'STRATEGIC',
         'DIRECTFIRE',
     },
     Display = {

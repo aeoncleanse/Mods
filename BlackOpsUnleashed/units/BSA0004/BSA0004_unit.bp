@@ -8,9 +8,9 @@ UnitBlueprint {
         BankFactor = 0.1,
         BankForward = true,
         CanFly = true,
-		CirclingDirChange = true,
+        CirclingDirChange = true,
         CirclingDirChangeFrequencySec = 5,
-		CirclingFlightChangeFrequency = 1.0,
+        CirclingFlightChangeFrequency = 1.0,
         CirclingElevationChangeRatio = 1.8,
         CirclingRadiusChangeMaxRatio = 0.95,
         CirclingRadiusChangeMinRatio = 0.50,
@@ -24,7 +24,7 @@ UnitBlueprint {
         LiftFactor = 5,
         MaxAirspeed = 10,
         MinAirspeed = 2,
-		TurnRate = 1,
+        TurnRate = 1,
         StartTurnDistance = 30,
     },
     Audio = {
@@ -80,12 +80,12 @@ UnitBlueprint {
         },
     },
     Buffs = {
-        Regen = { # time need for full hp regen assuming 4k base hp:
-            Level1 = 40, # 220s
-            Level2 = 80, # 120s
-            Level3 = 120, # 86s
-            Level4 = 160, # 70s
-            Level5 = 200, # 60s
+        Regen = { -- time need for full hp regen assuming 4k base hp:
+            Level1 = 40, -- 220s
+            Level2 = 80, -- 120s
+            Level3 = 120, -- 86s
+            Level4 = 160, -- 70s
+            Level5 = 200, -- 60s
         },
     }, 
     Categories = {
@@ -129,7 +129,7 @@ UnitBlueprint {
         BuildCostMass = 180,
         BuildTime = 180,
     },
-    #SizeSphere = 0.5, # 1 - more reasonable collision size 
+    --SizeSphere = 0.5, -- 1 - more reasonable collision size 
     General = {
         CapCost = 0,
         Category = 'Utility',
@@ -151,12 +151,12 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'air',
-       # OrderOverrides = {
-        #    DroneL = {
-        #        bitmapId = 'drone',
-        #        helpText = 'drone_station',
-        #    },
-        #},
+       -- OrderOverrides = {
+        --    DroneL = {
+        --        bitmapId = 'drone',
+        --        helpText = 'drone_station',
+        --    },
+        --},
         SelectionPriority = 6,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
@@ -237,9 +237,9 @@ UnitBlueprint {
             MaxRadius = 20,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',	
+                'MISSILE',    
             },
             RackBones = {
                 {

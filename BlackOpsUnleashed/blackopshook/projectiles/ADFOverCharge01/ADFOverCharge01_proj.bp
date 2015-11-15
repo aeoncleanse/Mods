@@ -19,7 +19,7 @@ ProjectileBlueprint {
     Categories = {
         'AEON',
         'PROJECTILE',
-		'STRATEGIC',
+        'STRATEGIC',
         'DIRECTFIRE',
     },
     Display = {

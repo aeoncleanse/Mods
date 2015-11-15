@@ -60,18 +60,18 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_stun>Stuns enemy units',
         },
-#        IdleEffects = {
-#            Land = {
-#                Effects = {
-#                    {
-#                        Bones = {
-#                            'Turret',
-#                        },
-#                        Type = 'Jammer01',
-#                    },
-#                },
-#            },
-#        },
+--        IdleEffects = {
+--            Land = {
+--                Effects = {
+--                    {
+--                        Bones = {
+--                            'Turret',
+--                        },
+--                        Type = 'Jammer01',
+--                    },
+--                },
+--            },
+--        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -79,12 +79,12 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Insect',
                 },
-                #{
-                #    AlbedoName = 'BRB2306_lod1_albedo.dds',
-                #    LODCutoff = 215,
-                #    ShaderName = 'Insect',
-                #    SpecularName = 'BRB2306_lod1_specteam.dds',
-                #},
+                --{
+                --    AlbedoName = 'BRB2306_lod1_albedo.dds',
+                --    LODCutoff = 215,
+                --    ShaderName = 'Insect',
+                --    SpecularName = 'BRB2306_lod1_specteam.dds',
+                --},
             },
         },
         PlaceholderMeshName = 'UXB0015',
@@ -221,9 +221,9 @@ UnitBlueprint {
             Damage = 90,
             DamageRadius = 0.5,
             DamageType = 'Normal',
-            #EnergyChargeForFirstShot = false,
-            #EnergyDrainPerSecond = 200,
-            #EnergyRequired = 200,
+            --EnergyChargeForFirstShot = false,
+            --EnergyDrainPerSecond = 200,
+            --EnergyRequired = 200,
             DisplayName = 'Microwave Stun Beam',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water',
@@ -306,8 +306,8 @@ UnitBlueprint {
             },
             Damage = 250,
             DamageRadius = 4,
-			CollideFriendly = false,
-			DamageFriendly = false,
+            CollideFriendly = false,
+            DamageFriendly = false,
             DamageType = 'Normal',
             EnergyChargeForFirstShot = false,
             EnergyDrainPerSecond = 200,
@@ -317,7 +317,7 @@ UnitBlueprint {
                 Land = 'Land|Water',
                 Water = 'Land|Water',
             },
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
                 'MISSILE',
             },

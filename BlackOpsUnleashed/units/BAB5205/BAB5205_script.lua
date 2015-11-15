@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/BAB5205/BAB5205_script.lua
-#**  Author(s):  John Comes, David Tomandl
-#**
-#**  Summary  :  Aeon Air Staging Platform
-#**
-#**  Copyright © 1005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/BAB5205/BAB5205_script.lua
+--**  Author(s):  John Comes, David Tomandl
+--**
+--**  Summary  :  Aeon Air Staging Platform
+--**
+--**  Copyright © 1005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local AAirFactoryUnit = import('/lua/aeonunits.lua').AAirFactoryUnit
 local AAATemporalFizzWeapon = import('/lua/aeonweapons.lua').AAATemporalFizzWeapon
@@ -16,7 +16,7 @@ local Effects = import('/lua/effecttemplates.lua')
 
 BAB5205 = Class(AAirFactoryUnit) {
 
-	Weapons = {
+    Weapons = {
         AAGun01 = Class(AAATemporalFizzWeapon)
         {        
         
@@ -182,8 +182,8 @@ BAB5205 = Class(AAirFactoryUnit) {
         Turret04 = Class(AANChronoTorpedoWeapon) {},
     },
     
-	OnCreate = function(self)
-		AAirFactoryUnit.OnCreate(self)
+    OnCreate = function(self)
+        AAirFactoryUnit.OnCreate(self)
 
         self.DomeEntity1 = import('/lua/sim/Entity.lua').Entity({Owner = self,})
         self.DomeEntity1:AttachBoneTo( -1, self, 'Torp_Turret01' )
@@ -220,7 +220,7 @@ BAB5205 = Class(AAirFactoryUnit) {
         self.Trash:Add(self.DomeEntity2)
         self.Trash:Add(self.DomeEntity3)
         self.Trash:Add(self.DomeEntity4)
-	end,  
+    end,  
 }
 
 TypeClass = BAB5205

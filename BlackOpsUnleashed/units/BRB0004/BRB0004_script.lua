@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/XRB0304/XRB0304_script.lua
-#**  Author(s):  Dru Staltman, Gordon Duclos
-#**
-#**  Summary  :  Cybran Engineering tower
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/XRB0304/XRB0304_script.lua
+--**  Author(s):  Dru Staltman, Gordon Duclos
+--**
+--**  Summary  :  Cybran Engineering tower
+--**
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local CConstructionStructureUnit = import('/lua/cybranunits.lua').CConstructionStructureUnit
 
 BRB0004 = Class(CConstructionStructureUnit) 
@@ -34,8 +34,8 @@ BRB0004 = Class(CConstructionStructureUnit)
     --Make this unit invulnerable
     OnDamage = function()
     end,
-	
-	Parent = nil,
+    
+    Parent = nil,
 
     SetParent = function(self, parent, droneName)
         self.Parent = parent

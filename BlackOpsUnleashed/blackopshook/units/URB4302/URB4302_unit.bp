@@ -1,18 +1,18 @@
 UnitBlueprint {
-	Merge = true,
-	BlueprintId="urb4302",
+    Merge = true,
+    BlueprintId="urb4302",
 
     Display = {
         Abilities = {
             '<LOC ability_stratmissiledef>Strategic Missile Defense',
-			'<LOC ability_satdef>Anti Satelite Weapon',
+            '<LOC ability_satdef>Anti Satelite Weapon',
         },
     },
     Weapon = {
         {
         },
-		{
-			AntiSat = true,
+        {
+            AntiSat = true,
             AlwaysRecheckTarget = true,
             Audio = {
                 Fire = Sound {
@@ -21,7 +21,7 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-			AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             Damage = 500,
@@ -38,7 +38,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 90,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/CAADissidentAntiNuke02/CAADissidentAntiNuke02_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {

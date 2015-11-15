@@ -24,17 +24,17 @@ ProjectileBlueprint {
     },
     Display = {
         CameraFollowTimeout = 5,
-        #CameraFollowsProjectile = true,
-       # StrategicIconSize = 3,
+        --CameraFollowsProjectile = true,
+       -- StrategicIconSize = 3,
     },
     General = {
         Category = 'Artillery',
         Faction = 'Aeon',
         EntityCategory = {
             'CYBRAN',
-        	'PROJECTILE',
-        	'INDIRECTFIRE',
-        	'STRATEGIC',
+            'PROJECTILE',
+            'INDIRECTFIRE',
+            'STRATEGIC',
         },
         TechLevel = 3,
         Weapon = 'Sonance Artillery',

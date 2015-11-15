@@ -73,12 +73,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
-                #{
-               #     AlbedoName = 'brb4209_lod1_albedo.dds',
-               ##     LODCutoff = 300,
-               #     ShaderName = 'Insect',
-               #     SpecularName = 'brb4209_lod1_specteam.dds',
-                #},
+                --{
+               --     AlbedoName = 'brb4209_lod1_albedo.dds',
+               ----     LODCutoff = 300,
+               --     ShaderName = 'Insect',
+               --     SpecularName = 'brb4209_lod1_specteam.dds',
+                --},
             },
         },
         PlaceholderMeshName = 'UXB0018',
@@ -156,7 +156,7 @@ UnitBlueprint {
         UpgradesTo = 'brb4309',
     },
     Intel = {
-    	FreeIntel = true,
+        FreeIntel = true,
         VisionRadius = 25,
         CloakFieldRadius = 20,
     },

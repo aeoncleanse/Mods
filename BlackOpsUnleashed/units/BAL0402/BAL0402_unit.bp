@@ -39,11 +39,11 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-		'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER3COMMANDER',
         'BUILTBYTIER3ENGINEER',
         'AEON',
         'MOBILE',
-		'HOVER',
+        'HOVER',
         'LAND',
         'EXPERIMENTAL',
         'DIRECTFIRE',
@@ -51,10 +51,10 @@ UnitBlueprint {
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYRADAR',
-		'NEEDMOBILEBUILD',
+        'NEEDMOBILEBUILD',
         'OVERLAYSONAR',
         'OVERLAYDIRECTFIRE',
-		'OVERLAYINDIRECTFIRE',
+        'OVERLAYINDIRECTFIRE',
         'OVERLAYDEFENSE',
     },
     CollisionOffsetY = 0,
@@ -75,12 +75,12 @@ UnitBlueprint {
             '<LOC ability_hover>Hover',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
         },
-        #AnimationDeath = {
-        #    {
-        #        Animation = '/units/uas0302/uas0302_adeath03.sca',
-        #        Weight = 100,
-        #    },
-        #},
+        --AnimationDeath = {
+        --    {
+        --        Animation = '/units/uas0302/uas0302_adeath03.sca',
+        --        Weight = 100,
+        --    },
+        --},
         IdleEffects = {
             Land = {
                 Effects = {
@@ -105,12 +105,12 @@ UnitBlueprint {
                     LODCutoff = 600,
                     ShaderName = 'Aeon',
                 },
-                #{
-               #     AlbedoName = 'bal0402_lod1_albedo.dds',
-               #     LODCutoff = 600,
-               #     ShaderName = 'Aeon',
-               #     SpecularName = 'bal0402_lod1_specteam.dds',
-               # },
+                --{
+               --     AlbedoName = 'bal0402_lod1_albedo.dds',
+               --     LODCutoff = 600,
+               --     ShaderName = 'Aeon',
+               --     SpecularName = 'bal0402_lod1_specteam.dds',
+               -- },
             },
         },
         MovementEffects = {
@@ -199,7 +199,7 @@ UnitBlueprint {
             LAYER_Water = true,
         },
         CatchUpAcc = 10,
-		Elevation = 0.5,
+        Elevation = 0.5,
         DragCoefficient = 0.2,
         MaxAcceleration = 2.6,
         MaxBrake = 2.6,
@@ -211,7 +211,7 @@ UnitBlueprint {
         MeshExtentsZ = 8,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Hover',
-		SkirtOffsetX = -0,
+        SkirtOffsetX = -0,
         SkirtOffsetZ = -2,
         SkirtSizeX = 3,
         SkirtSizeZ = 8,
@@ -237,7 +237,7 @@ UnitBlueprint {
         Level5 = 160,
     },
     Weapon = {
-		{
+        {
             AboveWaterTargetsOnly = true,
             Audio = {
                 Fire = Sound {
@@ -260,12 +260,12 @@ UnitBlueprint {
             FiringTolerance = 5,
             Label = 'MissileRack',
             MaxRadius = 125,
-			MinRadius = 18,
+            MinRadius = 18,
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 3,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/AIFMissileSerpentine01/AIFMissileSerpentine01_proj.bp',
             ProjectileLifetime = 25,
             ProjectilesPerOnFire = 1,
@@ -273,29 +273,29 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Missile_Muzzle_3',
-						'Missile_Muzzle_4',
-						'Missile_Muzzle_5',
+                        'Missile_Muzzle_4',
+                        'Missile_Muzzle_5',
                     },
                     RackBone = 'Missile_Muzzle_3',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_Muzzle_2',
-						'Missile_Muzzle_8',
-						'Missile_Muzzle_9',
+                        'Missile_Muzzle_8',
+                        'Missile_Muzzle_9',
                     },
                     RackBone = 'Missile_Muzzle_2',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_Muzzle_1',
-						'Missile_Muzzle_6',
-						'Missile_Muzzle_7',
+                        'Missile_Muzzle_6',
+                        'Missile_Muzzle_7',
                     },
                     RackBone = 'Missile_Muzzle_1',
                 },
             },
-			RackFireTogether = false,
+            RackFireTogether = false,
             RackRecoilDistance = 0,
             RackReloadTimeout = 1,
             RackSalvoChargeTime = 0,
@@ -310,7 +310,7 @@ UnitBlueprint {
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'STRUCTURE DEFENSE',
-				'EXPERIMENTAL MOBILE',
+                'EXPERIMENTAL MOBILE',
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',
@@ -331,7 +331,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             ArtilleryShieldBlocks = true,
             Audio = {
@@ -371,7 +371,7 @@ UnitBlueprint {
                     },
                     RackBone = 'Wraith_Right_Recoil_01',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Wraith_Muzzle02',
                     },
@@ -393,7 +393,7 @@ UnitBlueprint {
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'STRUCTURE DEFENSE',
-				'EXPERIMENTAL MOBILE',
+                'EXPERIMENTAL MOBILE',
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',
@@ -446,7 +446,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/ADFOblivionCannon01/ADFOblivionCannon01_proj.bp',
             RackBones = {
                 {
@@ -471,7 +471,7 @@ UnitBlueprint {
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'STRUCTURE DEFENSE',
-				'EXPERIMENTAL MOBILE',
+                'EXPERIMENTAL MOBILE',
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',
@@ -493,7 +493,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire Naval',
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             Audio = {
                 Fire = Sound {
@@ -525,7 +525,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/ADFOblivionCannon01/ADFOblivionCannon01_proj.bp',
             RackBones = {
                 {
@@ -550,7 +550,7 @@ UnitBlueprint {
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'STRUCTURE DEFENSE',
-				'EXPERIMENTAL MOBILE',
+                'EXPERIMENTAL MOBILE',
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',
@@ -572,7 +572,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire Naval',
         },
-		
+        
         {
             Audio = {
                 Fire = Sound {
@@ -588,7 +588,7 @@ UnitBlueprint {
             DisplayName = 'Will O Wisp Anti Missile',
             FireTargetLayerCapsTable = {
                 Water = 'Air',
-				Land = 'Air',
+                Land = 'Air',
             },
             FiringTolerance = 360,
             Flare = {
@@ -600,7 +600,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 2.3,
             MuzzleSalvoSize = 2,
             MuzzleVelocity = 5,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/AIMAntiMissile01/AIMAntiMissile01_proj.bp',
             ProjectileLifetime = 6,
             RackBones = {
@@ -628,14 +628,14 @@ UnitBlueprint {
             WeaponCategory = 'Defense',
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             BallisticArc = 'RULEUBA_None',
             CanFireFromTransport = true,
             CollideFriendly = false,
             Damage = 10,
-			DamageFriendly = false,
+            DamageFriendly = false,
             DamageRadius = 18,
             DamageType = 'OverCharge',
             DisplayName = 'Disentigrations field',
@@ -685,7 +685,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             Damage = 7500,
             DamageFriendly = true,
@@ -697,7 +697,7 @@ UnitBlueprint {
             WeaponCategory = 'Death',
         },
     },
-	Wreckage = {
+    Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
         EnergyMult = 0,
         HealthMult = 0.9,

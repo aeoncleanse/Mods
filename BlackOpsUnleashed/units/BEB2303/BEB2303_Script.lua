@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/UEB2303/UEB2303_script.lua
-#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
-#**
-#**  Summary  :  UEF Light Artillery Script
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/UEB2303/UEB2303_script.lua
+--**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+--**
+--**  Summary  :  UEF Light Artillery Script
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
 local BOHellstormGun = import('/lua/BlackOpsweapons.lua').BOHellstormGun
@@ -30,34 +30,34 @@ BEB2303 = Class(TStructureUnit) {
 
     Weapons = {
         MainGun = Class(BOHellstormGun) {
-		
-		OnCreate = function(self) 
+        
+        OnCreate = function(self) 
                 BOHellstormGun.OnCreate(self) 
                 -- Sets the first barrel in the firing sequence 
                 self.CurrentBarrel = 1 
                 self.CurrentGoal = 120                              
             end, 
             --[[
-	        PlayFxMuzzleSequence = function(self, muzzle)
-		        local army = self.unit:GetArmy()
-		        
-	            for k, v in self.FxGroundEffect do
+            PlayFxMuzzleSequence = function(self, muzzle)
+                local army = self.unit:GetArmy()
+                
+                for k, v in self.FxGroundEffect do
                     CreateAttachedEmitter(self.unit, 'url0403', army, v)
                 end
-  	            for k, v in self.FxVentEffect do
+                  for k, v in self.FxVentEffect do
                     CreateAttachedEmitter(self.unit, recoilgroup1[self.CurrentBarrel], army, v):ScaleEmitter(0.25)
                 end
-  	            for k, v in self.FxMuzzleEffect do
+                  for k, v in self.FxMuzzleEffect do
                     CreateAttachedEmitter(self.unit, muzzleBones[self.CurrentBarrel], army, v):ScaleEmitter(0.25)
                 end
                 DefaultProjectileWeapon.PlayFxMuzzleSequence(self, muzzle)
-  	            for k, v in self.FxCoolDownEffect do
+                  for k, v in self.FxCoolDownEffect do
                     CreateAttachedEmitter(self.unit, recoilgroup2[self.CurrentBarrel], army, v):ScaleEmitter(0.25)
                 end 
                 
             end,                      
              ]]--
-			                       
+                                   
             PlayRackRecoil = function(self, rackList)
                 -- Reset the recoil table 
                 local recoilTbl = {} 

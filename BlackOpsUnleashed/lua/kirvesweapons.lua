@@ -13,8 +13,8 @@ local CollisionBeamFile = import('/lua/kirvesbeams.lua')
 TargetingLaser = Class(DefaultBeamWeapon) {
     BeamType = CollisionBeamFile.TargetingCollisionBeam,
     FxMuzzleFlash = {'/effects/emitters/particle_cannon_muzzle_01_emit.bp'},
-	
-	FxBeamEndPointScale = 0.01,
+    
+    FxBeamEndPointScale = 0.01,
 }
 
 TAAPhalanxWeapon = Class(DefaultProjectileWeapon) {
@@ -22,8 +22,8 @@ TAAPhalanxWeapon = Class(DefaultProjectileWeapon) {
     FxShellEject  = EffectTemplate.TPhalanxGunShells,
 
     PlayFxMuzzleSequence = function(self, muzzle)
-		DefaultProjectileWeapon.PlayFxMuzzleSequence(self, muzzle)
-		for k, v in self.FxShellEject do
+        DefaultProjectileWeapon.PlayFxMuzzleSequence(self, muzzle)
+        for k, v in self.FxShellEject do
             CreateAttachedEmitter(self.unit, 'Shells_Left', self.unit:GetArmy(), v)
             CreateAttachedEmitter(self.unit, 'Shells_Right', self.unit:GetArmy(), v)
         end
@@ -34,8 +34,8 @@ TAAPhalanxWeapon2 = Class(DefaultProjectileWeapon) {
     FxShellEject  = EffectTemplate.TPhalanxGunShells,
 
     PlayFxMuzzleSequence = function(self, muzzle)
-		DefaultProjectileWeapon.PlayFxMuzzleSequence(self, muzzle)
-		for k, v in self.FxShellEject do
+        DefaultProjectileWeapon.PlayFxMuzzleSequence(self, muzzle)
+        for k, v in self.FxShellEject do
             CreateAttachedEmitter(self.unit, 'Gattle_Shells_Right_01', self.unit:GetArmy(), v)
             CreateAttachedEmitter(self.unit, 'Gattle_Shells_Right_02', self.unit:GetArmy(), v)
             CreateAttachedEmitter(self.unit, 'Gattle_Shells_Left_01', self.unit:GetArmy(), v)
@@ -47,13 +47,13 @@ TAAPhalanxWeapon2 = Class(DefaultProjectileWeapon) {
 SDFUnstablePhasonBeam = Class(DefaultBeamWeapon) {
     BeamType = CollisionBeamFile.UnstablePhasonLaserCollisionBeam,
     FxMuzzleFlash = {},
-    FxChargeMuzzleFlash = {}, ####OriginalEffectTemplate.SExperimentalUnstablePhasonLaserMuzzle01,
+    FxChargeMuzzleFlash = {}, --------OriginalEffectTemplate.SExperimentalUnstablePhasonLaserMuzzle01,
     FxUpackingChargeEffects = OriginalEffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 0.2,
 }
 
 Dummy = Class(DefaultBeamWeapon) {
     BeamType = CollisionBeamFile.TargetingCollisionBeam,
-	
-	FxBeamEndPointScale = 0.01,
+    
+    FxBeamEndPointScale = 0.01,
 }

@@ -34,7 +34,7 @@ UnitBlueprint {
         'STRUCTURE',
         'DEFENSE',
         'TECH3',
-		'BUILTBYTIER3ENGINEER',
+        'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
         'SHIELD',
         'DRAGBUILD',
@@ -117,7 +117,7 @@ UnitBlueprint {
         BuildCostMass = 4860,
         BuildTime = 4300,
         MaintenanceConsumptionPerSecondEnergy = 500,
-		RebuildBonusIds = {
+        RebuildBonusIds = {
             'urb4207',
         },
     },

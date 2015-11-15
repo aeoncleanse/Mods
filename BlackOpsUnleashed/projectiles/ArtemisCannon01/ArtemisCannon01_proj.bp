@@ -26,8 +26,8 @@ ProjectileBlueprint {
         'PROJECTILE',
         'DIRECTFIRE',
         'STRATEGIC',
-        #'MISSILE',
-		'ANTINAVY',
+        --'MISSILE',
+        'ANTINAVY',
         'NOSPLASHDAMAGE',
     },
     Defense = {
@@ -41,7 +41,7 @@ ProjectileBlueprint {
         BuildTime = 324000,
     },
     Display = {
-    	CameraFollowTimeout = 5,
+        CameraFollowTimeout = 5,
         CameraFollowsProjectile = true,
         ImpactEffects = {
             Type = 'Medium02',
@@ -55,8 +55,8 @@ ProjectileBlueprint {
             'PROJECTILE',
             'DIRECTFIRE',
             'STRATEGIC',
-			'ANTINAVY',
-            #'MISSILE',
+            'ANTINAVY',
+            --'MISSILE',
             'NOSPLASHDAMAGE',
         },
         Faction = 'Aeon',
@@ -81,5 +81,5 @@ ProjectileBlueprint {
         UseGravity = false,
         VelocityAlign = true,
     },
-#    StrategicIconName = '/textures/ui/common/game/unit-over/icon-nuke_bmp.dds',
+--    StrategicIconName = '/textures/ui/common/game/unit-over/icon-nuke_bmp.dds',
 }

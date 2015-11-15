@@ -67,13 +67,13 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
-               # {
-                #    AlbedoName = 'bsb1302_lod1_albedo.dds',
-               #     LODCutoff = 300,
-               #     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-               #     ShaderName = 'Seraphim',
-               #     SpecularName = 'bsb1302_lod1_specteam.dds',
-               # },
+               -- {
+                --    AlbedoName = 'bsb1302_lod1_albedo.dds',
+               --     LODCutoff = 300,
+               --     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+               --     ShaderName = 'Seraphim',
+               --     SpecularName = 'bsb1302_lod1_specteam.dds',
+               -- },
             },
         },
         PlaceholderMeshName = 'UXB0011',
@@ -134,7 +134,7 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Basic',
         UnitName = '<LOC bsb1302_name>Uya-atoh',
         UnitWeight = 1,
-		UpgradesFrom = 'bsb1202',
+        UpgradesFrom = 'bsb1202',
     },
     Interface = {
         HelpText = '<LOC bsb1302_help>Hydrocarbon Power Plant',
@@ -175,7 +175,7 @@ UnitBlueprint {
     SizeZ = 1.75,
     StrategicIconName = 'icon_structure3_energy',
     StrategicIconSortPriority = 250,
-	Weapon = {
+    Weapon = {
         {
             Damage = 8000,
             DamageFriendly = true,

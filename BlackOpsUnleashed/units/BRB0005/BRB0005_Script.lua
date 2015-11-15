@@ -1,12 +1,12 @@
-#****************************************************************************
-#** 
-#**  File     :  /cdimage/units/XRB0005/XRB0005_script.lua 
-#**  Author(s):  John Comes, David Tomandl 
-#** 
-#**  Summary  :  UEF Wall Piece Script 
-#** 
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--** 
+--**  File     :  /cdimage/units/XRB0005/XRB0005_script.lua 
+--**  Author(s):  John Comes, David Tomandl 
+--** 
+--**  Summary  :  UEF Wall Piece Script 
+--** 
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
 local CybranWeaponsFile2 = import('/lua/BlackOpsweapons.lua')
 local MGAALaserWeapon = CybranWeaponsFile2.MGAALaserWeapon
@@ -14,14 +14,14 @@ local MGAALaserWeapon = CybranWeaponsFile2.MGAALaserWeapon
 
 BRB0005 = Class(CStructureUnit) {
 
-	Weapons = {
+    Weapons = {
         AAGun01 = Class(MGAALaserWeapon) {},
     },    
 
 
-### File pathing and special paramiters called ###########################
+------ File pathing and special paramiters called ------------------------------------------------------
 
-### Setsup parent call backs between drone and parent
+------ Setsup parent call backs between drone and parent
 Parent = nil,
 
 SetParent = function(self, parent, droneName)
@@ -29,7 +29,7 @@ SetParent = function(self, parent, droneName)
     self.Drone = droneName
 end,
 
-##########################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
     OnCreate = function(self)
         CStructureUnit.OnCreate(self)

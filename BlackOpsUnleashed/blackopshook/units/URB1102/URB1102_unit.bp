@@ -1,16 +1,16 @@
 UnitBlueprint {
-	Merge = true,
-	BlueprintId="urb1102",# T1 cybran hydro
-	Categories = {
+    Merge = true,
+    BlueprintId="urb1102",-- T1 cybran hydro
+    Categories = {
         'SHOWQUEUE',
     },
-	Display = {
+    Display = {
         Abilities = {
             '<LOC ability_upgradable>Upgradeable',
         },
     },
 
-	Economy = {
+    Economy = {
         BuildRate = 10,
         BuildableCategory = {
             'brb1202',
@@ -21,7 +21,7 @@ UnitBlueprint {
             'brb1302',
         },
     },
-	General = {
+    General = {
         UpgradesTo = 'brb1202',
     },
 }

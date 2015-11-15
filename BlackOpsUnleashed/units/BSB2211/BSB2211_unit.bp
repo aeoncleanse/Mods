@@ -35,7 +35,7 @@ UnitBlueprint {
         'MINE',
         'DRAGBUILD',
         'VISIBLETORECON',
-		'OVERLAYDIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
         'RECLAIMABLE',
         'SORTDEFENSE',
     },
@@ -78,7 +78,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
-    	CapCost = 0.1,
+        CapCost = 0.1,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {
@@ -105,9 +105,9 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-    	FreeIntel = true,
+        FreeIntel = true,
         RadarStealth = true,
-		SonarStealth = true,
+        SonarStealth = true,
         Cloak = true,
         VisionRadius = 5,
         ReactivateTime = 5,
@@ -118,7 +118,7 @@ UnitBlueprint {
     LifeBarHeight = 0.075,
     LifeBarOffset = 0.05,
     LifeBarSize = 0.3,
-	LifeBarRender = false,
+    LifeBarRender = false,
     Physics = {
         BankingSlope = 0,
         BuildOnLayerCaps = {
@@ -167,7 +167,7 @@ UnitBlueprint {
             FiringTolerance = 360,
             Label = 'Suicide',
             MaxRadius = 2,
-			RangeCategory = 'UWRC_DirectFire',
+            RangeCategory = 'UWRC_DirectFire',
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

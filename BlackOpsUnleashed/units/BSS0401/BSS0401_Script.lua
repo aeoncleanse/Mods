@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/BSS0401/BSS0401_script.lua
-#**  Author(s):  Jessica St. Croix, Gordon Duclos, Aaron Lundquist
-#**
-#**  Summary  :  Seraphim Battleship Script
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/BSS0401/BSS0401_script.lua
+--**  Author(s):  Jessica St. Croix, Gordon Duclos, Aaron Lundquist
+--**
+--**  Summary  :  Seraphim Battleship Script
+--**
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local SSeaUnit = import('/lua/seraphimunits.lua').SSeaUnit
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
@@ -24,8 +24,8 @@ BSS0401 = Class(SSeaUnit) {
     DestructionTicks = 400,
 
     Weapons = {
-    	FrontMainTurret01 = Class(SDFSinnuntheWeapon) {
-    	            PlayFxWeaponPackSequence = function(self)
+        FrontMainTurret01 = Class(SDFSinnuntheWeapon) {
+                    PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
                 end
@@ -50,7 +50,7 @@ BSS0401 = Class(SSeaUnit) {
                 end
                 SDFSinnuntheWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-		},
+        },
         BackMainTurret01 = Class(SDFSinnuntheWeapon) {
                     PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
@@ -77,7 +77,7 @@ BSS0401 = Class(SSeaUnit) {
                 end
                 SDFSinnuntheWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-		},
+        },
         FrontTurret01 = Class(SDFHeavyQuarnonCannon) {},
         FrontTurret02 = Class(SDFHeavyQuarnonCannon) {},
         FrontTurret03 = Class(SDFHeavyQuarnonCannon) {},
@@ -95,7 +95,7 @@ BSS0401 = Class(SSeaUnit) {
             IdleState = State(SIFHuAntiNukeWeapon.IdleState) {
                 OnGotTarget = function(self)
                     local bp = self:GetBlueprint()
-                    #only say we've fired if the parent fire conditions are met
+                    --only say we've fired if the parent fire conditions are met
                     if (bp.WeaponUnpackLockMotion != true or (bp.WeaponUnpackLocksMotion == true and not self.unit:IsUnitState('Moving'))) then
                         if (bp.CountedProjectile == false) or self:CanFire() then
                              nukeFiredOnGotTarget = true
@@ -103,7 +103,7 @@ BSS0401 = Class(SSeaUnit) {
                     end
                     SIFHuAntiNukeWeapon.IdleState.OnGotTarget(self)
                 end,
-                # uses OnGotTarget, so we shouldn't do this.
+                -- uses OnGotTarget, so we shouldn't do this.
                 OnFire = function(self)
                     if not nukeFiredOnGotTarget then
                         SIFHuAntiNukeWeapon.IdleState.OnFire(self)
@@ -119,33 +119,33 @@ BSS0401 = Class(SSeaUnit) {
             },        
         },
     },
-	OnStopBeingBuilt = function(self)
-		self:HideBone('Pod04', true)
-		self:HideBone('Pod05', true)
-		self:HideBone('Pod06', true)
-		
-		#local position = self:GetPosition()
-		
-		#self.Station01 = CreateUnitHPR('xsb0004', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		#self.Station01:AttachBoneTo(0, self, 'Factory')
-				
-					
-		SSeaUnit.OnStopBeingBuilt(self)
-	end,
-		
-	OnKilled = function(self, inst, type, okr)
-		--self:HideBone('Pod04', false)
-		--self:HideBone('Pod05', false)
-		--self:HideBone('Pod06', false)
+    OnStopBeingBuilt = function(self)
+        self:HideBone('Pod04', true)
+        self:HideBone('Pod05', true)
+        self:HideBone('Pod06', true)
+        
+        --local position = self:GetPosition()
+        
+        --self.Station01 = CreateUnitHPR('xsb0004', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+        --self.Station01:AttachBoneTo(0, self, 'Factory')
+                
+                    
+        SSeaUnit.OnStopBeingBuilt(self)
+    end,
+        
+    OnKilled = function(self, inst, type, okr)
+        --self:HideBone('Pod04', false)
+        --self:HideBone('Pod05', false)
+        --self:HideBone('Pod06', false)
         --if not self.Station01:IsDead() then
-		--	self.Station01:Kill()
-		--end
-		self.Trash:Destroy()
+        --    self.Station01:Kill()
+        --end
+        self.Trash:Destroy()
         self.Trash = TrashBag()
-						
+                        
         SSeaUnit.OnKilled(self, inst, type, okr)
     end,
-	
+    
 }
 
 TypeClass = BSS0401

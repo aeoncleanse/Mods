@@ -1,11 +1,11 @@
-#****************************************************************************
-#**
-#**  Author(s):  Mikko Tyster
-#**
-#**  Summary  :  UEF T3 Anti-Air
-#**
-#**  Copyright © 2008 Blade Braver!
-#****************************************************************************
+--****************************************************************************
+--**
+--**  Author(s):  Mikko Tyster
+--**
+--**  Summary  :  UEF T3 Anti-Air
+--**
+--**  Copyright © 2008 Blade Braver!
+--****************************************************************************
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
 local TWeapons = import('/lua/terranweapons.lua')
 local TDFPlasmaCannonWeapon = TWeapons.TDFPlasmaCannonWeapon
@@ -24,7 +24,7 @@ BALK002 = Class(TLandUnit) {
                 end
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(0)
-                end				
+                end                
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Left_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Right_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 TAAPhalanxWeapon.PlayFxWeaponPackSequence(self)
@@ -59,7 +59,7 @@ BALK002 = Class(TLandUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Left_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Right_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
-				TAAPhalanxWeapon.PlayFxRackSalvoChargeSequence(self)
+                TAAPhalanxWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
         

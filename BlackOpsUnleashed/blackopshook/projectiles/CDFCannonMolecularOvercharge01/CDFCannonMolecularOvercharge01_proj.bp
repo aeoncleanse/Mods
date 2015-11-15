@@ -19,7 +19,7 @@ ProjectileBlueprint {
     Categories = {
         'CYBRAN',
         'PROJECTILE',
-		'STRATEGIC',
+        'STRATEGIC',
         'DIRECTFIRE',
     },
     Display = {

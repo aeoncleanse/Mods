@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/XSB4205/XSB4205_script.lua
-#**  Author(s):  Dru Staltman
-#**
-#**  Summary  :  Seraphim T2 Power Generator Script
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/XSB4205/XSB4205_script.lua
+--**  Author(s):  Dru Staltman
+--**
+--**  Summary  :  Seraphim T2 Power Generator Script
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
 local Buff = import('/lua/sim/Buff.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -14,29 +14,29 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 local AIUtils = import('/lua/AI/aiutilities.lua')
 
 BSB4205 = Class(SStructureUnit) {
-	    AmbientEffects = 'ST2PowerAmbient',
-	    ShieldEffects = {
+        AmbientEffects = 'ST2PowerAmbient',
+        ShieldEffects = {
         '/effects/emitters/seraphim_regenerative_aura_01_emit.bp',
-    	},
-    	
+        },
+        
     --OnStopBeingBuilt = function(self,builder,layer)
-   -- 	SStructureUnit.OnCreate(self,builder,layer)
-   -- 	self:DisableUnitIntel('CloakField')
+   --     SStructureUnit.OnCreate(self,builder,layer)
+   --     self:DisableUnitIntel('CloakField')
    -- end,
 
 
-    # Copy of XSL0001_script's RegenBuffThread with slight alterations (Enhancement and RegenField)
+    -- Copy of XSL0001_script's RegenBuffThread with slight alterations (Enhancement and RegenField)
     RegenBuffThread = function(self)
         while not self:IsDead() do
-            # Get friendly units in the area (including self)
+            -- Get friendly units in the area (including self)
             local units = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.ALLUNITS, self:GetPosition(), self:GetBlueprint().RegenAura.RegenRadius)
 
-            # Give them a 5 second regen buff
+            -- Give them a 5 second regen buff
             for _,unit in units do
                 Buff.ApplyBuff(unit, 'SeraphimRegenFieldMoo')
             end
 
-            #Wait 5 seconds
+            --Wait 5 seconds
             WaitSeconds(5)
         end
     end,
@@ -47,8 +47,8 @@ BSB4205 = Class(SStructureUnit) {
     OnStopBeingBuilt = function(self)
  
         SStructureUnit.OnStopBeingBuilt(self)
-		self:SetMaintenanceConsumptionActive()
-		self:DisableUnitIntel('CloakField')
+        self:SetMaintenanceConsumptionActive()
+        self:DisableUnitIntel('CloakField')
         if not self.ShieldEffectsBag then
             self.ShieldEffectsBag = {}
         end
@@ -56,7 +56,7 @@ BSB4205 = Class(SStructureUnit) {
         local army =  self:GetArmy()
         if self.AmbientEffects then
             for k, v in EffectTemplate[self.AmbientEffects] do
-				CreateAttachedEmitter(self, 'XSB4205', army, v):ScaleEmitter(1.2)
+                CreateAttachedEmitter(self, 'XSB4205', army, v):ScaleEmitter(1.2)
             end
         end
                
@@ -76,11 +76,11 @@ BSB4205 = Class(SStructureUnit) {
                         Ceil = bp.RegenCeiling,
                         Floor = bp.RegenFloor,
                     },
-                    #MaxHealth = {
-                    #    Add = 0,
-                    #    Mult = bp.MaxHealthFactor or 1.0,
-                    #    DoNoFill = true,
-                    #},                        
+                    --MaxHealth = {
+                    --    Add = 0,
+                    --    Mult = bp.MaxHealthFactor or 1.0,
+                    --    DoNoFill = true,
+                    --},                        
                 },
             }
         end

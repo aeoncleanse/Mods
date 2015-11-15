@@ -22,7 +22,7 @@ UnitBlueprint {
         'CIVILLIAN',
         'MOBILE',
         'LAND',
-		'HOVER',
+        'HOVER',
         'VISIBLETORECON',
         'INSIGNIFICANTUNIT',
         'UNSELECTABLE',
@@ -83,7 +83,7 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },
-	Intel = {
+    Intel = {
         VisionRadius = 0,
     },
     Interface = {
@@ -102,7 +102,7 @@ UnitBlueprint {
             LAYER_Sub = false,
             LAYER_Water = false,
         },
-		Elevation = 0.2,
+        Elevation = 0.2,
         DragCoefficient = 0.2,
         MaxAcceleration = 4.5,
         MaxBrake = 4.5,

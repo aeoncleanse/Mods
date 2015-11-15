@@ -139,12 +139,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
-              #  {
-              #      AlbedoName = 'BRS0304_lod1_albedo.dds',
-              #      LODCutoff = 300,
-              #      ShaderName = 'Insect',
-              #      SpecularName = 'BRS0304_lod1_specteam.dds',
-              #  },
+              --  {
+              --      AlbedoName = 'BRS0304_lod1_albedo.dds',
+              --      LODCutoff = 300,
+              --      ShaderName = 'Insect',
+              --      SpecularName = 'BRS0304_lod1_specteam.dds',
+              --  },
             },
         },
         MovementEffects = {
@@ -512,7 +512,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
                 'MISSILE',
             },            

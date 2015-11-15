@@ -15,7 +15,7 @@ ProjectileBlueprint {
             Cue = 'Impact_Water_Splash_AEON',
             LodCutoff = 'Weapon_LodCutoff',
         },
-		CommanderArrival = Sound {
+        CommanderArrival = Sound {
             Bank = 'UAL',
             Cue = 'UAL0001_Gate_In',
             LodCutoff = 'UnitMove_LodCutoff',
@@ -28,7 +28,7 @@ ProjectileBlueprint {
     },
     Display = {
         CameraFollowTimeout = 5,
-        #CameraFollowsProjectile = true,
+        --CameraFollowsProjectile = true,
         StrategicIconSize = 3,
     },
     General = {
@@ -37,7 +37,7 @@ ProjectileBlueprint {
         TechLevel = 3,
         Weapon = 'Sonance Artillery',
     },
-	Economy = {
+    Economy = {
         BuildCostEnergy = 9600,
         BuildCostMass = 840,
         BuildTime = 32400,
@@ -48,8 +48,8 @@ ProjectileBlueprint {
     Physics = {
         DestroyOnWater = true,
         InitialSpeed = 100,
-		CollideEntity = false,
-		UseGravity = true,
+        CollideEntity = false,
+        UseGravity = true,
         LeadTarget = false,
         TurnRate = 360,
         VelocityAlign = true,

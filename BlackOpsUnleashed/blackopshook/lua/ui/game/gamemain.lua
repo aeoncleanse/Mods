@@ -8,10 +8,10 @@
 -------------------------------------------------------------------------
 
 do
-	local oldCreateUI = CreateUI
+    local oldCreateUI = CreateUI
 
-	function CreateUI(isReplay)
-	    oldCreateUI(isReplay)
-	    import('/lua/spreadattack.lua').Init()
-	end
+    function CreateUI(isReplay)
+        oldCreateUI(isReplay)
+        import('/lua/spreadattack.lua').Init()
+    end
 end

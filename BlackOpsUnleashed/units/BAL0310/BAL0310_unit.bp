@@ -36,8 +36,8 @@ UnitBlueprint {
         },
     },
     BuildIconSortPriority = 20,
-	CollisionOffsetZ = 0.3,
-	CollisionOffsetY = -0.3,
+    CollisionOffsetZ = 0.3,
+    CollisionOffsetY = -0.3,
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
@@ -79,12 +79,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-                #{
-                #    AlbedoName = 'BAL0310_lod1_albedo.dds',
-                #    LODCutoff = 215,
-                #    ShaderName = 'Aeon',
-                #    SpecularName = 'BAL0310_lod1_specteam.dds',
-                #},
+                --{
+                --    AlbedoName = 'BAL0310_lod1_albedo.dds',
+                --    LODCutoff = 215,
+                --    ShaderName = 'Aeon',
+                --    SpecularName = 'BAL0310_lod1_specteam.dds',
+                --},
             },
         },
         IdleEffects = {
@@ -410,7 +410,7 @@ UnitBlueprint {
             WeaponUnpackLocksMotion = false,
             WeaponUnpacks = true,
         },
-		--[[
+        --[[
         {
             Audio = {
                 Fire = Sound {
@@ -466,7 +466,7 @@ UnitBlueprint {
             Turreted = false,
             WeaponCategory = 'Anti Navy',
         },
-		]]--
+        ]]--
     },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',

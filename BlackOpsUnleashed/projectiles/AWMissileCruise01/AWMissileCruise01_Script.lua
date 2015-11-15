@@ -5,7 +5,7 @@ local SingleBeamProjectile = import('/lua/sim/defaultprojectiles.lua').SingleBea
 AWMissileCruise01 = Class(MiniRocketPRojectile) {
 
     FxTrails = EffectTemplate.TMissileExhaust01,
-    #FxTrailOffset = -0.15,
+    --FxTrailOffset = -0.15,
     FxImpactUnit = EffectTemplate.TMissileHit01,
     FxImpactLand = EffectTemplate.TMissileHit01,
     FxImpactProp = EffectTemplate.TMissileHit01,
@@ -35,10 +35,10 @@ AWMissileCruise01 = Class(MiniRocketPRojectile) {
         self:SetTurnRate(360)
     end,
     
-    #OnImpact = function(self, targetType, targetEntity)
-    #    local army = self:GetArmy()
-     #   CreateLightParticle( self, -1, army, 3, 4, 'glow_03', 'ramp_fire_01' ) 
-     #   SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
-    #end,
+    --OnImpact = function(self, targetType, targetEntity)
+    --    local army = self:GetArmy()
+     --   CreateLightParticle( self, -1, army, 3, 4, 'glow_03', 'ramp_fire_01' ) 
+     --   SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
+    --end,
 }
 TypeClass = AWMissileCruise01

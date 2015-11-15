@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /effects/entities/UnitTeleport01/UnitTeleport01_script.lua
-#**  Author(s):  Gordon Duclos
-#**
-#**  Summary  :  Unit Teleport effect entity
-#**
-#**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /effects/entities/UnitTeleport01/UnitTeleport01_script.lua
+--**  Author(s):  Gordon Duclos
+--**
+--**  Summary  :  Unit Teleport effect entity
+--**
+--**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -28,53 +28,53 @@ AeonUnitTeleporterEffect01 = Class(NullShell) {
         --    CreateEmitterOnEntity( self, army, v ):ScaleEmitter(0.5)
         --end
 
-        # Initial light flashs
+        -- Initial light flashs
         --CreateLightParticleIntel( self, -1, army, 18, 4, 'flare_lens_add_02', 'ramp_blue_13' )
        -- WaitSeconds(0.3)
         --CreateLightParticleIntel( self, -1, army, 35, 10, 'flare_lens_add_02', 'ramp_blue_13' )
 
-		#self:CreateEnergySpinner()
+        --self:CreateEnergySpinner()
         self:CreateQuantumEnergy(army)
 
-		# Wait till we want the commander to appear visibily
-		--WaitSeconds(1.8)
+        -- Wait till we want the commander to appear visibily
+        --WaitSeconds(1.8)
 
-        # Smoke ring, explosion effects
+        -- Smoke ring, explosion effects
         CreateLightParticleIntel( self, -1, army, 35, 10, 'glow_02', 'ramp_blue_13' )
         DamageRing(self, pos, .1, 5, 50, 'Force', false, false)
 
         for k, v in EffectTemplate.CommanderTeleport01 do
             CreateEmitterOnEntity( self, army, v ):ScaleEmitter(0.5)
         end
-		--local position = self:GetPosition()
+        --local position = self:GetPosition()
         --local spiritUnit1 = CreateUnitHPR('UAL0303', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
-        #self:ForkThread(self.CreateSmokeRing)
+        --self:ForkThread(self.CreateSmokeRing)
 
         local decalOrient = RandomFloat(0,2*math.pi)
         --CreateDecal(self:GetPosition(), decalOrient, 'nuke_scorch_002_albedo', '', 'Albedo', 14, 14, 100, 50, army)
         --CreateDecal(self:GetPosition(), decalOrient, 'Crater05_normals', '', 'Normals', 14, 14, 100, 50, army)
         --CreateDecal(self:GetPosition(), decalOrient, 'Crater05_normals', '', 'Normals', 6, 6, 100, 50, army)
 
-		WaitSeconds(.1)
+        WaitSeconds(.1)
         DamageRing(self, pos, .1, 5, 50, 'Force', false, false)
 
-		# Knockdown force rings
+        -- Knockdown force rings
         WaitSeconds(0.39)
         DamageRing(self, pos, 5, 10, 1, 'Force', false, false)
         WaitSeconds(.1)
         DamageRing(self, pos, 5, 10, 1, 'Force', false, false)
         WaitSeconds(0.5)
 
-        # Scorch decal and light some trees on fire
+        -- Scorch decal and light some trees on fire
         WaitSeconds(0.3)
         DamageRing(self, pos, 10, 14, 1, 'Fire', false, false)
     end,
 
-	CreateEnergySpinner = function(self)
-		self:CreateProjectile( '/effects/entities/TeleportSpinner01/TeleportSpinner01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
-		self:CreateProjectile( '/effects/entities/TeleportSpinner02/TeleportSpinner02_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
-		self:CreateProjectile( '/effects/entities/TeleportSpinner03/TeleportSpinner03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
-	end,
+    CreateEnergySpinner = function(self)
+        self:CreateProjectile( '/effects/entities/TeleportSpinner01/TeleportSpinner01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+        self:CreateProjectile( '/effects/entities/TeleportSpinner02/TeleportSpinner02_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+        self:CreateProjectile( '/effects/entities/TeleportSpinner03/TeleportSpinner03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+    end,
 
     CreateQuantumEnergy = function(self, army)
         for k, v in EffectTemplate.CommanderQuantumGateInEnergy do
@@ -86,8 +86,8 @@ AeonUnitTeleporterEffect01 = Class(NullShell) {
     CreateFlares = function( self, army )
         local numFlares = 45
         local angle = (2*math.pi) / numFlares
-        local angleInitial = 0.0 #RandomFloat( 0, angle )
-        local angleVariation = (2*math.pi) #0.0 #angle * 0.5
+        local angleInitial = 0.0 --RandomFloat( 0, angle )
+        local angleVariation = (2*math.pi) --0.0 --angle * 0.5
 
         local emit, x, y, z = nil
         local DirectionMul = 0.02
@@ -95,7 +95,7 @@ AeonUnitTeleporterEffect01 = Class(NullShell) {
 
         for i = 0, (numFlares - 1) do
             x = math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
-            y = 0.5 #RandomFloat(0.5, 1.5)
+            y = 0.5 --RandomFloat(0.5, 1.5)
             z = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
 
             for k, v in EffectTemplate.CloudFlareEffects01 do

@@ -1,18 +1,18 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/BAB4309/BAB4309_script.lua
-#**  Author(s):  John Comes, Dave Tomandl, Jessica St. Croix
-#**
-#**  Summary  :  Aeon Power Generator Script
-#**
-#**  Copyright © 1205 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/BAB4309/BAB4309_script.lua
+--**  Author(s):  John Comes, Dave Tomandl, Jessica St. Croix
+--**
+--**  Summary  :  Aeon Power Generator Script
+--**
+--**  Copyright © 1205 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
 
 BAB4309 = Class(AStructureUnit) {
 
-	AntiTeleportEffects = {
-        #'/effects/emitters/aeon_gate_01_emit.bp',
+    AntiTeleportEffects = {
+        --'/effects/emitters/aeon_gate_01_emit.bp',
         '/effects/emitters/aeon_gate_02_emit.bp',
         '/effects/emitters/aeon_gate_03_emit.bp',
     },
@@ -68,21 +68,21 @@ BAB4309 = Class(AStructureUnit) {
     
     OnScriptBitSet = function(self, bit)
         AStructureUnit.OnScriptBitSet(self, bit)
-        #local army =  self:GetArmy()
+        --local army =  self:GetArmy()
         if bit == 0 then 
-        	self:ForkThread(self.antiteleportEmitter)
-        	self:ForkThread(self.AntiteleportEffects)
-        	self:SetMaintenanceConsumptionActive()
+            self:ForkThread(self.antiteleportEmitter)
+            self:ForkThread(self.AntiteleportEffects)
+            self:SetMaintenanceConsumptionActive()
 
-		end
-	end,
-	AntiteleportEffects = function(self)
-		if self.AntiTeleportEffectsBag then
-            	for k, v in self.AntiTeleportEffectsBag do
-                	v:Destroy()
-            	end
-		    	self.AntiTeleportEffectsBag = {}
-		end
+        end
+    end,
+    AntiteleportEffects = function(self)
+        if self.AntiTeleportEffectsBag then
+                for k, v in self.AntiTeleportEffectsBag do
+                    v:Destroy()
+                end
+                self.AntiTeleportEffectsBag = {}
+        end
         for k, v in self.AntiTeleportEffects do
             table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.3) )
             table.insert( self.AntiTeleportEffectsBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.3) )
@@ -97,135 +97,135 @@ BAB4309 = Class(AStructureUnit) {
             for k, v in self.AmbientEffectsBag do
                 v:Destroy()
             end
-		    self.AmbientEffectsBag = {}
-		end
+            self.AmbientEffectsBag = {}
+        end
         for k, v in self.AmbientEffects do
             table.insert( self.AmbientEffectsBag, CreateAttachedEmitter( self, 'XAB4309', self:GetArmy(), v ):ScaleEmitter(0.4) )
         end
     end,
     
-	OnScriptBitClear = function(self, bit)
+    OnScriptBitClear = function(self, bit)
         AStructureUnit.OnScriptBitClear(self, bit)
         if bit == 0 then 
-        	self:ForkThread(self.KillantiteleportEmitter)
-        	self:SetMaintenanceConsumptionInactive()
-        	if self.AntiTeleportEffectsBag then
-            	for k, v in self.AntiTeleportEffectsBag do
-                	v:Destroy()
-            	end
-		    	self.AntiTeleportEffectsBag = {}
-			end
-			if self.AmbientEffectsBag then
-            	for k, v in self.AmbientEffectsBag do
-                	v:Destroy()
-            	end
-		    	self.AmbientEffectsBag = {}
-			end
-		end
-	end,
+            self:ForkThread(self.KillantiteleportEmitter)
+            self:SetMaintenanceConsumptionInactive()
+            if self.AntiTeleportEffectsBag then
+                for k, v in self.AntiTeleportEffectsBag do
+                    v:Destroy()
+                end
+                self.AntiTeleportEffectsBag = {}
+            end
+            if self.AmbientEffectsBag then
+                for k, v in self.AmbientEffectsBag do
+                    v:Destroy()
+                end
+                self.AmbientEffectsBag = {}
+            end
+        end
+    end,
 
     
-	antiteleportEmitter = function(self)
-    	### Are we dead yet, if not then wait 0.5 second
-    	if not self:IsDead() then
-        	WaitSeconds(0.5)
-        	### Are we dead yet, if not spawn antiteleportEmitter
-        	if not self:IsDead() then
+    antiteleportEmitter = function(self)
+        ------ Are we dead yet, if not then wait 0.5 second
+        if not self:IsDead() then
+            WaitSeconds(0.5)
+            ------ Are we dead yet, if not spawn antiteleportEmitter
+            if not self:IsDead() then
 
-            	### Gets the platforms current orientation
-            	local platOrient = self:GetOrientation()
+                ------ Gets the platforms current orientation
+                local platOrient = self:GetOrientation()
             
-            	### Gets the current position of the platform in the game world
-            	local location = self:GetPosition('XAB4309')
+                ------ Gets the current position of the platform in the game world
+                local location = self:GetPosition('XAB4309')
 
-            	### Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
-            	local antiteleportEmitter = CreateUnit('bab0003', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
+                ------ Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
+                local antiteleportEmitter = CreateUnit('bab0003', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
 
-            	### Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
-            	table.insert (self.antiteleportEmitterTable, antiteleportEmitter)
+                ------ Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
+                table.insert (self.antiteleportEmitterTable, antiteleportEmitter)
 
-            	### Sets the platform unit as the antiteleportEmitter parent
-            	antiteleportEmitter:SetParent(self, 'bab4309')
-            	antiteleportEmitter:SetCreator(self)  
-            	###antiteleportEmitter clean up scripts
-            	self.Trash:Add(antiteleportEmitter)
-        	end
-    	end 
-	end,
+                ------ Sets the platform unit as the antiteleportEmitter parent
+                antiteleportEmitter:SetParent(self, 'bab4309')
+                antiteleportEmitter:SetCreator(self)  
+                ------antiteleportEmitter clean up scripts
+                self.Trash:Add(antiteleportEmitter)
+            end
+        end 
+    end,
 
 
-	KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
-    	### Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
-    	if table.getn({self.antiteleportEmitterTable}) > 0 then
-        	for k, v in self.antiteleportEmitterTable do 
-            	IssueClearCommands({self.antiteleportEmitterTable[k]}) 
-            	IssueKillSelf({self.antiteleportEmitterTable[k]})
-        	end
-    	end
-	end,
+    KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
+        ------ Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
+        if table.getn({self.antiteleportEmitterTable}) > 0 then
+            for k, v in self.antiteleportEmitterTable do 
+                IssueClearCommands({self.antiteleportEmitterTable[k]}) 
+                IssueKillSelf({self.antiteleportEmitterTable[k]})
+            end
+        end
+    end,
     
     ResourceThread = function(self) 
-    	### Only respawns the drones if the parent unit is not dead 
-    	#LOG('*CHECK TO SEE IF WE HAVE TO TURN OFF THE FIELD!!!')
-    	if not self:IsDead() then
-        	local energy = self:GetAIBrain():GetEconomyStored('Energy')
+        ------ Only respawns the drones if the parent unit is not dead 
+        --LOG('*CHECK TO SEE IF WE HAVE TO TURN OFF THE FIELD!!!')
+        if not self:IsDead() then
+            local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
-        	### Check to see if the player has enough mass / energy
-        	if  energy <= 10 then 
+            ------ Check to see if the player has enough mass / energy
+            if  energy <= 10 then 
 
-            	###Loops to check again
-            	#LOG('*TURNING OFF FIELD!!')
-            	self:SetScriptBit('RULEUTC_ShieldToggle', false)
-            	self:ForkThread(self.ResourceThread2)
+                ------Loops to check again
+                --LOG('*TURNING OFF FIELD!!')
+                self:SetScriptBit('RULEUTC_ShieldToggle', false)
+                self:ForkThread(self.ResourceThread2)
 
-        	else
-            	### If the above conditions are not met we check again
-            	self:ForkThread(self.EconomyWaitUnit)
-            	
-        	end
-    	end    
-	end,
+            else
+                ------ If the above conditions are not met we check again
+                self:ForkThread(self.EconomyWaitUnit)
+                
+            end
+        end    
+    end,
 
-	EconomyWaitUnit = function(self)
-    	if not self:IsDead() then
-    	WaitSeconds(2)
-	    #LOG('*we have enough so keep on checking Resthread1')
-        	if not self:IsDead() then
-            	self:ForkThread(self.ResourceThread)
-        	end
-    	end
-	end,
-	
-	ResourceThread2 = function(self) 
-    	### Only respawns the drones if the parent unit is not dead 
-    	#LOG('*CAN WE TURN IT BACK ON YET?')
-    	if not self:IsDead() then
-        	local energy = self:GetAIBrain():GetEconomyStored('Energy')
+    EconomyWaitUnit = function(self)
+        if not self:IsDead() then
+        WaitSeconds(2)
+        --LOG('*we have enough so keep on checking Resthread1')
+            if not self:IsDead() then
+                self:ForkThread(self.ResourceThread)
+            end
+        end
+    end,
+    
+    ResourceThread2 = function(self) 
+        ------ Only respawns the drones if the parent unit is not dead 
+        --LOG('*CAN WE TURN IT BACK ON YET?')
+        if not self:IsDead() then
+            local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
-        	### Check to see if the player has enough mass / energy
-        	if  energy >= 3000 then 
+            ------ Check to see if the player has enough mass / energy
+            if  energy >= 3000 then 
 
-            	###Loops to check again
-            	#LOG('*TURNING ON FIELD!!!')
-            	self:SetScriptBit('RULEUTC_ShieldToggle', true)
-            	self:ForkThread(self.ResourceThread)
+                ------Loops to check again
+                --LOG('*TURNING ON FIELD!!!')
+                self:SetScriptBit('RULEUTC_ShieldToggle', true)
+                self:ForkThread(self.ResourceThread)
 
-        	else
-            	### If the above conditions are not met we kill this unit
-            	self:ForkThread(self.EconomyWaitUnit2)
-        	end
-    	end    
-	end,
+            else
+                ------ If the above conditions are not met we kill this unit
+                self:ForkThread(self.EconomyWaitUnit2)
+            end
+        end    
+    end,
 
-	EconomyWaitUnit2 = function(self)
-    	if not self:IsDead() then
-    	WaitSeconds(2)
-	    #LOG('*we dont have enough so keep on checking Resthread2!!')
-        	if not self:IsDead() then
-            	self:ForkThread(self.ResourceThread2)
-        	end
-    	end
-	end,
+    EconomyWaitUnit2 = function(self)
+        if not self:IsDead() then
+        WaitSeconds(2)
+        --LOG('*we dont have enough so keep on checking Resthread2!!')
+            if not self:IsDead() then
+                self:ForkThread(self.ResourceThread2)
+            end
+        end
+    end,
 
     
 }

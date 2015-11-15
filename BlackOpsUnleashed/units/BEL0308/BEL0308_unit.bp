@@ -81,12 +81,12 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Insect',
                 },
-                #{
-                #    AlbedoName = 'BEL0308_lod1_albedo.dds',
-                #    LODCutoff = 215,
-                #    ShaderName = 'Insect',
-                #    SpecularName = 'BEL0308_lod1_specteam.dds',
-                #},
+                --{
+                --    AlbedoName = 'BEL0308_lod1_albedo.dds',
+                --    LODCutoff = 215,
+                --    ShaderName = 'Insect',
+                --    SpecularName = 'BEL0308_lod1_specteam.dds',
+                --},
             },
         },
         MovementEffects = {
@@ -96,7 +96,7 @@ UnitBlueprint {
                         Bones = {
                             'Leg_A4',
                             'Leg_B4',
-							'Leg_C4',
+                            'Leg_C4',
                             'Leg_D4',
                         },
                         Type = 'GroundKickup01',
@@ -112,7 +112,7 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-		TransportDropAnimation = {
+        TransportDropAnimation = {
             {
                 Animation = '/units/BEL0308/BEL0308_AUnfold.sca',
                 Weight = 100,
@@ -217,7 +217,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_LowArc',
             CollideFriendly = false,
             Damage = 20,
-			DoTPulses = 15,
+            DoTPulses = 15,
             DoTTime = 2.5,
             DamageFriendly = true,
             DamageRadius = 2.5,
@@ -228,12 +228,12 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringRandomness = 1.5,
-			FiringRandomnessWhileMoving = 2.5,
+            FiringRandomnessWhileMoving = 2.5,
             FiringTolerance = 2,
             Label = 'MainGun',
             MaxRadius = 60,
             MinRadius = 15,
-			MuzzleChargeDelay = 0.3,
+            MuzzleChargeDelay = 0.3,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 20,
@@ -252,7 +252,7 @@ UnitBlueprint {
                     RackBone = 'Cannon_Right_Recoil',
                 },
             },
-			RackFireTogether = true,
+            RackFireTogether = true,
             RackRecoilDistance = -2,
             RackReloadTimeout = 10,
             RackSalvoChargeTime = 0,
@@ -261,7 +261,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.125,
-			RenderFireClock = true,
+            RenderFireClock = true,
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -284,7 +284,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Artillery',
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             Audio = {

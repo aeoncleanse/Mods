@@ -22,7 +22,7 @@ ProjectileBlueprint {
         'DIRECTFIRE',
     },
     Display = {
-    	CameraFollowTimeout = 2,
+        CameraFollowTimeout = 2,
         CameraFollowsProjectile = true,
         ImpactEffects = {
             Type = 'Medium02',

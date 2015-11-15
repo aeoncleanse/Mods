@@ -66,8 +66,8 @@ UnitBlueprint {
     },
     Description = '<LOC bsl0004_desc>Elite Mobile Missile Launcher',
     Display = {
-		Abilities = {
-			'<LOC ability_quanRes>Quantum Power',
+        Abilities = {
+            '<LOC ability_quanRes>Quantum Power',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -78,13 +78,13 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
-               #{
-               #     AlbedoName = 'bsl0004_lod1_albedo.dds',
-               #     LODCutoff = 215,
-                #    LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-               #     ShaderName = 'Seraphim',
-               #     SpecularName = 'bsl0004_lod1_specteam.dds',
-               # },
+               --{
+               --     AlbedoName = 'bsl0004_lod1_albedo.dds',
+               --     LODCutoff = 215,
+                --    LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+               --     ShaderName = 'Seraphim',
+               --     SpecularName = 'bsl0004_lod1_specteam.dds',
+               -- },
             },
         },
         MovementEffects = {

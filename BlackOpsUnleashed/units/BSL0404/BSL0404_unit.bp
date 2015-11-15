@@ -77,12 +77,12 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-               # {
-               #     AlbedoName = '',
-               #     LODCutoff = 600,
-               #     ShaderName = 'Seraphim',
-               #     SpecularName = '',
-               # },
+               -- {
+               --     AlbedoName = '',
+               --     LODCutoff = 600,
+               --     ShaderName = 'Seraphim',
+               --     SpecularName = '',
+               -- },
             },
         },
         MovementEffects = {
@@ -153,7 +153,7 @@ UnitBlueprint {
     },
     LifeBarRender = false,
 
-    # This is energy ball stuff
+    -- This is energy ball stuff
     Lifetime = 8,
     MaxMoveRange = 1,
     Physics = {
@@ -193,7 +193,7 @@ UnitBlueprint {
     SizeX = 0.5,
     SizeY = 0.5,
     SizeZ = 0.5,
-    #StrategicIconName = 'icon_experimental_generic',
+    --StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 105,
     Weapon = {
         {
@@ -218,7 +218,7 @@ UnitBlueprint {
             DamageType = 'Normal',
             DisplayName = 'Unstable Phason Laser',
             FireTargetLayerCapsTable = {
-           	    Air = 'Air|Land|Water|Seabed',
+                   Air = 'Air|Land|Water|Seabed',
                 Land = 'Air|Land|Water|Seabed',
                 Water = 'Air|Land|Water|Seabed',
             },

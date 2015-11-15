@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/BRA0309/BRA0309_script.lua
-#**  Author(s):  John Comes, David Tomandl
-#**
-#**  Summary  :  Cybran T2 Air Transport Script
-#**
-#**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/BRA0309/BRA0309_script.lua
+--**  Author(s):  John Comes, David Tomandl
+--**
+--**  Summary  :  Cybran T2 Air Transport Script
+--**
+--**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
 local explosion = import('/lua/defaultexplosions.lua')
@@ -46,7 +46,7 @@ BRA0309 = Class(CAirUnit) {
         self:RequestRefreshUI()
         self.AnimManip = CreateAnimator(self)
         self.Trash:Add(self.AnimManip)
-#        self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationTakeOff, false):SetRate(1)
+--        self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationTakeOff, false):SetRate(1)
         if not self.OpenAnim then
             self.OpenAnim = CreateAnimator(self)
             self.Trash:Add(self.OpenAnim)
@@ -54,28 +54,28 @@ BRA0309 = Class(CAirUnit) {
         self.OpenAnim:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(1)
     end,
 
-    # When one of our attached units gets killed, detach it
+    -- When one of our attached units gets killed, detach it
     OnAttachedKilled = function(self, attached)
         attached:DetachFrom()
     end,
-#    OnIntelEnabled = function(self,builder,layer)
-#    	self:SetMaintenanceConsumptionActive()
-#    	self:EnableIntel('CloakField')
-#    end,
-#    OnIntelDisabled = function(self, builder,layer)
-#    	self:SetMaintenanceConsumptionInactive()
-#    	self:DisableIntel('CloakField')
-#    end,
+--    OnIntelEnabled = function(self,builder,layer)
+--        self:SetMaintenanceConsumptionActive()
+--        self:EnableIntel('CloakField')
+--    end,
+--    OnIntelDisabled = function(self, builder,layer)
+--        self:SetMaintenanceConsumptionInactive()
+--        self:DisableIntel('CloakField')
+--    end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
         CAirUnit.OnKilled(self, instigator, type, overkillRatio)
-        # TransportDetachAllUnits takes 1 bool parameter. If true, randomly destroys some of the transported
-        # units, otherwise successfully detaches all.
+        -- TransportDetachAllUnits takes 1 bool parameter. If true, randomly destroys some of the transported
+        -- units, otherwise successfully detaches all.
         self:TransportDetachAllUnits(true)
     end,
 
 
-    # Override air destruction effects so we can do something custom here
+    -- Override air destruction effects so we can do something custom here
     CreateUnitAirDestructionEffects = function( self, scale )
         self:ForkThread(self.AirDestructionEffectsThread, self )
     end,

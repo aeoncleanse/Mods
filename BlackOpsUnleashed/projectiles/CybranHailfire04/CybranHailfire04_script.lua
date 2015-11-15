@@ -1,6 +1,6 @@
-#
-# Cybran Anti Air Projectile
-#
+--
+-- Cybran Anti Air Projectile
+--
 
 local CybranHailfire04Projectile = import('/lua/BlackOpsprojectiles.lua').CybranHailfire04Projectile
 local Explosion = import('/lua/defaultexplosions.lua')
@@ -15,7 +15,7 @@ CAANanoDart02 = Class(CybranHailfire04Projectile) {
         for k, v in self.FxTrails do
             CreateEmitterOnEntity(self,self:GetArmy(),v )
         end
-		#self.MoveThread = self:ForkThread(self.MovementThread)
+        --self.MoveThread = self:ForkThread(self.MovementThread)
    end,
    
 }

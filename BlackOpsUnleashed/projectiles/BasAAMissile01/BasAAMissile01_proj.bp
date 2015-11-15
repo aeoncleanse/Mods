@@ -1,6 +1,6 @@
 ProjectileBlueprint {
     Audio = {
-		Arc = Sound {
+        Arc = Sound {
             Bank = 'URLWeapon',
             Cue = 'URL0402_Beam_Start',
             LodCutoff = 'Weapon_LodCutoff',
@@ -63,7 +63,7 @@ ProjectileBlueprint {
         MaxSpeed = 100,
         MaxZigZag = 1,
         OnLostTargetLifetime = 0.7,
-		RotationalVelocity = 100,
+        RotationalVelocity = 100,
         RotationalVelocityRange = 200,
         TrackTarget = true,
         TurnRate = 180,

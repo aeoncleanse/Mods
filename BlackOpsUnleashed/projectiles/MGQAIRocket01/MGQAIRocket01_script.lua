@@ -1,6 +1,6 @@
-#
-# Aeon Serpentine Missile
-#
+--
+-- Aeon Serpentine Missile
+--
 local CLOATacticalMissileProjectile = import('/lua/cybranprojectiles.lua').CLOATacticalMissileProjectile
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -10,10 +10,10 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
         CLOATacticalMissileProjectile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)
         self:ForkThread(self.UpdateThread)
-        #self:ForkThread(self.Takeoff)
+        --self:ForkThread(self.Takeoff)
     end,
 
-	UpdateThread = function(self)
+    UpdateThread = function(self)
         self:SetMaxSpeed(1)
         WaitSeconds(0.1)
         local Velx, Vely, Velz = self:GetVelocity()
@@ -33,11 +33,11 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-            #proj:SetVelocity( x * mul, Vely * mul, z * mul )
+            --proj:SetVelocity( x * mul, Vely * mul, z * mul )
         end   
         self:Destroy()
     end,
-	
+    
     Takeoff = function(self) 
     
     WaitSeconds(1)
@@ -61,7 +61,7 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-            #proj:SetVelocity( x * mul, Vely * mul, z * mul )
+            --proj:SetVelocity( x * mul, Vely * mul, z * mul )
         end            
         
         local pos = self:GetPosition()
@@ -78,7 +78,7 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
         CLOATacticalMissileProjectile.Takeoff(self)
         self:Destroy()
     end,
-	
+    
 }
 
 TypeClass = MGQAIRocket01

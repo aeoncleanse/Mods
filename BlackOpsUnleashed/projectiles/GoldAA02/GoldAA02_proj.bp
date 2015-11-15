@@ -25,7 +25,7 @@ ProjectileBlueprint {
     Display = {
         CameraFollowsProjectile = true,
 
-        # ##MeshBlueprint = '/units/DAA0206/DAA0206_mesh.bp',
+        -- ----MeshBlueprint = '/units/DAA0206/DAA0206_mesh.bp',
         StrategicIconSize = 1,
         UniformScale = 0.045,
     },
@@ -52,11 +52,11 @@ ProjectileBlueprint {
         Lifetime = 5,
         MaxSpeed = 60,
         OnLostTargetLifetime = 0.7,
-        #MaxZigZag = 10,
+        --MaxZigZag = 10,
         TrackTarget = true,
         TurnRate = 180,
         UseGravity = false,
         VelocityAlign = true,
-        #ZigZagFrequency = 0.5,
+        --ZigZagFrequency = 0.5,
     },
 }

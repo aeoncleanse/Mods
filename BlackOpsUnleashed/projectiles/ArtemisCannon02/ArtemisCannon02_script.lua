@@ -1,12 +1,12 @@
-#****************************************************************************
-#
-#    File     :  /data/Projectiles/ADFReactonCannnon01/ADFReactonCannnon01_script.lua
-#    Author(s): Jessica St.Croix, Gordon Duclos
-#
-#    Summary  : Aeon Reacton Cannon Area of Effect Projectile
-#
-#    Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--
+--    File     :  /data/Projectiles/ADFReactonCannnon01/ADFReactonCannnon01_script.lua
+--    Author(s): Jessica St.Croix, Gordon Duclos
+--
+--    Summary  : Aeon Reacton Cannon Area of Effect Projectile
+--
+--    Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local DummyArtemisCannonProjectile = import('/lua/BlackOpsprojectiles.lua').DummyArtemisCannonProjectile
 
@@ -14,13 +14,13 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
 
     OnImpact = function(self, TargetType, TargetEntity)
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
-            # Play the explosion sound
+            -- Play the explosion sound
             local myBlueprint = self:GetBlueprint()
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+            nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
         DummyArtemisCannonProjectile.OnImpact(self, TargetType, TargetEntity)
@@ -28,17 +28,17 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
 
     DoTakeDamage = function(self, instigator, amount, vector, damageType)
         if self.ProjectileDamaged then
-            # Play the explosion sound
+            -- Play the explosion sound
             local myBlueprint = self:GetBlueprint()
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+            nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
-            #local launcherbp = self:GetLauncher():GetBlueprint()  
-            #local wep = self:GetLauncher()
-            #self.wep.DoTakeDamage = launcherbp.NukeInnerRingDamage
+            --local launcherbp = self:GetLauncher():GetBlueprint()  
+            --local wep = self:GetLauncher()
+            --self.wep.DoTakeDamage = launcherbp.NukeInnerRingDamage
         end
         DummyArtemisCannonProjectile.DoTakeDamage(self, instigator, amount, vector, damageType)
     end,

@@ -1,6 +1,6 @@
-#
-# Aeon Serpentine Missile
-#
+--
+-- Aeon Serpentine Missile
+--
 local MGQAIRocketChildProjectile = import('/lua/BlackOpsprojectiles.lua').MGQAIRocketChildProjectile
 
 MGQAIRocket01 = Class(MGQAIRocketChildProjectile) {
@@ -10,7 +10,7 @@ MGQAIRocket01 = Class(MGQAIRocketChildProjectile) {
         self:ForkThread(self.UpdateThread)
     end,
 
-	UpdateThread = function(self)
+    UpdateThread = function(self)
         WaitSeconds(0.1)
         self:SetTurnRate(360)
 
