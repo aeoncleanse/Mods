@@ -2,10 +2,10 @@
 --rev. 3
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
-local Weapons2 = import('/lua/BlackOpsweapons.lua')
+local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TDFGoliathShoulderBeam = Weapons2.TDFGoliathShoulderBeam
 local TIFArtilleryWeapon = import('/lua/terranweapons.lua').TIFArtilleryWeapon
-local WeaponsFile2 = import ('/lua/BlackOpsweapons.lua')
+local WeaponsFile2 = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local YenzothaExperimentalLaser02 = WeaponsFile2.YenzothaExperimentalLaser02
 
 

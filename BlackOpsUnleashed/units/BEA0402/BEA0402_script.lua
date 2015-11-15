@@ -15,9 +15,9 @@
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
 local WeaponsFile = import('/lua/terranweapons.lua')
 local TAAFlakArtilleryCannon = WeaponsFile.TAAFlakArtilleryCannon
-local RailGunWeapon02 = import('/lua/BlackOpsweapons.lua').RailGunWeapon02
-local CitadelHVMWeapon = import('/lua/BlackOpsweapons.lua').CitadelHVMWeapon
-local CitadelPlasmaGatlingCannonWeapon = import('/lua/BlackOpsweapons.lua').CitadelPlasmaGatlingCannonWeapon
+local RailGunWeapon02 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').RailGunWeapon02
+local CitadelHVMWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').CitadelHVMWeapon
+local CitadelPlasmaGatlingCannonWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').CitadelPlasmaGatlingCannonWeapon
 
 
 local EffectUtils = import('/lua/effectutilities.lua')

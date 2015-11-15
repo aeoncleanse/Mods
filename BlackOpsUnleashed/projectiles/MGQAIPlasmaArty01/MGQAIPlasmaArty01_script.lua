@@ -8,7 +8,7 @@
 --**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-MGQAIPlasmaArty01 = Class(import('/lua/BlackOpsprojectiles.lua').MGQAIPlasmaArtyProjectile) {
+MGQAIPlasmaArty01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGQAIPlasmaArtyProjectile) {
 
 }
 

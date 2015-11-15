@@ -2,7 +2,7 @@
 --rev. 3
 
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
-local Weapons2 = import('/lua/BlackOpsweapons.lua')
+local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TDFGoliathShoulderBeam = Weapons2.TDFGoliathShoulderBeam
 local TIFArtilleryWeapon = import('/lua/terranweapons.lua').TIFArtilleryWeapon
 local TSAMLauncher = import('/lua/terranweapons.lua').TSAMLauncher

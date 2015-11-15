@@ -14,7 +14,7 @@ local CANNaniteTorpedoWeapon = WeaponsFile.CANNaniteTorpedoWeapon
 local CIFSmartCharge = WeaponsFile.CIFSmartCharge
 local CDFElectronBolterWeapon = WeaponsFile.CDFElectronBolterWeapon
 local CKrilTorpedoLauncherWeapon = import('/lua/cybranweapons.lua').CKrilTorpedoLauncherWeapon
-local TorpRedirectField = import('/lua/BlackOpsdefaultantiprojectile.lua').TorpRedirectField
+local TorpRedirectField = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').TorpRedirectField
 
 
 

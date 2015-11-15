@@ -9,7 +9,7 @@ local UnitShield = import('/lua/shield.lua').UnitShield
 local AntiArtilleryShield = import('/lua/shield.lua').AntiArtilleryShield
 local Buff = import('/lua/sim/buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 local oldUnit = Unit
 Unit = Class(oldUnit) {

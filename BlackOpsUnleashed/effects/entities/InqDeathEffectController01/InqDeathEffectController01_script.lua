@@ -11,7 +11,7 @@ local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local RandomInt = import('/lua/utilities.lua').GetRandomInt
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 local BaseRingRiftEffects = {
     '/effects/Entities/InqDeathBombEffect03/InqDeathBombEffect03_proj.bp',

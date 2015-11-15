@@ -12,6 +12,6 @@ do
 
     function CreateUI(isReplay)
         oldCreateUI(isReplay)
-        import('/lua/spreadattack.lua').Init()
+        import('/mods/BlackOpsUnleashed/lua/spreadattack.lua').Init()
     end
 end

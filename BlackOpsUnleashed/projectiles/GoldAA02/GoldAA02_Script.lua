@@ -7,7 +7,7 @@
 --**
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
-local GoldAAProjectile = import('/lua/BlackOpsprojectiles.lua').GoldAAProjectile
+local GoldAAProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GoldAAProjectile
 
 GoldAA02 = Class(GoldAAProjectile) {}
 TypeClass = GoldAA02

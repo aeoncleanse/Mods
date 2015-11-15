@@ -1,4 +1,4 @@
-local MiniRocket04PRojectile = import('/lua/BlackOpsprojectiles.lua').MiniRocket04PRojectile
+local MiniRocket04PRojectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MiniRocket04PRojectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SingleBeamProjectile = import('/lua/sim/defaultprojectiles.lua').SingleBeamProjectile
 

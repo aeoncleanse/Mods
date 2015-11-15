@@ -8,5 +8,5 @@
 --    Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-RaiderCannon01 = Class(import('/lua/BlackOpsprojectiles.lua').RaiderCannonProjectile) {}
+RaiderCannon01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').RaiderCannonProjectile) {}
 TypeClass = RaiderCannon01

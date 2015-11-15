@@ -8,6 +8,6 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-Juggfire01 = Class(import('/lua/BlackOpsprojectiles.lua').Juggfire01) {
+Juggfire01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').Juggfire01) {
 }
 TypeClass = Juggfire01

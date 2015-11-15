@@ -6,7 +6,7 @@
 --**  Summary  :  Experimental Phason Projectile script, XSL0401
 --**
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-local EyeBlast01Projectile = import('/lua/BlackOpsprojectiles.lua').EyeBlast01Projectile
+local EyeBlast01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').EyeBlast01Projectile
 EyeBlast01Proj01 = Class(EyeBlast01Projectile) {}
 
 TypeClass = EyeBlast01Proj01

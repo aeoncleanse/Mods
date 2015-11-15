@@ -9,7 +9,7 @@
 --****************************************************************************
 local AGuidedMissileProjectile = import('/lua/aeonprojectiles.lua').AGuidedMissileProjectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 AIFGuidedMissile02 = Class(AGuidedMissileProjectile) {
     --FxTrailScale = 0.5,

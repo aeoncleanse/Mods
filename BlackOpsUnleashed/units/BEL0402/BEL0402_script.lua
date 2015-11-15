@@ -4,7 +4,7 @@
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
 local TWeapons = import('/lua/terranweapons.lua')
-local Weapons2 = import('/lua/BlackOpsweapons.lua')
+local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TIFCruiseMissileUnpackingLauncher = TWeapons.TIFCruiseMissileUnpackingLauncher
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local TANTorpedoLandWeapon = TWeapons.TANTorpedoLandWeapon
@@ -24,7 +24,7 @@ local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 --local GoliathNukeEffect04 = '/projectiles/MGQAIPlasmaArty01/MGQAIPlasmaArty01_proj.bp' 
 --local GoliathNukeEffect05 = '/effects/Entities/GoliathNukeEffect05/GoliathNukeEffect05_proj.bp'
 
-local BlacOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlacOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 BEL0402 = Class(TWalkingLandUnit) {
     FlamerEffects = {

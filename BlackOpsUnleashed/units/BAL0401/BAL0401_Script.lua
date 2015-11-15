@@ -9,13 +9,13 @@
 --****************************************************************************
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
-local WeaponsFile = import('/lua/BlackOpsweapons.lua')
+local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local GoldenLaserGenerator = WeaponsFile.GoldenLaserGenerator
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 local utilities = import('/lua/utilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 
 

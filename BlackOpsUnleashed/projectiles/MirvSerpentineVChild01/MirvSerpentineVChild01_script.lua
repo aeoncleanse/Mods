@@ -1,7 +1,7 @@
 --
 -- Aeon Serpentine Missile
 --
-local MIRVChild01Projectile = import('/lua/BlackOpsprojectiles.lua').MIRVChild01Projectile
+local MIRVChild01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MIRVChild01Projectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 

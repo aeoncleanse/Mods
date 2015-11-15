@@ -14,7 +14,7 @@
 
 local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
 local EmitterProjectile = DefaultProjectileFile.EmitterProjectile
-local SeraHeavyLightningCannonChildProjectile = import('/lua/BlackOpsprojectiles.lua').SeraHeavyLightningCannonChildProjectile
+local SeraHeavyLightningCannonChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SeraHeavyLightningCannonChildProjectile
 --SeraHeavyLightningCannonChild01 = Class(SeraHeavyLightningCannonChildProjectile) {}
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

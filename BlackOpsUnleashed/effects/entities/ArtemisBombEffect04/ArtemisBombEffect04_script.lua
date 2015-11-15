@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 ArtemisBombEffect04 = Class(import('/lua/sim/defaultprojectiles.lua').EmitterProjectile) {
     FxTrails = BlackOpsEffectTemplate.ArtemisBombPlumeFxTrails03,

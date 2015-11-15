@@ -21,7 +21,7 @@ local SingleCompositeEmitterProjectile = DefaultProjectileFile.SingleCompositeEm
 local MultiCompositeEmitterProjectile = DefaultProjectileFile.MultiCompositeEmitterProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/mods/BlackOps/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOps/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local DepthCharge = import('/lua/defaultantiprojectile.lua').DepthCharge
 local util = import('/lua/utilities.lua')
 

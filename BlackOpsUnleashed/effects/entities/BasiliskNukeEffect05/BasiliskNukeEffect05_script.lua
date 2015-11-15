@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsUnleashedEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsUnleashedEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 BasiliskNukeEffect05 = Class(import('/lua/sim/defaultprojectiles.lua').EmitterProjectile) {
     FxTrails = BlackOpsUnleashedEffectTemplate.BasiliskNukePlumeFxTrails01,

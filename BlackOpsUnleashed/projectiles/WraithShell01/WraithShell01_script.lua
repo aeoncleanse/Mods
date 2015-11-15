@@ -1,7 +1,7 @@
 --
 -- Aeon Artillery Projectile
 --
-local WraithProjectile = import('/lua/BlackOpsprojectiles.lua').WraithProjectile
+local WraithProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').WraithProjectile
 
 AIFSonanceShell01 = Class(WraithProjectile) {}
 

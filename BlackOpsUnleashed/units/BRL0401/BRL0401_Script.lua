@@ -11,7 +11,7 @@
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
-local CybranWeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 local BassieCannonWeapon01 = CybranWeaponsFile2.BassieCannonWeapon01
 local BasiliskAAMissile01 = CybranWeaponsFile2.BasiliskAAMissile01
@@ -31,7 +31,7 @@ local Util = import('/lua/utilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlacOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlacOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local Entity = import('/lua/sim/Entity.lua').Entity
 

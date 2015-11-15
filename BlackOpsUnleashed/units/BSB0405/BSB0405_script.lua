@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local SShieldStructureUnit = import('/lua/seraphimunits.lua').SShieldStructureUnit
-local WeaponsFile = import ('/lua/BlackOpsweapons.lua')
+local WeaponsFile = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local LambdaWeapon = WeaponsFile.LambdaWeapon
 local SSeraphimSubCommanderGateway01 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway01
 local SSeraphimSubCommanderGateway02 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway02

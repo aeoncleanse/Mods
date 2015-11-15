@@ -9,7 +9,7 @@
 --****************************************************************************
 
 local CDFHvyProtonCannonProjectile = import('/lua/cybranprojectiles.lua').CDFHvyProtonCannonProjectile
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 
 CDFProtonCannon05 = Class(CDFHvyProtonCannonProjectile) {

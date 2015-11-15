@@ -2,7 +2,7 @@
 --rev. 2
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
-local CybranWeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local CDFLaserHeavyWeapon = CybranWeaponsFile.CDFLaserHeavyWeapon
 local ScorpDisintegratorWeapon = CybranWeaponsFile2.ScorpDisintegratorWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')

@@ -9,7 +9,7 @@
 --****************************************************************************
 
 local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
-local CybranWeaponsFile = import('/lua/BlackOpsweapons.lua')
+local CybranWeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local HailfireLauncherWeapon = CybranWeaponsFile.HailfireLauncherWeapon
 
 

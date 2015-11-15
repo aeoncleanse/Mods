@@ -10,7 +10,7 @@
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponsFile = import('/lua/terranweapons.lua')
-local WeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local WeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TAALinkedRailgun = WeaponsFile.TAALinkedRailgun
 local TAMPhalanxWeapon = WeaponsFile.TAMPhalanxWeapon
 local ZCannonWeapon = WeaponsFile2.ZCannonWeapon
@@ -18,7 +18,7 @@ local TDFShipGaussCannonWeapon = WeaponsFile.TDFShipGaussCannonWeapon
 local TIFCruiseMissileLauncher = WeaponsFile.TIFCruiseMissileLauncher
 
 local EffectUtils = import('/lua/effectutilities.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 BES0402 = Class(TSeaUnit) {
     SteamEffects = BlackOpsEffectTemplate.WeaponSteam02,

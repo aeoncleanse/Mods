@@ -1,7 +1,7 @@
 --
 -- Aeon Artillery Projectile
 --
-local MGHeadshotProjectile = import('/lua/BlackOpsprojectiles.lua').MGHeadshotProjectile
+local MGHeadshotProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGHeadshotProjectile
 
 AeonTeleHarb01 = Class(MGHeadshotProjectile) {
 

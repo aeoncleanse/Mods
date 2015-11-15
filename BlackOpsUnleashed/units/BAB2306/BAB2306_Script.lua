@@ -9,7 +9,7 @@
 --****************************************************************************
 
 local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
-local MiniPhasonLaser = import('/lua/BlackOpsweapons.lua').MiniPhasonLaser
+local MiniPhasonLaser = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').MiniPhasonLaser
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 

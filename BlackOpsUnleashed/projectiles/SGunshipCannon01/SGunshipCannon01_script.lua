@@ -7,7 +7,7 @@
 --**
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
-local ShieldTauCannonProjectile = import('/lua/BlackOpsprojectiles.lua').ShieldTauCannonProjectile
+local ShieldTauCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ShieldTauCannonProjectile
 
 STauCannon = Class(ShieldTauCannonProjectile) {
         OnImpact = function(self, TargetType, TargetEntity)

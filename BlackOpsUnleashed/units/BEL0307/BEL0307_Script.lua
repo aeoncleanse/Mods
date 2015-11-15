@@ -8,10 +8,10 @@
 --**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
-local RailGunWeapon01 = import('/lua/BlackOpsweapons.lua').RailGunWeapon01
+local RailGunWeapon01 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').RailGunWeapon01
 local TIFCruiseMissileUnpackingLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileUnpackingLauncher
-local JuggLaserweapon = import('/lua/BlackOpsweapons.lua').JuggLaserweapon
-local JuggPlasmaGatlingCannonWeapon = import('/lua/BlackOpsweapons.lua').JuggPlasmaGatlingCannonWeapon
+local JuggLaserweapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').JuggLaserweapon
+local JuggPlasmaGatlingCannonWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').JuggPlasmaGatlingCannonWeapon
 
 
 local utilities = import('/lua/Utilities.lua')

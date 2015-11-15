@@ -12,6 +12,6 @@ do
 
     function OnCommandIssued(command)
         oldOnCommandIssued(command)
-        import('/lua/spreadattack.lua').MakeShadowCopyOrders(command)
+        import('/mods/BlackOpsUnleashed/lua/spreadattack.lua').MakeShadowCopyOrders(command)
     end
 end

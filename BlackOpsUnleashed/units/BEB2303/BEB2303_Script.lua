@@ -9,7 +9,7 @@
 --****************************************************************************
 
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
-local BOHellstormGun = import('/lua/BlackOpsweapons.lua').BOHellstormGun
+local BOHellstormGun = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').BOHellstormGun
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtils = import('/lua/effectutilities.lua')
 

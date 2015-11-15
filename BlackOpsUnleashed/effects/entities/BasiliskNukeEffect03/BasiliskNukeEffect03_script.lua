@@ -9,7 +9,7 @@
 --****************************************************************************
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
-local BlackOpsBalanceEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsBalanceEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 BasiliskNukeEffect03 = Class(NullShell) {
     

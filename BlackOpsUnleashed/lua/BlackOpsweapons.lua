@@ -11,7 +11,7 @@
 local WeaponFile = import('/lua/sim/defaultweapons.lua')
 local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
 local CollisionBeamFile = import('/lua/defaultcollisionbeams.lua')
-local BlackOpsCollisionBeamFile = import('/lua/BlackOpsdefaultcollisionbeams.lua')
+local BlackOpsCollisionBeamFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua')
 local MiniQuantumBeamGeneratorCollisionBeam = BlackOpsCollisionBeamFile.MiniQuantumBeamGeneratorCollisionBeam
 local SuperQuantumBeamGeneratorCollisionBeam = BlackOpsCollisionBeamFile.SuperQuantumBeamGeneratorCollisionBeam
 local HawkTractorClawCollisionBeam = BlackOpsCollisionBeamFile.HawkTractorClawCollisionBeam
@@ -27,7 +27,7 @@ local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
 local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
 local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGeneratorCollisionBeam
 local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
 local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01

@@ -10,7 +10,7 @@
 
 local SHoverLandUnit = import('/lua/seraphimunits.lua').SHoverLandUnit
 local WeaponsFile = import ('/lua/seraphimweapons.lua')
-local WeaponsFile2 = import ('/lua/BlackOpsweapons.lua')
+local WeaponsFile2 = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local YenzothaExperimentalLaser = WeaponsFile2.YenzothaExperimentalLaser
 local SAAOlarisCannonWeapon = WeaponsFile.SAAOlarisCannonWeapon
 local utilities = import('/lua/utilities.lua')

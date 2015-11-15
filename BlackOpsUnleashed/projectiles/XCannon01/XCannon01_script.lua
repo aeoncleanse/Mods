@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-local XCannonProjectile = import('/lua/BlackOpsprojectiles.lua').XCannonProjectile
+local XCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').XCannonProjectile
 XCannon01 = Class(XCannonProjectile) {
     OnImpact = function(self, TargetType, TargetEntity) 
         ------self:ShakeCamera( radius, maxShakeEpicenter, minShakeAtRadius, interval )

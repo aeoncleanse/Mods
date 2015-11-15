@@ -8,7 +8,7 @@
 --    Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-local ArtemisCannonProjectile = import('/lua/BlackOpsprojectiles.lua').ArtemisCannonProjectile
+local ArtemisCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ArtemisCannonProjectile
 
 ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
 

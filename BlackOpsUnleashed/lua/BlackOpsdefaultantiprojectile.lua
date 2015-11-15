@@ -8,7 +8,7 @@
 --**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local Entity = import('/lua/sim/Entity.lua').Entity
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 SeraLambdaFieldRedirector = Class(Entity) {
 

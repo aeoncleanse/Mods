@@ -9,13 +9,13 @@
 --****************************************************************************
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
-local ArtemisLaserGenerator = import('/lua/BlackOpsweapons.lua').ArtemisLaserGenerator
+local ArtemisLaserGenerator = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').ArtemisLaserGenerator
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local cWeapons = import('/lua/cybranweapons.lua')
 local CIFCommanderDeathWeapon = cWeapons.CIFCommanderDeathWeapon
 
 
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local utilities = import('/lua/utilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 

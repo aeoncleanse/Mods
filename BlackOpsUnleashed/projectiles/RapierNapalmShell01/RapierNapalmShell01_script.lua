@@ -1,7 +1,7 @@
 --
 -- UEF Anti-Matter Shells
 --
-local RapierNapalmShellProjectile = import('/lua/BlackOpsprojectiles.lua').RapierNapalmShellProjectile
+local RapierNapalmShellProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').RapierNapalmShellProjectile
 RapierNapalmShell01 = Class(RapierNapalmShellProjectile) {
 }
 

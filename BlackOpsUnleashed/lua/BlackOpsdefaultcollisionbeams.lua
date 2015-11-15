@@ -1,6 +1,6 @@
 --****************************************************************************
 --**
---**  File     :  /lua/BlackOpsdefaultcollisionbeams.lua
+--**  File     :  /mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua
 --**  Author(s):  Lt_hawkeye
 --**
 --**  Summary  :  Custom definitions collision beams
@@ -11,7 +11,7 @@
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local Util = import('/lua/utilities.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 
 

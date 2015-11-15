@@ -10,7 +10,7 @@
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 ArtemisWarhead02 = Class(NullShell) {
             NukeInnerRingDamage = 0,

@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-local SonicWaveProjectile = import('/lua/BlackOpsprojectiles.lua').SonicWaveProjectile
+local SonicWaveProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SonicWaveProjectile
 SonicWave01 = Class(SonicWaveProjectile) {
 --[[
     OnImpact = function(self, TargetType, TargetEntity) 

@@ -10,7 +10,7 @@
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
 local explosion = import('/lua/defaultexplosions.lua')
-local weaponfile2 = import('/lua/BlackOpsweapons.lua')
+local weaponfile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
 local MartyrHeavyMicrowaveLaserGenerator = weaponfile2.MartyrHeavyMicrowaveLaserGenerator

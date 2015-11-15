@@ -2,7 +2,7 @@
 -- Cybran Anti Air Projectile
 --
 
-local CybranHailfire04Projectile = import('/lua/BlackOpsprojectiles.lua').CybranHailfire04Projectile
+local CybranHailfire04Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').CybranHailfire04Projectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

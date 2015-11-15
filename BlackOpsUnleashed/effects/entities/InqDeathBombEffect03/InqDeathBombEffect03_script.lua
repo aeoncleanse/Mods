@@ -9,6 +9,6 @@
 --****************************************************************************
 
 InqDeathBombEffect03 = Class(import('/lua/sim/defaultprojectiles.lua').EmitterProjectile) {
-    FxTrails = import('/lua/BlackOpsEffectTemplates.lua').GoldLaserBombHitRingProjectileFxTrails03,
+    FxTrails = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua').GoldLaserBombHitRingProjectileFxTrails03,
 }
 TypeClass = InqDeathBombEffect03

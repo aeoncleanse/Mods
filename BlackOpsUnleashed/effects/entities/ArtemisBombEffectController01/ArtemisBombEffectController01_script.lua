@@ -11,7 +11,7 @@ local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local RandomInt = import('/lua/utilities.lua').GetRandomInt
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 local ArtemisBombEffect04 = '/effects/Entities/ArtemisBombEffect04/ArtemisBombEffect04_proj.bp' 
 local ArtemisBombEffect05 = '/effects/Entities/ArtemisBombEffect05/ArtemisBombEffect05_proj.bp'

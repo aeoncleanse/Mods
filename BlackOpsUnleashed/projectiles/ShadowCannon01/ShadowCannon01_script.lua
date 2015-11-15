@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
-local ShadowCannonProjectile = import('/lua/BlackOpsprojectiles.lua').ShadowCannonProjectile
+local ShadowCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ShadowCannonProjectile
 ShadowCannon01 = Class(ShadowCannonProjectile) {
 }
 TypeClass = ShadowCannon01
