@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /data/projectiles/GoldAA01/GoldAA01_script.lua
 -- Author(s):  Matt Vainio, Gordon Duclos
---**
 -- Summary  :  Aeon Guided Missile, DAA0206
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local GoldAAProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GoldAAProjectile
 local RandF = import('/lua/utilities.lua').GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')

@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/BSS0401/BSS0401_script.lua
 -- Author(s):  Jessica St. Croix, Gordon Duclos, Aaron Lundquist
---**
 -- Summary  :  Seraphim Battleship Script
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local SSeaUnit = import('/lua/seraphimunits.lua').SSeaUnit
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')

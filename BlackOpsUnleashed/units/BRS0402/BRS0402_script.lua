@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/URS0302/URS0302_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
---**
 -- Summary  :  Cybran Battleship Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local CSeaUnit = import('/lua/cybranunits.lua').CSeaUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')

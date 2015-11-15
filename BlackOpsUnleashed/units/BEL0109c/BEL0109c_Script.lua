@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/XEL0109c/XEL0109c_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
---**
 -- Summary  :  UEF Mobile Heavy Artillery Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
 local TIFArtilleryWeapon = import('/lua/terranweapons.lua').TIFArtilleryWeapon

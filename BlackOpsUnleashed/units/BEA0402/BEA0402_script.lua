@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/BEA0402/BEA0402_script.lua
 -- Author(s):  John Comes, David Tomandl, Gordon Duclos
---**
 -- Summary  :  UEF Mobile Factory Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 -- This unit needs to not be allowed to build while underwater
 -- Additionally, if it goes underwater while building it needs to cancel the

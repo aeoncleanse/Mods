@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /data/projectiles/AANTorpedoCluster01/AANTorpedoCluster01_script.lua
 -- Author(s):  Gordon Duclos
---**
 -- Summary  :  Aeon Torpedo Cluster Projectile script, XAA0306
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local AMTorpedoCluster = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').AMTorpedoCluster
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

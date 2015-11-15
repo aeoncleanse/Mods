@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/BRA0309/BRA0309_script.lua
 -- Author(s):  John Comes, David Tomandl
---**
 -- Summary  :  Cybran T2 Air Transport Script
---**
--- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
 local explosion = import('/lua/defaultexplosions.lua')

@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /data/units/BSB4309/BSB4309_script.lua
 -- Author(s):  Jessica St. Croix
---**
 -- Summary  :  Seraphim T3 Radar Tower Script
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
 local SSeraphimSubCommanderGateway02 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway02

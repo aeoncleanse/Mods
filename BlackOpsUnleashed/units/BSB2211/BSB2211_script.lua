@@ -5,8 +5,7 @@
 --
 -- Summary  :  UEF Wall Piece Script 
 --
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
 local SeraMineExplosion = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').SeraMineExplosion
 local SeraMineDeathExplosion = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').SeraMineDeathExplosion

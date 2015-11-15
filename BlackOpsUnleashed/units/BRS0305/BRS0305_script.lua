@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/XRS0305/XRS0305_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
---**
 -- Summary  :  Cybran Attack Sub Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local CSubUnit = import('/lua/cybranunits.lua').CSubUnit
 local WeaponsFile = import('/lua/cybranweapons.lua')

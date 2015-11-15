@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/BAB2306/BAB2306_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
---**
 -- Summary  :  Aeon Light Artillery Installation Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
 local MiniPhasonLaser = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').MiniPhasonLaser

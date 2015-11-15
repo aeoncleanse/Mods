@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/BAB5205/BAB5205_script.lua
 -- Author(s):  John Comes, David Tomandl
---**
 -- Summary  :  Aeon Air Staging Platform
---**
--- Copyright © 1005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 1005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local AAirFactoryUnit = import('/lua/aeonunits.lua').AAirFactoryUnit
 local AAATemporalFizzWeapon = import('/lua/aeonweapons.lua').AAATemporalFizzWeapon

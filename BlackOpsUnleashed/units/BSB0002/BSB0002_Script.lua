@@ -5,8 +5,7 @@
 --
 -- Summary  :  UEF Wall Piece Script 
 --
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local SLandFactoryUnit = import('/lua/seraphimunits.lua').SLandFactoryUnit
 
 

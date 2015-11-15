@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /projectiles/CIFEMPFluxWarhead02/CIFEMPFluxWarhead02_script.lua
 -- Author(s):  Gordon Duclos
---**
 -- Summary  :  EMP Flux Warhead Impact effects projectile
---**
--- Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

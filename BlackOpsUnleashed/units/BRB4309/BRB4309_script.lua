@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/XRB4309/XRB4309_script.lua
 -- Author(s):  David Tomandl, Greg Kohne
---**
 -- Summary  :  Cybran Shield Generator lvl 5 Script
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
 local Shield = import('/lua/shield.lua').Shield

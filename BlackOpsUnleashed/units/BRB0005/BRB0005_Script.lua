@@ -5,8 +5,7 @@
 --
 -- Summary  :  UEF Wall Piece Script 
 --
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
 local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local MGAALaserWeapon = CybranWeaponsFile2.MGAALaserWeapon

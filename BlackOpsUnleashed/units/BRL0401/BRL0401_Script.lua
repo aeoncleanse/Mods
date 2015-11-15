@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/XRL0308/XRL0308_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
---**
 -- Summary  :  Cybran Siege Assault Bot Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local Weapon = import('/lua/sim/Weapon.lua').Weapon

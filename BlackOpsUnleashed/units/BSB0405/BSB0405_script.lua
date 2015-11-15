@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /data/units/XSB0405/XSB0405_script.lua
 -- Author(s):  Jessica St. Croix, Greg Kohne
---**
 -- Summary  :  Seraphim T3 Power Generator Script
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local SShieldStructureUnit = import('/lua/seraphimunits.lua').SShieldStructureUnit
 local WeaponsFile = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local LambdaWeapon = WeaponsFile.LambdaWeapon

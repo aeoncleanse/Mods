@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
 -- Author(s): Lt_Hawkeye
---**
 -- Summary  :
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 --------------------------------------------------------------------------
 --  Lt_hawkeye's Custom Projectiles
 --------------------------------------------------------------------------
@@ -281,10 +277,8 @@ MiniRocket02Projectile = Class(SingleBeamProjectile) {
         end
     end,
 }
-
---***********************************************
---                 SeaDragon Projectiles
---***********************************************
+*********************************************
+--                 SeaDragon Projectiles*********************************************
 
 SeaDragonShell = Class(SinglePolyTrailProjectile) {
 

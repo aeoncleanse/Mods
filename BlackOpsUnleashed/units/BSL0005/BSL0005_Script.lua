@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/XSL0005/XSL0005_script.lua
 -- Author(s):  Dru Staltman, Aaron Lundquist
---**
 -- Summary  :  Seraphim Siege Tank Script
---**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local SLandUnit = import('/lua/seraphimunits.lua').SLandUnit
 local WeaponsFile = import('/lua/seraphimweapons.lua')

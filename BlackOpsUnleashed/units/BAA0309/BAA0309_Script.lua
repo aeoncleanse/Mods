@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /cdimage/units/BAA0309/BAA0309_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix, Gordon Duclos
---**
 -- Summary  :  Aeon T2 Transport Script
---**
--- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
 local explosion = import('/lua/defaultexplosions.lua')

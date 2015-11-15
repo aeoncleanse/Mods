@@ -1,12 +1,8 @@
 --****************************************************************************
---**
 -- File     :  /data/projectiles/CANKrilTorpedo01/CANKrilTorpedo01_script.lua
 -- Author(s):  Gordon Duclos, Matt Vainio
---**
 -- Summary  :  Kril Torpedo Projectile script, XRB2308
---**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local AssaultTorpedoSubProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').AssaultTorpedoSubProjectile
 
 CANKrilTorpedo01 = Class(AssaultTorpedoSubProjectile) {

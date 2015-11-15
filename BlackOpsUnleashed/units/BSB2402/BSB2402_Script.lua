@@ -3,8 +3,7 @@
 -- File     :  /cdimage/units/Effect01/Effect01_script.lua 
 --
 --
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 local SLandFactoryUnit = import('/lua/seraphimunits.lua').SLandFactoryUnit
 
 BSB2402 = Class(SLandFactoryUnit) {
