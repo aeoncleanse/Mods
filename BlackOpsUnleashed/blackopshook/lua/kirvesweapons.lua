@@ -13,7 +13,7 @@ SDFUnstablePhasonBeamBO = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffectScale = 0.2,
 }
 
-Dummy = Class(DefaultBeamWeapon) {
+DummyBO = Class(DefaultBeamWeapon) {
     BeamType = CollisionBeamFile.TargetingCollisionBeamBO,
     
     FxBeamEndPointScale = 0.01,
