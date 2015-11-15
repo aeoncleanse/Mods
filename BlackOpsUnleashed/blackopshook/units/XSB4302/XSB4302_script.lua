@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XSB4302/XSB4302_script.lua
---**  Author(s):  John Comes, David Tomandl, Jessica St. Croix, Matt Vainio
+-- File     :  /cdimage/units/XSB4302/XSB4302_script.lua
+-- Author(s):  John Comes, David Tomandl, Jessica St. Croix, Matt Vainio
 --**
---**  Summary  :  Seraphim Strategic Missile Defense Script
+-- Summary  :  Seraphim Strategic Missile Defense Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit

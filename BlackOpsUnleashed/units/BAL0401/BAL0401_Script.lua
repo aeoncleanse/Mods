@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/BAL0401/BAL0401_script.lua
---**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/BAL0401/BAL0401_script.lua
+-- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 --**
---**  Summary  :  Aeon Long Range Artillery Script
+-- Summary  :  Aeon Long Range Artillery Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit

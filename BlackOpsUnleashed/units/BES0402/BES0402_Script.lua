@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XES0402/XES0402_script.lua
---**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/XES0402/XES0402_script.lua
+-- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 --**
---**  Summary  :  UEF Battleship Script
+-- Summary  :  UEF Battleship Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit

@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/UAA0203/UAA0203_script.lua
---**  Author(s):  Drew Staltman, Gordon Duclos
+-- File     :  /cdimage/units/UAA0203/UAA0203_script.lua
+-- Author(s):  Drew Staltman, Gordon Duclos
 --**
---**  Summary  :  Seraphim Gunship Script
+-- Summary  :  Seraphim Gunship Script
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit

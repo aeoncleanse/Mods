@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/URB4203/URB4203_script.lua
---**  Author(s):  David Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/URB4203/URB4203_script.lua
+-- Author(s):  David Tomandl, Jessica St. Croix
 --**
---**  Summary  :  Cybran Radar Jammer Script
+-- Summary  :  Cybran Radar Jammer Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local CRadarJammerUnit = import('/lua/cybranunits.lua').CRadarJammerUnit

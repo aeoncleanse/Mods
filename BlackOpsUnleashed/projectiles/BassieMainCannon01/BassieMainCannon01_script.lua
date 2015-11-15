@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/projectiles/CDFProtonCannon05/CDFProtonCannon05_script.lua
---**  Author(s):  Gordon Duclos, Matt Vainio
+-- File     :  /data/projectiles/CDFProtonCannon05/CDFProtonCannon05_script.lua
+-- Author(s):  Gordon Duclos, Matt Vainio
 --**
---**  Summary  :  Cybran Proton Artillery projectile script, XRL0403
+-- Summary  :  Cybran Proton Artillery projectile script, XRL0403
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local CDFHvyProtonCannonProjectile = import('/lua/cybranprojectiles.lua').CDFHvyProtonCannonProjectile

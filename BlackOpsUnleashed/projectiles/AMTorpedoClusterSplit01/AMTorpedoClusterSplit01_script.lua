@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/projectiles/AANTorpedoClusterSplit01/AANTorpedoClusterSplit01_script.lua
---**  Author(s):  Gordon Duclos
+-- File     :  /data/projectiles/AANTorpedoClusterSplit01/AANTorpedoClusterSplit01_script.lua
+-- Author(s):  Gordon Duclos
 --**
---**  Summary  :  Aeon Torpedo Cluster Projectile script, XAA0306
+-- Summary  :  Aeon Torpedo Cluster Projectile script, XAA0306
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local AMTorpedoCluster = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').AMTorpedoCluster

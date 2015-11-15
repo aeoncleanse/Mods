@@ -1,11 +1,11 @@
 --****************************************************************************
---** 
---**  File     :  /cdimage/units/XRB0005/XRB0005_script.lua 
---**  Author(s):  John Comes, David Tomandl 
---** 
---**  Summary  :  UEF Wall Piece Script 
---** 
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--
+-- File     :  /cdimage/units/XRB0005/XRB0005_script.lua 
+-- Author(s):  John Comes, David Tomandl 
+--
+-- Summary  :  UEF Wall Piece Script 
+--
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
 local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')

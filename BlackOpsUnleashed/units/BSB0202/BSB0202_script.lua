@@ -1,10 +1,10 @@
 --****************************************************************************
 --**
---**  File     :  /units/XSB0202/XSB0202_script.lua
+-- File     :  /units/XSB0202/XSB0202_script.lua
 --**
---**  Summary  :  Seraphim T2 Air Factory Script
+-- Summary  :  Seraphim T2 Air Factory Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local SAirFactoryUnit = import('/lua/seraphimunits.lua').SAirFactoryUnit
 BSB0202 = Class(SAirFactoryUnit) {

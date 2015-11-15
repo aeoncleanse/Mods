@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/projectiles/SBOKhamaseenBombEffect05/SBOKhamaseenBombEffect05_script.lua
---**  Author(s):  Greg Kohne
+-- File     :  /data/projectiles/SBOKhamaseenBombEffect05/SBOKhamaseenBombEffect05_script.lua
+-- Author(s):  Greg Kohne
 --**
---**  Summary  :  Ohwalli Strategic Bomb effect script, non-damaging
+-- Summary  :  Ohwalli Strategic Bomb effect script, non-damaging
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')

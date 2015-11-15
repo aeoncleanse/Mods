@@ -1,11 +1,11 @@
 --****************************************************************************
---** 
---**  File     :  /cdimage/units/XSB0001/XSB0001_script.lua 
---**  Author(s):  John Comes, David Tomandl 
---** 
---**  Summary  :  UEF Wall Piece Script 
---** 
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--
+-- File     :  /cdimage/units/XSB0001/XSB0001_script.lua 
+-- Author(s):  John Comes, David Tomandl 
+--
+-- Summary  :  UEF Wall Piece Script 
+--
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local SShieldLandUnit = import('/lua/seraphimunits.lua').SShieldLandUnit
 local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector

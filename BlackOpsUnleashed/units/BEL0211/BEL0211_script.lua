@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XEL0211/XEL0211_script.lua
---**  Author(s):  John Comes, David Tomandl, Gordon Duclos
+-- File     :  /cdimage/units/XEL0211/XEL0211_script.lua
+-- Author(s):  John Comes, David Tomandl, Gordon Duclos
 --**
---**  Summary  :  UEF Mobile Factory Script
+-- Summary  :  UEF Mobile Factory Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 

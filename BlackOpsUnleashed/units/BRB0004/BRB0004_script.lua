@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XRB0304/XRB0304_script.lua
---**  Author(s):  Dru Staltman, Gordon Duclos
+-- File     :  /cdimage/units/XRB0304/XRB0304_script.lua
+-- Author(s):  Dru Staltman, Gordon Duclos
 --**
---**  Summary  :  Cybran Engineering tower
+-- Summary  :  Cybran Engineering tower
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local CConstructionStructureUnit = import('/lua/cybranunits.lua').CConstructionStructureUnit
 

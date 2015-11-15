@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XEB4309/XEB4309_script.lua
---**  Author(s):  David Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/XEB4309/XEB4309_script.lua
+-- Author(s):  David Tomandl, Jessica St. Croix
 --**
---**  Summary  :  UEF Radar Jammer Script
+-- Summary  :  UEF Radar Jammer Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit

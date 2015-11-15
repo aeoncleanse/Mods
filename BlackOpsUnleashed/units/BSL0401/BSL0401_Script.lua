@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/units/BSL0401/BSL0401_script.lua
---**  Author(s):  Jessica St. Croix, Dru Staltman, Aaron Lundquist
+-- File     :  /data/units/BSL0401/BSL0401_script.lua
+-- Author(s):  Jessica St. Croix, Dru Staltman, Aaron Lundquist
 --**
---**  Summary  :  Seraphim Experimental Assault Bot
+-- Summary  :  Seraphim Experimental Assault Bot
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SHoverLandUnit = import('/lua/seraphimunits.lua').SHoverLandUnit

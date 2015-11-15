@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/BEL0109/BEL0109_script.lua
---**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/BEL0109/BEL0109_script.lua
+-- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 --**
---**  Summary  :  UEF Tank Hunter/PD tank, initial Tank mode
+-- Summary  :  UEF Tank Hunter/PD tank, initial Tank mode
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit

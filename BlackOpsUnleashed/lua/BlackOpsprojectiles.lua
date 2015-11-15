@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
---**  Author(s): Lt_Hawkeye
+-- File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
+-- Author(s): Lt_Hawkeye
 --**
---**  Summary  :
+-- Summary  :
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 --------------------------------------------------------------------------
 --  Lt_hawkeye's Custom Projectiles

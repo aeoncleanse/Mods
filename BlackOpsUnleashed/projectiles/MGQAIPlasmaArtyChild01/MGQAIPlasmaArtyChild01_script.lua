@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /projectiles/MGQAIPlasmaArtyChild01/MGQAIPlasmaArtyChild01.lua
---**  Author(s):  Gordon Duclos
+-- File     :  /projectiles/MGQAIPlasmaArtyChild01/MGQAIPlasmaArtyChild01.lua
+-- Author(s):  Gordon Duclos
 --**
---**  Summary  :  Cybran Neutron Cluster bomb
+-- Summary  :  Cybran Neutron Cluster bomb
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local MGQAIPlasmaArtyChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGQAIPlasmaArtyChildProjectile

@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/UEB1102/UEB1102_script.lua
---**  Author(s):  Jessica St. Croix
+-- File     :  /cdimage/units/UEB1102/UEB1102_script.lua
+-- Author(s):  Jessica St. Croix
 --**
---**  Summary  :  UEF Hydrocarbon Power Plant Script
+-- Summary  :  UEF Hydrocarbon Power Plant Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local TEnergyCreationUnit = import('/lua/terranunits.lua').TEnergyCreationUnit

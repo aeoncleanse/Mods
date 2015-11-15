@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /units/BEB0005/BEB0005_script.lua
---**  Author(s):  Dru Staltman
+-- File     :  /units/BEB0005/BEB0005_script.lua
+-- Author(s):  Dru Staltman
 --**
---**  Summary  :  UEF Engineering tower
+-- Summary  :  UEF Engineering tower
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local TPodTowerUnit = import('/lua/terranunits.lua').TPodTowerUnit
 

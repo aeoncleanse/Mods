@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/projectiles/SIFLaanseTacticalMissile01/SIFLaanseTacticalMissile01_script.lua
---**  Author(s):  Gordon Duclos, Aaron Lundquist
+-- File     :  /data/projectiles/SIFLaanseTacticalMissile01/SIFLaanseTacticalMissile01_script.lua
+-- Author(s):  Gordon Duclos, Aaron Lundquist
 --**
---**  Summary  :  Laanse Tactical Missile Projectile script, /mods/BlackOpsUnleashed
+-- Summary  :  Laanse Tactical Missile Projectile script, /mods/BlackOpsUnleashed
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SLaanseTacticalMissile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SLaanseTacticalMissile

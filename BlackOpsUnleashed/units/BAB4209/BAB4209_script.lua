@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/BAB4209/BAB4209_script.lua
---**  Author(s):  John Comes, Dave Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/BAB4209/BAB4209_script.lua
+-- Author(s):  John Comes, Dave Tomandl, Jessica St. Croix
 --**
---**  Summary  :  Aeon Power Generator Script
+-- Summary  :  Aeon Power Generator Script
 --**
---**  Copyright © 1205 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 1205 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
 

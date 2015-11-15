@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XRB5205/XRB5205_script.lua
---**  Author(s):  John Comes, David Tomandl
+-- File     :  /cdimage/units/XRB5205/XRB5205_script.lua
+-- Author(s):  John Comes, David Tomandl
 --**
---**  Summary  :  Cybran Air Staging Platform
+-- Summary  :  Cybran Air Staging Platform
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local CAirStagingPlatformUnit = import('/lua/cybranunits.lua').CAirStagingPlatformUnit

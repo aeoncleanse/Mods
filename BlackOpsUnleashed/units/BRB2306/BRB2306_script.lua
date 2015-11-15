@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XRB2306/XRB2306_script.lua
---**  Author(s):  David Tomandl
+-- File     :  /cdimage/units/XRB2306/XRB2306_script.lua
+-- Author(s):  David Tomandl
 --**
---**  Summary  :  Cybran Long Range Radar Script
+-- Summary  :  Cybran Long Range Radar Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local CRadarUnit = import('/lua/cybranunits.lua').CRadarUnit

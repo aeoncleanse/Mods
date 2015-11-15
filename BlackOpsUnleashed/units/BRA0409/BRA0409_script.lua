@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XRA0409/XRA0409_script.lua
---**  Author(s):  John Comes, David Tomandl
+-- File     :  /cdimage/units/XRA0409/XRA0409_script.lua
+-- Author(s):  John Comes, David Tomandl
 --**
---**  Summary  :  Cybran T2 Air Transport Script
+-- Summary  :  Cybran T2 Air Transport Script
 --**
---**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit

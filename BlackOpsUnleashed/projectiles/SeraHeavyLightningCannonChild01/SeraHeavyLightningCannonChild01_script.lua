@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/projectiles/SeraHeavyLightningCannonChildProj01/SeraHeavyLightningCannonChildProj01_script.lua
---**  Author(s):  Matt Vainio
+-- File     :  /data/projectiles/SeraHeavyLightningCannonChildProj01/SeraHeavyLightningCannonChildProj01_script.lua
+-- Author(s):  Matt Vainio
 --**
---**  Summary  :  Experimental Phason Projectile script, XSL0401
+-- Summary  :  Experimental Phason Projectile script, XSL0401
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --
 -- Aeon "Annihilator" BFG Projectile
 -- Author Resin_Smoker

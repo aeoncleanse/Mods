@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/UAS0401/UAS0401_script.lua
---**  Author(s):  John Comes
+-- File     :  /cdimage/units/UAS0401/UAS0401_script.lua
+-- Author(s):  John Comes
 --**
---**  Summary  :  Aeon Experimental Sub
+-- Summary  :  Aeon Experimental Sub
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local ASubUnit = import('/lua/aeonunits.lua').ASubUnit

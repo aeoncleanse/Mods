@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/UAB1102/UAB1102_script.lua
---**  Author(s):  Jessica St. Croix, John Comes
+-- File     :  /cdimage/units/UAB1102/UAB1102_script.lua
+-- Author(s):  Jessica St. Croix, John Comes
 --**
---**  Summary  :  Aeon Hydrocarbon Power Plant Script
+-- Summary  :  Aeon Hydrocarbon Power Plant Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local AEnergyCreationUnit = import('/lua/aeonunits.lua').AEnergyCreationUnit

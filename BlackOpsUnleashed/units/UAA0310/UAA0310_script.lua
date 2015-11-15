@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/UAA0310/UAA0310_script.lua
---**  Author(s):  John Comes
+-- File     :  /cdimage/units/UAA0310/UAA0310_script.lua
+-- Author(s):  John Comes
 --**
---**  Summary  :  Aeon CZAR Script
+-- Summary  :  Aeon CZAR Script
 --**
---**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit

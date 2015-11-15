@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/units/XSB1106/XSB1106_script.lua
---**  Author(s):  Dru Staltman
+-- File     :  /cdimage/units/XSB1106/XSB1106_script.lua
+-- Author(s):  Dru Staltman
 --**
---**  Summary  :  Seraphim Mass Storage
+-- Summary  :  Seraphim Mass Storage
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SMassStorageUnit = import('/lua/seraphimunits.lua').SMassStorageUnit
