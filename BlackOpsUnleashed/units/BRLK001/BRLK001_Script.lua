@@ -1,22 +1,16 @@
---****************************************************************************
---**
---**  Author(s):  Mikko Tyster
---**
---**  Summary  :  Cybran T3 Mobile AA
---**
---**  Copyright © 2008 Blade Braver!
---****************************************************************************
+----------------------------------
+-- Author(s):  Mikko Tyster
+-- Summary  :  Cybran T3 Mobile AA
+----------------------------------
 
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
 local CAANanoDartWeapon = CybranWeaponsFile.CAANanoDartWeapon
-local TargetingLaser = import('/lua/kirvesweapons.lua').TargetingLaser
-
+local TargetingLaser = import('/lua/kirvesweapons.lua').TargetingLaserBO
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 
-BRLK001 = Class(CWalkingLandUnit) 
-{
+BRLK001 = Class(CWalkingLandUnit) {
     Weapons = {
         AAGun = Class(CAANanoDartWeapon) {},    
         Lazor = Class(TargetingLaser) {
