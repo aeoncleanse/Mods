@@ -8,7 +8,7 @@
 --**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local SEnergyBallUnit = import('/lua/seraphimunits.lua').SEnergyBallUnit
-local SDFUnstablePhasonBeam = import('/lua/seraphimweapons.lua').SDFUnstablePhasonBeam
+local SDFUnstablePhasonBeam = import('/lua/seraphimweapons.lua').SDFUnstablePhasonBeamBO
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 BSL0403 = Class(SEnergyBallUnit) {

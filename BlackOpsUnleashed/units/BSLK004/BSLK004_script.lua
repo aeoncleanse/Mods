@@ -8,7 +8,7 @@
 --****************************************************************************
 
 local SLandUnit = import('/lua/seraphimunits.lua').SLandUnit
-local SDFUnstablePhasonBeam = import('/lua/kirvesweapons.lua').SDFUnstablePhasonBeam
+local SDFUnstablePhasonBeam = import('/lua/kirvesweapons.lua').SDFUnstablePhasonBeamBO
 local Dummy = import('/lua/kirvesweapons.lua').Dummy
 local EffectTemplate = import('/lua/kirveseffects.lua')
 

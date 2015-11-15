@@ -9,7 +9,7 @@
 
 local SSeaUnit = import('/lua/seraphimunits.lua').SSeaUnit
 local SWeapon = import('/lua/seraphimweapons.lua')
-local SDFUnstablePhasonBeam = import('/lua/kirvesweapons.lua').SDFUnstablePhasonBeam
+local SDFUnstablePhasonBeam = import('/lua/kirvesweapons.lua').SDFUnstablePhasonBeamBO
 local EffectTemplate = import('/lua/kirveseffects.lua')
 local SIFSuthanusArtilleryCannon = import('/lua/seraphimweapons.lua').SIFSuthanusMobileArtilleryCannon
 
