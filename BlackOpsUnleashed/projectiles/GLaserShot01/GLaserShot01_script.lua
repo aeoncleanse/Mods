@@ -1,6 +1,5 @@
---
 -- Aeon Artillery Projectile
---
+
 local GLaserProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GLaserProjectile
 
 GLaser01 = Class(GLaserProjectile) {

@@ -1,10 +1,8 @@
---
 -- Sub-Based Torpedo Script
---
+
 local CTorpedoSubProjectile = import('/lua/cybranprojectiles.lua').CTorpedoSubProjectile
 
 CANTorpedoNanite01 = Class(CTorpedoSubProjectile) {
-
     OnCreate = function(self, inWater)
         CTorpedoSubProjectile.OnCreate(self, inWater)
         if inWater then

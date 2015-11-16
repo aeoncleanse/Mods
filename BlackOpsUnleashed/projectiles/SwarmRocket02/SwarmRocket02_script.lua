@@ -1,11 +1,8 @@
---
 -- AA Missile for Cybrans
---
+
 local CAAMissileNaniteProjectile = import('/lua/cybranprojectiles.lua').CAAMissileNaniteProjectile
-local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
 CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
-
     OnCreate = function(self)
         CAAMissileNaniteProjectile.OnCreate(self)
         self:ForkThread(self.UpdateThread)
@@ -24,4 +21,3 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
 }
 
 TypeClass = CAAMissileNanite02
-

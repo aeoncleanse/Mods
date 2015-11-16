@@ -1,6 +1,5 @@
---
 -- script for projectile Missile
---
+
 local GargEMPWarheadProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GargEMPWarheadProjectile
 
 GargEMPWarhead01 = Class(GargEMPWarheadProjectile) {
@@ -27,6 +26,7 @@ GargEMPWarhead01 = Class(GargEMPWarheadProjectile) {
     
     OnImpact = function(self, TargetType, TargetEntity)
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
+        
             -- Play the explosion sound
             local myBlueprint = self:GetBlueprint()
             if myBlueprint.Audio.Explosion then
@@ -41,8 +41,6 @@ GargEMPWarhead01 = Class(GargEMPWarheadProjectile) {
         end
         GargEMPWarheadProjectile.OnImpact(self, TargetType, TargetEntity)
     end,
-    
-
 }
 
 TypeClass = GargEMPWarhead01

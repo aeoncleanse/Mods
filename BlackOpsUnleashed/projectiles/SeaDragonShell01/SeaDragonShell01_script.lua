@@ -1,6 +1,4 @@
---
 -- Cybran Artillery Projectile
---
 
 local SeaDragonShell = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SeaDragonShell
 SeaDragonShell01 = Class(SeaDragonShell) {

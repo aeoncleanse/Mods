@@ -1,6 +1,5 @@
---
 -- Terran Artillery Projectile
---
+
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TArtilleryProjectilePolytrail = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 HellStormArtillery01 = Class(TArtilleryProjectilePolytrail) {
@@ -13,4 +12,3 @@ HellStormArtillery01 = Class(TArtilleryProjectilePolytrail) {
 }
 
 TypeClass = HellStormArtillery01
-
