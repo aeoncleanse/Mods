@@ -23,8 +23,6 @@ ProjectileBlueprint {
     },
     Display = {
         CameraFollowsProjectile = false,
-
-        -- ----MeshBlueprint = '/units/DAA0206/DAA0206_mesh.bp',
         StrategicIconSize = 1,
         UniformScale = 0.045,
     },

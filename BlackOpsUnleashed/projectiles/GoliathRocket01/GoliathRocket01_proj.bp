@@ -44,7 +44,7 @@ ProjectileBlueprint {
             },
         },
         StrategicIconSize = 2,
-        UniformScale = 0.15,--2,
+        UniformScale = 0.15,
     },
     General = {
         Category = 'Missile',
