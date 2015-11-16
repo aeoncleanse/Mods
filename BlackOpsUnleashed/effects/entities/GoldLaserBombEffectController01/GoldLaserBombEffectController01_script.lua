@@ -1,21 +1,23 @@
---****************************************************************************
+----------------------------------------------------------------------------------------------------------------
 -- File     :  \data\effects\Entities\GoldLaserBombEffectController01\GoldLaserBombEffectController01_script.lua
 -- Author(s):  Greg Kohne
 -- Summary  :  Ohwalli Bomb effect controller script, non-damaging
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+----------------------------------------------------------------------------------------------------------------
+
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local RandomInt = import('/lua/utilities.lua').GetRandomInt
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
+local GoldLaserBombEffect01 = '/mods/BlackOpsUnleashed/effects/Entities/GoldLaserBombEffect01/GoldLaserBombEffect01_proj.bp'         
+local GoldLaserBombEffect06 = '/mods/BlackOpsUnleashed/effects/Entities/GoldLaserBombEffect06/GoldLaserBombEffect06_proj.bp'
 
 local BaseRingRiftEffects = {
-    '/effects/Entities/GoldLaserBombEffect03/GoldLaserBombEffect03_proj.bp',
-    '/effects/Entities/GoldLaserBombEffect04/GoldLaserBombEffect04_proj.bp',
-    '/effects/Entities/GoldLaserBombEffect05/GoldLaserBombEffect05_proj.bp',
-}         
-local GoldLaserBombEffect01 = '/effects/Entities/GoldLaserBombEffect01/GoldLaserBombEffect01_proj.bp'         
-local GoldLaserBombEffect06 = '/effects/Entities/GoldLaserBombEffect06/GoldLaserBombEffect06_proj.bp'
+    '/mods/BlackOpsUnleashed/effects/Entities/GoldLaserBombEffect03/GoldLaserBombEffect03_proj.bp',
+    '/mods/BlackOpsUnleashed/effects/Entities/GoldLaserBombEffect04/GoldLaserBombEffect04_proj.bp',
+    '/mods/BlackOpsUnleashed/effects/Entities/GoldLaserBombEffect05/GoldLaserBombEffect05_proj.bp',
+}
 
 GoldLaserBombEffectController01 = Class(NullShell) {
     NukeInnerRingDamage = 2000,
@@ -35,6 +37,7 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
     end,
+    
     PassData = function(self, Data)
         if Data.NukeOuterRingDamage then self.NukeOuterRingDamage = Data.NukeOuterRingDamage end
         if Data.NukeOuterRingRadius then self.NukeOuterRingRadius = Data.NukeOuterRingRadius end
@@ -44,7 +47,6 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         if Data.NukeInnerRingRadius then self.NukeInnerRingRadius = Data.NukeInnerRingRadius end
         if Data.NukeInnerRingTicks then self.NukeInnerRingTicks = Data.NukeInnerRingTicks end
         if Data.NukeInnerRingTotalTime then self.NukeInnerRingTotalTime = Data.NukeInnerRingTotalTime end
-
     end,
     
     OuterRingDamage = function(self)
@@ -54,12 +56,12 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         else
             local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
             local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
+            
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
             WaitSeconds(tickLength)
             for i = 2, self.NukeOuterRingTicks do
-                --print('Damage Ring: MaxRadius:' .. 2*i)
                 DamageRing(self:GetLauncher(), myPos, ringWidth * (i - 1), ringWidth * i, self.NukeOuterRingDamage, 'Normal', true, true)
                 WaitSeconds(tickLength)
             end
@@ -73,22 +75,20 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         else
             local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
             local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
+            
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
             WaitSeconds(tickLength)
             for i = 2, self.NukeInnerRingTicks do
-                --LOG('Damage Ring: MaxRadius:' .. ringWidth * i)
                 DamageRing(self:GetLauncher(), myPos, ringWidth * (i - 1), ringWidth * i, self.NukeInnerRingDamage, 'Normal', true, true)
                 WaitSeconds(tickLength)
             end
         end
     end,   
     
-    MainBlast = function(self, army)
-        --WaitSeconds(2.5)
-        
-        --------Create a light for this thing's flash.
+    MainBlast = function(self, army)        
+        -- Create a light for this thing's flash.
         CreateLightParticle(self, -1, self:GetArmy(), 40, 7, 'flare_lens_add_03', 'ramp_white_07')
         
         -- Create our decals
@@ -100,34 +100,9 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         end
         
         self:CreatePlumes()
-        
-        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
         self:ShakeCamera(7, 2.5, 0, 0.7)        
 
         WaitSeconds(0.3)
-        --[[
-        
-        -- Create explosion dust ring
-        local vx, vy, vz = self:GetVelocity()
-        local num_projectiles = 16        
-        local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat(0, horizontal_angle)  
-        local xVec, zVec
-        local offsetMultiple = 2.0
-        local px, pz
-
-        for i = 0, (num_projectiles -1) do            
-            xVec = (math.sin(angleInitial + (i*horizontal_angle)))
-            zVec = (math.cos(angleInitial + (i*horizontal_angle)))
-            px = (offsetMultiple*xVec)
-            pz = (offsetMultiple*zVec)
-            
-            local proj = self:CreateProjectile(GoldLaserBombEffect06, px, 1, pz, xVec, 0, zVec)
-            proj:SetLifetime(2.0)
-            proj:SetVelocity(5.0)
-            proj:SetAcceleration(-5.0)            
-        end
-        ]]--
     end,
     
     CreatePlumes = function(self)
@@ -153,4 +128,5 @@ GoldLaserBombEffectController01 = Class(NullShell) {
         end        
     end,
 }
+
 TypeClass = GoldLaserBombEffectController01
