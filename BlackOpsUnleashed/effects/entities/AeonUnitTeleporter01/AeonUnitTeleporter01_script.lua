@@ -59,7 +59,6 @@ AeonUnitTeleporterEffect01 = Class(NullShell) {
         end
     end,
 
-
     CreateFlares = function(self, army)
         local numFlares = 45
         local angle = (2*math.pi) / numFlares
