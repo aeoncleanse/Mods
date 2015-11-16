@@ -118,13 +118,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-                --{
-               --     AlbedoName = 'BSS0306_lod1_albedo.dds',
-               --     LODCutoff = 250,
-               --     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-               --     ShaderName = 'Seraphim',
-               --     SpecularName = 'BSS0306_lod1_specteam.dds',
-              --  },
             },
         },
         MovementEffects = {
@@ -816,7 +809,6 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
-            --MuzzleVelocityReduceDistance = 85,
             ProjectileId = '/projectiles/SIFSuthanusArtilleryShell01/SIFSuthanusArtilleryShell01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {

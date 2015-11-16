@@ -70,12 +70,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-                --{
-               --     AlbedoName = 'bab1302_lod1_albedo.dds',
-                --    LODCutoff = 300,
-               --     ShaderName = 'Aeon',
-               --     SpecularName = 'bab1302_lod1_specteam.dds',
-               -- },
             },
         },
         PlaceholderMeshName = 'UXB0011',

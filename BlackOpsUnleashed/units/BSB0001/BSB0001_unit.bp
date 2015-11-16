@@ -10,7 +10,6 @@ UnitBlueprint {
     CollisionOffsetY = -1,
     Categories = {
         'PRODUCTSC1',
-        --'UNSELECTABLE',
         'UNTARGETABLE',
         'DRONE',
         'SERAPHIM',
@@ -67,12 +66,6 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
-               -- {
-               --     AlbedoName = 'BSB0001_lod1_albedo.dds',
-               ----     LODCutoff = 215,
-               --     ShaderName = 'Unit',
-               --     SpecularName = 'BSB0001_lod1_specteam.dds',
-                --},
             },
         },
         PlaceholderMeshName = 'UXB0000',

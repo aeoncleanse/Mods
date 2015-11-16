@@ -63,7 +63,6 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
         },
-        --BuildAttachBone = 'Attachpoint',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -72,12 +71,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-               -- {
-               --     AlbedoName = 'bab5205_lod1_albedo.dds',
-              --      LODCutoff = 300,
-               --     ShaderName = 'Aeon',
-               --     SpecularName = 'bab5205_lod1_specteam.dds',
-              --  },
             },
         },
         SpawnRandomRotation = true,

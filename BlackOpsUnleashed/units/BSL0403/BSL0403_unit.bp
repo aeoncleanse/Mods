@@ -77,12 +77,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-               -- {
-               --     AlbedoName = '',
-               --     LODCutoff = 600,
-              --      ShaderName = 'Seraphim',
-               --     SpecularName = '',
-               -- },
             },
         },
         MovementEffects = {
@@ -154,8 +148,6 @@ UnitBlueprint {
     LifeBarHeight = 0.075,
     LifeBarOffset = 0.3,
     LifeBarSize = 0.5,
-
-    -- This is energy ball stuff
     Lifetime = 30,
     MaxMoveRange = 5,
     Physics = {

@@ -68,12 +68,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
-               -- {
-               --     AlbedoName = 'brb4309_lod1_albedo.dds',
-               --     LODCutoff = 300,
-               --     ShaderName = 'Insect',
-               --     SpecularName = 'brb4309_lod1_specteam.dds',
-                --},
             },
         },
         PlaceholderMeshName = 'UXB0018',

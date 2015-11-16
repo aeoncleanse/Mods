@@ -180,48 +180,8 @@ UnitBlueprint {
                     LODCutoff = 500,
                     ShaderName = 'Insect',
                 },
-               -- {
-               --     AlbedoName = 'BRA0409_lod1_albedo.dds',
-                --    LODCutoff = 500,
-               --     ShaderName = 'Insect',
-               --     SpecularName = 'BRA0409_lod1_specteam.dds',
-               -- },
             },
         },
-        --MovementEffects = {
-                --Air = {
-                --Contrails = {
-               --     Bones = {
-               --         'Exhaust_Left',
-               --         'Exhaust_Right',
-               --     },
-               -- },
-                --Effects = {
-                --    {
-                --        Bones = {
-                --            'Left_Pad01',
-                --            'Left_Pad02',
-                --            'Right_Pad01',
-                --            'Right_Pad02',
-                --        },
-                --        Scale = 2,
-                --        Type = 'Hover04',
-                --    },
-                --},
-            --},
-            --BeamExhaust = {
-            --    Bones = {
-            --        'Engine_01',
-            --        'Engine_02',
-            --        'Engine_03',
-            --        'Engine_04',
-            --        'Engine_05',
-            --    },
-            --    Cruise = true,
-            --    Idle = true,
-            --    Landed = true,
-            --},
-        --},
         PlaceholderMeshName = 'UXB0000',
         SpawnRandomRotation = false,
         UniformScale = 0.33,
@@ -299,8 +259,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 10,
---        FuelRechargeRate = 70,
---        FuelUseTime = 800,
         SkirtOffsetX = -2,
         SkirtOffsetZ = -7.5,
         SkirtSizeX = 10,

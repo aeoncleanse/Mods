@@ -75,12 +75,6 @@ UnitBlueprint {
             '<LOC ability_hover>Hover',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
         },
-        --AnimationDeath = {
-        --    {
-        --        Animation = '/units/uas0302/uas0302_adeath03.sca',
-        --        Weight = 100,
-        --    },
-        --},
         IdleEffects = {
             Land = {
                 Effects = {
@@ -105,12 +99,6 @@ UnitBlueprint {
                     LODCutoff = 600,
                     ShaderName = 'Aeon',
                 },
-                --{
-               --     AlbedoName = 'bal0402_lod1_albedo.dds',
-               --     LODCutoff = 600,
-               --     ShaderName = 'Aeon',
-               --     SpecularName = 'bal0402_lod1_specteam.dds',
-               -- },
             },
         },
         MovementEffects = {

@@ -154,12 +154,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-               -- {
-               --     AlbedoName = 'BSA0002_lod1_albedo.dds',
-               --     LODCutoff = 215,
-               --     ShaderName = 'Seraphim',
-               --     SpecularName = 'BSA0002_lod1_specteam.dds',
-               -- },
             },
         },
         MovementEffects = {

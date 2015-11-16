@@ -60,7 +60,6 @@ UnitBlueprint {
             '<LOC ability_deathaoe>Volatile',
         },
         AnimationOpen = '/units/UEB1102/ueb1102_Aopen.sca',
-        --AnimationUpgrade = '/units/beb1202/beb1202_Aupgrade.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -68,12 +67,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Unit',
                 },
-               -- {
-               --     AlbedoName = 'beb1202_lod1_albedo.dds',
-               --     LODCutoff = 300,
-               --     ShaderName = 'Unit',
-               --     SpecularName = 'beb1202_lod1_specteam.dds',
-                --},
             },
         },
         PlaceholderMeshName = 'UXB0011',

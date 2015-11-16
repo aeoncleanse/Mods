@@ -153,12 +153,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
-              --  {
-              --      AlbedoName = 'BSA0001_lod1_albedo.dds',
-              --      LODCutoff = 215,
-              --      ShaderName = 'Seraphim',
-              --      SpecularName = 'BSA0001_lod1_specteam.dds',
-              --  },
             },
         },
         MovementEffects = {
@@ -230,8 +224,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 7,
---        FuelRechargeRate = 5,
---        FuelUseTime = 350,
         GroundCollisionOffset = 2,
         MaxSpeed = 0.5,
         MeshExtentsX = 2,
@@ -246,7 +238,6 @@ UnitBlueprint {
     SizeX = 1,
     SizeY = 0.3,
     SizeZ = 1,
---    StrategicIconName = 'icon_fighter1_antiair',
     StrategicIconSortPriority = 55,
     Transport = {
         AirClass = true,

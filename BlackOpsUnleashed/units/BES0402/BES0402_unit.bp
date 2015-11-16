@@ -564,7 +564,6 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
---Front deck gun
         {
             AboveWaterTargetsOnly = true,
             Audio = {

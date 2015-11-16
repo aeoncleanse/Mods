@@ -96,7 +96,6 @@ UnitBlueprint {
                     MeshName = '/units/ueb0302/ueb0302_lod0.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0302/ueb0302_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/ueb0302/ueb0302_lod1_albedo.dds',
@@ -104,7 +103,6 @@ UnitBlueprint {
                     MeshName = '/units/ueb0302/ueb0302_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0302/ueb0302_lod1_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -218,7 +216,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- TopRight Offset From Center
             2,
 
@@ -228,7 +225,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- BottomLeft Offset From Center
             -1.6,
 
@@ -238,7 +234,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- BottomRight Offset From Center
             2,
 
@@ -248,7 +243,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- Platform 2
             -- TopLeft Offset From Center
             -1.75,
@@ -258,8 +252,7 @@ UnitBlueprint {
 
             -- z
             0,
-
-            -- height
+            
             -- TopRight Offset From Center
             -1.6,
 
@@ -269,7 +262,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- BottomLeft Offset From Center
             -1.75,
 
@@ -279,7 +271,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- BottomRight Offset From Center
             -1.6,
 
@@ -289,7 +280,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- Platform 3
             -- TopLeft Offset From Center
             -2,
@@ -300,7 +290,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- TopRight Offset From Center
             2,
 
@@ -310,7 +299,6 @@ UnitBlueprint {
             -- z
             0.18,
 
-            -- height
             -- BottomLeft Offset From Center
             -2,
 
@@ -320,7 +308,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- BottomRight Offset From Center
             2,
 
@@ -354,8 +341,6 @@ UnitBlueprint {
     SelectionSizeX = 3.2,
     SelectionSizeZ = 3.1,
     SelectionThickness = 0.3,
-
-    -- height
     SizeX = 3.5,
     SizeY = 0.75,
     SizeZ = 3.5,

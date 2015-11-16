@@ -89,12 +89,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-            --    {
-             --       AlbedoName = 'BAL0110_lod1_albedo.dds',
-             --       LODCutoff = 215,
-              --      ShaderName = 'Aeon',
-               --     SpecularName = 'BAL0110_lod1_specteam.dds',
-              --  },
             },
         },
         MovementEffects = {
@@ -163,7 +157,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         DragCoefficient = 0.2,
-        --Elevation = 2,
         MaxAcceleration = 2.5,
         MaxBrake = 2.5,
         MaxSpeed = 2.5,

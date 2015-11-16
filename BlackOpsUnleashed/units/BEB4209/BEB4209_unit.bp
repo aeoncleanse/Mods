@@ -66,12 +66,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Unit',
                 },
-               -- {
-               --     AlbedoName = 'beb4209_lod1_albedo.dds',
-               --     LODCutoff = 300,
-               --     ShaderName = 'Unit',
-               --     SpecularName = 'beb4209_lod1_specteam.dds',
-               -- },
             },
         },
         PlaceholderMeshName = 'UXB0016',

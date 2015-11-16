@@ -95,12 +95,6 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Aeon',
                 },
-                --{
-                --    AlbedoName = 'bab1106_lod1_albedo.dds',
-                --    LODCutoff = 215,
-                --    ShaderName = 'Aeon',
-                --    SpecularName = 'bab1106_lod1_specteam.dds',
-               -- },
             },
         },
         PlaceholderMeshName = 'UXB0012',

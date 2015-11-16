@@ -10,7 +10,6 @@ UnitBlueprint {
     CollisionOffsetY = -1,
     Categories = {
         'PRODUCTSC1',
-        --'UNSELECTABLE',
         'UNTARGETABLE',
         'DRONE',
         'CYBRAN',

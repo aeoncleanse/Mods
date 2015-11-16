@@ -125,7 +125,6 @@ UnitBlueprint {
                     MeshName = '/units/ueb0303/ueb0303_lod0.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0303/ueb0303_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/ueb0303/ueb0303_lod1_albedo.dds',
@@ -133,7 +132,6 @@ UnitBlueprint {
                     MeshName = '/units/ueb0303/ueb0303_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0303/ueb0303_lod1_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },

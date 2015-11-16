@@ -122,7 +122,6 @@ UnitBlueprint {
                     MeshName = '/units/uab0201/uab0201_lod0.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/uab0201/uab0201_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/uab0201/uab0201_lod1_albedo.dds',
@@ -130,7 +129,6 @@ UnitBlueprint {
                     MeshName = '/units/uab0201/uab0201_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/uab0201/uab0201_lod1_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -246,7 +244,6 @@ UnitBlueprint {
             -- z
             0.15,
 
-            -- height
             -- TopRight Offset From Center
             0.8,
 
@@ -256,7 +253,6 @@ UnitBlueprint {
             -- z
             0.15,
 
-            -- height
             -- BottomLeft Offset From Center
             -0.8,
 
@@ -266,7 +262,6 @@ UnitBlueprint {
             -- z
             0.15,
 
-            -- height
             -- BottomRight Offset From Center
             0.8,
 
@@ -286,7 +281,6 @@ UnitBlueprint {
             -- z
             0.05,
 
-            -- height
             -- TopRight Offset From Center
             2.25,
 
@@ -296,7 +290,6 @@ UnitBlueprint {
             -- z
             0.05,
 
-            -- height
             -- BottomLeft Offset From Center
             -2.25,
 
@@ -306,7 +299,6 @@ UnitBlueprint {
             -- z
             0.05,
 
-            -- height
             -- BottomRight Offset From Center
             2.25,
 

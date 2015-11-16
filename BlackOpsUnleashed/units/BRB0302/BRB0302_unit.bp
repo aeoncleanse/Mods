@@ -54,7 +54,6 @@ UnitBlueprint {
         'FACTORY',
         'RALLYPOINT',
         'DRAGBUILD',
-        --'CONSTRUCTIONSORTDOWN',
         'SIZE16',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -106,7 +105,6 @@ UnitBlueprint {
                     MeshName = '/units/urb0302/urb0302_lod0.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/urb0302/urb0302_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/urb0302/urb0302_lod1_albedo.dds',
@@ -114,7 +112,6 @@ UnitBlueprint {
                     MeshName = '/units/urb0302/urb0302_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/urb0302/urb0302_lod1_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -232,7 +229,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- TopRight Offset From Center
             1.4,
 
@@ -242,7 +238,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- BottomLeft Offset From Center
             -1.4,
 
@@ -252,7 +247,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- BottomRight Offset From Center
             1.4,
 
@@ -262,7 +256,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- Platform 2
             -- TopLeft Offset From Center
             -2.3,
@@ -273,7 +266,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- TopRight Offset From Center
             -1.4,
 
@@ -283,7 +275,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- BottomLeft Offset From Center
             -2.3,
 
@@ -293,7 +284,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- BottomRight Offset From Center
             -1.4,
 
@@ -303,7 +293,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- Platform 3
             -- TopLeft Offset From Center
             1.4,
@@ -314,7 +303,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- TopRight Offset From Center
             2.4,
 
@@ -324,7 +312,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- BottomLeft Offset From Center
             1.4,
 
@@ -334,7 +321,6 @@ UnitBlueprint {
             -- z
             0.03,
 
-            -- height
             -- BottomRight Offset From Center
             2.3,
 
@@ -367,8 +353,6 @@ UnitBlueprint {
     SelectionSizeX = 3,
     SelectionSizeZ = 3,
     SelectionThickness = 0.33,
-
-    -- height
     SizeX = 3.5,
     SizeY = 0.75,
     SizeZ = 3.5,

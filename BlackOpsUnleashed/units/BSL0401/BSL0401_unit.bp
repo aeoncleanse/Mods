@@ -1,16 +1,12 @@
 UnitBlueprint {
     AI = {
         TargetBones = {
-            --'Beam_Muzzle01',
             'BSL0401',
-            --'Focus_Beam02_Emitter03',
-            --'Focus_Beam02_Emitter01',
-            --'Focus_Beam01_Emitter01',
         },
-        AssistHeartbeatInterval = 0.5, -- def. 1, time in seconds between drone and carrier management heartbeats
-        DroneControlRange = 50, -- def. 70,  maximum distance the drone can stray from the carrier before being recalled (70 is the goliath's radar range)
-        DroneReturnRange = 25, -- def. control range / 2, radius at which returning drones will have command input and weapons re-enabled
-        AirMonitorRange = 30, -- def. (control range + 10) / 2, radius that the drone heartbeat will check for hostile gunships 
+        AssistHeartbeatInterval = 0.5,
+        DroneControlRange = 50,
+        DroneReturnRange = 25,
+        AirMonitorRange = 30,
     },
     Audio = {
         FootFallGeneric = Sound {
@@ -374,11 +370,6 @@ UnitBlueprint {
                     Cue = 'XSB2301_Ultrachromatic_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-                --BeamStart = Sound {
-                --    Bank = 'XSB_Weapon',
-                --    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
-                --    LodCutoff = 'Weapon_LodCutoff',
-                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
@@ -479,11 +470,6 @@ UnitBlueprint {
                     Cue = 'XSB2301_Ultrachromatic_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-                --BeamStart = Sound {
-                --    Bank = 'XSB_Weapon',
-                --    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
-                --    LodCutoff = 'Weapon_LodCutoff',
-                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
@@ -585,11 +571,6 @@ UnitBlueprint {
                     Cue = 'XSB2301_Ultrachromatic_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-                --BeamStart = Sound {
-                --    Bank = 'XSB_Weapon',
-                --    Cue = 'XSB2301_Ultrachromatic_Beam_Start',
-                --    LodCutoff = 'Weapon_LodCutoff',
-                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',

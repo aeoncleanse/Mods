@@ -70,7 +70,6 @@ UnitBlueprint {
     },
     Description = '<LOC bab2404_desc>Artemis Satelite Control',
     Display = {
-        --AnimationPermOpen = '/units/XAB2404/XAB2404_aopen01.sca',
         BuildAttachBone = 'Attachpoint',
         Mesh = {
             IconFadeInZoom = 130,
@@ -80,12 +79,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-                --{
-                --    AlbedoName = 'bab2404_albedo.dds',
-                --    LODCutoff = 500,
-                --    ShaderName = 'Aeon',
-                --    SpecularName = 'bab2404_specteam.dds',
-                --},
             },
         },
         PlaceholderMeshName = 'UXB0006',

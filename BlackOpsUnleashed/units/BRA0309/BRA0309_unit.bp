@@ -134,10 +134,7 @@ UnitBlueprint {
             '<LOC ability_transport>Transport',
             '<LOC ability_cloakfield>Cloak Field',
         },
---        AnimationIdle = '/units/BRA0309/BRA0309_Aidle.sca',
---        AnimationLand = '/units/BRA0309/BRA0309_Aland.sca',
         AnimationOpen = '/units/BRA0309/BRA0309_Aopen.sca',
---        AnimationTakeOff = '/units/BRA0309/BRA0309_Atakeoff.sca',
         ForcedBuildSpin = 90,
         LayerChangeEffects = {
             AirLand = {
@@ -180,12 +177,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
-               -- {
-               --     AlbedoName = 'BRA0309_lod1_albedo.dds',
-               --     LODCutoff = 300,
-               --     ShaderName = 'Insect',
-               --     SpecularName = 'BRA0309_lod1_specteam.dds',
-               -- },
             },
         },
         MovementEffects = {
@@ -239,7 +230,6 @@ UnitBlueprint {
         SelectionPriority = 2,
         TechLevel = 'RULEUTL_Advanced',
         ToggleCaps = {
---            RULEUTC_CloakToggle = true,
             RULEUTC_IntelToggle = true,
         },
         UnitName = '<LOC BRA0309_name>Vanisher',
@@ -248,7 +238,6 @@ UnitBlueprint {
     Intel = {
         VisionRadius = 32,
         CloakFieldRadius = 13,
---        Cloak  = true,
         ReactivateTime = 5,
     },
     Interface = {

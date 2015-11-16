@@ -83,13 +83,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
-               -- {
-              --      AlbedoName = 'bsb2303_lod1_albedo.dds',
-               --     LODCutoff = 215,
-               --     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-               --     ShaderName = 'Seraphim',
-               --     SpecularName = 'bsb2303_lod1_specteam.dds',
-               -- },
             },
         },
         PlaceholderMeshName = 'UXB0004',
@@ -146,7 +139,6 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Advanced',
-        --UnitName = '<LOC xsb2303_name>Hethatha',
         UnitWeight = 1,
     },
     Intel = {

@@ -109,7 +109,6 @@ UnitBlueprint {
                     MeshName = '/units/ueb0301/ueb0301_lod0.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0301/ueb0301_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/ueb0301/ueb0301_lod1_albedo.dds',
@@ -117,7 +116,6 @@ UnitBlueprint {
                     MeshName = '/units/ueb0301/ueb0301_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/ueb0301/ueb0301_lod1_specteam.dds',
-                    --SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -229,7 +227,6 @@ UnitBlueprint {
             -- z
             0.5,
 
-            -- height
             -- TopRight Offset From Center
             1.1,
 
@@ -239,7 +236,6 @@ UnitBlueprint {
             -- z
             0.5,
 
-            -- height
             -- BottomLeft Offset From Center
             -1.1,
 
@@ -249,7 +245,6 @@ UnitBlueprint {
             -- z
             0.5,
 
-            -- height
             -- BottomRight Offset From Center
             1.1,
 
@@ -259,7 +254,6 @@ UnitBlueprint {
             -- z
             0.5,
 
-            -- height
             -- Platform 2
             -- TopLeft Offset From Center
             -1.7,
@@ -270,7 +264,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- TopRight Offset From Center
             -1.1,
 
@@ -280,7 +273,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- BottomLeft Offset From Center
             -1.7,
 
@@ -290,7 +282,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- BottomRight Offset From Center
             -1.1,
 
@@ -300,7 +291,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- Platform 3
             -- TopLeft Offset From Center
             1.1,
@@ -311,7 +301,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- TopRight Offset From Center
             1.7,
 
@@ -321,7 +310,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- BottomLeft Offset From Center
             1.1,
 
@@ -331,7 +319,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- BottomRight Offset From Center
             1.7,
 
@@ -341,7 +328,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- Platform 4
             -- TopLeft Offset From Center
             -2.5,
@@ -352,7 +338,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- TopRight Offset From Center
             -1.7,
 
@@ -362,7 +347,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- BottomLeft Offset From Center
             -2.5,
 
@@ -372,7 +356,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- BottomRight Offset From Center
             -1.7,
 
@@ -382,7 +365,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- Platform 5
             -- TopLeft Offset From Center
             1.7,
@@ -393,7 +375,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- TopRight Offset From Center
             2.5,
 
@@ -403,7 +384,6 @@ UnitBlueprint {
             -- z
             0,
 
-            -- height
             -- BottomLeft Offset From Center
             1.7,
 
@@ -413,7 +393,6 @@ UnitBlueprint {
             -- z
             0.45,
 
-            -- height
             -- BottomRight Offset From Center
             2.5,
 
@@ -437,8 +416,6 @@ UnitBlueprint {
                 Z = 0,
             },
         },
-
-        -- height
         SkirtOffsetX = -1.5,
         SkirtOffsetZ = -1.5,
         SkirtSizeX = 8,
@@ -448,8 +425,6 @@ UnitBlueprint {
     SelectionSizeX = 3.2,
     SelectionSizeZ = 3.3,
     SelectionThickness = 0.3,
-
-    -- height
     SizeX = 4.8,
     SizeY = 0.6,
     SizeZ = 4.8,

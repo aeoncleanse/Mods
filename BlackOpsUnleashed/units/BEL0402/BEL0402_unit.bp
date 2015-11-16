@@ -1,15 +1,12 @@
 UnitBlueprint {
     AI = {
         TargetBones = {
-            --'Waist',
             'Torso',
-            --'L_Missile_Muzzle01',
-            --'R_Missile_Muzzle03',
         },
-        AssistHeartbeatInterval = 0.5, -- def. 1, time in seconds between drone and carrier management heartbeats
-        DroneControlRange = 70, -- def. 70,  maximum distance the drone can stray from the carrier before being recalled (70 is the goliath's radar range)
-        DroneReturnRange = 35, -- def. control range / 2, radius at which returning drones will have command input and weapons re-enabled
-        AirMonitorRange = 40, -- def. (control range + 10) / 2, radius that the drone heartbeat will check for hostile gunships 
+        AssistHeartbeatInterval = 0.5,
+        DroneControlRange = 70,
+        DroneReturnRange = 35,
+        AirMonitorRange = 40,
     },
     Audio = {
         Destroyed = Sound {
@@ -145,12 +142,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Unit',
                 },
-                --{
-                --    AlbedoName = 'bel0402_albedo.dds',
-                --    LODCutoff = 300,
-                --    ShaderName = 'Unit',
-                --    SpecularName = 'bel0402_specteam.dds',
-                --},
             },
         },
         MovementEffects = {
@@ -403,7 +394,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = true,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 10,--~3750
+            RateOfFire = 10,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -433,17 +424,9 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
---cruise missile
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-           -- Audio = {
-            --    Fire = Sound {
-            --        Bank = 'UELWeapon',
-            --        Cue = 'UEL0111_Missile_Cruise',
-            --        LodCutoff = 'Weapon_LodCutoff',
-           --     },
-           -- },
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             Damage = 1200,
@@ -503,7 +486,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_InDirectFire',
-            RateOfFire = 3.33,--643.2
+            RateOfFire = 3.33,
             RenderFireClock = false,
             SlavedToBody = true,
             TargetCheckInterval = 0.25,
@@ -595,7 +578,7 @@ UnitBlueprint {
             RangeCategory = 'UWRC_DirectFire',
             SlavedToBody = true,
             SlavedToBodyArcRange = 55,
-            RateOfFire = 1,--1920
+            RateOfFire = 1,
             RenderFireClock = true,
             TargetCheckInterval = 1,
             TargetPriorities = {
@@ -725,7 +708,6 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 100,
-            --ProjectileId = '/projectiles/GoliathTMD01/GoliathTMD01_proj.bp',
             ProjectileId = '/projectiles/TDPhalanx01/TDPhalanx01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.1,
             ProjectilesPerOnFire = 1,

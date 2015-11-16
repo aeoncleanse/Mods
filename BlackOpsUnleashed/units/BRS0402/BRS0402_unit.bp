@@ -146,12 +146,6 @@ UnitBlueprint {
                     LODCutoff = 600,
                     ShaderName = 'Insect',
                 },
-                --{
-               --     AlbedoName = 'BRS0402_lod1_albedo.dds',
-                --    LODCutoff = 600,
-                --    ShaderName = 'Insect',
-                --    SpecularName = 'BRS0402_lod1_specteam.dds',
-                --},
             },
         },
         MovementEffects = {
@@ -360,8 +354,6 @@ UnitBlueprint {
             RackSlavedToTurret = true,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.8,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 140,
             TargetCheckInterval = 2,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -459,8 +451,6 @@ UnitBlueprint {
             RackSlavedToTurret = true,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.8,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 140,
             TargetCheckInterval = 2,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -551,8 +541,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -642,8 +630,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -733,8 +719,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -824,8 +808,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -915,8 +897,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1006,8 +986,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
-            --SlavedToBody = true,
-            --SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1356,8 +1334,6 @@ UnitBlueprint {
             BeamLifetime = 0,
             CollideFriendly = false,
             ContinuousBeam = true,
-            --HeadingArcCenter = 180,
-            --HeadingArcRange = 160,
             Damage = 5,
             DamageRadius = 0.1,
             DamageType = 'Normal',
@@ -1437,8 +1413,6 @@ UnitBlueprint {
             BeamLifetime = 0,
             CollideFriendly = false,
             ContinuousBeam = true,
-            --HeadingArcCenter = 180,
-            --HeadingArcRange = 160,
             Damage = 5,
             DamageRadius = 0.1,
             DamageType = 'Normal',

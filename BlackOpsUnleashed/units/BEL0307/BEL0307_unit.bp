@@ -106,12 +106,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Unit',
                 },
-                --{
-                --    AlbedoName = 'bel0307_lod1_albedo.dds',
-               --     LODCutoff = 215,
-                --    ShaderName = 'Unit',
-                --    SpecularName = 'bel0307_lod1_specteam.dds',
-               -- },
             },
         },
         MovementEffects = {
@@ -165,7 +159,6 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-                        ----------
                         {
                             BoneName = 'Track_Front_Right',
                             TreadMarks = 'tank_treads03_albedo',
@@ -346,7 +339,7 @@ UnitBlueprint {
             },
             FiringTolerance = 1,
             LeadTarget = true,
-            Label = 'MainTurret',-- approx 140 dps
+            Label = 'MainTurret',
             MaxRadius = 40,
             MuzzleChargeDelay = 1.5,
             MuzzleSalvoDelay = 0,
@@ -429,7 +422,7 @@ UnitBlueprint {
             },
             FiringRandomness = 0.2,
             FiringTolerance = 2,
-            Label = 'GattlerTurret',-- 
+            Label = 'GattlerTurret',
             MaxRadius = 40,
             MuzzleSalvoDelay = 0.33,
             MuzzleSalvoSize = 15,
@@ -694,7 +687,7 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 10,
-            Label = 'LeftMissileRack',-- 66 dps
+            Label = 'LeftMissileRack',
             MaxRadius = 45,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 6,
@@ -772,7 +765,7 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 10,
-            Label = 'RightMissileRack',-- 66 dps
+            Label = 'RightMissileRack',
             MaxRadius = 45,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 6,

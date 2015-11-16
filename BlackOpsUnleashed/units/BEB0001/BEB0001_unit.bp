@@ -64,12 +64,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Unit',
                 },
-               -- {
-               --     AlbedoName = 'ueb5202_lod1_albedo.dds',
-               --     LODCutoff = 300,
-               --     ShaderName = 'Unit',
-               --     SpecularName = 'ueb5202_lod1_specteam.dds',
-                --},
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -144,8 +138,6 @@ UnitBlueprint {
     SizeX = 0.1,
     SizeY = 0.1,
     SizeZ = 0.1,
-    --StrategicIconName = 'icon_structure2_air',
-    --StrategicIconSortPriority = 175,
     Transport = {
         Class2AttachSize = 2,
         Class3AttachSize = 4,

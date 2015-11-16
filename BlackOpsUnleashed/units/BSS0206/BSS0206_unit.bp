@@ -122,13 +122,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-               -- {
-              --      AlbedoName = 'bss0206_lod1_albedo.dds',
-              --      LODCutoff = 300,
-               --     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-               --     ShaderName = 'Seraphim',
-               --     SpecularName = 'bss0206_lod1_specteam.dds',
-               -- },
             },
         },
         SpawnRandomRotation = true,
@@ -384,7 +377,6 @@ UnitBlueprint {
             DamageFriendly = false,
             DamageRadius = 1,
             DamageType = 'Normal',
-            --DetonatesAtTargetHeight = true,
             DisplayName = 'Olaris AA Artillery Cannon',
             FireTargetLayerCapsTable = {
                 Water = 'Air',

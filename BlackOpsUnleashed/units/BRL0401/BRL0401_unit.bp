@@ -118,7 +118,6 @@ UnitBlueprint {
         AnimationWalk = '/units/BRL0401/BRL0401_AWalk01.sca',
         AnimationDeploy = '/units/BRL0401/BRL0401_Deploy.sca',
         AnimationPackUp = '/units/BRL0401/BRL0401_PackUp.sca',
-        --AnimationActivate = '/units/BRL0308/BRL0308_Activate.sca',
         AnimationWalkRate = 0.75,
         Mesh = {
             IconFadeInZoom = 130,
@@ -127,12 +126,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
-                --{
-                --    AlbedoName = 'brl0401_albedo.dds',
-               --     LODCutoff = 300,
-                --    ShaderName = 'Insect',
-                --    SpecularName = 'brl0401_specteam.dds',
-                --},
             },
         },
         MovementEffects = {
@@ -153,12 +146,7 @@ UnitBlueprint {
                     Bones = {
                         {
                             FootBone = 'R_FootFall',
-                            ----HipBone = 'Right_Leg_1',
-                            --KneeBone = 'Right_Leg_2',
                             MaxFootFall = -0.25,
-                            --Offset = {
-                            --    z = -0.5,
-                            --},
                             StraightLegs = false,
                             Tread = {
                                 TreadLifeTime = 60,
@@ -176,12 +164,7 @@ UnitBlueprint {
                         },
                         {
                             FootBone = 'L_FootFall',
-                            --HipBone = 'Left_Leg_1',
-                            --KneeBone = 'Left_Leg_2',
                             MaxFootFall = -0.25,
-                           -- Offset = {
-                           --     z = -0.5,
-                           -- },
                             StraightLegs = false,
                             Tread = {
                                 TreadLifeTime = 60,
@@ -475,7 +458,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 2.0, --1000
+            RateOfFire = 2.0,
             TargetCheckInterval = 0.15,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -597,11 +580,6 @@ UnitBlueprint {
                     Cue = 'bassie_maingun_fire',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-                --MuzzleChargeStart = Sound {
-                --    Bank = 'URLWeapon',
-                --    Cue = 'URL0303_Disintegrator_Charge',
-                --    LodCutoff = 'Weapon_LodCutoff',
-                --},
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
@@ -649,7 +627,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 0.2, --2600
+            RateOfFire = 0.2,
             RenderFireClock = false,
             TargetCheckInterval = 1,
             TargetPriorities = {
@@ -698,9 +676,6 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 2,
-
-            -- HeadingArcCenter = 0,
-            -- HeadingArcRange = 45,
             Label = 'LeftBolter',
             LeadTarget = true,
             MaxRadius = 60,
@@ -739,7 +714,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 3.5,--187.5
+            RateOfFire = 3.5,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -786,9 +761,6 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 2,
-
-            -- HeadingArcCenter = 0,
-            -- HeadingArcRange = 45,
             Label = 'RightBolter',
             LeadTarget = true,
             MaxRadius = 60,
@@ -827,7 +799,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 3.5,--187.5
+            RateOfFire = 3.5,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -938,7 +910,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
-            RateOfFire = 5, --960
+            RateOfFire = 5,
             RenderFireClock = false,
             TargetCheckInterval = 2,
             TargetPriorities = {
@@ -1111,7 +1083,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
-            RateOfFire = 0.5, --3200
+            RateOfFire = 0.5,
             RenderFireClock = false,
             TargetCheckInterval = 1,
             TargetPriorities = {

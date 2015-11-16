@@ -80,12 +80,12 @@ UnitBlueprint {
         },
     },
     Buffs = {
-        Regen = { -- time need for full hp regen assuming 4k base hp:
-            Level1 = 40, -- 220s
-            Level2 = 80, -- 120s
-            Level3 = 120, -- 86s
-            Level4 = 160, -- 70s
-            Level5 = 200, -- 60s
+        Regen = {
+            Level1 = 40,
+            Level2 = 80,
+            Level3 = 120,
+            Level4 = 160,
+            Level5 = 200,
         },
     }, 
     Categories = {
@@ -129,7 +129,6 @@ UnitBlueprint {
         BuildCostMass = 180,
         BuildTime = 180,
     },
-    --SizeSphere = 0.5, -- 1 - more reasonable collision size 
     General = {
         CapCost = 0,
         Category = 'Utility',
@@ -151,12 +150,6 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'air',
-       -- OrderOverrides = {
-        --    DroneL = {
-        --        bitmapId = 'drone',
-        --        helpText = 'drone_station',
-        --    },
-        --},
         SelectionPriority = 6,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,

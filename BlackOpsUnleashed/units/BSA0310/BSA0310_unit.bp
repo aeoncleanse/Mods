@@ -4,7 +4,6 @@ UnitBlueprint {
         BankFactor = 0.1,
         BankForward = false,
         CanFly = true,
-        --HoverAttack = true,
         CirclingDirChangeFrequencySec = 1.25,
         CirclingElevationChangeRatio = 0.25,
         CirclingRadiusChangeMaxRatio = 0.9,
@@ -146,12 +145,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-            --    {
-            --        AlbedoName = 'BSA0310_lod1_albedo.dds',
-             --       LODCutoff = 215,
-            --        ShaderName = 'Seraphim',
-             --       SpecularName = 'BSA0310_lod1_specteam.dds',
-             --   },
             },
         },
         MovementEffects = {
@@ -159,8 +152,6 @@ UnitBlueprint {
                 Contrails = {
                     Bones = {
                         'Left_Exhaust',
-                        --'Left_Exhaust01',
-                        --'Left_Exhaust02',
                         'Right_Exhaust',
                         'Right_Exhaust01',
                         'Right_Exhaust02',
