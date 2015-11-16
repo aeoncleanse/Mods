@@ -1,21 +1,23 @@
---****************************************************************************
+--------------------------------------------------------------------------------------------------------------
 -- File     :  \data\effects\Entities\InqDeathBombEffectController01\InqDeathBombEffectController01_script.lua
 -- Author(s):  Greg Kohne
 -- Summary  :  Ohwalli Bomb effect controller script, non-damaging
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--------------------------------------------------------------------------------------------------------------
+
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local RandomInt = import('/lua/utilities.lua').GetRandomInt
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
+local InqDeathBombEffect01 = '/mods/BlackOpsUnleashed/effects/Entities/InqDeathBombEffect01/InqDeathBombEffect01_proj.bp'         
+local InqDeathBombEffect06 = '/mods/BlackOpsUnleashed/effects/Entities/InqDeathBombEffect06/InqDeathBombEffect06_proj.bp'
 
 local BaseRingRiftEffects = {
-    '/effects/Entities/InqDeathBombEffect03/InqDeathBombEffect03_proj.bp',
-    '/effects/Entities/InqDeathBombEffect04/InqDeathBombEffect04_proj.bp',
-    '/effects/Entities/InqDeathBombEffect05/InqDeathBombEffect05_proj.bp',
-}         
-local InqDeathBombEffect01 = '/effects/Entities/InqDeathBombEffect01/InqDeathBombEffect01_proj.bp'         
-local InqDeathBombEffect06 = '/effects/Entities/InqDeathBombEffect06/InqDeathBombEffect06_proj.bp'
+    '/mods/BlackOpsUnleashed/effects/Entities/InqDeathBombEffect03/InqDeathBombEffect03_proj.bp',
+    '/mods/BlackOpsUnleashed/effects/Entities/InqDeathBombEffect04/InqDeathBombEffect04_proj.bp',
+    '/mods/BlackOpsUnleashed/effects/Entities/InqDeathBombEffect05/InqDeathBombEffect05_proj.bp',
+}
 
 InqDeathBombEffectController01 = Class(NullShell) {
     NukeInnerRingDamage = 12000,
@@ -35,6 +37,7 @@ InqDeathBombEffectController01 = Class(NullShell) {
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
     end,
+    
     PassData = function(self, Data)
         if Data.NukeOuterRingDamage then self.NukeOuterRingDamage = Data.NukeOuterRingDamage end
         if Data.NukeOuterRingRadius then self.NukeOuterRingRadius = Data.NukeOuterRingRadius end
@@ -54,12 +57,12 @@ InqDeathBombEffectController01 = Class(NullShell) {
         else
             local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
             local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
+            
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
             WaitSeconds(tickLength)
             for i = 2, self.NukeOuterRingTicks do
-                --print('Damage Ring: MaxRadius:' .. 2*i)
                 DamageRing(self:GetLauncher(), myPos, ringWidth * (i - 1), ringWidth * i, self.NukeOuterRingDamage, 'Normal', true, true)
                 WaitSeconds(tickLength)
             end
@@ -73,12 +76,12 @@ InqDeathBombEffectController01 = Class(NullShell) {
         else
             local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
             local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
+            
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
             WaitSeconds(tickLength)
             for i = 2, self.NukeInnerRingTicks do
-                --LOG('Damage Ring: MaxRadius:' .. ringWidth * i)
                 DamageRing(self:GetLauncher(), myPos, ringWidth * (i - 1), ringWidth * i, self.NukeInnerRingDamage, 'Normal', true, true)
                 WaitSeconds(tickLength)
             end
@@ -86,9 +89,7 @@ InqDeathBombEffectController01 = Class(NullShell) {
     end,   
     
     MainBlast = function(self, army)
-        --WaitSeconds(2.5)
-        
-        --------Create a light for this thing's flash.
+        -- Create a light for this thing's flash.
         CreateLightParticle(self, -1, self:GetArmy(), 80, 14, 'flare_lens_add_03', 'ramp_white_07')
         
         -- Create our decals
@@ -100,12 +101,9 @@ InqDeathBombEffectController01 = Class(NullShell) {
         end
         
         self:CreatePlumes()
-        
-        ------self:ShakeCamera(radius, maxShakeEpicenter, minShakeAtRadius, interval)
         self:ShakeCamera(15, 5, 0, 1.5)        
 
         WaitSeconds(0.3)
-        
         
         -- Create explosion dust ring
         local vx, vy, vz = self:GetVelocity()
@@ -152,4 +150,5 @@ InqDeathBombEffectController01 = Class(NullShell) {
         end        
     end,
 }
+
 TypeClass = InqDeathBombEffectController01
