@@ -1,12 +1,9 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/BRS0304/BRS0304_script.lua
-#**  Author(s):  David Tomandl, Jessica St. Croix
-#**
-#**  Summary  :  Cybran Cruiser Script
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+-----------------------------------------------------------------
+-- File     :  /cdimage/units/BRS0304/BRS0304_script.lua
+-- Author(s):  David Tomandl, Jessica St. Croix
+-- Summary  :  Cybran Cruiser Script
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CSeaUnit = import('/lua/cybranunits.lua').CSeaUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
@@ -18,7 +15,6 @@ local CANNaniteTorpedoWeapon = CybranWeaponsFile.CANNaniteTorpedoWeapon
 local CIFSmartCharge = CybranWeaponsFile.CIFSmartCharge
 local MartyrHeavyMicrowaveLaserGenerator = WeaponsFile.MartyrHeavyMicrowaveLaserGenerator
 local MissileRedirect = import('/lua/defaultantiprojectile.lua').MissileRedirect
-
 
 BRS0304 = Class(CSeaUnit) {
     Weapons = {
@@ -37,19 +33,6 @@ BRS0304 = Class(CSeaUnit) {
         CSeaUnit.OnCreate(self)
         self:SetWeaponEnabledByLabel('GroundGun', false)
     end,
-    
-    #OnStopBeingBuilt = function(self,builder,layer)
-   ##     CSeaUnit.OnStopBeingBuilt(self,builder,layer)
-    #    local bp = self:GetBlueprint().Defense.AntiMissile
-     #   local antiMissile = MissileRedirect {
-      #      Owner = self,
-       #     Radius = bp.Radius,
-      #      AttachBone = bp.AttachBone,
-     #       RedirectRateOfFire = bp.RedirectRateOfFire
-     #   }
-     #   self.Trash:Add(antiMissile)
-     #   self.UnitComplete = true
-   # end,
     
     OnScriptBitSet = function(self, bit)
         CSeaUnit.OnScriptBitSet(self, bit)
@@ -72,7 +55,7 @@ BRS0304 = Class(CSeaUnit) {
     OnKilled = function(self, inst, type, okr)
         self.Trash:Destroy()
         self.Trash = TrashBag()
-		CSeaUnit.OnKilled(self, inst, type, okr)
+        CSeaUnit.OnKilled(self, inst, type, okr)
     end,
 }
 

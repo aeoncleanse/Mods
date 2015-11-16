@@ -1,25 +1,17 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/BAB5205/BAB5205_script.lua
-#**  Author(s):  John Comes, David Tomandl
-#**
-#**  Summary  :  Aeon Air Staging Platform
-#**
-#**  Copyright © 1005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+-----------------------------------------------------------------
+-- File     :  /cdimage/units/BAB5205/BAB5205_script.lua
+-- Author(s):  John Comes, David Tomandl
+-- Summary  :  Aeon Air Staging Platform
+-- Copyright © 1005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local AAirFactoryUnit = import('/lua/aeonunits.lua').AAirFactoryUnit
 local AAATemporalFizzWeapon = import('/lua/aeonweapons.lua').AAATemporalFizzWeapon
 local AANChronoTorpedoWeapon = import('/lua/aeonweapons.lua').AANChronoTorpedoWeapon
-local EffectUtils = import('/lua/effectutilities.lua')
-local Effects = import('/lua/effecttemplates.lua')
 
 BAB5205 = Class(AAirFactoryUnit) {
-
-	Weapons = {
-        AAGun01 = Class(AAATemporalFizzWeapon)
-        {        
-        
+    Weapons = {
+        AAGun01 = Class(AAATemporalFizzWeapon) {
             PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
@@ -29,6 +21,7 @@ BAB5205 = Class(AAirFactoryUnit) {
                 end
                 AAATemporalFizzWeapon.PlayFxWeaponPackSequence(self)
             end,
+            
             PlayFxRackSalvoChargeSequence = function(self)
                 if not self.SpinManip then 
                     self.SpinManip = CreateRotator(self.unit, 'GunTurret01_Spinner_01', 'z', nil, 270, 180, 60)
@@ -47,7 +40,8 @@ BAB5205 = Class(AAirFactoryUnit) {
                     self.SpinManip2:SetTargetSpeed(-300)
                 end
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
+            end,
+            
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-100)
@@ -55,11 +49,9 @@ BAB5205 = Class(AAirFactoryUnit) {
 
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-            
         },
-        AAGun02 = Class(AAATemporalFizzWeapon)
-        {        
         
+        AAGun02 = Class(AAATemporalFizzWeapon) {
             PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
@@ -69,6 +61,7 @@ BAB5205 = Class(AAirFactoryUnit) {
                 end
                 AAATemporalFizzWeapon.PlayFxWeaponPackSequence(self)
             end,
+            
             PlayFxRackSalvoChargeSequence = function(self)
                 if not self.SpinManip then 
                     self.SpinManip = CreateRotator(self.unit, 'GunTurret02_Spinner_01', 'z', nil, 270, 180, 60)
@@ -87,19 +80,17 @@ BAB5205 = Class(AAirFactoryUnit) {
                     self.SpinManip2:SetTargetSpeed(-300)
                 end
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
+            end,
+            
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-100)
                 end
-
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-            
         },
-        AAGun03 = Class(AAATemporalFizzWeapon)
-        {        
         
+        AAGun03 = Class(AAATemporalFizzWeapon) {
             PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
@@ -109,6 +100,7 @@ BAB5205 = Class(AAirFactoryUnit) {
                 end
                 AAATemporalFizzWeapon.PlayFxWeaponPackSequence(self)
             end,
+            
             PlayFxRackSalvoChargeSequence = function(self)
                 if not self.SpinManip then 
                     self.SpinManip = CreateRotator(self.unit, 'GunTurret03_Spinner_01', 'z', nil, 270, 180, 60)
@@ -127,19 +119,16 @@ BAB5205 = Class(AAirFactoryUnit) {
                     self.SpinManip2:SetTargetSpeed(-300)
                 end
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
+            end,
+            
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-100)
                 end
-
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-            
         },
-        AAGun04 = Class(AAATemporalFizzWeapon)
-        {        
-        
+        AAGun04 = Class(AAATemporalFizzWeapon) {
             PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
@@ -149,6 +138,7 @@ BAB5205 = Class(AAirFactoryUnit) {
                 end
                 AAATemporalFizzWeapon.PlayFxWeaponPackSequence(self)
             end,
+            
             PlayFxRackSalvoChargeSequence = function(self)
                 if not self.SpinManip then 
                     self.SpinManip = CreateRotator(self.unit, 'GunTurret04_Spinner_01', 'z', nil, 270, 180, 60)
@@ -167,23 +157,24 @@ BAB5205 = Class(AAirFactoryUnit) {
                     self.SpinManip2:SetTargetSpeed(-300)
                 end
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
+            end,
+            
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-100)
                 end
-
                 AAATemporalFizzWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
+        
         Turret01 = Class(AANChronoTorpedoWeapon) {},
         Turret02 = Class(AANChronoTorpedoWeapon) {},
         Turret03 = Class(AANChronoTorpedoWeapon) {},
         Turret04 = Class(AANChronoTorpedoWeapon) {},
     },
     
-	OnCreate = function(self)
-		AAirFactoryUnit.OnCreate(self)
+    OnCreate = function(self)
+        AAirFactoryUnit.OnCreate(self)
 
         self.DomeEntity1 = import('/lua/sim/Entity.lua').Entity({Owner = self,})
         self.DomeEntity1:AttachBoneTo( -1, self, 'Torp_Turret01' )
@@ -220,7 +211,7 @@ BAB5205 = Class(AAirFactoryUnit) {
         self.Trash:Add(self.DomeEntity2)
         self.Trash:Add(self.DomeEntity3)
         self.Trash:Add(self.DomeEntity4)
-	end,  
+    end,  
 }
 
 TypeClass = BAB5205

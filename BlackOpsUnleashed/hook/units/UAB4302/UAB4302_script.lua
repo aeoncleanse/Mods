@@ -16,7 +16,7 @@ UAB4302 = Class(AStructureUnit) {
                 OnGotTarget = function(self)
                     local bp = self:GetBlueprint()
                     --only say we've fired if the parent fire conditions are met
-                    if (bp.WeaponUnpackLockMotion != true or (bp.WeaponUnpackLocksMotion == true and not self.unit:IsUnitState('Moving'))) then
+                    if (bp.WeaponUnpackLockMotion ~= true or (bp.WeaponUnpackLocksMotion == true and not self.unit:IsUnitState('Moving'))) then
                         if (bp.CountedProjectile == false) or self:CanFire() then
                              nukeFiredOnGotTarget = true
                         end

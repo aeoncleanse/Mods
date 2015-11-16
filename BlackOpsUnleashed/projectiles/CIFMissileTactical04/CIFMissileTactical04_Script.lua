@@ -68,7 +68,7 @@ CIFMissileTactical01 = Class(CLOATacticalMissileProjectile) {
         local army = self:GetArmy()
         CreateLightParticle(self, -1, army, 3, 7, 'glow_03', 'ramp_fire_11') 
         -- If I collide with terrain dont split
-        if targetType != 'Projectile' then
+        if targetType ~= 'Projectile' then
             self.Split = true
         end
         CLOATacticalMissileProjectile.OnImpact(self, targetType, targetEntity)

@@ -116,10 +116,10 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             
         -- Moving damage threads to be activated later
         -- Create Damage Threads only if damage is being delivered (prevents DamageArea script error for passing in 0 value)
-        if (self.NukeInnerRingDamage != 0) then
+        if (self.NukeInnerRingDamage ~= 0) then
             self:ForkThread(self.InnerRingDamage)
         end
-        if (self.NukeOuterRingDamage != 0) then
+        if (self.NukeOuterRingDamage ~= 0) then
             self:ForkThread(self.OuterRingDamage)
         end
 

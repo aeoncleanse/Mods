@@ -107,10 +107,10 @@ UnitBlueprint {
         'BUILTBYTIER4COMMANDER',
         'VISIBLETORECON',
         'COUNTERINTELLIGENCE',
-		'INTELLIGENCE',
-		'NEEDMOBILEBUILD',
-		'DRAGBUILD',
-		'NUKE',
+        'INTELLIGENCE',
+        'NEEDMOBILEBUILD',
+        'DRAGBUILD',
+        'NUKE',
         'SILO',
         'RECLAIMABLE',
         'TRANSPORTFOCUS',
@@ -180,48 +180,8 @@ UnitBlueprint {
                     LODCutoff = 500,
                     ShaderName = 'Insect',
                 },
-               # {
-               #     AlbedoName = 'BRA0409_lod1_albedo.dds',
-                #    LODCutoff = 500,
-               #     ShaderName = 'Insect',
-               #     SpecularName = 'BRA0409_lod1_specteam.dds',
-               # },
             },
         },
-        #MovementEffects = {
-       		 #Air = {
-                #Contrails = {
-               #     Bones = {
-               #         'Exhaust_Left',
-               #         'Exhaust_Right',
-               #     },
-               # },
-                #Effects = {
-                #    {
-                #        Bones = {
-                #            'Left_Pad01',
-                #            'Left_Pad02',
-                #            'Right_Pad01',
-                #            'Right_Pad02',
-                #        },
-                #        Scale = 2,
-                #        Type = 'Hover04',
-                #    },
-                #},
-            #},
-            #BeamExhaust = {
-            #    Bones = {
-            #        'Engine_01',
-            #        'Engine_02',
-            #        'Engine_03',
-            #        'Engine_04',
-            #        'Engine_05',
-            #    },
-            #    Cruise = true,
-            #    Idle = true,
-            #    Landed = true,
-            #},
-        #},
         PlaceholderMeshName = 'UXB0000',
         SpawnRandomRotation = false,
         UniformScale = 0.33,
@@ -299,9 +259,7 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 10,
-#        FuelRechargeRate = 70,
-#        FuelUseTime = 800,
-		SkirtOffsetX = -2,
+        SkirtOffsetX = -2,
         SkirtOffsetZ = -7.5,
         SkirtSizeX = 10,
         SkirtSizeZ = 25,
@@ -319,7 +277,7 @@ UnitBlueprint {
     Transport = {
         AirClass = true,
         ClassGenericUpTo = 3,
-		StorageSlots = 20,
+        StorageSlots = 20,
         TransportClass = 10,
 
     },
@@ -353,7 +311,7 @@ UnitBlueprint {
             },
             BallisticArc = 'RULEUBA_None',
             Buffs = {
-            	{
+                {
                     Add = {
                         OnImpact = true,
                     },
@@ -371,7 +329,7 @@ UnitBlueprint {
             DamageType = 'Normal',
             DisplayName = 'Iridium Rocket Pack',
             FireTargetLayerCapsTable = {
-            	Air = 'Land|Water|Seabed',
+                Air = 'Land|Water|Seabed',
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             },
@@ -505,7 +463,7 @@ UnitBlueprint {
             Label = 'MainGun',
             ForceSingleFire = true,
             InitialProjectileStorage = 0,
-			ManualFire = 1,
+            ManualFire = 1,
             MaxProjectileStorage = 2,
             LeadTarget = false,
             MaxRadius = 80,
@@ -588,7 +546,7 @@ UnitBlueprint {
             },
             BallisticArc = 'RULEUBA_None',
             Buffs = {
-            	{
+                {
                     Add = {
                         OnImpact = true,
                     },
@@ -606,7 +564,7 @@ UnitBlueprint {
             DamageType = 'Normal',
             DisplayName = 'Iridium Rocket Pack',
             FireTargetLayerCapsTable = {
-            	Air = 'Land|Water|Seabed',
+                Air = 'Land|Water|Seabed',
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             },
@@ -696,7 +654,7 @@ UnitBlueprint {
             },
             BallisticArc = 'RULEUBA_None',
             Buffs = {
-            	{
+                {
                     Add = {
                         OnImpact = true,
                     },
@@ -714,7 +672,7 @@ UnitBlueprint {
             DamageType = 'Normal',
             DisplayName = 'Iridium Rocket Pack',
             FireTargetLayerCapsTable = {
-            	Air = 'Land|Water|Seabed',
+                Air = 'Land|Water|Seabed',
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             },
@@ -804,7 +762,7 @@ UnitBlueprint {
             },
             BallisticArc = 'RULEUBA_None',
             Buffs = {
-            	{
+                {
                     Add = {
                         OnImpact = true,
                     },
@@ -822,7 +780,7 @@ UnitBlueprint {
             DamageType = 'Normal',
             DisplayName = 'Iridium Rocket Pack',
             FireTargetLayerCapsTable = {
-            	Air = 'Land|Water|Seabed',
+                Air = 'Land|Water|Seabed',
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             },
@@ -894,7 +852,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -934,7 +892,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NotExclusive = true,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -952,7 +910,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 0.8,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -986,7 +944,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -1026,7 +984,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NotExclusive = true,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -1044,7 +1002,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 0.8,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1078,7 +1036,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -1118,7 +1076,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NotExclusive = true,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -1136,7 +1094,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 0.8,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1170,7 +1128,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -1210,7 +1168,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NotExclusive = true,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -1228,7 +1186,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 0.8,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1262,7 +1220,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -1302,7 +1260,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NotExclusive = true,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -1320,7 +1278,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 0.8,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1354,7 +1312,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -1394,7 +1352,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NotExclusive = true,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -1412,7 +1370,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 0.8,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

@@ -1,5 +1,5 @@
 UnitBlueprint {
-	AI = {
+    AI = {
         TargetBones = {
             'Railgun_Turret',
             'BEL0307',
@@ -106,12 +106,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Unit',
                 },
-                #{
-                #    AlbedoName = 'bel0307_lod1_albedo.dds',
-               #     LODCutoff = 215,
-                #    ShaderName = 'Unit',
-                #    SpecularName = 'bel0307_lod1_specteam.dds',
-               # },
             },
         },
         MovementEffects = {
@@ -121,7 +115,7 @@ UnitBlueprint {
                         Bones = {
                             'Track_Back_Center',
                             'Track_Back_Right',
-							'Track_Back_Left',
+                            'Track_Back_Left',
                         },
                         Type = 'GroundKickup01',
                     },
@@ -141,7 +135,7 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-						{
+                        {
                             BoneName = 'Track_Back_Right',
                             TreadMarks = 'tank_treads03_albedo',
                             TreadMarksInterval = 0.001,
@@ -153,7 +147,7 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-						{
+                        {
                             BoneName = 'Track_Back_Left',
                             TreadMarks = 'tank_treads03_albedo',
                             TreadMarksInterval = 0.001,
@@ -165,8 +159,7 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-						#####
-						{
+                        {
                             BoneName = 'Track_Front_Right',
                             TreadMarks = 'tank_treads03_albedo',
                             TreadMarksInterval = 0.001,
@@ -178,7 +171,7 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-						{
+                        {
                             BoneName = 'Track_Front_Right_Right',
                             TreadMarks = 'tank_treads03_albedo',
                             TreadMarksInterval = 0.001,
@@ -190,7 +183,7 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-						{
+                        {
                             BoneName = 'Track_Front_Left',
                             TreadMarks = 'tank_treads03_albedo',
                             TreadMarksInterval = 0.001,
@@ -202,7 +195,7 @@ UnitBlueprint {
                                 -2,
                             },
                         },
-						{
+                        {
                             BoneName = 'Track_Front_Left_Left',
                             TreadMarks = 'tank_treads03_albedo',
                             TreadMarksInterval = 0.001,
@@ -260,7 +253,7 @@ UnitBlueprint {
     LifeBarOffset = 0.5,
     LifeBarSize = 0.95,
     Physics = {
-		BackUpDistance = 5,
+        BackUpDistance = 5,
         BankingSlope = 0,
         BuildOnLayerCaps = {
             LAYER_Air = false,
@@ -272,7 +265,7 @@ UnitBlueprint {
         },
         DragCoefficient = 0.2,
         MaxAcceleration = 0.8,
-		LayerChangeOffsetHeight = -0.75,
+        LayerChangeOffsetHeight = -0.75,
         MaxBrake = 4.8,
         MaxSpeed = 4.8,
         MaxSpeedReverse = 1.5,
@@ -282,7 +275,7 @@ UnitBlueprint {
         MeshExtentsZ = 1.25,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Amphibious',
-		RotateBodyWhileMoving = false,
+        RotateBodyWhileMoving = false,
         RotateOnSpot = false,
         RotateOnSpotThreshold = 0.5,
         TurnRadius = 0,
@@ -346,7 +339,7 @@ UnitBlueprint {
             },
             FiringTolerance = 1,
             LeadTarget = true,
-            Label = 'MainTurret',# approx 140 dps
+            Label = 'MainTurret',
             MaxRadius = 40,
             MuzzleChargeDelay = 1.5,
             MuzzleSalvoDelay = 0,
@@ -358,7 +351,7 @@ UnitBlueprint {
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
-                	HideMuzzle = true,
+                    HideMuzzle = true,
                     MuzzleBones = {
                         'Railgun_Muzzle',
                     },
@@ -429,7 +422,7 @@ UnitBlueprint {
             },
             FiringRandomness = 0.2,
             FiringTolerance = 2,
-            Label = 'GattlerTurret',# 
+            Label = 'GattlerTurret',
             MaxRadius = 40,
             MuzzleSalvoDelay = 0.33,
             MuzzleSalvoSize = 15,
@@ -492,12 +485,12 @@ UnitBlueprint {
                     Cue = 'XEA0002_Orbital_Death_Ray',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamLoop = Sound {
+                BeamLoop = Sound {
                     Bank = 'URLWeapon',
                     Cue = 'URL0402_Beam_Loop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamStop = Sound {
+                BeamStop = Sound {
                     Bank = 'URLWeapon',
                     Cue = 'URL0402_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
@@ -506,7 +499,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0.1,
             BeamLifetime = 0,
-			ContinuousBeam = true,
+            ContinuousBeam = true,
             CollideFriendly = false,
             Damage = 25,
             DamageRadius = 1,
@@ -520,14 +513,14 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'LeftLaser',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 40,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',	
+                'MISSILE',    
             },
-			HeadingArcCenter = 90,
-			HeadingArcRange = 100,
+            HeadingArcCenter = 90,
+            HeadingArcRange = 100,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
@@ -578,7 +571,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 2,
             WeaponUnpacks = false,
         },
-		{
+        {
             AlwaysRecheckTarget = true,
             Audio = {
                 BeamStart  = Sound {
@@ -586,12 +579,12 @@ UnitBlueprint {
                     Cue = 'XEA0002_Orbital_Death_Ray',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamLoop = Sound {
+                BeamLoop = Sound {
                     Bank = 'URLWeapon',
                     Cue = 'URL0402_Beam_Loop',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-				BeamStop = Sound {
+                BeamStop = Sound {
                     Bank = 'URLWeapon',
                     Cue = 'URL0402_Beam_Stop',
                     LodCutoff = 'Weapon_LodCutoff',
@@ -600,7 +593,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0.1,
             BeamLifetime = 0,
-			ContinuousBeam = true,
+            ContinuousBeam = true,
             CollideFriendly = false,
             Damage = 25,
             DamageRadius = 1,
@@ -614,14 +607,14 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'RightLaser',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 40,
-			DoNotCollideList = {
+            DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',	
+                'MISSILE',    
             },
-			HeadingArcCenter = -90,
-			HeadingArcRange = 100,
+            HeadingArcCenter = -90,
+            HeadingArcRange = 100,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
@@ -694,7 +687,7 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 10,
-            Label = 'LeftMissileRack',# 66 dps
+            Label = 'LeftMissileRack',
             MaxRadius = 45,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 6,
@@ -772,7 +765,7 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 10,
-            Label = 'RightMissileRack',# 66 dps
+            Label = 'RightMissileRack',
             MaxRadius = 45,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 6,

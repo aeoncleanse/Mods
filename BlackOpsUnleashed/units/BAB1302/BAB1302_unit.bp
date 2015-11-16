@@ -59,7 +59,7 @@ UnitBlueprint {
     },
     Description = '<LOC bab1302_desc>Hydrocarbon Power Plant',
     Display = {
-		Abilities = {
+        Abilities = {
             '<LOC ability_deathaoe>Volatile',
         },
         Mesh = {
@@ -70,12 +70,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-                #{
-               #     AlbedoName = 'bab1302_lod1_albedo.dds',
-                #    LODCutoff = 300,
-               #     ShaderName = 'Aeon',
-               #     SpecularName = 'bab1302_lod1_specteam.dds',
-               # },
             },
         },
         PlaceholderMeshName = 'UXB0011',
@@ -135,7 +129,7 @@ UnitBlueprint {
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
-		UpgradesFrom = 'bab1202',
+        UpgradesFrom = 'bab1202',
     },
     Interface = {
         HelpText = '<LOC bab1302_help>Hydrocarbon Power Plant',
@@ -176,7 +170,7 @@ UnitBlueprint {
     SizeZ = 1.75,
     StrategicIconName = 'icon_structure3_energy',
     StrategicIconSortPriority = 250,
-	Weapon = {
+    Weapon = {
         {
             Damage = 8000,
             DamageFriendly = true,

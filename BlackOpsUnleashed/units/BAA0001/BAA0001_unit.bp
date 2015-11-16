@@ -92,12 +92,12 @@ UnitBlueprint {
         },
     },
     Buffs = {
-        Regen = { # time need for full hp regen assuming 4k base hp:
-            Level1 = 20, # 220s
-            Level2 = 40, # 120s
-            Level3 = 60, # 86s
-            Level4 = 80, # 70s
-            Level5 = 100, # 60s
+        Regen = {
+            Level1 = 20,
+            Level2 = 40,
+            Level3 = 60,
+            Level4 = 80,
+            Level5 = 100,
         },
     }, 
     Categories = {
@@ -105,7 +105,7 @@ UnitBlueprint {
         'AEON',
         'MOBILE',
         'AIR',
-		'DRONE',
+        'DRONE',
         'POD',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -124,8 +124,8 @@ UnitBlueprint {
     },
     Description = '<LOC baa0001_desc>Defense Drone',
     Display = {
-	AnimationLand = '/units/BAA0001/BAA0001_AClose01.sca',
-	AnimationTakeOff = '/units/BAA0001/BAA0001_AOpen.sca',
+    AnimationLand = '/units/BAA0001/BAA0001_AClose01.sca',
+    AnimationTakeOff = '/units/BAA0001/BAA0001_AOpen.sca',
         Mesh = {
             IconFadeInZoom = 175,
             LODs = {
@@ -133,12 +133,6 @@ UnitBlueprint {
                     LODCutoff = 600,
                     ShaderName = 'Aeon',
                 },
-             #   {
-              #      AlbedoName = 'baa0001_lod1_albedo.dds',
-               #     LODCutoff = 600,
-               #     ShaderName = 'Aeon',
-               #     SpecularName = 'baa0001_lod1_specteam.dds',
-               # },
             },
         },
         PlaceholderMeshName = 'UXA0010',
@@ -149,19 +143,10 @@ UnitBlueprint {
         BuildCostEnergy = 1800,
         BuildCostMass = 180,
         BuildTime = 1440,
-        #BuildRate = 5,
     },
-    SizeSphere = 0.6, # 1 - more reasonable collision size 
+    SizeSphere = 0.6,
     General = {
         CapCost = 0,
-        #BuildBones = {
-        #    AimBone = 'BuildEffectBone',
-        #    BuildEffectBones = {
-        #        'BuildEffectBone',
-        #    },
-        #    PitchBone = 'BuildEffectBone',
-        #    YawBone = 'BuildEffectBone',
-        #},
         Category = 'Utility',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
@@ -181,12 +166,6 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'air',
-       # OrderOverrides = {
-        #    DroneL = {
-        #        bitmapId = 'drone',
-        #        helpText = 'drone_station',
-        #    },
-        #},
         SelectionPriority = 6,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
@@ -266,7 +245,7 @@ UnitBlueprint {
             DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Oblivion Cannon',
-            FireTargetLayerCapsTable = { # can now hit gunships and transports
+            FireTargetLayerCapsTable = {
                 Air = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             }, 
@@ -345,7 +324,7 @@ UnitBlueprint {
             DamageRadius = 0.5,
             DamageType = 'Normal',
             DisplayName = 'Blaze Cannon',
-            FireTargetLayerCapsTable = { # can now hit gunships and transports
+            FireTargetLayerCapsTable = {
                 Air = 'Air|Land|Water|Seabed',
                 Water = 'Air|Land|Water|Seabed',
             }, 
@@ -386,7 +365,7 @@ UnitBlueprint {
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'ANTIAIR', # new
+                'ANTIAIR',
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',
@@ -465,53 +444,6 @@ UnitBlueprint {
             Turreted = false,
             WeaponCategory = 'Anti Navy',
         },
-
-        #removed anti torp
-        --[[
-        {
-            BallisticArc = 'RULEUBA_None',
-            CollideFriendly = false,
-            Damage = 3,
-            DamageType = 'Normal',
-            DisplayName = 'Quasar Anti Torpedo',
-            FireTargetLayerCapsTable = {
-                Air = 'Sub|Water',
-                Water = 'Sub|Water',
-            },
-            FiringTolerance = 180,
-            Label = 'AntiTorpedo',
-            LeadTarget = false,
-            MaxRadius = 45,
-            MuzzleSalvoDelay = 0,
-            MuzzleSalvoSize = 1,
-            MuzzleVelocity = 80,
-            ProjectileId = '/projectiles/AIMAntiTorpedo02/AIMAntiTorpedo02_proj.bp',
-            ProjectileLifetime = 1.5,
-            RackBones = {
-                {
-                    MuzzleBones = {
-                        'Anti-Torp',
-                    },
-                    RackBone = 'Anti-Torp',
-                },
-            },
-            RackFireTogether = false,
-            RackRecoilDistance = 0,
-            RackReloadTimeout = 10,
-            RackSalvoChargeTime = 0,
-            RackSalvoReloadTime = 0,
-            RackSalvoSize = 1,
-            RangeCategory = 'UWRC_Countermeasure',
-            RateOfFire = 1,
-            TargetCheckInterval = 0.5,
-            TargetRestrictDisallow = 'UNTARGETABLE',
-            TargetRestrictOnlyAllow = 'TORPEDO',
-            TargetType = 'RULEWTT_Projectile',
-            TrackingRadius = 1.5,
-            Turreted = false,
-            WeaponCategory = 'Defense',
-        },
-        ]]--
     },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',

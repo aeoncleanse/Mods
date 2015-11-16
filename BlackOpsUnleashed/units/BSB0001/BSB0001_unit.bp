@@ -10,8 +10,7 @@ UnitBlueprint {
     CollisionOffsetY = -1,
     Categories = {
         'PRODUCTSC1',
-        #'UNSELECTABLE',
-		'UNTARGETABLE',
+        'UNTARGETABLE',
         'DRONE',
         'SERAPHIM',
         'MOBILE',
@@ -67,12 +66,6 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
-               # {
-               #     AlbedoName = 'BSB0001_lod1_albedo.dds',
-               ##     LODCutoff = 215,
-               #     ShaderName = 'Unit',
-               #     SpecularName = 'BSB0001_lod1_specteam.dds',
-                #},
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -85,7 +78,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-    	CapCost = 0,
+        CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {

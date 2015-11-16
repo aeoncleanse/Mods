@@ -1,5 +1,5 @@
 UnitBlueprint {
-	AI = {
+    AI = {
         TargetBones = {
             'Head',
             'Torso',
@@ -49,7 +49,7 @@ UnitBlueprint {
             Cue = 'b_roar_1',
             LodCutoff = 'UnitMove_LodCutoff',
         },
-		NukeExplosion = Sound {
+        NukeExplosion = Sound {
             Bank = 'Explosions',
             Cue = 'Cybran_Nuke_Impact',
             LodCutoff = 'Weapon_LodCutoff',
@@ -69,7 +69,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
-		'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER3COMMANDER',
         'BUILTBYTIER4COMMANDER',
         'CYBRAN',
         'MOBILE',
@@ -101,7 +101,7 @@ UnitBlueprint {
     },
     Description = '<LOC brl0307_desc>Ultra Heavy Assault Mech',
     Display = {
-		Abilities = {
+        Abilities = {
             '<LOC ability_amphibious>Amphibious',
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_massive>Massive',
@@ -117,8 +117,7 @@ UnitBlueprint {
         },
         AnimationWalk = '/units/BRL0401/BRL0401_AWalk01.sca',
         AnimationDeploy = '/units/BRL0401/BRL0401_Deploy.sca',
-		AnimationPackUp = '/units/BRL0401/BRL0401_PackUp.sca',
-        #AnimationActivate = '/units/BRL0308/BRL0308_Activate.sca',
+        AnimationPackUp = '/units/BRL0401/BRL0401_PackUp.sca',
         AnimationWalkRate = 0.75,
         Mesh = {
             IconFadeInZoom = 130,
@@ -127,12 +126,6 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
-                #{
-                #    AlbedoName = 'brl0401_albedo.dds',
-               #     LODCutoff = 300,
-                #    ShaderName = 'Insect',
-                #    SpecularName = 'brl0401_specteam.dds',
-                #},
             },
         },
         MovementEffects = {
@@ -153,12 +146,7 @@ UnitBlueprint {
                     Bones = {
                         {
                             FootBone = 'R_FootFall',
-                            ##HipBone = 'Right_Leg_1',
-                            #KneeBone = 'Right_Leg_2',
                             MaxFootFall = -0.25,
-                            #Offset = {
-                            #    z = -0.5,
-                            #},
                             StraightLegs = false,
                             Tread = {
                                 TreadLifeTime = 60,
@@ -176,12 +164,7 @@ UnitBlueprint {
                         },
                         {
                             FootBone = 'L_FootFall',
-                            #HipBone = 'Left_Leg_1',
-                            #KneeBone = 'Left_Leg_2',
                             MaxFootFall = -0.25,
-                           # Offset = {
-                           #     z = -0.5,
-                           # },
                             StraightLegs = false,
                             Tread = {
                                 TreadLifeTime = 60,
@@ -318,7 +301,7 @@ UnitBlueprint {
         Level5 = 375,
     },
     Weapon = {
-		{
+        {
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
             AutoInitiateAttackCommand = true,
@@ -342,7 +325,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
             NoPause = true,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/MGHeadshot01/MGHeadshot01_proj.bp',
             ProjectileLifetime = 1,
             ProjectilesPerOnFire = 1,
@@ -367,9 +350,9 @@ UnitBlueprint {
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -391,7 +374,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 3,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -402,13 +385,13 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-			AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             Damage = 450,
-			DamageRadius = 4,
-			Buffs = {
-            	{
+            DamageRadius = 4,
+            Buffs = {
+                {
                     Add = {
                         OnImpact = true,
                     },
@@ -431,12 +414,12 @@ UnitBlueprint {
             FiringTolerance = 2,
             Label = 'SideCannons',
             MaxRadius = 60,
-			MuzzleChargeDelay = 0.3,
+            MuzzleChargeDelay = 0.3,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 70,
-			NotExclusive = true,
-			PrefersPrimaryWeaponTarget = true,
+            NotExclusive = true,
+            PrefersPrimaryWeaponTarget = true,
             ProjectileId = '/projectiles/ShadowCannon01/ShadowCannon01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
@@ -447,19 +430,19 @@ UnitBlueprint {
                     },
                     RackBone = 'Right_Cannon_Recoil_1',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Left_Cannon_Muzzle_1',
                     },
                     RackBone = 'Left_Cannon_Recoil_1',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Right_Cannon_Muzzle_2',
                     },
                     RackBone = 'Right_Cannon_Recoil_2',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Left_Cannon_Muzzle_2',
                     },
@@ -475,13 +458,13 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 2.0, #1000
+            RateOfFire = 2.0,
             TargetCheckInterval = 0.15,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -505,7 +488,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
             Audio = {
@@ -537,8 +520,8 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
             NoPause = true,
-			PrefersPrimaryWeaponTarget = true,
-			NotExclusive = true,
+            PrefersPrimaryWeaponTarget = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/MGHeadshot01/MGHeadshot01_proj.bp',
             ProjectileLifetime = 1,
             ProjectilesPerOnFire = 1,
@@ -563,9 +546,9 @@ UnitBlueprint {
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -587,7 +570,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 3,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -597,13 +580,8 @@ UnitBlueprint {
                     Cue = 'bassie_maingun_fire',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-                #MuzzleChargeStart = Sound {
-                #    Bank = 'URLWeapon',
-                #    Cue = 'URL0303_Disintegrator_Charge',
-                #    LodCutoff = 'Weapon_LodCutoff',
-                #},
             },
-			AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             Damage = 6500,
@@ -634,7 +612,7 @@ UnitBlueprint {
                     },
                     RackBone = 'MainGun_Right_Pitch',
                 },
-				{
+                {
                     MuzzleBones = {
                         'MainGun_Muzzle_Left',
                     },
@@ -649,14 +627,14 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 0.2, #2600
+            RateOfFire = 0.2,
             RenderFireClock = false,
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -698,9 +676,6 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 2,
-
-            # HeadingArcCenter = 0,
-            # HeadingArcRange = 45,
             Label = 'LeftBolter',
             LeadTarget = true,
             MaxRadius = 60,
@@ -718,15 +693,15 @@ UnitBlueprint {
                     },
                     RackBone = 'Left_Bolter',
                 },
-				{
+                {
                     MuzzleBones = {
-						'Right_Bolter_Muzzle_1',
+                        'Right_Bolter_Muzzle_1',
                     },
                     RackBone = 'Left_Bolter',
                 },
-				{
+                {
                     MuzzleBones = {
-						'Right_Bolter_Muzzle_3',
+                        'Right_Bolter_Muzzle_3',
                     },
                     RackBone = 'Left_Bolter',
                 },
@@ -739,13 +714,13 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 3.5,#187.5
+            RateOfFire = 3.5,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -766,7 +741,7 @@ UnitBlueprint {
             UseFiringSolutionInsteadOfAimBone = true,
             WeaponCategory = 'Direct Fire',
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             AlwaysRecheckTarget = true,
             Audio = {
@@ -786,9 +761,6 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 2,
-
-            # HeadingArcCenter = 0,
-            # HeadingArcRange = 45,
             Label = 'RightBolter',
             LeadTarget = true,
             MaxRadius = 60,
@@ -806,15 +778,15 @@ UnitBlueprint {
                     },
                     RackBone = 'Right_Bolter',
                 },
-				{
+                {
                     MuzzleBones = {
-						'Left_Bolter_Muzzle_1',
+                        'Left_Bolter_Muzzle_1',
                     },
                     RackBone = 'Right_Bolter',
                 },
-				{
+                {
                     MuzzleBones = {
-						'Left_Bolter_Muzzle_3',
+                        'Left_Bolter_Muzzle_3',
                     },
                     RackBone = 'Right_Bolter',
                 },
@@ -827,13 +799,13 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 3.5,#187.5
+            RateOfFire = 3.5,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -865,15 +837,15 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-			AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             CountedProjectile = false,
             Damage = 600,
             DamageRadius = 3,
             SplitDamage = {
-            	DamageAmount = 600,
-            	DamageRadius = 3,
+                DamageAmount = 600,
+                DamageRadius = 3,
             },
             DamageType = 'Normal',
             DisplayName = 'Heavy Missile Barrage',
@@ -901,28 +873,28 @@ UnitBlueprint {
                     },
                     RackBone = 'Missile_1',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_3',
                         'Missile_4',
                     },
                     RackBone = 'Missile_3',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_5',
                         'Missile_6',
                     },
                     RackBone = 'Missile_5',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_7',
                         'Missile_8',
                     },
                     RackBone = 'Missile_7',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_9',
                         'Missile_10',
@@ -938,14 +910,14 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
-            RateOfFire = 5, #960
+            RateOfFire = 5,
             RenderFireClock = false,
             TargetCheckInterval = 2,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL MOBILE',
-				'TECH3 STRUCTURE DEFENSE',
-				'MOBILE LAND',
+                'EXPERIMENTAL MOBILE',
+                'TECH3 STRUCTURE DEFENSE',
+                'MOBILE LAND',
                 'STRUCTURE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
@@ -976,12 +948,12 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-			AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
             Damage = 100,
-			DoTTime = 1,
-			DoTPulses = 10,
+            DoTTime = 1,
+            DoTPulses = 10,
             DamageRadius = 0,
             DamageType = 'Normal',
             DisplayName = 'Heavy Las Missile 1',
@@ -996,18 +968,18 @@ UnitBlueprint {
             MaxRadius = 80,
             MuzzleSalvoDelay = 0.2,
             MuzzleSalvoSize = 6,
-			MuzzleVelocity = 10,
+            MuzzleVelocity = 10,
             NotExclusive = true,
-			ProjectileId = '/projectiles/BasAAMissile01/BasAAMissile01_proj.bp',
+            ProjectileId = '/projectiles/BasAAMissile01/BasAAMissile01_proj.bp',
             RackBones = {
                 {
                     MuzzleBones = {
                         'AA_Missile_1',
-						'AA_Missile_2',
-						'AA_Missile_3',
-						'AA_Missile_4',
-						'AA_Missile_5',
-						'AA_Missile_6',
+                        'AA_Missile_2',
+                        'AA_Missile_3',
+                        'AA_Missile_4',
+                        'AA_Missile_5',
+                        'AA_Missile_6',
                     },
                     RackBone = 'AA_Missile_1',
                 },
@@ -1046,7 +1018,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-		{
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -1062,7 +1034,7 @@ UnitBlueprint {
                     LodCutoff = 'WeaponBig_LodCutoff',
                 },
             },
-			AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_LowArc',
             CollideFriendly = false,
             Damage = 40,
@@ -1078,7 +1050,7 @@ UnitBlueprint {
                 Seabed = 'Land|Water|Seabed',
             },
             FiringTolerance = 2,
-			FiringRandomness = 1,
+            FiringRandomness = 1,
             Label = 'ShoulderGuns',
             MaxRadius = 180,
             MinRadius = 20,
@@ -1096,7 +1068,7 @@ UnitBlueprint {
                     },
                     RackBone = 'MainGun_Right_Pitch',
                 },
-				{
+                {
                     MuzzleBones = {
                         'MainGun_Muzzle_Left',
                     },
@@ -1111,12 +1083,12 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
-            RateOfFire = 0.5, #3200
+            RateOfFire = 0.5,
             RenderFireClock = false,
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL STRUCTURE',
+                'EXPERIMENTAL STRUCTURE',
                 'TECH3 STRUCTURE',
                 'TECH3 MOBILE',
                 'SPECIALLOWPRI',
@@ -1139,7 +1111,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire',
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             Audio = {
                 Fire = Sound {
@@ -1178,43 +1150,43 @@ UnitBlueprint {
                     MuzzleBones = {
                         'Missile_1',
                         'Missile_2',
-						'Missile_11',
-						'Missile_12',
+                        'Missile_11',
+                        'Missile_12',
                     },
                     RackBone = 'Missile_1',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_3',
                         'Missile_4',
-						'Missile_13',
+                        'Missile_13',
                         'Missile_14',
                     },
                     RackBone = 'Missile_3',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_5',
                         'Missile_6',
-						'Missile_15',
+                        'Missile_15',
                         'Missile_16',
                     },
                     RackBone = 'Missile_5',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_7',
                         'Missile_8',
-						'Missile_17',
+                        'Missile_17',
                         'Missile_18',
                     },
                     RackBone = 'Missile_7',
                 },
-				{
+                {
                     MuzzleBones = {
                         'Missile_9',
                         'Missile_10',
-						'Missile_19',
+                        'Missile_19',
                         'Missile_20',
                     },
                     RackBone = 'Missile_9',
@@ -1228,11 +1200,11 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 6.66,
-			RenderFireClock = false,
+            RenderFireClock = false,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-				'EXPERIMENTAL STRUCTURE',
+                'EXPERIMENTAL STRUCTURE',
                 'TECH3 STRUCTURE',
                 'TECH3 MOBILE',
                 'SPECIALLOWPRI',

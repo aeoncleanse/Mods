@@ -118,13 +118,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-                #{
-               #     AlbedoName = 'BSS0306_lod1_albedo.dds',
-               #     LODCutoff = 250,
-               #     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-               #     ShaderName = 'Seraphim',
-               #     SpecularName = 'BSS0306_lod1_specteam.dds',
-              #  },
             },
         },
         MovementEffects = {
@@ -816,7 +809,6 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
-            #MuzzleVelocityReduceDistance = 85,
             ProjectileId = '/projectiles/SIFSuthanusArtilleryShell01/SIFSuthanusArtilleryShell01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -862,7 +854,7 @@ UnitBlueprint {
             WeaponCategory = 'Artillery',
         },
         {
-			AlwaysRecheckTarget = true,
+            AlwaysRecheckTarget = true,
             AboveWaterTargetsOnly = true,
             Audio = {
                 Fire = Sound {
@@ -875,7 +867,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0.1,
             BeamLifetime = 0.6,
-			CannotAttackGround = true,
+            CannotAttackGround = true,
             CollideFriendly = false,
             ContinuousBeam = false,
             Damage = 75,
@@ -886,10 +878,10 @@ UnitBlueprint {
             FireTargetLayerCapsTable = {
                 Water = 'Air',
             },
-			FiringRandomness = 0,
+            FiringRandomness = 0,
             FiringTolerance = 2,
             Label = 'PhasonBeam1',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 65,
             MinRadius = 0,
             MuzzleChargeDelay = 0,
@@ -912,7 +904,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 1,
-			ReTargetOnMiss = true,
+            ReTargetOnMiss = true,
             RequireTime = 0,
             TargetCheckInterval = 0.7,
             TargetPriorities = {
@@ -941,7 +933,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Anti Air',
         },
-		{
+        {
             AboveWaterTargetsOnly = true,
             Audio = {
                 Fire = Sound {
@@ -966,7 +958,7 @@ UnitBlueprint {
             },
             FiringTolerance = 0,
             Label = 'PhasonBeam2',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 50,
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,

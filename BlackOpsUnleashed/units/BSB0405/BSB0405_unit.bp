@@ -62,7 +62,7 @@ UnitBlueprint {
     CollisionOffsetY = 0,
     Defense = {
         AirThreatLevel = 0,
-		dontOKControl = true,
+        dontOKControl = true,
         ArmorType = 'Structure',
         EconomyThreatLevel = 500,
         Health = 16500,
@@ -142,13 +142,6 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
-               # {
-               #     AlbedoName = 'BSB0405_lod1_albedo.dds',
-              #      LODCutoff = 700,
-               #     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-              #      ShaderName = 'Seraphim',
-               #     SpecularName = 'BSB0405_lod1_specteam.dds',
-               # },
             },
         },
         SpawnRandomRotation = true,

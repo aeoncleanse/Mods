@@ -115,12 +115,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Insect',
                 },
-                #{
-               #     AlbedoName = 'BRL0205_lod1_albedo.dds',
-               #     LODCutoff = 215,
-                #    ShaderName = 'Insect',
-               #     SpecularName = 'BRL0205_lod1_specteam.dds',
-               # },
             },
         },
         MovementEffects = {
@@ -192,7 +186,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-    	FreeIntel = false,
+        FreeIntel = false,
         Cloak = true,
         RadarRadius = 30,
         RadarStealth = true,

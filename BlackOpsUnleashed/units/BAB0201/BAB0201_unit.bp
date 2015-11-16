@@ -44,9 +44,9 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER2ENGINEER',
-		'BUILTBYTIER3ENGINEER',
-		'BUILTBYTIER2COMMANDER',
-		'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER3ENGINEER',
+        'BUILTBYTIER2COMMANDER',
+        'BUILTBYTIER3COMMANDER',
         'AEON',
         'STRUCTURE',
         'LAND',
@@ -117,20 +117,18 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-					AlbedoName = '/units/uab0201/uab0201_albedo.dds',
+                    AlbedoName = '/units/uab0201/uab0201_albedo.dds',
                     LODCutoff = 500,
-					MeshName = '/units/uab0201/uab0201_lod0.scm',
+                    MeshName = '/units/uab0201/uab0201_lod0.scm',
                     ShaderName = 'Insect',
-					SpecularName = '/units/uab0201/uab0201_specteam.dds',
-					#SpecularName = 'BEL0109b_lod1_specteam.dds',
+                    SpecularName = '/units/uab0201/uab0201_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/uab0201/uab0201_lod1_albedo.dds',
                     LODCutoff = 500,
-					MeshName = '/units/uab0201/uab0201_lod1.scm',
+                    MeshName = '/units/uab0201/uab0201_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/uab0201/uab0201_lod1_specteam.dds',
-					#SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -167,9 +165,9 @@ UnitBlueprint {
         },
         StorageEnergy = 800,
         StorageMass = 160,
-		RebuildBonusIds = {
+        RebuildBonusIds = {
             'uab0201',
-			'uab0301',
+            'uab0301',
         },
     },
     Footprint = {
@@ -236,84 +234,78 @@ UnitBlueprint {
         MotionType = 'RULEUMT_None',
         RaisedPlatforms = {
 
-            # Platform 1
-            # TopLeft Offset From Center
+            -- Platform 1
+            -- TopLeft Offset From Center
             -0.8,
 
-            # x
+            -- x
             -0.5,
 
-            # z
+            -- z
             0.15,
 
-            # height
-            # TopRight Offset From Center
+            -- TopRight Offset From Center
             0.8,
 
-            # x
+            -- x
             -0.5,
 
-            # z
+            -- z
             0.15,
 
-            # height
-            # BottomLeft Offset From Center
+            -- BottomLeft Offset From Center
             -0.8,
 
-            # x
+            -- x
             1.1,
 
-            # z
+            -- z
             0.15,
 
-            # height
-            # BottomRight Offset From Center
+            -- BottomRight Offset From Center
             0.8,
 
-            # x
+            -- x
             1.1,
 
-            # z
+            -- z
             0.15,
 
-            # Platform 2
-            # TopLeft Offset From Center
+            -- Platform 2
+            -- TopLeft Offset From Center
             -2.25,
 
-            # x
+            -- x
             -2.25,
 
-            # z
+            -- z
             0.05,
 
-            # height
-            # TopRight Offset From Center
+            -- TopRight Offset From Center
             2.25,
 
-            # x
+            -- x
             -2.25,
 
-            # z
+            -- z
             0.05,
 
-            # height
-            # BottomLeft Offset From Center
+            -- BottomLeft Offset From Center
             -2.25,
 
-            # x
+            -- x
             2.25,
 
-            # z
+            -- z
             0.05,
 
-            # height
-            # BottomRight Offset From Center
+            -- BottomRight Offset From Center
             2.25,
 
-            # x
+            -- x
             2.25,
 
-            # z
+            -- z
             0.05,
         },
         RollOffPoints = {

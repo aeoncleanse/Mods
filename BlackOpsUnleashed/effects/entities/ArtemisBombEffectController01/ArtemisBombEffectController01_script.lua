@@ -46,10 +46,10 @@ ArtemisBombEffectController01 = Class(NullShell) {
         end
     
         -- Create Damage Threads only if damage is being delivered (prevents DamageArea script error for passing in 0 value)
-        if (self.NukeInnerRingDamage != 0) then
+        if (self.NukeInnerRingDamage ~= 0) then
             self:ForkThread(self.InnerRingDamage)
         end
-        if (self.NukeOuterRingDamage != 0) then
+        if (self.NukeOuterRingDamage ~= 0) then
             self:ForkThread(self.OuterRingDamage)
         end
 

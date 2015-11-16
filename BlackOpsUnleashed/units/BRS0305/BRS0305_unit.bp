@@ -1,7 +1,6 @@
 UnitBlueprint {
     AI = {
         GuardReturnRadius = 130,
-        #AttackAngle = 90,
     },
     Audio = {
         AmbientMove = Sound {
@@ -149,12 +148,6 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Insect',
                 },
-              #  {
-              #      AlbedoName = 'BRS0305_lod1_albedo.dds',
-              #      LODCutoff = 215,
-               #     ShaderName = 'Insect',
-               #     SpecularName = 'BRS0305_lod1_specteam.dds',
-               # },
             },
         },
         MotionChangeEffects = {

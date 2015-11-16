@@ -36,8 +36,8 @@ UnitBlueprint {
         },
     },
     BuildIconSortPriority = 20,
-	CollisionOffsetZ = 0.3,
-	CollisionOffsetY = -0.3,
+    CollisionOffsetZ = 0.3,
+    CollisionOffsetY = -0.3,
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
@@ -79,12 +79,6 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
-                #{
-                #    AlbedoName = 'BAL0310_lod1_albedo.dds',
-                #    LODCutoff = 215,
-                #    ShaderName = 'Aeon',
-                #    SpecularName = 'BAL0310_lod1_specteam.dds',
-                #},
             },
         },
         IdleEffects = {
@@ -410,63 +404,6 @@ UnitBlueprint {
             WeaponUnpackLocksMotion = false,
             WeaponUnpacks = true,
         },
-		--[[
-        {
-            Audio = {
-                Fire = Sound {
-                    Bank = 'UASWeapon',
-                    Cue = 'UAS0201_Depth_Charge',
-                    LodCutoff = 'Weapon_LodCutoff',
-                },
-            },
-            BallisticArc = 'RULEUBA_None',
-            CollideFriendly = false,
-            Damage = 100,
-            DamageType = 'Normal',
-            DisplayName = 'Harmonic Depth Charge',
-            EffectiveRadius = 39,
-            FireTargetLayerCapsTable = {
-                Water = 'Seabed|Sub',
-            },
-            FiringRandomness = 1,
-            FiringTolerance = 2,
-            Label = 'DepthCharge',
-            MaxRadius = 20,
-            MuzzleSalvoDelay = 0.3,
-            MuzzleSalvoSize = 3,
-            MuzzleVelocity = 5,
-            ProjectileId = '/projectiles/AANDepthCharge02/AANDepthCharge02_proj.bp',
-            ProjectileLifetime = 15,
-            RackBones = {
-                {
-                    MuzzleBones = {
-                        'Torp01',
-                        'Torp02',
-                    },
-                    RackBone = 'Torp01',
-                },
-            },
-            RackFireTogether = false,
-            RackRecoilDistance = 0,
-            RackReloadTimeout = 10,
-            RackSalvoChargeTime = 0,
-            RackSalvoReloadTime = 0,
-            RackSalvoSize = 1,
-            RackSlavedToTurret = false,
-            RangeCategory = 'UWRC_AntiNavy',
-            RateOfFire = 0.2,
-            TargetCheckInterval = 2,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'NAVAL MOBILE',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
-            TargetRestrictDisallow = 'UNTARGETABLE, HOVER',
-            Turreted = false,
-            WeaponCategory = 'Anti Navy',
-        },
-		]]--
     },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',

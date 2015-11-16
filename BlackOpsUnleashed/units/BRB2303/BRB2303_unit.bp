@@ -39,8 +39,8 @@ UnitBlueprint {
         'TECH2',
         'INDIRECTFIRE',
         'ARTILLERY',
-		'SILO',
-		'TACTICALMISSILEPLATFORM',
+        'SILO',
+        'TACTICALMISSILEPLATFORM',
         'DRAGBUILD',
         'SIZE4',
         'VISIBLETORECON',
@@ -63,7 +63,7 @@ UnitBlueprint {
     },
     Description = '<LOC brb2303_desc>Hailfire Artillery Installation',
     Display = {
-		Abilities = {
+        Abilities = {
             '<LOC ability_energy>High Energy Consumption',
         },
         Mesh = {
@@ -73,12 +73,6 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Insect',
                 },
-			#	{
-              #      AlbedoName = 'brb2303_lod1_albedo.dds',
-               #     LODCutoff = 215,
-               #     ShaderName = 'Insect',
-               #     SpecularName = 'brb2303_lod1_specteam.dds',
-               # },
             },
         },
         PlaceholderMeshName = 'UXB0004',
@@ -182,7 +176,7 @@ UnitBlueprint {
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             ArtilleryShieldBlocks = true,
             Audio = {
                 Fire = Sound {
@@ -197,7 +191,7 @@ UnitBlueprint {
             DamageFriendly = true,
             DamageRadius = 3,
             DamageType = 'Normal',
-			EnergyDrainPerSecond = 1000,
+            EnergyDrainPerSecond = 1000,
             EnergyRequired = 200,
             DisplayName = 'Hailfire Artillery',
             FireTargetLayerCapsTable = {

@@ -87,7 +87,7 @@ UAA0310 = Class(AAirUnit) {
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
         end
-        if self:GetAIBrain().BrainType != 'Human' then
+        if self:GetAIBrain().BrainType ~= 'Human' then
             --LOG('OH NOES CZAR BUILT BY AI, TIME FOR OWNAGE')
             
             self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0.2)

@@ -14,7 +14,7 @@ SeaDragonShell01 = Class(SeaDragonShell) {
         local emit = nil
         for k, v in EffectTable do
             emit = CreateEmitterAtEntity(self,army,v)
-            if emit and EffectScale != 1 then
+            if emit and EffectScale ~= 1 then
                 emit:ScaleEmitter(EffectScale or 1)
             end
         end

@@ -1,12 +1,9 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/URB1102/URB1102_script.lua
-#**  Author(s):  John Comes, Dave Tomandl, Jessica St. Croix
-#**
-#**  Summary  :  Cybran Hydrocarbon Power Plant Script
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+-----------------------------------------------------------------
+-- File     :  /cdimage/units/URB1102/URB1102_script.lua
+-- Author(s):  John Comes, Dave Tomandl, Jessica St. Croix
+-- Summary  :  Cybran Hydrocarbon Power Plant Script
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CEnergyCreationUnit = import('/lua/cybranunits.lua').CEnergyCreationUnit
 
@@ -28,7 +25,7 @@ URB1102 = Class(CEnergyCreationUnit) {
             local bones = {}
             local scale = .5
 
-            # Play the "activate" sound
+            -- Play the "activate" sound
             local myBlueprint = self:GetBlueprint()
             if myBlueprint.Audio.Activate then
                 self:PlaySound(myBlueprint.Audio.Activate)

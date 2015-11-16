@@ -1,26 +1,19 @@
---****************************************************************************
---**
---**  File     :  /lua/BlackOpsdefaultcollisionbeams.lua
---**  Author(s):  Lt_hawkeye
---**
---**  Summary  :  Custom definitions collision beams
---**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------
+-- File     :  /lua/BlackOpsdefaultcollisionbeams.lua
+-- Author(s):  Lt_hawkeye
+-- Summary  :  Custom definitions collision beams
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local Util = import('/lua/utilities.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
-
-
--------------------------------
---   Base class that defines supreme commander specific defaults
--------------------------------
+-- Base class that defines supreme commander specific defaults
 HawkCollisionBeam = Class(CollisionBeam) {
     FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
-    FxImpactLand = {},--EffectTemplate.DefaultProjectileLandImpact,
+    FxImpactLand = {},
     FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
     FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
     FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
@@ -29,12 +22,8 @@ HawkCollisionBeam = Class(CollisionBeam) {
     FxImpactNone = {},
 }
 
--------------------------------
---  SEADRAGON & REAPER BEAMS
--------------------------------
-
+-- SEADRAGON & REAPER BEAMS
 MartyrMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.2,
     FxBeamStartPointScale = 0.2,
@@ -44,22 +33,21 @@ MartyrMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
 }
-------------------------------------
---  Mini QUANTUM BEAM GENERATOR COLLISION BEAM
-------------------------------------
+
+-- Mini QUANTUM BEAM GENERATOR COLLISION BEAM
 MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 0.2,
         
     FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_quantum_generator_beam_01_emit.bp'},
     FxBeamEndPoint = {
-		'/effects/emitters/quantum_generator_end_01_emit.bp',
+        '/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-	},   
+    },   
     FxBeamEndPointScale = 0.2,
     FxBeamStartPoint = {
-		'/effects/emitters/quantum_generator_01_emit.bp',
+        '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },   
@@ -111,29 +99,26 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
             WaitSeconds( self.ScorchSplatDropTime )
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
-	end 
+        end 
     end,  
 }
 
-
-------------------------------------
---  Super QUANTUM BEAM GENERATOR COLLISION BEAM
-------------------------------------
+-- Super QUANTUM BEAM GENERATOR COLLISION BEAM
 SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 1,
         
     FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/super_quantum_generator_beam_01_emit.bp'},
     FxBeamEndPoint = {
-		'/effects/emitters/quantum_generator_end_01_emit.bp',
+        '/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
         '/effects/emitters/quantum_generator_end_05_emit.bp',
         '/effects/emitters/quantum_generator_end_06_emit.bp',
-	},   
+    },   
     FxBeamEndPointScale = 0.6,
     FxBeamStartPoint = {
-		'/effects/emitters/quantum_generator_01_emit.bp',
+        '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },   
@@ -185,12 +170,11 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
             WaitSeconds( self.ScorchSplatDropTime )
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
-	end 
+        end
     end,  
 }
 
 MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.5,
     FxBeamStartPoint = EffectTemplate.APhasonLaserMuzzle01,
@@ -249,7 +233,6 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
 }
 
 MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.2,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
@@ -308,44 +291,34 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
 }
 
 HawkTractorClawCollisionBeam = Class(HawkCollisionBeam) {
-    
     FxBeam = {EffectTemplate.TTransportBeam01},
     FxBeamEndPoint = {EffectTemplate.TTransportGlow01},
     FxBeamEndPointScale = 1.0,
-    
-    FxBeamStartPoint = { EffectTemplate.TTransportGlow01 },
-
-    
+    FxBeamStartPoint = {EffectTemplate.TTransportGlow01},
 }
 
---------------------------------
---       Juggernaut LASERS
---------------------------------
+-- Juggernaut LASERS
 JuggLaserCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 0.02,
         
     FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/jugg_laser_beam_01_emit.bp'},
     FxBeamEndPoint = {
-		'/effects/emitters/quantum_generator_end_01_emit.bp',
+        '/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-	},   
+    },   
     FxBeamEndPointScale = 0.02,
     FxBeamStartPoint = {
-		'/effects/emitters/quantum_generator_01_emit.bp',
+        '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },   
     FxBeamStartPointScale = 0.02,
 }
 
--------------------------------
---  ShadowCat beam
--------------------------------
-
+-- ShadowCat beam
 RailLaserCollisionBeam01 = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.2,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
@@ -357,33 +330,30 @@ RailLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     ScorchSplatDropTime = 0.25,
     
     OnImpactDestroy = function( self, targetType, targetEntity )
-
-   	if targetEntity and not IsUnit(targetEntity) then
-      	RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
-      	return
-   	end
+       if targetEntity and not IsUnit(targetEntity) then
+          RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
+          return
+       end
    
-   	if self.counter then
-      	if self.counter >= 3 then
-         	RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
-         	return
-      	else
-         	self.counter = self.counter + 1
-      	end
-   		else
-      		self.counter = 1
-   		end
-   		if targetEntity then
-			self.lastimpact = targetEntity:GetEntityId() --remember what was hit last
-		end
-	end,
+       if self.counter then
+          if self.counter >= 3 then
+             RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
+             return
+          else
+             self.counter = self.counter + 1
+          end
+           else
+              self.counter = 1
+           end
+           if targetEntity then
+            self.lastimpact = targetEntity:GetEntityId()
+        end
+    end,
 }
-------------------------------------
---   ZAPPER STUN BEAM
-------------------------------------
-EMCHPRFDisruptorBeam = Class(HawkCollisionBeam)
-{
-	TerrainImpactType = 'LargeBeam01',
+
+-- ZAPPER STUN BEAM
+EMCHPRFDisruptorBeam = Class(HawkCollisionBeam) {
+    TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.3,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
     FxBeamStartPointScale = 0.3,
@@ -393,50 +363,44 @@ EMCHPRFDisruptorBeam = Class(HawkCollisionBeam)
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
     
-    OnImpact = function(self, impactType, targetEntity) 
+    OnImpact = function(self, impactType, targetEntity)
+        if targetEntity then 
+            if EntityCategoryContains(categories.TECH1, targetEntity) then
+                targetEntity:SetStunned(0.2)
+            elseif EntityCategoryContains(categories.TECH2, targetEntity) then
+                targetEntity:SetStunned(0.2)
+            elseif EntityCategoryContains(categories.TECH3, targetEntity) and not EntityCategoryContains(categories.SUBCOMMANDER, targetEntity) then--SUBCOMS HAVE SUMCOM ADDED IN MOD
+                targetEntity:SetStunned(0.2)
+            end
+        end
 
-
-		if targetEntity then 
-			if EntityCategoryContains(categories.TECH1, targetEntity) then
-				targetEntity:SetStunned(0.2)
-			elseif EntityCategoryContains(categories.TECH2, targetEntity) then
-				targetEntity:SetStunned(0.2)
-			elseif EntityCategoryContains(categories.TECH3, targetEntity) and not EntityCategoryContains(categories.SUBCOMMANDER, targetEntity) then--SUBCOMS HAVE SUMCOM ADDED IN MOD
-				targetEntity:SetStunned(0.2)
-			end
-		end
-
-		HawkCollisionBeam.OnImpact(self, impactType, targetEntity)
-	end, 
+        HawkCollisionBeam.OnImpact(self, impactType, targetEntity)
+    end, 
 }
 
-------------------------------------
---   HIRO LASER COLLISION BEAM
-------------------------------------
-
+-- HIRO LASER COLLISION BEAM
 TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamEndPoint = {
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_01_emit.bp',			-- big glow
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_02_emit.bp',			-- random bright blueish dots
-		'/effects/emitters/uef_orbital_death_laser_end_03_emit.bp',			-- darkening lines
-		'/effects/emitters/uef_orbital_death_laser_end_04_emit.bp',			-- molecular, small details
-		'/effects/emitters/uef_orbital_death_laser_end_05_emit.bp',			-- rings
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_06_emit.bp',			-- upward sparks
-		'/effects/emitters/uef_orbital_death_laser_end_07_emit.bp',			-- outward line streaks
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_08_emit.bp',			-- center glow
-		'/effects/emitters/uef_orbital_death_laser_end_distort_emit.bp',	-- screen distortion
-	},
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_02_emit.bp',
+        '/effects/emitters/uef_orbital_death_laser_end_03_emit.bp',
+        '/effects/emitters/uef_orbital_death_laser_end_04_emit.bp',
+        '/effects/emitters/uef_orbital_death_laser_end_05_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_06_emit.bp',
+        '/effects/emitters/uef_orbital_death_laser_end_07_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_08_emit.bp',
+        '/effects/emitters/uef_orbital_death_laser_end_distort_emit.bp',
+    },
     FxBeamStartPointScale = 1,
     FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_beam_01_emit.bp'},
     FxBeamStartPoint = {
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_01_emit.bp',	-- random bright blueish dots
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_02_emit.bp',	-- molecular, small details
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_03_emit.bp',	-- darkening lines
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_04_emit.bp',	-- small downward sparks
-		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_05_emit.bp',	-- big glow
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_02_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_03_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_04_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_05_emit.bp',
     },
     FxBeamEndPointScale = 1,
     SplatTexture = 'czar_mark01_albedo',
@@ -482,26 +446,20 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
     end,
 }
 
-------------------------------------
---   MGAALaser CANNON COLLISION BEAM
-------------------------------------
+-- MGAALaser CANNON COLLISION BEAM
 MGAALaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {
-		'/mods/BlackOpsUnleashed/effects/emitters/aa_cannon_beam_01_emit.bp',
-	},
+        '/mods/BlackOpsUnleashed/effects/emitters/aa_cannon_beam_01_emit.bp',
+    },
     FxBeamEndPoint = {
-		'/effects/emitters/particle_cannon_end_01_emit.bp',
-		'/effects/emitters/particle_cannon_end_02_emit.bp',
-	},
+        '/effects/emitters/particle_cannon_end_01_emit.bp',
+        '/effects/emitters/particle_cannon_end_02_emit.bp',
+    },
     FxBeamEndPointScale = 1,
 }
 
--------------------------------
---  Aeon t4 beam
--------------------------------
-
+-- Aeon t4 beam
 GoldenLaserCollisionBeam01 = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.2,
     FxBeamStartPointScale = 0.2,
@@ -514,19 +472,11 @@ GoldenLaserCollisionBeam01 = Class(HawkCollisionBeam) {
 }
 
 YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
-
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamStartPoint = EffectTemplate.SExperimentalPhasonLaserMuzzle01,
     FxBeam = EffectTemplate.SExperimentalPhasonLaserBeam,
     FxBeamEndPoint = EffectTemplate.SExperimentalPhasonLaserHitLand,
-	--[[FxBeamEndPoint = {
-		'/effects/emitters/quantum_generator_end_01_emit.bp',
-        '/effects/emitters/quantum_generator_end_03_emit.bp',
-        '/effects/emitters/quantum_generator_end_04_emit.bp',
-        '/effects/emitters/quantum_generator_end_05_emit.bp',
-        '/effects/emitters/quantum_generator_end_06_emit.bp',
-	},   ]]--
     SplatTexture = 'scorch_004_albedo',
     ScorchSplatDropTime = 0.1,
 
@@ -568,17 +518,16 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
             CurrentPosition = self:GetPosition(1)
         end
     end,
-    
 }
-YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
 
+YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamStartPoint = EffectTemplate.SExperimentalPhasonLaserMuzzle01,
-	FxBeamStartPointScale = 0.2,
+    FxBeamStartPointScale = 0.2,
     FxBeam = BlackOpsEffectTemplate.SExperimentalDronePhasonLaserBeam,
     FxBeamEndPoint = EffectTemplate.SExperimentalPhasonLaserHitLand,
-	FxBeamEndPointScale = 0.2,
+    FxBeamEndPointScale = 0.2,
     SplatTexture = 'scorch_004_albedo',
     ScorchSplatDropTime = 0.1,
 
@@ -620,17 +569,14 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
             CurrentPosition = self:GetPosition(1)
         end
     end,
-    
 }
-YenaothaExperimentalChargeLaserCollisionBeam = Class(HawkCollisionBeam) {
 
+YenaothaExperimentalChargeLaserCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamStartPoint = EffectTemplate.SExperimentalPhasonLaserMuzzle01,
-	FxBeamStartPointScale = 0.5,
+    FxBeamStartPointScale = 0.5,
     FxBeam = BlackOpsEffectTemplate.SExperimentalChargePhasonLaserBeam,
     FxBeamEndPoint = EffectTemplate.SExperimentalPhasonLaserHitLand,
-	FxBeamEndPointScale = 0.5,
-
-    
+    FxBeamEndPointScale = 0.5,
 }

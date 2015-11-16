@@ -1,5 +1,5 @@
 UnitBlueprint {
-	AI = {
+    AI = {
         TargetBones = {
             'Pelvis',
         },
@@ -70,7 +70,7 @@ UnitBlueprint {
     },
     Description = '<LOC bsl0310_desc>Lambda Equipped Assault Bot',
     Display = {
-    	Abilities = {
+        Abilities = {
             '<LOC ability_lam>Lambda Field',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
         },
@@ -83,7 +83,7 @@ UnitBlueprint {
             },
         },
         AnimationWalk = '/units/BSL0310/BSL0310_AWalk01.sca',
-		AnimationWalkRate = 2.3,
+        AnimationWalkRate = 2.3,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -93,15 +93,9 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
-              #  {
-              #      AlbedoName = 'BSL0310_lod1_albedo.dds',
-              #      LODCutoff = 215,
-              #      ShaderName = 'Seraphim',
-              #      SpecularName = 'BSL0310_lod1_specteam.dds',
-              #  },
             },
         },
-		
+        
         MovementEffects = {
             Land = {
                 Effects = {
@@ -132,7 +126,7 @@ UnitBlueprint {
                 },
             },
         },
-		
+        
         PlaceholderMeshName = 'UXL0001',
         SpawnRandomRotation = true,
         UniformScale = 0.065,

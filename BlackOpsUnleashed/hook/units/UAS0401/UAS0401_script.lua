@@ -439,7 +439,7 @@ UAS0401 = Class(ASubUnit) {
             local HoldFire = MyFireState == 1
             --De-blip our weapon target, nil MyTarget if none
             local TargetBlip = TargetWeapon:GetCurrentTarget()
-            if TargetBlip != nil then
+            if TargetBlip ~= nil then
                 self.MyTarget = self:GetRealTarget(TargetBlip)
             else
                 self.MyTarget = nil
@@ -447,7 +447,7 @@ UAS0401 = Class(ASubUnit) {
             
             --Propagate the Goliath's fire state to the drones, to keep them from retaliating when the Goliath is on hold-fire
             --This also allows you to set both drones to target-ground, although I'm not sure how that'd be useful
-            if LastFireState != MyFireState then
+            if LastFireState ~= MyFireState then
                 LastFireState = MyFireState
                 self:SetDroneFirestate(MyFireState)
             end
@@ -472,22 +472,22 @@ UAS0401 = Class(ASubUnit) {
                 
                 local GunshipTarget = self:SearchForGunshipTarget(self.AirMonitorRange)
                 if GunshipTarget and not GunshipTarget:IsDead() then
-                    if GunshipTarget != LastDroneTarget then
+                    if GunshipTarget ~= LastDroneTarget then
                         --LOG("Mithy: Heartbeat - DroneAssist: GunshipTarget")
                         NewDroneTarget = GunshipTarget
                     end
-                elseif self.MyTarget != nil and not self.MyTarget:IsDead() then
-                    if self.MyTarget != LastDroneTarget then
+                elseif self.MyTarget ~= nil and not self.MyTarget:IsDead() then
+                    if self.MyTarget ~= LastDroneTarget then
                         --LOG("Mithy: Heartbeat - DroneAssist: MyTarget")
                         NewDroneTarget = self.MyTarget
                     end
-                elseif self.MyAttacker != nil and not self.MyAttacker:IsDead() and self:IsTargetInRange(self.MyAttacker) then
-                    if self.MyAttacker != LastDroneTarget then
+                elseif self.MyAttacker ~= nil and not self.MyAttacker:IsDead() and self:IsTargetInRange(self.MyAttacker) then
+                    if self.MyAttacker ~= LastDroneTarget then
                         --LOG("Mithy: Heartbeat - DroneAssist: MyAttacker")
                         NewDroneTarget = self.MyAttacker
                     end
                 --If our previous attacker is no longer valid, clear MyAttacker to re-enable the OnDamage check
-                elseif self.MyAttacker != nil then
+                elseif self.MyAttacker ~= nil then
                     --LOG("Mithy: Heartbeat - DroneAssist: MyAttacker = nil")
                     self.MyAttacker = nil
                 end
@@ -540,7 +540,7 @@ UAS0401 = Class(ASubUnit) {
             for id, drone in self.DroneTable do
                 if drone.AwayFromCarrier == false then --now that idle, docked drones are auto-reassigned, we only want to command released drones
                     local targetblip = dronetarget:GetBlip(self:GetArmy())
-                    if targetblip != nil then
+                    if targetblip ~= nil then
                         IssueClearCommands({drone})
                         IssueAttack({drone}, targetblip) --send drones after unit's recon blip, if we can see it
                     else
@@ -607,14 +607,14 @@ UAS0401 = Class(ASubUnit) {
     --Runs a potential target through filters to insure that drones can attack it; checks are as simple and efficient as possible
     IsValidDroneTarget = function(self, target)
         local ivdt
-        if target != nil --target still exists!
-        --and IsUnit(target) != nil --is a unit
-        and target.Dead != nil --is a unit
+        if target ~= nil --target still exists!
+        --and IsUnit(target) ~= nil --is a unit
+        and target.Dead ~= nil --is a unit
         and not target:IsDead() --isn't dead
         and IsEnemy(self:GetArmy(), target:GetArmy()) --is hostile
         and not EntityCategoryContains(categories.HIGHALTAIR + categories.UNTARGETABLE, target) --is not a bomber/interceptor or otherwise untargetable
-        and target:GetCurrentLayer() != 'Sub' --is not submerged
-        and target:GetBlip(self:GetArmy()) != nil then --has a recon blip we can see
+        and target:GetCurrentLayer() ~= 'Sub' --is not submerged
+        and target:GetBlip(self:GetArmy()) ~= nil then --has a recon blip we can see
             ivdt = true
         end
         return ivdt

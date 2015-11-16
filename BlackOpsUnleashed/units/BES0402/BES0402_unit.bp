@@ -305,7 +305,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-			MuzzleVelocityReduceDistance = 150,
+            MuzzleVelocityReduceDistance = 150,
             NotExclusive = true,
             ProjectileId = '/projectiles/ZCannon01/ZCannon01_proj.bp',
             ProjectileLifetime = 10,
@@ -377,7 +377,7 @@ UnitBlueprint {
                     Cue = 'UES0302_Cannon_Stop',
                     LodCutoff = 'WeaponBig_LodCutoff',
                 },
-				Fire = Sound {
+                Fire = Sound {
                     Bank = 'UELWeapon',
                     Cue = 'UEB2302_Artillery_AM',
                     LodCutoff = 'Weapon_LodCutoff',
@@ -407,7 +407,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-			MuzzleVelocityReduceDistance = 150,
+            MuzzleVelocityReduceDistance = 150,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
             ProjectileId = '/projectiles/ZCannon01/ZCannon01_proj.bp',
@@ -509,7 +509,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-			MuzzleVelocityReduceDistance = 150,
+            MuzzleVelocityReduceDistance = 150,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
             ProjectileId = '/projectiles/ZCannon01/ZCannon01_proj.bp',
@@ -564,7 +564,6 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
         },
-#Front deck gun
         {
             AboveWaterTargetsOnly = true,
             Audio = {
