@@ -1,6 +1,5 @@
 local MiniRocket04PRojectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MiniRocket04PRojectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local SingleBeamProjectile = import('/lua/sim/defaultprojectiles.lua').SingleBeamProjectile
 
 AWMissileCruise01 = Class(MiniRocket04PRojectile) {
     InitialEffects = {'/effects/emitters/nuke_munition_launch_trail_02_emit.bp',},
@@ -14,7 +13,6 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
     },
     
     FxTrails = EffectTemplate.TMissileExhaust01,
-    --FxTrailOffset = -0.15,
     FxImpactUnit = EffectTemplate.TAntiMatterShellHit01,
     FxImpactLand = EffectTemplate.TAntiMatterShellHit01,
     FxImpactProp = EffectTemplate.TAntiMatterShellHit01,
@@ -46,6 +44,7 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
             WaitSeconds(self.WaitTime)
         end
     end,
+    
     CreateEffects = function(self, EffectTable, army, scale)
         for k, v in EffectTable do
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
@@ -53,15 +52,12 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
     end,
 
     SetTurnRateByDist = function(self)
-        --local dist = self:GetDistanceToTarget()
         local army = self:GetArmy()
         local dist = VDist3(self:GetPosition(), self:GetCurrentTargetPosition())
-        --LOG('Distance : ', dist)
         if dist > 50 then        
-            --Freeze the turn rate as to prevent steep angles at long distance targets
+            -- Freeze the turn rate as to prevent steep angles at long distance targets
             self:SetTurnRate(15)
             WaitSeconds(1)
-            --self:SetTurnRate(90)
             self:SetTurnRate(50)
         elseif dist > 35 and dist <= 50 then
             -- Increase check intervals
@@ -72,7 +68,6 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
             self:SetTurnRate(50)
             WaitSeconds(0.1)
             self:SetTurnRate(90)
-            --speed boost!! and effects
             self.CreateEffects(self, self.InitialEffects, army, 1)
             self.CreateEffects(self, self.LaunchEffects, army, 1)
             self.CreateEffects(self, self.ThrustEffects, army, 3)
@@ -101,4 +96,5 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
         self:SetDestroyOnWater(true)
     end,
 }
+
 TypeClass = AWMissileCruise01

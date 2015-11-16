@@ -1,16 +1,13 @@
---****************************************************************************
---
---    File     :  /data/Projectiles/ADFReactonCannnon01/ADFReactonCannnon01_script.lua
---    Author(s): Jessica St.Croix, Gordon Duclos
---
---    Summary  : Aeon Reacton Cannon Area of Effect Projectile
---
---    Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-----------------------------------------------------------------------------------
+-- File     :  /data/Projectiles/ADFReactonCannnon01/ADFReactonCannnon01_script.lua
+-- Author(s): Jessica St.Croix, Gordon Duclos
+-- Summary  : Aeon Reacton Cannon Area of Effect Projectile
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------------------------
 
 local ArtemisCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ArtemisCannonProjectile
 
 ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
-
     OnImpact = function(self, TargetType, TargetEntity)
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
             -- Play the explosion sound
@@ -38,9 +35,6 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
            
             nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead02/ArtemisWarhead02_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
-            --local launcherbp = self:GetLauncher():GetBlueprint()  
-            --local wep = self:GetLauncher()
-            --self.wep.DoTakeDamage = launcherbp.NukeInnerRingDamage
         end
         ArtemisCannonProjectile.DoTakeDamage(self, instigator, amount, vector, damageType)
     end,
@@ -54,7 +48,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
                 table.insert(self.ProjectileDamaged, v)
             end
         end
-        --self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
     end,
 }
+
 TypeClass = ADFReactonCannon01

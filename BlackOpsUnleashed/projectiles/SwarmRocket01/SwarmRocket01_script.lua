@@ -1,19 +1,16 @@
---
 -- AA Missile for Cybrans
---
+
 local CAAMissileNaniteProjectile = import('/lua/cybranprojectiles.lua').CAAMissileNaniteProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
-
 CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
-
     OnCreate = function(self)
         CAAMissileNaniteProjectile.OnCreate(self)
         self:ForkThread(self.MovementThread)
     end,
     
-        MovementThread = function(self)        
+    MovementThread = function(self)        
         self.WaitTime = 0.1
         self.Distance = self:GetDistanceToTarget()
         while not self:BeenDestroyed() do
@@ -40,12 +37,10 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
         return dist
     end,
     
-    SplitThread = function(self) 
-        
+    SplitThread = function(self)
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
         local ChildProjectileBP = '/projectiles/SwarmRocket02/SwarmRocket02_proj.bp'  
-              
-        
+
         -- Split effects
         for k, v in FxFragEffect do
             CreateEmitterAtEntity(self, self:GetArmy(), v)
@@ -53,10 +48,7 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
         
         local vx, vy, vz = self:GetVelocity()
         local velocity = 6
-    
-        -- One initial projectile following same directional path as the original
---        self:CreateChildProjectile(ChildProjectileBP):SetVelocity(vx, vy, vz):SetVelocity(velocity):PassDamageData(self.DamageData)
-           
+        
         -- Create several other projectiles in a dispersal pattern
         local numProjectiles = 3
         local angle = (5*math.pi) / numProjectiles
@@ -79,6 +71,7 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
             proj:SetVelocity(velocity)
             proj:PassDamageData(self.DamageData)                        
         end
+        
         local pos = self:GetPosition()
         local spec = {
             X = pos[1],
@@ -94,4 +87,3 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
 }
 
 TypeClass = CAAMissileNanite02
-

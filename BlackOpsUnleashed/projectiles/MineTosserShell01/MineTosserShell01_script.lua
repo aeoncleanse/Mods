@@ -1,8 +1,9 @@
---****************************************************************************
+-------------------------------------------------------------------------------------------------
 -- File     :  /data/projectiles/SIFLaanseTacticalMissile04/SIFLaanseTacticalMissile04_script.lua
 -- Author(s):  Gordon Duclos, Aaron Lundquist
 -- Summary  :  Laanse Tactical Missile Projectile script, XSB2108
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------------------------------
 
 local SLaanseTacticalMissile = import('/lua/seraphimprojectiles.lua').SLaanseTacticalMissile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -11,14 +12,11 @@ local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
 SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
-            
-            
     FxImpactUnit = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactAirUnit = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactProp = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactLand = BlackOpsEffectTemplate.MGHeadshotHit01,
-    
-    
+
     OnCreate = function(self)
         SLaanseTacticalMissile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
@@ -29,8 +27,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         
         local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
         local ChildProjectileBP = '/projectiles/MineTosserChildShell01/MineTosserChildShell01_proj.bp'  
-              
-        
+
         -- Split effects
         for k, v in FxFragEffect do
             CreateEmitterAtEntity(self, self:GetArmy(), v)
@@ -55,7 +52,6 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         local yVec = vy
         local zVec = 0
         
-
         -- Launch projectiles at semi-random angles away from split location
         for i = 0, (numProjectiles -1) do
             xVec = vx + (math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul
@@ -73,14 +69,12 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         local army = self:GetArmy()
         local launcher = self:GetLauncher()
         self:TrackTarget(false)
-       -- WaitSeconds(0.4)        -- Height
         self:SetCollision(true)
         WaitSeconds(1)
-        --WaitSeconds(2.5)
         self:TrackTarget(true) -- Turn ~90 degrees towards target
         self:SetDestroyOnWater(true)        
         self:SetTurnRate(47.36)
-        WaitSeconds(2)                     -- Now set turn rate to zero so nuke flies straight
+        WaitSeconds(2) -- Now set turn rate to zero so nuke flies straight
         self:SetTurnRate(0)
         self:SetAcceleration(0.001)
         self.WaitTime = 0.5
@@ -92,18 +86,15 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
 
     SetTurnRateByDist = function(self)
         local dist = self:GetDistanceToTarget()
-        --Get the nuke as close to 90 deg as possible
+        -- Get the nuke as close to 90 deg as possible
         if dist > 150 then        
-            --Freeze the turn rate as to prevent steep angles at long distance targets
+            -- Freeze the turn rate as to prevent steep angles at long distance targets
             self:SetTurnRate(0)
         elseif dist > 75 and dist <= 150 then
-                        -- Increase check intervals
             self.WaitTime = 0.1
         elseif dist > 32 and dist <= 75 then
-                        -- Further increase check intervals
             self.WaitTime = 0.1
         elseif dist < 15 then
-                        -- Turn the missile down
             self:SetTurnRate(95)
         end
     end,    
@@ -115,5 +106,5 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         return dist
     end,
 }
-TypeClass = SIFLaanseTacticalMissile04
 
+TypeClass = SIFLaanseTacticalMissile04

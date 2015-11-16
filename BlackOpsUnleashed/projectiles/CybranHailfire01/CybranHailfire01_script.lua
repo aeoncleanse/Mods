@@ -1,15 +1,10 @@
---
 -- Cybran Anti Air Projectile
---
 
 local CybranHailfire02Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').CybranHailfire02Projectile
-local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
 CAANanoDart02 = Class(CybranHailfire02Projectile) {
-
    OnCreate = function(self)
         CybranHailfire02Projectile.OnCreate(self)
         for k, v in self.FxTrails do
@@ -20,7 +15,6 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
    
     MovementThread = function(self)        
         self.WaitTime = 0.1
-        --self:SetTurnRate(8)
         WaitSeconds(0.1)        
         while not self:BeenDestroyed() do
             self:SetTurnRateByDist()
@@ -29,31 +23,20 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
     end,
 
     SetTurnRateByDist = function(self)
-        --local dist = self:GetDistanceToTarget()
         local dist = VDist3(self:GetPosition(), self:GetCurrentTargetPosition())
-        --LOG('Distance : ', dist)
         if dist > 0 and dist <= 15 then
-            -- Further increase check intervals            
-            --self:SetTurnRate(360)   
             WaitSeconds(0.1)
-            --LOG('Distance Split : ', dist)
-            --ForkThread(self.OnImpact)
-            --KillThread(self.MoveThread)         
-
             local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
             local ChildProjectileBP = '/projectiles/CybranHailfire01child/CybranHailfire01child_proj.bp'  
               
-            ------ Split effects
+            -- Split effects
             for k, v in FxFragEffect do
                 CreateEmitterAtEntity(self, self:GetArmy(), v)
             end
             
             local vx, vy, vz = self:GetVelocity()
             local velocity = 20
-        
-            -- One initial projectile following same directional path as the original
-            --self:CreateChildProjectile(ChildProjectileBP):SetVelocity(vx, vy, vz):SetVelocity(velocity):PassDamageData(self.ChildDamageData)
-           
+
             -- Create several other projectiles in a dispersal pattern
             local numProjectiles = 5
             
@@ -62,9 +45,7 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
             
             -- Randomization of the spread
             local angleVariation = angle * 3 -- Adjusts angle variance spread
-            local spreadMul = 1.75 -- Adjusts the width of the dispersal        
-        
-            --vy= -0.8
+            local spreadMul = 1.75 -- Adjusts the width of the dispersal
         
             local xVec = 0
             local yVec = vy
@@ -81,16 +62,16 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
             end
         
             self:Destroy()
+        end
+    end,
 
-            end
-    end,     
     PassDamageData = function(self, damageData)
         CybranHailfire02Projectile.PassDamageData(self,damageData)
         local launcherbp = self:GetLauncher():GetBlueprint()  
         self.ChildDamageData = table.copy(self.DamageData)
         self.ChildDamageData.DamageAmount = launcherbp.SplitDamage.DamageAmount or 0
         self.ChildDamageData.DamageRadius = launcherbp.SplitDamage.DamageRadius or 1   
-    end,      
+    end, 
 }
 
 TypeClass = CAANanoDart02

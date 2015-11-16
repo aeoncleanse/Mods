@@ -1,8 +1,10 @@
---****************************************************************************
+-------------------------------------------------------------
 -- File     :  /data/projectiles/GoldAA01/GoldAA01_script.lua
 -- Author(s):  Matt Vainio, Gordon Duclos
 -- Summary  :  Aeon Guided Missile, DAA0206
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
+
 local GoldAAProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GoldAAProjectile
 local RandF = import('/lua/utilities.lua').GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -14,8 +16,6 @@ GoldAA = Class(GoldAAProjectile) {
     end,
 
     SplitThread = function(self)
-        
-        ------Create/play the split effects.
         for k,v in EffectTemplate.AMercyGuidedMissileSplit do
             CreateEmitterOnEntity(self,self:GetArmy(),v)
         end
@@ -35,9 +35,6 @@ GoldAA = Class(GoldAAProjectile) {
         local yVec = vy*0.8
         local zVec = 0
         
-        
-       
-        
         -- Adjust damage by number of split projectiles
         self.DamageData.DamageAmount = self.DamageData.DamageAmount / numProjectiles
 
@@ -53,5 +50,5 @@ GoldAA = Class(GoldAAProjectile) {
         self:Destroy()    
     end,  
 }
-TypeClass = GoldAA
 
+TypeClass = GoldAA

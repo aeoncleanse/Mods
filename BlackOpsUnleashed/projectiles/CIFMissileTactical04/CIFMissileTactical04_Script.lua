@@ -1,8 +1,6 @@
---
 -- Cybran "Loa" Tactical Missile, mobile unit launcher variant of this missile,
--- lower and straighter trajectory. Splits into child projectile if it takes enough
--- damage.
---
+-- lower and straighter trajectory. Splits into child projectile if it takes enough damage.
+
 local CLOATacticalMissileProjectile = import('/lua/cybranprojectiles.lua').CLOATacticalMissileProjectile
 
 CIFMissileTactical01 = Class(CLOATacticalMissileProjectile) {
@@ -13,7 +11,6 @@ CIFMissileTactical01 = Class(CLOATacticalMissileProjectile) {
         CLOATacticalMissileProjectile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)
         self.Split = false
-        --self.MoveThread = self:ForkThread(self.MovementThread)
     end,
 
     MovementThread = function(self)        
@@ -36,7 +33,7 @@ CIFMissileTactical01 = Class(CLOATacticalMissileProjectile) {
             self.Distance = self:GetDistanceToTarget()
         end
         if dist > 70 then        
-            --Freeze the turn rate as to prevent steep angles at long distance targets
+            -- Freeze the turn rate as to prevent steep angles at long distance targets
             WaitSeconds(2)
             self:SetTurnRate(10)
         elseif dist > 30 and dist <= 70 then
@@ -70,7 +67,7 @@ CIFMissileTactical01 = Class(CLOATacticalMissileProjectile) {
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
         CreateLightParticle(self, -1, army, 3, 7, 'glow_03', 'ramp_fire_11') 
-        --if I collide with terrain dont split
+        -- If I collide with terrain dont split
         if targetType != 'Projectile' then
             self.Split = true
         end
@@ -100,5 +97,5 @@ CIFMissileTactical01 = Class(CLOATacticalMissileProjectile) {
         CLOATacticalMissileProjectile.OnDamage(self, instigator, amount, vector, damageType)
     end,
 }
-TypeClass = CIFMissileTactical01
 
+TypeClass = CIFMissileTactical01

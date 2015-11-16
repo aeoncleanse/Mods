@@ -1,21 +1,18 @@
---****************************************************************************
+-------------------------------------------------------------------------------------------------
 -- File     :  /data/projectiles/SIFLaanseTacticalMissile04/SIFLaanseTacticalMissile04_script.lua
 -- Author(s):  Gordon Duclos, Aaron Lundquist
 -- Summary  :  Laanse Tactical Missile Projectile script, XSB2108
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------------------------------
 
 local SLaanseTacticalMissile = import('/lua/seraphimprojectiles.lua').SLaanseTacticalMissile
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
-            
-            
     FxImpactUnit = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactAirUnit = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactProp = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactLand = BlackOpsEffectTemplate.MGHeadshotHit01,
-    
     
     OnCreate = function(self)
         SLaanseTacticalMissile.OnCreate(self)
@@ -31,7 +28,6 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         local spiritUnit3 = CreateUnitHPR('BSB2211', self:GetArmy(), position[1]-1, position[2], position[3]+1, 0, 0, 0)
         local spiritUnit4 = CreateUnitHPR('BSB2211', self:GetArmy(), position[1]+1, position[2], position[3]-1, 0, 0, 0)
         local spiritUnit5 = CreateUnitHPR('BSB2211', self:GetArmy(), position[1]-1, position[2], position[3]-1, 0, 0, 0)
-
         
         -- Create effects for spawning of energy being
         for k, v in BlackOpsEffectTemplate.SerMineRiftIn_Small do
@@ -55,26 +51,23 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
 
     SetTurnRateByDist = function(self)
         local dist = self:GetDistanceToTarget()
-        --Get the nuke as close to 90 deg as possible
+        -- Get the nuke as close to 90 deg as possible
         if dist > 50 then        
-            --Freeze the turn rate as to prevent steep angles at long distance targets
+            -- Freeze the turn rate as to prevent steep angles at long distance targets
             WaitSeconds(2)
             self:SetTurnRate(20)
         elseif dist > 128 and dist <= 213 then
-                        -- Increase check intervals
-                        self:SetTurnRate(30)
-                        WaitSeconds(1.5)
+            self:SetTurnRate(30)
+            WaitSeconds(1.5)
             self:SetTurnRate(30)
         elseif dist > 43 and dist <= 107 then
-                        -- Further increase check intervals
             WaitSeconds(0.3)
             self:SetTurnRate(50)
-                elseif dist > 0 and dist <= 43 then
-                        -- Further increase check intervals            
+        elseif dist > 0 and dist <= 43 then     
             self:SetTurnRate(100)   
             KillThread(self.MoveThread)         
         end
-    end,        
+    end,
 
     GetDistanceToTarget = function(self)
         local tpos = self:GetCurrentTargetPosition()
@@ -83,5 +76,5 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         return dist
     end,
 }
-TypeClass = SIFLaanseTacticalMissile04
 
+TypeClass = SIFLaanseTacticalMissile04
