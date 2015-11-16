@@ -1,19 +1,16 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/XES0402/XES0402_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 -- Summary  :  UEF Battleship Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponsFile = import('/lua/terranweapons.lua')
 local WeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TAALinkedRailgun = WeaponsFile.TAALinkedRailgun
-local TAMPhalanxWeapon = WeaponsFile.TAMPhalanxWeapon
 local ZCannonWeapon = WeaponsFile2.ZCannonWeapon
 local TDFShipGaussCannonWeapon = WeaponsFile.TDFShipGaussCannonWeapon
-local TIFCruiseMissileLauncher = WeaponsFile.TIFCruiseMissileLauncher
-
-local EffectUtils = import('/lua/effectutilities.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 BES0402 = Class(TSeaUnit) {
@@ -36,6 +33,7 @@ BES0402 = Class(TSeaUnit) {
                 ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
+        
         FrontAMCCannon02 = Class(ZCannonWeapon) {
             PlayFxRackSalvoReloadSequence = function(self)
                 for i = 1, 40 do
@@ -52,6 +50,7 @@ BES0402 = Class(TSeaUnit) {
                 ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
+        
         BackAMCCannon = Class(ZCannonWeapon) {
             PlayFxRackSalvoReloadSequence = function(self)
                 for i = 1, 40 do
@@ -68,6 +67,7 @@ BES0402 = Class(TSeaUnit) {
                 ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
+        
         AAGunLeft01 = Class(TAALinkedRailgun) {},
         AAGunLeft02 = Class(TAALinkedRailgun) {},
         AAGunLeft03 = Class(TAALinkedRailgun) {},

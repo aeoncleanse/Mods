@@ -1,8 +1,9 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/XSA0309/XSA0309_script.lua
 -- Author(s):  Greg Kohne, Aaron Lundquist
 -- Summary  : Seraphim T2 Transport Script
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
 local explosion = import('/lua/defaultexplosions.lua')
@@ -13,10 +14,7 @@ local SDFHeavyPhasicAutoGunWeapon = SeraphimWeapons.SDFHeavyPhasicAutoGunWeapon
 local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
 local SeraLambdaFieldDestroyer = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
 
-
-
 BSA0309 = Class(SAirUnit) {
-
     AirDestructionEffectBones = { 'XSA0309','Left_Attachpoint08','Right_Attachpoint02'},
 
     Weapons = {
@@ -26,6 +24,7 @@ BSA0309 = Class(SAirUnit) {
         AALeft02 = Class(SAAShleoCannonWeapon) {},
         AARight02 = Class(SAAShleoCannonWeapon) {},
     },
+    
     OnStopBeingBuilt = function(self, builder, layer)
         local bp = self:GetBlueprint().Defense.SeraLambdaFieldRedirector01
         local bp2 = self:GetBlueprint().Defense.SeraLambdaFieldRedirector02
@@ -54,6 +53,7 @@ BSA0309 = Class(SAirUnit) {
         self.UnitComplete = true
         SAirUnit.OnStopBeingBuilt(self,builder,layer)
     end,
+    
     -- Override air destruction effects so we can do something custom here
     CreateUnitAirDestructionEffects = function(self, scale)
         self:ForkThread(self.AirDestructionEffectsThread, self)

@@ -1,13 +1,13 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/BRA0309/BRA0309_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  Cybran T2 Air Transport Script
--- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
-local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
 local CAAAutocannon = cWeapons.CAAAutocannon
 local CEMPAutoCannon = cWeapons.CEMPAutoCannon
@@ -42,7 +42,6 @@ BRA0309 = Class(CAirUnit) {
         self:RequestRefreshUI()
         self.AnimManip = CreateAnimator(self)
         self.Trash:Add(self.AnimManip)
---        self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationTakeOff, false):SetRate(1)
         if not self.OpenAnim then
             self.OpenAnim = CreateAnimator(self)
             self.Trash:Add(self.OpenAnim)
@@ -54,19 +53,9 @@ BRA0309 = Class(CAirUnit) {
     OnAttachedKilled = function(self, attached)
         attached:DetachFrom()
     end,
---    OnIntelEnabled = function(self,builder,layer)
---        self:SetMaintenanceConsumptionActive()
---        self:EnableIntel('CloakField')
---    end,
---    OnIntelDisabled = function(self, builder,layer)
---        self:SetMaintenanceConsumptionInactive()
---        self:DisableIntel('CloakField')
---    end,
-
+    
     OnKilled = function(self, instigator, type, overkillRatio)
         CAirUnit.OnKilled(self, instigator, type, overkillRatio)
-        -- TransportDetachAllUnits takes 1 bool parameter. If true, randomly destroys some of the transported
-        -- units, otherwise successfully detaches all.
         self:TransportDetachAllUnits(true)
     end,
 
@@ -86,4 +75,3 @@ BRA0309 = Class(CAirUnit) {
 }
 
 TypeClass = BRA0309
-

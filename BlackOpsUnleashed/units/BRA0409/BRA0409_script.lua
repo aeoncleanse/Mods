@@ -1,26 +1,22 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/XRA0409/XRA0409_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  Cybran T2 Air Transport Script
--- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local weaponfile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
-local Weapon = import('/lua/sim/Weapon.lua').Weapon
-local cWeapons = import('/lua/cybranweapons.lua')
 local MartyrHeavyMicrowaveLaserGenerator = weaponfile2.MartyrHeavyMicrowaveLaserGenerator
 local CIFMissileStrategicWeapon = import('/lua/cybranweapons.lua').CIFMissileStrategicWeapon
-local CDFLaserHeavyWeapon = import('/lua/cybranweapons.lua').CDFLaserHeavyWeapon
 local RedHeavyTurboLaserWeapon = weaponfile2.RedHeavyTurboLaserWeapon
 local util = import('/lua/utilities.lua')
 local fxutil = import('/lua/effectutilities.lua')
 
-
 BRA0409 = Class(CAirUnit) {
     DestroyNoFallRandomChance = 1.1,
     Weapons = {
-        
         AA01 = Class(MartyrHeavyMicrowaveLaserGenerator) {},
         AA02 = Class(MartyrHeavyMicrowaveLaserGenerator) {},
         AA03 = Class(MartyrHeavyMicrowaveLaserGenerator) {},
@@ -53,11 +49,11 @@ BRA0409 = Class(CAirUnit) {
         'Engine_02',
         'Engine_03',
     },
+    
     MovementAmbientExhaustBones2 = {
         'Engine_04',
         'Engine_05',
     },
-
 
     -- When one of our attached units gets killed, detach it
     OnAttachedKilled = function(self, attached)
@@ -66,21 +62,18 @@ BRA0409 = Class(CAirUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         CAirUnit.OnKilled(self, instigator, type, overkillRatio)
-        -- TransportDetachAllUnits takes 1 bool parameter. If true, randomly destroys some of the transported
-        -- units, otherwise successfully detaches all.
         self:TransportDetachAllUnits(true)
     end,
     
     OnTransportAttach = function(self, attachBone, unit)
         CAirUnit.OnTransportAttach(self, attachBone, unit)
-        unit:SetCanTakeDamage(false) -- making transported unit invulnerable inside transport
+        unit:SetCanTakeDamage(false)
     end,
 
     OnTransportDetach = function(self, attachBone, unit)
-        unit:SetCanTakeDamage(true) -- Units dropped by the transport shouldnt be invulnerable
+        unit:SetCanTakeDamage(true)
         CAirUnit.OnTransportDetach(self, attachBone, unit)
     end,
-
 
     -- Override air destruction effects so we can do something custom here
     CreateUnitAirDestructionEffects = function(self, scale)
@@ -104,7 +97,6 @@ BRA0409 = Class(CAirUnit) {
     end,
     
     OnMotionHorzEventChange = function(self, new, old)
-        --LOG('OnMotionHorzEventChange, new = ', new, ', old = ', old)
         CAirUnit.OnMotionHorzEventChange(self, new, old)
         if self.ThrustExhaustTT1 == nil then 
             if self.MovementAmbientExhaustEffectsBag then
@@ -117,9 +109,9 @@ BRA0409 = Class(CAirUnit) {
         
         if (new == 'TopSpeed') then
             self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(2)       
-       elseif (new == 'Stopping') then
+        elseif (new == 'Stopping') then
             self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationClose, false):SetRate(2)
-       elseif new == 'Stopped' and self.ThrustExhaustTT1 != nil then
+        elseif new == 'Stopped' and self.ThrustExhaustTT1 != nil then
             KillThread(self.ThrustExhaustTT1)
             fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')
             self.ThrustExhaustTT1 = nil
@@ -149,11 +141,8 @@ BRA0409 = Class(CAirUnit) {
             
             WaitSeconds(5)
             fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')
-                            
-            --WaitSeconds(1)
         end    
     end,
 }
 
 TypeClass = BRA0409
-

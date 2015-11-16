@@ -1,20 +1,18 @@
---****************************************************************************
---
--- File     :  /cdimage/units/Effect01/Effect01_script.lua 
---
---
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-----------------------------------------------------------------
+-- File     :  /cdimage/units/Effect01/Effect01_script.lua
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
+
 local SLandFactoryUnit = import('/lua/seraphimunits.lua').SLandFactoryUnit
 
 BSB2402 = Class(SLandFactoryUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         SLandFactoryUnit.OnStopBeingBuilt(self,builder,layer)
         local army = self:GetArmy()
-        ------ Global Varibles------
+        -- Global Varibles
         self.Side = 0
         self.DroneTable = {}
         self.EffectsBag = {}
-        --------------CreateAttachedEmitter(self,'Effect01',army, '/effects/emitters/seraphim_rift_arch_base_01_emit.bp'):OffsetEmitter(0.00, 0.00, 0.00)
         CreateAttachedEmitter(self,'Effect01',army, '/effects/emitters/seraphim_rift_arch_base_01_emit.bp'):ScaleEmitter(0.7)    -- glow
         CreateAttachedEmitter(self,'Effect01',army, '/effects/emitters/seraphim_rift_arch_base_02_emit.bp'):ScaleEmitter(0.7)    -- plasma pillar
         CreateAttachedEmitter(self,'Effect01',army, '/effects/emitters/seraphim_rift_arch_base_03_emit.bp'):ScaleEmitter(0.7)    -- darkening pillar
@@ -54,99 +52,90 @@ BSB2402 = Class(SLandFactoryUnit) {
         CreateAttachedEmitter(self,'FX_12',army, '/effects/emitters/seraphim_rift_arch_edge_01_emit.bp'):ScaleEmitter(0.7)    -- line wall
         CreateAttachedEmitter(self,'FX_13',army, '/effects/emitters/seraphim_rift_arch_edge_01_emit.bp'):ScaleEmitter(0.7)    -- line wall
         
-        
-        --Start the spawn threads for the Elite units
+        -- Start the spawn threads for the Elite units
         self:ForkThread(self.InitialSpawnFactory)
     end,          
     
-        --Factory spawning thread******************************************
     InitialSpawnFactory = function(self)
-        ------ spawning a number of drones times equal to the number preset by numcreate
---        LOG('*SPAWNING FIRST SET OF DRONES')
         local numcreate = 2
 
-        ------ Randomly determines which launch bay will be the first to spawn a drone
-        self.Side = Random(1,2) 
-
-        ------ Short delay after the carrier has been built
-
-        ------ Are we dead yet, if not spawn drones
+        -- Randomly determines which launch bay will be the first to spawn a drone
+        self.Side = Random(1,2)
+        
+        -- Are we dead yet, if not spawn drones
         if not self:IsDead() then
             for i = 0, (numcreate -1) do
                 if not self:IsDead() then 
                     self:ForkThread(self.SpawnFactory) 
-                    ------ Short delay between spawns to spread them out
+                    -- Short delay between spawns to spread them out
                     WaitSeconds(1)
                 end
             end
         end
     end,
-SpawnFactory = function(self)
-    ------ Small respawn delay so the drones are not instantly respawned after death
-    LOG('*spawn factory')
-    ------ Only respawns the drones if the parent unit is not dead
-    if not self:IsDead() then 
+    
+    SpawnFactory = function(self)
+        -- Small respawn delay so the drones are not instantly respawned after death
+        LOG('*spawn factory')
+        -- Only respawns the drones if the parent unit is not dead
+        if not self:IsDead() then 
 
-        ------ Sets up local Variables used and spawns a drone at the parents location 
-        local myOrientation = self:GetOrientation()
-      
-        if self.Side == 1 then
-            ------ Gets the current position of the carrier launch bay in the game world
-            local location = self:GetPosition('Factory05')
+            -- Sets up local Variables used and spawns a drone at the parents location 
+            local myOrientation = self:GetOrientation()
+          
+            if self.Side == 1 then
+                -- Gets the current position of the carrier launch bay in the game world
+                local location = self:GetPosition('Factory05')
 
-            ------ Creates our drone in the left launch bay and directs the unit to face the same direction as its parent unit
-            local drone = CreateUnit('bsb0002', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land') 
+                -- Creates our drone in the left launch bay and directs the unit to face the same direction as its parent unit
+                local drone = CreateUnit('bsb0002', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land') 
 
-            ------ Adds the newly created drone to the parent carriers drone table
-            table.insert (self.DroneTable, drone)
+                -- Adds the newly created drone to the parent carriers drone table
+                table.insert (self.DroneTable, drone)
 
-            ------ Sets the Carrier unit as the drones parent
-            drone:SetParent(self, 'bsb2402')
-            drone:SetCreator(self)  
-            
+                -- Sets the Carrier unit as the drones parent
+                drone:SetParent(self, 'bsb2402')
+                drone:SetCreator(self)  
+                
 
-            ------ Issues the guard command
-            IssueClearCommands({drone})
-            IssueFactoryAssist({drone}, self)
+                -- Issues the guard command
+                IssueClearCommands({drone})
+                IssueFactoryAssist({drone}, self)
 
-            ------ Flips to the next spawn point
-            self.Side = 2
+                -- Flips to the next spawn point
+                self.Side = 2
 
-            ------Drone clean up scripts
-            self.Trash:Add(drone)
+                --Drone clean up scripts
+                self.Trash:Add(drone)
 
-        elseif self.Side == 2 then
-            ------ Gets the current position of the carrier launch bay in the game world
-            local location = self:GetPosition('Factory02')
+            elseif self.Side == 2 then
+                -- Gets the current position of the carrier launch bay in the game world
+                local location = self:GetPosition('Factory02')
 
-            ------ Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
-            local drone = CreateUnit('bsb0002', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land') 
+                -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
+                local drone = CreateUnit('bsb0002', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land') 
 
-            ------ Adds the newly created drone to the parent carriers drone table
-            table.insert (self.DroneTable, drone)
+                -- Adds the newly created drone to the parent carriers drone table
+                table.insert (self.DroneTable, drone)
 
-            ------ Sets the Carrier unit as the drones parent
-            drone:SetParent(self, 'bsb2402')
-            drone:SetCreator(self)
+                -- Sets the Carrier unit as the drones parent
+                drone:SetParent(self, 'bsb2402')
+                drone:SetCreator(self)
 
-            ------ Issues the guard command
-            IssueClearCommands({drone})
-            IssueFactoryAssist({drone}, self)
+                -- Issues the guard command
+                IssueClearCommands({drone})
+                IssueFactoryAssist({drone}, self)
 
-            ------ Flips from the right to the left self.Side after a drone has been spawned
-            self.Side = 1
+                -- Flips from the right to the left self.Side after a drone has been spawned
+                self.Side = 1
 
-            ------Drone clean up scripts
-            self.Trash:Add(drone)
+                --Drone clean up scripts
+                self.Trash:Add(drone)
+            end
         end
-    end
-end,
-
-
-
---End Factory Threads*********************************************************************************
-
-OnKilled = function(self, instigator, type, overkillRatio)
+    end,
+    
+    OnKilled = function(self, instigator, type, overkillRatio)
         SLandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)        
         if table.getn({self.DroneTable}) > 0 then
             for k, v in self.DroneTable do 
@@ -157,6 +146,4 @@ OnKilled = function(self, instigator, type, overkillRatio)
     end,
 }
 
-
 TypeClass = BSB2402
-

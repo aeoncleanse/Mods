@@ -1,35 +1,36 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/URS0302/URS0302_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 -- Summary  :  Cybran Battleship Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CSeaUnit = import('/lua/cybranunits.lua').CSeaUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
 local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
-local CAAAutocannon = CybranWeaponsFile.CAAAutocannon
 local CDFProtonCannonWeapon = CybranWeaponsFile.CDFProtonCannonWeapon
 local XCannonWeapon01 = CybranWeaponsFile2.XCannonWeapon01
-local CDFHvyProtonCannonWeapon = CybranWeaponsFile.CDFHvyProtonCannonWeapon
 local CANNaniteTorpedoWeapon = CybranWeaponsFile.CANNaniteTorpedoWeapon
 local CAMZapperWeapon = CybranWeaponsFile.CAMZapperWeapon
 local MGAALaserWeapon = CybranWeaponsFile2.MGAALaserWeapon
 local HailfireLauncherWeapon = CybranWeaponsFile2.HailfireLauncherWeapon
-
-       
+   
 BRS0402= Class(CSeaUnit) {
     MuzzleFlashEffects01 = {
-        '/effects/emitters/xcannon_cannon_muzzle_01_emit.bp',----large redish flash
-        '/effects/emitters/x_cannon_fire_test_01_emit.bp',--barrel lightning effect
-        '/effects/emitters/xcannon_cannon_muzzle_07_emit.bp',-- small redish flash, double quick
-        '/effects/emitters/xcannon_cannon_muzzle_08_emit.bp',-- small redish double flash
+        '/effects/emitters/xcannon_cannon_muzzle_01_emit.bp',
+        '/effects/emitters/x_cannon_fire_test_01_emit.bp',
+        '/effects/emitters/xcannon_cannon_muzzle_07_emit.bp',
+        '/effects/emitters/xcannon_cannon_muzzle_08_emit.bp',
     },
+    
     MuzzleFlashEffects02 = {
         '/effects/emitters/dirty_exhaust_sparks_02_emit.bp',    
     },
+    
     MuzzleChargeEffects = {
-        '/effects/emitters/x_cannon_charge_test_01_emit.bp',----lightning
+        '/effects/emitters/x_cannon_charge_test_01_emit.bp',
     },
+    
     Weapons = {
         MainCannon01 = Class(XCannonWeapon01) {
             OnWeaponFired = function(self)
@@ -93,6 +94,7 @@ BRS0402= Class(CSeaUnit) {
                 end
                 self:ForkThread(self.MuzzleChargeEffectsWep1CleanUp)
             end,
+            
             MuzzleChargeEffectsWep1CleanUp = function(self)
                 WaitTicks(100)
                 if self.unit.MuzzleChargeEffectsWep1Bag then
@@ -103,6 +105,7 @@ BRS0402= Class(CSeaUnit) {
                 end
             end,
         },
+        
         MainCannon02 = Class(XCannonWeapon01) {
             OnWeaponFired = function(self)
                 XCannonWeapon01.OnWeaponFired(self)
@@ -165,6 +168,7 @@ BRS0402= Class(CSeaUnit) {
                 end
                 self:ForkThread(self.MuzzleChargeEffectsWep2CleanUp)
             end,
+            
             MuzzleChargeEffectsWep2CleanUp = function(self)
                 WaitTicks(100)
                 if self.unit.MuzzleChargeEffectsWep2Bag then
@@ -175,6 +179,7 @@ BRS0402= Class(CSeaUnit) {
                 end
             end,
         },
+        
         Cannon01 = Class(CDFProtonCannonWeapon) {},
         Cannon02 = Class(CDFProtonCannonWeapon) {},
         Cannon03 = Class(CDFProtonCannonWeapon) {},
@@ -191,6 +196,7 @@ BRS0402= Class(CSeaUnit) {
         AALaserMiddleLeft = Class(MGAALaserWeapon) {},
         HailfireRocket = Class(HailfireLauncherWeapon) {},
     },
+    
     OnStopBeingBuilt = function(self,builder,layer)
         CSeaUnit.OnStopBeingBuilt(self,builder,layer)
         self.MuzzleFlashWep1Effects01Bag = {}

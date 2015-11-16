@@ -1,8 +1,9 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/UAA0203/UAA0203_script.lua
 -- Author(s):  Drew Staltman, Gordon Duclos
 -- Summary  :  Seraphim Gunship Script
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
 local SAALosaareAutoCannonWeapon = import('/lua/seraphimweapons.lua').SAALosaareAutoCannonWeaponAirUnit
@@ -21,6 +22,7 @@ BSA0310 = Class(SAirUnit) {
                 end
             end,
         },
+        
         RightTurret = Class(SDFThauCannon) {
             CreateProjectileAtMuzzle = function(self, muzzle)
                 local proj = SDFThauCannon.CreateProjectileAtMuzzle(self, muzzle)
@@ -30,7 +32,9 @@ BSA0310 = Class(SAirUnit) {
                 end
             end,
         },
+        
         CenterTurret = Class(SAALosaareAutoCannonWeapon) {},
     },
 }
+
 TypeClass = BSA0310

@@ -1,22 +1,20 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/UEL0202/UEL0202_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 -- Summary  :  UEF Heavy Tank Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
+
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
 local RailGunWeapon01 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').RailGunWeapon01
 local TIFCruiseMissileUnpackingLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileUnpackingLauncher
 local JuggLaserweapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').JuggLaserweapon
 local JuggPlasmaGatlingCannonWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').JuggPlasmaGatlingCannonWeapon
-
-
 local utilities = import('/lua/Utilities.lua')
-local Entity = import('/lua/sim/Entity.lua').Entity
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 
 BEL0307 = Class(TLandUnit) {
-    
     Weapons = {
         MainTurret = Class(RailGunWeapon01) {},
         RightMissileRack = Class(TIFCruiseMissileUnpackingLauncher) {},
@@ -36,7 +34,6 @@ BEL0307 = Class(TLandUnit) {
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_02', self.unit:GetArmy(), Effects.WeaponSteam01)
                 JuggPlasmaGatlingCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
-
         
             PlayFxRackSalvoChargeSequence = function(self)
                 if not self.SpinManip then 
@@ -58,7 +55,6 @@ BEL0307 = Class(TLandUnit) {
                 JuggPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
             
-            
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(200)
@@ -77,7 +73,6 @@ BEL0307 = Class(TLandUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         TLandUnit.OnStopBeingBuilt(self,builder,layer)
 
---        self:SetMaintenanceConsumptionActive()
         local layer = self:GetCurrentLayer()
         -- If created with F2 on land, then play the transform anim.
         if(layer == 'Land') then
@@ -86,8 +81,6 @@ BEL0307 = Class(TLandUnit) {
             self:CreateUnitAmbientEffect(layer)
         end
         self.WeaponsEnabled = true
-       -- self:ForkThread(self.ShieldThread)      
-
     end,
 
     OnLayerChange = function(self, new, old)
@@ -161,8 +154,6 @@ BEL0307 = Class(TLandUnit) {
             CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(1.5)
         end
     end,
-    
-    
 }
 
 TypeClass = BEL0307

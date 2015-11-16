@@ -7,7 +7,6 @@ local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
 local CAANanoDartWeapon = CybranWeaponsFile.CAANanoDartWeapon
 local TargetingLaser = import('/lua/kirvesweapons.lua').TargetingLaserBO
-local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 
 BRLK001 = Class(CWalkingLandUnit) {

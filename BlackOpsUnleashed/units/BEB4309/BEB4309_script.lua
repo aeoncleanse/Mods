@@ -1,16 +1,14 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/XEB4309/XEB4309_script.lua
 -- Author(s):  David Tomandl, Jessica St. Croix
 -- Summary  :  UEF Radar Jammer Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
 
 BEB4309 = Class(TStructureUnit) {
-
-
     AntiTeleport = {
-       -- '/effects/emitters/seraphim_shield_generator_t2_01_emit.bp',
         '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
         '/effects/emitters/seraphim_shield_generator_t2_03_emit.bp',
     },
@@ -18,7 +16,6 @@ BEB4309 = Class(TStructureUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         TStructureUnit.OnStopBeingBuilt(self,builder,layer)
-        --ChangeState(self, self.ActiveState)
         self:SetScriptBit('RULEUTC_ShieldToggle', true)
         self:DisableUnitIntel('CloakField')
         self.antiteleportEmitterTable = {}
@@ -28,7 +25,6 @@ BEB4309 = Class(TStructureUnit) {
     
     OnScriptBitSet = function(self, bit)
         TStructureUnit.OnScriptBitSet(self, bit)
-        --local army =  self:GetArmy()
         if bit == 0 then 
         self:ForkThread(self.antiteleportEmitter)
         self:ForkThread(self.AntiteleportEffects)
@@ -56,6 +52,7 @@ BEB4309 = Class(TStructureUnit) {
                 self.Rotator3:SetAccel(30)
         end
     end,
+    
     AntiteleportEffects = function(self)
         if self.AntiTeleportBag then
             for k, v in self.AntiTeleportBag do
@@ -118,28 +115,24 @@ BEB4309 = Class(TStructureUnit) {
     end,
 
     antiteleportEmitter = function(self)
-        ------ Are we dead yet, if not then wait 0.5 second
         if not self:IsDead() then
             WaitSeconds(0.5)
-            ------ Are we dead yet, if not spawn antiteleportEmitter
             if not self:IsDead() then
-
-                ------ Gets the platforms current orientation
+                -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
             
-                ------ Gets the current position of the platform in the game world
+                -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('XEB4309')
 
-                ------ Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
+                -- Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
                 local antiteleportEmitter = CreateUnit('beb0003', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
 
-                ------ Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
+                -- Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
                 table.insert (self.antiteleportEmitterTable, antiteleportEmitter)
 
-                ------ Sets the platform unit as the antiteleportEmitter parent
+                -- Sets the platform unit as the antiteleportEmitter parent
                 antiteleportEmitter:SetParent(self, 'beb4309')
-                antiteleportEmitter:SetCreator(self)  
-                ------antiteleportEmitter clean up scripts
+                antiteleportEmitter:SetCreator(self)
                 self.Trash:Add(antiteleportEmitter)
             end
         end 
@@ -147,7 +140,7 @@ BEB4309 = Class(TStructureUnit) {
 
 
     KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
-        ------ Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
+        -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
         if table.getn({self.antiteleportEmitterTable}) > 0 then
             for k, v in self.antiteleportEmitterTable do 
                 IssueClearCommands({self.antiteleportEmitterTable[k]}) 
@@ -157,54 +150,40 @@ BEB4309 = Class(TStructureUnit) {
 
     end,
     
-    ResourceThread = function(self) 
-        ------ Only respawns the drones if the parent unit is not dead 
-        --LOG('*CHECK TO SEE IF WE HAVE TO TURN OFF THE FIELD!!!')
+    ResourceThread = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
-            ------ Check to see if the player has enough mass / energy
-            if  energy <= 10 then 
-
-                ------Loops to check again
-                --LOG('*TURNING OFF FIELD!!')
+            -- Check to see if the player has enough mass / energy
+            if  energy <= 10 then
                 self:SetScriptBit('RULEUTC_ShieldToggle', false)
                 self:ForkThread(self.ResourceThread2)
-
             else
-                ------ If the above conditions are not met we check again
+                -- If the above conditions are not met we check again
                 self:ForkThread(self.EconomyWaitUnit)
-                
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit = function(self)
         if not self:IsDead() then
         WaitSeconds(2)
-        --LOG('*we have enough so keep on checking Resthread1')
             if not self:IsDead() then
                 self:ForkThread(self.ResourceThread)
             end
         end
     end,
     
-    ResourceThread2 = function(self) 
-        ------ Only respawns the drones if the parent unit is not dead 
-        --LOG('*CAN WE TURN IT BACK ON YET?')
+    ResourceThread2 = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
-            ------ Check to see if the player has enough mass / energy
-            if  energy >= 3000 then 
-
-                ------Loops to check again
-                --LOG('*TURNING ON FIELD!!!')
+            -- Check to see if the player has enough mass / energy
+            if  energy >= 3000 then
                 self:SetScriptBit('RULEUTC_ShieldToggle', true)
                 self:ForkThread(self.ResourceThread)
-
             else
-                ------ If the above conditions are not met we kill this unit
+                -- If the above conditions are not met we kill this unit
                 self:ForkThread(self.EconomyWaitUnit2)
             end
         end    
@@ -213,7 +192,6 @@ BEB4309 = Class(TStructureUnit) {
     EconomyWaitUnit2 = function(self)
         if not self:IsDead() then
         WaitSeconds(2)
-        --LOG('*we dont have enough so keep on checking Resthread2!!')
             if not self:IsDead() then
                 self:ForkThread(self.ResourceThread2)
             end

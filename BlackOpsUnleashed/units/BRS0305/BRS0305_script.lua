@@ -1,18 +1,16 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/XRS0305/XRS0305_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 -- Summary  :  Cybran Attack Sub Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CSubUnit = import('/lua/cybranunits.lua').CSubUnit
 local WeaponsFile = import('/lua/cybranweapons.lua')
 local CANNaniteTorpedoWeapon = WeaponsFile.CANNaniteTorpedoWeapon
-local CIFSmartCharge = WeaponsFile.CIFSmartCharge
 local CDFElectronBolterWeapon = WeaponsFile.CDFElectronBolterWeapon
 local CKrilTorpedoLauncherWeapon = import('/lua/cybranweapons.lua').CKrilTorpedoLauncherWeapon
 local TorpRedirectField = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').TorpRedirectField
-
-
 
 BRS0305 = Class(CSubUnit) {
     DeathThreadDestructionWaitTime = 0,
@@ -30,7 +28,6 @@ BRS0305 = Class(CSubUnit) {
         else
             ChangeState(self, self.ClosedState)
         end
-       --self.WeaponsEnabled = true
         local bp = self:GetBlueprint().Defense.TorpRedirectField01
         local TorpRedirectField01 = TorpRedirectField {
             Owner = self,
@@ -41,6 +38,7 @@ BRS0305 = Class(CSubUnit) {
         self.Trash:Add(TorpRedirectField01)
         self.UnitComplete = true
     end,
+    
     OnLayerChange = function(self, new, old)
         CSubUnit.OnLayerChange(self, new, old)
         if new == 'Water' then

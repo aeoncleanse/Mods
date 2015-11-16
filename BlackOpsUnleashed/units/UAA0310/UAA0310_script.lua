@@ -1,8 +1,9 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/UAA0310/UAA0310_script.lua
 -- Author(s):  John Comes
 -- Summary  :  Aeon CZAR Script
--- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
 local aWeapons = import('/lua/aeonweapons.lua')
@@ -12,14 +13,11 @@ local AAAZealotMissileWeapon = aWeapons.AAAZealotMissileWeapon
 local AANDepthChargeBombWeapon = aWeapons.AANDepthChargeBombWeapon
 local AAATemporalFizzWeapon = aWeapons.AAATemporalFizzWeapon
 local explosion = import('/lua/defaultexplosions.lua')
-local MiniQuantumBeamGenerator = WeaponsFile.MiniQuantumBeamGenerator
 local SuperQuantumBeamGenerator = WeaponsFile.SuperQuantumBeamGenerator
-
 
 UAA0310 = Class(AAirUnit) {
     DestroyNoFallRandomChance = 1.1,
     Weapons = {
-
         QuantumBeamGeneratorWeapon = Class(AQuantumBeamGenerator){},
         SuperQuantumBeamGeneratorWeapon = Class(SuperQuantumBeamGenerator){},
         SonicPulseBattery1 = Class(AAAZealotMissileWeapon) {},
@@ -55,7 +53,6 @@ UAA0310 = Class(AAirUnit) {
         self.detector:EnableTerrainCheck(true)
         self.detector:Enable()
 
-
         AAirUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
@@ -64,21 +61,12 @@ UAA0310 = Class(AAirUnit) {
         explosion.CreateDefaultHitExplosionAtBone(self, bone, 5.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
-    
-    --[[    
-        Button pressed, czar cannot build or store any units, enable new weapons
-        take extra damage, use the DoTakeDamage function and a self.damageMod = 1.0
-        self.damageMod = 1.2, unit.lua line 781
-        ]]--
-
     BuildAttachBone = 'UAA0310',
 
     OnStopBeingBuilt = function(self,builder,layer)
         AAirUnit.OnStopBeingBuilt(self,builder,layer)
         ChangeState(self, self.IdleState)
         self:SetWeaponEnabledByLabel('SuperQuantumBeamGeneratorWeapon', false)
-        --self.Rotator1 = CreateRotator(self, 'Power_Ring', 'z', nil, 10, 5, 10)
-        --self.Trash:Add(self.Rotator1)
         self:ForkThread(self.CheckAIThread)
     end,
     
@@ -88,8 +76,6 @@ UAA0310 = Class(AAirUnit) {
             self.Trash:Add(self.AnimationManipulator)
         end
         if self:GetAIBrain().BrainType != 'Human' then
-            --LOG('OH NOES CZAR BUILT BY AI, TIME FOR OWNAGE')
-            
             self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0.2)
             self:AddBuildRestriction(categories.BUILTBYTIER3FACTORY)
             WaitSeconds(self.AnimationManipulator:GetAnimationDuration()*4)

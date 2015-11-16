@@ -1,34 +1,33 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/BAL0401/BAL0401_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 -- Summary  :  Aeon Long Range Artillery Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
 local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local GoldenLaserGenerator = WeaponsFile.GoldenLaserGenerator
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
-local utilities = import('/lua/utilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
-
-
-
 BAL0401 = Class(AWalkingLandUnit) {
-
     ChargeEffects01 = {
         '/effects/emitters/g_laser_flash_01_emit.bp',
         '/effects/emitters/g_laser_muzzle_01_emit.bp',
     },
+    
     ChargeEffects02 = {
         '/effects/emitters/g_laser_charge_01_emit.bp',
     },
+    
     ChargeEffects03 = {
-        '/effects/emitters/g_laser_flash_01_emit.bp',  --glow
-        '/effects/emitters/g_laser_muzzle_01_emit.bp',  -- sparks
+        '/effects/emitters/g_laser_flash_01_emit.bp',
+        '/effects/emitters/g_laser_muzzle_01_emit.bp',
     },
+    
     Weapons = {
         BoomWeapon = Class(CDFLaserHeavyWeapon){
             PlayFxWeaponPackSequence = function(self)
@@ -90,7 +89,6 @@ BAL0401 = Class(AWalkingLandUnit) {
                     local proj = CDFLaserHeavyWeapon.CreateProjectileForWeapon(self, bone)
                     Warp(proj,pos)
                     rangeNum = (rangeNum - 1)
-                    --LOG('warping projectile')
                     self.unit:PlayUnitSound('WarpingProjectile')
                     CreateLightParticle(self.unit, 'Bombard', self.unit:GetArmy(), 5, 2, 'beam_white_01', 'ramp_white_07')
                     CreateAttachedEmitter(self.unit, 'Bombard', self.unit:GetArmy(), '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):ScaleEmitter(0.08)
@@ -99,18 +97,7 @@ BAL0401 = Class(AWalkingLandUnit) {
         },
          DefenseGun01 = Class(GoldenLaserGenerator) {},
     },
-    --[[
-    OnStartBeingBuilt = function(self, builder, layer)
-        AWalkingLandUnit.OnStartBeingBuilt(self, builder, layer)
     
-        if not self.AnimationManipulator then
-            self.AnimationManipulator = CreateAnimator(self)
-            self.Trash:Add(self.AnimationManipulator)
-        end
-        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)
-        
-    end,
-    ]]--
     OnStopBeingBuilt = function(self,builder,layer)
         AWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
         self.Trash:Add(CreateRotator(self, 'Spinner_Ball', 'x', nil, 0, 100, 200))
@@ -123,8 +110,6 @@ BAL0401 = Class(AWalkingLandUnit) {
                 end
             self.MaelstromEffects01 = {}
         end
-        --table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Ball', self:GetArmy(), '/effects/emitters/genmaelstrom_aura_01_emit.bp'):ScaleEmitter(0.2):OffsetEmitter(0, -2, 0))
-        --table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Ball', self:GetArmy(), '/effects/emitters/genmaelstrom_aura_02_emit.bp'):ScaleEmitter(0.2):OffsetEmitter(0, -2, 0))
         table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/effects/emitters/inqu_glow_effect03.bp'):ScaleEmitter(0.7):OffsetEmitter(0, -2.1, 0))
         table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/effects/emitters/inqu_glow_effect01.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
         table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/effects/emitters/inqu_glow_effect02.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
@@ -189,7 +174,7 @@ BAL0401 = Class(AWalkingLandUnit) {
                 self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 3 then
                 self.CreateUnitDestructionDebris(self, true, true, true)
-            else --VAPORIZED
+            else
                 self.CreateUnitDestructionDebris(self, true, true, true)
             end
         end

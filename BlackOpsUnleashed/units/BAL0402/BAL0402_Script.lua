@@ -1,23 +1,22 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/UAS0302/UAS0302_script.lua
 -- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 -- Summary  :  Aeon Battleship Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local AHoverLandUnit = import('/lua/aeonunits.lua').AHoverLandUnit
 local ADFDisruptorWeapon = import('/lua/aeonweapons.lua').ADFDisruptorWeapon
 local AIFMissileTacticalSerpentineWeapon = import('/lua/aeonweapons.lua').AIFMissileTacticalSerpentineWeapon
 local AAMWillOWisp = import('/lua/aeonweapons.lua').AAMWillOWisp
-local utilities = import('/lua/utilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 
 local GenesisMaelstromWeapon = Class(Weapon) {
-
     OnFire = function(self)
         local blueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
-                   blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
+            blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
     end,
 }
 
@@ -29,8 +28,7 @@ BAL0402 = Class(AHoverLandUnit) {
         MissileRack = Class(AIFMissileTacticalSerpentineWeapon) {
             OnWeaponFired = function(self)
                 self.unit.weaponCounter = self.unit.weaponCounter + 1
-                local wepCount = self.unit.weaponCounter
-                --LOG('HAWK:COUNTER IS  '..wepCount)    
+                local wepCount = self.unit.weaponCounter  
                 if wepCount == 3 then
                     ForkThread(self.ReloadThread, self)
                     self.unit.weaponCounter = 0            
@@ -39,16 +37,14 @@ BAL0402 = Class(AHoverLandUnit) {
             end,
             
             ReloadThread = function(self)
-                --LOG('HAWK:COUNTER IS 3 START RELOAD THREAD')
                 self.unit:SetWeaponEnabledByLabel('MissileRack', false)
                 WaitSeconds(12.5)
                 if not self.unit:IsDead() then
-                    --LOG('HAWK:END RELOAD THREAD')
                     self.unit:SetWeaponEnabledByLabel('MissileRack', true)
                 end
             end,
-        
         },
+        
         MainGun = Class(ADFDisruptorWeapon) {},
         LeftTurret = Class(import('/lua/aeonweapons.lua').ADFCannonOblivionWeapon) {
             FxMuzzleFlash = {
@@ -57,6 +53,7 @@ BAL0402 = Class(AHoverLandUnit) {
                 '/effects/emitters/oblivion_cannon_flash_06_emit.bp',
             },        
         },
+        
         RightTurret = Class(import('/lua/aeonweapons.lua').ADFCannonOblivionWeapon) {
             FxMuzzleFlash = {
                 '/effects/emitters/oblivion_cannon_flash_04_emit.bp',
@@ -64,9 +61,9 @@ BAL0402 = Class(AHoverLandUnit) {
                 '/effects/emitters/oblivion_cannon_flash_06_emit.bp',
             },        
         },
+        
         AntiMissile1 = Class(AAMWillOWisp) {},
         GenesisMaelstrom01 = Class(GenesisMaelstromWeapon) {},
-        
     },
     
     OnStopBeingBuilt = function(self,builder,layer)
@@ -92,11 +89,10 @@ BAL0402 = Class(AHoverLandUnit) {
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-        AHoverLandUnit.OnStopBeingBuilt(self,builder,layer)
+        AHoverLandUnit.OnStopBeingBuilt(self, builder, layer)
     end,
     
-    
-    DeathThread = function(self, overkillRatio , instigator)
+    DeathThread = function(self, overkillRatio, instigator)
         explosion.CreateDefaultHitExplosionAtBone(self, 'BAL0402', 4.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
         WaitSeconds(0.8)
@@ -140,7 +136,7 @@ BAL0402 = Class(AHoverLandUnit) {
                 self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 3 then
                 self.CreateUnitDestructionDebris(self, true, true, true)
-            else --VAPORIZED
+            else
                 self.CreateUnitDestructionDebris(self, true, true, true)
             end
         end
@@ -148,7 +144,6 @@ BAL0402 = Class(AHoverLandUnit) {
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
-
 }
 
 TypeClass = BAL0402

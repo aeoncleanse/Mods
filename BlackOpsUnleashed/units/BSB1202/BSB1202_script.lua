@@ -1,23 +1,22 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/XSB1102/XSB1102_script.lua
 -- Author(s):  Dru Staltman, Greg Kohne
 -- Summary  :  Seraphim Hydrocarbon Power Plant Script
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local SEnergyCreationUnit = import('/lua/seraphimunits.lua').SEnergyCreationUnit
+
 BSB1202 = Class(SEnergyCreationUnit) {
-    
     AirEffects = {
                   '/effects/emitters/hydrocarbon_heatshimmer_01_emit.bp'
                 },
     AirEffectsBones = {'Exhaust01','Exhaust02','Exhaust03'},
     WaterEffects = {'/effects/emitters/underwater_idle_bubbles_01_emit.bp',},
     WaterEffectsBones = {'Exhaust01'},
-        
+
     OnStopBeingBuilt = function(self,builder,layer)
         SEnergyCreationUnit.OnStopBeingBuilt(self,builder,layer)
-            
-            
         local effects = {}
         local bones = {}
         local scale = 0.75
