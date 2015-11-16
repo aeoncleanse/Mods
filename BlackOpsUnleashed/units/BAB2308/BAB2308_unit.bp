@@ -74,6 +74,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_manuallaunch>Manual Launch',
         },
+        #AnimationPermOpen = '/units/BAB2308/BAB2308_Aopen.sca',
         DamageEffects = {
             {
                 Bone = 0,
@@ -108,6 +109,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
+              #  {
+              #      AlbedoName = 'BAB2308_lod1_albedo.dds',
+              #      LODCutoff = 215,
+              #      ShaderName = 'Aeon',
+              #      SpecularName = 'BAB2308_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0026',

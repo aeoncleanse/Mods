@@ -1,8 +1,12 @@
 --****************************************************************************
--- File     :  /mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua
--- Author(s):  Lt_hawkeye
--- Summary  :  Custom definitions collision beams
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+--**
+--**  File     :  /lua/BlackOpsdefaultcollisionbeams.lua
+--**  Author(s):  Lt_hawkeye
+--**
+--**  Summary  :  Custom definitions collision beams
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -35,7 +39,7 @@ MartyrMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     TerrainImpactScale = 0.2,
     FxBeamStartPointScale = 0.2,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
-    FxBeam = {'/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
@@ -47,15 +51,15 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 0.2,
         
-    FxBeam = {'/effects/emitters/mini_quantum_generator_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_quantum_generator_beam_01_emit.bp'},
     FxBeamEndPoint = {
-        '/effects/emitters/quantum_generator_end_01_emit.bp',
+		'/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-    },   
+	},   
     FxBeamEndPointScale = 0.2,
     FxBeamStartPoint = {
-        '/effects/emitters/quantum_generator_01_emit.bp',
+		'/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },   
@@ -67,7 +71,7 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -76,14 +80,14 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function(self)
+    OnEnable = function( self )
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread(self.ScorchThread)
+            self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -96,18 +100,18 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
-    end 
+	end 
     end,  
 }
 
@@ -119,17 +123,17 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 1,
         
-    FxBeam = {'/effects/emitters/super_quantum_generator_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/super_quantum_generator_beam_01_emit.bp'},
     FxBeamEndPoint = {
-        '/effects/emitters/quantum_generator_end_01_emit.bp',
+		'/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
         '/effects/emitters/quantum_generator_end_05_emit.bp',
         '/effects/emitters/quantum_generator_end_06_emit.bp',
-    },   
+	},   
     FxBeamEndPointScale = 0.6,
     FxBeamStartPoint = {
-        '/effects/emitters/quantum_generator_01_emit.bp',
+		'/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },   
@@ -141,7 +145,7 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -150,14 +154,14 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function(self)
+    OnEnable = function( self )
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread(self.ScorchThread)
+            self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -170,18 +174,18 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
-    end 
+	end 
     end,  
 }
 
@@ -190,7 +194,7 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.5,
     FxBeamStartPoint = EffectTemplate.APhasonLaserMuzzle01,
-    FxBeam = {'/effects/emitters/mini_phason_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_phason_laser_beam_01_emit.bp'},
     FxBeamStartPointScale = 0.2,
     FxBeamEndPoint = EffectTemplate.APhasonLaserImpact01,
     FxBeamEndPointScale = 0.4,
@@ -200,7 +204,7 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -209,14 +213,14 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function(self)
+    OnEnable = function( self )
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread(self.ScorchThread)
+            self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -229,15 +233,15 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -250,7 +254,7 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     TerrainImpactScale = 0.2,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
     FxBeamStartPointScale = 0.2,
-    FxBeam = {'/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     FxBeamEndPointScale = 0.2,
     SplatTexture = 'czar_mark01_albedo',
@@ -259,7 +263,7 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -268,14 +272,14 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function(self)
+    OnEnable = function( self )
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread(self.ScorchThread)
+            self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -288,15 +292,15 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -321,15 +325,15 @@ JuggLaserCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 0.02,
         
-    FxBeam = {'/effects/emitters/jugg_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/jugg_laser_beam_01_emit.bp'},
     FxBeamEndPoint = {
-        '/effects/emitters/quantum_generator_end_01_emit.bp',
+		'/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-    },   
+	},   
     FxBeamEndPointScale = 0.02,
     FxBeamStartPoint = {
-        '/effects/emitters/quantum_generator_01_emit.bp',
+		'/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },   
@@ -346,44 +350,44 @@ RailLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     TerrainImpactScale = 0.2,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
     FxBeamStartPointScale = 0.2,
-    FxBeam = {'/effects/emitters/rail_microwave_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/rail_microwave_laser_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     FxBeamEndPointScale = 0.2,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
     
-    OnImpactDestroy = function(self, targetType, targetEntity)
+    OnImpactDestroy = function( self, targetType, targetEntity )
 
-       if targetEntity and not IsUnit(targetEntity) then
-          RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
-          return
-       end
+   	if targetEntity and not IsUnit(targetEntity) then
+      	RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
+      	return
+   	end
    
-       if self.counter then
-          if self.counter >= 3 then
-             RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
-             return
-          else
-             self.counter = self.counter + 1
-          end
-           else
-              self.counter = 1
-           end
-           if targetEntity then
-            self.lastimpact = targetEntity:GetEntityId() --remember what was hit last
-        end
-    end,
+   	if self.counter then
+      	if self.counter >= 3 then
+         	RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
+         	return
+      	else
+         	self.counter = self.counter + 1
+      	end
+   		else
+      		self.counter = 1
+   		end
+   		if targetEntity then
+			self.lastimpact = targetEntity:GetEntityId() --remember what was hit last
+		end
+	end,
 }
 ------------------------------------
 --   ZAPPER STUN BEAM
 ------------------------------------
 EMCHPRFDisruptorBeam = Class(HawkCollisionBeam)
 {
-    TerrainImpactType = 'LargeBeam01',
+	TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.3,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
     FxBeamStartPointScale = 0.3,
-    FxBeam = {'/effects/emitters/manticore_microwave_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/manticore_microwave_laser_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     FxBeamEndPointScale = 0.3,
     SplatTexture = 'czar_mark01_albedo',
@@ -392,18 +396,18 @@ EMCHPRFDisruptorBeam = Class(HawkCollisionBeam)
     OnImpact = function(self, impactType, targetEntity) 
 
 
-        if targetEntity then 
-            if EntityCategoryContains(categories.TECH1, targetEntity) then
-                targetEntity:SetStunned(0.2)
-            elseif EntityCategoryContains(categories.TECH2, targetEntity) then
-                targetEntity:SetStunned(0.2)
-            elseif EntityCategoryContains(categories.TECH3, targetEntity) and not EntityCategoryContains(categories.SUBCOMMANDER, targetEntity) then--SUBCOMS HAVE SUMCOM ADDED IN MOD
-                targetEntity:SetStunned(0.2)
-            end
-        end
+		if targetEntity then 
+			if EntityCategoryContains(categories.TECH1, targetEntity) then
+				targetEntity:SetStunned(0.2)
+			elseif EntityCategoryContains(categories.TECH2, targetEntity) then
+				targetEntity:SetStunned(0.2)
+			elseif EntityCategoryContains(categories.TECH3, targetEntity) and not EntityCategoryContains(categories.SUBCOMMANDER, targetEntity) then--SUBCOMS HAVE SUMCOM ADDED IN MOD
+				targetEntity:SetStunned(0.2)
+			end
+		end
 
-        HawkCollisionBeam.OnImpact(self, impactType, targetEntity)
-    end, 
+		HawkCollisionBeam.OnImpact(self, impactType, targetEntity)
+	end, 
 }
 
 ------------------------------------
@@ -415,24 +419,24 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamEndPoint = {
-        '/effects/emitters/goliath_death_laser_end_01_emit.bp',            -- big glow
-        '/effects/emitters/goliath_death_laser_end_02_emit.bp',            -- random bright blueish dots
-        '/effects/emitters/uef_orbital_death_laser_end_03_emit.bp',            -- darkening lines
-        '/effects/emitters/uef_orbital_death_laser_end_04_emit.bp',            -- molecular, small details
-        '/effects/emitters/uef_orbital_death_laser_end_05_emit.bp',            -- rings
-        '/effects/emitters/goliath_death_laser_end_06_emit.bp',            -- upward sparks
-        '/effects/emitters/uef_orbital_death_laser_end_07_emit.bp',            -- outward line streaks
-        '/effects/emitters/goliath_death_laser_end_08_emit.bp',            -- center glow
-        '/effects/emitters/uef_orbital_death_laser_end_distort_emit.bp',    -- screen distortion
-    },
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_01_emit.bp',			-- big glow
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_02_emit.bp',			-- random bright blueish dots
+		'/effects/emitters/uef_orbital_death_laser_end_03_emit.bp',			-- darkening lines
+		'/effects/emitters/uef_orbital_death_laser_end_04_emit.bp',			-- molecular, small details
+		'/effects/emitters/uef_orbital_death_laser_end_05_emit.bp',			-- rings
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_06_emit.bp',			-- upward sparks
+		'/effects/emitters/uef_orbital_death_laser_end_07_emit.bp',			-- outward line streaks
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_end_08_emit.bp',			-- center glow
+		'/effects/emitters/uef_orbital_death_laser_end_distort_emit.bp',	-- screen distortion
+	},
     FxBeamStartPointScale = 1,
-    FxBeam = {'/effects/emitters/goliath_death_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_beam_01_emit.bp'},
     FxBeamStartPoint = {
-        '/effects/emitters/goliath_death_laser_muzzle_01_emit.bp',    -- random bright blueish dots
-        '/effects/emitters/goliath_death_laser_muzzle_02_emit.bp',    -- molecular, small details
-        '/effects/emitters/goliath_death_laser_muzzle_03_emit.bp',    -- darkening lines
-        '/effects/emitters/goliath_death_laser_muzzle_04_emit.bp',    -- small downward sparks
-        '/effects/emitters/goliath_death_laser_muzzle_05_emit.bp',    -- big glow
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_01_emit.bp',	-- random bright blueish dots
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_02_emit.bp',	-- molecular, small details
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_03_emit.bp',	-- darkening lines
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_04_emit.bp',	-- small downward sparks
+		'/mods/BlackOpsUnleashed/effects/emitters/goliath_death_laser_muzzle_05_emit.bp',	-- big glow
     },
     FxBeamEndPointScale = 1,
     SplatTexture = 'czar_mark01_albedo',
@@ -441,7 +445,7 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -450,7 +454,7 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -463,15 +467,15 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -483,12 +487,12 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
 ------------------------------------
 MGAALaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {
-        '/effects/emitters/aa_cannon_beam_01_emit.bp',
-    },
+		'/mods/BlackOpsUnleashed/effects/emitters/aa_cannon_beam_01_emit.bp',
+	},
     FxBeamEndPoint = {
-        '/effects/emitters/particle_cannon_end_01_emit.bp',
-        '/effects/emitters/particle_cannon_end_02_emit.bp',
-    },
+		'/effects/emitters/particle_cannon_end_01_emit.bp',
+		'/effects/emitters/particle_cannon_end_02_emit.bp',
+	},
     FxBeamEndPointScale = 1,
 }
 
@@ -502,7 +506,7 @@ GoldenLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     TerrainImpactScale = 0.2,
     FxBeamStartPointScale = 0.2,
     FxBeamStartPoint = BlackOpsEffectTemplate.GLaserMuzzle01,
-    FxBeam = {'/effects/emitters/mini_golden_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_golden_laser_beam_01_emit.bp'},
     FxBeamEndPoint = BlackOpsEffectTemplate.GLaserEndPoint01,
     FxBeamEndPointScale = 0.2,
     SplatTexture = 'czar_mark01_albedo',
@@ -516,20 +520,20 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeamStartPoint = EffectTemplate.SExperimentalPhasonLaserMuzzle01,
     FxBeam = EffectTemplate.SExperimentalPhasonLaserBeam,
     FxBeamEndPoint = EffectTemplate.SExperimentalPhasonLaserHitLand,
-    --[[FxBeamEndPoint = {
-        '/effects/emitters/quantum_generator_end_01_emit.bp',
+	--[[FxBeamEndPoint = {
+		'/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
         '/effects/emitters/quantum_generator_end_05_emit.bp',
         '/effects/emitters/quantum_generator_end_06_emit.bp',
-    },   ]]--
+	},   ]]--
     SplatTexture = 'scorch_004_albedo',
     ScorchSplatDropTime = 0.1,
 
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -538,7 +542,7 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -551,15 +555,15 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 4.0 + (Random() * 1.0)
             CurrentPosition = self:GetPosition(1)
         end
@@ -571,17 +575,17 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamStartPoint = EffectTemplate.SExperimentalPhasonLaserMuzzle01,
-    FxBeamStartPointScale = 0.2,
+	FxBeamStartPointScale = 0.2,
     FxBeam = BlackOpsEffectTemplate.SExperimentalDronePhasonLaserBeam,
     FxBeamEndPoint = EffectTemplate.SExperimentalPhasonLaserHitLand,
-    FxBeamEndPointScale = 0.2,
+	FxBeamEndPointScale = 0.2,
     SplatTexture = 'scorch_004_albedo',
     ScorchSplatDropTime = 0.1,
 
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread( self.ScorchThread )   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -590,7 +594,7 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
     
-    OnDisable = function(self)
+    OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -603,15 +607,15 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
-                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
                 
-            WaitSeconds(self.ScorchSplatDropTime)
+            WaitSeconds( self.ScorchSplatDropTime )
             size = 4.0 + (Random() * 1.0)
             CurrentPosition = self:GetPosition(1)
         end
@@ -623,10 +627,10 @@ YenaothaExperimentalChargeLaserCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 1,
     FxBeamStartPoint = EffectTemplate.SExperimentalPhasonLaserMuzzle01,
-    FxBeamStartPointScale = 0.5,
+	FxBeamStartPointScale = 0.5,
     FxBeam = BlackOpsEffectTemplate.SExperimentalChargePhasonLaserBeam,
     FxBeamEndPoint = EffectTemplate.SExperimentalPhasonLaserHitLand,
-    FxBeamEndPointScale = 0.5,
+	FxBeamEndPointScale = 0.5,
 
     
 }

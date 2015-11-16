@@ -30,8 +30,8 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER2ENGINEER',
-        'BUILTBYTIER3ENGINEER',
-        'BUILTBYTIER2COMMANDER',
+		'BUILTBYTIER3ENGINEER',
+		'BUILTBYTIER2COMMANDER',
         'BUILTBYTIER3COMMANDER',
         'AEON',
         'STRUCTURE',
@@ -67,6 +67,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
+              #  {
+             #       AlbedoName = 'bab2303_lod1_albedo.dds',
+              #      LODCutoff = 215,
+              #      ShaderName = 'Aeon',
+               #     SpecularName = 'bab2303_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0004',
@@ -173,7 +179,7 @@ UnitBlueprint {
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
-            AimsStraightOnDisable = true,
+			AimsStraightOnDisable = true,
             ArtilleryShieldBlocks = true,
             Audio = {
                 Fire = Sound {

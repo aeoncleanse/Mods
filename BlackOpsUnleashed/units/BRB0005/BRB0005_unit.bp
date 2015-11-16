@@ -10,12 +10,16 @@ UnitBlueprint {
     CollisionOffsetY = -1,
     Categories = {
         'PRODUCTSC1',
-        'UNTARGETABLE',
+        #'SELECTABLE',
+		'UNTARGETABLE',
         'DRONE',
         'CYBRAN',
+        #'MOBILE',
+        #'LAND',
         'ANTIAIR',
         'OVERLAYANTIAIR',
         'DEFENSE',
+        #'INSIGNIFICANTUNIT',
         'TECH3',
         'VISIBLETORECON',
     },
@@ -32,6 +36,7 @@ UnitBlueprint {
     },
     Description = '<LOC BRB0005_desc>AA Laser Emitter',
     Display = {
+        #AnimationPermOpen = '/units/BRB0005/BRB0005_Activate.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -39,6 +44,12 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
+                #{
+               #     AlbedoName = 'BRB0005_lod1_albedo.dds',
+                #    LODCutoff = 215,
+               #     ShaderName = 'Unit',
+               #     SpecularName = 'BRB0005_lod1_specteam.dds',
+              #  },
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -51,7 +62,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-        CapCost = 0,
+    	CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {
@@ -108,6 +119,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
+            #AimsStraightOnDisable = true,
             Audio = {
                 Fire = Sound {
                     Bank = 'URLWeapon',
@@ -137,7 +149,7 @@ UnitBlueprint {
             LeadTarget = false,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',	
             },
             MaxRadius = 80,
             MuzzleSalvoDelay = 0,

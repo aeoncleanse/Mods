@@ -44,7 +44,7 @@ UnitBlueprint {
         'SIZE12',
         'VISIBLETORECON',
         'RECLAIMABLE',
-        'SHOWQUEUE',
+		'SHOWQUEUE',
         'SORTECONOMY',
     },
     CollisionOffsetY = 0,
@@ -70,6 +70,13 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
+             #   {
+               #     AlbedoName = 'bsb1202_lod1_albedo.dds',
+              #      LODCutoff = 300,
+               #     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+              #      ShaderName = 'Seraphim',
+               #     SpecularName = 'bsb1202_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0011',
@@ -99,13 +106,13 @@ UnitBlueprint {
         BuildCostMass = 1980,
         BuildTime = 1650,
         BuildRate = 15,
-        BuildableCategory = {
+		BuildableCategory = {
             'bsb1302',
         },
         ProductionPerSecondEnergy = 875,
         RebuildBonusIds = {
             'bsb1202',
-            'bsb1302',
+			'bsb1302',
         },
     },
     Footprint = {
@@ -135,7 +142,7 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Basic',
         UnitName = '<LOC bsb1202_name>Uya-atoh',
         UnitWeight = 1,
-        UpgradesFrom = 'xsb1102',
+		UpgradesFrom = 'xsb1102',
         UpgradesTo = 'bsb1302',
     },
     Interface = {
@@ -177,7 +184,7 @@ UnitBlueprint {
     SizeZ = 1.75,
     StrategicIconName = 'icon_structure2_energy',
     StrategicIconSortPriority = 250,
-    Weapon = {
+	Weapon = {
         {
             Damage = 1500,
             DamageFriendly = true,

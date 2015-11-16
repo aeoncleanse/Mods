@@ -66,8 +66,8 @@ UnitBlueprint {
     Description = '<LOC bab4209_desc>Anti-Teleport Generator',
     Display = {
         Abilities = {
-            '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
-            '<LOC ability_upgradable>Upgradeable',
+        	'<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
+        	'<LOC ability_upgradable>Upgradeable',
             '<LOC ability_deathaoe>Volatile',
         },
         AnimationUpgrade = '/units/bab4209/bab4209_aupgrade.sca',
@@ -128,6 +128,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Aeon',
                 },
+                #{
+               #     AlbedoName = 'bab4209_lod1_albedo.dds',
+               #     LODCutoff = 300,
+               #     ShaderName = 'Aeon',
+               #     SpecularName = 'bab4209_lod1_specteam.dds',
+               # },
             },
         },
         SpawnRandomRotation = true,
@@ -203,7 +209,7 @@ UnitBlueprint {
         UpgradesTo = 'bab4309',
     },
     Intel = {
-        FreeIntel = true,
+    	FreeIntel = true,
         VisionRadius = 25,
         CloakFieldRadius = 20,
     },

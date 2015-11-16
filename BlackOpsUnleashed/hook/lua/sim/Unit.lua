@@ -1,14 +1,3 @@
-local Entity = import('/lua/sim/Entity.lua').Entity
-local explosion = import('/lua/defaultexplosions.lua')
-local EffectTemplate = import('/lua/EffectTemplates.lua')
-local EffectUtilities = import('/lua/EffectUtilities.lua')
-local Game = import('/lua/game.lua')
-local utilities = import('/lua/utilities.lua')
-local Shield = import('/lua/shield.lua').Shield
-local UnitShield = import('/lua/shield.lua').UnitShield
-local AntiArtilleryShield = import('/lua/shield.lua').AntiArtilleryShield
-local Buff = import('/lua/sim/buff.lua')
-local AIUtils = import('/lua/ai/aiutilities.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 local oldUnit = Unit
@@ -184,72 +173,6 @@ Unit = Class(oldUnit) {
         end
         
         return oldUnit.OnCollisionCheckWeapon(self, firingWeapon)
-    end,
-    
-    -- Partially working code to add an effect to the stun buff
-    -- This is an engine function
-    SetStunned = function(self, time)
-        oldUnit.SetStunned(self, time)
-        local totalBones = self:GetBoneCount() - 1
-        local army = self:GetArmy()
-        
-        self:ForkThread(function()        
-            if self.StunEffectsBag then
-                for k, v in self.StunEffectsBag do
-                    v:Destroy()
-                end
-                self.StunEffectsBag = {}
-            end
-            
-            for k, v in BlackOpsEffectTemplate.EMPEffect do
-                for bone = 1, totalBones do
-                    table.insert(self.StunEffectsBag, CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(0.1))
-                end
-            end
-            
-            self:DisableIntel('Radar')                -- Disable intel a unit has
-            self:DisableIntel('Sonar')
-            self:DisableIntel('Omni')
-            self:DisableIntel('RadarStealth')
-            self:DisableIntel('SonarStealth')
-            self:DisableIntel('RadarStealthField')
-            self:DisableIntel('SonarStealthField')
-            self:DisableIntel('Cloak')
-            self:DisableIntel('CloakField')
-            self:DisableIntel('Spoof')
-            self:DisableIntel('Jammer')
-            
-            self:SetUnitState('building', false)
-            self:SetProductionActive(false)
-            self:SetConsumptionActive(false)
-            self:DisableShield()
-            
-            WaitSeconds(time)
-            
-            self:SetProductionActive(true)
-            self:SetConsumptionActive(true)
-            self:SetUnitState('building', true)
-            self:EnableShield()
-            
-            self:EnableIntel('Radar')                -- Enable intel a unit has
-            self:EnableIntel('Sonar')
-            self:EnableIntel('Omni')
-            self:EnableIntel('RadarStealth')
-            self:EnableIntel('SonarStealth')
-            self:EnableIntel('RadarStealthField')
-            self:EnableIntel('SonarStealthField')
-            self:EnableIntel('Cloak')
-            self:EnableIntel('CloakField')
-            self:EnableIntel('Spoof')
-            self:EnableIntel('Jammer')
-            
-            if self.StunEffectsBag then
-                for k, v in self.StunEffectsBag do
-                    v:Destroy()
-                end
-                self.StunEffectsBag = {}
-            end
-       )
     end,
     
     -------------------------------------------------------

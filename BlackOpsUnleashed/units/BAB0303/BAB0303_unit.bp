@@ -36,7 +36,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
-        'BUILTBYTIER3COMMANDER',
+		'BUILTBYTIER3COMMANDER',
         'AEON',
         'STRUCTURE',
         'NAVAL',
@@ -111,18 +111,20 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    AlbedoName = '/units/uab0303/uab0303_albedo.dds',
+					AlbedoName = '/units/uab0303/uab0303_albedo.dds',
                     LODCutoff = 500,
-                    MeshName = '/units/uab0303/uab0303_lod0.scm',
+					MeshName = '/units/uab0303/uab0303_lod0.scm',
                     ShaderName = 'Insect',
-                    SpecularName = '/units/uab0303/uab0303_specteam.dds',
+					SpecularName = '/units/uab0303/uab0303_specteam.dds',
+					#SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
                 {
                     AlbedoName = '/units/uab0303/uab0303_lod1_albedo.dds',
                     LODCutoff = 500,
-                    MeshName = '/units/uab0303/uab0303_lod1.scm',
+					MeshName = '/units/uab0303/uab0303_lod1.scm',
                     ShaderName = 'Insect',
                     SpecularName = '/units/uab0303/uab0303_lod1_specteam.dds',
+					#SpecularName = 'BEL0109b_lod1_specteam.dds',
                 },
             },
         },
@@ -143,7 +145,7 @@ UnitBlueprint {
         InitialRallyZ = 10,
         StorageEnergy = 1600,
         StorageMass = 320,
-        RebuildBonusIds = {
+		RebuildBonusIds = {
             'uab0303',
         },
     },

@@ -45,6 +45,7 @@ UnitBlueprint {
         'RECLAIMABLE',
         'SHOWQUEUE',
     },
+    #CollisionOffsetY = 0,
     Defense = {
         AirThreatLevel = 0,
         ArmorType = 'Structure',
@@ -66,6 +67,13 @@ UnitBlueprint {
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                 },
+               # {
+               #     AlbedoName = 'xsb0004_lod1_albedo.dds',
+              #      LODCutoff = 600,
+               #     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+               #     ShaderName = 'Seraphim',
+               #     SpecularName = 'bsb0004_lod1_specteam.dds',
+               # },
             },
         },
         SpawnRandomRotation = false,
@@ -84,7 +92,7 @@ UnitBlueprint {
         MinWaterDepth = 1.5,
     },
     General = {
-        CapCost = 0,
+    	CapCost = 0,
         BuildBones = {
             BuildEffectBones = {
                 'Muzzle01',

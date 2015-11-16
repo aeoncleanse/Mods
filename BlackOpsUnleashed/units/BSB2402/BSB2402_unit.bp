@@ -85,10 +85,32 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Seraphim',
                 },
+              #  {
+              #      AlbedoName = 'BSB2402_lod1_albedo.dds',
+              #      LODCutoff = 300,
+              #      ShaderName = 'Unit',
+              #      SpecularName = 'BSB2402_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UEC1101',
         SpawnRandomRotation = false,
+        #Tarmacs = {
+        #    {
+        #        Albedo = 'Tarmacs/Tar12x_seraphim_01_albedo',
+        #        FadeOut = 150,
+        #        Length = 60,
+        #        Normal = 'Tarmacs/Tar12x_seraphim_01_normals',
+        #        Orientations = {
+        #            0,
+        #            90,
+        #            180,
+         #           270,
+        #        },
+         #       RemoveWhenDead = false,
+        #        Width = 25.8,
+        #    },
+        #},
         UniformScale = 0.03,
     },
     Economy = {
@@ -108,7 +130,7 @@ UnitBlueprint {
         SizeZ = 10,
     },
     General = {
-        BuildBones = {
+    	BuildBones = {
             BuildAttachBone = 'Attachpoint',
             BuildEffectBones = {
                 'FX_01',
@@ -147,6 +169,9 @@ UnitBlueprint {
         ConstructionBar = true,
         FactionName = 'Seraphim',
         Icon = 'land',
+#        ToggleCaps = {
+#            RULEUTC_ProductionToggle = true, 
+#        },
         TechLevel = 'RULEUTL_Basic',
         UnitName = '<LOC bsb5202_name>Haasioz-Iya',
         UnitWeight = 1,

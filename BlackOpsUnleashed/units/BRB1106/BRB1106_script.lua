@@ -1,9 +1,12 @@
------------------------------------------------------------------
--- File     :  /cdimage/units/URB1106/URB1106_script.lua
--- Author(s):  Jessica St. Croix, David Tomandl
--- Summary  :  Cybran Mass Storage
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
------------------------------------------------------------------
+#****************************************************************************
+#**
+#**  File     :  /cdimage/units/URB1106/URB1106_script.lua
+#**  Author(s):  Jessica St. Croix, David Tomandl
+#**
+#**  Summary  :  Cybran Mass Storage
+#**
+#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+#****************************************************************************
 
 local CMassStorageUnit = import('/lua/cybranunits.lua').CMassStorageUnit
 
@@ -19,7 +22,7 @@ BRB1106 = Class(CMassStorageUnit) {
 
     AnimThread = function(self)
         local sliderManip = CreateStorageManip(self, 'Mass', 'MASS', 0, 0, 0, 0, 0, .55)
-        local sliderManip2 = CreateStorageManip(self, 'Energy', 'ENERGY', 0, 0, 0, 0, 0, 0.6)
+		local sliderManip2 = CreateStorageManip(self, 'Energy', 'ENERGY', 0, 0, 0, 0, 0, 0.6)
     end,
 }
 

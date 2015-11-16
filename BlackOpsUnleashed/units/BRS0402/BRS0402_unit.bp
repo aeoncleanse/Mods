@@ -146,6 +146,12 @@ UnitBlueprint {
                     LODCutoff = 600,
                     ShaderName = 'Insect',
                 },
+                #{
+               #     AlbedoName = 'BRS0402_lod1_albedo.dds',
+                #    LODCutoff = 600,
+                #    ShaderName = 'Insect',
+                #    SpecularName = 'BRS0402_lod1_specteam.dds',
+                #},
             },
         },
         MovementEffects = {
@@ -354,6 +360,8 @@ UnitBlueprint {
             RackSlavedToTurret = true,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.8,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 140,
             TargetCheckInterval = 2,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -451,6 +459,8 @@ UnitBlueprint {
             RackSlavedToTurret = true,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.8,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 140,
             TargetCheckInterval = 2,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -527,7 +537,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Front_Right_Muzzle01',
-                        'Front_Right_Muzzle02',
+						'Front_Right_Muzzle02',
                     },
                     RackBone = 'Front_Right_Barrel',
                 },
@@ -541,6 +551,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -616,7 +628,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Front_Left_Muzzle01',
-                        'Front_Left_Muzzle02',
+						'Front_Left_Muzzle02',
                     },
                     RackBone = 'Front_Left_Barrel',
                 },
@@ -630,6 +642,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -705,7 +719,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Middle_Left_Muzzle01',
-                        'Middle_Left_Muzzle02',
+						'Middle_Left_Muzzle02',
                     },
                     RackBone = 'Middle_Left_Barrel',
                 },
@@ -719,6 +733,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -794,7 +810,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Middle_Right_Muzzle01',
-                        'Middle_Right_Muzzle02',
+						'Middle_Right_Muzzle02',
                     },
                     RackBone = 'Middle_Right_Barrel',
                 },
@@ -808,6 +824,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -883,7 +901,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Back_Left_Muzzle01',
-                        'Back_Left_Muzzle02',
+						'Back_Left_Muzzle02',
                     },
                     RackBone = 'Back_Left_Barrel',
                 },
@@ -897,6 +915,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -972,7 +992,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'Back_Right_Muzzle01',
-                        'Back_Right_Muzzle02',
+						'Back_Right_Muzzle02',
                     },
                     RackBone = 'Back_Right_Barrel',
                 },
@@ -986,6 +1006,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.5,
+            #SlavedToBody = true,
+            #SlavedToBodyArcRange = 130,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -1334,6 +1356,8 @@ UnitBlueprint {
             BeamLifetime = 0,
             CollideFriendly = false,
             ContinuousBeam = true,
+            #HeadingArcCenter = 180,
+            #HeadingArcRange = 160,
             Damage = 5,
             DamageRadius = 0.1,
             DamageType = 'Normal',
@@ -1413,6 +1437,8 @@ UnitBlueprint {
             BeamLifetime = 0,
             CollideFriendly = false,
             ContinuousBeam = true,
+            #HeadingArcCenter = 180,
+            #HeadingArcRange = 160,
             Damage = 5,
             DamageRadius = 0.1,
             DamageType = 'Normal',
@@ -1638,8 +1664,8 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            AimsStraightOnDisable = true,
-            AutoInitiateAttackCommand = false,
+			AimsStraightOnDisable = true,
+			AutoInitiateAttackCommand = false,
             Audio = {
                 Fire = Sound {
                     Bank = 'URSWeapon',
@@ -1650,7 +1676,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_LowArc',
             CollideFriendly = false,
             Damage = 80,
-            DamageRadius = 8,
+			DamageRadius = 8,
             DamageType = 'Normal',
             DisplayName = 'Nanodart Launcher',
             FireTargetLayerCapsTable = {
@@ -1667,7 +1693,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 18,
             MuzzleVelocity = 25,
-            NotExclusive = true,
+			NotExclusive = true,
             ProjectileId = '/projectiles/CybranHailfire01/CybranHailfire01_proj.bp',
             ProjectileLifetime = 7,
             ProjectilesPerOnFire = 9,

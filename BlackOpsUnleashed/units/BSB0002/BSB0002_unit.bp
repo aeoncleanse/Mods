@@ -10,6 +10,7 @@ UnitBlueprint {
     CollisionOffsetY = -1,
     Categories = {
         'PRODUCTFA',
+        #'UNSELECTABLE',
         'DRONE',
         'SERAPHIM',
         'STRUCTURE',
@@ -46,6 +47,12 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
+               # {
+               #     AlbedoName = 'BSB0002_lod1_albedo.dds',
+               #     LODCutoff = 215,
+               #     ShaderName = 'Unit',
+               #     SpecularName = 'BSB0002_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -62,8 +69,8 @@ UnitBlueprint {
         },
     },
     General = {
-        CapCost = 0,
-        BuildBones = {
+    	CapCost = 0,
+    	BuildBones = {
             BuildAttachBone = 'Attachpoint',
             BuildEffectBones = {
                 'Build_Effect01',

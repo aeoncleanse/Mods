@@ -7,9 +7,11 @@ UnitBlueprint {
         },
     },
     BuildIconSortPriority = 130,
+    #CollisionOffsetY = -1,
     Categories = {
         'PRODUCTSC1',
-        'UNTARGETABLE',
+        #'UNSELECTABLE',
+		'UNTARGETABLE',
         'DRONE',
         'SERAPHIM',
         'LAND',
@@ -25,6 +27,11 @@ UnitBlueprint {
             Radius = 3.5,
             RedirectRateOfFire = 4,
         },
+        #SeraLambdaFieldRedirector02 = {
+        #    AttachBone = 'XSB0001',
+        #    Radius = 7,
+        #    RedirectRateOfFire = 5,
+        #},
         SeraLambdaFieldDestroyer01 = {
             AttachBone = 'XSB0001',
             Radius = 3,
@@ -49,6 +56,12 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
+              #  {
+              #      AlbedoName = 'BSB0005_lod1_albedo.dds',
+              #      LODCutoff = 215,
+               #     ShaderName = 'Unit',
+               #     SpecularName = 'BSB0005_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -61,7 +74,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-        CapCost = 0,
+    	CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {

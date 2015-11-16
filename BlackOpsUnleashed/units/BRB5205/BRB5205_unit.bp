@@ -106,6 +106,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
+              #  {
+              #      AlbedoName = 'BRB5205_lod1_albedo.dds',
+              #      LODCutoff = 300,
+              #      ShaderName = 'Insect',
+              #      SpecularName = 'BRB5205_lod1_specteam.dds',
+              #  },
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -116,6 +122,8 @@ UnitBlueprint {
         BuildCostEnergy = 144000,
         BuildCostMass = 8640,
         BuildTime = 5400,
+        #MaintenanceConsumptionPerSecondEnergyCounterIntel = 2000,
+        #MaintenanceConsumptionPerSecondEnergyIntel = 1000,
         MaintenanceConsumptionPerSecondEnergy = 2000,
         RebuildBonusIds = {
             'brb5205',
@@ -149,9 +157,19 @@ UnitBlueprint {
                 bitmapId = 'deploy',
                 helpText = 'deploy',
             },
+            #RULEUTC_WeaponToggle = {
+            #    bitmapId = 'intel',
+            #    helpText = 'Disable/Enable Radar and Sonar-weapon toggle',
+            #},
+            #RULEUTC_StealthToggle = {
+            #    bitmapId = 'intel-counter',
+            #    helpText = 'Disable/Enable Stealth&Cloak Fields-stealth toggle',
+            #},
         },
         SelectionPriority = 5,
         ToggleCaps = {
+            #RULEUTC_WeaponToggle = true,
+            #RULEUTC_StealthToggle = true,
             RULEUTC_IntelToggle = true,
         },
         TechLevel = 'RULEUTL_Advanced',

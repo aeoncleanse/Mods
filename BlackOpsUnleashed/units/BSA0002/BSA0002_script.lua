@@ -1,5 +1,5 @@
--- Seraphim T3 Air Staging Platform Repair Drone script
--- By the Blackops team, revisions by Mithy
+--Seraphim T3 Air Staging Platform Repair Drone script
+--By the Blackops team, revisions by Mithy
 local SConstructionUnit = import('/lua/seraphimunits.lua').SConstructionUnit
 local EffectUtil = import('/lua/EffectUtilities.lua')
 
@@ -15,16 +15,21 @@ BSA0002 = Class(SConstructionUnit) {
     SetParent = function(self, parent, droneName)
         self.Parent = parent
         self.Drone = droneName
+        --Mithy: Now has launch effects from XSA0001 drone - this function handles initial movement as well
+        ### Start of launch special effects
         self.LaunchExhaustEffectsBag = {}
         self:ForkThread(self.LaunchEffects)
+        --Mithy: Range limitation thread
         self.HeartBeatThread = self:ForkThread(self.DistanceHeartbeat)
     end,
 
+	--Mithy: Extra checks now done within patrolplatform
     OnStopbuild = function(self, unitBeingBuilt)
         self:ForkThread(self.Patrolplatform)
         SConstructionUnit.OnStopBuild(self, unitBeingBuilt)
     end,
 
+	--Mithy: Extra checks now done within patrolplatform
     OnMotionHorzEventChange = function(self, new, old)
         if new == 'Stopped' then
             self:ForkThread(self.Patrolplatform)
@@ -32,6 +37,7 @@ BSA0002 = Class(SConstructionUnit) {
         SConstructionUnit.OnMotionHorzEventChange(self, new, old)
     end,
 
+    --Mithy: Added range heartbeat
     DistanceHeartbeat = function(self)
         self.CapTable = {
             'RULEUCC_Guard',
@@ -46,26 +52,26 @@ BSA0002 = Class(SConstructionUnit) {
             local parentDist = VDist2(dronePos[1], dronePos[3], parentPos[1], parentPos[3])
             if parentDist >= 80 and self.MoveToParent == false then
                 self.MoveToParent = true
-                -- Increase return speed
+                --Increase return speed
                 self:SetSpeedMult(2.0)
                 self:SetAccMult(2.0)
                 IssueClearCommands({self})
                 IssueMove({self}, parentPos)
-                -- Disable command caps
+                --Disable command caps
                 for k, cap in self.CapTable do
                     self:RemoveCommandCap(cap)
                 end
             elseif parentDist <= 70 and self.MoveToParent == true then
                 self.MoveToParent = false
-                -- Restore speed
+                --Restore speed
                 self:SetSpeedMult(1.0)
                 self:SetAccMult(1.0)
-                -- Re-enable command caps
+                --Re-enable command caps
                 self:RestoreCommandCaps()
-                -- This will auto-queue a patrol
+                --This will auto-queue a patrol
                 IssueStop({self})
             else
-                -- If we're idle and our movement check somehow failed, re-queue patrol
+                --If we're idle and our movement check somehow failed, re-queue patrol
                 if self:IsIdleState() then
                     self:ForkThread(self.Patrolplatform)
                 end
@@ -75,42 +81,49 @@ BSA0002 = Class(SConstructionUnit) {
     end,
 
     Patrolplatform = function(self, override)
-        if override or (not self:IsDead() and not self.Parent:IsDead() and self:IsIdleState()) then
+        --Mithy: Now checks idle state, so drones can hover in place without being immediately told to patrol (often interrupting user orders)
+        if override or ( not self:IsDead() and not self.Parent:IsDead() and self:IsIdleState() ) then
+            ### Gets the current position of the parent platform in the game world
             local location = self.Parent:GetPosition()
+
+            ###Repair drone patrol area if not currently building
+            --Mithy: Now a larger-area octagon instead of a small square
             IssueClearCommands({self})
             local patroltable = {
-                {location[1]+15, location[2], location[3]-6},
-                {location[1]+15, location[2], location[3]+6},
-                {location[1]+6, location[2], location[3]+15},
-                {location[1]-6, location[2], location[3]+15},
-                {location[1]-15, location[2], location[3]+6},
-                {location[1]-15, location[2], location[3]-6},
-                {location[1]-6, location[2], location[3]-15},
-                {location[1]+6, location[2], location[3]-15},
-            }
+	            {location[1]+15, location[2], location[3]-6},
+	            {location[1]+15, location[2], location[3]+6},
+	            {location[1]+6, location[2], location[3]+15},
+	            {location[1]-6, location[2], location[3]+15},
+	            {location[1]-15, location[2], location[3]+6},
+	            {location[1]-15, location[2], location[3]-6},
+	            {location[1]-6, location[2], location[3]-15},
+	            {location[1]+6, location[2], location[3]-15},
+	        }
+            --Randomize drone's patrol startpoint
             local ppoint = math.random(1, 8)
             local pointsleft = 8
             while pointsleft > 0 do
-                IssuePatrol({self}, patroltable[ppoint])
-                if ppoint < 8 then
-                    ppoint = ppoint + 1
-                else
-                    ppoint = 1
-                end
-                pointsleft = pointsleft - 1
+            	IssuePatrol({self}, patroltable[ppoint])
+            	if ppoint < 8 then
+            		ppoint = ppoint + 1
+            	else
+            		ppoint = 1
+            	end
+            	pointsleft = pointsleft - 1
             end
        end
     end,
 
     OnDamage = function(self, instigator, amount, vector, damagetype)
         if self:IsDead() == false then
-            -- Base script for this script function was developed by Gilbot_x
-            -- sets the damage resistance of the rebuilder bot to 30%
-            -- local rebuilerBot_DLS = 0.3
-            -- amount = math.ceil(amount*rebuilerBot_DLS)
+            ###Base script for this script function was developed by Gilbot_x
+            ### sets the damage resistance of the rebuilder bot to 30%
+            #local rebuilerBot_DLS = 0.3
+            #amount = math.ceil(amount*rebuilerBot_DLS)
         end
+        --Mithy: Run home to the platform if we take damage
         if not self:IsDead() and instigator and IsUnit(instigator) and not instigator:IsDead() and not self.EvadeThread then
-            self.EvadeThread = self:ForkThread(function()
+            self.EvadeThread = self:ForkThread( function()
                 self:SetSpeedMult(2.0)
                 self:SetAccMult(2.0)
                 IssueClearCommands({self})
@@ -119,31 +132,34 @@ BSA0002 = Class(SConstructionUnit) {
                 self:SetSpeedMult(1.0)
                 self:SetAccMult(1.0)
                 self.EvadeThread = nil
-            end)
+            end )
         end
         SConstructionUnit.OnDamage(self, instigator, amount, vector, damagetype)
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
 
-        -- Clears the current RebuilderBot commands if any
+        ### Clears the current RebuilderBot commands if any
         IssueClearCommands({self})
 
-        -- Notifies parent of RebuilderBot death and clears the dead unit from the parents table
+        ### Notifies parent of RebuilderBot death and clears the dead unit from the parents table
         if not self.Parent:IsDead() then
+            --Mithy: This table was mis-named
             table.removeByValue(self.Parent.RepairDroneTable, self)
+            --Likewise, this function was mis-named, and doesn't need the droneName parameter as the staging facility has no specified drone slots
             self.Parent:NotifyOfRepairDroneDeath()
         end
-        -- Final command to finish off the drones death event
+        ### Final command to finish off the drones death event
         SConstructionUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
+    --Mithy: Added launch effects from XSA0001 drone
     LaunchEffects = function(self)
-        -- Are we dead?
+        ### Are we dead?
         if not self:IsDead() then
-            -- Force patrol order
+        	--Force patrol order
             self:ForkThread(self.Patrolplatform, true)
-            -- Attaches effects to drone during launch
+            ### Attaches effects to drone during launch
             table.insert(self.LaunchExhaustEffectsBag, CreateAttachedEmitter(self, 'XSA0002', self:GetArmy(), self.ExhaustLaunch01))
             table.insert(self.LaunchExhaustEffectsBag, CreateAttachedEmitter(self, 'XSA0002', self:GetArmy(), self.ExhaustLaunch02))
             table.insert(self.LaunchExhaustEffectsBag, CreateAttachedEmitter(self, 'XSA0002', self:GetArmy(), self.ExhaustLaunch03))
@@ -154,5 +170,4 @@ BSA0002 = Class(SConstructionUnit) {
         end
     end,
 }
-
 TypeClass = BSA0002

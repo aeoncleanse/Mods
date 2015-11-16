@@ -1,36 +1,38 @@
------------------------------------------------------------------
--- File     :  /cdimage/units/UAB0202/UAB0202_script.lua
--- Author(s):  John Comes, David Tomandl, Gordon Duclos
--- Summary  :  Aeon Unit Script
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
------------------------------------------------------------------
-
+#****************************************************************************
+#**
+#**  File     :  /cdimage/units/UAB0202/UAB0202_script.lua
+#**  Author(s):  John Comes, David Tomandl, Gordon Duclos
+#**
+#**  Summary  :  Aeon Unit Script
+#**
+#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+#****************************************************************************
 local AAirFactoryUnit = import('/lua/aeonunits.lua').AAirFactoryUnit
-
 BAB0202 = Class(AAirFactoryUnit) {
-    OnStopBeingBuilt = function(self)
-        if not self:IsDead() then
-            -- Gets the current orientation of the Factory "A" in the game world
-            local myOrientation = self:GetOrientation()
+	OnStopBeingBuilt = function(self)
+       if not self:IsDead() then
 
-            -- Gets the current position of the Factory "A" in the game world
-            local location = self:GetPosition()
+           ### Gets the current orientation of the Factory "A" in the game world
+           local myOrientation = self:GetOrientation()
 
-            -- Gets the current health the Factory "A"
-            local health = self:GetHealth()
+           ### Gets the current position of the Factory "A" in the game world
+           local location = self:GetPosition()
 
-            -- Creates our Factory "B" at the Factory "A" location & direction
-            local FactoryB = CreateUnit('uab0202', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
+           ### Gets the current health the Factory "A"
+           local health = self:GetHealth()
 
-            -- Passes the health of the Unit "A" to unit "B" and passes vet
-            FactoryB:SetHealth(self,health)
+           ### Creates our Factory "B" at the Factory "A" location & direction
+           local FactoryB = CreateUnit('uab0202', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
 
-            -- Nil's local FactoryA
-            FactoryB = nil
+           ### Passes the health of the Unit "A" to unit "B" and passes vet
+           FactoryB:SetHealth(self,health)
 
-            -- Factory "A" removal scripts
-            self:Destroy()
-        end
+           ### Nil's local FactoryA
+           FactoryB = nil
+
+           ###Factory "A" removal scripts
+           self:Destroy()
+       end
     end,
 }
 

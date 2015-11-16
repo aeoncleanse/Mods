@@ -46,15 +46,15 @@ UnitBlueprint {
         'AEON',
         'STRUCTURE',
         'LAND',
-        'FACTORY',
-        'CONSTRUCTION',
+		'FACTORY',
+		'CONSTRUCTION',
         'RALLYPOINT',
         'EXPERIMENTAL',
         'NEEDMOBILEBUILD',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'DRAGBUILD',
-        'SHOWQUEUE',
+		'SHOWQUEUE',
         'SORTCONSTRUCTION',
     },
     CollisionOffsetY = 0,
@@ -70,7 +70,8 @@ UnitBlueprint {
     },
     Description = '<LOC bab2404_desc>Artemis Satelite Control',
     Display = {
-        BuildAttachBone = 'Attachpoint',
+    	#AnimationPermOpen = '/units/XAB2404/XAB2404_aopen01.sca',
+		BuildAttachBone = 'Attachpoint',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -79,6 +80,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
+                #{
+                #    AlbedoName = 'bab2404_albedo.dds',
+                #    LODCutoff = 500,
+                #    ShaderName = 'Aeon',
+                #    SpecularName = 'bab2404_specteam.dds',
+                #},
             },
         },
         PlaceholderMeshName = 'UXB0006',
@@ -102,9 +109,9 @@ UnitBlueprint {
     Economy = {
         BuildCostEnergy = 4050000,
         BuildCostMass = 99000,
-        BuildRate = 1080,
+		BuildRate = 1080,
         BuildTime = 54000,
-        BuildableCategory = {
+		BuildableCategory = {
             'BUILTBYSTATION',
         },
         RebuildBonusIds = {
@@ -116,7 +123,7 @@ UnitBlueprint {
         SizeZ = 10,
     },
     General = {
-        BuildBones = {
+		BuildBones = {
             BuildEffectBones = {
                 'Attachpoint',
             },
@@ -131,14 +138,14 @@ UnitBlueprint {
             RULEUCC_Move = true,
             RULEUCC_Nuke = false,
             RULEUCC_Patrol = true,
-            RULEUCC_Pause = true,
+			RULEUCC_Pause = true,
             RULEUCC_Reclaim = false,
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
             RULEUCC_Transport = false,
         },
-        ConstructionBar = true,
+		ConstructionBar = true,
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

@@ -34,12 +34,12 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'TARGETABLE',
+		'TARGETABLE',
         'UEF',
-        'STRATEGIC',
-        'INSIGNIFICANTUNIT',
+		'STRATEGIC',
+		'INSIGNIFICANTUNIT',
         'TECH2',
-        'DRONE',
+		'DRONE',
         'AIRSTAGINGPLATFORM',
         'VISIBLETORECON',
         'OVERLAYMISC',
@@ -64,6 +64,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Unit',
                 },
+               # {
+               #     AlbedoName = 'ueb5202_lod1_albedo.dds',
+               #     LODCutoff = 300,
+               #     ShaderName = 'Unit',
+               #     SpecularName = 'ueb5202_lod1_specteam.dds',
+                #},
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -76,7 +82,7 @@ UnitBlueprint {
         BuildTime = 1,
     },
     General = {
-        CapCost = 0,
+		CapCost = 0,
         Category = 'Strategic',
         Classification = 'RULEUC_MiscSupport',
         CommandCaps = {
@@ -105,9 +111,9 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Advanced',
         UnitWeight = 1,
     },
-    Intel = {
-        RadarStealth = true,
-        FreeIntel = true,
+	Intel = {
+		RadarStealth = true,
+		FreeIntel = true,
     },
     Interface = {
         HelpText = '<LOC beb0001_help>Air Staging Facility',
@@ -138,6 +144,8 @@ UnitBlueprint {
     SizeX = 0.1,
     SizeY = 0.1,
     SizeZ = 0.1,
+    #StrategicIconName = 'icon_structure2_air',
+    #StrategicIconSortPriority = 175,
     Transport = {
         Class2AttachSize = 2,
         Class3AttachSize = 4,

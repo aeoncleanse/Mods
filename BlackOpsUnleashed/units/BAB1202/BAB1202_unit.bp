@@ -36,7 +36,7 @@ UnitBlueprint {
         'BUILTBYTIER2ENGINEER',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER2COMMANDER',
-        'BUILTBYTIER3COMMANDER',
+		'BUILTBYTIER3COMMANDER',
         'AEON',
         'STRUCTURE',
         'ECONOMIC',
@@ -46,7 +46,7 @@ UnitBlueprint {
         'SIZE12',
         'VISIBLETORECON',
         'RECLAIMABLE',
-        'SHOWQUEUE',
+		'SHOWQUEUE',
         'SORTECONOMY',
     },
     CollisionOffsetY = -0.25,
@@ -62,9 +62,9 @@ UnitBlueprint {
     },
     Description = '<LOC bab1202_desc>Hydrocarbon Power Plant',
     Display = {
-        Abilities = {
+		Abilities = {
             '<LOC ability_upgradable>Upgradeable',
-            '<LOC ability_deathaoe>Volatile',
+			'<LOC ability_deathaoe>Volatile',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -74,6 +74,12 @@ UnitBlueprint {
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },
+              #  {
+              #      AlbedoName = 'bab1202_lod1_albedo.dds',
+              #      LODCutoff = 300,
+              #      ShaderName = 'Aeon',
+               #     SpecularName = 'bab1202_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0011',
@@ -103,13 +109,13 @@ UnitBlueprint {
         BuildCostMass = 1980,
         BuildTime = 1650,
         BuildRate = 15,
-        BuildableCategory = {
+		BuildableCategory = {
             'bab1302',
         },
         ProductionPerSecondEnergy = 875,
         RebuildBonusIds = {
             'bab1202',
-            'bab1302',
+			'bab1302',
         },
     },
     Footprint = {
@@ -138,7 +144,7 @@ UnitBlueprint {
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
-        UpgradesFrom = 'uab1102',
+		UpgradesFrom = 'uab1102',
         UpgradesTo = 'bab1302',
     },
     Interface = {
@@ -180,7 +186,7 @@ UnitBlueprint {
     SizeZ = 1.75,
     StrategicIconName = 'icon_structure2_energy',
     StrategicIconSortPriority = 250,
-    Weapon = {
+	Weapon = {
         {
             Damage = 1500,
             DamageFriendly = true,

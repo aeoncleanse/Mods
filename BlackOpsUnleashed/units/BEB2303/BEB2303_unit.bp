@@ -66,7 +66,7 @@ UnitBlueprint {
     },
     Description = '<LOC beb2303_desc>Rapid Fire Howitzer',
     Display = {
-        Abilities = {
+		Abilities = {
             '<LOC ability_energy>High Energy Consumption',
         },
         Mesh = {
@@ -76,6 +76,12 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
+             #   {
+              #      AlbedoName = 'beb2303_lod1_albedo.dds',
+              #      LODCutoff = 215,
+              #      ShaderName = 'Unit',
+              #      SpecularName = 'beb2303_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0004',
@@ -156,7 +162,7 @@ UnitBlueprint {
         MeshExtentsX = 2.5,
         MeshExtentsY = 1.65,
         MeshExtentsZ = 4.5,
-        MeshExtentsOffsetZ = 3,
+		MeshExtentsOffsetZ = 3,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_None',
         SkirtOffsetX = -1.5,
@@ -184,7 +190,7 @@ UnitBlueprint {
         {
             AboveWaterTargetsOnly = true,
             ArtilleryShieldBlocks = true,
-            AimsStraightOnDisable = true,
+			AimsStraightOnDisable = true,
             Audio = {
                 Fire = Sound {
                     Bank = 'UELWeapon',
@@ -240,7 +246,7 @@ UnitBlueprint {
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-            ShellEjectBone = 'Spew',
+			ShellEjectBone = 'Spew',
             TurretBoneMuzzle = 'Fake_Muzzle',
             TurretBonePitch = 'Pitch',
             TurretBoneYaw = 'Turret',
@@ -252,7 +258,7 @@ UnitBlueprint {
             TurretYawRange = 180,
             TurretYawSpeed = 20,
             Turreted = true,
-            WeaponUnpackTimeout = 3,
+			WeaponUnpackTimeout = 3,
             WeaponCategory = 'Artillery',
             WeaponRepackTimeout = 3,
             WeaponUnpacks = true,

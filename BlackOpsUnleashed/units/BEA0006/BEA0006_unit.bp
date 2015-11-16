@@ -93,12 +93,12 @@ UnitBlueprint {
         },
     },
     Buffs = {
-        Regen = {
-            Level1 = 40,
-            Level2 = 80,
-            Level3 = 120,
-            Level4 = 160,
-            Level5 = 200,
+        Regen = { # time need for full hp regen assuming 4k base hp:
+            Level1 = 40, # 220s
+            Level2 = 80, # 120s
+            Level3 = 120, # 86s
+            Level4 = 160, # 70s
+            Level5 = 200, # 60s
         },
     }, 
     Categories = {
@@ -106,7 +106,7 @@ UnitBlueprint {
         'UEF',
         'MOBILE',
         'AIR',
-        'HIGHALTAIR',
+		'HIGHALTAIR',
         'POD',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -125,7 +125,7 @@ UnitBlueprint {
     },
     Description = '<LOC bea0006_desc>Heavy Defense Drone',
     Display = {
-        LayerChangeEffects = {
+		LayerChangeEffects = {
             AirLand = {
                 Effects = {
                     {
@@ -156,9 +156,15 @@ UnitBlueprint {
                     LODCutoff = 215,
                     ShaderName = 'Unit',
                 },
+                #{
+                #    AlbedoName = 'bea0006_lod1_albedo.dds',
+                #    LODCutoff = 215,
+                #    ShaderName = 'Unit',
+                #    SpecularName = 'bea0006_lod1_specteam.dds',
+                #},
             },
         },
-        MovementEffects = {
+		MovementEffects = {
             BeamExhaust = {
                 Bones = {
                     'Left_Exhaust',
@@ -177,7 +183,7 @@ UnitBlueprint {
         BuildCostMass = 180,
         BuildTime = 180,
     },
-    SizeSphere = 0.6,
+    SizeSphere = 0.6, # 1 - more reasonable collision size 
     General = {
         CapCost = 0,
         Category = 'Utility',
@@ -199,13 +205,19 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'air',
+        #OrderOverrides = {
+        #    DroneL = {
+        #        bitmapId = 'drone',
+        #        helpText = 'drone_station',
+        #    },
+        #},
         SelectionPriority = 6,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },
     Intel = {
-        FreeIntel = true,
-        RadarStealth = true,
+		FreeIntel = true,
+		RadarStealth = true,
         VisionRadius = 25,
     },
     Interface = {
@@ -271,7 +283,7 @@ UnitBlueprint {
             DamageRadius = 1,
             DamageType = 'Normal',
             DisplayName = 'Dual-Barreled Cannon',
-            FireTargetLayerCapsTable = {
+            FireTargetLayerCapsTable = { # can now hit gunships and transports
                 Air = 'Air',
                 Land = 'Air',
             }, 
@@ -281,9 +293,9 @@ UnitBlueprint {
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 6,
-            MuzzleVelocity = 50,
-            ProjectileId = '/projectiles/TAAMissileFlayer01/TAAMissileFlayer01_proj.bp',
-            ProjectileLifetime = 10,
+			MuzzleVelocity = 50,
+			ProjectileId = '/projectiles/TAAMissileFlayer01/TAAMissileFlayer01_proj.bp',
+			ProjectileLifetime = 10,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -291,7 +303,7 @@ UnitBlueprint {
                     },
                     RackBone = 'AA_Muzzle_1',
                 },
-                {
+				{
                     MuzzleBones = {
                         'AA_Muzzle_2',
                     },
@@ -311,7 +323,7 @@ UnitBlueprint {
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'ANTIAIR',
+                'ANTIAIR', # new
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',
@@ -337,7 +349,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 2,
             WeaponUnpacks = false,
          },
-         {
+		 {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             Audio = {
@@ -354,7 +366,7 @@ UnitBlueprint {
             DamageRadius = 1,
             DamageType = 'Normal',
             DisplayName = 'Dual-Barreled Cannon',
-            FireTargetLayerCapsTable = {
+            FireTargetLayerCapsTable = { # can now hit gunships and transports
                 Air = 'Land|Water',
                 Land = 'Land|Water',
             }, 
@@ -364,9 +376,9 @@ UnitBlueprint {
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 2,
-            MuzzleVelocity = 50,
-            ProjectileId = '/projectiles/TAAMissileFlayer01/TAAMissileFlayer01_proj.bp',
-            ProjectileLifetime = 10,
+			MuzzleVelocity = 50,
+			ProjectileId = '/projectiles/TAAMissileFlayer01/TAAMissileFlayer01_proj.bp',
+			ProjectileLifetime = 10,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -374,7 +386,7 @@ UnitBlueprint {
                     },
                     RackBone = 'AA_Muzzle_1',
                 },
-                {
+				{
                     MuzzleBones = {
                         'AA_Muzzle_2',
                     },
@@ -394,7 +406,7 @@ UnitBlueprint {
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'ANTIAIR',
+                'ANTIAIR', # new
                 'TECH3 MOBILE',
                 'TECH2 MOBILE',
                 'TECH1 MOBILE',

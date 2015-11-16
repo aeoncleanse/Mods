@@ -39,7 +39,7 @@ UnitBlueprint {
         'SIZE12',
         'VISIBLETORECON',
         'RECLAIMABLE',
-        'SHOWQUEUE',
+		'SHOWQUEUE',
         'SORTECONOMY',
     },
     CollisionOffsetY = -0.25,
@@ -55,9 +55,9 @@ UnitBlueprint {
     },
     Description = '<LOC brb1202_desc>Hydrocarbon Power Plant',
     Display = {
-        Abilities = {
+		Abilities = {
             '<LOC ability_upgradable>Upgradeable',
-            '<LOC ability_deathaoe>Volatile',
+			'<LOC ability_deathaoe>Volatile',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -66,6 +66,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
+               # {
+               #     AlbedoName = 'brb1202_lod1_albedo.dds',
+               #     LODCutoff = 300,
+              #      ShaderName = 'Insect',
+               #     SpecularName = 'brb1202_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0011',
@@ -95,13 +101,13 @@ UnitBlueprint {
         BuildCostMass = 1980,
         BuildTime = 1650,
         BuildRate = 15,
-        BuildableCategory = {
+		BuildableCategory = {
             'brb1302',
         },
         ProductionPerSecondEnergy = 875,
         RebuildBonusIds = {
             'brb1202',
-            'brb1302',
+			'brb1302',
         },
     },
     Footprint = {
@@ -130,7 +136,7 @@ UnitBlueprint {
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
-        UpgradesFrom = 'urb1102',
+		UpgradesFrom = 'urb1102',
         UpgradesTo = 'brb1302',
     },
     Interface = {
@@ -169,7 +175,7 @@ UnitBlueprint {
     SizeZ = 2,
     StrategicIconName = 'icon_structure2_energy',
     StrategicIconSortPriority = 250,
-    Weapon = {
+	Weapon = {
         {
             Damage = 1500,
             DamageFriendly = true,

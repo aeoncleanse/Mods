@@ -1,5 +1,5 @@
 UnitBlueprint {
-    AI = {
+	AI = {
         TargetBones = {
             'Turret',
         },
@@ -52,14 +52,14 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 25,
     Categories = {
-        'PRODUCTDL',
+		'PRODUCTDL',
         'SELECTABLE',
         'BUILTBYTIER3FACTORY',
         'AEON',
         'MOBILE',
         'LAND',
         'TECH3',
-        'ANTIAIR',
+		'ANTIAIR',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYANTIAIR',
@@ -87,13 +87,13 @@ UnitBlueprint {
                 AnimationRateMin = 5,
                 Weight = 1,
             },
-            {
+			{
                 Animation = '/units/BALK003/BALK003_death02.sca',
                 AnimationRateMax = 2.5,
                 AnimationRateMin = 1.5,
                 Weight = 1,
             },
-        },        
+        },		
         AnimationWalk = '/units/BALK003/BALK003_walk.sca',
         AnimationWalkRate = 6,
         Mesh = {
@@ -131,7 +131,7 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-        TransportDropAnimation = {
+		TransportDropAnimation = {
             {
                 Animation = '/units/BALK003/BALK003_unfold.sca',
                 Weight = 100,
@@ -224,7 +224,7 @@ UnitBlueprint {
         Level5 = 40,
     },
     Weapon = {
-        {
+		{
             AlwaysRecheckTarget = true,
             Audio = {
                 Fire = Sound {
@@ -232,7 +232,7 @@ UnitBlueprint {
                     Cue = 'UAL0111_Missile_Serpent',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
-                Open = Sound {
+				Open = Sound {
                     Bank = 'UAB',
                     Cue = 'UAB2304_Activate',
                     LodCutoff = 'Weapon_LodCutoff',
@@ -253,7 +253,7 @@ UnitBlueprint {
             Label = 'Missile',
             MaxRadius = 40,
             MuzzleChargeDelay = 0.5,
-            MuzzleSalvoDelay = 0,
+			MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 10,
             ProjectileId = '/projectiles/AASerpentine/AASerpentine_proj.bp',
@@ -300,7 +300,7 @@ UnitBlueprint {
             TurretYawSpeed = 0,
             Turreted = false,
             WeaponCategory = 'Anti Air',
-            WeaponRepackTimeout = 5,
+			WeaponRepackTimeout = 5,
             WeaponUnpackAnimation = '/units/BALK003/BALK003_unpack.sca',
             WeaponUnpackAnimationRate = 4,
             WeaponUnpackLocksMotion = false,

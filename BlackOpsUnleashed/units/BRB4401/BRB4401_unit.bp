@@ -63,6 +63,12 @@ UnitBlueprint {
                     LODCutoff = 300,
                     ShaderName = 'Insect',
                 },
+                #{
+               #     AlbedoName = 'BRB4401_lod1_albedo.dds',
+               #     LODCutoff = 300,
+               #     ShaderName = 'Insect',
+               #     SpecularName = 'BRB4401_lod1_specteam.dds',
+               # },
             },
         },
         PlaceholderMeshName = 'UXB0016',
@@ -95,7 +101,7 @@ UnitBlueprint {
             'brb4401',
         },
     },
-    Footprint = {
+	Footprint = {
         SizeX = 5,
         SizeZ = 5,
     },
