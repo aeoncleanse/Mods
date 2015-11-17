@@ -23,7 +23,7 @@ EmitterBlueprint {
     LowFidelity = true,
     MedFidelity = true,
     HighFidelity = true,
-    Texture = [[/textures/particles/sparkle_GREEN_add_03.dds]],
+    Texture = [[/mods/BlackOpsUnleashed/textures/particles/sparkle_GREEN_add_03.dds]],
     RampTexture = [[/textures/particles/ramp_white_07.dds]],
     XDirectionCurve = {
         XRange = 1.00,

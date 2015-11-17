@@ -13,10 +13,11 @@ local RandomFloat = utilities.GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
+local BaseTransport = import('/lua/defaultunits.lua').BaseTransport
 
-BEL0402 = Class(TWalkingLandUnit) {
+BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
     FlamerEffects = {
-        '/effects/emitters/ex_flamer_torch_01.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/ex_flamer_torch_01.bp',
     },
     
     Weapons = {
@@ -160,7 +161,7 @@ BEL0402 = Class(TWalkingLandUnit) {
     OnTransportAttach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = attachBone
         unit:SetDoNotTarget(true)
-        TWalkingLandUnit.OnTransportAttach(self, attachBone, unit)
+        BaseTransport.OnTransportAttach(self, attachBone, unit)
     end,
     
     -- Handles drone undocking, also called when docked drones die
@@ -170,7 +171,7 @@ BEL0402 = Class(TWalkingLandUnit) {
         if unit.Name == self.BuildingDrone then
             self:CleanupDroneMaintenance(self.BuildingDrone)
         end
-        TWalkingLandUnit.OnTransportDetach(self, attachBone, unit)
+        BaseTransport.OnTransportDetach(self, attachBone, unit)
     end,
 
     -- Cleans up threads and drones on death
@@ -493,9 +494,10 @@ BEL0402 = Class(TWalkingLandUnit) {
             for id, drone in self.DroneTable do
                 if drone.AwayFromCarrier == false then
                     local targetblip = dronetarget:GetBlip(self:GetArmy())
-                    targetblip ~= nil
-                    IssueClearCommands({drone})
-                    IssueAttack({drone}, targetblip)
+                    if targetblip ~= nil then
+                        IssueClearCommands({drone})
+                        IssueAttack({drone}, targetblip)
+                    end
                 end
             end
         end

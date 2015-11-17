@@ -7,7 +7,7 @@
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponsFile = import('/lua/terranweapons.lua')
-local WeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local WeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TAALinkedRailgun = WeaponsFile.TAALinkedRailgun
 local ZCannonWeapon = WeaponsFile2.ZCannonWeapon
 local TDFShipGaussCannonWeapon = WeaponsFile.TDFShipGaussCannonWeapon
@@ -18,54 +18,15 @@ BES0402 = Class(TSeaUnit) {
 
     Weapons = {
         FrontAMCCannon01 = Class(ZCannonWeapon) {
-            PlayFxRackSalvoReloadSequence = function(self)
-                for i = 1, 40 do
-                local fxname
-                    if i < 10 then
-                        fxname = 'AMC1Steam0' .. i
-                    else
-                        fxname = 'AMC1Steam' .. i
-                    end
-                    for k, v in self.unit.SteamEffects do
-                        table.insert( self.unit.SteamEffectsBag, CreateAttachedEmitter( self.unit, fxname, self.unit:GetArmy(), v ))
-                    end
-                end
-                ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
+            Cannon = 1,
         },
         
         FrontAMCCannon02 = Class(ZCannonWeapon) {
-            PlayFxRackSalvoReloadSequence = function(self)
-                for i = 1, 40 do
-                local fxname
-                    if i < 10 then
-                        fxname = 'AMC2Steam0' .. i
-                    else
-                        fxname = 'AMC2Steam' .. i
-                    end
-                    for k, v in self.unit.SteamEffects do
-                        table.insert( self.unit.SteamEffectsBag, CreateAttachedEmitter( self.unit, fxname, self.unit:GetArmy(), v ))
-                    end
-                end
-                ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
+            Cannon = 2,
         },
         
         BackAMCCannon = Class(ZCannonWeapon) {
-            PlayFxRackSalvoReloadSequence = function(self)
-                for i = 1, 40 do
-                local fxname
-                    if i < 10 then
-                        fxname = 'AMC3Steam0' .. i
-                    else
-                        fxname = 'AMC3Steam' .. i
-                    end
-                    for k, v in self.unit.SteamEffects do
-                        table.insert( self.unit.SteamEffectsBag, CreateAttachedEmitter( self.unit, fxname, self.unit:GetArmy(), v ))
-                    end
-                end
-                ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
+            Cannon = 3,
         },
         
         AAGunLeft01 = Class(TAALinkedRailgun) {},

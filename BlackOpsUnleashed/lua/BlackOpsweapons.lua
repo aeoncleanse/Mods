@@ -358,6 +358,22 @@ ZCannonWeapon = Class(DefaultProjectileWeapon) {
     FxChargeMuzzleFlash = BlackOpsEffectTemplate.ZCannonChargeMuzzleFlash,
     FxMuzzleFlash = BlackOpsEffectTemplate.ZCannonMuzzleFlash,
     FxMuzzleFlashScale = 2.5,
+    Version = 1,
+    
+    PlayFxRackSalvoReloadSequence = function(self)
+        for i = 1, 40 do
+        local fxname
+            if i < 10 then
+                fxname = 'AMC' .. self.Cannon .. 'Steam0' .. i
+            else
+                fxname = 'AMC' .. self.Cannon .. 'Steam' .. i
+            end
+            for k, v in self.unit.SteamEffects do
+                table.insert(self.unit.SteamEffectsBag, CreateAttachedEmitter(self.unit, fxname, self.unit:GetArmy(), v ))
+            end
+        end
+        ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
+    end,
 }
 
 YCannonWeapon = Class(DefaultProjectileWeapon) {
