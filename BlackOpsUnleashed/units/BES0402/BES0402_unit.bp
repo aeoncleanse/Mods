@@ -97,13 +97,13 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BES0402/BES0402_ASink01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BES0402/BES0402_ASink01.sca',
                 AnimationRateMax = 1,
                 AnimationRateMin = 0.8,
                 Weight = 100,
             },
             {
-                Animation = '/units/BES0402/BES0402_ASink02.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BES0402/BES0402_ASink02.sca',
                 AnimationRateMax = 1,
                 AnimationRateMin = 0.8,
                 Weight = 100,
@@ -307,7 +307,7 @@ UnitBlueprint {
             MuzzleVelocity = 30,
             MuzzleVelocityReduceDistance = 150,
             NotExclusive = true,
-            ProjectileId = '/projectiles/ZCannon01/ZCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/ZCannon01/ZCannon01_proj.bp',
             ProjectileLifetime = 10,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -410,7 +410,7 @@ UnitBlueprint {
             MuzzleVelocityReduceDistance = 150,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/ZCannon01/ZCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/ZCannon01/ZCannon01_proj.bp',
             ProjectileLifetime = 10,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -512,7 +512,7 @@ UnitBlueprint {
             MuzzleVelocityReduceDistance = 150,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/ZCannon01/ZCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/ZCannon01/ZCannon01_proj.bp',
             ProjectileLifetime = 10,
             ProjectilesPerOnFire = 1,
             RackBones = {
