@@ -19,6 +19,11 @@ UnitBlueprint {
         BankFactor = 0,
         BankForward = false,
         CanFly = true,
+        CirclingDirChange = false,
+        CirclingElevationChangeRatio = 1,
+        CirclingRadiusChangeMaxRatio = 0.9,
+        CirclingRadiusChangeMinRatio = 0.8,
+        CirclingTurnMult = 3,
         HoverOverAttack = false,
         KLift = 2,
         KLiftDamping = 3.5,
@@ -29,7 +34,7 @@ UnitBlueprint {
         LiftFactor = 7,
         MaxAirspeed = 6,
         MinAirspeed = 1,
-        StartTurnDistance = 50,
+        StartTurnDistance = 40,
     },
     Audio = {
         AirUnitWaterImpact = Sound {
@@ -162,8 +167,8 @@ UnitBlueprint {
             '<LOC ability_airstaging>Air Staging',
             '<LOC ability_aa>Anti-Air',
         },
-        AnimationOpen = '/units/BEA0402/BEA0402_Aactivate.sca',
-        AnimationActivate = '/units/BEA0402/BEA0402_ADeploy.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BEA0402/BEA0402_Aactivate.sca',
+        AnimationActivate = '/mods/BlackOpsUnleashed/units/BEA0402/BEA0402_ADeploy.sca',
         AttackReticle = 3,
         Mesh = {
             IconFadeInZoom = 130,
@@ -330,7 +335,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 60,
             NotExclusive = true,
-            ProjectileId = '/projectiles/RailGun01/RailGun01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/RailGun01/RailGun01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -427,7 +432,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 60,
             NotExclusive = true,
-            ProjectileId = '/projectiles/RailGun01/RailGun01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/RailGun01/RailGun01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -505,7 +510,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
             NotExclusive = true,
-            ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -587,7 +592,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
             NotExclusive = true,
-            ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -669,7 +674,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
             NotExclusive = true,
-            ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -751,7 +756,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 75,
             NotExclusive = true,
-            ProjectileId = '/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/CitadelHVM01/CitadelHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -835,7 +840,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 80,
-            ProjectileId = '/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -920,7 +925,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 80,
-            ProjectileId = '/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -1005,7 +1010,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 80,
-            ProjectileId = '/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -1090,7 +1095,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 80,
-            ProjectileId = '/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/TAAHeavyFragmentationShell01/TAAHeavyFragmentationShell01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
             ProjectilesPerOnFire = 1,
             RackBones = {

@@ -13,7 +13,6 @@ local CitadelHVMWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua
 local CitadelPlasmaGatlingCannonWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').CitadelPlasmaGatlingCannonWeapon
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
-local util = import('/lua/utilities.lua')
 
 BEA0402 = Class(TAirUnit) {
     Weapons = {
@@ -103,9 +102,9 @@ BEA0402 = Class(TAirUnit) {
     DestroyNoFallRandomChance = 1.1,
     FxDamageScale = 2.5,
     
-    OnStopBeingBuilt = function(self,builder,layer)
+    OnStopBeingBuilt = function(self, builder, layer)
         self.AirPadTable = {}
-        TAirUnit.OnStopBeingBuilt(self,builder,layer)
+        TAirUnit.OnStopBeingBuilt(self, builder, layer)
     end,    
 }
 

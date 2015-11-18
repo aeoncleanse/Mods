@@ -40,9 +40,9 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                AlbedoName = '/units/bab0003/bab0003_albedo.dds',
-                NormalsName = '/units/bab0003/bab0003_normalsTS.dds',
-                SpecularName = '/units/bab0003/bab0003_specteam.dds',
+                AlbedoName = '/mods/BlackOpsUnleashed/units/bab0003/bab0003_albedo.dds',
+                NormalsName = '/mods/BlackOpsUnleashed/units/bab0003/bab0003_normalsTS.dds',
+                SpecularName = '/mods/BlackOpsUnleashed/units/bab0003/bab0003_specteam.dds',
                 ShaderName = 'Unit',
                 LODCutoff = 195,
                 },
