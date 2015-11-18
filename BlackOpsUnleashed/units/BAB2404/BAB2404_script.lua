@@ -98,7 +98,6 @@ BAB2404 = Class(ALandFactoryUnit) {
     
     FinishBuildThread = function(self, unitBeingBuilt, order)
         ALandFactoryUnit.FinishBuildThread(self, unitBeingBuilt, order)
-        LOG('*SAT FINISHED BUILDING RESTRICT BUILD QUEUE')
         self:PlayUnitSound('LaunchSat')
         self:AddBuildRestriction(categories.BUILTBYSTATION)
     end,
@@ -106,14 +105,12 @@ BAB2404 = Class(ALandFactoryUnit) {
     
     NotifyOfDroneDeath = function(self)
         -- Remove build restriction if sat has been lost
-        LOG('*sat HAS BEEN LOST LETS MAKE ANOTHER')
         self.PetDrone = nil
         self:RemoveBuildRestriction(categories.BUILTBYSTATION)
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
         ALandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)
-        LOG('*STATION IS DEAD DESTROY ANY ACTIVE SATS')
         if self.PetDrone then
             self.PetDrone:Kill(self, 'Normal', 0)
             self.PetDrone = nil

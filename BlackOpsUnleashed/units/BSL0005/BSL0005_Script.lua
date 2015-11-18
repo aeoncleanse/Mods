@@ -51,7 +51,6 @@ BSL0005 = Class(SLandUnit) {
             self.DeathExhaustEffectsBag = {}
         end
     end,
-    
 
     LaunchEffects = function(self)
         if not self:IsDead() then

@@ -16,7 +16,7 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-            nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+            nukeProjectile = self:CreateProjectile('/mods/BlackOpsUnleashed/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
         DummyArtemisCannonProjectile.OnImpact(self, TargetType, TargetEntity)
@@ -30,7 +30,7 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-            nukeProjectile = self:CreateProjectile('/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+            nukeProjectile = self:CreateProjectile('/mods/BlackOpsUnleashed/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
         DummyArtemisCannonProjectile.DoTakeDamage(self, instigator, amount, vector, damageType)

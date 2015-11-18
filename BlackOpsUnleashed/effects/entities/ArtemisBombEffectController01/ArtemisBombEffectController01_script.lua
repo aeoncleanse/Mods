@@ -10,9 +10,9 @@ local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local RandomInt = import('/lua/utilities.lua').GetRandomInt
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
-local ArtemisBombEffect04 = '/effects/Entities/ArtemisBombEffect04/ArtemisBombEffect04_proj.bp' 
-local ArtemisBombEffect05 = '/effects/Entities/ArtemisBombEffect05/ArtemisBombEffect05_proj.bp'
-local ArtemisBombEffect06 = '/effects/Entities/ArtemisBombEffect06/ArtemisBombEffect06_proj.bp'
+local ArtemisBombEffect04 = '/mods/BlackOpsUnleashed/effects/Entities/ArtemisBombEffect04/ArtemisBombEffect04_proj.bp' 
+local ArtemisBombEffect05 = '/mods/BlackOpsUnleashed/effects/Entities/ArtemisBombEffect05/ArtemisBombEffect05_proj.bp'
+local ArtemisBombEffect06 = '/mods/BlackOpsUnleashed/effects/Entities/ArtemisBombEffect06/ArtemisBombEffect06_proj.bp'
 
 ArtemisBombEffectController01 = Class(NullShell) {
     NukeInnerRingDamage = 70000,

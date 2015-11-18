@@ -231,7 +231,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/GoldAA01/GoldAA01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/GoldAA01/GoldAA01_proj.bp',
             ProjectileLifetime = 45,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -304,7 +304,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/GoldAA01/GoldAA01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/GoldAA01/GoldAA01_proj.bp',
             ProjectileLifetime = 45,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -377,7 +377,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/GoldAA01/GoldAA01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/GoldAA01/GoldAA01_proj.bp',
             ProjectileLifetime = 45,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -450,7 +450,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/GoldAA01/GoldAA01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/GoldAA01/GoldAA01_proj.bp',
             ProjectileLifetime = 45,
             ProjectilesPerOnFire = 1,
             RackBones = {

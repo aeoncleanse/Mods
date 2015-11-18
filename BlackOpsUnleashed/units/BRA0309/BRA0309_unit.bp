@@ -134,7 +134,7 @@ UnitBlueprint {
             '<LOC ability_transport>Transport',
             '<LOC ability_cloakfield>Cloak Field',
         },
-        AnimationOpen = '/units/BRA0309/BRA0309_Aopen.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BRA0309/BRA0309_Aopen.sca',
         ForcedBuildSpin = 90,
         LayerChangeEffects = {
             AirLand = {

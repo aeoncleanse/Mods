@@ -69,7 +69,7 @@ UnitBlueprint {
     },
     Description = '<LOC brl0011_desc>Crab Egg (Hailfire)',
     Display = {
-        AnimationOpen = '/units/BRL0011/BRL0011_aopen.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0011/BRL0011_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
             IconFadeInZoom = 130,

@@ -7,7 +7,7 @@
 
 local CSeaUnit = import('/lua/cybranunits.lua').CSeaUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
-local WeaponsFile = import('/lua/BlackOpsweapons.lua')
+local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local CDFProtonCannonWeapon = CybranWeaponsFile.CDFProtonCannonWeapon
 local CAANanoDartWeapon = CybranWeaponsFile.CAANanoDartWeapon
 local CAMZapperWeapon02 = CybranWeaponsFile.CAMZapperWeapon02
@@ -39,7 +39,7 @@ BRS0304 = Class(CSeaUnit) {
         if bit == 1 then 
             self:SetWeaponEnabledByLabel('GroundGun', true)
             self:SetWeaponEnabledByLabel('AAGun', false)
-            self:GetWeaponManipulatorByLabel('GroundGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAGun'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('GroundGun'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAGun'):GetHeadingPitch())
         end
     end,
 
@@ -48,7 +48,7 @@ BRS0304 = Class(CSeaUnit) {
         if bit == 1 then 
             self:SetWeaponEnabledByLabel('GroundGun', false)
             self:SetWeaponEnabledByLabel('AAGun', true)
-            self:GetWeaponManipulatorByLabel('AAGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('GroundGun'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('AAGun'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('GroundGun'):GetHeadingPitch())
         end
     end,
     

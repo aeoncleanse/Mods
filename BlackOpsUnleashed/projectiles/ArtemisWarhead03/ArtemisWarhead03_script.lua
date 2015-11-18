@@ -22,7 +22,7 @@ ArtemisWarhead02 = Class(NullShell) {
     NukeMeshScale = 8.5725,
     PlumeVelocityScale = 0.1,
 
-    NormalEffects = {'/effects/emitters/artemis_warhead_01_emit.bp',},
+    NormalEffects = {'/mods/BlackOpsUnleashed/effects/emitters/artemis_warhead_01_emit.bp',},
     ArtemisCloudFlareEffects = BlackOpsEffectTemplate.ArtemisCloudFlareEffects01,
 
     PassData = function(self, Data)
@@ -135,11 +135,11 @@ ArtemisWarhead02 = Class(NullShell) {
         end
         
         CreateLightParticle(self, -1, army, 13, 3, 'beam_white_01', 'ramp_quantum_warhead_flash_01')
-        CreateEmitterAtEntity(self, army, '/effects/emitters/artemis_warhead_ring_01_emit.bp')
+        CreateEmitterAtEntity(self, army, '/mods/BlackOpsUnleashed/effects/emitters/artemis_warhead_ring_01_emit.bp')
     end,
 
     DistortionField = function(self)
-        local proj = self:CreateProjectile('/effects/ArtemisWarhead/ArtemisWarheadEffect01_proj.bp')
+        local proj = self:CreateProjectile('/mods/BlackOpsUnleashed/effects/ArtemisWarhead/ArtemisWarheadEffect01_proj.bp')
         local scale = proj:GetBlueprint().Display.UniformScale
 
         proj:SetScaleVelocity(0.123 * scale,0.123 * scale,0.123 * scale)

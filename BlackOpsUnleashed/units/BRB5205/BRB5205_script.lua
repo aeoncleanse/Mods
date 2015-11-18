@@ -5,10 +5,10 @@
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
+local CWeapons = import('/lua/cybranweapons.lua')
 local CAirStagingPlatformUnit = import('/lua/cybranunits.lua').CAirStagingPlatformUnit
-local Unit = import('/lua/sim/Unit.lua').Unit
-local CAABurstCloudFlakArtilleryWeapon = import('/lua/cybranweapons.lua').CAABurstCloudFlakArtilleryWeapon
-local CANNaniteTorpedoWeapon = import('/lua/cybranweapons.lua').CANNaniteTorpedoWeapon
+local CAABurstCloudFlakArtilleryWeapon = CWeapons.CAABurstCloudFlakArtilleryWeapon
+local CANNaniteTorpedoWeapon = CWeapons.CANNaniteTorpedoWeapon
 
 BRB5205 = Class(CAirStagingPlatformUnit) {
     Weapons = {

@@ -24,8 +24,6 @@ BSA0003 = Class(SAirUnit) {
     ExhaustLaunch04 = '/effects/emitters/seraphim_inaino_launch_04_emit.bp',
     ExhaustLaunch05 = '/effects/emitters/seraphim_inaino_launch_05_emit.bp',
 
-----------------------------------------------------
-
     OnStopBeingBuilt = function(self, builder, layer)
     SAirUnit.OnStopBeingBuilt(self,builder,layer)
         if not self:IsDead() then

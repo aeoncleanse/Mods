@@ -7,7 +7,7 @@ BaaMissile01 = Class(CAANanoDartProjectile) {
         self:ForkThread(self.WaitThread)
         self:ForkThread(self.UpdateThread)
     end,
-    FxBeam = {'/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsUnleashed/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
     
     UpdateThread = function(self)
         WaitSeconds(0.35)

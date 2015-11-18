@@ -69,7 +69,7 @@ UnitBlueprint {
     },
     Description = '<LOC brl0009_desc>Crab Egg (Firebeetle)',
     Display = {
-        AnimationOpen = '/units/BRL0009/BRL0009_aopen.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0009/BRL0009_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
             IconFadeInZoom = 130,

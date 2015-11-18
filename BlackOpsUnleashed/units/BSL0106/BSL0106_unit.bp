@@ -69,19 +69,19 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BSL0106/BSL0106_ADeath01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSL0106/BSL0106_ADeath01.sca',
                 AnimationRateMax = 1.5,
                 AnimationRateMin = 0.5,
                 Weight = 100,
             },
             {
-                Animation = '/units/BSL0106/BSL0106_ADeath02.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSL0106/BSL0106_ADeath02.sca',
                 AnimationRateMax = 1.5,
                 AnimationRateMin = 0.5,
                 Weight = 100,
             },
         },
-        AnimationWalk = '/units/BSL0106/BSL0106_AWalk01.sca',
+        AnimationWalk = '/mods/BlackOpsUnleashed/units/BSL0106/BSL0106_AWalk01.sca',
         AnimationWalkRate = 5,
         Mesh = {
             IconFadeInZoom = 130,

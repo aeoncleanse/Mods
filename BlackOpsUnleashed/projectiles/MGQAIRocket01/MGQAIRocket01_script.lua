@@ -9,7 +9,6 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
         CLOATacticalMissileProjectile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)
         self:ForkThread(self.UpdateThread)
-        --self:ForkThread(self.Takeoff)
     end,
 
     UpdateThread = function(self)
@@ -17,7 +16,7 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
         WaitSeconds(0.1)
         local Velx, Vely, Velz = self:GetVelocity()
         local NumberOfChildProjectiles = 2        
-        local ChildProjectileBP = '/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'  
+        local ChildProjectileBP = '/mods/BlackOpsUnleashed/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'  
         local angleRange = math.pi * 0.25
         local angleInitial = -angleRange / 2
         local angleIncrement = angleRange / NumberOfChildProjectiles
@@ -32,7 +31,6 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-            --proj:SetVelocity(x * mul, Vely * mul, z * mul)
         end   
         self:Destroy()
     end,
@@ -43,7 +41,7 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
 
         local Velx, Vely, Velz = self:GetVelocity()
         local NumberOfChildProjectiles = 1        
-        local ChildProjectileBP = '/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'  
+        local ChildProjectileBP = '/mods/BlackOpsUnleashed/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'  
         local angleRange = math.pi * 0.25
         local angleInitial = -angleRange / 2
         local angleIncrement = angleRange / NumberOfChildProjectiles
@@ -60,7 +58,6 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-            --proj:SetVelocity(x * mul, Vely * mul, z * mul)
         end            
         
         local pos = self:GetPosition()
@@ -77,7 +74,6 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
         CLOATacticalMissileProjectile.Takeoff(self)
         self:Destroy()
     end,
-    
 }
 
 TypeClass = MGQAIRocket01

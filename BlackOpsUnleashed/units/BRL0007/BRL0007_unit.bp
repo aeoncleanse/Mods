@@ -69,7 +69,7 @@ UnitBlueprint {
     },
     Description = '<LOC brl0007_desc>Crab Egg (Scorpion)',
     Display = {
-        AnimationOpen = '/units/BRL0007/BRL0007_aopen.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0007/BRL0007_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
             IconFadeInZoom = 130,

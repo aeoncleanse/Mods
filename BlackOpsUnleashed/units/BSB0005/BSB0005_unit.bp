@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     Description = '<LOC BSB0005_desc>Lambda Emitter',
     Display = {
-        AnimationPermOpen = '/units/BSB0005/BSB0005_Activate.sca',
+        AnimationPermOpen = '/mods/BlackOpsUnleashed/units/BSB0005/BSB0005_Activate.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

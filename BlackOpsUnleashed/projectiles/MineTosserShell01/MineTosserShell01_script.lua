@@ -26,7 +26,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
     OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
-        local ChildProjectileBP = '/projectiles/MineTosserChildShell01/MineTosserChildShell01_proj.bp'  
+        local ChildProjectileBP = '/mods/BlackOpsUnleashed/projectiles/MineTosserChildShell01/MineTosserChildShell01_proj.bp'  
 
         -- Split effects
         for k, v in FxFragEffect do

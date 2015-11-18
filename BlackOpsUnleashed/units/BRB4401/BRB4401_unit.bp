@@ -55,7 +55,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_cloakfield>Cloak Field',
         },
-        AnimationPermOpen = '/units/BRB4401/BRB4401_Aopen.sca',
+        AnimationPermOpen = '/mods/BlackOpsUnleashed/units/BRB4401/BRB4401_Aopen.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

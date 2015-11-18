@@ -350,7 +350,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 40,
             NotExclusive = true,
-            ProjectileId = '/projectiles/WraithShell01/WraithShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/WraithShell01/WraithShell01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

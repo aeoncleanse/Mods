@@ -23,8 +23,8 @@ EmitterBlueprint {
     LowFidelity = true,
     MedFidelity = true,
     HighFidelity = true,
-    Texture = [[/textures/particles/fire_flame_blue_add_05.dds]],
-    RampTexture = [[/textures/particles/ramp_blue_fire_14.dds]],
+    Texture = [[/mods/BlackOpsUnleashed/textures/particles/fire_flame_blue_add_05.dds]],
+    RampTexture = [[/mods/BlackOpsUnleashed/textures/particles/ramp_blue_fire_14.dds]],
     XDirectionCurve = {
         XRange = 40.00,
         Keys = {

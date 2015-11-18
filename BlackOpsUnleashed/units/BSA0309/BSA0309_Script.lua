@@ -11,8 +11,8 @@ local util = import('/lua/utilities.lua')
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SAAShleoCannonWeapon = SeraphimWeapons.SAAShleoCannonWeapon
 local SDFHeavyPhasicAutoGunWeapon = SeraphimWeapons.SDFHeavyPhasicAutoGunWeapon
-local SeraLambdaFieldRedirector = import('/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
-local SeraLambdaFieldDestroyer = import('/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
+local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
+local SeraLambdaFieldDestroyer = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
 
 BSA0309 = Class(SAirUnit) {
     AirDestructionEffectBones = { 'XSA0309','Left_Attachpoint08','Right_Attachpoint02'},
@@ -59,11 +59,11 @@ BSA0309 = Class(SAirUnit) {
         self:ForkThread(self.AirDestructionEffectsThread, self)
     end,
 
-    AirDestructionEffectsThread = function( self )
-        local numExplosions = math.floor( table.getn( self.AirDestructionEffectBones ) * 0.5 )
+    AirDestructionEffectsThread = function(self)
+        local numExplosions = math.floor(table.getn(self.AirDestructionEffectBones) * 0.5)
         for i = 0, numExplosions do
-            explosion.CreateDefaultHitExplosionAtBone( self, self.AirDestructionEffectBones[util.GetRandomInt( 1, numExplosions )], 0.5 )
-            WaitSeconds( util.GetRandomFloat( 0.2, 0.9 ))
+            explosion.CreateDefaultHitExplosionAtBone(self, self.AirDestructionEffectBones[util.GetRandomInt(1, numExplosions)], 0.5)
+            WaitSeconds(util.GetRandomFloat(0.2, 0.9))
         end
     end,
 }

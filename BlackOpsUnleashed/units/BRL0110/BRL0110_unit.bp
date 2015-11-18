@@ -75,13 +75,13 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BRL0110/BRL0110_ADeath01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRL0110/BRL0110_ADeath01.sca',
                 AnimationRateMax = 1.25,
                 AnimationRateMin = 1,
                 Weight = 10,
             },
         },
-        AnimationWalk = '/units/BRL0110/BRL0110_Awalk01.sca',
+        AnimationWalk = '/mods/BlackOpsUnleashed/units/BRL0110/BRL0110_Awalk01.sca',
         AnimationWalkRate = 4,
         Mesh = {
             IconFadeInZoom = 130,
@@ -110,13 +110,13 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/units/BRL0110/BRL0110_AFold01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRL0110/BRL0110_AFold01.sca',
                 Weight = 100,
             },
         },
         TransportDropAnimation = {
             {
-                Animation = '/units/BRL0110/BRL0110_AUnfold01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRL0110/BRL0110_AUnfold01.sca',
                 Weight = 100,
             },
         },
@@ -223,7 +223,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 14,
-            ProjectileId = '/projectiles/MGHeadshot01/MGHeadshot01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/MGHeadshot01/MGHeadshot01_proj.bp',
             ProjectileLifetime = 0.5,
             RackBones = {
                 {
@@ -296,7 +296,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 14,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/NapalmProjectile02/Napalm02_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/NapalmProjectile02/Napalm02_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

@@ -204,7 +204,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 120,
-            ProjectileId = '/projectiles/ATMDDisk01/ATMDDisk01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/ATMDDisk01/ATMDDisk01_proj.bp',
             ProjectileLifetime = 10,
             ProjectilesPerOnFire = 1,
             RackBones = {

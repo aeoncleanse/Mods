@@ -214,7 +214,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 22,
-            ProjectileId = '/projectiles/SeraHeavyLightningCannon01/SeraHeavyLightningCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SeraHeavyLightningCannon01/SeraHeavyLightningCannon01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

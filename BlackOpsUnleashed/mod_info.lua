@@ -1,8 +1,8 @@
 name = "BlackOps Unleashed"
 uid = "9e8ea941-c306-aaaf-b367-f00000000005"
-version = 1
+version = 10
 copyright = "2009 Exavier Macbeth, lt_hawkeye, orangeknight"
-description = "The ultimate unit pack, adds lots of fun new units to all factions."
+description = "The ultimate unit pack, re-engineered for FAF"
 author = "Exavier Macbeth, lt_hawkeye, orangeknight - Revamped 2015 by IceDreamer"
 icon = "/mods/BlackOpsUnleashed/icons/icon.bmp"
 selectable = true

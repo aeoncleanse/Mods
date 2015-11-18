@@ -147,12 +147,6 @@ UnitBlueprint {
                     SecondaryName = '/units/uaa0310/uaa0310_secondary.dds',
                     ShaderName = 'AeonCZAR',
                 },
-                --{
-                --    AlbedoName = 'uaa0310_lod1_albedo.dds',
-                --    LODCutoff = 1500,
-                --    ShaderName = 'Aeon',
-                --    SpecularName = 'uaa0310_lod1_specteam.dds',
-                --},
             },
         },
         PlaceholderMeshName = 'UXB0000',
@@ -229,9 +223,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 25,
-
-        -- FuelRechargeRate = 150,
-        -- FuelUseTime = 30000,
         MaxAcceleration = 1,
         MaxSpeed = 1,
         MaxSteerForce = 100,
@@ -381,7 +372,6 @@ UnitBlueprint {
             RackBones = {
                 {
                     MuzzleBones = {
-                        --'Center_Muzzle',
                         'Super_Muzzle01',
                         'Super_Muzzle02',
                         'Super_Muzzle03',

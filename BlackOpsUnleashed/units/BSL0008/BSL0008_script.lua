@@ -7,6 +7,7 @@
 local SLandUnit = import('/lua/seraphimunits.lua').SLandUnit
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SDFSihEnergyRifleSniperMode = SeraphimWeapons.SDFSniperShotSniperMode
+local EffectUtil = import('/lua/EffectUtilities.lua')
 
 BSL0008 = Class(SLandUnit) {
     Weapons = {

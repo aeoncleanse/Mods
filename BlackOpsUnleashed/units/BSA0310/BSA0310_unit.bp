@@ -275,7 +275,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 10,
-            ProjectileId = '/projectiles/SGunShipTacticalMissile01/SGunShipTacticalMissile01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SGunShipTacticalMissile01/SGunShipTacticalMissile01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 4,
             RackBones = {
@@ -366,7 +366,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/SGunshipCannon01/SGunshipCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SGunshipCannon01/SGunshipCannon01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -441,7 +441,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/SGunshipCannon01/SGunshipCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SGunshipCannon01/SGunshipCannon01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

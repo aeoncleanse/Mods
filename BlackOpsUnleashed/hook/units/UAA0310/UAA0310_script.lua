@@ -1,8 +1,9 @@
---****************************************************************************
+-----------------------------------------------------------------
 -- File     :  /cdimage/units/UAA0310/UAA0310_script.lua
 -- Author(s):  John Comes
 -- Summary  :  Aeon CZAR Script
--- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
 local aWeapons = import('/lua/aeonweapons.lua')
@@ -12,14 +13,11 @@ local AAAZealotMissileWeapon = aWeapons.AAAZealotMissileWeapon
 local AANDepthChargeBombWeapon = aWeapons.AANDepthChargeBombWeapon
 local AAATemporalFizzWeapon = aWeapons.AAATemporalFizzWeapon
 local explosion = import('/lua/defaultexplosions.lua')
-local MiniQuantumBeamGenerator = WeaponsFile.MiniQuantumBeamGenerator
 local SuperQuantumBeamGenerator = WeaponsFile.SuperQuantumBeamGenerator
-
 
 UAA0310 = Class(AAirUnit) {
     DestroyNoFallRandomChance = 1.1,
     Weapons = {
-
         QuantumBeamGeneratorWeapon = Class(AQuantumBeamGenerator){},
         SuperQuantumBeamGeneratorWeapon = Class(SuperQuantumBeamGenerator){},
         SonicPulseBattery1 = Class(AAAZealotMissileWeapon) {},
@@ -55,30 +53,20 @@ UAA0310 = Class(AAirUnit) {
         self.detector:EnableTerrainCheck(true)
         self.detector:Enable()
 
-
         AAirUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     OnAnimTerrainCollision = function(self, bone,x,y,z)
         DamageArea(self, {x,y,z}, 5, 1000, 'Default', true, false)
-        explosion.CreateDefaultHitExplosionAtBone(self, bone, 5.0)
+        explosion.CreateDefaultHitExplosionAtBone( self, bone, 5.0 )
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
-    
-    --[[    
-        Button pressed, czar cannot build or store any units, enable new weapons
-        take extra damage, use the DoTakeDamage function and a self.damageMod = 1.0
-        self.damageMod = 1.2, unit.lua line 781
-        ]]--
-
     BuildAttachBone = 'UAA0310',
 
     OnStopBeingBuilt = function(self,builder,layer)
         AAirUnit.OnStopBeingBuilt(self,builder,layer)
         ChangeState(self, self.IdleState)
         self:SetWeaponEnabledByLabel('SuperQuantumBeamGeneratorWeapon', false)
-        --self.Rotator1 = CreateRotator(self, 'Power_Ring', 'z', nil, 10, 5, 10)
-        --self.Trash:Add(self.Rotator1)
         self:ForkThread(self.CheckAIThread)
     end,
     
@@ -88,8 +76,6 @@ UAA0310 = Class(AAirUnit) {
             self.Trash:Add(self.AnimationManipulator)
         end
         if self:GetAIBrain().BrainType ~= 'Human' then
-            --LOG('OH NOES CZAR BUILT BY AI, TIME FOR OWNAGE')
-            
             self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0.2)
             self:AddBuildRestriction(categories.BUILTBYTIER3FACTORY)
             WaitSeconds(self.AnimationManipulator:GetAnimationDuration()*4)
@@ -163,7 +149,7 @@ UAA0310 = Class(AAirUnit) {
             self:SetSpeedMult(0.25)
             
             self:ForkThread(function()
-                self:AddBuildRestriction(categories.BUILTBYTIER3FACTORY)
+                self:AddBuildRestriction( categories.BUILTBYTIER3FACTORY )
                 self:RemoveToggleCap('RULEUTC_WeaponToggle')
                 self:SetWeaponEnabledByLabel('SuperQuantumBeamGeneratorWeapon', false)
                 self:SetWeaponEnabledByLabel('QuantumBeamGeneratorWeapon', false)
@@ -189,7 +175,7 @@ UAA0310 = Class(AAirUnit) {
                 WaitSeconds(self.Animator:GetAnimationDuration()*4)
                 self:SetWeaponEnabledByLabel('QuantumBeamGeneratorWeapon', true)
                 self:AddToggleCap('RULEUTC_WeaponToggle')
-                self:RemoveBuildRestriction(categories.BUILTBYTIER3FACTORY)
+                self:RemoveBuildRestriction( categories.BUILTBYTIER3FACTORY )
                 self:SetSpeedMult(1.0)
             end)
         end

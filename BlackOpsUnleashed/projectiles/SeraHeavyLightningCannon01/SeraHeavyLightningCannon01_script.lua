@@ -11,7 +11,7 @@ local SHeavyQuarnonCannon = import('/lua/seraphimprojectiles.lua').SHeavyQuarnon
 SDFHeavyQuarnonCannon01 = Class(SHeavyQuarnonCannon) {
     OnImpact = function(self, TargetType, TargetEntity)
         local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx
-        nukeProjectile = self:CreateProjectile('/projectiles/SeraHeavyLightningCannonChild01/SeraHeavyLightningCannonChild01_proj.bp', 0, 0, 0, nil, nil, nil)--:SetCollision(false)
+        nukeProjectile = self:CreateProjectile('/mods/BlackOpsUnleashed/projectiles/SeraHeavyLightningCannonChild01/SeraHeavyLightningCannonChild01_proj.bp', 0, 0, 0, nil, nil, nil)--:SetCollision(false)
         local pos = self:GetPosition()
         pos[2] = pos[2] + 4
         Warp(nukeProjectile, pos)

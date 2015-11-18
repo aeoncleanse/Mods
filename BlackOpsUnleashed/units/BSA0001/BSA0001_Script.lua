@@ -281,7 +281,6 @@ BSA0001 = Class(SAirUnit) {
         -- Final command to finish off the drones death event
         SAirUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-
 }
 
 TypeClass = BSA0001

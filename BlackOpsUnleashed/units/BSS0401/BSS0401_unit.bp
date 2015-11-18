@@ -94,19 +94,19 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BSS0401/BSS0401_ADeath01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSS0401/BSS0401_ADeath01.sca',
                 AnimationRateMax = 0.2,
                 AnimationRateMin = 0.1,
                 Weight = 100,
             },
             {
-                Animation = '/units/BSS0401/BSS0401_ADeath02.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSS0401/BSS0401_ADeath02.sca',
                 AnimationRateMax = 0.2,
                 AnimationRateMin = 0.1,
                 Weight = 100,
             },
             {
-                Animation = '/units/BSS0401/BSS0401_ADeath03.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSS0401/BSS0401_ADeath03.sca',
                 AnimationRateMax = 0.2,
                 AnimationRateMin = 0.1,
                 Weight = 100,
@@ -297,7 +297,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
             NotExclusive = true,
-            ProjectileId = '/projectiles/SeraDreadCannon01/SeraDreadCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SeraDreadCannon01/SeraDreadCannon01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -390,7 +390,7 @@ UnitBlueprint {
             MuzzleVelocity = 30,
             PrefersPrimaryWeaponTarget = true,
             NotExclusive = true,
-            ProjectileId = '/projectiles/SeraDreadCannon01/SeraDreadCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SeraDreadCannon01/SeraDreadCannon01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -1086,7 +1086,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 90,
-            ProjectileId = '/projectiles/SIFHuAntiNuke01/SIFHuAntiNuke01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SIFHuAntiNuke01/SIFHuAntiNuke01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

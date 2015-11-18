@@ -17,6 +17,7 @@ local NullShell = DefaultProjectileFile.NullShell
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local util = import('/lua/utilities.lua')
+local NukeProjectile = DefaultProjectileFile.NukeProjectile
 
 -- Null Shell
 EXNullShell = Class(Projectile) {}
@@ -1008,7 +1009,7 @@ RedTurbolaserProjectile = Class(MultiPolyTrailProjectile) {
     FxImpactUnderWater = {},
 }
 
-GargEMPWarheadProjectile = Class(SingleBeamProjectile) {
+GargEMPWarheadProjectile = Class(NukeProjectile, SingleBeamProjectile) {
     BeamName = '/effects/emitters/missile_exhaust_fire_beam_01_emit.bp',
     FxTrailOffset = -0.5,
 
@@ -1039,7 +1040,7 @@ GargEMPWarheadProjectile = Class(SingleBeamProjectile) {
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
         local blanketVelocity = 2
-        CreateLightParticle( self, -1, -1, 80, 200, 'flare_lens_add_02', 'ramp_red_10' )
+        CreateLightParticle(self, -1, -1, 80, 200, 'flare_lens_add_02', 'ramp_red_10')
 
         for i = 0, (blanketSides-1) do
             local blanketX = math.sin(i*blanketAngle)

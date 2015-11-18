@@ -257,7 +257,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 0,
-            ProjectileId = '/projectiles/MirvSerpentine01/MirvSerpentine01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/MirvSerpentine01/MirvSerpentine01_proj.bp',
             ProjectileLifetime = 999,
             RackBones = {
                 {
@@ -312,7 +312,7 @@ UnitBlueprint {
             Turreted = false,
             WeaponCategory = 'Missile',
             WeaponRepackTimeout = 3,
-            WeaponUnpackAnimation = '/units/BAB2308/BAB2308_Aopen.sca',
+            WeaponUnpackAnimation = '/mods/BlackOpsUnleashed/units/BAB2308/BAB2308_Aopen.sca',
             WeaponUnpackAnimationRate = 3,
             WeaponUnpacks = true,
         },

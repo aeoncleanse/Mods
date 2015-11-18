@@ -28,7 +28,7 @@ GoldAA = Class(GoldAAProjectile) {
         local numProjectiles = 8
         local angle = (2*math.pi) / numProjectiles
         local angleInitial = RandF(0, angle)
-        local ChildProjectileBP = '/projectiles/GoldAA02/GoldAA02_proj.bp'          
+        local ChildProjectileBP = '/mods/BlackOpsUnleashed/projectiles/GoldAA02/GoldAA02_proj.bp'          
         local spreadMul = 0.4 -- Adjusts the width of the dispersal        
        
         local xVec = 0 

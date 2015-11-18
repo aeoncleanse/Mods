@@ -2,17 +2,17 @@
 --rev. 2
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
-local CybranWeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local CDFLaserHeavyWeapon = CybranWeaponsFile.CDFLaserHeavyWeapon
 local ScorpDisintegratorWeapon = CybranWeaponsFile2.ScorpDisintegratorWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 
 XRL0205 = Class(CWalkingLandUnit) {
 
-        --While cloaked, weapons fire immediately decloaks; while waiting to recloak, it resets the timer.
+    -- While cloaked, weapons fire immediately decloaks; while waiting to recloak, it resets the timer.
     Weapons = {
         Disintigrator01 = Class(ScorpDisintegratorWeapon) {
-            --Hook RackSalvoFiringState Main for instant decloak, as OnWeaponFired happens post-salvo and the unit fires while still cloaked
+            -- Hook RackSalvoFiringState Main for instant decloak, as OnWeaponFired happens post-salvo and the unit fires while still cloaked
             RackSalvoFiringState = State(ScorpDisintegratorWeapon.RackSalvoFiringState) {
                 Main = function(self)
                     self.unit:RequestDecloak(self.AddCloakDelay)
@@ -20,7 +20,7 @@ XRL0205 = Class(CWalkingLandUnit) {
                 end,
             },
 
-            --Set up weaponfire-added cloak delay from weapon bp
+            -- Set up weaponfire-added cloak delay from weapon bp
             OnCreate = function(self)
                 ScorpDisintegratorWeapon.OnCreate(self)
                 self.AddCloakDelay = self:GetBlueprint().AddCloakDelay or 0
@@ -44,21 +44,21 @@ XRL0205 = Class(CWalkingLandUnit) {
 
     OnStopBeingBuilt = function(self, builder, layer)
         CWalkingLandUnit.OnStopBeingBuilt(self, builder, layer)
-        --Intel effects start on, added/removed by cloak toggle button
+        -- Intel effects start on, added/removed by cloak toggle button
         self:DoIntelEffects(false)
 
         local bp = self:GetBlueprint()
         self.Moving = false
         self.Building = false
-        --Stationary re-cloak wait time
+        -- Stationary re-cloak wait time
         self.CloakWait = bp.Intel.CloakWaitTime or 1
-        --This variable holds the actual countdown timer
+        -- This variable holds the actual countdown timer
         self.CloakTimer = self.CloakWait
-        --By default, maintenance is halved while stealth is enabled, full while cloaked.
-        --Cloak toggle button disables both stealth and cloak, and turns off maintenance.
+        -- By default, maintenance is halved while stealth is enabled, full while cloaked.
+        -- Cloak toggle button disables both stealth and cloak, and turns off maintenance.
         self.StealthMaintenance = bp.Economy.MaintenanceConsumptionPerSecondEnergyStealth or bp.Economy.MaintenanceConsumptionPerSecondEnergy / 2
         self.CloakMaintenance = bp.Economy.MaintenanceConsumptionPerSecondEnergyCloak or bp.Economy.MaintenanceConsumptionPerSecondEnergy
-        --Begin cloaking attempts
+        -- Begin cloaking attempts
         ChangeState(self, self.DecloakedState)
     end,
 
@@ -66,17 +66,15 @@ XRL0205 = Class(CWalkingLandUnit) {
         CWalkingLandUnit.OnCreate(self)
         if self:GetBlueprint().General.BuildBones then
             self:SetupBuildBones()
-            --Override default 360 degree build arm arc with laserarm weapon settings
-            --This is currently useless as I can't get the unit to call OnPrepareArmForBuild
+            -- Override default 360 degree build arm arc with laserarm weapon settings
+            -- This is currently useless as I can't get the unit to call OnPrepareArmForBuild
             local wepbp = self:GetWeaponByLabel('LaserArms'):GetBlueprint()
             local yawmin, yawmax, yawspeed = wepbp.TurretYawRange*-1, wepbp.TurretYawRange, wepbp.TurretYawSpeed
             local pitchmin, pitchmax, pitchspeed = wepbp.TurretPitchRange*-1, wepbp.TurretPitchRange, wepbp.TurretPitchSpeed
-            --self.BuildArmManipulator:SetAimingArc(yawmin, yawmax, yawspeed, pitchmin, pitchmax, pitchspeed)
         end
     end,
 
-
-    --Decloak/reset timer when we move
+    -- Decloak/reset timer when we move
     OnMotionHorzEventChange = function(self, new, old)
         if new ~= 'Stopped' then
             self.Moving = true
@@ -87,12 +85,9 @@ XRL0205 = Class(CWalkingLandUnit) {
         CWalkingLandUnit.OnMotionHorzEventChange(self, new, old)
     end,
 
-
-    --+ Construction/Repair Handling +--
-
-    CreateBuildEffects = function( self, unitBeingBuilt, order )
-       EffectUtil.SpawnBuildBots( self, unitBeingBuilt, 1, self.BuildEffectsBag )
-       EffectUtil.CreateCybranBuildBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+       EffectUtil.SpawnBuildBots(self, unitBeingBuilt, 1, self.BuildEffectsBag)
+       EffectUtil.CreateCybranBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
     OnPrepareArmToBuild = function(self)
@@ -133,39 +128,36 @@ XRL0205 = Class(CWalkingLandUnit) {
         self:BuildPrep(true)
     end,
 
-    --Switches between build arm and laser weapon and flips self.Building flag
-    --NOTE: Can't get the build arm manipulator working, but this is still needed for the build flag and laser disable.
-    --FWIW, OnPrepareArmForBuild is never called on any unit other than ACUs/SCUs/engineers.  I suspect it's a category thing.
+    -- Switches between build arm and laser weapon and flips self.Building flag
+    -- NOTE: Can't get the build arm manipulator working, but this is still needed for the build flag and laser disable.
+    -- FWIW, OnPrepareArmForBuild is never called on any unit other than ACUs/SCUs/engineers.  I suspect it's a category thing.
     BuildPrep = function(self, done)
         if self and not self.Dead and not self:BeenDestroyed() then
             if done then
-                --Mark unit as no longer building
+                -- Mark unit as no longer building
                 self.Building = false
-                --Clean up manipulator, re-enable weapon, sync turret
+                -- Clean up manipulator, re-enable weapon, sync turret
                 self:BuildManipulatorSetEnabled(false)
                 self.BuildArmManipulator:SetPrecedence(0)
                 self:SetWeaponEnabledByLabel('LaserArms', true)
-                self:GetWeaponManipulatorByLabel('LaserArms'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+                self:GetWeaponManipulatorByLabel('LaserArms'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
             else
-                --Mark unit as building and issue decloak
+                -- Mark unit as building and issue decloak
                 self.Building = true
                 self:RequestDecloak(0)
-                --Enable manipulator, disable weapon, sync turret
+                -- Enable manipulator, disable weapon, sync turret
                 self:BuildManipulatorSetEnabled(true)
                 self.BuildArmManipulator:SetPrecedence(20)
                 self:SetWeaponEnabledByLabel('LaserArms', false)
-                self.BuildArmManipulator:SetHeadingPitch( self:GetWeaponManipulatorByLabel('LaserArms'):GetHeadingPitch() )
+                self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('LaserArms'):GetHeadingPitch())
             end
         end
     end,
 
-
-    --+ Intel Handling +--
-
     IntelEffects = {
         Stealth = {
             {
-                Bones = { --Two small effects, one in front and one in back that blend together.  Looks ok.
+                Bones = {
                     'Turret01',
                     'Tail2',
                 },
@@ -175,14 +167,14 @@ XRL0205 = Class(CWalkingLandUnit) {
         },
     },
 
-    --Make sure we immediately decloak/stop energy drain on death
-    --Nothing is more embarrassing than recloaking while dying!
+    -- Make sure we immediately decloak/stop energy drain on death
+    -- Nothing is more embarrassing than recloaking while dying!
     OnKilled = function(self, instigator, type, overkillRatio)
         ChangeState(self, self.CloakDisabledState)
         CWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
-    --Cloak toggle off: stealth and cloak both disabled
+    -- Cloak toggle off: stealth and cloak both disabled
     OnScriptBitSet = function(self, bit)
         if bit == 8 then
             self:DoIntelEffects(true)
@@ -190,7 +182,7 @@ XRL0205 = Class(CWalkingLandUnit) {
         end
     end,
 
-    --Cloak toggle on: stealth enabled, cloak on-stop
+    -- Cloak toggle on: stealth enabled, cloak on-stop
     OnScriptBitClear = function(self, bit)
         if bit == 8 then
             self:DoIntelEffects(false)
@@ -198,7 +190,7 @@ XRL0205 = Class(CWalkingLandUnit) {
         end
     end,
 
-    --Enables/disables intel effects on stealth/cloak toggle
+    -- Enables/disables intel effects on stealth/cloak toggle
     DoIntelEffects = function(self, cleanup)
         if cleanup then
             if self.IntelEffectsBag then
@@ -216,17 +208,14 @@ XRL0205 = Class(CWalkingLandUnit) {
     end,
 
     RequestDecloak = function(self, addtime)
-        --Does nothing outside of states
+        -- Does nothing outside of states
     end,
 
-
-    --+ Stealth/Cloaking States +--
-
-    --CloakedState - Fully cloaked and stealthed, full energy maintenance
-    --Any movement or weapon firing immediately decloaks
+    -- CloakedState - Fully cloaked and stealthed, full energy maintenance
+    -- Any movement or weapon firing immediately decloaks
     CloakedState = State() {
         Main = function(self)
-            --Full consumption while cloaked (def. 50)
+            -- Full consumption while cloaked (def. 50)
             self:SetEnergyMaintenanceConsumptionOverride(self.CloakMaintenance)
             self:SetMaintenanceConsumptionActive()
             if not self:IsIntelEnabled('Cloak') then
@@ -242,33 +231,33 @@ XRL0205 = Class(CWalkingLandUnit) {
         end,
     },
 
-    --DecloakedState - Stealth enabled, trying to recloak, half energy maintenance
-    --Movement, repairing, and weapons fire all reset and suspend the timer
+    -- DecloakedState - Stealth enabled, trying to recloak, half energy maintenance
+    -- Movement, repairing, and weapons fire all reset and suspend the timer
     DecloakedState = State() {
         Main = function(self)
-            --Make sure timer is reset
+            -- Make sure timer is reset
             if self.CloakTimer < self.CloakWait then
                 self.CloakTimer = self.CloakWait
             end
-            --Half consumption while decloaked but stealthed (def. 25)
+            -- Half consumption while decloaked but stealthed (def. 25)
             self:SetEnergyMaintenanceConsumptionOverride(self.StealthMaintenance)
             self:SetMaintenanceConsumptionActive()
-            --Make sure stealth is enabled if we're coming from an intel toggle
+            -- Make sure stealth is enabled if we're coming from an intel toggle
             if not self:IsIntelEnabled('RadarStealth') then
                 self:EnableUnitIntel('RadarStealth')
             end
             if self:IsIntelEnabled('Cloak') then
                 self:DisableUnitIntel('Cloak')
             end
-            --While uncloaked and idle, constantly tick down timer - firing, repairing, and moving all reset the timer
-            --Comment/remove both self.Building checks to allow the bot to recloak while still repairing/assisting
+            -- While uncloaked and idle, constantly tick down timer - firing, repairing, and moving all reset the timer
+            -- Comment/remove both self.Building checks to allow the bot to recloak while still repairing/assisting
             while self and not self:IsDead() and self.CloakTimer > -0.1 do
-                WaitTicks(3) --actually waits 2, while 2 waits 1.  huh.
+                WaitTicks(3) -- Actually waits 2, while 2 waits 1
                 if not self.Building and not self.Moving then
                     self.CloakTimer = self.CloakTimer - 0.2
                 end
             end
-            --Make sure we're still not moving/building before actually cloaking - weapons taken care of via timer
+            -- Make sure we're still not moving/building before actually cloaking - weapons taken care of via timer
             if not self.Building and not self.Moving then
                 ChangeState(self, self.CloakedState)
             else
@@ -276,7 +265,7 @@ XRL0205 = Class(CWalkingLandUnit) {
             end
         end,
 
-        --Reset our recloaking countdown on movement, weapon fire, etc
+        -- Reset our recloaking countdown on movement, weapon fire, etc
         RequestDecloak = function(self, addtime)
             if self.CloakTimer < (self.CloakWait + addtime) then
                 self.CloakTimer = self.CloakWait + addtime
@@ -284,10 +273,10 @@ XRL0205 = Class(CWalkingLandUnit) {
         end,
     },
 
-    --CloakDisabledState - Cloak and stealth manually disabled, all maintenance off
+    -- CloakDisabledState - Cloak and stealth manually disabled, all maintenance off
     CloakDisabledState = State() {
         Main = function(self)
-            --Pre-emptively reset timer
+            -- Pre-emptively reset timer
             if self.CloakTimer < self.CloakWait then
                 self.CloakTimer = self.CloakWait
             end
@@ -301,9 +290,10 @@ XRL0205 = Class(CWalkingLandUnit) {
         end,
 
         RequestDecloak = function(self, addtime)
-            --Does nothing
+            -- Does nothing
         end,
     },
 
 }
+
 TypeClass = XRL0205

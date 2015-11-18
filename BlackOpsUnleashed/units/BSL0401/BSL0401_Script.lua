@@ -7,13 +7,14 @@
 
 local SHoverLandUnit = import('/lua/seraphimunits.lua').SHoverLandUnit
 local WeaponsFile = import ('/lua/seraphimweapons.lua')
-local WeaponsFile2 = import ('/lua/BlackOpsweapons.lua')
+local WeaponsFile2 = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local YenzothaExperimentalLaser = WeaponsFile2.YenzothaExperimentalLaser
 local SAAOlarisCannonWeapon = WeaponsFile.SAAOlarisCannonWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
+local BaseTransport = import('/lua/defaultunits.lua').BaseTransport
 
-BSL0401 = Class(SHoverLandUnit) {
+BSL0401 = Class(BaseTransport, SHoverLandUnit) {
     SpawnEffects = {
         '/effects/emitters/seraphim_othuy_spawn_01_emit.bp',
         '/effects/emitters/seraphim_othuy_spawn_02_emit.bp',
@@ -22,9 +23,9 @@ BSL0401 = Class(SHoverLandUnit) {
     },
     
     ChargeEffects01 = {
-        '/effects/emitters/seraphim_expirimental_laser_muzzle_01_emit.bp',  
-        '/effects/emitters/seraphim_expirimental_laser_muzzle_02_emit.bp',  
-        '/effects/emitters/seraphim_expirimental_laser_muzzle_03_emit.bp',  
+        '/effects/emitters/seraphim_expirimental_laser_muzzle_01_emit.bp',
+        '/effects/emitters/seraphim_expirimental_laser_muzzle_02_emit.bp',
+        '/effects/emitters/seraphim_expirimental_laser_muzzle_03_emit.bp',
         '/effects/emitters/seraphim_expirimental_laser_muzzle_04_emit.bp',
     },
     
@@ -44,15 +45,15 @@ BSL0401 = Class(SHoverLandUnit) {
                     end
                     self.unit.BeamChargeEffects1 = {}
                 end
-                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter01', self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter01', self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam01_Emitter01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
-                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter02', self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter02', self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam01_Emitter02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
-                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter03', self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects1, AttachBeamEntityToEntity(self.unit, 'Focus_Beam01_Emitter03', self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam01_Emitter03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                     table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
@@ -91,15 +92,15 @@ BSL0401 = Class(SHoverLandUnit) {
                     end
                     self.unit.BeamChargeEffects2 = {}
                 end
-                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter01', self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter01', self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam02_Emitter01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
-                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter02', self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter02', self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam02_Emitter02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
-                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter03', self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects2, AttachBeamEntityToEntity(self.unit, 'Focus_Beam02_Emitter03', self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam02_Emitter03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                     table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
@@ -138,15 +139,15 @@ BSL0401 = Class(SHoverLandUnit) {
                     end
                     self.unit.BeamChargeEffects3 = {}
                 end
-                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter01', self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter01', self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam03_Emitter01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
-                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter02', self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter02', self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam03_Emitter02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
-                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter03', self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), '/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
+                table.insert(self.unit.BeamChargeEffects3, AttachBeamEntityToEntity(self.unit, 'Focus_Beam03_Emitter03', self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/seraphim_expirimental_laser_charge_beam_emit.bp'))
                 for k, v in self.unit.ChargeEffects01 do
                     table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Focus_Beam03_Emitter03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                     table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
@@ -242,7 +243,7 @@ BSL0401 = Class(SHoverLandUnit) {
     OnTransportAttach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = attachBone
         unit:SetDoNotTarget(true)
-        SHoverLandUnit.OnTransportAttach(self, attachBone, unit)
+        BaseTransport.OnTransportAttach(self, attachBone, unit)
     end,
     
     -- Handles drone undocking, also called when docked drones die
@@ -252,7 +253,7 @@ BSL0401 = Class(SHoverLandUnit) {
         if unit.Name == self.BuildingDrone then
             self:CleanupDroneMaintenance(self.BuildingDrone)
         end
-        SHoverLandUnit.OnTransportDetach(self, attachBone, unit)
+        BaseTransport.OnTransportDetach(self, attachBone, unit)
     end,
 
     -- Cleans up threads and drones on death
@@ -576,9 +577,10 @@ BSL0401 = Class(SHoverLandUnit) {
             for id, drone in self.DroneTable do
                 if drone.AwayFromCarrier == false then
                     local targetblip = dronetarget:GetBlip(self:GetArmy())
-                    targetblip ~= nil
-                    IssueClearCommands({drone})
-                    IssueAttack({drone}, targetblip)
+                    if targetblip ~= nil then
+                        IssueClearCommands({drone})
+                        IssueAttack({drone}, targetblip)
+                    end
                 end
             end
         end
@@ -669,14 +671,14 @@ BSL0401 = Class(SHoverLandUnit) {
         local explosionBones = {'Focus_Beam02_Emitter03', 'Left_AA_Barrel',
                                 'Focus_Beam01_Emitter01', 'Right_AA_Turret', 'Beam_Point_Focus03'}
                                         
-        explosion.CreateDefaultHitExplosionAtBone( self, bigExplosionBones[Random(1,3)], 4.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, bigExplosionBones[Random(1,3)], 4.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
         WaitSeconds(0.2)
         
         local RandBoneIter = RandomIter(explosionBones)
         for i=1,Random(4,6) do
             local bone = RandBoneIter()
-            explosion.CreateDefaultHitExplosionAtBone( self, bone, 1.0 )
+            explosion.CreateDefaultHitExplosionAtBone(self, bone, 1.0)
             WaitTicks(Random(0.1,1))
         end
         
@@ -688,7 +690,7 @@ BSL0401 = Class(SHoverLandUnit) {
             end
         end
         WaitSeconds(0.5)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'BSL0401', 5.0 )        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'BSL0401', 5.0)        
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
@@ -696,17 +698,17 @@ BSL0401 = Class(SHoverLandUnit) {
 
     
         self:DestroyAllDamageEffects()
-        self:CreateWreckage( overkillRatio )
+        self:CreateWreckage(overkillRatio)
 
         -- CURRENTLY DISABLED UNTIL DESTRUCTION
         -- Create destruction debris out of the mesh, currently these projectiles look like crap,
         -- since projectile rotation and terrain collision doesn't work that great. These are left in
         -- hopes that this will look better in the future.. =)
-        if( self.ShowUnitDestructionDebris and overkillRatio ) then
+        if(self.ShowUnitDestructionDebris and overkillRatio) then
             if overkillRatio <= 1 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 2 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 3 then
                 self.CreateUnitDestructionDebris(self, true, true, true)
             else
@@ -721,7 +723,7 @@ BSL0401 = Class(SHoverLandUnit) {
         
         -- Create effects for spawning of energy being
         for k, v in self.SpawnEffects do
-            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v )
+            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v)
         end    
         
         self:PlayUnitSound('Destroyed')

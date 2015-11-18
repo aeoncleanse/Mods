@@ -80,11 +80,11 @@ BRA0409 = Class(CAirUnit) {
         self:ForkThread(self.AirDestructionEffectsThread, self)
     end,
 
-    AirDestructionEffectsThread = function( self )
-        local numExplosions = math.floor( table.getn( self.AirDestructionEffectBones ) * 3 )
+    AirDestructionEffectsThread = function(self)
+        local numExplosions = math.floor(table.getn(self.AirDestructionEffectBones) * 3)
         for i = 0, numExplosions do
-            explosion.CreateDefaultHitExplosionAtBone( self, self.AirDestructionEffectBones[util.GetRandomInt( 3, numExplosions )], 4 )
-            WaitSeconds( util.GetRandomFloat( 0.5, 1.9 ))
+            explosion.CreateDefaultHitExplosionAtBone(self, self.AirDestructionEffectBones[util.GetRandomInt(3, numExplosions)], 4)
+            WaitSeconds(util.GetRandomFloat(0.5, 1.9))
         end
     end,
     
@@ -124,7 +124,7 @@ BRA0409 = Class(CAirUnit) {
                 '/effects/emitters/dirty_exhaust_smoke_01_emit.bp',
                 '/effects/emitters/dirty_exhaust_sparks_01_emit.bp',            
             }
-            local ExhaustBeamLarge = '/effects/emitters/missile_exhaust_fire_beam_10_emit.bp'
+            local ExhaustBeamLarge = '/mods/BlackOpsUnleashed/effects/emitters/missile_exhaust_fire_beam_10_emit.bp'
             local ExhaustBeamSmall = '/effects/emitters/missile_exhaust_fire_beam_03_emit.bp'
             local army = self:GetArmy()            
             

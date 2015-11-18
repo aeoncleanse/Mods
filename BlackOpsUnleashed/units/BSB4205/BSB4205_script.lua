@@ -53,17 +53,16 @@ BSB4205 = Class(SStructureUnit) {
                 Stacks = 'REPLACE',
                 Duration = 5,
                 Affects = {
-                    RegenPercent = {
+                    Regen = {
                         Add = 0,
                         Mult = bp.RegenPerSecond or 0.1,
                         Ceil = bp.RegenCeiling,
-                        Floor = bp.RegenFloor,
                     },                      
                 },
             }
         end
 
-        table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 'XSB4205', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp' ) )
+        table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSB4205', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
         self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
     end,
 }

@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local SShieldStructureUnit = import('/lua/seraphimunits.lua').SShieldStructureUnit
-local WeaponsFile = import ('/lua/BlackOpsweapons.lua')
+local WeaponsFile = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local LambdaWeapon = WeaponsFile.LambdaWeapon
 local SSeraphimSubCommanderGateway01 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway01
 local SSeraphimSubCommanderGateway02 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway02
@@ -73,7 +73,7 @@ BSB0405 = Class(SShieldStructureUnit) {
             self.LambdaEffectsBag = {}
         end
         for k, v in self.LambdaEffects do
-            table.insert( self.LambdaEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ):ScaleEmitter(1.5) )
+            table.insert(self.LambdaEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(1.5))
         end
     end,
     
@@ -133,7 +133,7 @@ BSB0405 = Class(SShieldStructureUnit) {
         local RandBoneIter = RandomIter(explosionBones)
         for i=1,Random(4,6) do
             local bone = RandBoneIter()
-            explosion.CreateDefaultHitExplosionAtBone( self, bone, 1.0 )
+            explosion.CreateDefaultHitExplosionAtBone(self, bone, 1.0)
             WaitTicks(Random(1,3))
         end
         
@@ -145,24 +145,24 @@ BSB0405 = Class(SShieldStructureUnit) {
             end
         end
         WaitSeconds(3.5)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Spinner', 5.0 )        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner', 5.0)        
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
         end
     
         self:DestroyAllDamageEffects()
-        self:CreateWreckage( overkillRatio )
+        self:CreateWreckage(overkillRatio)
 
         -- CURRENTLY DISABLED UNTIL DESTRUCTION
         -- Create destruction debris out of the mesh, currently these projectiles look like crap,
         -- since projectile rotation and terrain collision doesn't work that great. These are left in
         -- hopes that this will look better in the future.. =)
-        if( self.ShowUnitDestructionDebris and overkillRatio ) then
+        if(self.ShowUnitDestructionDebris and overkillRatio) then
             if overkillRatio <= 1 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 2 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 3 then
                 self.CreateUnitDestructionDebris(self, true, true, true)
             else

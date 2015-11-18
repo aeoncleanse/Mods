@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
-local ArtemisLaserGenerator = import('/lua/BlackOpsweapons.lua').ArtemisLaserGenerator
+local ArtemisLaserGenerator = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').ArtemisLaserGenerator
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local explosion = import('/lua/defaultexplosions.lua')
@@ -244,11 +244,11 @@ BAA0401 = Class(AAirUnit) {
         self.Parent = parent
     end,
     
-    OnStopBeingBuilt = function(self)
+    OnStopBeingBuilt = function(self, builder, layer)
         self.ChargeEffects01Bag = {}
         self.ChargeEffects02Bag = {}
         self.ChargeEffects03Bag = {}
-        AAirUnit.OnStopBeingBuilt(self) 
+        AAirUnit.OnStopBeingBuilt(self, builder, layer)
     end,
 
     OpenState = State() {

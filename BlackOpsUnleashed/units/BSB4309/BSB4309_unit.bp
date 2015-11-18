@@ -56,10 +56,10 @@ UnitBlueprint {
             '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
             '<LOC ability_deathaoe>Volatile',
         },
-        AnimationOn = '/units/BSB4309/BSB4309_Aactivate.sca',
+        AnimationOn = '/mods/BlackOpsUnleashed/units/BSB4309/BSB4309_Aactivate.sca',
         AnimationDeath = {
             {
-                Animation = '/units/BSB4309/BSB4309_ADeath.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSB4309/BSB4309_ADeath.sca',
                 AnimationRateMax = 1,
                 AnimationRateMin = 1,
                 Weight = 100,

@@ -28,8 +28,8 @@ BRL0110 = Class(CWalkingLandUnit) {
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01)
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 CDFLaserHeavyWeapon.PlayFxWeaponPackSequence(self)
             end,
         

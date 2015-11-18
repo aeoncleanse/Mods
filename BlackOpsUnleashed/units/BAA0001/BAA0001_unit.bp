@@ -124,8 +124,8 @@ UnitBlueprint {
     },
     Description = '<LOC baa0001_desc>Defense Drone',
     Display = {
-    AnimationLand = '/units/BAA0001/BAA0001_AClose01.sca',
-    AnimationTakeOff = '/units/BAA0001/BAA0001_AOpen.sca',
+    AnimationLand = '/mods/BlackOpsUnleashed/units/BAA0001/BAA0001_AClose01.sca',
+    AnimationTakeOff = '/mods/BlackOpsUnleashed/units/BAA0001/BAA0001_AOpen.sca',
         Mesh = {
             IconFadeInZoom = 175,
             LODs = {

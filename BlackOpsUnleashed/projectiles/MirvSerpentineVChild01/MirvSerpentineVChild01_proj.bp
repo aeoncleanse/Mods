@@ -39,6 +39,7 @@ ProjectileBlueprint {
                 },
             },
         },
+        MeshBlueprint = '/projectiles/AIFMissileSerpentine01/AIFMissileSerpentine01_mesh.bp',
         StrategicIconSize = 2,
         UniformScale = 0.035,
     },

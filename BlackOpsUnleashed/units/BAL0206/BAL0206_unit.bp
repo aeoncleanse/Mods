@@ -48,7 +48,7 @@ UnitBlueprint {
         'DIRECTFIRE',
         'VISIBLETORECON',
         'RECLAIMABLE',
-        'OVERLAYANTIAIR',
+        'OVERLAYDIRECTFIRE',
     },
     Defense = {
         AirThreatLevel = 0.33,
@@ -215,7 +215,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/RaiderCannon01/RaiderCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/RaiderCannon01/RaiderCannon01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -266,7 +266,7 @@ UnitBlueprint {
             TurretYawRange = 180,
             TurretYawSpeed = 240,
             Turreted = true,
-            WeaponCategory = 'Anti Air',
+            WeaponCategory = 'Direct Fire',
         },
     },
     Wreckage = {

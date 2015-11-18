@@ -6,8 +6,8 @@
 -----------------------------------------------------------------
 
 local SShieldLandUnit = import('/lua/seraphimunits.lua').SShieldLandUnit
-local SeraLambdaFieldRedirector = import('/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
-local SeraLambdaFieldDestroyer = import('/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
+local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
+local SeraLambdaFieldDestroyer = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
 
 BSB0005 = Class(SShieldLandUnit) {
     -- Sets up parent call backs between drone and parent

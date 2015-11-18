@@ -39,7 +39,6 @@ BSB4209 = Class(SStructureUnit) {
         end
     end,
     
-    
     AntiteleportEffects = function(self)
         if self.AntiTeleportBag then
             for k, v in self.AntiTeleportBag do
@@ -48,7 +47,7 @@ BSB4209 = Class(SStructureUnit) {
             self.AntiTeleportBag = {}
         end
         for k, v in self.AntiTeleport do
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Light01', self:GetArmy(), v ):ScaleEmitter(0.5) )
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Light01', self:GetArmy(), v):ScaleEmitter(0.5))
         end
     end,
     
@@ -74,8 +73,6 @@ BSB4209 = Class(SStructureUnit) {
             end
         end
     end,
-    
-    
 
     antiteleportEmitter = function(self)
         if not self:IsDead() then
@@ -98,7 +95,6 @@ BSB4209 = Class(SStructureUnit) {
             end
         end 
     end,
-
 
     KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
         -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead

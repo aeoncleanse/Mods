@@ -78,7 +78,7 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BSB0405/BSB0405_ADeath.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSB0405/BSB0405_ADeath.sca',
                 AnimationRateMax = 1,
                 AnimationRateMin = 1,
                 Weight = 100,
@@ -307,7 +307,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 15,
             NotExclusive = true,
-            ProjectileId = '/projectiles/EyeBlast01/EyeBlast01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/EyeBlast01/EyeBlast01_proj.bp',
             RackBones = {
                 {
                     MuzzleBones = {
@@ -404,7 +404,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 15,
             NotExclusive = true,
-            ProjectileId = '/projectiles/EyeBlast01/EyeBlast01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/EyeBlast01/EyeBlast01_proj.bp',
             RackBones = {
                 {
                     MuzzleBones = {

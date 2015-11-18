@@ -51,7 +51,7 @@ BSL0310 = Class(SWalkingLandUnit) {
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('Torso')
 
-                -- Creates our lambdaEmitter over the platform with a ranomly generated Orientation
+                -- Creates our lambdaEmitter over the platform with a randomly generated Orientation
                 local lambdaEmitter = CreateUnit('bsb0005', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
 
                 -- Adds the newly created lambdaEmitter to the parent platforms lambdaEmitter table

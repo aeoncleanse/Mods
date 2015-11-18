@@ -52,7 +52,7 @@ UnitBlueprint {
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
-        'OVERLAYANTINAVY',
+        'OVERLAYINDIRECTFIRE',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -68,9 +68,8 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_hover>Hover',
-            '<LOC ability_depthcharge>Depth Charges',
         },
-        AnimationOpen = '/units/BAL0310/BAL0310_Aopen.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BAL0310/BAL0310_Aopen.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -176,7 +175,7 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'Aeon',
-        Icon = 'land',
+        Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BAL0310_name>Wraith',
         UnitWeight = 1,
@@ -271,7 +270,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
             NotExclusive = true,
-            ProjectileId = '/projectiles/WraithShell01/WraithShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/WraithShell01/WraithShell01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -290,7 +289,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             SlavedToBody = true,
             SlavedToBodyArcRange = 10,
-            RangeCategory = 'UWRC_DirectFire',
+            RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.3,
             TargetCheckInterval = 1,
             TargetPriorities = {
@@ -370,7 +369,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             SlavedToBody = true,
             SlavedToBodyArcRange = 10,
-            RangeCategory = 'UWRC_AntiAir',
+            RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 1.7,
             TargetCheckInterval = 0.6,
             TargetPriorities = {
@@ -399,7 +398,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire',
             WeaponRepackTimeout = 1,
-            WeaponUnpackAnimation = '/units/BAL0310/BAL0310_Aopen.sca',
+            WeaponUnpackAnimation = '/mods/BlackOpsUnleashed/units/BAL0310/BAL0310_Aopen.sca',
             WeaponUnpackAnimationRate = 1,
             WeaponUnpackLocksMotion = false,
             WeaponUnpacks = true,

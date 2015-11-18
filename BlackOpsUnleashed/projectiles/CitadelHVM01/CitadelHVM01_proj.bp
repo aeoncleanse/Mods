@@ -26,7 +26,6 @@ ProjectileBlueprint {
         Mesh = {
             LODs = {
                 {
-                    MeshName = '/projectiles/TAAMissileFlayer01/TAAMissileFlayer01_lod0.scm',
                     ShaderName = 'NormalMappedAlpha',
                 },
             },

@@ -142,7 +142,7 @@ UnitBlueprint {
             '<LOC ability_transport>Transport',
             '<LOC ability_tele>Teleport',
         },
-        AnimationPermOpen = '/units/BAA0309/BAA0309_aopen01.sca',
+        AnimationPermOpen = '/mods/BlackOpsUnleashed/units/BAA0309/BAA0309_aopen01.sca',
         ForcedBuildSpin = 90,
         LayerChangeEffects = {
             AirLand = {

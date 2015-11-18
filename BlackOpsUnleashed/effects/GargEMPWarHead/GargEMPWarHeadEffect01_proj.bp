@@ -4,6 +4,7 @@ ProjectileBlueprint {
         Mesh = {
             LODs = {
                 {
+                    MeshName = '/effects/Entities/Sphere01/Sphere01_lod0.scm',
                     LODCutoff = 1000.0,
                 },
             },

@@ -6,26 +6,26 @@
 -----------------------------------------------------------------
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
-local WeaponsFile = import('/lua/BlackOpsweapons.lua')
+local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local GoldenLaserGenerator = WeaponsFile.GoldenLaserGenerator
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 local explosion = import('/lua/defaultexplosions.lua')
-local BlackOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 
 BAL0401 = Class(AWalkingLandUnit) {
     ChargeEffects01 = {
-        '/effects/emitters/g_laser_flash_01_emit.bp',
-        '/effects/emitters/g_laser_muzzle_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/g_laser_flash_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/g_laser_muzzle_01_emit.bp',
     },
     
     ChargeEffects02 = {
-        '/effects/emitters/g_laser_charge_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/g_laser_charge_01_emit.bp',
     },
     
     ChargeEffects03 = {
-        '/effects/emitters/g_laser_flash_01_emit.bp',
-        '/effects/emitters/g_laser_muzzle_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/g_laser_flash_01_emit.bp',
+        '/mods/BlackOpsUnleashed/effects/emitters/g_laser_muzzle_01_emit.bp',
     },
     
     Weapons = {
@@ -110,9 +110,9 @@ BAL0401 = Class(AWalkingLandUnit) {
                 end
             self.MaelstromEffects01 = {}
         end
-        table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/effects/emitters/inqu_glow_effect03.bp'):ScaleEmitter(0.7):OffsetEmitter(0, -2.1, 0))
-        table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/effects/emitters/inqu_glow_effect01.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
-        table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/effects/emitters/inqu_glow_effect02.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
+        table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/inqu_glow_effect03.bp'):ScaleEmitter(0.7):OffsetEmitter(0, -2.1, 0))
+        table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/inqu_glow_effect01.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
+        table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/mods/BlackOpsUnleashed/effects/emitters/inqu_glow_effect02.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
@@ -129,22 +129,23 @@ BAL0401 = Class(AWalkingLandUnit) {
             v.Beam:Disable()
         end     
     end,
+    
     DeathThread = function( self, overkillRatio , instigator)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Spinner_Ball', 5.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner_Ball', 5.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
         WaitSeconds(2)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Leg_A_3', 1.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Leg_A_3', 1.0)
         WaitSeconds(0.1)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Spinner_1', 1.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner_1', 1.0)
         WaitSeconds(0.1)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Leg_D_2', 1.0 )
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Spinner_3', 1.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Leg_D_2', 1.0)
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner_3', 1.0)
         WaitSeconds(0.3)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Leg_B_1', 1.0 )
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Leg_B_2', 1.0 )
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Leg_B_1', 1.0)
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Leg_B_2', 1.0)
 
         WaitSeconds(1.5)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Body', 5.0 )        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Body', 5.0)        
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)

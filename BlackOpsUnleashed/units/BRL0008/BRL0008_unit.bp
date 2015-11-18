@@ -69,7 +69,7 @@ UnitBlueprint {
     },
     Description = '<LOC brl0008_desc>Crab Egg (Deceiver)',
     Display = {
-        AnimationOpen = '/units/BRL0008/BRL0008_aopen.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0008/BRL0008_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
             IconFadeInZoom = 130,

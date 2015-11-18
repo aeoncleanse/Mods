@@ -6,8 +6,8 @@
 -----------------------------------------------------------------
 
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
-local SeraMineExplosion = import('/lua/BlackOpsweapons.lua').SeraMineExplosion
-local SeraMineDeathExplosion = import('/lua/BlackOpsweapons.lua').SeraMineDeathExplosion
+local SeraMineExplosion = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').SeraMineExplosion
+local SeraMineDeathExplosion = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').SeraMineDeathExplosion
 
 BSB2211 = Class(TStructureUnit) {
     Weapons = {

@@ -363,7 +363,7 @@ UnitBlueprint {
             NukeOuterRingTotalTime = 0,
             NukeWeapon = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/ArtemisCannon01/ArtemisCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/ArtemisCannon01/ArtemisCannon01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

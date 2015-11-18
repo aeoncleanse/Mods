@@ -93,19 +93,19 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BRL0205/BRL0205_ADeath01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRL0205/BRL0205_ADeath01.sca',
                 AnimationRateMax = 2,
                 AnimationRateMin = 2,
                 Weight = 10,
             },
             {
-                Animation = '/units/BRL0205/BRL0205_ADeath02.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRL0205/BRL0205_ADeath02.sca',
                 AnimationRateMax = 3,
                 AnimationRateMin = 2,
                 Weight = 10,
             },
         },
-        AnimationWalk = '/units/BRL0205/BRL0205_AWalk01.sca',
+        AnimationWalk = '/mods/BlackOpsUnleashed/units/BRL0205/BRL0205_AWalk01.sca',
         AnimationWalkRate = 4,
         Mesh = {
             IconFadeInZoom = 130,
@@ -133,7 +133,7 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/units/XRL0205/BRL0205_Afold01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRL0205/BRL0205_Afold01.sca',
                 Weight = 100,
             },
         },

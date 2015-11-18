@@ -21,7 +21,7 @@ AIFMissileSerpentine01 = Class(AMissileSerpentineProjectile) {
     
     OnImpact = function(self, TargetType, TargetEntity) 
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
-        local ChildProjectileBP = '/projectiles/MirvSerpentineVChild01/MirvSerpentineVChild01_proj.bp'  
+        local ChildProjectileBP = '/mods/BlackOpsUnleashed/projectiles/MirvSerpentineVChild01/MirvSerpentineVChild01_proj.bp'  
         
         -- Split effects
         for k, v in FxFragEffect do

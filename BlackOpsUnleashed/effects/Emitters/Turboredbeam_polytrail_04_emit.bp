@@ -8,6 +8,6 @@ TrailEmitterBlueprint {
     TextureRepeatRate = 1000,
     LODCutoff = 260,
     RepeatTexture = [[/textures/particles/ramp_phalanx_munition_01.dds]],
-    RampTexture = [[/textures/particles/TurboRED.dds]],
+    RampTexture = [[/mods/BlackOpsUnleashed/textures/particles/TurboRED.dds]],
 }
 

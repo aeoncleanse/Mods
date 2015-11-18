@@ -8,6 +8,6 @@ TrailEmitterBlueprint {
     TextureRepeatRate = 1,
     LODCutoff = 160,
     RepeatTexture = [[/textures/particles/railgun_trail_01.dds]],
-    RampTexture = [[/textures/particles/ramp_grey_05.dds]],
+    RampTexture = [[/mods/BlackOpsUnleashed/textures/particles/ramp_grey_05.dds]],
 }
 

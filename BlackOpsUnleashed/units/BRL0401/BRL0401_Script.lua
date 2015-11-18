@@ -8,7 +8,7 @@
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
-local CybranWeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local CybranWeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 local BassieCannonWeapon01 = CybranWeaponsFile2.BassieCannonWeapon01
 local BasiliskAAMissile01 = CybranWeaponsFile2.BasiliskAAMissile01
@@ -25,7 +25,7 @@ local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local Util = import('/lua/utilities.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlacOpsEffectTemplate = import('/lua/BlackOpsEffectTemplates.lua')
+local BlacOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 
 BRL0401 = Class(CWalkingLandUnit) {
@@ -265,7 +265,7 @@ BRL0401 = Class(CWalkingLandUnit) {
         end
     end,
     
-    CreateDeathExplosionDustRing = function( self )
+    CreateDeathExplosionDustRing = function(self)
         local blanketSides = 18
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
@@ -284,7 +284,7 @@ BRL0401 = Class(CWalkingLandUnit) {
         local vx, vy, vz = self:GetVelocity()
         local num_projectiles = 20        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, zVec
         local offsetMultiple = 5
         local px, pz
@@ -295,7 +295,7 @@ BRL0401 = Class(CWalkingLandUnit) {
             px = 0
             pz = 0
             
-            local proj = self:CreateProjectile( BasiliskNukeEffect05, px, 2, pz, xVec, 0, zVec )
+            local proj = self:CreateProjectile(BasiliskNukeEffect05, px, 2, pz, xVec, 0, zVec)
             proj:SetLifetime(2.0)
             proj:SetVelocity(12.0)
             proj:SetAcceleration(-0.9)            
@@ -305,7 +305,7 @@ BRL0401 = Class(CWalkingLandUnit) {
     CreateFireBalls = function(self)
         local num_projectiles = 2        
         local horizontal_angle = (2*math.pi) / num_projectiles
-        local angleInitial = RandomFloat( 0, horizontal_angle )  
+        local angleInitial = RandomFloat(0, horizontal_angle)  
         local xVec, yVec, zVec
         local angleVariation = 0.1        
         local px, pz       
@@ -318,8 +318,8 @@ BRL0401 = Class(CWalkingLandUnit) {
             px = RandomFloat(0.5, 1.0) * xVec
             pz = RandomFloat(0.5, 1.0) * zVec
             
-            local proj = self:CreateProjectile( BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec )
-            proj:SetVelocity(RandomFloat( 10, 20  ))
+            local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
+            proj:SetVelocity(RandomFloat(10, 20 ))
             proj:SetBallisticAcceleration(-9.8)            
         end        
     end,
@@ -335,7 +335,7 @@ BRL0401 = Class(CWalkingLandUnit) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/effects/entities/BasiliskNukeEffect03/BasiliskNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/BlackOpsUnleashed/effects/entities/BasiliskNukeEffect03/BasiliskNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   
@@ -352,15 +352,15 @@ BRL0401 = Class(CWalkingLandUnit) {
         end   
     end,
     
-    CreateDamageEffects = function(self, bone, army )
+    CreateDamageEffects = function(self, bone, army)
         for k, v in EffectTemplate.DamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(5)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(5)
         end
     end,
     
-    CreateBlueFireDamageEffects = function(self, bone, army )
+    CreateBlueFireDamageEffects = function(self, bone, army)
         for k, v in BlacOpsEffectTemplate.DamageBlueFire do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(3)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(3)
         end
     end,
     
@@ -440,7 +440,7 @@ BRL0401 = Class(CWalkingLandUnit) {
         CreateLightParticle(self, -1, self:GetArmy(), 50, 100, 'beam_white_01', 'ramp_blue_16')
         self:PlayUnitSound('NukeExplosion')
         local FireballDomeYOffset = -7
-        self:CreateProjectile('/effects/entities/BasiliskNukeEffect01/BasiliskNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
+        self:CreateProjectile('/mods/BlackOpsUnleashed/effects/entities/BasiliskNukeEffect01/BasiliskNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do

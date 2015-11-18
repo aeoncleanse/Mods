@@ -55,7 +55,7 @@ UnitBlueprint {
     Display = {
         AnimationDeath = {
             {
-                Animation = '/units/BSB2402/BSB2402_adeath.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSB2402/BSB2402_adeath.sca',
                 AnimationRateMax = 1,
                 AnimationRateMin = 1,
                 Weight = 100,

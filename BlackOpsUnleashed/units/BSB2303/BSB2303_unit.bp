@@ -223,7 +223,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 10,
-            ProjectileId = '/projectiles/MineTosserShell01/MineTosserShell01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/MineTosserShell01/MineTosserShell01_proj.bp',
             ProjectileLifetime = 30,
             RackBones = {
                 {

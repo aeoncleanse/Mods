@@ -105,13 +105,13 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BRS0402/BRS0402_ASink01.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRS0402/BRS0402_ASink01.sca',
                 AnimationRateMax = 0.5,
                 AnimationRateMin = 0.5,
                 Weight = 40,
             },
             {
-                Animation = '/units/BRS0402/BRS0402_ASink02.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BRS0402/BRS0402_ASink02.sca',
                 AnimationRateMax = 0.5,
                 AnimationRateMin = 0.5,
                 Weight = 60,
@@ -334,7 +334,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 90,
             NotExclusive = true,
-            ProjectileId = '/projectiles/XCannon01/XCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/XCannon01/XCannon01_proj.bp',
             ProjectilesPerOnFire = 3,
             RackBones = {
                 {
@@ -431,7 +431,7 @@ UnitBlueprint {
             MuzzleVelocity = 90,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/projectiles/XCannon01/XCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/XCannon01/XCannon01_proj.bp',
             ProjectilesPerOnFire = 3,
             RackBones = {
                 {
@@ -1042,7 +1042,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 12,
             MuzzleVelocity = 5,
             NotExclusive = true,
-            ProjectileId = '/projectiles/SDTorpedoNanite01/SDTorpedoNanite01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SDTorpedoNanite01/SDTorpedoNanite01_proj.bp',
             ProjectileLifetime = 7,
             RackBones = {
                 {
@@ -1668,7 +1668,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 18,
             MuzzleVelocity = 25,
             NotExclusive = true,
-            ProjectileId = '/projectiles/CybranHailfire01/CybranHailfire01_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/CybranHailfire01/CybranHailfire01_proj.bp',
             ProjectileLifetime = 7,
             ProjectilesPerOnFire = 9,
             RackBones = {

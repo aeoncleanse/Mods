@@ -8,7 +8,6 @@
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local Util = import('/lua/utilities.lua')
-
 local BasiliskNukeEffect04 = '/mods/BlackOpsUnleashed/projectiles/MGQAIPlasmaArty01/MGQAIPlasmaArty01_proj.bp' 
 local BasiliskNukeEffect05 = '/mods/BlackOpsUnleashed/effects/Entities/BasiliskNukeEffect05/BasiliskNukeEffect05_proj.bp'
 
@@ -130,7 +129,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
         
         -- Create initial fireball dome effect
         local FireballDomeYOffset = -15
-        self:CreateProjectile('/effects/entities/BasiliskNukeEffect01/BasiliskNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
+        self:CreateProjectile('/mods/BlackOpsUnleashed/effects/entities/BasiliskNukeEffect01/BasiliskNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
 
         WaitSeconds(1.1)
         
@@ -265,7 +264,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/effects/entities/BasiliskNukeEffect03/BasiliskNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/BlackOpsUnleashed/effects/entities/BasiliskNukeEffect03/BasiliskNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   

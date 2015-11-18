@@ -68,7 +68,7 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/BSB4205/BSB4205_ADeath.sca',
+                Animation = '/mods/BlackOpsUnleashed/units/BSB4205/BSB4205_ADeath.sca',
                 AnimationRateMax = 1,
                 AnimationRateMin = 1,
                 Weight = 100,
@@ -229,7 +229,6 @@ UnitBlueprint {
     RegenAura = {
         RegenRadius    = 20,
         RegenCeiling   = 200,
-        RegenFloor     = 0,
         RegenPerSecond = 0.02222222222,
         MaxHealthFactor = 1.1,
     },

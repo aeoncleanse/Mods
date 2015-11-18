@@ -76,7 +76,6 @@ BSB2402 = Class(SLandFactoryUnit) {
     
     SpawnFactory = function(self)
         -- Small respawn delay so the drones are not instantly respawned after death
-        LOG('*spawn factory')
         -- Only respawns the drones if the parent unit is not dead
         if not self:IsDead() then 
 
@@ -95,8 +94,7 @@ BSB2402 = Class(SLandFactoryUnit) {
 
                 -- Sets the Carrier unit as the drones parent
                 drone:SetParent(self, 'bsb2402')
-                drone:SetCreator(self)  
-                
+                drone:SetCreator(self)
 
                 -- Issues the guard command
                 IssueClearCommands({drone})
@@ -107,7 +105,6 @@ BSB2402 = Class(SLandFactoryUnit) {
 
                 --Drone clean up scripts
                 self.Trash:Add(drone)
-
             elseif self.Side == 2 then
                 -- Gets the current position of the carrier launch bay in the game world
                 local location = self:GetPosition('Factory02')
