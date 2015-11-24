@@ -1,34 +1,16 @@
---****************************************************************************
---**
---**  File     :  /lua/defaultcollisionbeams.lua
---**  Author(s):  Gordon Duclos
---**
---**  Summary  :  Default definitions collision beams
---**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------
+-- File     :  /lua/defaultcollisionbeams.lua
+-- Author(s):  Gordon Duclos
+-- Summary  :  Default definitions collision beams
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local Util = import('/lua/utilities.lua')
-local EffectTemplate2 = import('/lua/EXEffectTemplates.lua')
 local EXEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
+local HawkCollisionBeam = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua').HawkCollisionBeam
 
--------------------------------
---   Base class that defines supreme commander specific defaults
--------------------------------
-SCCollisionBeam = Class(CollisionBeam) {
-    FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
-    FxImpactLand = {},--EffectTemplate.DefaultProjectileLandImpact,
-    FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
-    FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
-    FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
-    FxImpactProp = {},
-    FxImpactShield = {},    
-    FxImpactNone = {},
-}
-
-PDLaserCollisionBeam = Class(SCCollisionBeam) {
+PDLaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {'/effects/emitters/em_pdlaser_beam_01_emit.bp'},
     FxBeamEndPoint = {
         '/effects/emitters/quantum_generator_end_01_emit.bp',
@@ -76,7 +58,7 @@ PDLaserCollisionBeam = Class(SCCollisionBeam) {
     end,    
 }
 
-EXCEMPArrayBeam01CollisionBeam = Class(SCCollisionBeam) {
+EXCEMPArrayBeam01CollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {'/effects/emitters/excemparraybeam01_emit.bp'},
     FxBeamEndPoint = {
 
@@ -91,7 +73,7 @@ EXCEMPArrayBeam01CollisionBeam = Class(SCCollisionBeam) {
     ScorchSplatDropTime = 0.5,
 }
 
-EXCEMPArrayBeam02CollisionBeam = Class(SCCollisionBeam) {
+EXCEMPArrayBeam02CollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {'/effects/emitters/excemparraybeam02_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
@@ -102,7 +84,7 @@ EXCEMPArrayBeam02CollisionBeam = Class(SCCollisionBeam) {
     ScorchSplatDropTime = 0.5,
 }
 
-EXCEMPArrayBeam03CollisionBeam = Class(SCCollisionBeam) {
+EXCEMPArrayBeam03CollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {'/effects/emitters/excemparraybeam01_emit.bp'},
     FxBeamEndPoint = EXEffectTemplate.CybranACUEMPArrayHit01,
     FxBeamStartPoint = {
@@ -132,7 +114,7 @@ EXCEMPArrayBeam03CollisionBeam = Class(SCCollisionBeam) {
                 :SetVelocity(blanketVelocity):SetAcceleration(-0.3)
         end
 
-        SCCollisionBeam.OnImpact(self, targetType, targetEntity)
+        HawkCollisionBeam.OnImpact(self, targetType, targetEntity)
     end,
 
 }
@@ -169,7 +151,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
     end,
 }
 
-AeonACUPhasonLaserCollisionBeam = Class(SCCollisionBeam) {
+AeonACUPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeamStartPoint = EffectTemplate.APhasonLaserMuzzle01,
     FxBeam = {'/effects/emitters/exphason_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.APhasonLaserImpact01,

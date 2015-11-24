@@ -1,10 +1,10 @@
 --****************************************************************************
 --**
---**  Author(s):  Exavier Macbeth
+-- Author(s):  Exavier Macbeth
 --**
---**  Summary  :  BlackOps: Adv Command Unit - Serephim ACU
+-- Summary  :  BlackOps: Adv Command Unit - Serephim ACU
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SWalkingLandUnit = import('/lua/seraphimunits.lua').SWalkingLandUnit

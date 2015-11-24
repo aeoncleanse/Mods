@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /cdimage/lua/modules/BlackOpsweapons.lua
---**  Author(s):  Lt_hawkeye
+-- File     :  /cdimage/lua/modules/BlackOpsweapons.lua
+-- Author(s):  Lt_hawkeye
 --**
---**  Summary  :  
+-- Summary  :  
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local WeaponFile = import('/lua/sim/defaultweapons.lua')

@@ -1,10 +1,10 @@
 --****************************************************************************
 --**
---**  File     :  /lua/SorianBuildConditions.lua
---**  Author(s): Michael Robbins aka Sorian
+-- File     :  /lua/SorianBuildConditions.lua
+-- Author(s): Michael Robbins aka Sorian
 --**
---**  Summary  : Generic AI Platoon Build Conditions
---**             Build conditions always return true or false
+-- Summary  : Generic AI Platoon Build Conditions
+--            Build conditions always return true or false
 --**
 --****************************************************************************
 local AIUtils = import('/lua/ai/aiutilities.lua')

@@ -1,12 +1,12 @@
 --****************************************************************************
 --**
---**  File     :  /lua/editor/UnitCountBuildConditions.lua
---**  Author(s): Dru Staltman, John Comes
+-- File     :  /lua/editor/UnitCountBuildConditions.lua
+-- Author(s): Dru Staltman, John Comes
 --**
---**  Summary  : Generic AI Platoon Build Conditions
---**             Build conditions always return true or false
+-- Summary  : Generic AI Platoon Build Conditions
+--            Build conditions always return true or false
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local AIUtils = import('/lua/ai/aiutilities.lua')
 

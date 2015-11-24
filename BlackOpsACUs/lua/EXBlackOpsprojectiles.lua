@@ -1,15 +1,10 @@
---****************************************************************************
---**
---**  File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
---**  Author(s): Lt_Hawkeye
---**
---**  Summary  :
---**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
---------------------------------------------------------------------------
---  Lt_hawkeye's Custom Projectiles
---------------------------------------------------------------------------
+-----------------------------------------------------------------
+-- File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
+-- Author(s): Lt_Hawkeye
+-- Summary  :
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
+
 local Projectile = import('/lua/sim/projectile.lua').Projectile
 local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
 local EmitterProjectile = DefaultProjectileFile.EmitterProjectile

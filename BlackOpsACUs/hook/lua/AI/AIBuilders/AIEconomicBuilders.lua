@@ -1,10 +1,10 @@
 --***************************************************************************
 --*
---**  File     :  /lua/ai/AIEconomicBuilders.lua
+-- File     :  /lua/ai/AIEconomicBuilders.lua
 --**
---**  Summary  : Default economic builders for skirmish
+-- Summary  : Default economic builders for skirmish
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local BBTmplFile = '/lua/basetemplates.lua'
@@ -301,8 +301,8 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianACUUpgrades',
-    BuildersType = 'EngineerBuilder', --'PlatoonFormBuilder',
+    BuilderGroupName = 'ACUUpgrades',
+    BuildersType = 'PlatoonFormBuilder',
 
 ----------------------------------------
 -------------------- Overwriting Sorian's To Prevent Issues
@@ -310,8 +310,8 @@ BuilderGroup {
 
     -- UEF
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade AdvEng - Pods',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR Upgrade AdvEng - Pods',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -330,8 +330,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade T3 Eng - Shields',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR Upgrade T3 Eng - Shields',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -352,8 +352,8 @@ BuilderGroup {
 
     -- Aeon
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade AdvEng - Resource - Crysalis',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR Upgrade AdvEng - Resource - Crysalis',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -372,8 +372,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -394,8 +394,8 @@ BuilderGroup {
     
     -- Cybran
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade AdvEng - Laser Gen',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR Upgrade AdvEng - Laser Gen',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -414,8 +414,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade T3 Eng - Resource',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR Upgrade T3 Eng - Resource',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -436,8 +436,8 @@ BuilderGroup {
     
     -- Seraphim
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -456,8 +456,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
+        PlatoonTemplate = 'CommanderEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -482,8 +482,8 @@ BuilderGroup {
 ---------- Tier One
 --------------------
    Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -502,8 +502,8 @@ BuilderGroup {
         },
     },
    Builder {
-        BuilderName = 'Sorian UEF CDR EXCombatEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXCombatEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -522,8 +522,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXClusterMisslePack',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXClusterMisslePack',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -540,8 +540,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXShieldBattery',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXShieldBattery',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXClusterMisslePack', false}},
@@ -558,8 +558,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXClusterMisslePack v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXClusterMisslePack v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -576,8 +576,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXShieldBattery v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXShieldBattery v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXClusterMisslePack', false}},
@@ -594,8 +594,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXAntiMatterCannon',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXAntiMatterCannon',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXGattlingEnergyCannon', false}},
@@ -612,8 +612,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXGattlingEnergyCannon',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXGattlingEnergyCannon',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXAntiMatterCannon', false}},
@@ -630,8 +630,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXAntiMatterCannon v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXAntiMatterCannon v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXGattlingEnergyCannon', false}},
@@ -648,8 +648,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXGattlingEnergyCannon v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXGattlingEnergyCannon v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXAntiMatterCannon', false}},
@@ -669,8 +669,8 @@ BuilderGroup {
 ---------- Tier Two
 --------------------
     Builder {
-        BuilderName = 'Sorian UEF CDR EXAdvancedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXAdvancedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -691,8 +691,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXAssaultEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXAssaultEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -713,8 +713,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXTacticalMisslePack',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXTacticalMisslePack',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -732,8 +732,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXActiveShielding',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXActiveShielding',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXClusterMisslePack', false}},
@@ -751,8 +751,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXTacticalMisslePack v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXTacticalMisslePack v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -770,8 +770,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXActiveShielding v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXActiveShielding v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXClusterMisslePack', false}},
@@ -789,8 +789,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedContainmentBottle',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedContainmentBottle',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXGattlingEnergyCannon', false}},
@@ -809,8 +809,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedCoolingSystem',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedCoolingSystem',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXAntiMatterCannon', false}},
@@ -829,8 +829,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedContainmentBottle v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedContainmentBottle v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXGattlingEnergyCannon', false}},
@@ -849,8 +849,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedCoolingSystem v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedCoolingSystem v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXAntiMatterCannon', false}},
@@ -872,8 +872,8 @@ BuilderGroup {
 ---------- Tier Three
 --------------------
     Builder {
-        BuilderName = 'Sorian UEF CDR EXExperimentalEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXExperimentalEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -894,8 +894,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXApocolypticEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXApocolypticEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -916,8 +916,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian UEF CDR EXTacticalNukeSubstitution',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXTacticalNukeSubstitution',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -935,8 +935,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedShieldBattery',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedShieldBattery',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXClusterMisslePack', false}},
@@ -954,8 +954,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian UEF CDR EXTacticalNukeSubstitution v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXTacticalNukeSubstitution v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -973,8 +973,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian UEF CDR EXImprovedShieldBattery v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXImprovedShieldBattery v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXClusterMisslePack', false}},
@@ -992,8 +992,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXPowerBooster',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXPowerBooster',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXGattlingEnergyCannon', false}},
@@ -1012,8 +1012,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXEnergyShellHardener',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXEnergyShellHardener',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXAntiMatterCannon', false}},
@@ -1032,8 +1032,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXPowerBooster v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXPowerBooster v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXGattlingEnergyCannon', false}},
@@ -1052,8 +1052,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR EXEnergyShellHardener v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'UEF CDR EXEnergyShellHardener v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXAntiMatterCannon', false}},
@@ -1078,8 +1078,8 @@ BuilderGroup {
 ---------- Tier One
 --------------------
    Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -1098,8 +1098,8 @@ BuilderGroup {
         },
     },
    Builder {
-        BuilderName = 'Sorian Aeon CDR EXCombatEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXCombatEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -1118,8 +1118,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXMaelstromQuantum',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXMaelstromQuantum',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -1136,8 +1136,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXShieldBattery',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXShieldBattery',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMaelstromQuantum', false}},
@@ -1154,8 +1154,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXMaelstromQuantum v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXMaelstromQuantum v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -1172,8 +1172,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXShieldBattery v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXShieldBattery v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMaelstromQuantum', false}},
@@ -1190,8 +1190,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXArtilleryMiasma',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXArtilleryMiasma',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBeamPhason', false}},
@@ -1208,8 +1208,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXBeamPhason',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXBeamPhason',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArtilleryMiasma', false}},
@@ -1226,8 +1226,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXArtilleryMiasma v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXArtilleryMiasma v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBeamPhason', false}},
@@ -1244,8 +1244,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXBeamPhason v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXBeamPhason v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArtilleryMiasma', false}},
@@ -1265,8 +1265,8 @@ BuilderGroup {
 ---------- Tier Two
 --------------------
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXAdvancedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXAdvancedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -1287,8 +1287,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXAssaultEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXAssaultEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -1309,8 +1309,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXFieldExpander',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXFieldExpander',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -1329,8 +1329,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXActiveShielding',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXActiveShielding',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMaelstromQuantum', false}},
@@ -1348,8 +1348,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXFieldExpander v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXFieldExpander v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -1367,8 +1367,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXActiveShielding v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXActiveShielding v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMaelstromQuantum', false}},
@@ -1386,8 +1386,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXAdvancedShells',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXAdvancedShells',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBeamPhason', false}},
@@ -1406,8 +1406,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedCoolingSystem',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedCoolingSystem',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArtilleryMiasma', false}},
@@ -1426,8 +1426,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXAdvancedShells v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXAdvancedShells v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBeamPhason', false}},
@@ -1446,8 +1446,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedCoolingSystem v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedCoolingSystem v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArtilleryMiasma', false}},
@@ -1469,8 +1469,8 @@ BuilderGroup {
 ---------- Tier Three
 --------------------
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXExperimentalEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXExperimentalEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -1491,8 +1491,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXApocolypticEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXApocolypticEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -1513,8 +1513,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Aeon CDR EXQuantumInstability',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXQuantumInstability',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -1532,8 +1532,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedShieldBattery',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedShieldBattery',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMaelstromQuantum', false}},
@@ -1551,8 +1551,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Aeon CDR EXQuantumInstability v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXQuantumInstability v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXShieldBattery', false}},
@@ -1570,8 +1570,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedShieldBattery v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedShieldBattery v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMaelstromQuantum', false}},
@@ -1589,8 +1589,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedReloader',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedReloader',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBeamPhason', false}},
@@ -1609,8 +1609,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXPowerBooster',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXPowerBooster',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArtilleryMiasma', false}},
@@ -1629,8 +1629,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXImprovedReloader v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXImprovedReloader v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBeamPhason', false}},
@@ -1649,8 +1649,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR EXPowerBooster v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Aeon CDR EXPowerBooster v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArtilleryMiasma', false}},
@@ -1675,8 +1675,8 @@ BuilderGroup {
 ---------- Tier One
 --------------------
    Builder {
-        BuilderName = 'Sorian Cybran CDR EXImprovedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXImprovedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -1695,8 +1695,8 @@ BuilderGroup {
         },
     },
    Builder {
-        BuilderName = 'Sorian Cybran CDR EXCombatEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXCombatEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -1715,8 +1715,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXElectronicsEnhancment',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXElectronicsEnhancment',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArmorPlating', false}},
@@ -1733,8 +1733,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXArmorPlating',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXArmorPlating',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXElectronicsEnhancment', false}},
@@ -1751,8 +1751,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXElectronicsEnhancment v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXElectronicsEnhancment v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArmorPlating', false}},
@@ -1769,8 +1769,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXArmorPlating v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXArmorPlating v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXElectronicsEnhancment', false}},
@@ -1787,8 +1787,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXEMPArray',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXEMPArray',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMasor', false}},
@@ -1805,8 +1805,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXMasor',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXMasor',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXEMPArray', false}},
@@ -1823,8 +1823,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXEMPArray v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXEMPArray v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMasor', false}},
@@ -1841,8 +1841,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXMasor v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXMasor v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXEMPArray', false}},
@@ -1862,8 +1862,8 @@ BuilderGroup {
 ---------- Tier Two
 --------------------
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXAdvancedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXAdvancedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -1884,8 +1884,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXAssaultEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXAssaultEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -1906,8 +1906,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXElectronicCountermeasures',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXElectronicCountermeasures',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArmorPlating', false}},
@@ -1926,8 +1926,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXStructuralIntegrity',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXStructuralIntegrity',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXElectronicsEnhancment', false}},
@@ -1945,8 +1945,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXElectronicCountermeasures v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXElectronicCountermeasures v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArmorPlating', false}},
@@ -1964,8 +1964,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXStructuralIntegrity v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXStructuralIntegrity v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXElectronicsEnhancment', false}},
@@ -1983,8 +1983,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXImprovedCapacitors',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXImprovedCapacitors',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMasor', false}},
@@ -2003,8 +2003,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXImprovedCoolingSystem',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXImprovedCoolingSystem',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXEMPArray', false}},
@@ -2023,8 +2023,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXImprovedCapacitors v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXImprovedCapacitors v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMasor', false}},
@@ -2043,8 +2043,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXImprovedCoolingSystem v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXImprovedCoolingSystem v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXEMPArray', false}},
@@ -2066,8 +2066,8 @@ BuilderGroup {
 ---------- Tier Three
 --------------------
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXExperimentalEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXExperimentalEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -2088,8 +2088,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXApocolypticEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXApocolypticEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -2110,8 +2110,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Cybran CDR EXCloakingSubsystems',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXCloakingSubsystems',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArmorPlating', false}},
@@ -2129,8 +2129,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Cybran CDR EXCompositeMaterials',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXCompositeMaterials',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXElectronicsEnhancment', false}},
@@ -2148,8 +2148,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Cybran CDR EXCloakingSubsystems v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXCloakingSubsystems v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXArmorPlating', false}},
@@ -2167,8 +2167,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Cybran CDR EXCompositeMaterials v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXCompositeMaterials v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXElectronicsEnhancment', false}},
@@ -2186,8 +2186,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXPowerBooster',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXPowerBooster',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMasor', false}},
@@ -2206,8 +2206,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXAdvancedEmitterArray',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXAdvancedEmitterArray',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXEMPArray', false}},
@@ -2226,8 +2226,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXPowerBooster v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXPowerBooster v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXMasor', false}},
@@ -2246,8 +2246,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR EXAdvancedEmitterArray v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Cybran CDR EXAdvancedEmitterArray v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXEMPArray', false}},
@@ -2272,8 +2272,8 @@ BuilderGroup {
 ---------- Tier One
 --------------------
    Builder {
-        BuilderName = 'Sorian Seraphim CDR EXImprovedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXImprovedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -2292,8 +2292,8 @@ BuilderGroup {
         },
     },
    Builder {
-        BuilderName = 'Sorian Seraphim CDR EXCombatEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXCombatEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 2000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -2312,8 +2312,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXBasicDefence',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXBasicDefence',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXL1Lambda', false}},
@@ -2330,8 +2330,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXL1Lambda',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXL1Lambda',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBasicDefence', false}},
@@ -2348,8 +2348,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXBasicDefence v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXBasicDefence v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXL1Lambda', false}},
@@ -2366,8 +2366,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXL1Lambda v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXL1Lambda v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1600,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBasicDefence', false}},
@@ -2384,8 +2384,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXCannonBigBall',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXCannonBigBall',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonRapid', false}},
@@ -2402,8 +2402,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXCannonRapid',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXCannonRapid',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonBigBall', false}},
@@ -2420,8 +2420,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXCannonBigBall v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXCannonBigBall v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonRapid', false}},
@@ -2438,8 +2438,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXCannonRapid v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXCannonRapid v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1700,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonBigBall', false}},
@@ -2459,8 +2459,8 @@ BuilderGroup {
 ---------- Tier Two
 --------------------
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXAdvancedEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXAdvancedEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -2481,8 +2481,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXAssaultEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXAssaultEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1500,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -2503,8 +2503,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXTacticalMisslePack',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXTacticalMisslePack',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXL1Lambda', false}},
@@ -2523,8 +2523,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXL2Lambda',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXL2Lambda',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBasicDefence', false}},
@@ -2542,8 +2542,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXTacticalMisslePack v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXTacticalMisslePack v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXL1Lambda', false}},
@@ -2561,8 +2561,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXL2Lambda v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXL2Lambda v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1200,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBasicDefence', false}},
@@ -2580,8 +2580,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXImprovedContainmentBottle',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXImprovedContainmentBottle',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonRapid', false}},
@@ -2600,8 +2600,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXImprovedCoolingSystem',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXImprovedCoolingSystem',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonBigBall', false}},
@@ -2620,8 +2620,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXImprovedContainmentBottle v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXImprovedContainmentBottle v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonRapid', false}},
@@ -2640,8 +2640,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXImprovedCoolingSystem v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXImprovedCoolingSystem v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1300,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonBigBall', false}},
@@ -2663,8 +2663,8 @@ BuilderGroup {
 ---------- Tier Three
 --------------------
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXExperimentalEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXExperimentalEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCombatEngineering', false}},
@@ -2685,8 +2685,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXApocolypticEngineering',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXApocolypticEngineering',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXImprovedEngineering', false}},
@@ -2707,8 +2707,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Seraphim CDR EXOverchargeOverdrive',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXOverchargeOverdrive',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXL1Lambda', false}},
@@ -2726,8 +2726,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Seraphim CDR EXL3Lambda',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXL3Lambda',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBasicDefence', false}},
@@ -2745,8 +2745,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Seraphim CDR EXOverchargeOverdrive v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXOverchargeOverdrive v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXL1Lambda', false}},
@@ -2764,8 +2764,8 @@ BuilderGroup {
         },
     },
        Builder {
-        BuilderName = 'Sorian Seraphim CDR EXL3Lambda v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXL3Lambda v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 900,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXBasicDefence', false}},
@@ -2783,8 +2783,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXPowerBooster',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXPowerBooster',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonRapid', false}},
@@ -2803,8 +2803,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXEnergyShellHardener',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXEnergyShellHardener',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonBigBall', false}},
@@ -2823,8 +2823,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXPowerBooster v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXPowerBooster v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonRapid', false}},
@@ -2843,8 +2843,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR EXEnergyShellHardener v2',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'Seraphim CDR EXEnergyShellHardener v2',
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 { SBC, 'CmdrHasUpgrade', { 'EXCannonBigBall', false}},

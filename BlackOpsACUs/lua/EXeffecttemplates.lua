@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
---**  File     :  /data/lua/modules/EffectTemplates.lua
---**  Author(s):  Gordon Duclos
+-- File     :  /data/lua/modules/EffectTemplates.lua
+-- Author(s):  Gordon Duclos
 --**
---**  Summary  :  Generic templates for commonly used effects
+-- Summary  :  Generic templates for commonly used effects
 --**
---**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 TableCat = import('/lua/utilities.lua').TableCat
