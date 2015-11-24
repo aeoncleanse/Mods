@@ -49,7 +49,7 @@ PDLaserCollisionBeam = Class(SCCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread(self.ScorchThread)   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -58,14 +58,14 @@ PDLaserCollisionBeam = Class(SCCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function( self )
+    OnEnable = function(self)
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread( self.ScorchThread )
+            self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
     
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -116,7 +116,7 @@ EXCEMPArrayBeam03CollisionBeam = Class(SCCollisionBeam) {
     
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24' )
+        CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24')
         self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect01/SBOZhanaseeBombEffect01_proj.bp', 0, 0, 0, 0, 10.0, 0):SetCollision(false):SetVelocity(0,10.0, 0)
         self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect02/SBOZhanaseeBombEffect02_proj.bp', 0, 0, 0, 0, 0.05, 0):SetCollision(false):SetVelocity(0,0.05, 0)        
         
@@ -149,7 +149,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread(self.ScorchThread)   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -158,7 +158,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
     
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
@@ -181,7 +181,7 @@ AeonACUPhasonLaserCollisionBeam = Class(SCCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread(self.ScorchThread)   
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -190,7 +190,7 @@ AeonACUPhasonLaserCollisionBeam = Class(SCCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
     
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   

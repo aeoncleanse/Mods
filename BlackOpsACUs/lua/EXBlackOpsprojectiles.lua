@@ -58,7 +58,7 @@ EXSingleBeamProjectile = Class(EXEmitterProjectile) {
     OnCreate = function(self)
         EmitterProjectile.OnCreate(self)
         if self.BeamName then
-            CreateBeamEmitterOnEntity( self, -1, self:GetArmy(), self.BeamName )
+            CreateBeamEmitterOnEntity(self, -1, self:GetArmy(), self.BeamName)
         end
     end,
 }
@@ -73,7 +73,7 @@ EXMultiBeamProjectile = Class(EXEmitterProjectile) {
         local beam = nil
         local army = self:GetArmy()
         for k, v in self.Beams do
-            CreateBeamEmitterOnEntity( self, -1, army, v )
+            CreateBeamEmitterOnEntity(self, -1, army, v)
         end
     end,
 }
@@ -104,18 +104,18 @@ EXMultiPolyTrailProjectile = Class(EXEmitterProjectile) {
     OnCreate = function(self)
         EmitterProjectile.OnCreate(self)
         if self.PolyTrails then
-            local NumPolyTrails = table.getn( self.PolyTrails )
+            local NumPolyTrails = table.getn(self.PolyTrails)
             local army = self:GetArmy()
 
             if self.RandomPolyTrails ~= 0 then
                 local index = nil
                 for i = 1, self.RandomPolyTrails do
-                    index = math.floor( Random( 1, NumPolyTrails))
-                    CreateTrail(self, -1, army, self.PolyTrails[index] ):OffsetEmitter(0, 0, self.PolyTrailOffset[index])
+                    index = math.floor(Random(1, NumPolyTrails))
+                    CreateTrail(self, -1, army, self.PolyTrails[index]):OffsetEmitter(0, 0, self.PolyTrailOffset[index])
                 end
             else
                 for i = 1, NumPolyTrails do
-                    CreateTrail(self, -1, army, self.PolyTrails[i] ):OffsetEmitter(0, 0, self.PolyTrailOffset[i])
+                    CreateTrail(self, -1, army, self.PolyTrails[i]):OffsetEmitter(0, 0, self.PolyTrailOffset[i])
                 end
             end
         end
@@ -137,7 +137,7 @@ EXSingleCompositeEmitterProjectile = Class(EXSinglePolyTrailProjectile) {
     OnCreate = function(self)
         SinglePolyTrailProjectile.OnCreate(self)
         if self.BeamName ~= '' then
-            CreateBeamEmitterOnEntity( self, -1, self:GetArmy(), self.BeamName )
+            CreateBeamEmitterOnEntity(self, -1, self:GetArmy(), self.BeamName)
         end
     end,
 }
@@ -155,7 +155,7 @@ EXMultiCompositeEmitterProjectile = Class(EXMultiPolyTrailProjectile) {
         local beam = nil
         local army = self:GetArmy()
         for k, v in self.Beams do
-            CreateBeamEmitterOnEntity( self, -1, army, v )
+            CreateBeamEmitterOnEntity(self, -1, army, v)
         end
     end,
 }
@@ -186,7 +186,7 @@ FlameThrowerProjectile01 = Class(EmitterProjectile) {
 --------------------------------------------------------------------------
 --  UEF ACU Antimatter Cannon
 --------------------------------------------------------------------------
-UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile ) {
+UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
     FxTrails = EXEffectTemplate.ACUAntiMatterFx,
     PolyTrail = EXEffectTemplate.ACUAntiMatterPoly,
     
@@ -207,10 +207,10 @@ UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile ) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle( self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02' )
+        --CreateLightParticle(self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02')
         if targetType == 'Terrain' then
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army )
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army )
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army)
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
             --self:ShakeCamera(20, 1, 0, 1)
         end
         local pos = self:GetPosition()
@@ -220,7 +220,7 @@ UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile ) {
     end,
 }
 
-UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile ) {
+UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
     FxTrails = EXEffectTemplate.ACUAntiMatterFx,
     PolyTrail = EXEffectTemplate.ACUAntiMatterPoly,
     
@@ -241,10 +241,10 @@ UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile ) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle( self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02' )
+        --CreateLightParticle(self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02')
         if targetType == 'Terrain' then
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army )
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army )
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army)
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
             self:ShakeCamera(20, 1, 0, 1)
         end
         local pos = self:GetPosition()
@@ -254,7 +254,7 @@ UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile ) {
     end,
 }
 
-UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile ) {
+UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile) {
     FxTrails = EXEffectTemplate.ACUAntiMatterFx,
     PolyTrail = EXEffectTemplate.ACUAntiMatterPoly,
     
@@ -275,10 +275,10 @@ UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile ) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle( self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02' )
+        --CreateLightParticle(self, -1, army, 16, 6, 'glow_03', 'ramp_antimatter_02')
         if targetType == 'Terrain' then
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army )
-            CreateDecal( self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army )
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army)
+            CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
             self:ShakeCamera(20, 1, 0, 1)
         end
         local pos = self:GetPosition()
@@ -439,7 +439,7 @@ SeraRapidCannon01Projectile03 = Class(MultiPolyTrailProjectile) {
 --------------------------------------------------------------------------
 --  Cybran EMP Array Detonation
 --------------------------------------------------------------------------
-EXInvisoProectilechild01 = Class(EXMultiCompositeEmitterProjectile ) {
+EXInvisoProectilechild01 = Class(EXMultiCompositeEmitterProjectile) {
     
     -- Hit Effects
     FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit02,
@@ -478,7 +478,7 @@ EXInvisoProectile01 = Class(EXInvisoProectilechild01) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24' )
+        --CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24')
         --self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect01/SBOZhanaseeBombEffect01_proj.bp', 0, 0, 0, 0, 10.0, 0):SetCollision(false):SetVelocity(0,10.0, 0)
         --self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect02/SBOZhanaseeBombEffect02_proj.bp', 0, 0, 0, 0, 0.05, 0):SetCollision(false):SetVelocity(0,0.05, 0)        
         
@@ -499,7 +499,7 @@ EXInvisoProectile01 = Class(EXInvisoProectilechild01) {
 
 }
 
-EXInvisoProectilechild02 = Class(EXMultiCompositeEmitterProjectile ) {
+EXInvisoProectilechild02 = Class(EXMultiCompositeEmitterProjectile) {
     
     -- Hit Effects
     FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit02,
@@ -537,7 +537,7 @@ EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24' )
+        --CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24')
         --self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect01/SBOZhanaseeBombEffect01_proj.bp', 0, 0, 0, 0, 10.0, 0):SetCollision(false):SetVelocity(0,10.0, 0)
         --self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect02/SBOZhanaseeBombEffect02_proj.bp', 0, 0, 0, 0, 0.05, 0):SetCollision(false):SetVelocity(0,0.05, 0)        
         
@@ -558,7 +558,7 @@ EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
 
 }
 
-EXInvisoProectilechild03 = Class(EXMultiCompositeEmitterProjectile ) {
+EXInvisoProectilechild03 = Class(EXMultiCompositeEmitterProjectile) {
     
     -- Hit Effects
     FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit02,
@@ -590,7 +590,7 @@ EXInvisoProectile03 = Class(EXInvisoProectilechild03) {
 
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
-        --CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24' )
+        --CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24')
         --self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect01/SBOZhanaseeBombEffect01_proj.bp', 0, 0, 0, 0, 10.0, 0):SetCollision(false):SetVelocity(0,10.0, 0)
         --self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect02/SBOZhanaseeBombEffect02_proj.bp', 0, 0, 0, 0, 0.05, 0):SetCollision(false):SetVelocity(0,0.05, 0)        
         

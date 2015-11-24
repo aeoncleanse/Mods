@@ -17,7 +17,7 @@ UEFBilly = Class(TIFMissileNuke) {
         TIFMissileNuke.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
         self.MovementTurnLevel = 1
-        self:ForkThread( self.MovementThread )
+        self:ForkThread(self.MovementThread)
     end,
     
     OnImpact = function(self, TargetType, TargetEntity)
@@ -34,7 +34,7 @@ UEFBilly = Class(TIFMissileNuke) {
         TIFMissileNuke.OnImpact(self, TargetType, TargetEntity)
     end,    
     
-    CreateEffects = function( self, EffectTable, army, scale)
+    CreateEffects = function(self, EffectTable, army, scale)
         for k, v in EffectTable do
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
         end
@@ -45,10 +45,10 @@ UEFBilly = Class(TIFMissileNuke) {
 --        local target = self:GetTrackingTarget()
 --        local launcher = self:GetLauncher()
 --        self:TrackTarget(false)
---        self.CreateEffects( self, self.InitialEffects, army, 1 )        
+--        self.CreateEffects(self, self.InitialEffects, army, 1)        
 --        WaitSeconds(3)
---        self.CreateEffects( self, self.LaunchEffects, army, 1 )
---        self.CreateEffects( self, self.ThrustEffects, army, 1 )   
+--        self.CreateEffects(self, self.LaunchEffects, army, 1)
+--        self.CreateEffects(self, self.ThrustEffects, army, 1)   
 --        self:SetCollision(true)
 --        WaitSeconds(3)
 --        self:SetTurnRate(5)
@@ -68,12 +68,12 @@ UEFBilly = Class(TIFMissileNuke) {
         local army = self:GetArmy()
         local target = self:GetTrackingTarget()
         local launcher = self:GetLauncher()            
-        self.CreateEffects( self, self.InitialEffects, army, 1 )      
+        self.CreateEffects(self, self.InitialEffects, army, 1)      
         self.WaitTime = 0.1
         self:SetTurnRate(8)
         WaitSeconds(0.3)   
-        self.CreateEffects( self, self.LaunchEffects, army, 1 )
-        self.CreateEffects( self, self.ThrustEffects, army, 1 )        
+        self.CreateEffects(self, self.LaunchEffects, army, 1)
+        self.CreateEffects(self, self.ThrustEffects, army, 1)        
         while not self:BeenDestroyed() do
             self:SetTurnRateByDist()
             WaitSeconds(self.WaitTime)

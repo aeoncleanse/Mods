@@ -44,7 +44,7 @@ PDLaserGrid = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},--'/effects/emitters/quantum_generator_charge_01_emit.bp'},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -84,7 +84,7 @@ PDLaserGrid2 = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -110,7 +110,7 @@ AeonACUPhasonLaser = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 0.33,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()

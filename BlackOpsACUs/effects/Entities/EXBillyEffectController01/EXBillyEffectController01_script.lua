@@ -62,8 +62,8 @@ EXBillyEffectController01 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -81,8 +81,8 @@ EXBillyEffectController01 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -114,7 +114,7 @@ EXBillyEffectController01 = Class(NullShell) {
         
         
         for k, v in EffectTemplate.TNukeRings01 do
-      CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.5)-- Exavier Modified Scale
+      CreateEmitterAtEntity(self, army, v):ScaleEmitter(0.5)-- Exavier Modified Scale
         end
         
         self:CreateInitialFireballSmokeRing()
@@ -122,7 +122,7 @@ EXBillyEffectController01 = Class(NullShell) {
         self:ForkThread(self.CreateHeadConvectionSpinners)
         self:ForkThread(self.CreateFlavorPlumes)
         
-        WaitSeconds( 0.55 )
+        WaitSeconds(0.55)
         
         CreateLightParticle(self, -1, army, 15, 200, 'glow_03', 'ramp_nuke_04')-- Exavier Modified 4th 5th Value
         
@@ -168,10 +168,10 @@ EXBillyEffectController01 = Class(NullShell) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/Entities/EXBillyShockwave02/EXBillyShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end  
         
-        WaitSeconds( 3 )
+        WaitSeconds(3)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -182,7 +182,7 @@ EXBillyEffectController01 = Class(NullShell) {
     CreateFlavorPlumes = function(self)
         local numProjectiles = 8
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         local angleVariation = angle * 0.75
         local projectiles = {}
 
@@ -202,10 +202,10 @@ EXBillyEffectController01 = Class(NullShell) {
             yVec = RandomFloat(0.2, 1)
             zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation)) 
             velocity = 1.7 + (yVec * RandomFloat(2,5))-- Exavier Modified Velocity
-            table.insert(projectiles, self:CreateProjectile('/effects/Entities/EXBillyFlavorPlume01/EXBillyFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity) )
+            table.insert(projectiles, self:CreateProjectile('/effects/Entities/EXBillyFlavorPlume01/EXBillyFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity))
         end
 
-        WaitSeconds( 3 )
+        WaitSeconds(3)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -235,7 +235,7 @@ EXBillyEffectController01 = Class(NullShell) {
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
       proj:SetVelocityAlign(false)
-      proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+      proj:SetOrientation(OrientFromDir(Util.Cross(Vector(x,0,z), Vector(0,1,0))),true)
       proj:SetVelocity(0,1.5,0)-- Exavier Modified Velocity 
           proj:SetBallisticAcceleration(-0.025)-- Exavier Modified Acceleration            
         end   
@@ -243,7 +243,7 @@ EXBillyEffectController01 = Class(NullShell) {
     
     CreateGroundPlumeConvectionEffects = function(self,army)
     for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-          CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.5)-- Exavier Modified Scale 
+          CreateEmitterAtEntity(self, army, v):ScaleEmitter(0.5)-- Exavier Modified Scale 
     end
     
     local sides = 10
@@ -264,7 +264,7 @@ EXBillyEffectController01 = Class(NullShell) {
         local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
         local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-        local velocity = RandomFloat( 1, 3 ) * 1.5-- Exavier Modified Last Number
+        local velocity = RandomFloat(1, 3) * 1.5-- Exavier Modified Last Number
         self:CreateProjectile('/effects/Entities/EXBillyEffect05/EXBillyEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
             :SetVelocity(x * velocity, 0, z * velocity)
     end 

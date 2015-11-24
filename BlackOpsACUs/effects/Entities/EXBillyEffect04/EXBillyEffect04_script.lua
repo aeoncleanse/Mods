@@ -24,7 +24,7 @@ EXBillyEffect04 = Class(NullShell) {
         
         WaitSeconds(4)
         for k, v in EffectTemplate.TNukeBaseEffects01 do
-            CreateEmitterOnEntity(self, army, v ):ScaleEmitter(0.5)-- Exavier Modified Scale 
+            CreateEmitterOnEntity(self, army, v):ScaleEmitter(0.5)-- Exavier Modified Scale 
         end    
     end,      
 }

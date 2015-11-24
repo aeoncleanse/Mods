@@ -105,7 +105,7 @@ SeraACUQuantumStormProjectileHit02 = {
     EmtBpPath .. 'seraphim_experimental_phasonproj_hitunit_08_emit.bp',
 }
 
-SeraACUQuantumStormProjectileHitUnit = TableCat( SeraACUQuantumStormProjectileHit01, SeraACUQuantumStormProjectileHit02 )
+SeraACUQuantumStormProjectileHitUnit = TableCat(SeraACUQuantumStormProjectileHit01, SeraACUQuantumStormProjectileHit02)
 
 --------------------------------------------------------------------------
 --  Serephim Rapid Cannon
@@ -244,4 +244,4 @@ SatDamageFire01 = {
     EmtBpPath .. 'destruction_damaged_fire_01_emit.bp',
     EmtBpPath .. 'destruction_damaged_fire_distort_01_emit.bp',
 }
-SatDeathEffectsPackage = TableCat( SatDeathSmoke, SatDamageFire01 )
+SatDeathEffectsPackage = TableCat(SatDeathSmoke, SatDamageFire01)

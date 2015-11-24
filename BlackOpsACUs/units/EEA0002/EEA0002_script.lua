@@ -54,20 +54,20 @@ EEA0002 = Class(TAirUnit) {
     
     
     Open = function(self)
-        ChangeState( self, self.OpenState )
+        ChangeState(self, self.OpenState)
     end,
     
     OpenState = State() {
         Main = function(self)
             self.OpenAnim = CreateAnimator(self)
-            self.OpenAnim:PlayAnim( '/units/EEA0002/eea0002_aopen01.sca' )
-            self.Trash:Add( self.OpenAnim )
-            WaitFor( self.OpenAnim )
+            self.OpenAnim:PlayAnim('/units/EEA0002/eea0002_aopen01.sca')
+            self.Trash:Add(self.OpenAnim)
+            WaitFor(self.OpenAnim)
             
-            self.OpenAnim:PlayAnim( '/units/EEA0002/eea0002_aopen02.sca' )
+            self.OpenAnim:PlayAnim('/units/EEA0002/eea0002_aopen02.sca')
             
             for k,v in self.HideBones do
-                self:HideBone( v, true )
+                self:HideBone(v, true)
             end
             --self:ForkThread(self.ProjSpawn)
         end,
@@ -90,30 +90,30 @@ EEA0002 = Class(TAirUnit) {
         end,
     },
 
-    CreateDamageEffects = function(self, bone, army )
+    CreateDamageEffects = function(self, bone, army)
         for k, v in BlackOpsEffectTemplate.SatDeathEffectsPackage do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(6)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(6)
         end
     end,
     
-    CreateExplosionDebris = function( self, bone, army )
+    CreateExplosionDebris = function(self, bone, army)
         for k, v in EffectTemplate.ExplosionDebrisLrg01 do
-            CreateAttachedEmitter( self, bone, army, v )--:OffsetEmitter( 0, 5, 0 )
+            CreateAttachedEmitter(self, bone, army, v)--:OffsetEmitter(0, 5, 0)
         end
     end,
 
     DeathEffectsThread = function(self)
         local army = self:GetArmy()
         -- Create Initial explosion effects
-        explosion.CreateFlash( self, 'XEA0002', 1.5, army )
-        CreateAttachedEmitter(self,'Turret_Barrel_Muzzle', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter( 0, 0, 0 ) --Sparks
+        explosion.CreateFlash(self, 'XEA0002', 1.5, army)
+        CreateAttachedEmitter(self,'Turret_Barrel_Muzzle', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 0, 0) --Sparks
         CreateAttachedEmitter(self,'Turret_Barrel_Muzzle', army, '/effects/emitters/distortion_ring_01_emit.bp'):ScaleEmitter(0.3)
 
-        self:CreateExplosionDebris('XEA0002', army ) --Debris spread
-        CreateDeathExplosion( self, 'XEA0002', 1.5) -- Simple Explosion
-        self:CreateDamageEffects( 'XEA0002', army ) -- Fireball & trailing smoke
-        self:CreateDamageEffects( 'L_Panel03', army )
-        self:CreateDamageEffects( 'R_Panel03', army )
+        self:CreateExplosionDebris('XEA0002', army) --Debris spread
+        CreateDeathExplosion(self, 'XEA0002', 1.5) -- Simple Explosion
+        self:CreateDamageEffects('XEA0002', army) -- Fireball & trailing smoke
+        self:CreateDamageEffects('L_Panel03', army)
+        self:CreateDamageEffects('R_Panel03', army)
     end,
     
 }

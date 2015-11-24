@@ -1,13 +1,3 @@
-----****************************************************************************
---**  File     :  lua/ui/help/unitdescriptions.lua
---**  Author(s):  Exavier Macbeth
---**
---**
---****************************************************************************
- 
-----Exavier's Units
-
-do
 Tooltips["exstealth_toggle"] = {
     title = "Active Jammer Subsystem",
     description = "Toggles on the combination blip generator and personal stealth system on or off",
@@ -24,5 +14,3 @@ Tooltips['EXScryTarget'] = {
    title = "Scry Targetting",
    description = "Target Area for Scrying",
 }
-
-end

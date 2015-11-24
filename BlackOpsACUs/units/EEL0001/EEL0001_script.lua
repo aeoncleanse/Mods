@@ -61,7 +61,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 if self.unit.SpinManip then
                     self.unit.SpinManip:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,    
         },
@@ -86,7 +86,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 if self.unit.SpinManip then
                     self.unit.SpinManip:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,    
         },
@@ -111,7 +111,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 if self.unit.SpinManip then
                     self.unit.SpinManip:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,    
         },
@@ -141,7 +141,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 self.AimControl:SetEnabled(true)
                 self.AimControl:SetPrecedence(20)
                 self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.AimControl:SetHeadingPitch( self.unit:GetWeaponManipulatorByLabel('RightZephyr'):GetHeadingPitch() )
+                self.AimControl:SetHeadingPitch(self.unit:GetWeaponManipulatorByLabel('RightZephyr'):GetHeadingPitch())
             end,
             OnWeaponFired = function(self)
                 TDFOverchargeWeapon.OnWeaponFired(self)
@@ -156,7 +156,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 self.AimControl:SetEnabled(false)
                 self.AimControl:SetPrecedence(0)
                 self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.unit:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch( self.AimControl:GetHeadingPitch() )
+                self.unit:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
             end,
             PauseOvercharge = function(self)
                 if not self.unit:IsOverchargePaused() then
@@ -238,8 +238,8 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.HasLeftPod = false
         self.HasRightPod = false
         -- Restrict what enhancements will enable later
-        self:AddBuildRestriction( categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-        self:AddBuildRestriction( categories.UEF * (categories.BUILTBYTIER4COMMANDER) )
+        self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+        self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
     end,
 
     OnPrepareArmToBuild = function(self)
@@ -249,7 +249,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(20)
         self.wcBuildMode = true
         self:ForkThread(self.WeaponConfigCheck)
-        self.BuildArmManipulator:SetHeadingPitch( self:GetWeaponManipulatorByLabel('RightZephyr'):GetHeadingPitch() )
+        self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('RightZephyr'):GetHeadingPitch())
     end,
 
     OnStopCapture = function(self, target)
@@ -259,7 +259,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnFailedCapture = function(self, target)
@@ -268,7 +268,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStopReclaim = function(self, target)
@@ -278,7 +278,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     GiveInitialResources = function(self)
@@ -370,7 +370,7 @@ EEL0001 = Class(TWalkingLandUnit) {
 
     WarpInEffectThread = function(self)
         self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
+        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
         self:SetMesh('/units/eel0001/EEL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
@@ -419,16 +419,16 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
-    CreateBuildEffects = function( self, unitBeingBuilt, order )
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
         local UpgradesFrom = unitBeingBuilt:GetBlueprint().General.UpgradesFrom
         -- If we are assisting an upgrading unit, or repairing a unit, play seperate effects
         if (order == 'Repair' and not unitBeingBuilt:IsBeingBuilt()) or (UpgradesFrom and UpgradesFrom ~= 'none' and self:IsUnitState('Guarding'))then
-            EffectUtil.CreateDefaultBuildBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
+            EffectUtil.CreateDefaultBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
         else
-            EffectUtil.CreateUEFCommanderBuildSliceBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )        
+            EffectUtil.CreateUEFCommanderBuildSliceBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)        
         end           
     end,
 
@@ -442,7 +442,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
         self.UnitBeingBuilt = nil
         self.UnitBuildOrder = nil
         self.BuildingUnit = false          
@@ -521,11 +521,11 @@ EEL0001 = Class(TWalkingLandUnit) {
                 self.ShieldEffectsBag2 = {}
             end
             self:DisableShield()
-            self:StopUnitAmbientSound( 'ActiveLoop' )
+            self:StopUnitAmbientSound('ActiveLoop')
         elseif bit == 2 then 
 
         elseif bit == 8 then -- cloak toggle
-            self:PlayUnitAmbientSound( 'ActiveLoop' )
+            self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('Radar')
             self:EnableUnitIntel('Sonar')
@@ -544,21 +544,21 @@ EEL0001 = Class(TWalkingLandUnit) {
                 self.ShieldEffectsBag2 = {}
             end
             for k, v in self.ShieldEffects2 do
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter01', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter02', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter03', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter04', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter05', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter06', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter07', self:GetArmy(), v ) )
-                table.insert( self.ShieldEffectsBag2, CreateAttachedEmitter( self, 'Back_ShieldPack_Emitter08', self:GetArmy(), v ) )
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter01', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter02', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter03', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter04', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter05', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter06', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter07', self:GetArmy(), v))
+                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter08', self:GetArmy(), v))
             end
             self:EnableShield()
-            self:PlayUnitAmbientSound( 'ActiveLoop' )
+            self:PlayUnitAmbientSound('ActiveLoop')
         elseif bit == 2 then
 
         elseif bit == 8 then -- cloak toggle
-            self:StopUnitAmbientSound( 'ActiveLoop' )
+            self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('Radar')
             self:DisableUnitIntel('Sonar')
@@ -567,8 +567,8 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
     
     EXRegenBuffThread = function(self)
-        --if Buff.HasBuff( self, 'EXRegenBoost' ) then
-        --    Buff.RemoveBuff( self, 'EXRegenBoost' )
+        --if Buff.HasBuff(self, 'EXRegenBoost') then
+        --    Buff.RemoveBuff(self, 'EXRegenBoost')
         --end
         self.regenammount = 0
         local EXBP = self:GetBlueprint()
@@ -964,18 +964,18 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXImprovedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff( self, 'UEFACUT2BuildRate' ) then
-                Buff.RemoveBuff( self, 'UEFACUT2BuildRate' )
+            if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
+                Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction( categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXUEFHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost1' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost1')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1029,19 +1029,19 @@ EEL0001 = Class(TWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'UEFACUT3BuildRate' ) then
-                Buff.RemoveBuff( self, 'UEFACUT3BuildRate' )
+            if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
+                Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
             end
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXUEFHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost1' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost1')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost2' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost2' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost2') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost2')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1095,22 +1095,22 @@ EEL0001 = Class(TWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'UEFACUT4BuildRate' ) then
-                Buff.RemoveBuff( self, 'UEFACUT4BuildRate' )
+            if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
+                Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
             end
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXUEFHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost1' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost1')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost2' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost2' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost2') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost2')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost3' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost3' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost3') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost3')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1158,7 +1158,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 self.FlamerEffectsBag = {}
             end
             for k, v in self.FlamerEffects do
-                table.insert( self.FlamerEffectsBag, CreateAttachedEmitter( self, 'Flamer_Torch', self:GetArmy(), v ):ScaleEmitter(0.0625) )
+                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Flamer_Torch', self:GetArmy(), v):ScaleEmitter(0.0625))
             end
             self.wcFlamer01 = true
             self.wcFlamer02 = false
@@ -1170,15 +1170,15 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCombatEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff( self, 'UEFACUT2BuildRate' ) then
-                Buff.RemoveBuff( self, 'UEFACUT2BuildRate' )
+            if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
+                Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction( categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER4COMMANDER) )
-            if Buff.HasBuff( self, 'EXUEFHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost4' )
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
+            if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
             end
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
@@ -1241,16 +1241,16 @@ EEL0001 = Class(TWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'UEFACUT3BuildRate' ) then
-                Buff.RemoveBuff( self, 'UEFACUT3BuildRate' )
+            if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
+                Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
             end
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER4COMMANDER) )     
-            if Buff.HasBuff( self, 'EXUEFHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost4' )
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))     
+            if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost5' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost5' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost5') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost5')
             end
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
@@ -1309,19 +1309,19 @@ EEL0001 = Class(TWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'UEFACUT4BuildRate' ) then
-                Buff.RemoveBuff( self, 'UEFACUT4BuildRate' )
+            if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
+                Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
             end
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.UEF * ( categories.BUILTBYTIER4COMMANDER) )
-            if Buff.HasBuff( self, 'EXUEFHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost4' )
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
+            if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost5' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost5' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost5') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost5')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost6' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost6' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost6') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost6')
             end
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
@@ -1373,8 +1373,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXTorpedoLauncherRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost7' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost7')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1412,11 +1412,11 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXTorpedoRapidLoaderRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost7' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost7')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost8' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost8' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost8') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost8')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1454,14 +1454,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXTorpedoClusterLauncherRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost7' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost7')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost8' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost8' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost8') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost8')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost9' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost9' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost9') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost9')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1499,8 +1499,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAntiMatterCannonRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost10' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1538,11 +1538,11 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXImprovedContainmentBottleRemove' then    
-            if Buff.HasBuff( self, 'EXUEFHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost10' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost11' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost11' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost11') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost11')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1579,14 +1579,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)     
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXPowerBoosterRemove' then    
-            if Buff.HasBuff( self, 'EXUEFHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost10' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost11' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost11' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost11') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost11')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost12' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost12' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost12') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost12')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1623,8 +1623,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXGattlingEnergyCannonRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost13' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost13')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1662,11 +1662,11 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXImprovedCoolingSystemRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost13' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost13')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost14' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost14' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost14') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost14')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1703,14 +1703,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXEnergyShellHardenerRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost13' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost13')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost14' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost14' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost14') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost14')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost15' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost15' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost15') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost15')
             end
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1860,8 +1860,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
             self.RadarDish1:SetTargetSpeed(0)
-            if Buff.HasBuff( self, 'EXUEFHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost16' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost16')
             end
             self.wcLance01 = false
             self.wcLance02 = false
@@ -1918,11 +1918,11 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
             self.RadarDish1:SetTargetSpeed(0)
-            if Buff.HasBuff( self, 'EXUEFHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost16' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost16')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost17' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost17' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost17') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost17')
             end
             self.wcLance01 = false
             self.wcLance02 = false
@@ -1971,14 +1971,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
             self.RadarDish1:SetTargetSpeed(0)
-            if Buff.HasBuff( self, 'EXUEFHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost16' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost16')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost17' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost17' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost17') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost17')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost18' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost18' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost18') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost18')
             end
             self.wcLance01 = false
             self.wcLance02 = false
@@ -2017,8 +2017,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBComTier3 = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXClusterMisslePackRemove' then
-            if Buff.HasBuff( self, 'EXUEFHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost19' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
             end
             self.wcCMissiles01 = false
             self.wcCMissiles02 = false
@@ -2107,14 +2107,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             local amt = self:GetNukeSiloAmmoCount()
             self:RemoveNukeSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff( self, 'EXUEFHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost19' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost20' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost20' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost20') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost20')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost21' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost21' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost21') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost21')
             end
             self.wcCMissiles01 = false
             self.wcCMissiles02 = false
@@ -2137,14 +2137,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             local amt = self:GetNukeSiloAmmoCount()
             self:RemoveNukeSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff( self, 'EXUEFHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost19' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost20' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost20' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost20') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost20')
             end
-            if Buff.HasBuff( self, 'EXUEFHealthBoost21' ) then
-                Buff.RemoveBuff( self, 'EXUEFHealthBoost21' )
+            if Buff.HasBuff(self, 'EXUEFHealthBoost21') then
+                Buff.RemoveBuff(self, 'EXUEFHealthBoost21')
             end
             self.wcCMissiles01 = false
             self.wcCMissiles02 = false
@@ -2272,15 +2272,15 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end            
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 1)
             self:SetMaintenanceConsumptionActive()  
             if not self.IntelEffectsBag then 
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
-                --self.CreateTerrainTypeEffects( self, self.IntelEffects.Jammer, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
+                --self.CreateTerrainTypeEffects(self, self.IntelEffects.Jammer, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end                  
         end        
     end,

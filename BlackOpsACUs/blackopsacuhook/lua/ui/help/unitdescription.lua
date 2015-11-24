@@ -1,15 +1,4 @@
-----****************************************************************************
---**  File     :  lua/ui/help/unitdescriptions.lua
---**  Author(s):  Exavier Macbeth
---**
---**
---****************************************************************************
- 
-----Exavier's Units
-
-
-----UEF ACU Upgrades  
-
+-- UEF ACU Upgrades  
 Description['eel0001'] = "<LOC Unit_Description_0303> Houses Commander. Combination barracks and command center. Contains all the blueprints necessary to build a basic army from scratch."
 Description['eel0001-exrzb1'] = "Jury Rigged Zephyr\nBy running additional power feeds and rapidly upgrading capacitors upgrading the command chassis with a slightly enhanced main weapon can be useful when in a pinch. However this system is automatically installed later if it is not needed earlier.\n\n+100 Zephyr Damage\n+8 Zephyr Range\n+8 Overcharge Range"
 Description['eel0001-exrzb2'] = "Empty"
@@ -41,7 +30,7 @@ Description['eel0001-exbbat3'] = "Tactical Nuclear System\nBy replacing the old 
 Description['eel0001-led'] = "Engineering Drone acts as a secondary Engineer. Assists the ACU where applicable."
 Description['eel0001-red'] = "Adds a second Engineering Drone. Requires an initial Engineering Drone."
 
-----Cybran ACU Upgrades
+-- Cybran ACU Upgrades
 
 Description['erl0001'] = "<LOC Unit_Description_0304> Houses Commander. Combination barracks and command center. Contains all the blueprints necessary to build a basic army from scratch."
 Description['erl0001-exrzb1'] = "Jury Rigged Ripper\nBy running additional power feeds and rapidly upgrading capacitors upgrading the command chassis with a slightly enhanced main weapon can be useful when in a pinch. However this system is automatically installed later if it is not needed earlier.\n\n+100% Ripper Rate of Fire\n+8 Ripper Range\n+8 Overcharge Range"
@@ -72,7 +61,7 @@ Description['erl0001-exbbat1'] = "Actuator Replacment\nInstalling fine tuned and
 Description['erl0001-exbbat2'] = "Anti-Air Subsystem\nAircraft pose a significant threat to any commander on the battlefield however with the installation of highly precise anti air laser systems it is possible to negate some of the threat. If needed the commander can also temporarily shift through a quantum rift to quickly teleport around the battlefield as well.\n\n+6000 Health\n+100 Armor Regen\nInstalls Two Anti-Air Lasers\nInstalls Teleporter"
 Description['erl0001-exbbat3'] = "Nano Regeneration Subsystem\nBy installing a large cache of nano machines and enough computer systems to help control them at extreme efficiency it is possible to rapidly repair damage systems and get back into the battle before your opponents have the chance to do the same.\n\n+11000 Health\n+100 Armor Regen"
 
-----Aeon ACU Upgrades
+-- Aeon ACU Upgrades
 
 Description['eal0001'] = "<LOC Unit_Description_0305> Houses Commander. Combination barracks and command center. Contains all the blueprints necessary to build a basic army from scratch."
 Description['eal0001-exrzb1'] = "Jury Rigged Disruptor\nBy running additional power feeds and rapidly upgrading capacitors upgrading the command chassis with a slightly enhanced main weapon can be useful when in a pinch. However this system is automatically installed later if it is not needed earlier.\n\n+100 Disruptor Damage"
@@ -103,7 +92,7 @@ Description['eal0001-exbbat1'] = "Quantum Maelstrom Generator\nWhile delving thr
 Description['eal0001-exbbat2'] = "Quantum Distortion Amplifier\nAfter discovering this was not what they originally intended to create it was determined that the system could still be used to great effect against their enemies. By adding amplified energy output systems its possible to increase how potent the field is and better protect allied units from harm.\n\n+8000 Health\n+50 Armor Regen\n+100 Maelstrom DPS\nInstalls Tactical Missile Defense"
 Description['eal0001-exbbat3'] = "Quantum Instability Enhancer\nWith the addition of extra computing power it has been determined that limited control over the instabilities that make up the field could increase both field coverage and destructive potential. This system can be extremely devastating to nearby enemy forces.\n\n+15000 Health\n+50 Armor Regen\n+150 Maelstrom DPS\n+8 Maelstrom Range"
 
-----Serephim ACU Upgrades
+-- Seraphim ACU Upgrades
 
 Description['esl0001'] = "<LOC Unit_Description_0420> Houses Commander. Combination barracks and command center. Contains all the blueprints necessary to build a basic army from scratch."
 Description['esl0001-exrzb1'] = "Jury Rigged Chronoton\nBy running additional power feeds and rapidly upgrading capacitors upgrading the command chassis with a slightly enhanced main weapon can be useful when in a pinch. However this system is automatically installed later if it is not needed earlier.\n\n+100 Chronoton Damage\n+8 Chronoton Range\n+8 Overcharge Range"

@@ -2,7 +2,7 @@ function FakeGateInUnit(unit, callbackFunction)
     local faction
     local bp = unit:GetBlueprint()
 
-    if EntityCategoryContains( categories.COMMAND, unit ) then
+    if EntityCategoryContains(categories.COMMAND, unit) then
         for k,v in bp.Categories do
             if v == 'UEF' then
                 faction = 1
@@ -20,10 +20,9 @@ function FakeGateInUnit(unit, callbackFunction)
         unit:SetUnSelectable(true)
         unit:SetBusy(true)
         unit:PlayUnitSound('CommanderArrival')
-        unit:CreateProjectile( '/effects/entities/UnitTeleport03/UnitTeleport03_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
+        unit:CreateProjectile('/effects/entities/UnitTeleport03/UnitTeleport03_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(0.75)
 
-        LOG('Faction ',faction)
         if faction == 1 then
             unit:SetMesh('/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh', true)
             unit:ShowBone(0, true)

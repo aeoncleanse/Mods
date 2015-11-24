@@ -21,12 +21,12 @@ EXCluster01Effect03 = Class(NullShell) {
     EffectThread = function(self)
         local army = self:GetArmy()
         for k, v in EffectTemplate.TNukeHeadEffects03 do
-            CreateAttachedEmitter(self, -1, army, v ):ScaleEmitter(0.03125)-- Exavier Modified Scale 
+            CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(0.03125)-- Exavier Modified Scale 
         end            
     
         WaitSeconds(6)
         for k, v in EffectTemplate.TNukeHeadEffects02 do
-            CreateAttachedEmitter(self, -1, army, v ):ScaleEmitter(0.03125)-- Exavier Modified Scale 
+            CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(0.03125)-- Exavier Modified Scale 
         end    
     end,      
 }

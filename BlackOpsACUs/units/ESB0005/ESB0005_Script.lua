@@ -40,9 +40,9 @@ end,
             self.ShieldEffectsBag = {}
         end
         for k, v in self.ShieldEffects do
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ):ScaleEmitter(0.0625) )
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ):ScaleEmitter(0.0625):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ):ScaleEmitter(0.0625):OffsetEmitter(0, 0.5, 0) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625))
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, 0.5, 0))
         end
         local bp = self:GetBlueprint().Defense.SeraLambdaField01
         local bp2 = self:GetBlueprint().Defense.SeraLambdaField02

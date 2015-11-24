@@ -23,7 +23,7 @@ function CreateArmyUnit(strArmy,strUnit)
             strArmy,
             tblUnit.Position[1], tblUnit.Position[2], tblUnit.Position[3],
             tblUnit.Orientation[1], tblUnit.Orientation[2], tblUnit.Orientation[3]
-        )
+       )
         if unit:GetBlueprint().Physics.FlattenSkirt then
             unit:CreateTarmac(true, true, true, false, false)
         end             

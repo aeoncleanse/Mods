@@ -27,9 +27,9 @@ local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
 
 -- Setup as RemoteViewing child unit rather than SWalkingLandUnit
 local RemoteViewing = import('/lua/RemoteViewing.lua').RemoteViewing
-SWalkingLandUnit = RemoteViewing( SWalkingLandUnit ) 
+SWalkingLandUnit = RemoteViewing(SWalkingLandUnit) 
 
-ESL0001 = Class( SWalkingLandUnit ) {
+ESL0001 = Class(SWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
@@ -167,7 +167,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
                 self.AimControl:SetEnabled(true)
                 self.AimControl:SetPrecedence(20)
                 self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.AimControl:SetHeadingPitch( self.unit:GetWeaponManipulatorByLabel('ChronotronCannon'):GetHeadingPitch() )
+                self.AimControl:SetHeadingPitch(self.unit:GetWeaponManipulatorByLabel('ChronotronCannon'):GetHeadingPitch())
             end,
             
             EXOCRecloakTimer = function(self)
@@ -189,7 +189,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
                 self.AimControl:SetEnabled(false)
                 self.AimControl:SetPrecedence(0)
                 self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.unit:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch( self.AimControl:GetHeadingPitch() )
+                self.unit:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
             end,
             
             PauseOvercharge = function(self)
@@ -233,8 +233,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self:SetCapturable(false)
         self:SetupBuildBones()
         -- Restrict what enhancements will enable later
-        self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-        self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )
+        self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+        self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
     end,
 
     OnPrepareArmToBuild = function(self)
@@ -244,7 +244,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self.BuildArmManipulator:SetPrecedence(20)
         self.wcBuildMode = true
         self:ForkThread(self.WeaponConfigCheck)
-        self.BuildArmManipulator:SetHeadingPitch( self:GetWeaponManipulatorByLabel('ChronotronCannon'):GetHeadingPitch() )
+        self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('ChronotronCannon'):GetHeadingPitch())
     end,
 
     OnStopCapture = function(self, target)
@@ -254,7 +254,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnFailedCapture = function(self, target)
@@ -264,7 +264,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStopReclaim = function(self, target)
@@ -274,7 +274,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
@@ -304,17 +304,17 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self:HideBone('Right_AA_Mount', true)
         self.lambdaEmitterTable = {}
         if not self.RotatorManipulator1 then
-            self.RotatorManipulator1 = CreateRotator( self, 'S_Spinner_B01', 'y' )
-            self.Trash:Add( self.RotatorManipulator1 )
+            self.RotatorManipulator1 = CreateRotator(self, 'S_Spinner_B01', 'y')
+            self.Trash:Add(self.RotatorManipulator1)
         end
-        self.RotatorManipulator1:SetAccel( 30 )
-        self.RotatorManipulator1:SetTargetSpeed( 120 )
+        self.RotatorManipulator1:SetAccel(30)
+        self.RotatorManipulator1:SetTargetSpeed(120)
         if not self.RotatorManipulator2 then
-            self.RotatorManipulator2 = CreateRotator( self, 'L_Spinner_B01', 'y' )
-            self.Trash:Add( self.RotatorManipulator2 )
+            self.RotatorManipulator2 = CreateRotator(self, 'L_Spinner_B01', 'y')
+            self.Trash:Add(self.RotatorManipulator2)
         end
-        self.RotatorManipulator2:SetAccel( -15 )
-        self.RotatorManipulator2:SetTargetSpeed( -60 )
+        self.RotatorManipulator2:SetAccel(-15)
+        self.RotatorManipulator2:SetTargetSpeed(-60)
         self.wcBuildMode = false
         self.wcOCMode = false
         self.wcTorp01 = false
@@ -363,7 +363,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)
@@ -392,7 +392,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
         self.UnitBeingBuilt = nil
         self.UnitBuildOrder = nil
         self.BuildingUnit = false
@@ -408,7 +408,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
     
     WarpInEffectThread = function(self)
         self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
+        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
         self:ShowBone(0, true)
         self:SetUnSelectable(false)
@@ -447,13 +447,13 @@ ESL0001 = Class( SWalkingLandUnit ) {
         self:GetAIBrain():GiveResource('Mass', self:GetBlueprint().Economy.StorageMass)
     end,
 
-    CreateBuildEffects = function( self, unitBeingBuilt, order )
-        EffectUtil.CreateSeraphimUnitEngineerBuildingEffects( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+        EffectUtil.CreateSeraphimUnitEngineerBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
     EXRegenBuffThread = function(self)
-        --if Buff.HasBuff( self, 'EXRegenBoost' ) then
-        --    Buff.RemoveBuff( self, 'EXRegenBoost' )
+        --if Buff.HasBuff(self, 'EXRegenBoost') then
+        --    Buff.RemoveBuff(self, 'EXRegenBoost')
         --end
         self.regenammount = 0
         local EXBP = self:GetBlueprint()
@@ -771,9 +771,9 @@ ESL0001 = Class( SWalkingLandUnit ) {
     OnScriptBitClear = function(self, bit)
         if bit == 0 then -- shield toggle
             self:DisableShield()
-            self:StopUnitAmbientSound( 'ActiveLoop' )
+            self:StopUnitAmbientSound('ActiveLoop')
         elseif bit == 8 then -- cloak toggle
-            self:PlayUnitAmbientSound( 'ActiveLoop' )
+            self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('Cloak')
             self:EnableUnitIntel('Radar')
@@ -788,9 +788,9 @@ ESL0001 = Class( SWalkingLandUnit ) {
     OnScriptBitSet = function(self, bit)
         if bit == 0 then -- shield toggle
             self:EnableShield()
-            self:PlayUnitAmbientSound( 'ActiveLoop' )
+            self:PlayUnitAmbientSound('ActiveLoop')
         elseif bit == 8 then -- cloak toggle
-            self:StopUnitAmbientSound( 'ActiveLoop' )
+            self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('Cloak')
             self:DisableUnitIntel('Radar')
@@ -898,18 +898,18 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXImprovedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff( self, 'SERAPHIMACUT2BuildRate' ) then
-                Buff.RemoveBuff( self, 'SERAPHIMACUT2BuildRate' )
+            if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction( categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost1' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost1')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -963,19 +963,19 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'SERAPHIMACUT3BuildRate' ) then
-                Buff.RemoveBuff( self, 'SERAPHIMACUT3BuildRate' )
+            if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost1' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost1')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost2' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost2' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost2') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost2')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1029,22 +1029,22 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'SERAPHIMACUT4BuildRate' ) then
-                Buff.RemoveBuff( self, 'SERAPHIMACUT4BuildRate' )
+            if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
             end
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost1' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost1')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost2' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost2' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost2') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost2')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost3' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost3' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost3') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost3')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1106,7 +1106,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
                 }
                 
             end
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp' ) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
             self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
             local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
             self:RemoveBuildRestriction(cat)
@@ -1155,15 +1155,15 @@ ESL0001 = Class( SWalkingLandUnit ) {
             end
             KillThread(self.RegenThreadHandle)
             local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff( self, 'SERAPHIMACUT2BuildRate' ) then
-                Buff.RemoveBuff( self, 'SERAPHIMACUT2BuildRate' )
+            if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction( categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )
-            if Buff.HasBuff( self, 'EXSeraHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost4' )
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end
             self.RBComEngineering = false
             self.RBAssEngineering = false
@@ -1232,7 +1232,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
                     },
                 }
             end
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp' ) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
             self.AdvancedRegenThreadHandle = self:ForkThread(self.AdvancedRegenBuffThread)
             local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
             self:RemoveBuildRestriction(cat)
@@ -1283,16 +1283,16 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'SERAPHIMACUT3BuildRate' ) then
-                Buff.RemoveBuff( self, 'SERAPHIMACUT3BuildRate' )
+            if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )     
-            if Buff.HasBuff( self, 'EXSeraHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost4' )
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))     
+            if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost5' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost5' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost5') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost5')
             end
             self.RBComEngineering = false
             self.RBAssEngineering = false
@@ -1348,19 +1348,19 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'SERAPHIMACUT4BuildRate' ) then
-                Buff.RemoveBuff( self, 'SERAPHIMACUT4BuildRate' )
+            if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
             end
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.SERAPHIM * ( categories.BUILTBYTIER4COMMANDER) )
-            if Buff.HasBuff( self, 'EXSeraHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost4' )
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost5' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost5' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost5') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost5')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost6' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost6' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost6') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost6')
             end
             self.RBComEngineering = false
             self.RBAssEngineering = false
@@ -1402,8 +1402,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXTorpedoLauncherRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost7' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost7')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1441,11 +1441,11 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXTorpedoRapidLoaderRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost7' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost7')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost8' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost8' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost8') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost8')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1483,14 +1483,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXTorpedoClusterLauncherRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost7' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost7')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost8' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost8' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost8') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost8')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost9' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost9' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost9') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost9')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1528,8 +1528,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCannonBigBallRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost10' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost10')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1567,11 +1567,11 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXImprovedContainmentBottleRemove' then    
-            if Buff.HasBuff( self, 'EXSeraHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost10' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost10')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost11' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost11' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost11') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost11')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1609,14 +1609,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXPowerBoosterRemove' then    
             self:SetWeaponEnabledByLabel('EXBigBallCannon', false)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost10' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost10')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost11' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost11' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost11') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost11')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost12' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost12' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost12') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost12')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1653,8 +1653,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCannonRapidRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost13' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost13')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1692,11 +1692,11 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXImprovedCoolingSystemRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost13' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost13')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost14' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost14' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost14') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost14')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1733,14 +1733,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXEnergyShellHardenerRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost13' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost13')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost14' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost14' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost14') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost14')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost15' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost15' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost15') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost15')
             end
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1815,8 +1815,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self.WeaponCheckAA01 = false
             self:SetWeaponEnabledByLabel('EXAA01', false)
             self:SetWeaponEnabledByLabel('EXAA02', false)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost22' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost22' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost22') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost22')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1891,11 +1891,11 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self.WeaponCheckAA01 = false
             self:SetWeaponEnabledByLabel('EXAA01', false)
             self:SetWeaponEnabledByLabel('EXAA02', false)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost22' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost22' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost22') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost22')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost23' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost23' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost23') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost23')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1986,14 +1986,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self.WeaponCheckAA01 = false
             self:SetWeaponEnabledByLabel('EXAA01', false)
             self:SetWeaponEnabledByLabel('EXAA02', false)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost22' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost22' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost22') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost22')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost23' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost23' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost23') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost23')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost24' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost24' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost24') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost24')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2054,8 +2054,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost16' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost16')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2136,11 +2136,11 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost16' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost16')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost17' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost17' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost17') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost17')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2199,14 +2199,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff( self, 'EXSeraHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost16' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost16')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost17' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost17' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost17') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost17')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost18' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost18' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost18') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost18')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2269,8 +2269,8 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self.RBComTier3 = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXBasicDefenceRemove' then
-            if Buff.HasBuff( self, 'EXSeraHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost19' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost19')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2321,14 +2321,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local amt = self:GetTacticalSiloAmmoCount()
             self:RemoveTacticalSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff( self, 'EXSeraHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost19' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost19')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost20' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost20' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost20') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost20')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost21' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost21' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost21') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost21')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2379,14 +2379,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             local amt = self:GetTacticalSiloAmmoCount()
             self:RemoveTacticalSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff( self, 'EXSeraHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost19' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost19')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost20' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost20' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost20') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost20')
             end
-            if Buff.HasBuff( self, 'EXSeraHealthBoost21' ) then
-                Buff.RemoveBuff( self, 'EXSeraHealthBoost21' )
+            if Buff.HasBuff(self, 'EXSeraHealthBoost21') then
+                Buff.RemoveBuff(self, 'EXSeraHealthBoost21')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -2459,14 +2459,14 @@ ESL0001 = Class( SWalkingLandUnit ) {
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end            
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()  
             if not self.IntelEffectsBag then 
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end                  
         end        
     end,
@@ -2502,7 +2502,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         if self.RBIntTier3 then
             if ((new == 'Stopped' or new == 'Stopping') and (old == 'Cruise' or old == 'TopSpeed')) then
                 self.EXMoving = false
-            elseif ( old == 'Stopped' or (old == 'Stopping' and (new == 'Cruise' or new == 'TopSpeed'))) then
+            elseif (old == 'Stopped' or (old == 'Stopping' and (new == 'Cruise' or new == 'TopSpeed'))) then
                 self.EXMoving = true
             end
         end
@@ -2529,7 +2529,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
         SWalkingLandUnit.PlayTeleportChargeEffects(self, location)
     end,
     
-    PlayTeleportInEffects = function( self )
+    PlayTeleportInEffects = function(self)
         SWalkingLandUnit.PlayTeleportInEffects(self)
         self:ForkThread(self.EXRecloakDelayThread)
     end,

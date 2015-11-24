@@ -69,7 +69,7 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
               
             ------ Split effects
             for k, v in FxFragEffect do
-                CreateEmitterAtEntity( self, self:GetArmy(), v )
+                CreateEmitterAtEntity(self, self:GetArmy(), v)
             end
             
             local vx, vy, vz = self:GetVelocity()
@@ -82,7 +82,7 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
             local numProjectiles = 3
             
             local angle = (2*math.pi) / numProjectiles
-            local angleInitial = RandomFloat( 0, angle )
+            local angleInitial = RandomFloat(0, angle)
             
             -- Randomization of the spread
             local angleVariation = angle * 3 -- Adjusts angle variance spread

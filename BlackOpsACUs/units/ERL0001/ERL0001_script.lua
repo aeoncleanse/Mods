@@ -58,33 +58,33 @@ ERL0001 = Class(CWalkingLandUnit) {
                         end
                         self.unit.EMPArrayEffects01 = {}
                     end
-                    table.insert( self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp') )
-                    table.insert( self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp') )
-                    table.insert( self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp') )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp' ):ScaleEmitter(0.05) )
-                    table.insert( self.unit.EMPArrayEffects01, CreateAttachedEmitter( self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp' ):ScaleEmitter(0.05) )
+                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp'))
+                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp'))
+                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp'))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp'):ScaleEmitter(0.05))
+                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp'):ScaleEmitter(0.05))
                     self.unit:SetWeaponEnabledByLabel('EXEMPArray02', true)
                     self.unit:SetWeaponEnabledByLabel('EXEMPArray03', true)
                     self.unit:SetWeaponEnabledByLabel('EXEMPArray04', true)
@@ -182,7 +182,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                 self.AimControl:SetEnabled(true)
                 self.AimControl:SetPrecedence(20)
                 self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.AimControl:SetHeadingPitch( self.unit:GetWeaponManipulatorByLabel('RightRipper'):GetHeadingPitch() )
+                self.AimControl:SetHeadingPitch(self.unit:GetWeaponManipulatorByLabel('RightRipper'):GetHeadingPitch())
             end,
 
             OnWeaponFired = function(self)
@@ -199,7 +199,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                 self.AimControl:SetEnabled(false)
                 self.AimControl:SetPrecedence(0)
                 self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.unit:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch( self.AimControl:GetHeadingPitch() )
+                self.unit:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
             end,
             
             PauseOvercharge = function(self)
@@ -269,8 +269,8 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:HideBone('Back_CombatPack', true)
         self:HideBone('Chest_Open', true)
         -- Restrict what enhancements will enable later
-        self:AddBuildRestriction( categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-        self:AddBuildRestriction( categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER) )
+        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
     end,
 
 
@@ -281,7 +281,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(20)
         self.wcBuildMode = true
         self:ForkThread(self.WeaponConfigCheck)
-        self.BuildArmManipulator:SetHeadingPitch( self:GetWeaponManipulatorByLabel('RightRipper'):GetHeadingPitch() )
+        self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('RightRipper'):GetHeadingPitch())
     end,
 
     OnStopCapture = function(self, target)
@@ -291,7 +291,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnFailedCapture = function(self, target)
@@ -301,7 +301,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStopReclaim = function(self, target)
@@ -311,7 +311,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
@@ -372,7 +372,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)    
@@ -389,7 +389,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
         self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
+        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
         self.UnitBeingBuilt = nil
         self.UnitBuildOrder = nil
         self.BuildingUnit = false          
@@ -405,7 +405,7 @@ ERL0001 = Class(CWalkingLandUnit) {
 
     WarpInEffectThread = function(self)
         self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
+        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
         self:SetMesh('/units/erl0001/ERL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
@@ -454,8 +454,8 @@ ERL0001 = Class(CWalkingLandUnit) {
     end,
 
     EXRegenBuffThread = function(self)
-        --if Buff.HasBuff( self, 'EXRegenBoost' ) then
-        --    Buff.RemoveBuff( self, 'EXRegenBoost' )
+        --if Buff.HasBuff(self, 'EXRegenBoost') then
+        --    Buff.RemoveBuff(self, 'EXRegenBoost')
         --end
         self.regenammount = 0
         local EXBP = self:GetBlueprint()
@@ -807,7 +807,7 @@ ERL0001 = Class(CWalkingLandUnit) {
 
     OnScriptBitClear = function(self, bit)
         if bit == 8 then -- cloak toggle
-            self:PlayUnitAmbientSound( 'ActiveLoop' )
+            self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('Cloak')
             self:EnableUnitIntel('RadarStealth')
@@ -819,7 +819,7 @@ ERL0001 = Class(CWalkingLandUnit) {
 
     OnScriptBitSet = function(self, bit)
         if bit == 8 then -- cloak toggle
-            self:StopUnitAmbientSound( 'ActiveLoop' )
+            self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('Cloak')
             self:DisableUnitIntel('RadarStealth')
@@ -833,9 +833,9 @@ ERL0001 = Class(CWalkingLandUnit) {
     -- *************
     -- Build/Upgrade
     -- *************
-    CreateBuildEffects = function( self, unitBeingBuilt, order )
-       EffectUtil.SpawnBuildBots( self, unitBeingBuilt, 5, self.BuildEffectsBag )
-       EffectUtil.CreateCybranBuildBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+       EffectUtil.SpawnBuildBots(self, unitBeingBuilt, 5, self.BuildEffectsBag)
+       EffectUtil.CreateCybranBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
     CreateEnhancement = function(self, enh)
@@ -888,18 +888,18 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXImprovedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff( self, 'CYBRANACUT2BuildRate' ) then
-                Buff.RemoveBuff( self, 'CYBRANACUT2BuildRate' )
+            if Buff.HasBuff(self, 'CYBRANACUT2BuildRate') then
+                Buff.RemoveBuff(self, 'CYBRANACUT2BuildRate')
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction( categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost1' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost1')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -953,19 +953,19 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'CYBRANACUT3BuildRate' ) then
-                Buff.RemoveBuff( self, 'CYBRANACUT3BuildRate' )
+            if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
+                Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost1' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost1')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost2' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost2' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost2') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost2')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1019,22 +1019,22 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'CYBRANACUT4BuildRate' ) then
-                Buff.RemoveBuff( self, 'CYBRANACUT4BuildRate' )
+            if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
+                Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
             end
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER4COMMANDER) )
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost1' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost1' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost1') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost1')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost2' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost2' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost2') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost2')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost3' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost3' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost3') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost3')
             end
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
@@ -1085,15 +1085,15 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCombatEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff( self, 'CYBRANACUT2BuildRate' ) then
-                Buff.RemoveBuff( self, 'CYBRANACUT2BuildRate' )
+            if Buff.HasBuff(self, 'CYBRANACUT2BuildRate') then
+                Buff.RemoveBuff(self, 'CYBRANACUT2BuildRate')
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction( categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER4COMMANDER) )
-            if Buff.HasBuff( self, 'EXCybranHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost4' )
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end
             self.wcRocket01 = false
             self.wcRocket02 = false
@@ -1150,16 +1150,16 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'CYBRANACUT3BuildRate' ) then
-                Buff.RemoveBuff( self, 'CYBRANACUT3BuildRate' )
+            if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
+                Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER4COMMANDER) )     
-            if Buff.HasBuff( self, 'EXCybranHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost4' )
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))     
+            if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost5' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost5' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost5') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost5')
             end
             self.wcRocket01 = false
             self.wcRocket02 = false
@@ -1212,19 +1212,19 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
             self:RestoreBuildRestrictions()
-            if Buff.HasBuff( self, 'CYBRANACUT4BuildRate' ) then
-                Buff.RemoveBuff( self, 'CYBRANACUT4BuildRate' )
+            if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
+                Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
             end
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER) )
-            self:AddBuildRestriction( categories.CYBRAN * ( categories.BUILTBYTIER4COMMANDER) )
-            if Buff.HasBuff( self, 'EXCybranHealthBoost4' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost4' )
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost5' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost5' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost5') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost5')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost6' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost6' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost6') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost6')
             end
             self.wcRocket01 = false
             self.wcRocket02 = false
@@ -1270,8 +1270,8 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXTorpedoLauncherRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost7' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost7')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1309,11 +1309,11 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXTorpedoRapidLoaderRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost7' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost7')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost8' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost8' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost8') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost8')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1351,14 +1351,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXTorpedoClusterLauncherRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost7' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost7' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost7') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost7')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost8' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost8' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost8') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost8')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost9' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost9' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost9') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost9')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1396,8 +1396,8 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXEMPArrayRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost10' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost10')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1435,11 +1435,11 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXImprovedCapacitorsRemove' then    
-            if Buff.HasBuff( self, 'EXCybranHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost10' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost10')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost11' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost11' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost11') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost11')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1477,14 +1477,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXPowerBoosterRemove' then    
             self:SetWeaponEnabledByLabel('EXEMPArray01', false)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost10' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost10' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost10') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost10')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost11' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost11' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost11') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost11')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost12' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost12' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost12') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost12')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1521,8 +1521,8 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXMasorRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost13' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost13')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1560,11 +1560,11 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='EXImprovedCoolingSystemRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost13' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost13')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost14' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost14' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost14') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost14')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1601,14 +1601,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAdvancedEmitterArrayRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost13' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost13' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost13') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost13')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost14' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost14' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost14') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost14')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost15' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost15' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost15') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost15')
             end
             local wepRipper = self:GetWeaponByLabel('RightRipper')
             local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
@@ -1645,8 +1645,8 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBDefTier3 = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXArmorPlatingRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost22' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost22' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost22') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost22')
             end
             self.wcAA01 = false
             self.wcAA02 = false
@@ -1682,11 +1682,11 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBDefTier3 = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXStructuralIntegrityRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost22' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost22' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost22') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost22')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost23' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost23' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost23') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost23')
             end
             self.wcAA01 = false
             self.wcAA02 = false
@@ -1718,14 +1718,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBDefTier3 = true
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXCompositeMaterialsRemove' then
-            if Buff.HasBuff( self, 'EXCybranHealthBoost22' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost22' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost22') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost22')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost23' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost23' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost23') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost23')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost24' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost24' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost24') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost24')
             end
             self.wcAA01 = false
             self.wcAA02 = false
@@ -1762,8 +1762,8 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost16' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost16')
             end
             self.RBIntTier1 = false
             self.RBIntTier2 = false
@@ -1810,11 +1810,11 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost16' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost16')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost17' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost17' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost17') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost17')
             end
             self.RBIntTier1 = false
             self.RBIntTier2 = false
@@ -1853,14 +1853,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost16' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost16' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost16') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost16')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost17' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost17' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost17') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost17')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost18' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost18' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost18') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost18')
             end
             self.RBIntTier1 = false
             self.RBIntTier2 = false
@@ -1890,8 +1890,8 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXMobilitySubsystemsRemove' then
             self:SetSpeedMult(1)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost19' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost19')
             end
             self.RBComTier1 = false
             self.RBComTier2 = false
@@ -1925,11 +1925,11 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXDefensiveSubsystemsRemove' then
             self:SetSpeedMult(1)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost19' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost19')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost20' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost20' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost20') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost20')
             end
             self:RemoveCommandCap('RULEUCC_Teleport')
             self.wcAA01 = false
@@ -1963,14 +1963,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXNanoKickerSubsystemsRemove' then
             self:SetSpeedMult(1)
-            if Buff.HasBuff( self, 'EXCybranHealthBoost19' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost19' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost19') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost19')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost20' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost20' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost20') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost20')
             end
-            if Buff.HasBuff( self, 'EXCybranHealthBoost21' ) then
-                Buff.RemoveBuff( self, 'EXCybranHealthBoost21' )
+            if Buff.HasBuff(self, 'EXCybranHealthBoost21') then
+                Buff.RemoveBuff(self, 'EXCybranHealthBoost21')
             end
             self:RemoveCommandCap('RULEUCC_Teleport')
             self.wcAA01 = false
@@ -2031,14 +2031,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end            
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()  
             if not self.IntelEffectsBag then 
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end                  
         end        
     end,
