@@ -1,17 +1,3 @@
-do
-local TriggerFile = import('scenariotriggers.lua')
-local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
-local UnitUpgradeTemplates = import('/lua/upgradeTemplates.lua').UnitUpgradeTemplates
-local ScenarioPlatoonAI = import('/lua/ScenarioPlatoonAI.lua')
-local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
-local SimCamera = import('/lua/SimCamera.lua').SimCamera
-local Cinematics = import('/lua/cinematics.lua')
-local SimUIVars = import('/lua/sim/SimUIState.lua')
-local Utilities = import('/lua/Utilities.lua') -- enabled so we can hide strat icons during NISs
-
-PingGroups = import('/lua/SimPingGroup.lua')
-Objectives = import('/lua/SimObjectives.lua')
-
 function FakeGateInUnit(unit, callbackFunction)
     local faction
     local bp = unit:GetBlueprint()
@@ -39,7 +25,7 @@ function FakeGateInUnit(unit, callbackFunction)
 
         LOG('Faction ',faction)
         if faction == 1 then
-            unit:SetMesh('/units/eel0001/EEL0001_PhaseShield_mesh', true)
+            unit:SetMesh('/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh', true)
             unit:ShowBone(0, true)
             unit:HideBone('Engineering_Suite', true)
             unit:HideBone('Flamer', true)
@@ -54,7 +40,7 @@ function FakeGateInUnit(unit, callbackFunction)
             unit:HideBone('Back_IntelPack', true)
             unit:HideBone('Torpedo_Launcher', true)
         elseif faction == 2 then
-            unit:SetMesh('/units/eal0001/EAL0001_PhaseShield_mesh', true)
+            unit:SetMesh('/mods/BlackOpsACUs/units/eal0001/EAL0001_PhaseShield_mesh', true)
             unit:ShowBone(0, true)
             unit:HideBone('Engineering', true)
             unit:HideBone('Combat_Engineering', true)
@@ -85,7 +71,7 @@ function FakeGateInUnit(unit, callbackFunction)
             unit:HideBone('Artillery_Barrel_Right', true)
             unit:HideBone('Artillery_Pitch', true)
         elseif faction == 3 then
-            unit:SetMesh('/units/erl0001/ERL0001_PhaseShield_mesh', true)
+            unit:SetMesh('/mods/BlackOpsACUs/units/erl0001/ERL0001_PhaseShield_mesh', true)
             unit:ShowBone(0, true)
             unit:HideBone('Mobility_LLeg_B01', true)
             unit:HideBone('Mobility_LLeg_B02', true)
@@ -126,7 +112,7 @@ function FakeGateInUnit(unit, callbackFunction)
         unit:SetMesh(unit:GetBlueprint().Display.MeshBlueprint, true)
     else
         LOG ('debug:non commander')
-        unit:PlayTeleportChargeEffects()
+        unit:PlayTeleportChargeEffects(unit:GetPosition(), unit:GetOrientation())
         unit:PlayUnitSound('GateCharge')
         WaitSeconds(2)
         unit:CleanupTeleportChargeEffects()
@@ -135,5 +121,4 @@ function FakeGateInUnit(unit, callbackFunction)
     if callbackFunction then
         callbackFunction()
     end
-end
 end
