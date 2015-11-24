@@ -368,7 +368,7 @@ ESL0001 = Class( SWalkingLandUnit ) {
 
     OnStartBuild = function(self, unitBeingBuilt, order)
         local bp = self:GetBlueprint()
-        if order != 'Upgrade' or bp.Display.ShowBuildEffectsDuringUpgrade then
+        if order ~= 'Upgrade' or bp.Display.ShowBuildEffectsDuringUpgrade then
             self:StartBuildingEffects(unitBeingBuilt, order)
         end
         self:DoOnStartBuildCallbacks(unitBeingBuilt)

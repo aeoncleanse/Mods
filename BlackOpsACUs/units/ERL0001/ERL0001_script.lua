@@ -2067,7 +2067,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             end
         end 
         --if we could find a blueprint with v.Add.OnDeath, then add the buff 
-        if bp != nil then 
+        if bp ~= nil then 
             --Apply Buff
             self:AddBuff(bp)
         end

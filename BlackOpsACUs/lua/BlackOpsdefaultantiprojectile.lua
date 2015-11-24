@@ -1,5 +1,6 @@
 --****************************************************************************
 --**
+
 --**  File     :  /lua/defaultantimissile.lua
 --**  Author(s):  Gordon Duclos
 --**
@@ -7,6 +8,8 @@
 --**
 --**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
+
+
 local Entity = import('/lua/sim/Entity.lua').Entity
 local EXEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
 
@@ -52,7 +55,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
         OnCollisionCheck = function(self, other)
             --LOG('*DEBUG MISSILE REDIRECT COLLISION CHECK')
             if EntityCategoryContains(categories.PROJECTILE, other) and not EntityCategoryContains(categories.STRATEGIC, other) and not EntityCategoryContains(categories.ANTINAVY, other) 
-                        and other != self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
+                        and other ~= self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
                 --NOTE: Fix me We need to test enemy validity if there is no enemy 
@@ -61,7 +64,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
             --  BulletMagnet: Lambda-powered tennis matches between Sephies should be possible.
             --  BulletMagnet: we store the army index of the last team to redirect the projectile as our check parameter.
                 self.EXFiring = false
-                if self.Enemy and (not other.lastRedirector or other.lastRedirector != self:GetArmy()) then
+                if self.Enemy and (not other.lastRedirector or other.lastRedirector ~= self:GetArmy()) then
                     other.lastRedirector = self:GetArmy()
                     local targetspeed = other:GetCurrentSpeed()
                     other:SetVelocity(targetspeed * 3)
@@ -173,13 +176,13 @@ SeraLambdaFieldDestroyer = Class(Entity) {
         OnCollisionCheck = function(self, other)
             --LOG('*DEBUG MISSILE REDIRECT COLLISION CHECK')
             if EntityCategoryContains(categories.PROJECTILE, other) and not EntityCategoryContains(categories.STRATEGIC, other) and not EntityCategoryContains(categories.ANTINAVY, other) 
-                        and other != self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
+                        and other ~= self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
                 --NOTE: Fix me We need to test enemy validity if there is no enemy 
                 --      set target to 180 of the unit
                 self.EXFiring = false
-                if self.Enemy and (not other.lastRedirector or other.lastRedirector != self:GetArmy()) then
+                if self.Enemy and (not other.lastRedirector or other.lastRedirector ~= self:GetArmy()) then
                     other.lastRedirector = self:GetArmy()
                     local targetspeed = other:GetCurrentSpeed()
                     other:SetVelocity(targetspeed * 3)
@@ -240,11 +243,106 @@ SeraLambdaFieldDestroyer = Class(Entity) {
                 v:Destroy()
             end
             ChangeState(self, self.WaitingState)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         end,
 
+
+
+
         OnCollisionCheck = function(self, other)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             return false
         end,
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
