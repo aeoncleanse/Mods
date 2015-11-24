@@ -11,13 +11,13 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'UNSELECTABLE',
-		'UNTARGETABLE',
+        'UNTARGETABLE',
         'DRONE',
         'DEFENSE',
         'INSIGNIFICANTUNIT',
         'TECH3',
         'VISIBLETORECON',
-		'BUILTBYTIER4COMMANDER',
+        'BUILTBYTIER4COMMANDER',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -68,7 +68,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-    	CapCost = 0,
+        CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {

@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/lua/modules/BlackOpsweapons.lua
-#**  Author(s):  Lt_hawkeye
-#**
-#**  Summary  :  
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/lua/modules/BlackOpsweapons.lua
+--**  Author(s):  Lt_hawkeye
+--**
+--**  Summary  :  
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local WeaponFile = import('/lua/sim/defaultweapons.lua')
 local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
@@ -41,7 +41,7 @@ PDLaserGrid = Class(DefaultBeamWeapon) {
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
 
-    FxUpackingChargeEffects = {},#'/effects/emitters/quantum_generator_charge_01_emit.bp'},
+    FxUpackingChargeEffects = {},--'/effects/emitters/quantum_generator_charge_01_emit.bp'},
     FxUpackingChargeEffectScale = 1,
 
     PlayFxWeaponUnpackSequence = function( self )
@@ -100,7 +100,7 @@ PDLaserGrid2 = Class(DefaultBeamWeapon) {
 
 UEFACUHeavyPlasmaGatlingCannonWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EXEffectTemplate.UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
-	FxMuzzleFlashScale = 0.35,
+    FxMuzzleFlashScale = 0.35,
 }
 
 AeonACUPhasonLaser = Class(DefaultBeamWeapon) {
@@ -126,12 +126,12 @@ AeonACUPhasonLaser = Class(DefaultBeamWeapon) {
 
 SeraACURapidWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EffectTemplate.SDFAireauWeaponMuzzleFlash,
-	FxMuzzleFlashScale = 0.33,
+    FxMuzzleFlashScale = 0.33,
 }
 
 SeraACUBigBallWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EffectTemplate.SDFSinnutheWeaponMuzzleFlash,
     FxChargeMuzzleFlash = EffectTemplate.SDFSinnutheWeaponChargeMuzzleFlash,
-	FxChargeMuzzleFlashScale = 0.33,
-	FxMuzzleFlashScale = 0.33,
+    FxChargeMuzzleFlashScale = 0.33,
+    FxMuzzleFlashScale = 0.33,
 }

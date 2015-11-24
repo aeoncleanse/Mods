@@ -22,7 +22,7 @@ ProjectileBlueprint {
         'DIRECTFIRE',
     },
     Display = {
-		ImpactEffects = {
+        ImpactEffects = {
             Type = 'Medium02',
         },
         StrategicIconSize = 1,

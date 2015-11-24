@@ -28,7 +28,7 @@ UnitBlueprint {
     },
     Categories = {
         'UNSELECTABLE',
-		'UNTARGETABLE',
+        'UNTARGETABLE',
         'DRONE',
         'SERAPHIM',
         'DEFENSE',
@@ -87,7 +87,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-    	CapCost = 0,
+        CapCost = 0,
         Category = 'Utility',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {

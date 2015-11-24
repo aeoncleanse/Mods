@@ -7,15 +7,15 @@ function CreateArmyUnit(strArmy,strUnit)
     if not brain.IgnoreArmyCaps then
         SetIgnoreArmyUnitCap(brain:GetArmyIndex(), true)
     end
-	if brain.BrainType == 'Human' then
+    if brain.BrainType == 'Human' then
     if nil != tblUnit then
-		if string.sub(tblUnit.type, 1, 7) == 'ual0001' then
-			tblUnit.type = 'eal0001'
-		elseif string.sub(tblUnit.type, 1, 7) == 'uel0001' then
-			tblUnit.type = 'eel0001'
-		elseif string.sub(tblUnit.type, 1, 7) == 'url0001' then
-			tblUnit.type = 'erl0001'
-		end
+        if string.sub(tblUnit.type, 1, 7) == 'ual0001' then
+            tblUnit.type = 'eal0001'
+        elseif string.sub(tblUnit.type, 1, 7) == 'uel0001' then
+            tblUnit.type = 'eel0001'
+        elseif string.sub(tblUnit.type, 1, 7) == 'url0001' then
+            tblUnit.type = 'erl0001'
+        end
         local unit = CreateUnitHPR(
             tblUnit.type,
             strArmy,
@@ -48,7 +48,7 @@ function CreateArmyUnit(strArmy,strUnit)
         end
         return unit, platoon, tblUnit.platoon
     end
-	else
+    else
     if nil != tblUnit then
         local unit = CreateUnitHPR(
             tblUnit.type,
@@ -82,7 +82,7 @@ function CreateArmyUnit(strArmy,strUnit)
         end
         return unit, platoon, tblUnit.platoon
     end
-	end
+    end
     if not brain.IgnoreArmyCaps then
         SetIgnoreArmyUnitCap(brain:GetArmyIndex(), false)
     end

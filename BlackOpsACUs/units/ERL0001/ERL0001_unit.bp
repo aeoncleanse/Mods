@@ -142,8 +142,8 @@ UnitBlueprint {
         RegenRate = 15,
         SubThreatLevel = 0,
         SurfaceThreatLevel = 75,
-		NoTeleDistance = 40,
-		MaxTeleRange = 120,
+        NoTeleDistance = 40,
+        MaxTeleRange = 120,
     },
     Description = '<LOC url0001_desc>Armored Command Unit',
     Display = {
@@ -290,9 +290,9 @@ UnitBlueprint {
         TeleportEnergyMod = 0.03985,
         TeleportMassMod = 0.03985,
         TeleportTimeMod = 0.0001,
-		TeleportBurstEnergyCost = 7000,
-		xpBaseValue = 16000,
-		BuildxpLevelpSecond = 0,
+        TeleportBurstEnergyCost = 7000,
+        xpBaseValue = 16000,
+        BuildxpLevelpSecond = 0,
     },
     Enhancements = {
         Slots = {
@@ -334,7 +334,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 40,
+            NewRegenRate = 40,
         },
         EXImprovedEngineeringRemove = {
             BuildCostEnergy = 1,
@@ -359,7 +359,7 @@ UnitBlueprint {
             BuildableCategoryAdds = 'BUILTBYTIER3COMMANDER CYBRAN',
             Icon = 'exles2',
             Name = 'Tech 3 Advanced Engineering (T2)',
-			Prerequisite = 'EXImprovedEngineering',
+            Prerequisite = 'EXImprovedEngineering',
             NewBuildRate = 90,
             NewHealth = 5000,
             ProductionPerSecondEnergy = 1000,
@@ -375,7 +375,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 60,
+            NewRegenRate = 60,
         },
         EXAdvancedEngineeringRemove = {
             BuildCostEnergy = 1,
@@ -401,7 +401,7 @@ UnitBlueprint {
             BuildableCategoryAdds = 'BUILTBYTIER4COMMANDER CYBRAN',
             Icon = 'exles3',
             Name = 'Tech 4 Experimental Engineering (T3)',
-			Prerequisite = 'EXAdvancedEngineering',
+            Prerequisite = 'EXAdvancedEngineering',
             NewBuildRate = 120,
             NewHealth = 10000,
             ProductionPerSecondEnergy = 3000,
@@ -417,7 +417,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 150,
+            NewRegenRate = 150,
         },
         EXExperimentalEngineeringRemove = {
             BuildCostEnergy = 1,
@@ -458,7 +458,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 70,
+            NewRegenRate = 70,
         },
         EXCombatEngineeringRemove = {
             BuildCostEnergy = 1,
@@ -484,7 +484,7 @@ UnitBlueprint {
             BuildableCategoryAdds = 'BUILTBYTIER3COMMANDER CYBRAN',
             Icon = 'exlce2',
             Name = 'Tech 3 Assault Engineering (T2)',
-			Prerequisite = 'EXCombatEngineering',
+            Prerequisite = 'EXCombatEngineering',
             NewBuildRate = 90,
             NewHealth = 4000,
             ShowBones = {
@@ -499,7 +499,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 80,
+            NewRegenRate = 80,
         },
         EXAssaultEngineeringRemove = {
             BuildCostEnergy = 1,
@@ -526,7 +526,7 @@ UnitBlueprint {
             BuildableCategoryAdds = 'BUILTBYTIER4COMMANDER CYBRAN',
             Icon = 'exlce3',
             Name = 'Tech 4 Apocolyptic Engineering (T3)',
-			Prerequisite = 'EXAssaultEngineering',
+            Prerequisite = 'EXAssaultEngineering',
             NewBuildRate = 120,
             NewHealth = 9000,
             ShowBones = {
@@ -541,7 +541,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 200,
+            NewRegenRate = 200,
         },
         EXApocolypticEngineeringRemove = {
             BuildCostEnergy = 1,
@@ -568,8 +568,8 @@ UnitBlueprint {
             BuildTime = 800,
             Icon = 'exrzb1',
             Name = 'Jury Rigged Ripper (T1)',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             Slot = 'RCH',
             UpgradeEffectBones = {
                 'Right_Turret',
@@ -586,8 +586,8 @@ UnitBlueprint {
             Icon = 'exrzb1',
             Name = 'Remove Jury Rigged Ripper',
             Prerequisite = 'EXRipperBooster',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXRipperBooster',
                 'EXRipperBoosterRemove',
@@ -601,8 +601,8 @@ UnitBlueprint {
             Icon = 'exrtorp1',
             Name = 'Torpedo Launcher (T2)',
             NewHealth = 1000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             ShowBones = {
                 'Torpedo_Launcher',
             },
@@ -625,8 +625,8 @@ UnitBlueprint {
             Icon = 'exrtorp1',
             Name = 'Remove Torpedo Launcher',
             Prerequisite = 'EXTorpedoLauncher',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXTorpedoLauncher',
                 'EXTorpedoLauncherRemove',
@@ -639,10 +639,10 @@ UnitBlueprint {
             BuildTime = 5400,
             Icon = 'exrtorp2',
             Name = 'Improved Reloader (T3)',
-			Prerequisite = 'EXTorpedoLauncher',
+            Prerequisite = 'EXTorpedoLauncher',
             NewHealth = 3000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             ShowBones = {
                 'Torpedo_Launcher',
             },
@@ -665,8 +665,8 @@ UnitBlueprint {
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
             Prerequisite = 'EXTorpedoRapidLoader',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXTorpedoLauncher',
                 'EXTorpedoRapidLoader',
@@ -680,10 +680,10 @@ UnitBlueprint {
             BuildTime = 14400,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-			Prerequisite = 'EXTorpedoRapidLoader',
+            Prerequisite = 'EXTorpedoRapidLoader',
             NewHealth = 6000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             ShowBones = {
                 'Torpedo_Launcher',
             },
@@ -706,8 +706,8 @@ UnitBlueprint {
             Icon = 'exrtorp3',
             Name = 'Remove Advanced Warheads',
             Prerequisite = 'EXTorpedoClusterLauncher',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXTorpedoLauncher',
                 'EXTorpedoRapidLoader',
@@ -722,9 +722,9 @@ UnitBlueprint {
             BuildTime = 1800,
             Icon = 'exramc1',
             Name = 'EMP Array (T2)',
-			NewHealth = 1000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 35,
+            NewHealth = 1000,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 35,
             ShowBones = {
                 'EMP_Array',
                 'EMP_Array_Cable',
@@ -749,8 +749,8 @@ UnitBlueprint {
             Icon = 'exramc1',
             Name = 'Remove EMP Array',
             Prerequisite = 'EXEMPArray',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 35,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 35,
             RemoveEnhancements = {
                 'EXEMPArray',
                 'EXEMPArrayRemove',
@@ -763,10 +763,10 @@ UnitBlueprint {
             BuildTime = 5400,
             Icon = 'exramc2',
             Name = 'Adjusted Crystal Matrix (T3)',
-			Prerequisite = 'EXEMPArray',
+            Prerequisite = 'EXEMPArray',
             NewHealth = 3000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 35,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 35,
             ShowBones = {
                 'EMP_Array',
                 'EMP_Array_Cable',
@@ -791,11 +791,11 @@ UnitBlueprint {
             Icon = 'exramc2',
             Name = 'Remove Adjusted Crystal Matrix',
             Prerequisite = 'EXImprovedCapacitors',
-			AMCannonRangeMod = 45,
-			ZephyrRangeMod2 = 45,
-			AMCannonDamageMod = 1000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 35,
+            AMCannonRangeMod = 45,
+            ZephyrRangeMod2 = 45,
+            AMCannonDamageMod = 1000,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 35,
             RemoveEnhancements = {
                 'EXEMPArray',
                 'EXImprovedCapacitors',
@@ -809,10 +809,10 @@ UnitBlueprint {
             BuildTime = 14400,
             Icon = 'exramc3',
             Name = 'Enhanced Laser Emitters (T4)',
-			Prerequisite = 'EXImprovedCapacitors',
+            Prerequisite = 'EXImprovedCapacitors',
             NewHealth = 6000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 35,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 35,
             ShowBones = {
                 'EMP_Array',
                 'EMP_Array_Cable',
@@ -837,12 +837,12 @@ UnitBlueprint {
             Icon = 'exramc3',
             Name = 'Remove Enhanced Laser Emitters',
             Prerequisite = 'EXPowerBooster',
-			AMCannonDamageMod2 = 2000,
-			AMCannonRangeMod = 45,
-			ZephyrRangeMod2 = 45,
-			AMCannonDamageMod = 1000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 35,
+            AMCannonDamageMod2 = 2000,
+            AMCannonRangeMod = 45,
+            ZephyrRangeMod2 = 45,
+            AMCannonDamageMod = 1000,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 35,
             RemoveEnhancements = {
                 'EXEMPArray',
                 'EXImprovedCapacitors',
@@ -857,8 +857,8 @@ UnitBlueprint {
             BuildTime = 3600,
             Icon = 'exrgec1',
             Name = 'Heavy Microwave Laser (T2)',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             NewHealth = 1000,
             ShowBones = {
                 'Chest_Open',
@@ -888,8 +888,8 @@ UnitBlueprint {
             Icon = 'exrgec1',
             Name = 'Remove Heavy Microwave Laser',
             Prerequisite = 'EXMasor',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXMasor',
                 'EXMasorRemove',
@@ -902,10 +902,10 @@ UnitBlueprint {
             BuildTime = 10800,
             Icon = 'exrgec2',
             Name = 'Alternating Laser Assembly (T3)',
-			Prerequisite = 'EXMasor',
+            Prerequisite = 'EXMasor',
             NewHealth = 2000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             ShowBones = {
                 'Chest_Open',
             },
@@ -934,8 +934,8 @@ UnitBlueprint {
             Icon = 'exrgec2',
             Name = 'Remove Alternating Laser Assembly',
             Prerequisite = 'EXImprovedCoolingSystem',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXMasor',
                 'EXImprovedCoolingSystem',
@@ -949,10 +949,10 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exrgec3',
             Name = 'Superconductive Power Conduits (T4)',
-			Prerequisite = 'EXImprovedCoolingSystem',
+            Prerequisite = 'EXImprovedCoolingSystem',
             NewHealth = 5000,
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             ShowBones = {
                 'Chest_Open',
             },
@@ -981,8 +981,8 @@ UnitBlueprint {
             Icon = 'exrgec3',
             Name = 'Remove Superconductive Power Conduits',
             Prerequisite = 'EXAdvancedEmitterArray',
-			ZephyrDamageMod = 2,
-			ZephyrRangeMod = 30,
+            ZephyrDamageMod = 2,
+            ZephyrRangeMod = 30,
             RemoveEnhancements = {
                 'EXMasor',
                 'EXImprovedCoolingSystem',
@@ -997,7 +997,7 @@ UnitBlueprint {
             BuildTime = 2700,
             Icon = 'exbsh1',
             Name = 'Armor Plating (T2)',
-			NewHealth = 7000,
+            NewHealth = 7000,
             ShowBones = {
                 'Back_CombatPack',
                 'Combat_B02_LLeg',
@@ -1015,7 +1015,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 100,
+            NewRegenRate = 100,
         },
         EXArmorPlatingRemove = {
             BuildCostEnergy = 1,
@@ -1046,8 +1046,8 @@ UnitBlueprint {
             BuildTime = 10800,
             Icon = 'exbsh2',
             Name = 'Structural Integrity Fields (T3)',
-			Prerequisite = 'EXArmorPlating',
-			NewHealth = 11000,
+            Prerequisite = 'EXArmorPlating',
+            NewHealth = 11000,
             ShowBones = {
                 'Back_CombatPack',
                 'Combat_B02_LLeg',
@@ -1066,7 +1066,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 150,
+            NewRegenRate = 150,
         },
         EXStructuralIntegrityRemove = {
             BuildCostEnergy = 1,
@@ -1099,8 +1099,8 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbsh3',
             Name = 'Composite Materials (T4)',
-			Prerequisite = 'EXStructuralIntegrity',
-			NewHealth = 18000,
+            Prerequisite = 'EXStructuralIntegrity',
+            NewHealth = 18000,
             ShowBones = {
                 'Back_CombatPack',
                 'Combat_B02_LLeg',
@@ -1119,7 +1119,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 150,
+            NewRegenRate = 150,
         },
         EXCompositeMaterialsRemove = {
             BuildCostEnergy = 1,
@@ -1154,8 +1154,8 @@ UnitBlueprint {
             Icon = 'exbint1',
             Name = 'Electronic Enhancment (T2)',
             NewHealth = 2000,
-			NewVisionRadius = 50,
-			NewOmniRadius = 50,
+            NewVisionRadius = 50,
+            NewOmniRadius = 50,
             ShowBones = {
                 'Back_CounterIntelPack',
             },
@@ -1166,7 +1166,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 0,
+            NewRegenRate = 0,
         },
         EXElectronicsEnhancmentRemove = {
             BuildCostEnergy = 1,
@@ -1190,9 +1190,9 @@ UnitBlueprint {
             BuildTime = 10800,
             Icon = 'exbint2',
             Name = 'Electronic Countermeasures (T3)',
-			Prerequisite = 'EXElectronicsEnhancment',
+            Prerequisite = 'EXElectronicsEnhancment',
             NewHealth = 22000,
-			MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 1,
             ShowBones = {
                 'Back_CounterIntelPack',
             },
@@ -1203,7 +1203,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 50,
+            NewRegenRate = 50,
         },
         EXElectronicCountermeasuresRemove = {
             BuildCostEnergy = 1,
@@ -1228,9 +1228,9 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbint3',
             Name = 'Cloaking Subsystems (T4)',
-			Prerequisite = 'EXElectronicCountermeasures',
+            Prerequisite = 'EXElectronicCountermeasures',
             NewHealth = 5000,
-			MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 1,
             ShowBones = {
                 'Back_CounterIntelPack',
             },
@@ -1241,7 +1241,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 50,
+            NewRegenRate = 50,
         },
         EXCloakingSubsystemsRemove = {
             BuildCostEnergy = 1,
@@ -1286,7 +1286,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 50,
+            NewRegenRate = 50,
         },
         EXMobilitySubsystemsRemove = {
             BuildCostEnergy = 1,
@@ -1314,7 +1314,7 @@ UnitBlueprint {
             BuildTime = 16200,
             Icon = 'exbbat2',
             Name = 'Anti-Air Subsystem (T3)',
-			Prerequisite = 'EXMobilitySubsystems',
+            Prerequisite = 'EXMobilitySubsystems',
             NewHealth = 6000,
             ShowBones = {
                 'Back_MobilityPack',
@@ -1336,7 +1336,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 100,
+            NewRegenRate = 100,
         },
         EXDefensiveSubsystemsRemove = {
             BuildCostEnergy = 1,
@@ -1354,7 +1354,7 @@ UnitBlueprint {
             Icon = 'exbbat2',
             Name = 'Remove Anti-Air Subsystem',
             Prerequisite = 'EXDefensiveSubsystems',
-			ClusterDamageMod = 83,
+            ClusterDamageMod = 83,
             RemoveEnhancements = {
                 'EXMobilitySubsystems',
                 'EXDefensiveSubsystems',
@@ -1368,7 +1368,7 @@ UnitBlueprint {
             BuildTime = 10800,
             Icon = 'exbbat3',
             Name = 'Nano Regeneration Subsystem (T4)',
-			Prerequisite = 'EXDefensiveSubsystems',
+            Prerequisite = 'EXDefensiveSubsystems',
             NewHealth = 11000,
             ShowBones = {
                 'Back_MobilityPack',
@@ -1390,7 +1390,7 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'URL0001',
             },
-			NewRegenRate = 100,
+            NewRegenRate = 100,
         },
         EXNanoKickerSubsystemsRemove = {
             BuildCostEnergy = 1,
@@ -1408,8 +1408,8 @@ UnitBlueprint {
             Icon = 'exbbat3',
             Name = 'Remove Nano Regeneration Subsystem',
             Prerequisite = 'EXNanoKickerSubsystems',
-			ClusterDamageMod2 = 84,
-			ClusterDamageMod = 250,
+            ClusterDamageMod2 = 84,
+            ClusterDamageMod = 250,
             RemoveEnhancements = {
                 'EXMobilitySubsystems',
                 'EXDefensiveSubsystems',
@@ -1426,7 +1426,7 @@ UnitBlueprint {
             Name = 'Dummy Enhancment',
             Slot = '',
         },
-	},
+    },
     General = {
         BuildBones = {
             AimBone = 0,
@@ -1491,7 +1491,7 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         DragCoefficient = 0.2,
-		LandSpeedMultiplier = 1,
+        LandSpeedMultiplier = 1,
         LayerChangeOffsetHeight = -0.95,
         MaxAcceleration = 1.7,
         MaxSpeed = 1.7,
@@ -1525,7 +1525,7 @@ UnitBlueprint {
         Level3 = 60,
         Level4 = 80,
         Level5 = 100,
-		XPBaseValue = 85321,
+        XPBaseValue = 85321,
     },
     Weapon = {
         {
@@ -1725,7 +1725,7 @@ UnitBlueprint {
             CollideFriendly = false,
             Damage = 8,
             DamageRadius = 2,
-			DoTPulses = 10,
+            DoTPulses = 10,
             DoTTime = 3,
             DamageType = 'Normal',
             DisplayName = 'Iridium Rocket Pack',
@@ -1811,7 +1811,7 @@ UnitBlueprint {
             CollideFriendly = false,
             Damage = 16,
             DamageRadius = 3,
-			DoTPulses = 10,
+            DoTPulses = 10,
             DoTTime = 3,
             DamageType = 'Normal',
             DisplayName = 'Iridium Rocket Pack',
@@ -2062,7 +2062,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             ProjectilesPerOnFire = 1,
-			PrefersPrimaryWeaponTarget = true,
+            PrefersPrimaryWeaponTarget = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -2109,7 +2109,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -2198,7 +2198,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -2287,7 +2287,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -2669,7 +2669,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             ProjectilesPerOnFire = 1,
-			PrefersPrimaryWeaponTarget = true,
+            PrefersPrimaryWeaponTarget = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -2760,7 +2760,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             ProjectilesPerOnFire = 1,
-			PrefersPrimaryWeaponTarget = true,
+            PrefersPrimaryWeaponTarget = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -2851,7 +2851,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             ProjectilesPerOnFire = 1,
-			PrefersPrimaryWeaponTarget = true,
+            PrefersPrimaryWeaponTarget = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -2898,7 +2898,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -2936,7 +2936,7 @@ UnitBlueprint {
             MaxRadius = 35,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -2954,7 +2954,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 1,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -2988,7 +2988,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -3026,7 +3026,7 @@ UnitBlueprint {
             MaxRadius = 35,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -3044,7 +3044,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 1,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -3078,7 +3078,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -3116,7 +3116,7 @@ UnitBlueprint {
             MaxRadius = 35,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -3134,7 +3134,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 1,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -3168,7 +3168,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -3206,7 +3206,7 @@ UnitBlueprint {
             MaxRadius = 35,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-			PrefersPrimaryWeaponTarget = false,
+            PrefersPrimaryWeaponTarget = false,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -3224,7 +3224,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_AntiAir',
             RateOfFire = 1,
-			SlavedToBody = false,
+            SlavedToBody = false,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

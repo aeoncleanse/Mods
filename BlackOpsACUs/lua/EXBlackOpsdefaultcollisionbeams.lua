@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/defaultcollisionbeams.lua
-#**  Author(s):  Gordon Duclos
-#**
-#**  Summary  :  Default definitions collision beams
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /lua/defaultcollisionbeams.lua
+--**  Author(s):  Gordon Duclos
+--**
+--**  Summary  :  Default definitions collision beams
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -14,12 +14,12 @@ local Util = import('/lua/utilities.lua')
 local EffectTemplate2 = import('/lua/EXEffectTemplates.lua')
 local EXEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
 
-#-----------------------------
-#   Base class that defines supreme commander specific defaults
-#-----------------------------
+-------------------------------
+--   Base class that defines supreme commander specific defaults
+-------------------------------
 SCCollisionBeam = Class(CollisionBeam) {
     FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
-    FxImpactLand = {},#EffectTemplate.DefaultProjectileLandImpact,
+    FxImpactLand = {},--EffectTemplate.DefaultProjectileLandImpact,
     FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
     FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
     FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
@@ -31,12 +31,12 @@ SCCollisionBeam = Class(CollisionBeam) {
 PDLaserCollisionBeam = Class(SCCollisionBeam) {
     FxBeam = {'/effects/emitters/em_pdlaser_beam_01_emit.bp'},
     FxBeamEndPoint = {
-		'/effects/emitters/quantum_generator_end_01_emit.bp',
+        '/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-	},
+    },
     FxBeamStartPoint = {
-		'/effects/emitters/quantum_generator_01_emit.bp',
+        '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },
@@ -113,13 +113,13 @@ EXCEMPArrayBeam03CollisionBeam = Class(SCCollisionBeam) {
     
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.5,
-	
+    
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
         CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24' )
         self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect01/SBOZhanaseeBombEffect01_proj.bp', 0, 0, 0, 0, 10.0, 0):SetCollision(false):SetVelocity(0,10.0, 0)
         self:CreateProjectile('/effects/entities/SBOZhanaseeBombEffect02/SBOZhanaseeBombEffect02_proj.bp', 0, 0, 0, 0, 0.05, 0):SetCollision(false):SetVelocity(0,0.05, 0)        
-		
+        
         local blanketSides = 12
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
@@ -143,7 +143,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
     FxBeamEndPoint = EffectTemplate.TDFHiroGeneratorHitLand,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
-	FxBeamStartPointScale = 0.75,
+    FxBeamStartPointScale = 0.75,
     FxBeamEndPointScale = 0.75,
 
     OnImpact = function(self, impactType, targetEntity)
@@ -175,7 +175,7 @@ AeonACUPhasonLaserCollisionBeam = Class(SCCollisionBeam) {
     FxBeamEndPoint = EffectTemplate.APhasonLaserImpact01,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
-	FxBeamStartPointScale = 0.25,
+    FxBeamStartPointScale = 0.25,
     FxBeamEndPointScale = 0.5,
 
     OnImpact = function(self, impactType, targetEntity)

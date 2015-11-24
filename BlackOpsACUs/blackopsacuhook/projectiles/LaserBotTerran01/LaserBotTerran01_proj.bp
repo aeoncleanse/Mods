@@ -30,7 +30,7 @@ ProjectileBlueprint {
             'UEF',
             'PROJECTILE',
             'DIRECTFIRE',
-			'STRATEGIC',
+            'STRATEGIC',
         },
         Faction = 'UEF',
         Weapon = 'Molecular Ripper Cannon',

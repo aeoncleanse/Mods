@@ -64,7 +64,7 @@ ProjectileBlueprint {
         InitialSpeed = 0,
         Lifetime = 600,
         MaxSpeed = 1,
-		OnLostTargetLifetime = 1000,
+        OnLostTargetLifetime = 1000,
         RotationalVelocity = 500,
         RotationalVelocityRange = 0,
         TrackTarget = false,

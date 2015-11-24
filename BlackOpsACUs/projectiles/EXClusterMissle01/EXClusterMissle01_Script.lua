@@ -1,6 +1,6 @@
-#
-# Terran Land-Based Cruise Missile
-#
+--
+-- Terran Land-Based Cruise Missile
+--
 local TMissileCruiseProjectile = import('/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -9,10 +9,10 @@ local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
 EXClusterMissle01 = Class(TMissileCruiseProjectile) {
     --FxTrails = EffectTemplate.TMissileExhaust01,
-	--FxTrailOffset = 0,
-	--FxTrailScale = 1.5,
+    --FxTrailOffset = 0,
+    --FxTrailScale = 1.5,
 
-	OnCreate = function(self)
+    OnCreate = function(self)
         TMissileCruiseProjectile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)        
         self.MoveThread = self:ForkThread(self.MovementThread)
@@ -30,83 +30,83 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
 
     SetTurnRateByDist = function(self)
         --local dist = self:GetDistanceToTarget()
-		local dist = VDist3(self:GetPosition(), self:GetCurrentTargetPosition())
-		--LOG('Distance : ', dist)
+        local dist = VDist3(self:GetPosition(), self:GetCurrentTargetPosition())
+        --LOG('Distance : ', dist)
         if dist > 50 then        
-            #Freeze the turn rate as to prevent steep angles at long distance targets
-			self:SetTurnRate(15)
+            --Freeze the turn rate as to prevent steep angles at long distance targets
+            self:SetTurnRate(15)
             WaitSeconds(0.5)
             self:SetTurnRate(90)
-			WaitSeconds(0.1)
-			self:SetTurnRate(50)
+            WaitSeconds(0.1)
+            self:SetTurnRate(50)
         elseif dist > 35 and dist <= 50 then
-			# Increase check intervals
-			self:SetTurnRate(15)
-			WaitSeconds(0.1)
+            -- Increase check intervals
+            self:SetTurnRate(15)
+            WaitSeconds(0.1)
             self:SetTurnRate(90)
-			WaitSeconds(0.1)
+            WaitSeconds(0.1)
             self:SetTurnRate(15)
         elseif dist > 25 and dist <= 35 then
-			self:SetTurnRate(15)
-			WaitSeconds(0.1)
+            self:SetTurnRate(15)
+            WaitSeconds(0.1)
             self:SetTurnRate(90)
-			WaitSeconds(0.1)
-			self:SetTurnRate(15)
+            WaitSeconds(0.1)
+            self:SetTurnRate(15)
         elseif dist > 8 and dist <= 25 then
-			self:SetTurnRate(45)
+            self:SetTurnRate(45)
             WaitSeconds(0.1)
             self:SetTurnRate(100)
-		elseif dist > 0 and dist <= 8 then
-			# Further increase check intervals            
+        elseif dist > 0 and dist <= 8 then
+            -- Further increase check intervals            
             self:SetTurnRate(360)   
-			WaitSeconds(0.1)
-			--LOG('Distance Split : ', dist)
-			--ForkThread(self.OnImpact)
+            WaitSeconds(0.1)
+            --LOG('Distance Split : ', dist)
+            --ForkThread(self.OnImpact)
             --KillThread(self.MoveThread)         
 
-			local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
-			local ChildProjectileBP = '/projectiles/EXSmallYieldNuclearBomb01/EXSmallYieldNuclearBomb01_proj.bp'  
+            local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
+            local ChildProjectileBP = '/projectiles/EXSmallYieldNuclearBomb01/EXSmallYieldNuclearBomb01_proj.bp'  
               
-			### Split effects
-			for k, v in FxFragEffect do
-			    CreateEmitterAtEntity( self, self:GetArmy(), v )
-			end
-			
-			local vx, vy, vz = self:GetVelocity()
-			local velocity = 20
-		
-			# One initial projectile following same directional path as the original
-			#self:CreateChildProjectile(ChildProjectileBP):SetVelocity(vx, vy, vz):SetVelocity(velocity):PassDamageData(self.DamageData)
-   		
-			# Create several other projectiles in a dispersal pattern
-			local numProjectiles = 3
-			
-			local angle = (2*math.pi) / numProjectiles
-			local angleInitial = RandomFloat( 0, angle )
-			
-			# Randomization of the spread
-			local angleVariation = angle * 3 # Adjusts angle variance spread
-			local spreadMul = 1.25 # Adjusts the width of the dispersal        
+            ------ Split effects
+            for k, v in FxFragEffect do
+                CreateEmitterAtEntity( self, self:GetArmy(), v )
+            end
+            
+            local vx, vy, vz = self:GetVelocity()
+            local velocity = 20
         
-			--vy= -0.8
+            -- One initial projectile following same directional path as the original
+            --self:CreateChildProjectile(ChildProjectileBP):SetVelocity(vx, vy, vz):SetVelocity(velocity):PassDamageData(self.DamageData)
+           
+            -- Create several other projectiles in a dispersal pattern
+            local numProjectiles = 3
+            
+            local angle = (2*math.pi) / numProjectiles
+            local angleInitial = RandomFloat( 0, angle )
+            
+            -- Randomization of the spread
+            local angleVariation = angle * 3 -- Adjusts angle variance spread
+            local spreadMul = 1.25 -- Adjusts the width of the dispersal        
         
-			local xVec = 0
-			local yVec = vy
-			local zVec = 0
+            --vy= -0.8
+        
+            local xVec = 0
+            local yVec = vy
+            local zVec = 0
     
-			# Launch projectiles at semi-random angles away from split location
-			for i = 0, (numProjectiles -1) do
-				xVec = vx + (math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul
-				zVec = vz + (math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul 
-				local proj = self:CreateChildProjectile(ChildProjectileBP)
-				proj:SetVelocity(xVec,yVec,zVec)
-				proj:SetVelocity(velocity)
-				proj:PassDamageData(self.DamageData)                        
-			end
+            -- Launch projectiles at semi-random angles away from split location
+            for i = 0, (numProjectiles -1) do
+                xVec = vx + (math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul
+                zVec = vz + (math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul 
+                local proj = self:CreateChildProjectile(ChildProjectileBP)
+                proj:SetVelocity(xVec,yVec,zVec)
+                proj:SetVelocity(velocity)
+                proj:PassDamageData(self.DamageData)                        
+            end
         
-			self:Destroy()
+            self:Destroy()
 
-			end
+            end
     end,        
 
     GetDistanceToTarget = function(self)
