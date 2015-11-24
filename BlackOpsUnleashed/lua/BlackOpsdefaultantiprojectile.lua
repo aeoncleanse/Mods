@@ -40,7 +40,7 @@ SeraLambdaFieldRedirector = Class(Entity) {
     -- Return true to process this collision, false to ignore it.
     WaitingState = State{
         OnCollisionCheck = function(self, other)
-            if EntityCategoryContains(categories.PROJECTILE, other) and not EntityCategoryContains(categories.STRATEGIC, other) 
+            if EntityCategoryContains(categories.PROJECTILE, other) and not EntityCategoryContains(categories.STRATEGIC, other) and not EntityCategoryContains(categories.ANTINAVY, other) 
                         and other ~= self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
