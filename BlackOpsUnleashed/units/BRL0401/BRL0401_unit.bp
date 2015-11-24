@@ -1233,7 +1233,7 @@ UnitBlueprint {
             DisplayName = 'Death Nuke',
             FireOnDeath = false,
             FiringTolerance = 2,
-            Label = 'BasiliskDeathNuck',
+            Label = 'BasiliskDeathNuke',
             MaxRadius = 1,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,

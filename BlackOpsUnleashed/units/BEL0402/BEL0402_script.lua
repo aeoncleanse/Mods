@@ -4,7 +4,7 @@ local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local HawkGaussCannonWeapon = Weapons2.HawkGaussCannonWeapon
 local GoliathTMDGun = Weapons2.GoliathTMDGun
-local TIFCommanderDeathWeapon = TWeapons.TIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local GoliathRocket = Weapons2.GoliathRocket
 local TDFGoliathShoulderBeam = Weapons2.TDFGoliathShoulderBeam
 local utilities = import('/lua/utilities.lua')
@@ -46,7 +46,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         TMDTurret = Class(GoliathTMDGun) {},
         Laser = Class(TDFGoliathShoulderBeam) {},
         HeadWeapon = Class(TDFMachineGunWeapon){},
-        GoliathDeathNuck = Class(TIFCommanderDeathWeapon) {},
+        GoliathDeathNuke = Class(DeathNukeWeapon) {},
     },
 
     OnCreate = function(self,builder,layer)
@@ -885,7 +885,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         DamageRing(self, position, 0.1, 18, 1, 'Force', true)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
-            if(bp.Weapon[i].Label == 'GoliathDeathNuck') then
+            if(bp.Weapon[i].Label == 'GoliathDeathNuke') then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
                 break
             end

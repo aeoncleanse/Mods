@@ -14,7 +14,7 @@ local BassieCannonWeapon01 = CybranWeaponsFile2.BassieCannonWeapon01
 local BasiliskAAMissile01 = CybranWeaponsFile2.BasiliskAAMissile01
 
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
-local CIFCommanderDeathWeapon = cWeapons.CIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local CIFMissileLoaWeapon = import('/lua/cybranweapons.lua').CIFMissileLoaWeapon
 local CDFElectronBolterWeapon = cWeapons.CDFElectronBolterWeapon
 
@@ -32,7 +32,7 @@ BRL0401 = Class(CWalkingLandUnit) {
     PlayEndAnimDestructionEffects = false,
 
     Weapons = {
-        BasiliskDeathNuck = Class(CIFCommanderDeathWeapon) {},
+        BasiliskDeathNuke = Class(DeathNukeWeapon) {},
         TorsoWeapon = Class(CDFLaserHeavyWeapon){},
         HeadWeapon = Class(CDFLaserHeavyWeapon) {
             OnWeaponFired = function(self, muzzle)
@@ -444,7 +444,7 @@ BRL0401 = Class(CWalkingLandUnit) {
         
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
-            if(bp.Weapon[i].Label == 'BasiliskDeathNuck') then
+            if(bp.Weapon[i].Label == 'BasiliskDeathNuke') then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
                 break
             end

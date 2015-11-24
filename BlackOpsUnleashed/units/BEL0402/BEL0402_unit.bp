@@ -757,7 +757,7 @@ UnitBlueprint {
             DisplayName = 'Death Nuke',
             FireOnDeath = false,
             FiringTolerance = 2,
-            Label = 'GoliathDeathNuck',
+            Label = 'GoliathDeathNuke',
             MaxRadius = 1,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,

@@ -12,78 +12,8 @@ local BasiliskNukeEffect04 = '/mods/BlackOpsUnleashed/projectiles/MGQAIPlasmaArt
 local BasiliskNukeEffect05 = '/mods/BlackOpsUnleashed/effects/Entities/BasiliskNukeEffect05/BasiliskNukeEffect05_proj.bp'
 
 BasiliskNukeEffectController01 = Class(NullShell) {
-    NukeInnerRingDamage = 0,
-    NukeInnerRingRadius = 0,
-    NukeInnerRingTicks = 0,
-    NukeInnerRingTotalTime = 0,
-    NukeOuterRingDamage = 0,
-    NukeOuterRingRadius = 0,
-    NukeOuterRingTicks = 0,
-    NukeOuterRingTotalTime = 0,
-
-    PassData = function(self, Data)
-        if Data.NukeOuterRingDamage then self.NukeOuterRingDamage = Data.NukeOuterRingDamage end
-        if Data.NukeOuterRingRadius then self.NukeOuterRingRadius = Data.NukeOuterRingRadius end
-        if Data.NukeOuterRingTicks then self.NukeOuterRingTicks = Data.NukeOuterRingTicks end
-        if Data.NukeOuterRingTotalTime then self.NukeOuterRingTotalTime = Data.NukeOuterRingTotalTime end
-        if Data.NukeInnerRingDamage then self.NukeInnerRingDamage = Data.NukeInnerRingDamage end
-        if Data.NukeInnerRingRadius then self.NukeInnerRingRadius = Data.NukeInnerRingRadius end
-        if Data.NukeInnerRingTicks then self.NukeInnerRingTicks = Data.NukeInnerRingTicks end
-        if Data.NukeInnerRingTotalTime then self.NukeInnerRingTotalTime = Data.NukeInnerRingTotalTime end
-  
-        self:CreateNuclearExplosion()
-    end,
-
-    CreateNuclearExplosion = function(self)
-        local bp = self:GetBlueprint()
-        local army = self:GetArmy()        
-
-        -- Create thread that spawns and controls effects
-        self:ForkThread(self.EffectThread)
-        self:ForkThread(self.CreateEffectInnerPlasma)
-    end,    
-    
-    OuterRingDamage = function(self)
-        local myPos = self:GetPosition()
-        if self.NukeOuterRingTotalTime == 0 then
-            DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
-        else
-            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
-            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
-            
-            -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
-            -- I'm manually executing the first tick of damage with a DamageArea function.
-            DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
-            WaitSeconds(tickLength)
-            for i = 2, self.NukeOuterRingTicks do
-                DamageRing(self:GetLauncher(), myPos, ringWidth * (i - 1), ringWidth * i, self.NukeOuterRingDamage, 'Normal', true, true)
-                WaitSeconds(tickLength)
-            end
-        end
-    end,
-
-    InnerRingDamage = function(self)
-        local myPos = self:GetPosition()
-        if self.NukeInnerRingTotalTime == 0 then
-            DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
-        else
-            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
-            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
-            
-            -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
-            -- I'm manually executing the first tick of damage with a DamageArea function.
-            DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
-            WaitSeconds(tickLength)
-            for i = 2, self.NukeInnerRingTicks do
-                DamageRing(self:GetLauncher(), myPos, ringWidth * (i - 1), ringWidth * i, self.NukeInnerRingDamage, 'Normal', true, true)
-                WaitSeconds(tickLength)
-            end
-        end
-    end,
-
     -- Create inner explosion plasma
     CreateEffectInnerPlasma = function(self)
-        --LOG('inner plasma')
         local vx, vy, vz = self:GetVelocity()
         local num_projectiles = 20        
         local horizontal_angle = (2*math.pi) / num_projectiles
@@ -106,21 +36,13 @@ BasiliskNukeEffectController01 = Class(NullShell) {
     end,
 
     EffectThread = function(self)
+        self:ForkThread(self.CreateEffectInnerPlasma)
         local army = self:GetArmy()
         local position = self:GetPosition()
         
         WaitSeconds(1)
         CreateLightParticle(self, -1, self:GetArmy(), 50, 100, 'beam_white_01', 'ramp_blue_16')
         self:ShakeCamera(75, 3, 0, 10)
-            
-        -- Moving damage threads to be activated later
-        -- Create Damage Threads only if damage is being delivered (prevents DamageArea script error for passing in 0 value)
-        if (self.NukeInnerRingDamage ~= 0) then
-            self:ForkThread(self.InnerRingDamage)
-        end
-        if (self.NukeOuterRingDamage ~= 0) then
-            self:ForkThread(self.OuterRingDamage)
-        end
 
         -- Knockdown force rings
         DamageRing(self, position, 0.1, 22, 1, 'Force', true)
