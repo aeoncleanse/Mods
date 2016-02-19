@@ -5,14 +5,15 @@
 -- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
+local AirTransport = import('/lua/defaultunits.lua').AirTransport
+
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local cWeapons = import('/lua/cybranweapons.lua')
 local CAAAutocannon = cWeapons.CAAAutocannon
 local CEMPAutoCannon = cWeapons.CEMPAutoCannon
 
-BRA0309 = Class(CAirUnit) {
+BRA0309 = Class(AirTransport) {
     Weapons = {
         AAAutocannon = Class(CAAAutocannon) {},
         EMPCannon = Class(CEMPAutoCannon) {},
@@ -27,7 +28,7 @@ BRA0309 = Class(CAirUnit) {
     BeamExhaustCruise = '/effects/emitters/missile_exhaust_fire_beam_04_emit.bp',
     
     OnCreate = function(self)
-        CAirUnit.OnCreate(self)
+        AirTransport.OnCreate(self)
         if not self.OpenAnim then
             self.OpenAnim = CreateAnimator(self)
             self.OpenAnim:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(0)
@@ -36,7 +37,7 @@ BRA0309 = Class(CAirUnit) {
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
-        CAirUnit.OnStopBeingBuilt(self,builder,layer)
+        AirTransport.OnStopBeingBuilt(self,builder,layer)
         self:SetMaintenanceConsumptionInactive()
         self:SetScriptBit('RULEUTC_IntelToggle', true)
         self:RequestRefreshUI()
@@ -55,8 +56,8 @@ BRA0309 = Class(CAirUnit) {
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
-        CAirUnit.OnKilled(self, instigator, type, overkillRatio)
         self:TransportDetachAllUnits(true)
+        AirTransport.OnKilled(self, instigator, type, overkillRatio)
     end,
 
 

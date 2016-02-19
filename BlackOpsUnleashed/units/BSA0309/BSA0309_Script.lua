@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local AirTransport = import('/lua/defaultunits.lua').AirTransport
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
@@ -14,7 +14,7 @@ local SDFHeavyPhasicAutoGunWeapon = SeraphimWeapons.SDFHeavyPhasicAutoGunWeapon
 local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
 local SeraLambdaFieldDestroyer = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
 
-BSA0309 = Class(SAirUnit) {
+BSA0309 = Class(AirTransport) {
     AirDestructionEffectBones = { 'XSA0309','Left_Attachpoint08','Right_Attachpoint02'},
 
     Weapons = {
@@ -51,7 +51,7 @@ BSA0309 = Class(SAirUnit) {
         self.Trash:Add(SeraLambdaFieldRedirector02)
         self.Trash:Add(SeraLambdaFieldDestroyer01)
         self.UnitComplete = true
-        SAirUnit.OnStopBeingBuilt(self,builder,layer)
+        AirTransport.OnStopBeingBuilt(self,builder,layer)
     end,
     
     -- Override air destruction effects so we can do something custom here

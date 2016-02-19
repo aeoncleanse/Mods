@@ -44,7 +44,6 @@ UnitBlueprint {
             Level5 = 15,
         },
     },
-    BuildIconSortPriority = 30,
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
@@ -74,8 +73,8 @@ UnitBlueprint {
             '<LOC ability_deploys>Deploys into mobile tank or stationary turret',
             '<LOC ability_tank>Current Mode: Tank',
         },
-        AnimationOpen = '/units/BEL0109/BEL0109_aactivate.sca',
-        AnimationActivate = '/units/BEL0109/BEL0109_AClose.sca',
+        AnimationOpen = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_aactivate.sca',
+        AnimationActivate = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_AClose.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -287,7 +286,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Artillery',
             WeaponRepackTimeout = 2,
-            WeaponUnpackAnimation = '/units/BEL0109/BEL0109_aactivate.sca',
+            WeaponUnpackAnimation = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_Aactivate.sca',
             WeaponUnpackAnimationRate = 1.5,
             WeaponUnpackLocksMotion = true,
             WeaponUnpacks = true,

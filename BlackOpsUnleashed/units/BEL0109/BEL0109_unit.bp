@@ -78,7 +78,7 @@ UnitBlueprint {
             '<LOC ability_tank>Current Mode: Tank',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_aactivate.sca',
-        AnimationActivate = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_aopen.sca',
+        AnimationActivate = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_AClose.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

@@ -39,7 +39,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 90,
             NotExclusive = true,
-            ProjectileId = '/projectiles/CAADissidentAntiNuke02/CAADissidentAntiNuke02_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/CAADissidentAntiNuke02/CAADissidentAntiNuke02_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

@@ -102,7 +102,7 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-        AnimationWalk = '/units/BAL0401/BAL0401_AWalk.sca',
+        AnimationWalk = '/mods/BlackOpsUnleashed/units/BAL0401/BAL0401_AWalk.sca',
         AnimationWalkRate = 1.2,
         Mesh = {
             IconFadeInZoom = 130,

@@ -87,6 +87,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'BUILTBYTIER3ENGINEER',
         'AEON',
         'MOBILE',
@@ -134,13 +135,13 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/uas0401/uas0401_adeath01.sca',
+                Animation = '/Mods/BlackOpsUnleashed/hook/units/uas0401/uas0401_adeath01.sca',
                 AnimationRateMax = 0.7,
                 AnimationRateMin = 0.5,
                 Weight = 100,
             },
         },
-        AnimationSurface = '/hook/units/uas0401/uas0401_Aopen01.sca',
+        AnimationSurface = '/Mods/BlackOpsUnleashed/hook/units/uas0401/uas0401_Aopen01.sca',
         IdleEffects = {
             Sub = {
                 Effects = {

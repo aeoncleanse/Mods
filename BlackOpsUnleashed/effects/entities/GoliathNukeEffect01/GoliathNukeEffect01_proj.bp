@@ -5,8 +5,8 @@ ProjectileBlueprint {
                 {
                     MeshName = '/effects/Entities/Sphere01/Sphere01_lod0.scm',
                     ShaderName = 'NukeUEF',
-                    AlbedoName = '/effects/Entities/GoliathNukeEffect01/GoliathNukeEffect01_albedo.dds',
-                    NormalsName = '/effects/Entities/GoliathNukeEffect01/GoliathNukeEffect01_normals.dds',
+                    AlbedoName = '/mods/BlackOpsUnleashed/effects/Entities/GoliathNukeEffect01/GoliathNukeEffect01_albedo.dds',
+                    NormalsName = '/mods/BlackOpsUnleashed/effects/Entities/GoliathNukeEffect01/GoliathNukeEffect01_normals.dds',
                     LODCutoff = 1000.0,
                 },
             },

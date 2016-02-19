@@ -39,7 +39,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 90,
             NotExclusive = true,
-            ProjectileId = '/projectiles/SIFHuAntiNuke02/SIFHuAntiNuke02_proj.bp',
+            ProjectileId = '/mods/BlackOpsUnleashed/projectiles/SIFHuAntiNuke02/SIFHuAntiNuke02_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
