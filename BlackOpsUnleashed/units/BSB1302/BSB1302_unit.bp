@@ -33,6 +33,7 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'SERAPHIM',
         'STRUCTURE',
         'ECONOMIC',
@@ -57,6 +58,9 @@ UnitBlueprint {
     },
     Description = '<LOC bsb1302_desc>Hydrocarbon Power Plant',
     Display = {
+        Abilities = {
+            'Energy',
+        },
         LoopingAnimation = '/units/XSB1102/XSB1102_aloop.sca',
         Mesh = {
             IconFadeInZoom = 130,

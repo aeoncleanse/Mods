@@ -35,6 +35,7 @@ UnitBlueprint {
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER2COMMANDER',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'SERAPHIM',
         'STRUCTURE',
         'ECONOMIC',
@@ -60,6 +61,9 @@ UnitBlueprint {
     },
     Description = '<LOC bsb1202_desc>Hydrocarbon Power Plant',
     Display = {
+        Abilities = {
+            'Energy',
+        },
         LoopingAnimation = '/units/XSB1102/XSB1102_aloop.sca',
         Mesh = {
             IconFadeInZoom = 130,
@@ -186,7 +190,6 @@ UnitBlueprint {
             DisplayName = 'Death Weapon',
             DummyWeapon = true,
             Label = 'DeathWeapon',
-            WeaponCategory = 'Death',
         },
     },
     Wreckage = {

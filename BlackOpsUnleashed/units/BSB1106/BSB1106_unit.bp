@@ -33,6 +33,7 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'SERAPHIM',
         'STRUCTURE',
         'ECONOMIC',
@@ -58,6 +59,9 @@ UnitBlueprint {
     },
     Description = '<LOC bsb1106_desc>Mass & Energy Storage',
     Display = {
+        Abilities = {
+            'Storage',
+        },
         BlinkingLights = {
             {
                 BLBone = 0,
@@ -161,6 +165,7 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
+        UnitName = '<LOC bsb1106_name>Orba',
         UnitWeight = 1,
     },
     Interface = {

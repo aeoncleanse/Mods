@@ -110,7 +110,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
-        'TRANSPORTBUILTBYTIER3FACTORY',
+        'BUILTBYTIER3FACTORY',
         'SERAPHIM',
         'MOBILE',
         'AIR',

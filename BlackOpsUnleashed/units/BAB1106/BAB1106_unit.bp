@@ -28,6 +28,7 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'AEON',
         'STRUCTURE',
         'ECONOMIC',
@@ -53,6 +54,9 @@ UnitBlueprint {
     },
     Description = '<LOC bab1106_desc>Mass & Energy Storage',
     Display = {
+        Abilities = {
+            'Storage',
+        },
         BlinkingLights = {
             {
                 BLBone = 0,
@@ -155,6 +159,7 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
+        UnitName = '<LOC bab1106_name>Vajun',
         UnitWeight = 1,
     },
     Interface = {

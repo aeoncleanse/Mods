@@ -33,6 +33,7 @@ UnitBlueprint {
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER2COMMANDER',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'AEON',
         'STRUCTURE',
         'STRATEGIC',
@@ -59,6 +60,9 @@ UnitBlueprint {
     },
     Description = '<LOC bab2303_desc>Energy Mortar Emplacement',
     Display = {
+        Abilities = {
+            'Indirectfire',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

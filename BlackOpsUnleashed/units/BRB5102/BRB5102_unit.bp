@@ -126,6 +126,7 @@ UnitBlueprint {
         },
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Advanced',
+        UnitName = '<LOC bab1202_name>Ina',
         UnitWeight = 1,
     },
     Interface = {
