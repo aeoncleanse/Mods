@@ -43,7 +43,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 40,
     Categories = {
-        'PRODUCTFA',
+        'PRODUCTDL',
         'SELECTABLE',
         'CYBRAN',
         'STRUCTURE',
@@ -69,6 +69,9 @@ UnitBlueprint {
     },
     Description = '<LOC brl0010_desc>Crab Egg (Wagner)',
     Display = {
+        Abilities = {
+            '<LOC ability_factory>Factory',
+        },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0010/BRL0010_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
@@ -115,6 +118,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
+        UnitName = '<LOC BRL0010_name>Pitch',
         UnitWeight = 1,
     },
     Intel = {

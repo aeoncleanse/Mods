@@ -63,6 +63,9 @@ UnitBlueprint {
     },
     Description = '<LOC bel0308_desc>Artillery Support Bot',
     Display = {
+        Abilities = {
+            'Directfire',
+        },
         AnimationDeath = {
             {
                 Animation = '/mods/BlackOpsUnleashed/units/BEL0308/BEL0308_ADeath.sca',

@@ -203,6 +203,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Secret',
+        UnitName = '<LOC BSA0001_name>Atha Ia Thu',
         UnitWeight = 1,
     },
     Intel = {

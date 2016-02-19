@@ -62,6 +62,9 @@ UnitBlueprint {
     },
     Description = '<LOC bal0206_desc>Medium Assault Tank',
     Display = {
+        Abilities = {
+            'Directfire',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

@@ -43,7 +43,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 50,
     Categories = {
-        'PRODUCTFA',
+        'PRODUCTDL',
         'SELECTABLE',
         'CYBRAN',
         'STRUCTURE',
@@ -69,6 +69,9 @@ UnitBlueprint {
     },
     Description = '<LOC brl0011_desc>Crab Egg (Hailfire)',
     Display = {
+        Abilities = {
+            '<LOC ability_factory>Factory',
+        },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0011/BRL0011_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
@@ -115,6 +118,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
+        UnitName = '<LOC BRL0011_name>Ori',
         UnitWeight = 1,
     },
     Intel = {

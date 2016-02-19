@@ -56,6 +56,8 @@ UnitBlueprint {
         'BUILTBYRIFTGATE',
         'SERAPHIM',
         'MOBILE',
+        'ARTILLERY',
+        'INTELLIGENCE',
         'LAND',
         'TECH3',
         'INDIRECTFIRE',

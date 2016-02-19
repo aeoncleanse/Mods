@@ -43,7 +43,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 20,
     Categories = {
-        'PRODUCTFA',
+        'PRODUCTDL',
         'SELECTABLE',
         'CYBRAN',
         'STRUCTURE',
@@ -69,6 +69,9 @@ UnitBlueprint {
     },
     Description = '<LOC brl0008_desc>Crab Egg (Deceiver)',
     Display = {
+        Abilities = {
+            '<LOC ability_factory>Factory',
+        },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0008/BRL0008_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
@@ -115,6 +118,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
+        UnitName = '<LOC BRL0008_name>Cubas',
         UnitWeight = 1,
     },
     Intel = {

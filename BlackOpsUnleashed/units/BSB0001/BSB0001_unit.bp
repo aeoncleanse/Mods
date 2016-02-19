@@ -99,6 +99,7 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
+        UnitName = '<LOC BSB0001_name>Atha Yue',
         UnitWeight = 1,
     },
     Interface = {

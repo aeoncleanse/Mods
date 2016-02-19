@@ -78,7 +78,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
-        CapCost = 0.1,
+        CapCost = 0.0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {

@@ -30,7 +30,7 @@ UnitBlueprint {
             LodCutoff = 'UnitMove_LodCutoff',
         },
     },
-    BuildIconSortPriority = 210,
+    BuildIconSortPriority = 150,
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
@@ -103,6 +103,7 @@ UnitBlueprint {
         },
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Advanced',
+        UnitName = '<LOC beb0001_name>Arma',
         UnitWeight = 1,
     },
     Intel = {

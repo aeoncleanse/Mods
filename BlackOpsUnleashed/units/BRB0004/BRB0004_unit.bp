@@ -177,6 +177,7 @@ UnitBlueprint {
         ToggleCaps = {
             RULEUTC_ProductionToggle = true,
         },
+        UnitName = '<LOC brb0004_name>Winker',
         UnitWeight = 1,
     },
     Intel = {

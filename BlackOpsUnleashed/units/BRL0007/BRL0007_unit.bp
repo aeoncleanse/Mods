@@ -43,7 +43,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 10,
     Categories = {
-        'PRODUCTFA',
+        'PRODUCTDL',
         'SELECTABLE',
         'CYBRAN',
         'STRUCTURE',
@@ -69,6 +69,9 @@ UnitBlueprint {
     },
     Description = '<LOC brl0007_desc>Crab Egg (Scorpion)',
     Display = {
+        Abilities = {
+            '<LOC ability_factory>Factory',
+        },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BRL0007/BRL0007_aopen.sca',
         BuildAttachBone = 'AttachPoint',
         Mesh = {
@@ -115,6 +118,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
+        UnitName = '<LOC BRL0007_name>Rock',
         UnitWeight = 1,
     },
     Intel = {
