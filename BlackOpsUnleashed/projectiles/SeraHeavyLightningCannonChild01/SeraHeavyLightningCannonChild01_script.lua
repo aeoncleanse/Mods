@@ -33,9 +33,15 @@ SeraHeavyLightningCannonChild01 = Class(SeraHeavyLightningCannonChildProjectile)
         -- While projectile active and has available damage perform BFG area damage and effects
         while not self:BeenDestroyed() do
             local instigator = self:GetLauncher()
+            if not instigator then
+                break
+            end
             local launcherPos = instigator:GetPosition()
             local projPos = self:GetPosition()
-            local dist = VDist2(projPos[1], projPos[3], launcherPos[1], launcherPos[3])
+            local dist = 0
+            if projPos[1] and projPos[3] and launcherPos[1] and launcherPos[3] then
+                dist = VDist2(projPos[1], projPos[3], launcherPos[1], launcherPos[3])
+            end
             local firer = self:GetLauncher()
             local brain = firer:GetAIBrain()
             local availableTargets = brain:GetUnitsAroundPoint(categories.ALLUNITS, self:GetPosition(), dist * 0.15, 'Enemy')
