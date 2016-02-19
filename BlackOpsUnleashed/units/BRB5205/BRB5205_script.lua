@@ -22,8 +22,8 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         FlakGun04 = Class(CAABurstCloudFlakArtilleryWeapon) {},
     },
     
-    OnStopBeingBuilt = function(self)
-        CAirStagingPlatformUnit.OnStopBeingBuilt(self)
+    OnStopBeingBuilt = function(self,builder,layer)
+        CAirStagingPlatformUnit.OnStopBeingBuilt(self,builder,layer)
         local layer = self:GetCurrentLayer()
         -- Drone Globals
         self.Side = 0

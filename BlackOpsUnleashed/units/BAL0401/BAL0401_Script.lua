@@ -116,7 +116,6 @@ BAL0401 = Class(AWalkingLandUnit) {
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
-        AWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
         local wep = self:GetWeaponByLabel('DefenseGun01')
         local bp = wep:GetBlueprint()
         if bp.Audio.BeamStop then
@@ -128,6 +127,7 @@ BAL0401 = Class(AWalkingLandUnit) {
         for k, v in wep.Beams do
             v.Beam:Disable()
         end     
+        AWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
     
     DeathThread = function( self, overkillRatio , instigator)
@@ -151,7 +151,7 @@ BAL0401 = Class(AWalkingLandUnit) {
             WaitFor(self.DeathAnimManip)
         end
                 
-        self:CreateProjectileAtBone('/effects/entities/InqDeathEffectController01/InqDeathEffectController01_proj.bp', 'Body'):SetCollision(false)
+        self:CreateProjectileAtBone('/mods/BlackOpsUnleashed/effects/entities/InqDeathEffectController01/InqDeathEffectController01_proj.bp', 'Body'):SetCollision(false)
        
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do

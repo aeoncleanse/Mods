@@ -477,7 +477,6 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        SAirStagingPlatformUnit.OnKilled(self, instigator, type, overkillRatio)
         self:SetWeaponEnabledByLabel('TorpedoTurret01', false)
         self:SetWeaponEnabledByLabel('TorpedoTurret02', false)
         self:SetWeaponEnabledByLabel('AjelluTorpedoDefense01', false)
@@ -501,6 +500,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
                 IssueKillSelf({self.RepairDroneTable[k]})
             end
         end
+        SAirStagingPlatformUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     OnProductionPaused = function(self)

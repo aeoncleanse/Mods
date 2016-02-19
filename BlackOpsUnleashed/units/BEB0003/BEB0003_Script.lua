@@ -40,12 +40,12 @@ BEB0003 = Class(SStructureUnit) {
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
-        SStructureUnit.OnKilled(self, instigator, type, overkillRatio)
         if self.ShieldEffctsBag then
             for k,v in self.ShieldEffectsBag do
                 v:Destroy()
             end
         end
+        SStructureUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     DeathThread = function(self)

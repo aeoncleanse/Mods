@@ -4,7 +4,7 @@
 -- Summary  :  Aeon Experimental Sub
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.**************************************************************************
 
-local ASubUnit = import('/lua/aeonunits.lua').ASubUnit
+local ASeaUnit = import('/lua/aeonunits.lua').ASeaUnit
 local WeaponsFile = import('/lua/aeonweapons.lua')
 local ADFCannonOblivionWeapon = WeaponsFile.ADFCannonOblivionWeapon02
 local AANChronoTorpedoWeapon = WeaponsFile.AANChronoTorpedoWeapon
@@ -14,8 +14,9 @@ local utilities = import('/lua/utilities.lua')
 local RandomFloat = utilities.GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local explosion = import('/lua/defaultexplosions.lua')
+local BaseTransport = import('/lua/defaultunits.lua').BaseTransport
 
-UAS0401 = Class(ASubUnit) {
+UAS0401 = Class(BaseTransport, ASeaUnit) {
     Weapons = {
         MainGun = Class(ADFCannonOblivionWeapon) {},
         Torpedo01 = Class(AANChronoTorpedoWeapon) {},
@@ -32,8 +33,10 @@ UAS0401 = Class(ASubUnit) {
     BuildAttachBone = 'Attachpoint01',
 
     OnStopBeingBuilt = function(self,builder,layer)
+        self.slots = {}
+        self.transData = {}
         self:SetWeaponEnabledByLabel('MainGun', true)
-        ASubUnit.OnStopBeingBuilt(self,builder,layer)
+        ASeaUnit.OnStopBeingBuilt(self,builder,layer)
         if layer == 'Water' then
             self:RestoreBuildRestrictions()
             self:RequestRefreshUI()
@@ -58,12 +61,12 @@ UAS0401 = Class(ASubUnit) {
     end,
 
     OnFailedToBuild = function(self)
-        ASubUnit.OnFailedToBuild(self)
+        ASeaUnit.OnFailedToBuild(self)
         ChangeState(self, self.IdleState)
     end,
 
     OnMotionVertEventChange = function(self, new, old)
-        ASubUnit.OnMotionVertEventChange(self, new, old)
+        ASeaUnit.OnMotionVertEventChange(self, new, old)
         if new == 'Top' then
             self:RestoreBuildRestrictions()
             self:RequestRefreshUI()
@@ -87,7 +90,7 @@ UAS0401 = Class(ASubUnit) {
         end,
 
         OnStartBuild = function(self, unitBuilding, order)
-            ASubUnit.OnStartBuild(self, unitBuilding, order)
+            ASeaUnit.OnStartBuild(self, unitBuilding, order)
             self.UnitBeingBuilt = unitBuilding
             ChangeState(self, self.BuildingState)
         end,
@@ -96,7 +99,6 @@ UAS0401 = Class(ASubUnit) {
     BuildingState = State {
         Main = function(self)
             local unitBuilding = self.UnitBeingBuilt
-            self:SetBusy(true)
             local bone = self.BuildAttachBone
             self:DetachAll(bone)
             if not self.UnitBeingBuilt:IsDead() then
@@ -115,20 +117,18 @@ UAS0401 = Class(ASubUnit) {
         end,
 
         OnStopBuild = function(self, unitBeingBuilt)
-            ASubUnit.OnStopBuild(self, unitBeingBuilt)
+            ASeaUnit.OnStopBuild(self, unitBeingBuilt)
             ChangeState(self, self.FinishedBuildingState)
         end,
     },
 
     FinishedBuildingState = State {
         Main = function(self)
-            self:SetBusy(true)
             local unitBuilding = self.UnitBeingBuilt
             unitBuilding:DetachFrom(true)
             self:DetachAll(self.BuildAttachBone)
             local worldPos = self:CalculateWorldPositionFromRelative({0, 0, -20})
             IssueMoveOffFactory({unitBuilding}, worldPos)
-            self:SetBusy(false)
             ChangeState(self, self.IdleState)
         end,
     },
@@ -141,7 +141,7 @@ UAS0401 = Class(ASubUnit) {
             self.MyAttacker = instigator
             --LOG("Mithy: OnDamage: MyAttacker = " .. self.MyAttacker:GetBlueprint().BlueprintId)
         end
-        ASubUnit.OnDamage(self, instigator, amount, vector, damagetype)
+        ASeaUnit.OnDamage(self, instigator, amount, vector, damagetype)
     end,
     --Drone control buttons
     OnScriptBitSet = function(self, bit)
@@ -154,7 +154,7 @@ UAS0401 = Class(ASubUnit) {
             --Pop button back up, as it's not actually a toggle
             self:SetScriptBit('RULEUTC_SpecialToggle', false)
         else
-            ASubUnit.OnScriptBitSet(self, bit)
+            ASeaUnit.OnScriptBitSet(self, bit)
         end
     end,    
     OnScriptBitClear = function(self, bit)
@@ -164,7 +164,7 @@ UAS0401 = Class(ASubUnit) {
         --Recall button reset, do nothing
         elseif bit == 7 then
         else
-            ASubUnit.OnScriptBitClear(self, bit)
+            ASeaUnit.OnScriptBitClear(self, bit)
         end
     end,
     
@@ -174,7 +174,7 @@ UAS0401 = Class(ASubUnit) {
         self.DroneData[unit.Name].Docked = attachBone
         unit:SetDoNotTarget(true)
         --unit.DisallowCollisions = true --too problematic, disabled
-        ASubUnit.OnTransportAttach(self, attachBone, unit)
+        BaseTransport.OnTransportAttach(self, attachBone, unit)
     end,
     
     --Handles drone undocking, also called when docked drones die
@@ -187,7 +187,7 @@ UAS0401 = Class(ASubUnit) {
         if unit.Name == self.BuildingDrone then
             self:CleanupDroneMaintenance(self.BuildingDrone)
         end
-        ASubUnit.OnTransportDetach(self, attachBone, unit)
+        BaseTransport.OnTransportDetach(self, attachBone, unit)
     end,
     --Cleans up threads and drones on death
     OnKilled = function(self, instigator, type, overkillRatio)
@@ -202,7 +202,26 @@ UAS0401 = Class(ASubUnit) {
                 IssueKillSelf({drone})
             end
         end 
-        ASubUnit.OnKilled(self, instigator, type, overkillRatio)
+        local nrofBones = self:GetBoneCount() -1
+        local watchBone = self:GetBlueprint().WatchBone or 0
+
+         self:ForkThread(function()
+            local pos = self:GetPosition()
+            local seafloor = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
+            while self:GetPosition(watchBone)[2] > seafloor do
+                WaitSeconds(0.1)
+            end
+            self:CreateWreckage(overkillRatio, instigator)
+            self:Destroy()
+        end)
+         
+        local layer = self:GetCurrentLayer()
+        self:DestroyIdleEffects()
+        if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
+            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+            self.SinkThread = self:ForkThread(self.SinkingThread)
+        end
+        ASeaUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
     --+ Drone Setup / Creation +--
 
@@ -347,7 +366,7 @@ UAS0401 = Class(ASubUnit) {
                     --Repair progress = drone health percent, and the progressbar reflects this
                     local totalprogress = repairingDrone:GetHealth() / maxhealth
                     self:SetWorkProgress(totalprogress)
-                    if totalprogress >= 1 then
+                    if self.DroneData[self.BuildingDrone] and totalprogress >= 1 then
                         self.DroneData[self.BuildingDrone].Damaged = false
                     end
                 end

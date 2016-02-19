@@ -61,8 +61,8 @@ BRA0409 = Class(CAirUnit) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        CAirUnit.OnKilled(self, instigator, type, overkillRatio)
         self:TransportDetachAllUnits(true)
+        CAirUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
     
     OnTransportAttach = function(self, attachBone, unit)

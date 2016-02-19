@@ -28,8 +28,8 @@ BSB4205 = Class(SStructureUnit) {
         end
     end,
     
-    OnStopBeingBuilt = function(self)
-        SStructureUnit.OnStopBeingBuilt(self)
+    OnStopBeingBuilt = function(self,builder,layer)
+        SStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetMaintenanceConsumptionActive()
         self:DisableUnitIntel('CloakField')
         if not self.ShieldEffectsBag then

@@ -1,3 +1,4 @@
+local Buff = import('/lua/sim/Buff.lua')
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
 local TWeapons = import('/lua/terranweapons.lua')
 local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
@@ -70,6 +71,8 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
     
     OnStopBeingBuilt = function(self,builder,layer)    
         self.weaponCounter = 0
+        self.slots = {}
+        self.transData = {}
         
         if self.AnimationManipulator then
             self:SetUnSelectable(true)
@@ -326,7 +329,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                     -- Repair progress = drone health percent, and the progressbar reflects this
                     local totalprogress = repairingDrone:GetHealth() / maxhealth
                     self:SetWorkProgress(totalprogress)
-                    if totalprogress >= 1 then
+                    if self.DroneData[self.BuildingDrone] and totalprogress >= 1 then
                         self.DroneData[self.BuildingDrone].Damaged = false
                     end
                 end
@@ -787,7 +790,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/effects/entities/GoliathNukeEffect03/GoliathNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/BlackOpsUnleashed/effects/entities/GoliathNukeEffect03/GoliathNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   
@@ -805,11 +808,11 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
     end,
 
     DeathThread = function(self, overkillRatio , instigator)
-    
+        self:PlayUnitSound('Destroyed')
         local army = self:GetArmy()
         local position = self:GetPosition()
         local numExplosions =  math.floor(table.getn(self.DestructionEffectBones) * Random(0.4, 1.0))
-        self:PlayUnitSound('Destroyed')
+        
         -- Create small explosions effects all over
         local ranBone = utilities.GetRandomInt(1, numExplosions)
         CreateDeathExplosion(self, 'Torso', 6)
@@ -877,7 +880,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         CreateLightParticle(self, -1, army, 80, 20, 'glow_03', 'ramp_fire_06')
         self:PlayUnitSound('NukeExplosion')
         local FireballDomeYOffset = -7
-        self:CreateProjectile('/effects/entities/GoliathNukeEffect01/GoliathNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
+        self:CreateProjectile('/mods/BlackOpsUnleashed/effects/entities/GoliathNukeEffect01/GoliathNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         local PlumeEffectYOffset = 1
         self:CreateProjectile('/effects/entities/UEFNukeEffect02/UEFNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1) 
         DamageRing(self, position, 0.1, 18, 1, 'Force', true)

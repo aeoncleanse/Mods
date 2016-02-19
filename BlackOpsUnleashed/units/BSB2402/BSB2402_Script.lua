@@ -133,13 +133,13 @@ BSB2402 = Class(SLandFactoryUnit) {
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
-        SLandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)        
         if table.getn({self.DroneTable}) > 0 then
             for k, v in self.DroneTable do 
                 IssueClearCommands({self.DroneTable[k]}) 
                 IssueKillSelf({self.DroneTable[k]})
             end 
         end
+        SLandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)        
     end,
 }
 

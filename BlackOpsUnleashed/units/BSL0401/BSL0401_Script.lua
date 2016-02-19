@@ -180,6 +180,8 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit) {
     end,
         
     OnStopBeingBuilt = function(self,builder,layer)
+        self.slots = {}
+        self.transData = {}
         SHoverLandUnit.OnStopBeingBuilt(self,builder,layer)        
         self.BeamChargeEffects1 = {}
         self.ChargeEffects01Bag = {}
@@ -257,19 +259,21 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit) {
     end,
 
     -- Cleans up threads and drones on death
-    OnKilled = function(self, instigator, type, overkillRatio)
+    OnKilled = function(self, instigator, damageType, overkillRatio)
         -- Kill our heartbeat thread
         KillThread(self.HeartBeatThread)
         -- Clean up any in-progress construction
         ChangeState(self, self.DeadState)
         -- Immediately kill existing drones
-        if next(self.DroneTable) then
-            for name, drone in self.DroneTable do
-                IssueClearCommands({drone})
-                IssueKillSelf({drone})
+        if type (self.DroneTable) == "table" then
+            if next(self.DroneTable) then
+                for name, drone in self.DroneTable do
+                    IssueClearCommands({drone})
+                    IssueKillSelf({drone})
+                end
             end
-        end 
-        SHoverLandUnit.OnKilled(self, instigator, type, overkillRatio)
+        end
+        SHoverLandUnit.OnKilled(self, instigator, damageType, overkillRatio)
     end,
     
     -- Initial drone setup - loads globals, DroneData table, and creates drones
@@ -406,7 +410,7 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit) {
                     -- Repair progress = drone health percent, and the progressbar reflects this
                     local totalprogress = repairingDrone:GetHealth() / maxhealth
                     self:SetWorkProgress(totalprogress)
-                    if totalprogress >= 1 then
+                    if self.DroneData[self.BuildingDrone] and totalprogress >= 1 then
                         self.DroneData[self.BuildingDrone].Damaged = false
                     end
                 end

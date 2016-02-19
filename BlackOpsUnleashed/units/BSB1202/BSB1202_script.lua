@@ -42,10 +42,10 @@ BSB1202 = Class(SEnergyCreationUnit) {
     end,
         
     OnKilled = function(self, instigator, type, overkillRatio)
-        SEnergyCreationUnit.OnKilled(self, instigator, type, overkillRatio)
         if self.LoopAnimation then
             self.LoopAnimation:SetRate(0.0)
         end
+        SEnergyCreationUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 }
 

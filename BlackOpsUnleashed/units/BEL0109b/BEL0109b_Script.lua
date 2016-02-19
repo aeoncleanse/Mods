@@ -57,11 +57,10 @@ BEL0109b = Class(TLandUnit) {
 
             -- Passes the health of the Unit "B" to unit "C"and passes vet
             AvengerC:SetHealth(self,health)
-            AvengerC:AddKills(numkills)
+            AvengerC:AddXP(self.xp)
 
             -- Nil's local AvengerB
             AvengerC = nil
-           
 
             -- Avenger "B" removal scripts
             self:Destroy()

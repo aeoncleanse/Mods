@@ -119,7 +119,10 @@ BSB0405 = Class(SShieldStructureUnit) {
     end,
     
     DeathThread = function(self, overkillRatio , instigator)
-        self.Rotator1:SetTargetSpeed(0)
+        if self.Rotator1 then
+            self.Rotator1:SetTargetSpeed(40)
+        end
+
         local bigExplosionBones = {'Spinner', 'Eye01', 'Eye02'}
         local explosionBones = {'XSB0405', 'Light01',
                                 'Light02', 'Light03',

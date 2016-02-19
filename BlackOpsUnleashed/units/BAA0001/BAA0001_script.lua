@@ -73,7 +73,7 @@ BAA0001 = Class(AAirUnit) {
     -- Flags drone as damaged when hit
     OnDamage = function(self, instigator, amount, vector, damagetype)
         AAirUnit.OnDamage(self, instigator, amount, vector, damagetype)
-        if not self.Carrier.DroneData[self.Name].Damaged and amount > 0 and amount < self:GetHealth() then
+        if self.Carrier.DroneData[self.Name] and not self.Carrier.DroneData[self.Name].Damaged and amount > 0 and amount < self:GetHealth() then
             self.Carrier.DroneData[self.Name].Damaged = true
         end
     end,

@@ -5,18 +5,19 @@
 -- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 --------------------------------------------------------------------------
 
-local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
+local AirTransport = import('/lua/defaultunits.lua').AirTransport
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local aWeapons = import('/lua/aeonweapons.lua')
 local AAASonicPulseBatteryWeapon = aWeapons.AAASonicPulseBatteryWeapon
 
-BAA0309 = Class(AAirUnit) {
-    AirDestructionEffectBones = { 'Exhaust', 'Wing_Right', 'Wing_Left', 'Turret_Right', 'Turret_Left',
-                                  'Slots_Left01', 'Slots_Left02', 'Slots_Right01', 'Slots_Right02',
-                                  'Right_AttachPoint01', 'Right_AttachPoint02', 'Right_AttachPoint03', 'Right_AttachPoint04',
-                                  'Left_AttachPoint01', 'Left_AttachPoint02', 'Left_AttachPoint03', 'Left_AttachPoint04', },
-
+BAA0309 = Class(AirTransport) {
+    AirDestructionEffectBones = {'Exhaust', 'Wing_Right', 'Wing_Left', 'Turret_Right01', 'Turret_Left',
+        'Slots_Left01', 'Slots_Left02', 'Slots_Right01', 'Slots_Right02',
+        'Right_AttachPoint01', 'Right_AttachPoint02', 'Right_AttachPoint03', 'Right_AttachPoint04',
+        'Left_AttachPoint01', 'Left_AttachPoint02', 'Left_AttachPoint03', 'Left_AttachPoint04',
+    },
+    
     Weapons = {
         SonicPulseBattery1 = Class(AAASonicPulseBatteryWeapon) {},
         SonicPulseBattery2 = Class(AAASonicPulseBatteryWeapon) {},
@@ -38,7 +39,7 @@ BAA0309 = Class(AAirUnit) {
     end,
     
     OnStopBeingBuilt = function(self,builder,layer)
-        AAirUnit.OnStopBeingBuilt(self,builder,layer)
+        AirTransport.OnStopBeingBuilt(self,builder,layer)
         self:DisableUnitIntel('CloakField')
     end,
 }

@@ -277,8 +277,6 @@ BAA0401 = Class(AAirUnit) {
         if self.Parent then
             self.Parent:NotifyOfDroneDeath()
         end
-        self.Trash:Destroy()
-        self.Trash = TrashBag()
         self:ForkThread(self.DeathEffectsThread)
         AAirUnit.OnKilled(self, instigator, type, overkillRatio)        
     end,
@@ -294,7 +292,7 @@ BAA0401 = Class(AAirUnit) {
         self:CreateExplosionDebris('DamageBone11', army)
         self:CreateExplosionDebris('Turret', army)
         self:CreateExplosionDebris('DamageBone01', army)
-        
+       
         -- Create damage effects on turret bone
         CreateDeathExplosion( self, 'DamageBone01', 1.5)
         
@@ -329,9 +327,8 @@ BAA0401 = Class(AAirUnit) {
     end,
     
     DeathThread = function(self)
-        self:PlayUnitSound('Destroyed')
-        local army = self:GetArmy()
         local bp = self:GetBlueprint()
+        local army = self:GetArmy()
         WaitSeconds(0.4)
         CreateDeathExplosion(self, 'DamageBone03', 1)
         WaitSeconds(0.4)
@@ -343,7 +340,6 @@ BAA0401 = Class(AAirUnit) {
         LOG('waiting 0.5 seconds')
         WaitSeconds(0.5)
         CreateDeathExplosion(self, 'BAA0401', 5)
-        self:PlayUnitSound('Destroyed')
         self:CreateWreckage(0.1)
         self:Destroy()
     end,
