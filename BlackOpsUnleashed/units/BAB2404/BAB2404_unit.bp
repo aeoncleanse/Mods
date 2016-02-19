@@ -36,7 +36,7 @@ UnitBlueprint {
             LodCutoff = 'UnitMove_LodCutoff',
         },
     },
-    BuildIconSortPriority = 60,
+    BuildIconSortPriority = 50,
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
@@ -70,6 +70,9 @@ UnitBlueprint {
     },
     Description = '<LOC bab2404_desc>Artemis Satelite Control',
     Display = {
+        Abilities = {
+            '<LOC ability_factory>Factory',
+        },
         BuildAttachBone = 'Attachpoint',
         Mesh = {
             IconFadeInZoom = 130,
@@ -105,7 +108,7 @@ UnitBlueprint {
         BuildRate = 1080,
         BuildTime = 54000,
         BuildableCategory = {
-            'BUILTBYSTATION',
+            'BUILTBYARTEMIS',
         },
         RebuildBonusIds = {
             'bab2404',

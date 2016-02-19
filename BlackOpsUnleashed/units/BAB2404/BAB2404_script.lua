@@ -99,22 +99,22 @@ BAB2404 = Class(ALandFactoryUnit) {
     FinishBuildThread = function(self, unitBeingBuilt, order)
         ALandFactoryUnit.FinishBuildThread(self, unitBeingBuilt, order)
         self:PlayUnitSound('LaunchSat')
-        self:AddBuildRestriction(categories.BUILTBYSTATION)
+        self:AddBuildRestriction(categories.BUILTBYARTEMIS)
     end,
     
     
     NotifyOfDroneDeath = function(self)
         -- Remove build restriction if sat has been lost
         self.PetDrone = nil
-        self:RemoveBuildRestriction(categories.BUILTBYSTATION)
+        self:RemoveBuildRestriction(categories.BUILTBYARTEMIS)
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
-        ALandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)
         if self.PetDrone then
             self.PetDrone:Kill(self, 'Normal', 0)
             self.PetDrone = nil
         end
+        ALandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 }
 
