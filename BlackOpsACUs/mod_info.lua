@@ -1,0 +1,16 @@
+name = "BlackOpsACUs"
+uid = "9e8ea941-c306-4751-b367-e00000000305"
+version = 10
+copyright = "2009 Exavier Macbeth, lt_hawkeye, orangeknight"
+description = "Redesigns ACU Upgrades for More Options. Increases ACUs power to experimental levels as upgraded."
+author = "Exavier Macbeth, lt_hawkeye, orangeknight - Revamped 2016 by IceDreamer"
+icon = "/mods/BlackOpsACUs/icon.png"
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false
+requires = {"9e8ea941-c306-aaaf-b367-f00000000005"}
+requiresNames = {}
+conflicts = {}
+before = {}
+after = {"9e8ea941-c306-aaaf-b367-f00000000005"}

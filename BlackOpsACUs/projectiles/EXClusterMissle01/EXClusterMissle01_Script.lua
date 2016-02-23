@@ -1,7 +1,7 @@
 --
 -- Terran Land-Based Cruise Missile
 --
-local TMissileCruiseProjectile = import('/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
+local TMissileCruiseProjectile = import('/mods/BlackOpsACUs/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -65,7 +65,7 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
             --KillThread(self.MoveThread)         
 
             local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
-            local ChildProjectileBP = '/projectiles/EXSmallYieldNuclearBomb01/EXSmallYieldNuclearBomb01_proj.bp'  
+            local ChildProjectileBP = '/mods/BlackOpsACUs/projectiles/EXSmallYieldNuclearBomb01/EXSmallYieldNuclearBomb01_proj.bp'  
               
             ------ Split effects
             for k, v in FxFragEffect do

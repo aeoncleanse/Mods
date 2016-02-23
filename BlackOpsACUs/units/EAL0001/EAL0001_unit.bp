@@ -162,7 +162,7 @@ UnitBlueprint {
             '<LOC ability_omni>Omni Sensor',
             '<LOC ability_deathaoe>Volatile',
         },
-        AnimationWalk = '/units/eal0001/eal0001_awalk.sca',
+        AnimationWalk = '/mods/BlackOpsACUs/units/eal0001/eal0001_awalk.sca',
         AnimationWalkRate = 2.5,
         IdleEffects = {
             Seabed = {
@@ -259,13 +259,13 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/units/eal0001/eal0001_afold.sca',
+                Animation = '/mods/BlackOpsACUs/units/eal0001/eal0001_afold.sca',
                 Weight = 100,
             },
         },
         TransportDropAnimation = {
             {
-                Animation = '/units/eal0001/eal0001_aunfold.sca',
+                Animation = '/mods/BlackOpsACUs/units/eal0001/eal0001_aunfold.sca',
                 Weight = 100,
             },
         },
@@ -293,7 +293,6 @@ UnitBlueprint {
         TeleportMassMod = 0.05978,
         TeleportTimeMod = 0.0001,
         TeleportBurstEnergyCost = 7000,
-        xpBaseValue = 16000,
         BuildxpLevelpSecond = 0,
         InitialRemoteViewingEnergyDrain = 2500,
     },
@@ -1018,7 +1017,7 @@ UnitBlueprint {
             Icon = 'exbsh1',
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Shield Battery (T2)',
-            OwnerShieldMesh = '/units/EAL0001/EAL0001_PhaseShield_mesh',
+            OwnerShieldMesh = '/mods/BlackOpsACUs/units/EAL0001/EAL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
             MaintenanceConsumptionPerSecondEnergy = 1,
@@ -1060,7 +1059,7 @@ UnitBlueprint {
             Name = 'Improved Shield Battery (T3)',
             Prerequisite = 'EXShieldBattery',
             BaseWeaponRange = 22,
-            OwnerShieldMesh = '/units/EAL0001/EAL0001_PhaseShield_mesh',
+            OwnerShieldMesh = '/mods/BlackOpsACUs/units/EAL0001/EAL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
             MaintenanceConsumptionPerSecondEnergy = 1,
@@ -1102,7 +1101,7 @@ UnitBlueprint {
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Advanced Shield Battery (T4)',
             Prerequisite = 'EXActiveShielding',
-            OwnerShieldMesh = '/units/EAL0001/EAL0001_PhaseShield_mesh',
+            OwnerShieldMesh = '/mods/BlackOpsACUs/units/EAL0001/EAL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
             MaintenanceConsumptionPerSecondEnergy = 1,
@@ -1546,7 +1545,6 @@ UnitBlueprint {
         Level3 = 60,
         Level4 = 80,
         Level5 = 100,
-        XPBaseValue = 85321,
     },
     Weapon = {
         {

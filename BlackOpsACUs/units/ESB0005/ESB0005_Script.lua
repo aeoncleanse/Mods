@@ -8,7 +8,7 @@
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
-local SeraLambdaField = import('/mods/BlackOpsUnleased/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
+local SeraLambdaField = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
 
 
 ESB0005 = Class(SStructureUnit) {

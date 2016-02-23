@@ -1,27 +1,28 @@
 --****************************************************************************
 --**
--- Author(s):  Exavier Macbeth
+--**  Author(s):  Exavier Macbeth
 --**
--- Summary  :  BlackOps: Adv Command Unit - UEF ACU
+--**  Summary  :  BlackOps: Adv Command Unit - UEF ACU
 --**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local Shield = import('/lua/shield.lua').Shield
 
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')
 local TDFZephyrCannonWeapon = TerranWeaponFile.TDFZephyrCannonWeapon
-local TIFCommanderDeathWeapon = TerranWeaponFile.TIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TIFCruiseMissileLauncher = TerranWeaponFile.TIFCruiseMissileLauncher
 local TDFOverchargeWeapon = TerranWeaponFile.TDFOverchargeWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
-local UEFACUHeavyPlasmaGatlingCannonWeapon = import('/lua/EXBlackOpsweapons.lua').UEFACUHeavyPlasmaGatlingCannonWeapon
-local Weapons2 = import('/lua/EXBlackOpsweapons.lua')
+local UEFACUHeavyPlasmaGatlingCannonWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').UEFACUHeavyPlasmaGatlingCannonWeapon
+local Weapons2 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
 local EXFlameCannonWeapon = Weapons2.HawkGaussCannonWeapon
 local UEFACUAntiMatterWeapon = Weapons2.UEFACUAntiMatterWeapon
-local PDLaserGrid = import('/lua/EXBlackOpsweapons.lua').PDLaserGrid2 
+local PDLaserGrid = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').PDLaserGrid2 
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
@@ -30,7 +31,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(TIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(DeathNukeWeapon) {},
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
         EXFlameCannon01 = Class(EXFlameCannonWeapon) {},
         EXFlameCannon02 = Class(EXFlameCannonWeapon) {},
@@ -372,7 +373,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:PlayUnitSound('CommanderArrival')
         self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
-        self:SetMesh('/units/eel0001/EEL0001_PhaseShield_mesh', true)
+        self:SetMesh('/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
         self:HideBone('Engineering_Suite', true)
         self:HideBone('Flamer', true)
@@ -1723,7 +1724,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
-            self:CreatePersonalShield(bp)
+            self:CreateShield(bp)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self.Rotator1:SetTargetSpeed(90)
@@ -1747,7 +1748,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
-                self:CreatePersonalShield(bp)
+                self:CreateShield(bp)
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
@@ -1778,7 +1779,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
-                self:CreatePersonalShield(bp)
+                self:CreateShield(bp)
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
@@ -2318,23 +2319,23 @@ EEL0001 = Class(TWalkingLandUnit) {
     OnPaused = function(self)
         TWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
-            TWalkingLandUnit.StopBuildingEffects(self, self:GetUnitBeingBuilt())
+            TWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
         end    
     end,
     
     OnUnpaused = function(self)
         if self.BuildingUnit then
-            TWalkingLandUnit.StartBuildingEffects(self, self:GetUnitBeingBuilt(), self.UnitBuildOrder)
+            TWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         TWalkingLandUnit.OnUnpaused(self)
     end,      
 
     ShieldEffects2 = {
-        '/effects/emitters/ex_uef_shieldgen_01_emit.bp',
+        '/mods/BlackOpsACUs/effects/emitters/ex_uef_shieldgen_01_emit.bp',
     },
 
     FlamerEffects = {
-        '/effects/emitters/ex_flamer_torch_01.bp',
+        '/mods/BlackOpsACUs/effects/emitters/ex_flamer_torch_01.bp',
     },
 
 }

@@ -7,7 +7,7 @@
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local EXEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
+local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
 local HawkCollisionBeam = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua').HawkCollisionBeam
 
 PDLaserCollisionBeam = Class(HawkCollisionBeam) {
@@ -59,7 +59,7 @@ PDLaserCollisionBeam = Class(HawkCollisionBeam) {
 }
 
 EXCEMPArrayBeam01CollisionBeam = Class(HawkCollisionBeam) {
-    FxBeam = {'/effects/emitters/excemparraybeam01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsACUs/effects/emitters/excemparraybeam01_emit.bp'},
     FxBeamEndPoint = {
 
     },
@@ -74,7 +74,7 @@ EXCEMPArrayBeam01CollisionBeam = Class(HawkCollisionBeam) {
 }
 
 EXCEMPArrayBeam02CollisionBeam = Class(HawkCollisionBeam) {
-    FxBeam = {'/effects/emitters/excemparraybeam02_emit.bp'},
+    FxBeam = {'/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
     FxBeamStartPointScale = 0.05,
@@ -85,7 +85,7 @@ EXCEMPArrayBeam02CollisionBeam = Class(HawkCollisionBeam) {
 }
 
 EXCEMPArrayBeam03CollisionBeam = Class(HawkCollisionBeam) {
-    FxBeam = {'/effects/emitters/excemparraybeam01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsACUs/effects/emitters/excemparraybeam01_emit.bp'},
     FxBeamEndPoint = EXEffectTemplate.CybranACUEMPArrayHit01,
     FxBeamStartPoint = {
 
@@ -153,7 +153,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
 
 AeonACUPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeamStartPoint = EffectTemplate.APhasonLaserMuzzle01,
-    FxBeam = {'/effects/emitters/exphason_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsACUs/effects/emitters/exphason_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.APhasonLaserImpact01,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,

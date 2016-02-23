@@ -164,8 +164,8 @@ UnitBlueprint {
             '<LOC ability_deathaoe>Volatile',
         },
 
-        -- AnimationIdle = '/units/eel0001/eel0001_a002.sca',
-        AnimationWalk = '/units/eel0001/eel0001_a001.sca',
+        -- AnimationIdle = '/mods/BlackOpsACUs/units/eel0001/eel0001_a002.sca',
+        AnimationWalk = '/mods/BlackOpsACUs/units/eel0001/eel0001_a001.sca',
         AnimationWalkRate = 1.7,
         AttackReticleSize = 55,
         DamageEffects = {
@@ -281,13 +281,13 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/units/eel0001/eel0001_afold.sca',
+                Animation = '/mods/BlackOpsACUs/units/eel0001/eel0001_afold.sca',
                 Weight = 100,
             },
         },
         TransportDropAnimation = {
             {
-                Animation = '/units/eel0001/eel0001_aunfold.sca',
+                Animation = '/mods/BlackOpsACUs/units/eel0001/eel0001_aunfold.sca',
                 Weight = 100,
             },
         },
@@ -316,7 +316,6 @@ UnitBlueprint {
         TeleportMassMod = 0.03985,
         TeleportTimeMod = 0.0001,
         TeleportBurstEnergyCost = 7000,
-        xpBaseValue = 16000,
         BuildxpLevelpSecond = 0,
     },
     Enhancements = {
@@ -1012,7 +1011,7 @@ UnitBlueprint {
             Icon = 'exbsh1',
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Shield Battery (T2)',
-            OwnerShieldMesh = '/units/eel0001/EEL0001_PhaseShield_mesh',
+            OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
             MaintenanceConsumptionPerSecondEnergy = 1,
@@ -1059,7 +1058,7 @@ UnitBlueprint {
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Improved Shield Battery (T3)',
             Prerequisite = 'EXShieldBattery',
-            OwnerShieldMesh = '/units/eel0001/EEL0001_PhaseShield_mesh',
+            OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
             MaintenanceConsumptionPerSecondEnergy = 1,
@@ -1109,7 +1108,7 @@ UnitBlueprint {
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Advanced Shield Battery (T4)',
             Prerequisite = 'EXActiveShielding',
-            OwnerShieldMesh = '/units/eel0001/EEL0001_PhaseShield_mesh',
+            OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
             MaintenanceConsumptionPerSecondEnergy = 1,
@@ -1611,7 +1610,6 @@ UnitBlueprint {
         Level3 = 60,
         Level4 = 80,
         Level5 = 100,
-        XPBaseValue = 85321,
     },
     Weapon = {
         {
@@ -1834,7 +1832,7 @@ UnitBlueprint {
             MuzzleVelocity = 20,
             NoPause = true,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/projectiles/NapalmProjectile01/Napalm01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/NapalmProjectile01/Napalm01_proj.bp',
             ProjectileLifetime = 4,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -1917,7 +1915,7 @@ UnitBlueprint {
             MuzzleVelocity = 20,
             NoPause = true,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/projectiles/NapalmProjectile01/Napalm01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/NapalmProjectile01/Napalm01_proj.bp',
             ProjectileLifetime = 4,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2152,7 +2150,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/UEFACUAntiMatter01/UEFACUAntiMatter01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFACUAntiMatter01/UEFACUAntiMatter01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2224,7 +2222,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/UEFACUAntiMatter02/UEFACUAntiMatter02_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFACUAntiMatter02/UEFACUAntiMatter02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2296,7 +2294,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/UEFACUAntiMatter03/UEFACUAntiMatter03_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFACUAntiMatter03/UEFACUAntiMatter03_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2369,7 +2367,7 @@ UnitBlueprint {
             MuzzleVelocity = 32,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/UEFHeavyPlasmaGatlingCannon03/UEFHeavyPlasmaGatlingCannon03_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFHeavyPlasmaGatlingCannon03/UEFHeavyPlasmaGatlingCannon03_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2444,7 +2442,7 @@ UnitBlueprint {
             MuzzleVelocity = 32,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/UEFHeavyPlasmaGatlingCannon01/UEFHeavyPlasmaGatlingCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFHeavyPlasmaGatlingCannon01/UEFHeavyPlasmaGatlingCannon01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2519,7 +2517,7 @@ UnitBlueprint {
             MuzzleVelocity = 32,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/UEFHeavyPlasmaGatlingCannon02/UEFHeavyPlasmaGatlingCannon02_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFHeavyPlasmaGatlingCannon02/UEFHeavyPlasmaGatlingCannon02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2809,7 +2807,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 6,
             MuzzleVelocity = 10,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/projectiles/EXClusterMissle01/EXClusterMissle01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/EXClusterMissle01/EXClusterMissle01_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {
@@ -2881,7 +2879,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 6,
             MuzzleVelocity = 10,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/projectiles/EXClusterMissle01/EXClusterMissle01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/EXClusterMissle01/EXClusterMissle01_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {
@@ -2953,7 +2951,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 6,
             MuzzleVelocity = 10,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/projectiles/EXClusterMissle01/EXClusterMissle01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/EXClusterMissle01/EXClusterMissle01_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {
@@ -3037,7 +3035,7 @@ UnitBlueprint {
             NukeOuterRingTicks = 20,
             NukeOuterRingTotalTime = 0,
             NukeWeapon = true,
-            ProjectileId = '/projectiles/UEFBilly/UEFBilly_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFBilly/UEFBilly_proj.bp',
             ProjectileLifetime = 80,
             RackBones = {
                 {

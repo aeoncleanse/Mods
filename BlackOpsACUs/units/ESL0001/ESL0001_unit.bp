@@ -66,8 +66,8 @@ UnitBlueprint {
         },
         Killed = Sound {
             Bank = 'Impacts',
-            Cue = 'XSB2305_impact',
-            LodCutoff = 'UnitMove_LodCutoff',
+            Cue = 'X_Impact_Land_Gen_Seraphim',
+            LodCutoff = 'Weapon_LodCutoff',
         },
         ReclaimLoop = Sound {
             Bank = 'XSL',
@@ -160,7 +160,7 @@ UnitBlueprint {
             '<LOC ability_omni>Omni Sensor',
             '<LOC ability_deathaoe>Volatile',
         },
-        AnimationWalk = '/units/esl0001/esl0001_awalk.sca',
+        AnimationWalk = '/mods/BlackOpsACUs/units/esl0001/esl0001_awalk.sca',
         AnimationWalkRate = 1.1,
         IdleEffects = {
             Seabed = {
@@ -258,13 +258,13 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/units/esl0001/esl0001_afold.sca',
+                Animation = '/mods/BlackOpsACUs/units/esl0001/esl0001_afold.sca',
                 Weight = 100,
             },
         },
         TransportDropAnimation = {
             {
-                Animation = '/units/esl0001/esl0001_aunfold.sca',
+                Animation = '/mods/BlackOpsACUs/units/esl0001/esl0001_aunfold.sca',
                 Weight = 100,
             },
         },
@@ -293,7 +293,6 @@ UnitBlueprint {
         TeleportMassMod = 0.04982,
         TeleportTimeMod = 0.0001,
         TeleportBurstEnergyCost = 7000,
-        xpBaseValue = 16000,
         BuildxpLevelpSecond = 0,
     },
     Enhancements = {
@@ -1425,7 +1424,7 @@ UnitBlueprint {
             OverchargeDamageMod2 = 6000,
             OverchargeDamageMod3 = 8000,
             OverchargeRangeMod = 40,
-            NewProjectileBlueprint = '/projectiles/OmegaOverCharge01/OmegaOverCharge01_proj.bp',
+            NewProjectileBlueprint = '/mods/BlackOpsACUs/projectiles/OmegaOverCharge01/OmegaOverCharge01_proj.bp',
             ShowBones = {
                 'Missile_Launcher',
                 'L_Spinner_B01',
@@ -1572,7 +1571,6 @@ UnitBlueprint {
         Level3 = 60,
         Level4 = 80,
         Level5 = 100,
-        XPBaseValue = 85321,
     },
     Weapon = {
         {
@@ -1981,7 +1979,7 @@ UnitBlueprint {
             MuzzleVelocity = 15,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/SeraACUBigBall01/SeraACUBigBall01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/SeraACUBigBall01/SeraACUBigBall01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2061,7 +2059,7 @@ UnitBlueprint {
             MuzzleVelocity = 15,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/SeraACUBigBall02/SeraACUBigBall02_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/SeraACUBigBall02/SeraACUBigBall02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2141,7 +2139,7 @@ UnitBlueprint {
             MuzzleVelocity = 15,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/SeraACUBigBall03/SeraACUBigBall03_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/SeraACUBigBall03/SeraACUBigBall03_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2213,7 +2211,7 @@ UnitBlueprint {
             MuzzleVelocity = 35,
             NoPause = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/SeraRapidCannon01/SeraRapidCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/SeraRapidCannon01/SeraRapidCannon01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2286,7 +2284,7 @@ UnitBlueprint {
             MuzzleVelocity = 35,
             NoPause = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/SeraRapidCannon02/SeraRapidCannon02_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/SeraRapidCannon02/SeraRapidCannon02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2359,7 +2357,7 @@ UnitBlueprint {
             MuzzleVelocity = 35,
             NoPause = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/SeraRapidCannon03/SeraRapidCannon03_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/SeraRapidCannon03/SeraRapidCannon03_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {

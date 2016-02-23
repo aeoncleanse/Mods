@@ -1,17 +1,17 @@
 --****************************************************************************
 --**
--- Author(s):  Exavier Macbeth
+--**  Author(s):  Exavier Macbeth
 --**
--- Summary  :  BlackOps: Adv Command Unit - Aeon ACU
+--**  Summary  :  BlackOps: Adv Command Unit - Aeon ACU
 --**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
 
 local AWeapons = import('/lua/aeonweapons.lua')
 local ADFDisruptorCannonWeapon = AWeapons.ADFDisruptorCannonWeapon
-local AIFCommanderDeathWeapon = AWeapons.AIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
@@ -22,9 +22,9 @@ local CSoothSayerAmbient = import('/lua/EffectTemplates.lua').CSoothSayerAmbient
 local AIFArtilleryMiasmaShellWeapon = import('/lua/aeonweapons.lua').AIFArtilleryMiasmaShellWeapon
 local AANChronoTorpedoWeapon = import('/lua/aeonweapons.lua').AANChronoTorpedoWeapon
 local ADFPhasonLaser = import('/lua/aeonweapons.lua').ADFPhasonLaser
-local AeonACUPhasonLaser = import('/lua/EXBlackOpsweapons.lua').AeonACUPhasonLaser 
+local AeonACUPhasonLaser = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').AeonACUPhasonLaser 
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
-local EXCEMPArrayBeam01 = import('/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01 
+local EXCEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01 
 local AAMWillOWisp = import('/lua/aeonweapons.lua').AAMWillOWisp
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
@@ -42,7 +42,7 @@ EAL0001 = Class(AWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(AIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(DeathNukeWeapon) {},
         EXTargetPainter = Class(EXCEMPArrayBeam01) {
             OnWeaponFired = function(self)
                 EXCEMPArrayBeam01.OnWeaponFired(self)
@@ -491,7 +491,7 @@ EAL0001 = Class(AWalkingLandUnit) {
         self:PlayUnitSound('CommanderArrival')
         self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
-        self:SetMesh('/units/eal0001/EAL0001_PhaseShield_mesh', true)
+        self:SetMesh('/mods/BlackOpsACUs/units/eal0001/EAL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
         self:HideBone('Engineering', true)
         self:HideBone('Combat_Engineering', true)
@@ -1777,7 +1777,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
-            self:CreatePersonalShield(bp)
+            self:CreateShield(bp)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self.ccShield = true
@@ -1795,7 +1795,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
-                self:CreatePersonalShield(bp)
+                self:CreateShield(bp)
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
@@ -1814,7 +1814,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
-                self:CreatePersonalShield(bp)
+                self:CreateShield(bp)
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
@@ -1954,8 +1954,8 @@ EAL0001 = Class(AWalkingLandUnit) {
                     end
                     self.MaelstromEffects01 = {}
                 end
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/effects/emitters/exmaelstrom_aura_01_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/effects/emitters/exmaelstrom_aura_02_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2.75, 0))
+                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/exmaelstrom_aura_01_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2, 0))
+                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/exmaelstrom_aura_02_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2.75, 0))
                 table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
                 table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
                 table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
@@ -2216,13 +2216,13 @@ EAL0001 = Class(AWalkingLandUnit) {
     OnPaused = function(self)
         AWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
-            AWalkingLandUnit.StopBuildingEffects(self, self:GetUnitBeingBuilt())
+            AWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
         end    
     end,
     
     OnUnpaused = function(self)
         if self.BuildingUnit then
-            AWalkingLandUnit.StartBuildingEffects(self, self:GetUnitBeingBuilt(), self.UnitBuildOrder)
+            AWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         AWalkingLandUnit.OnUnpaused(self)
     end,     

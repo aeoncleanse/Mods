@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
--- File     :  /cdimage/lua/modules/BlackOpsweapons.lua
--- Author(s):  Lt_hawkeye
+--**  File     :  /cdimage/lua/modules/BlackOpsweapons.lua
+--**  Author(s):  Lt_hawkeye
 --**
--- Summary  :  
+--**  Summary  :  
 --**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local WeaponFile = import('/lua/sim/defaultweapons.lua')
@@ -20,8 +20,8 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGeneratorCollisionBeam
 local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
 local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01
-local EXCollisionBeamFile = import('/lua/EXBlackOpsdefaultcollisionbeams.lua')
-local EXEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
+local EXCollisionBeamFile = import('/mods/BlackOpsACUs/lua/EXBlackOpsdefaultcollisionbeams.lua')
+local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
 
 
 HawkNapalmWeapon = Class(DefaultProjectileWeapon) {

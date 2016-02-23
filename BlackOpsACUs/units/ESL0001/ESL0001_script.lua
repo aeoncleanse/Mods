@@ -1,10 +1,10 @@
 --****************************************************************************
 --**
--- Author(s):  Exavier Macbeth
+--**  Author(s):  Exavier Macbeth
 --**
--- Summary  :  BlackOps: Adv Command Unit - Serephim ACU
+--**  Summary  :  BlackOps: Adv Command Unit - Serephim ACU
 --**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local SWalkingLandUnit = import('/lua/seraphimunits.lua').SWalkingLandUnit
@@ -13,7 +13,7 @@ local Buff = import('/lua/sim/Buff.lua')
 local SWeapons = import('/lua/seraphimweapons.lua')
 local SDFChronotronCannonWeapon = SWeapons.SDFChronotronCannonWeapon
 local SDFChronotronOverChargeCannonWeapon = SWeapons.SDFChronotronCannonOverChargeWeapon
-local SIFCommanderDeathWeapon = SWeapons.SIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
@@ -21,8 +21,8 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 local SDFAireauWeapon = SWeapons.SDFAireauWeapon
 local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
 local SANUallCavitationTorpedo = SWeapons.SANUallCavitationTorpedo
-local SeraACURapidWeapon = import('/lua/EXBlackOpsweapons.lua').SeraACURapidWeapon 
-local SeraACUBigBallWeapon = import('/lua/EXBlackOpsweapons.lua').SeraACUBigBallWeapon 
+local SeraACURapidWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').SeraACURapidWeapon 
+local SeraACUBigBallWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').SeraACUBigBallWeapon 
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
 
 -- Setup as RemoteViewing child unit rather than SWalkingLandUnit
@@ -33,7 +33,7 @@ ESL0001 = Class(SWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(SIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(DeathNukeWeapon) {},
         ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
         EXTorpedoLauncher01 = Class(SANUallCavitationTorpedo) {},
         EXTorpedoLauncher02 = Class(SANUallCavitationTorpedo) {},
@@ -1060,7 +1060,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
-                        RegenPercent = {
+                        Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond or 0.1,
                             Ceil = bp.RegenCeiling,
@@ -1078,7 +1078,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
-                        RegenPercent = {
+                        Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond2 or 0.1,
                             Ceil = bp.RegenCeiling,
@@ -1096,7 +1096,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
-                        RegenPercent = {
+                        Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond3 or 0.1,
                             Ceil = bp.RegenCeiling,
@@ -1189,7 +1189,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
-                        RegenPercent = {
+                        Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond or 0.1,
                             Ceil = bp.RegenCeiling,
@@ -1206,7 +1206,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
-                        RegenPercent = {
+                        Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond2 or 0.1,
                             Ceil = bp.RegenCeiling,
@@ -1223,7 +1223,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
-                        RegenPercent = {
+                        Regen = {
                             Add = 0,
                             Mult = bp.RegenPerSecond3 or 0.1,
                             Ceil = bp.RegenCeiling,
@@ -2487,13 +2487,13 @@ ESL0001 = Class(SWalkingLandUnit) {
     OnPaused = function(self)
         SWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
-            SWalkingLandUnit.StopBuildingEffects(self, self:GetUnitBeingBuilt())
+            SWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
         end
     end,
 
     OnUnpaused = function(self)
         if self.BuildingUnit then
-            SWalkingLandUnit.StartBuildingEffects(self, self:GetUnitBeingBuilt(), self.UnitBuildOrder)
+            SWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         SWalkingLandUnit.OnUnpaused(self)
     end,

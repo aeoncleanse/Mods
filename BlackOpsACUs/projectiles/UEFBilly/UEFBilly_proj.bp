@@ -34,7 +34,7 @@ ProjectileBlueprint {
         Mesh = {
             LODs = {
                 {
-                    AlbedoName = '/projectiles/UEFBilly/UEFBilly_albedo.dds',
+                    AlbedoName = '/mods/BlackOpsACUs/projectiles/UEFBilly/UEFBilly_albedo.dds',
                     MeshName = '/projectiles/tifmissilecruise01/tifmissilecruise01_lod0.scm',
                     ShaderName = 'TMeshAlpha',
                 },

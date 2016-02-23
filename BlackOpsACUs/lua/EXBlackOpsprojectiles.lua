@@ -1,10 +1,15 @@
------------------------------------------------------------------
--- File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
--- Author(s): Lt_Hawkeye
--- Summary  :
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
------------------------------------------------------------------
-
+--****************************************************************************
+--**
+--**  File     : /cdimage/lua/modules/BlackOpsprojectiles.lua
+--**  Author(s): Lt_Hawkeye
+--**
+--**  Summary  :
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
+--------------------------------------------------------------------------
+--  Lt_hawkeye's Custom Projectiles
+--------------------------------------------------------------------------
 local Projectile = import('/lua/sim/projectile.lua').Projectile
 local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
 local EmitterProjectile = DefaultProjectileFile.EmitterProjectile
@@ -18,7 +23,7 @@ local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local DepthCharge = import('/lua/defaultantiprojectile.lua').DepthCharge
 local util = import('/lua/utilities.lua')
-local EXEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
+local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
 
 -----------------------------------------------------------------
 -- Null Shell
@@ -159,7 +164,7 @@ EXMultiCompositeEmitterProjectile = Class(EXMultiPolyTrailProjectile) {
 --  UEF ACU Flame Thrower
 --------------------------------------------------------------------------
 FlameThrowerProjectile01 = Class(EmitterProjectile) {
-    FxTrails = {'/Effects/Emitters/NapalmTrailFX.bp',},
+    FxTrails = {'/mods/BlackOpsACUs/Effects/Emitters/NapalmTrailFX.bp',},
     FxTrailScale = 0.75,
     FxImpactTrajectoryAligned = false,
 

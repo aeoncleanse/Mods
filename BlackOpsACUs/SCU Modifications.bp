@@ -1,0 +1,31 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="ual0301",
+    Defense = {
+        NoTeleDistance = 20,
+    },
+}
+
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="uel0301",
+    Defense = {
+        NoTeleDistance = 20,
+    },
+}
+
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="url0301",
+    Defense = {
+        NoTeleDistance = 20,
+    },
+}
+
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="xsl0301",
+    Defense = {
+        NoTeleDistance = 20,
+    },
+}

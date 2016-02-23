@@ -5,8 +5,8 @@ ProjectileBlueprint {
                 {
                     MeshName = '/effects/Entities/Sphere01/Sphere01_lod0.scm',
                     ShaderName = 'NukeUEF',
-                    AlbedoName = '/effects/Entities/EXBillyEffect01/EXBillyEffect01_albedo.dds',
-                    NormalsName = '/effects/Entities/EXBillyEffect01/EXBillyEffect01_normals.dds',
+                    AlbedoName = '/mods/BlackOpsACUs/effects/Entities/EXBillyEffect01/EXBillyEffect01_albedo.dds',
+                    NormalsName = '/mods/BlackOpsACUs/effects/Entities/EXBillyEffect01/EXBillyEffect01_normals.dds',
                     LODCutoff = 1000.0,
                 },
             },

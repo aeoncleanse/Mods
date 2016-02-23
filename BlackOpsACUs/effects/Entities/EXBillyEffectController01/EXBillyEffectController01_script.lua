@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
--- File     :  /effects/Entities/EXBillyEffectController01/EXBillyEffectController01_script.lua
--- Author(s):  Gordon Duclos
+--**  File     :  /mods/BlackOpsACUs/effects/Entities/EXBillyEffectController01/EXBillyEffectController01_script.lua
+--**  Author(s):  Gordon Duclos
 --**
--- Summary  :  Nuclear explosion script
+--**  Summary  :  Nuclear explosion script
 --**
--- Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
@@ -106,11 +106,11 @@ EXBillyEffectController01 = Class(NullShell) {
 
         -- Create initial fireball dome effect
         local FireballDomeYOffset = -2.5-- Exavier Modified Offset
-        self:CreateProjectile('/effects/Entities/EXBillyEffect01/EXBillyEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
+        self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyEffect01/EXBillyEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         
         -- Create projectile that controls plume effects
         local PlumeEffectYOffset = 1
-        self:CreateProjectile('/effects/Entities/EXBillyEffect02/EXBillyEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)        
+        self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyEffect02/EXBillyEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)        
         
         
         for k, v in EffectTemplate.TNukeRings01 do
@@ -151,7 +151,7 @@ EXBillyEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            self:CreateProjectile('/effects/Entities/EXBillyShockwave01/EXBillyShockwave01_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
+            self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyShockwave01/EXBillyShockwave01_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity):SetAcceleration(-0.25)-- Exavier Modified Acceleration
         end   
     end,  
@@ -166,7 +166,7 @@ EXBillyEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            local proj =  self:CreateProjectile('/effects/Entities/EXBillyShockwave02/EXBillyShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
+            local proj =  self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyShockwave02/EXBillyShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end  
@@ -202,7 +202,7 @@ EXBillyEffectController01 = Class(NullShell) {
             yVec = RandomFloat(0.2, 1)
             zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation)) 
             velocity = 1.7 + (yVec * RandomFloat(2,5))-- Exavier Modified Velocity
-            table.insert(projectiles, self:CreateProjectile('/effects/Entities/EXBillyFlavorPlume01/EXBillyFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity))
+            table.insert(projectiles, self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyFlavorPlume01/EXBillyFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity))
         end
 
         WaitSeconds(3)
@@ -224,7 +224,7 @@ EXBillyEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/effects/Entities/EXBillyEffect03/EXBillyEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyEffect03/EXBillyEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   
@@ -265,7 +265,7 @@ EXBillyEffectController01 = Class(NullShell) {
         local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local velocity = RandomFloat(1, 3) * 1.5-- Exavier Modified Last Number
-        self:CreateProjectile('/effects/Entities/EXBillyEffect05/EXBillyEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
+        self:CreateProjectile('/mods/BlackOpsACUs/effects/Entities/EXBillyEffect05/EXBillyEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
             :SetVelocity(x * velocity, 0, z * velocity)
     end 
     end,

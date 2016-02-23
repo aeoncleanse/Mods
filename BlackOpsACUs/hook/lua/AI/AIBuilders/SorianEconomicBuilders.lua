@@ -1,10 +1,10 @@
 --***************************************************************************
 --*
--- File     :  /lua/ai/AIEconomicBuilders.lua
+--**  File     :  /lua/ai/AIEconomicBuilders.lua
 --**
--- Summary  : Default economic builders for skirmish
+--**  Summary  : Default economic builders for skirmish
 --**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 
 local BBTmplFile = '/lua/basetemplates.lua'
@@ -23,8 +23,8 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local SBC = '/lua/SorianBuildConditions.lua'
-local BOUC = '/lua/EXBlackopsUpgradeConditions.lua'
+local SBC = '/lua/editor/SorianBuildConditions.lua'
+local BOUC = '/mods/BlackOpsACUs/lua/EXBlackopsUpgradeConditions.lua'
 
 do
 ----------------------------------------

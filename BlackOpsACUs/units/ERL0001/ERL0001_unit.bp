@@ -155,7 +155,7 @@ UnitBlueprint {
             '<LOC ability_omni>Omni Sensor',
             '<LOC ability_deathaoe>Volatile',
         },
-        AnimationWalk = '/units/erl0001/ERL0001_AWalk03.sca',
+        AnimationWalk = '/mods/BlackOpsACUs/units/erl0001/ERL0001_AWalk03.sca',
         AnimationWalkRate = 0.43,
         IdleEffects = {
             Seabed = {
@@ -256,13 +256,13 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/units/erl0001/erl0001_afold.sca',
+                Animation = '/mods/BlackOpsACUs/units/erl0001/erl0001_afold.sca',
                 Weight = 100,
             },
         },
         TransportDropAnimation = {
             {
-                Animation = '/units/erl0001/erl0001_aunfold.sca',
+                Animation = '/mods/BlackOpsACUs/units/erl0001/erl0001_aunfold.sca',
                 Weight = 100,
             },
         },
@@ -291,7 +291,6 @@ UnitBlueprint {
         TeleportMassMod = 0.03985,
         TeleportTimeMod = 0.0001,
         TeleportBurstEnergyCost = 7000,
-        xpBaseValue = 16000,
         BuildxpLevelpSecond = 0,
     },
     Enhancements = {
@@ -1418,14 +1417,6 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        EXDummyEnhancment = {
-            BuildCostEnergy = 1,
-            BuildCostMass = 1,
-            BuildTime = 0.1,
-            Icon = 'exbbat3',
-            Name = 'Dummy Enhancment',
-            Slot = '',
-        },
     },
     General = {
         BuildBones = {
@@ -1525,7 +1516,6 @@ UnitBlueprint {
         Level3 = 60,
         Level4 = 80,
         Level5 = 100,
-        XPBaseValue = 85321,
     },
     Weapon = {
         {
@@ -2410,7 +2400,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 100,
-            ProjectileId = '/projectiles/EXInvisoProectile01/EXInvisoProectile01_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/EXInvisoProectile01/EXInvisoProectile01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2493,7 +2483,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 100,
-            ProjectileId = '/projectiles/EXInvisoProectile02/EXInvisoProectile02_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/EXInvisoProectile02/EXInvisoProectile02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2576,7 +2566,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 100,
-            ProjectileId = '/projectiles/EXInvisoProectile03/EXInvisoProectile03_proj.bp',
+            ProjectileId = '/mods/BlackOpsACUs/projectiles/EXInvisoProectile03/EXInvisoProectile03_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {

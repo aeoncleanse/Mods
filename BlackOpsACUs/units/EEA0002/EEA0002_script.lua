@@ -1,11 +1,11 @@
 --****************************************************************************
 --**
--- File     :  /cdimage/units/XEA0002/XEA0002_script.lua
--- Author(s):  Drew Staltman, Gordon Duclos
+--**  File     :  /cdimage/units/XEA0002/XEA0002_script.lua
+--**  Author(s):  Drew Staltman, Gordon Duclos
 --**
--- Summary  :  UEF Defense Satelite Script
+--**  Summary  :  UEF Defense Satelite Script
 --**
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
 local TOrbitalDeathLaserBeamWeapon = import('/lua/terranweapons.lua').TOrbitalDeathLaserBeamWeapon
@@ -14,7 +14,7 @@ local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/lua/EXBlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
 
 EEA0002 = Class(TAirUnit) {
     Parent = nil,
@@ -25,7 +25,7 @@ EEA0002 = Class(TAirUnit) {
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
-        TAirUnit.OnStopBeingBuilt(self)
+        TAirUnit.OnStopBeingBuilt(self,builder,layer)
         self.ProjTable = {}
     end,
     
@@ -60,11 +60,11 @@ EEA0002 = Class(TAirUnit) {
     OpenState = State() {
         Main = function(self)
             self.OpenAnim = CreateAnimator(self)
-            self.OpenAnim:PlayAnim('/units/EEA0002/eea0002_aopen01.sca')
+            self.OpenAnim:PlayAnim('/mods/BlackOpsACUs/units/EEA0002/eea0002_aopen01.sca')
             self.Trash:Add(self.OpenAnim)
             WaitFor(self.OpenAnim)
             
-            self.OpenAnim:PlayAnim('/units/EEA0002/eea0002_aopen02.sca')
+            self.OpenAnim:PlayAnim('/mods/BlackOpsACUs/units/EEA0002/eea0002_aopen02.sca')
             
             for k,v in self.HideBones do
                 self:HideBone(v, true)
@@ -81,7 +81,7 @@ EEA0002 = Class(TAirUnit) {
                     self.ProjTable = {}
                 end
                 local loc = self:GetPosition('XEA0002')                               
-                proj = self:CreateProjectile('/projectiles/SpysatSMDBait/SpysatSMDBait_proj.bp', loc[1], loc[2], loc[3], nil, nil, nil):SetCollision(false)
+                proj = self:CreateProjectile('/mods/BlackOpsACUs/projectiles/SpysatSMDBait/SpysatSMDBait_proj.bp', loc[1], loc[2], loc[3], nil, nil, nil):SetCollision(false)
                 Warp(proj, loc)
                 table.insert (self.ProjTable, proj)
                 proj:SetParent(self, 'eea0002')   

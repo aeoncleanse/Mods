@@ -1,10 +1,10 @@
 --****************************************************************************
 --**
--- Author(s):  Exavier Macbeth
+--**  Author(s):  Exavier Macbeth
 --**
--- Summary  :  BlackOps: Adv Command Unit - Cybran ACU
+--**  Summary  :  BlackOps: Adv Command Unit - Cybran ACU
 --**
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 --****************************************************************************
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CWeapons = import('/lua/cybranweapons.lua')
@@ -13,22 +13,23 @@ local Buff = import('/lua/sim/Buff.lua')
 
 --local CAAMissileNaniteWeapon = CWeapons.CAAMissileNaniteWeapon
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
-local CIFCommanderDeathWeapon = CWeapons.CIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local CDFHeavyMicrowaveLaserGeneratorCom = CWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 local CDFOverchargeWeapon = CWeapons.CDFOverchargeWeapon
 local CANTorpedoLauncherWeapon = CWeapons.CANTorpedoLauncherWeapon
 local Entity = import('/lua/sim/Entity.lua').Entity
-local EXCEMPArrayBeam01 = import('/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01 
-local EXCEMPArrayBeam02 = import('/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam02 
-local EXCEMPArrayBeam03 = import('/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam03 
+local EXCEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01 
+local EXCEMPArrayBeam02 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam02 
+local EXCEMPArrayBeam03 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam03 
 local RocketPack = import('/lua/cybranweapons.lua').CDFRocketIridiumWeapon02
 
 ERL0001 = Class(CWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(CIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(DeathNukeWeapon) {},
         RightRipper = Class(CCannonMolecularWeapon) {
             OnCreate = function(self)
                 CCannonMolecularWeapon.OnCreate(self)
@@ -58,9 +59,9 @@ ERL0001 = Class(CWalkingLandUnit) {
                         end
                         self.unit.EMPArrayEffects01 = {}
                     end
-                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp'))
-                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp'))
-                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/excemparraybeam02_emit.bp'))
+                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
+                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
+                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
                     table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
                     table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
                     table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
@@ -407,7 +408,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:PlayUnitSound('CommanderArrival')
         self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
-        self:SetMesh('/units/erl0001/ERL0001_PhaseShield_mesh', true)
+        self:SetMesh('/mods/BlackOpsACUs/units/erl0001/ERL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
         self:HideBone('Mobility_LLeg_B01', true)
         self:HideBone('Mobility_LLeg_B02', true)
@@ -2078,13 +2079,13 @@ ERL0001 = Class(CWalkingLandUnit) {
     OnPaused = function(self)
         CWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
-            CWalkingLandUnit.StopBuildingEffects(self, self:GetUnitBeingBuilt())
+            CWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
         end    
     end,
     
     OnUnpaused = function(self)
         if self.BuildingUnit then
-            CWalkingLandUnit.StartBuildingEffects(self, self:GetUnitBeingBuilt(), self.UnitBuildOrder)
+            CWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         CWalkingLandUnit.OnUnpaused(self)
     end,     

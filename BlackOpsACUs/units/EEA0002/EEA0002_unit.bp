@@ -86,6 +86,9 @@ UnitBlueprint {
     },
     Description = 'Spy Satellite',
     Display = {
+        Abilities = {
+            'Unarmed',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -133,6 +136,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Secret',
+        UnitName = '<LOC eea0002_name>Hawkeye',
         UnitWeight = 1,
     },
     Intel = {
@@ -141,7 +145,7 @@ UnitBlueprint {
         VisionRadius = 25,
     },
     Interface = {
-        HelpText = 'Spy Satellite',
+        HelpText = '<LOC eea0002_help>Spy Satellite',
     },
     LifeBarHeight = 0.025,
     LifeBarOffset = 0.25,
