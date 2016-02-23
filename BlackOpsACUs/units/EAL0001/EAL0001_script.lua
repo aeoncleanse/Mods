@@ -1,11 +1,11 @@
---****************************************************************************
---**
---**  Author(s):  Exavier Macbeth
---**
---**  Summary  :  BlackOps: Adv Command Unit - Aeon ACU
---**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------
+
+-- Author(s):  Exavier Macbeth
+
+-- Summary  :  BlackOps: Adv Command Unit - Aeon ACU
+
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
 

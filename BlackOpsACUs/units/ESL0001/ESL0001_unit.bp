@@ -2,7 +2,6 @@ UnitBlueprint {
     AI = {
         GuardRadius = 10,
         TargetBones = {
-           -- 'XSL0001',
             'Torso',
         },
     },

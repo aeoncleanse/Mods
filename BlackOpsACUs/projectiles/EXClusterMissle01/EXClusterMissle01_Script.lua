@@ -1,6 +1,5 @@
---
 -- Terran Land-Based Cruise Missile
---
+
 local TMissileCruiseProjectile = import('/mods/BlackOpsACUs/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -8,9 +7,6 @@ local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
 EXClusterMissle01 = Class(TMissileCruiseProjectile) {
-    --FxTrails = EffectTemplate.TMissileExhaust01,
-    --FxTrailOffset = 0,
-    --FxTrailScale = 1.5,
 
     OnCreate = function(self)
         TMissileCruiseProjectile.OnCreate(self)
@@ -29,11 +25,9 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
     end,
 
     SetTurnRateByDist = function(self)
-        --local dist = self:GetDistanceToTarget()
         local dist = VDist3(self:GetPosition(), self:GetCurrentTargetPosition())
-        --LOG('Distance : ', dist)
         if dist > 50 then        
-            --Freeze the turn rate as to prevent steep angles at long distance targets
+            -- Freeze the turn rate as to prevent steep angles at long distance targets
             self:SetTurnRate(15)
             WaitSeconds(0.5)
             self:SetTurnRate(90)
@@ -59,15 +53,12 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
         elseif dist > 0 and dist <= 8 then
             -- Further increase check intervals            
             self:SetTurnRate(360)   
-            WaitSeconds(0.1)
-            --LOG('Distance Split : ', dist)
-            --ForkThread(self.OnImpact)
-            --KillThread(self.MoveThread)         
+            WaitSeconds(0.1)    
 
             local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
             local ChildProjectileBP = '/mods/BlackOpsACUs/projectiles/EXSmallYieldNuclearBomb01/EXSmallYieldNuclearBomb01_proj.bp'  
               
-            ------ Split effects
+            -- Split effects
             for k, v in FxFragEffect do
                 CreateEmitterAtEntity(self, self:GetArmy(), v)
             end
@@ -76,8 +67,6 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
             local velocity = 20
         
             -- One initial projectile following same directional path as the original
-            --self:CreateChildProjectile(ChildProjectileBP):SetVelocity(vx, vy, vz):SetVelocity(velocity):PassDamageData(self.DamageData)
-           
             -- Create several other projectiles in a dispersal pattern
             local numProjectiles = 3
             
@@ -86,9 +75,7 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
             
             -- Randomization of the spread
             local angleVariation = angle * 3 -- Adjusts angle variance spread
-            local spreadMul = 1.25 -- Adjusts the width of the dispersal        
-        
-            --vy= -0.8
+            local spreadMul = 1.25 -- Adjusts the width of the dispersal
         
             local xVec = 0
             local yVec = vy
@@ -105,8 +92,7 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
             end
         
             self:Destroy()
-
-            end
+        end
     end,        
 
     GetDistanceToTarget = function(self)
@@ -121,5 +107,5 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
         self:SetDestroyOnWater(true)
     end,
 }
-TypeClass = EXClusterMissle01
 
+TypeClass = EXClusterMissle01

@@ -1,11 +1,11 @@
---****************************************************************************
---**
---**  Author(s):  Exavier Macbeth
---**
---**  Summary  :  BlackOps: Adv Command Unit - UEF ACU
---**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------
+
+-- Author(s):  Exavier Macbeth
+
+-- Summary  :  BlackOps: Adv Command Unit - UEF ACU
+
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 local Shield = import('/lua/shield.lua').Shield
 
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
@@ -27,7 +27,7 @@ local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
 
-EEL0001 = Class(TWalkingLandUnit) {    
+EEL0001 = Class(TWalkingLandUnit) {   
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
@@ -119,10 +119,10 @@ EEL0001 = Class(TWalkingLandUnit) {
         EXClusterMissles01 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles02 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles03 = Class(TIFCruiseMissileLauncher) {},
-        EXEnergyLance01 = Class(PDLaserGrid) { 
+        EXEnergyLance01 = Class(PDLaserGrid) {
             PlayOnlyOneSoundCue = true, 
         }, 
-        EXEnergyLance02 = Class(PDLaserGrid) { 
+        EXEnergyLance02 = Class(PDLaserGrid) {
             PlayOnlyOneSoundCue = true, 
         }, 
         OverCharge = Class(TDFOverchargeWeapon) {

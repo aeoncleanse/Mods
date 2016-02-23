@@ -1,16 +1,12 @@
---****************************************************************************
---**
---**  File     :  /cdimage/units/XEA0002/XEA0002_script.lua
---**  Author(s):  Drew Staltman, Gordon Duclos
---**
---**  Summary  :  UEF Defense Satelite Script
---**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------
+-- File     :  /cdimage/units/XEA0002/XEA0002_script.lua
+-- Author(s):  Drew Staltman, Gordon Duclos
+-- Summary  :  UEF Defense Satelite Script
+-- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
 local TOrbitalDeathLaserBeamWeapon = import('/lua/terranweapons.lua').TOrbitalDeathLaserBeamWeapon
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
-
 local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -34,10 +30,6 @@ EEA0002 = Class(TAirUnit) {
             return 
         end
         local army = self:GetArmy()
-        --self.Trash:Add(CreateAttachedEmitter(self,'Turret_Barrel_Muzzle',army, '/effects/emitters/nuke_munition_launch_trail_05_emit.bp'))
-        --self.Trash:Add(CreateAttachedEmitter(self,'Turret_Barrel_Muzzle',army, '/effects/emitters/nuke_munition_launch_trail_04_emit.bp'))
-        --self.Trash:Add(CreateAttachedEmitter(self,'Turret_Barrel_Muzzle',army, '/effects/emitters/nuke_munition_launch_trail_03_emit.bp'))
-        --self.Trash:Add(CreateAttachedEmitter(self,'Turret_Barrel_Muzzle',army, '/effects/emitters/nuke_munition_launch_trail_03_emit.bp'))
         self.IsDying = true
         self.Parent:NotifyOfPodDeath(self.Pod)
         self.Parent = nil
@@ -47,11 +39,10 @@ EEA0002 = Class(TAirUnit) {
 
     DestroyNoFallRandomChance = 1.1,
     
-    HideBones = { 'Shell01', 'Shell02', 'Shell03', 'Shell04', },
+    HideBones = {'Shell01', 'Shell02', 'Shell03', 'Shell04',},
     
     Weapons = {
     },
-    
     
     Open = function(self)
         ChangeState(self, self.OpenState)
@@ -69,7 +60,6 @@ EEA0002 = Class(TAirUnit) {
             for k,v in self.HideBones do
                 self:HideBone(v, true)
             end
-            --self:ForkThread(self.ProjSpawn)
         end,
 
         ProjSpawn = function(self)
@@ -98,7 +88,7 @@ EEA0002 = Class(TAirUnit) {
     
     CreateExplosionDebris = function(self, bone, army)
         for k, v in EffectTemplate.ExplosionDebrisLrg01 do
-            CreateAttachedEmitter(self, bone, army, v)--:OffsetEmitter(0, 5, 0)
+            CreateAttachedEmitter(self, bone, army, v)
         end
     end,
 
@@ -115,6 +105,6 @@ EEA0002 = Class(TAirUnit) {
         self:CreateDamageEffects('L_Panel03', army)
         self:CreateDamageEffects('R_Panel03', army)
     end,
-    
 }
+
 TypeClass = EEA0002

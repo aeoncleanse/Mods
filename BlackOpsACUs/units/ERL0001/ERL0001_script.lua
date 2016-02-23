@@ -1,11 +1,11 @@
---****************************************************************************
---**
---**  Author(s):  Exavier Macbeth
---**
---**  Summary  :  BlackOps: Adv Command Unit - Cybran ACU
---**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------
+
+-- Author(s):  Exavier Macbeth
+
+-- Summary  :  BlackOps: Adv Command Unit - Cybran ACU
+
+-- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CWeapons = import('/lua/cybranweapons.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
@@ -1987,7 +1987,7 @@ ERL0001 = Class(CWalkingLandUnit) {
     
     -- **********
     -- Intel
-    -- **********    
+    -- ********   
     IntelEffects = {
         Cloak = {
             {

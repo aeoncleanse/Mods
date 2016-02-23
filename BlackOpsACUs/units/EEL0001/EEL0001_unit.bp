@@ -163,8 +163,6 @@ UnitBlueprint {
             '<LOC ability_omni>Omni Sensor',
             '<LOC ability_deathaoe>Volatile',
         },
-
-        -- AnimationIdle = '/mods/BlackOpsACUs/units/eel0001/eel0001_a002.sca',
         AnimationWalk = '/mods/BlackOpsACUs/units/eel0001/eel0001_a001.sca',
         AnimationWalkRate = 1.7,
         AttackReticleSize = 55,
