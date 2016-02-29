@@ -234,7 +234,7 @@ UnitBlueprint {
         OrderOverrides = {
             RULEUTC_WeaponToggle = {
                 bitmapId = 'toggle-weapon-direct',
-                helpText = 'transform_stationary',
+                helpText = 'BO_transform',
             },
         },
         UnitName = '<LOC brl0308_name>Basilisk',

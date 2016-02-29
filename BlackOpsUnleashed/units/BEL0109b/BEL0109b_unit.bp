@@ -153,7 +153,7 @@ UnitBlueprint {
         OrderOverrides = {
             RULEUTC_WeaponToggle = {
                 bitmapId = 'toggle-weapon-air',
-                helpText = 'transform_mobile',
+                helpText = 'BO_transform',
             },
         },
         TechLevel = 'RULEUTL_Secret',

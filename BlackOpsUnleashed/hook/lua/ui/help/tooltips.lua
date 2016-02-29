@@ -18,13 +18,9 @@ Tooltips['fire_wep'] = {
     title = "Fire Main Weapon",
     description = "Fires the Special Weapon",
 }
-Tooltips['transform_stationary'] = {
-    title = "Stationary Mode",
-    description = "Transforms the unit into a stationary mode.",
-}
-Tooltips['transform_mobile'] = {
-    title = "Mobile Mode",
-    description = "Transforms the unit into a mobile mode.",
+Tooltips['BO_transform'] = {
+    title = "Change Unit Mode",
+    description = "Transforms the unit between its stationary and mobile modes",
 }
 Tooltips['spoof_toggle'] = {
     title = "Spoof Toggle",
