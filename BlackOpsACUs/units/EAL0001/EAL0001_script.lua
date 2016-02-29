@@ -4,14 +4,14 @@
 
 -- Summary  :  BlackOps: Adv Command Unit - Aeon ACU
 
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
 
 local AWeapons = import('/lua/aeonweapons.lua')
 local ADFDisruptorCannonWeapon = AWeapons.ADFDisruptorCannonWeapon
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local TIFCommanderDeathWeapon = import('/lua/terranweapons.lua').TIFCommanderDeathWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
@@ -22,9 +22,9 @@ local CSoothSayerAmbient = import('/lua/EffectTemplates.lua').CSoothSayerAmbient
 local AIFArtilleryMiasmaShellWeapon = import('/lua/aeonweapons.lua').AIFArtilleryMiasmaShellWeapon
 local AANChronoTorpedoWeapon = import('/lua/aeonweapons.lua').AANChronoTorpedoWeapon
 local ADFPhasonLaser = import('/lua/aeonweapons.lua').ADFPhasonLaser
-local AeonACUPhasonLaser = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').AeonACUPhasonLaser 
+local AeonACUPhasonLaser = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').AeonACUPhasonLaser
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
-local EXCEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01 
+local EXCEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01
 local AAMWillOWisp = import('/lua/aeonweapons.lua').AAMWillOWisp
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
@@ -42,7 +42,7 @@ EAL0001 = Class(AWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(DeathNukeWeapon) {},
+        DeathWeapon = Class(TIFCommanderDeathWeapon) {},
         EXTargetPainter = Class(EXCEMPArrayBeam01) {
             OnWeaponFired = function(self)
                 EXCEMPArrayBeam01.OnWeaponFired(self)
@@ -111,7 +111,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                     self.unit:SetWeaponEnabledByLabel('EXPhasonBeam03', false)
                 end
                 end
-            end,    
+            end,
         },
         RightDisruptor = Class(ADFDisruptorCannonWeapon) {},
         EXChronoDampener01 = Class(ADFChronoDampener) {},
@@ -157,7 +157,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                 self:OnDisableWeapon()
                 self:ForkThread(self.PauseOvercharge)
             end,
-            
+
             OnDisableWeapon = function(self)
                 if self.unit:BeenDestroyed() then return end
                 self:SetWeaponEnabled(false)
@@ -168,7 +168,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                 self.unit.BuildArmManipulator:SetPrecedence(0)
                 self.unit:GetWeaponManipulatorByLabel('RightDisruptor'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
             end,
-            
+
             PauseOvercharge = function(self)
                 if not self.unit:IsOverchargePaused() then
                     self.unit:SetOverchargePaused(true)
@@ -176,7 +176,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                     self.unit:SetOverchargePaused(false)
                 end
             end,
-            
+
             OnFire = function(self)
                 if not self.unit:IsOverchargePaused() then
                     ADFOverchargeWeapon.OnFire(self)
@@ -187,7 +187,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                     if not self.unit:IsOverchargePaused() then
                         ADFOverchargeWeapon.IdleState.OnGotTarget(self)
                     end
-                end,            
+                end,
                 OnFire = function(self)
                     if not self.unit:IsOverchargePaused() then
                         ChangeState(self, self.RackSalvoFiringState)
@@ -200,7 +200,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                         ADFOverchargeWeapon.RackSalvoFireReadyState.OnFire(self)
                     end
                 end,
-            },              
+            },
         },
     },
 
@@ -357,7 +357,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:AddToggleCap('RULEUTC_IntelToggle')
             self:RemoveToggleCap('RULEUTC_IntelToggle')
         end,
-        
+
         EnableRemoteViewingButtons = function(self)
             self.Sync.Abilities = self:GetBlueprint().Abilities
             self.Sync.Abilities.EXScryTarget.Active = true
@@ -401,7 +401,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             if not self.RemoteViewingData.VisibleLocation then
                 return
             end
-            
+
             if self.RemoteViewingData.VisibleLocation and self.RemoteViewingData.DisableCounter == 0 and self.RemoteViewingData.IntelButton then
                 local bp = self:GetBlueprint()
                 -- Create new visible area
@@ -448,12 +448,12 @@ EAL0001 = Class(AWalkingLandUnit) {
         self:ForkThread(self.WeaponConfigCheck)
         self:GetWeaponManipulatorByLabel('RightDisruptor'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
-    
+
     OnStartBuild = function(self, unitBeingBuilt, order)
         AWalkingLandUnit.OnStartBuild(self, unitBeingBuilt, order)
         self.UnitBeingBuilt = unitBeingBuilt
         self.UnitBuildOrder = order
-        self.BuildingUnit = true     
+        self.BuildingUnit = true
     end,
 
     OnStopBuild = function(self, unitBeingBuilt)
@@ -466,7 +466,7 @@ EAL0001 = Class(AWalkingLandUnit) {
         self:GetWeaponManipulatorByLabel('RightDisruptor'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
         self.UnitBeingBuilt = nil
         self.UnitBuildOrder = nil
-        self.BuildingUnit = false          
+        self.BuildingUnit = false
     end,
 
     GiveInitialResources = function(self)
@@ -474,10 +474,10 @@ EAL0001 = Class(AWalkingLandUnit) {
         self:GetAIBrain():GiveResource('Energy', self:GetBlueprint().Economy.StorageEnergy)
         self:GetAIBrain():GiveResource('Mass', self:GetBlueprint().Economy.StorageMass)
     end,
-    
+
     CreateBuildEffects = function(self, unitBeingBuilt, order)
         EffectUtil.CreateAeonCommanderBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
-    end,  
+    end,
 
     PlayCommanderWarpInEffect = function(self)
         self:HideBone(0, true)
@@ -522,7 +522,7 @@ EAL0001 = Class(AWalkingLandUnit) {
         self:HideBone('Artillery_Barrel_Right', true)
         self:HideBone('Artillery_Pitch', true)
         self:SetUnSelectable(false)
-        self:SetBusy(false)        
+        self:SetBusy(false)
         self:SetBlockCommandQueue(false)
         local totalBones = self:GetBoneCount() - 1
         local army = self:GetArmy()
@@ -586,7 +586,7 @@ EAL0001 = Class(AWalkingLandUnit) {
         end
         if self.RBIntTier3 then
             self.regenammount = self.regenammount + EXBP.Enhancements.EXCloakingSubsystems.NewRegenRate
-        end        
+        end
         --if not Buffs['EXRegenBoost'] then
         --    BuffBlueprint {
         --        Name = 'EXRegenBoost',
@@ -705,7 +705,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             wepClusterMiss03:ChangeMaxRadius(1)
         end
     end,
-    
+
     WeaponConfigCheck = function(self)
         if self.wcBuildMode then
             self:SetWeaponEnabledByLabel('EXTargetPainter', false)
@@ -796,19 +796,19 @@ EAL0001 = Class(AWalkingLandUnit) {
                 local wepAntiMatter01 = self:GetWeaponByLabel('EXMiasmaArtillery01')
                 wepAntiMatter01:ChangeMaxRadius(100)
             else
-                
+
             end
             if self.wcArtillery02 then
                 local wepAntiMatter02 = self:GetWeaponByLabel('EXMiasmaArtillery02')
                 wepAntiMatter02:ChangeMaxRadius(100)
             else
-                
+
             end
             if self.wcArtillery03 then
                 local wepAntiMatter03 = self:GetWeaponByLabel('EXMiasmaArtillery03')
                 wepAntiMatter03:ChangeMaxRadius(100)
             else
-                
+
             end
             if self.wcBeam01 then
                 local wepGattling01 = self:GetWeaponByLabel('EXPhasonBeam01')
@@ -853,7 +853,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             end
         end
     end,
-    
+
     ArtyShieldCheck = function(self)
         if self.ccArtillery and not self.ccShield then
             self:HideBone('ShieldPack_Normal', true)
@@ -927,7 +927,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:EnableUnitIntel('RadarStealth')
             self:EnableUnitIntel('RadarStealthField')
             self:EnableUnitIntel('SonarStealth')
-            self:EnableUnitIntel('SonarStealthField')          
+            self:EnableUnitIntel('SonarStealthField')
         end
     end,
 
@@ -1244,7 +1244,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXAeonHealthBoost5')  
+            Buff.ApplyBuff(self, 'EXAeonHealthBoost5')
             self.wcChrono01 = false
             self.wcChrono02 = true
             self:ForkThread(self.WeaponRangeReset)
@@ -1261,7 +1261,7 @@ EAL0001 = Class(AWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXAeonHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXAeonHealthBoost4')
             end
@@ -1572,7 +1572,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
             self:ForkThread(self.DefaultGunBuffThread02)
-        elseif enh =='EXAdvancedShellsRemove' then    
+        elseif enh =='EXAdvancedShellsRemove' then
             self:RemoveToggleCap('RULEUTC_WeaponToggle')
             if Buff.HasBuff(self, 'EXAeonHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXAeonHealthBoost10')
@@ -1618,7 +1618,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.ArtyShieldCheck)
             self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXImprovedReloaderRemove' then    
+        elseif enh =='EXImprovedReloaderRemove' then
             self:RemoveToggleCap('RULEUTC_WeaponToggle')
             if Buff.HasBuff(self, 'EXAeonHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXAeonHealthBoost10')
@@ -1707,7 +1707,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.wcBeam02 = true
             self.wcBeam03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)    
+            self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
             self:ForkThread(self.DefaultGunBuffThread02)
@@ -2041,7 +2041,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.wcMaelstrom03 = false
             self:SetWeaponEnabledByLabel('EXAntiMissile', true)
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)    
+            self:ForkThread(self.WeaponConfigCheck)
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = false
@@ -2068,7 +2068,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.wcMaelstrom02 = false
             self.wcMaelstrom03 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)      
+            self:ForkThread(self.WeaponConfigCheck)
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = true
@@ -2167,10 +2167,10 @@ EAL0001 = Class(AWalkingLandUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
-    
+
     OnIntelEnabled = function(self)
         AWalkingLandUnit.OnIntelEnabled(self)
             --if not self.RemoteViewingData.IntelButton then
@@ -2178,21 +2178,21 @@ EAL0001 = Class(AWalkingLandUnit) {
             --    self.RemoteViewingData.DisableCounter = self.RemoteViewingData.DisableCounter - 1
             --    self:CreateVisibleEntity()
             --end
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
+        if self.CloakEnh and self:IsIntelEnabled('Cloak') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXCloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
+            end
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
+            end
+        end
     end,
 
     OnIntelDisabled = function(self)
@@ -2210,22 +2210,22 @@ EAL0001 = Class(AWalkingLandUnit) {
             self:SetMaintenanceConsumptionInactive()
         elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
-        end         
+        end
     end,
 
     OnPaused = function(self)
         AWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
             AWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end    
+        end
     end,
-    
+
     OnUnpaused = function(self)
         if self.BuildingUnit then
             AWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         AWalkingLandUnit.OnUnpaused(self)
-    end,     
+    end,
 
 }
 

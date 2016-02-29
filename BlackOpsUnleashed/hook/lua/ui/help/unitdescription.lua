@@ -3,7 +3,7 @@
 -- Author(s):  Lt_Hawkeye
 -- Descriptions for new units in BlackOps
 -----------------------------------------------
- 
+
 -- Cybran
 Description['brl0205'] = "<LOC Unit_Description_20001> Ambush Assault unit.The Scorpion is equipped with a personal stealth field, and becomes cloaked when standing still; allowing for ambushes against enemy forces."
 Description['brl0307'] = "<LOC Unit_Description_20002> Medium Range Artillery Unit. The Hailfire fires a slavo of rockets at the target which detonate in a Low Yield EMP Blast stunning enemy units."
@@ -17,7 +17,7 @@ Description['brb5205'] = "<LOC Unit_Description_20009> The Naval Staging Yard is
 Description['brs0305'] = "<LOC Unit_Description_20011> Heavy attack sub. Armed with the latest and most advanced torpedos from the cybran Navy. Uses twin bolters when surfaced and come equiped with a Torpedo Redirection System."
 Description['brl0110'] = "<LOC Unit_Description_20013> When built the Hydra will activate one of its many weapon systems to use in combat, only one weapon may be active on a single Hydra."
 Description['brb5102'] = "<LOC Unit_Description_20014> Low end repair pad, quick to build for early refuel and repair."
-Description['brb4401'] = "<LOC Unit_Description_20015> The Shadow creates an energy field around it and bends light to make it and anyting else close by invisible visual sensors."
+Description['brb4401'] = "<LOC Unit_Description_20015> The Shadow creates an energy field around it and bends light to make it and anything else close by invisible to visual sensors."
 Description['brb4209'] = "<LOC Unit_Description_20017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['brb4309'] = "<LOC Unit_Description_20018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
 Description['brb1106'] = "<LOC Unit_Description_20019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
