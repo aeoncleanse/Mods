@@ -1,5 +1,6 @@
 UnitBlueprint {
     AI = {
+        InitialAutoMode = true,
         TargetBones = {
             'Torso',
         },
@@ -216,13 +217,13 @@ UnitBlueprint {
             Attachpoint = 'AttachSpecial03',
             UnitID = 'BEA0006',
         },
-    }, 
+    },
     Economy = {
         BuildCostEnergy = 2916000,
         BuildCostMass = 140400,
         BuildTime = 64800,
         MaintenanceConsumptionPerSecondEnergy = 200,
-        BuildRate = 30, 
+        BuildRate = 30,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
@@ -271,7 +272,7 @@ UnitBlueprint {
                 bitmapId = 'skry-toggle',
                 helpText = 'spoof_toggle',
             },
-        }, 
+        },
     },
     Intel = {
         RadarRadius = 110,
@@ -545,13 +546,13 @@ UnitBlueprint {
             DisplayName = 'Dual-Barreled Hiro Plasma Cannon',
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
-            FireTargetLayerCapsTable = { 
+            FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
                 Seabed = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
-            }, 
+            },
             FiringTolerance = 2,
             Label = 'Laser',
             MaxRadius = 45,
@@ -590,7 +591,7 @@ UnitBlueprint {
                 'SPECIALLOWPRI',
                 'ALLUNITS',
             },
-           TargetRestrictDisallow = 'HIGHALTAIR, UNTARGETABLE', 
+           TargetRestrictDisallow = 'HIGHALTAIR, UNTARGETABLE',
             TrackingRadius = 1.125,
             TurretBoneMuzzle = 'Beam_Muzzle',
             TurretBonePitch = 'Beam_Pitch',

@@ -4,7 +4,7 @@
 
 -- Summary  :  BlackOps: Adv Command Unit - Cybran ACU
 
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CWeapons = import('/lua/cybranweapons.lua')
@@ -13,27 +13,27 @@ local Buff = import('/lua/sim/Buff.lua')
 
 --local CAAMissileNaniteWeapon = CWeapons.CAAMissileNaniteWeapon
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local CIFCommanderDeathWeapon = CWeapons.CIFCommanderDeathWeapon
 
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local CDFHeavyMicrowaveLaserGeneratorCom = CWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 local CDFOverchargeWeapon = CWeapons.CDFOverchargeWeapon
 local CANTorpedoLauncherWeapon = CWeapons.CANTorpedoLauncherWeapon
 local Entity = import('/lua/sim/Entity.lua').Entity
-local EXCEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01 
-local EXCEMPArrayBeam02 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam02 
-local EXCEMPArrayBeam03 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam03 
+local EXCEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam01
+local EXCEMPArrayBeam02 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam02
+local EXCEMPArrayBeam03 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').EXCEMPArrayBeam03
 local RocketPack = import('/lua/cybranweapons.lua').CDFRocketIridiumWeapon02
 
 ERL0001 = Class(CWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(DeathNukeWeapon) {},
+        DeathWeapon = Class(CIFCommanderDeathWeapon) {},
         RightRipper = Class(CCannonMolecularWeapon) {
             OnCreate = function(self)
                 CCannonMolecularWeapon.OnCreate(self)
-                --Disable buff 
+                --Disable buff
                 self:DisableBuff('STUN')
             end,
         },
@@ -92,8 +92,8 @@ ERL0001 = Class(CWalkingLandUnit) {
                     wep:SetTargetGround(self.targetaquired)
                     wep2:SetTargetGround(self.targetaquired)
                     wep3:SetTargetGround(self.targetaquired)
-                    wep:OnFire() 
-                    wep2:OnFire() 
+                    wep:OnFire()
+                    wep2:OnFire()
                     wep3:OnFire()
                     if self.unit.wcEMP01 then
                         self.unit:SetWeaponEnabledByLabel('EXEMPShot01', true)
@@ -191,7 +191,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                 self:OnDisableWeapon()
                 self:ForkThread(self.PauseOvercharge)
             end,
-            
+
             OnDisableWeapon = function(self)
                 if self.unit:BeenDestroyed() then return end
                 self:SetWeaponEnabled(false)
@@ -202,7 +202,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                 self.unit.BuildArmManipulator:SetPrecedence(0)
                 self.unit:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
             end,
-            
+
             PauseOvercharge = function(self)
                 if not self.unit:IsOverchargePaused() then
                     self.unit:SetOverchargePaused(true)
@@ -210,7 +210,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                     self.unit:SetOverchargePaused(false)
                 end
             end,
-            
+
             OnFire = function(self)
                 if not self.unit:IsOverchargePaused() then
                     CDFOverchargeWeapon.OnFire(self)
@@ -221,7 +221,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                     if not self.unit:IsOverchargePaused() then
                         CDFOverchargeWeapon.IdleState.OnGotTarget(self)
                     end
-                end,            
+                end,
                 OnFire = function(self)
                     if not self.unit:IsOverchargePaused() then
                         ChangeState(self, self.RackSalvoFiringState)
@@ -234,7 +234,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                         CDFOverchargeWeapon.RackSalvoFireReadyState.OnFire(self)
                     end
                 end,
-            },    
+            },
         },
     },
 
@@ -376,12 +376,12 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
     end,
 
-    OnStartBuild = function(self, unitBeingBuilt, order)    
+    OnStartBuild = function(self, unitBeingBuilt, order)
         CWalkingLandUnit.OnStartBuild(self, unitBeingBuilt, order)
         self.UnitBeingBuilt = unitBeingBuilt
         self.UnitBuildOrder = order
-        self.BuildingUnit = true        
-    end,    
+        self.BuildingUnit = true
+    end,
 
     OnStopBuild = function(self, unitBeingBuilt)
         CWalkingLandUnit.OnStopBuild(self, unitBeingBuilt)
@@ -393,13 +393,13 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
         self.UnitBeingBuilt = nil
         self.UnitBuildOrder = nil
-        self.BuildingUnit = false          
+        self.BuildingUnit = false
     end,
 
     PlayCommanderWarpInEffect = function(self)
         self:HideBone(0, true)
         self:SetUnSelectable(true)
-        self:SetBusy(true)        
+        self:SetBusy(true)
         self:SetBlockCommandQueue(true)
         self:ForkThread(self.WarpInEffectThread)
     end,
@@ -433,7 +433,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:HideBone('Back_CombatPack', true)
         self:HideBone('Chest_Open', true)
         self:SetUnSelectable(false)
-        self:SetBusy(false)        
+        self:SetBusy(false)
         self:SetBlockCommandQueue(false)
 
         local totalBones = self:GetBoneCount() - 1
@@ -443,10 +443,10 @@ ERL0001 = Class(CWalkingLandUnit) {
                 CreateAttachedEmitter(self,bone,army, v)
             end
         end
-        
+
         WaitSeconds(6)
         self:SetMesh(self:GetBlueprint().Display.MeshBlueprint, true)
-    end,    
+    end,
 
     GiveInitialResources = function(self)
         WaitTicks(2)
@@ -504,7 +504,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         end
         if self.RBIntTier3 then
             self.regenammount = self.regenammount + EXBP.Enhancements.EXCloakingSubsystems.NewRegenRate
-        end        
+        end
         --if not Buffs['EXRegenBoost'] then
         --    BuffBlueprint {
         --        Name = 'EXRegenBoost',
@@ -523,7 +523,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         --Buff.ApplyBuff(self, 'EXRegenBoost')
         --LOG('xxxxxxxxxxxx Cybran Applied Regen', self.regenammount)
     end,
-    
+
     EXRegenHeartbeat = function(self)
         self.regenapply = self.regenammount / 10
         self.HealthDiff = self:GetMaxHealth() - self:GetHealth()
@@ -612,7 +612,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             wepLance04:ChangeMaxRadius(1)
         end
     end,
-    
+
     WeaponConfigCheck = function(self)
         if self.wcBuildMode then
             self:SetWeaponEnabledByLabel('RightRipper', false)
@@ -814,7 +814,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:EnableUnitIntel('RadarStealth')
             self:EnableUnitIntel('RadarStealthField')
             self:EnableUnitIntel('SonarStealth')
-            self:EnableUnitIntel('SonarStealthField')          
+            self:EnableUnitIntel('SonarStealthField')
         end
     end,
 
@@ -830,7 +830,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         end
     end,
 
-    
+
     -- *************
     -- Build/Upgrade
     -- *************
@@ -1142,7 +1142,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcRocket01 = false
             self.wcRocket02 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)      
+            self:ForkThread(self.WeaponConfigCheck)
             self.RBComEngineering = true
             self.RBAssEngineering = true
             self.RBApoEngineering = false
@@ -1155,7 +1155,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end
@@ -1435,7 +1435,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='EXImprovedCapacitorsRemove' then    
+        elseif enh =='EXImprovedCapacitorsRemove' then
             if Buff.HasBuff(self, 'EXCybranHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXCybranHealthBoost10')
             end
@@ -1476,7 +1476,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXPowerBoosterRemove' then    
+        elseif enh =='EXPowerBoosterRemove' then
             self:SetWeaponEnabledByLabel('EXEMPArray01', false)
             if Buff.HasBuff(self, 'EXCybranHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXCybranHealthBoost10')
@@ -1776,7 +1776,7 @@ ERL0001 = Class(CWalkingLandUnit) {
                 EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
                 self.IntelEffectsBag = nil
             end
-            self.CloakEnh = false        
+            self.CloakEnh = false
             self.StealthEnh = true
             self:EnableUnitIntel('RadarStealth')
             self:EnableUnitIntel('SonarStealth')
@@ -1803,11 +1803,11 @@ ERL0001 = Class(CWalkingLandUnit) {
         elseif enh == 'EXElectronicCountermeasuresRemove' then
             self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('RadarStealth')
-            self:DisableUnitIntel('SonarStealth')           
+            self:DisableUnitIntel('SonarStealth')
             self.StealthEnh = false
-            self.CloakEnh = false 
+            self.CloakEnh = false
             self.StealthFieldEffects = false
-            self.CloakingEffects = false     
+            self.CloakingEffects = false
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
@@ -1825,7 +1825,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             local bp = self:GetBlueprint().Enhancements[enh]
             if not bp then return end
             self.StealthEnh = false
-            self.CloakEnh = true 
+            self.CloakEnh = true
             self:EnableUnitIntel('Cloak')
             if not Buffs['EXCybranHealthBoost18'] then
                 BuffBlueprint {
@@ -1850,7 +1850,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         elseif enh == 'EXCloakingSubsystemsRemove' then
             self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('Cloak')
-            self.CloakEnh = false 
+            self.CloakEnh = false
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
@@ -1984,10 +1984,10 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         end
     end,
-    
+
     -- **********
     -- Intel
-    -- ********   
+    -- ********
     IntelEffects = {
         Cloak = {
             {
@@ -2021,27 +2021,27 @@ ERL0001 = Class(CWalkingLandUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
-    
+
     OnIntelEnabled = function(self)
         CWalkingLandUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
+        if self.CloakEnh and self:IsIntelEnabled('Cloak') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXCloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
+            end
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
+            end
+        end
     end,
 
     OnIntelDisabled = function(self)
@@ -2054,9 +2054,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:SetMaintenanceConsumptionInactive()
         elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
-        end         
+        end
     end,
-        
+
     -- *****
     -- Death
     -- *****
@@ -2066,29 +2066,29 @@ ERL0001 = Class(CWalkingLandUnit) {
             if v.Add.OnDeath then
                 bp = v
             end
-        end 
-        --if we could find a blueprint with v.Add.OnDeath, then add the buff 
-        if bp ~= nil then 
+        end
+        --if we could find a blueprint with v.Add.OnDeath, then add the buff
+        if bp ~= nil then
             --Apply Buff
             self:AddBuff(bp)
         end
         --otherwise, we should finish killing the unit
         CWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     OnPaused = function(self)
         CWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
             CWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end    
+        end
     end,
-    
+
     OnUnpaused = function(self)
         if self.BuildingUnit then
             CWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         CWalkingLandUnit.OnUnpaused(self)
-    end,     
-}   
-    
+    end,
+}
+
 TypeClass = ERL0001

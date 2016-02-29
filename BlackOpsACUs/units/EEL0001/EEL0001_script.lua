@@ -4,14 +4,14 @@
 
 -- Summary  :  BlackOps: Adv Command Unit - UEF ACU
 
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 local Shield = import('/lua/shield.lua').Shield
 
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')
 local TDFZephyrCannonWeapon = TerranWeaponFile.TDFZephyrCannonWeapon
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local TIFCommanderDeathWeapon = TerranWeaponFile.TIFCommanderDeathWeapon
 
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TIFCruiseMissileLauncher = TerranWeaponFile.TIFCruiseMissileLauncher
@@ -22,16 +22,16 @@ local UEFACUHeavyPlasmaGatlingCannonWeapon = import('/mods/BlackOpsACUs/lua/EXBl
 local Weapons2 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
 local EXFlameCannonWeapon = Weapons2.HawkGaussCannonWeapon
 local UEFACUAntiMatterWeapon = Weapons2.UEFACUAntiMatterWeapon
-local PDLaserGrid = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').PDLaserGrid2 
+local PDLaserGrid = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').PDLaserGrid2
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
 
-EEL0001 = Class(TWalkingLandUnit) {   
+EEL0001 = Class(TWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(DeathNukeWeapon) {},
+        DeathWeapon = Class(TIFCommanderDeathWeapon) {},
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
         EXFlameCannon01 = Class(EXFlameCannonWeapon) {},
         EXFlameCannon02 = Class(EXFlameCannonWeapon) {},
@@ -44,7 +44,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         EXGattlingEnergyCannon01 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
             OnCreate = function(self)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then 
+                if not self.unit.SpinManip then
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
@@ -64,12 +64,12 @@ EEL0001 = Class(TWalkingLandUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,    
+            end,
         },
         EXGattlingEnergyCannon02 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
             OnCreate = function(self)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then 
+                if not self.unit.SpinManip then
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
@@ -89,12 +89,12 @@ EEL0001 = Class(TWalkingLandUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,    
+            end,
         },
         EXGattlingEnergyCannon03 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
             OnCreate = function(self)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then 
+                if not self.unit.SpinManip then
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
@@ -114,17 +114,17 @@ EEL0001 = Class(TWalkingLandUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,    
+            end,
         },
         EXClusterMissles01 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles02 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles03 = Class(TIFCruiseMissileLauncher) {},
         EXEnergyLance01 = Class(PDLaserGrid) {
-            PlayOnlyOneSoundCue = true, 
-        }, 
+            PlayOnlyOneSoundCue = true,
+        },
         EXEnergyLance02 = Class(PDLaserGrid) {
-            PlayOnlyOneSoundCue = true, 
-        }, 
+            PlayOnlyOneSoundCue = true,
+        },
         OverCharge = Class(TDFOverchargeWeapon) {
             OnCreate = function(self)
                 TDFOverchargeWeapon.OnCreate(self)
@@ -176,7 +176,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                     if not self.unit:IsOverchargePaused() then
                         TDFOverchargeWeapon.IdleState.OnGotTarget(self)
                     end
-                end,            
+                end,
                 OnFire = function(self)
                     if not self.unit:IsOverchargePaused() then
                         ChangeState(self, self.RackSalvoFiringState)
@@ -189,8 +189,8 @@ EEL0001 = Class(TWalkingLandUnit) {
                         TDFOverchargeWeapon.RackSalvoFireReadyState.OnFire(self)
                     end
                 end,
-            },            
-            
+            },
+
         },
         TacMissile = Class(TIFCruiseMissileLauncher) {
             CreateProjectileAtMuzzle = function(self)
@@ -410,7 +410,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         end
         self.UnitBeingBuilt = unitBeingBuilt
         self.UnitBuildOrder = order
-        self.BuildingUnit = true        
+        self.BuildingUnit = true
     end,
 
     OnFailedToBuild = function(self)
@@ -429,8 +429,8 @@ EEL0001 = Class(TWalkingLandUnit) {
         if (order == 'Repair' and not unitBeingBuilt:IsBeingBuilt()) or (UpgradesFrom and UpgradesFrom ~= 'none' and self:IsUnitState('Guarding'))then
             EffectUtil.CreateDefaultBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
         else
-            EffectUtil.CreateUEFCommanderBuildSliceBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)        
-        end           
+            EffectUtil.CreateUEFCommanderBuildSliceBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
+        end
     end,
 
     OnStopBuild = function(self, unitBeingBuilt)
@@ -446,7 +446,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
         self.UnitBeingBuilt = nil
         self.UnitBuildOrder = nil
-        self.BuildingUnit = false          
+        self.BuildingUnit = false
     end,
 
     NotifyOfPodDeath = function(self, pod)
@@ -473,7 +473,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.HasRightPod = false
 
-        elseif pod == 'SpySat' and self.SpysatEnabled then 
+        elseif pod == 'SpySat' and self.SpysatEnabled then
             self.Satellite = nil
             self:ForkThread(self.EXSatRespawn)
         end
@@ -523,7 +523,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self:DisableShield()
             self:StopUnitAmbientSound('ActiveLoop')
-        elseif bit == 2 then 
+        elseif bit == 2 then
 
         elseif bit == 8 then -- cloak toggle
             self:PlayUnitAmbientSound('ActiveLoop')
@@ -566,7 +566,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RadarDish1:SetTargetSpeed(0)
         end
     end,
-    
+
     EXRegenBuffThread = function(self)
         --if Buff.HasBuff(self, 'EXRegenBoost') then
         --    Buff.RemoveBuff(self, 'EXRegenBoost')
@@ -617,7 +617,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         end
         if self.RBIntTier3 then
             self.regenammount = self.regenammount + EXBP.Enhancements.EXCloakingSubsystems.NewRegenRate
-        end        
+        end
         --if not Buffs['EXRegenBoost'] then
         --    BuffBlueprint {
         --        Name = 'EXRegenBoost',
@@ -636,7 +636,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         --Buff.ApplyBuff(self, 'EXRegenBoost')
         --LOG('xxxxxxxxxxxx UEF Applied Regen', self.regenammount)
     end,
-    
+
     EXRegenHeartbeat = function(self)
         self.regenapply = self.regenammount / 10
         self.HealthDiff = self:GetMaxHealth() - self:GetHealth()
@@ -1246,7 +1246,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
             end
@@ -1538,7 +1538,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='EXImprovedContainmentBottleRemove' then    
+        elseif enh =='EXImprovedContainmentBottleRemove' then
             if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
             end
@@ -1577,9 +1577,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcAMC02 = false
             self.wcAMC03 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)     
+            self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXPowerBoosterRemove' then    
+        elseif enh =='EXPowerBoosterRemove' then
             if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
             end
@@ -1879,7 +1879,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
                 self.IntelEffectsBag = nil
             end
-            self.CloakEnh = false        
+            self.CloakEnh = false
             self.StealthEnh = true
             if not Buffs['EXUEFHealthBoost17'] then
                 BuffBlueprint {
@@ -1912,9 +1912,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.Satellite = nil
             self.StealthEnh = false
-            self.CloakEnh = false 
+            self.CloakEnh = false
             self.StealthFieldEffects = false
-            self.CloakingEffects = false     
+            self.CloakingEffects = false
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
@@ -1964,9 +1964,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.Satellite = nil
             self.StealthEnh = false
-            self.CloakEnh = false 
+            self.CloakEnh = false
             self.StealthFieldEffects = false
-            self.CloakingEffects = false     
+            self.CloakingEffects = false
             self:RemoveCommandCap('RULEUCC_Teleport')
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
@@ -2058,7 +2058,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcTMissiles01 = true
             self.wcNMissiles01 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)     
+            self:ForkThread(self.WeaponConfigCheck)
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = false
@@ -2093,7 +2093,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcTMissiles01 = false
             self.wcNMissiles01 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)    
+            self:ForkThread(self.WeaponConfigCheck)
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = true
@@ -2253,8 +2253,8 @@ EEL0001 = Class(TWalkingLandUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
         Jammer = {
             {
                 Bones = {
@@ -2262,28 +2262,28 @@ EEL0001 = Class(TWalkingLandUnit) {
                 },
                 Scale = 0.5,
                 Type = 'Jammer01',
-            },    
-        },    
+            },
+        },
     },
-    
+
     OnIntelEnabled = function(self)
         TWalkingLandUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
+        if self.CloakEnh and self:IsIntelEnabled('Cloak') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXCloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 1)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
+            end
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 1)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
                 --self.CreateTerrainTypeEffects(self, self.IntelEffects.Jammer, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
+            end
+        end
     end,
 
     OnIntelDisabled = function(self)
@@ -2296,7 +2296,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetMaintenanceConsumptionInactive()
         elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
-        end         
+        end
 
     end,
 
@@ -2307,7 +2307,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         end
         TWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     OnDestroy = function(self)
         if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
             self.Satellite:Destroy()
@@ -2320,15 +2320,15 @@ EEL0001 = Class(TWalkingLandUnit) {
         TWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
             TWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end    
+        end
     end,
-    
+
     OnUnpaused = function(self)
         if self.BuildingUnit then
             TWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
         TWalkingLandUnit.OnUnpaused(self)
-    end,      
+    end,
 
     ShieldEffects2 = {
         '/mods/BlackOpsACUs/effects/emitters/ex_uef_shieldgen_01_emit.bp',

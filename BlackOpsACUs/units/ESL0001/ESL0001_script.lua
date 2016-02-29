@@ -4,7 +4,7 @@
 
 -- Summary  :  BlackOps: Adv Command Unit - Serephim ACU
 
--- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
 local SWalkingLandUnit = import('/lua/seraphimunits.lua').SWalkingLandUnit
@@ -13,7 +13,7 @@ local Buff = import('/lua/sim/Buff.lua')
 local SWeapons = import('/lua/seraphimweapons.lua')
 local SDFChronotronCannonWeapon = SWeapons.SDFChronotronCannonWeapon
 local SDFChronotronOverChargeCannonWeapon = SWeapons.SDFChronotronCannonOverChargeWeapon
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local AIFCommanderDeathWeapon = import('/lua/aeonweapons.lua').AIFCommanderDeathWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
@@ -21,19 +21,19 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 local SDFAireauWeapon = SWeapons.SDFAireauWeapon
 local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
 local SANUallCavitationTorpedo = SWeapons.SANUallCavitationTorpedo
-local SeraACURapidWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').SeraACURapidWeapon 
-local SeraACUBigBallWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').SeraACUBigBallWeapon 
+local SeraACURapidWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').SeraACURapidWeapon
+local SeraACUBigBallWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').SeraACUBigBallWeapon
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
 
 -- Setup as RemoteViewing child unit rather than SWalkingLandUnit
 local RemoteViewing = import('/lua/RemoteViewing.lua').RemoteViewing
-SWalkingLandUnit = RemoteViewing(SWalkingLandUnit) 
+SWalkingLandUnit = RemoteViewing(SWalkingLandUnit)
 
 ESL0001 = Class(SWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(DeathNukeWeapon) {},
+        DeathWeapon = Class(AIFCommanderDeathWeapon) {},
         ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
         EXTorpedoLauncher01 = Class(SANUallCavitationTorpedo) {},
         EXTorpedoLauncher02 = Class(SANUallCavitationTorpedo) {},
@@ -41,22 +41,22 @@ ESL0001 = Class(SWalkingLandUnit) {
         EXBigBallCannon01 = Class(SeraACUBigBallWeapon) {
             PlayFxMuzzleChargeSequence = function(self, muzzle)
                 --CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
-                if not self.ClawTopRotator then 
+                if not self.ClawTopRotator then
                     self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
                     self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
-                    
+
                     self.unit.Trash:Add(self.ClawTopRotator)
                     self.unit.Trash:Add(self.ClawBottomRotator)
                 end
-                
+
                 self.ClawTopRotator:SetGoal(-15):SetSpeed(10)
                 self.ClawBottomRotator:SetGoal(15):SetSpeed(10)
-                
+
                 SDFSinnuntheWeapon.PlayFxMuzzleChargeSequence(self, muzzle)
-                
+
                 self:ForkThread(function()
                     WaitSeconds(self.unit:GetBlueprint().Weapon[7].MuzzleChargeDelay)
-                    
+
                     self.ClawTopRotator:SetGoal(0):SetSpeed(50)
                     self.ClawBottomRotator:SetGoal(0):SetSpeed(50)
                 end)
@@ -65,22 +65,22 @@ ESL0001 = Class(SWalkingLandUnit) {
         EXBigBallCannon02 = Class(SeraACUBigBallWeapon) {
             PlayFxMuzzleChargeSequence = function(self, muzzle)
                 --CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
-                if not self.ClawTopRotator then 
+                if not self.ClawTopRotator then
                     self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
                     self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
-                    
+
                     self.unit.Trash:Add(self.ClawTopRotator)
                     self.unit.Trash:Add(self.ClawBottomRotator)
                 end
-                
+
                 self.ClawTopRotator:SetGoal(-15):SetSpeed(10)
                 self.ClawBottomRotator:SetGoal(15):SetSpeed(10)
-                
+
                 SDFSinnuntheWeapon.PlayFxMuzzleChargeSequence(self, muzzle)
-                
+
                 self:ForkThread(function()
                     WaitSeconds(self.unit:GetBlueprint().Weapon[8].MuzzleChargeDelay)
-                    
+
                     self.ClawTopRotator:SetGoal(0):SetSpeed(50)
                     self.ClawBottomRotator:SetGoal(0):SetSpeed(50)
                 end)
@@ -89,22 +89,22 @@ ESL0001 = Class(SWalkingLandUnit) {
         EXBigBallCannon03 = Class(SeraACUBigBallWeapon) {
             PlayFxMuzzleChargeSequence = function(self, muzzle)
                 --CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
-                if not self.ClawTopRotator then 
+                if not self.ClawTopRotator then
                     self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
                     self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
-                    
+
                     self.unit.Trash:Add(self.ClawTopRotator)
                     self.unit.Trash:Add(self.ClawBottomRotator)
                 end
-                
+
                 self.ClawTopRotator:SetGoal(-15):SetSpeed(10)
                 self.ClawBottomRotator:SetGoal(15):SetSpeed(10)
-                
+
                 SDFSinnuntheWeapon.PlayFxMuzzleChargeSequence(self, muzzle)
-                
+
                 self:ForkThread(function()
                     WaitSeconds(self.unit:GetBlueprint().Weapon[9].MuzzleChargeDelay)
-                    
+
                     self.ClawTopRotator:SetGoal(0):SetSpeed(50)
                     self.ClawBottomRotator:SetGoal(0):SetSpeed(50)
                 end)
@@ -117,7 +117,7 @@ ESL0001 = Class(SWalkingLandUnit) {
         EXAA02 = Class(SAAOlarisCannonWeapon) {},
         Missile = Class(SIFLaanseTacticalMissileLauncher) {
             CurrentRack = 1,
-                
+
             PlayFxMuzzleSequence = function(self, muzzle)
                 local bp = self:GetBlueprint()
                 self.MissileRotator = CreateRotator(self.unit, bp.RackBones[self.CurrentRack].RackBone, 'x', nil, 0, 0, 0)
@@ -127,7 +127,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 WaitFor(self.MissileRotator)
                 WaitTicks(1)
             end,
-                
+
             CreateProjectileAtMuzzle = function(self, muzzle)
                 muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
                 if self.CurrentRack >= 2 then
@@ -137,7 +137,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 end
                 SIFLaanseTacticalMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
             end,
-                
+
             PlayFxRackReloadSequence = function(self)
                 WaitTicks(1)
                 self.MissileRotator:SetGoal(0):SetSpeed(10)
@@ -169,7 +169,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 self.unit.BuildArmManipulator:SetPrecedence(0)
                 self.AimControl:SetHeadingPitch(self.unit:GetWeaponManipulatorByLabel('ChronotronCannon'):GetHeadingPitch())
             end,
-            
+
             EXOCRecloakTimer = function(self)
                 WaitSeconds(5)
                 self.unit.EXOCFire = false
@@ -180,7 +180,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 self:OnDisableWeapon()
                 self:ForkThread(self.PauseOvercharge)
             end,
-            
+
             OnDisableWeapon = function(self)
                 if self.unit:BeenDestroyed() then return end
                 self:SetWeaponEnabled(false)
@@ -191,7 +191,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 self.unit.BuildArmManipulator:SetPrecedence(0)
                 self.unit:GetWeaponManipulatorByLabel('ChronotronCannon'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
             end,
-            
+
             PauseOvercharge = function(self)
                 if not self.unit:IsOverchargePaused() then
                     self.unit:SetOverchargePaused(true)
@@ -199,7 +199,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     self.unit:SetOverchargePaused(false)
                 end
             end,
-            
+
             OnFire = function(self)
                 if not self.unit:IsOverchargePaused() then
                     SDFChronotronOverChargeCannonWeapon.OnFire(self)
@@ -210,7 +210,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     if not self.unit:IsOverchargePaused() then
                         SDFChronotronOverChargeCannonWeapon.IdleState.OnGotTarget(self)
                     end
-                end,            
+                end,
                 OnFire = function(self)
                     if not self.unit:IsOverchargePaused() then
                         ChangeState(self, self.RackSalvoFiringState)
@@ -223,7 +223,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                         SDFChronotronOverChargeCannonWeapon.RackSalvoFireReadyState.OnFire(self)
                     end
                 end,
-            },  
+            },
         },
     },
 
@@ -377,13 +377,13 @@ ESL0001 = Class(SWalkingLandUnit) {
         self:PlayUnitAmbientSound('ConstructLoop')
         if bp.General.UpgradesTo and unitBeingBuilt:GetUnitId() == bp.General.UpgradesTo and order == 'Upgrade' then
             self.Upgrading = true
-            self.BuildingUnit = false        
+            self.BuildingUnit = false
             unitBeingBuilt.DisallowCollisions = true
         end
         self.UnitBeingBuilt = unitBeingBuilt
         self.UnitBuildOrder = order
         self.BuildingUnit = true
-    end,  
+    end,
 
     OnStopBuild = function(self, unitBeingBuilt)
         SWalkingLandUnit.OnStopBuild(self, unitBeingBuilt)
@@ -397,15 +397,15 @@ ESL0001 = Class(SWalkingLandUnit) {
         self.UnitBuildOrder = nil
         self.BuildingUnit = false
     end,
-    
+
     PlayCommanderWarpInEffect = function(self)
         self:HideBone(0, true)
         self:SetUnSelectable(true)
         self:SetBusy(true)
         self:SetBlockCommandQueue(true)
         self:ForkThread(self.WarpInEffectThread)
-    end, 
-    
+    end,
+
     WarpInEffectThread = function(self)
         self:PlayUnitSound('CommanderArrival')
         self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
@@ -501,7 +501,7 @@ ESL0001 = Class(SWalkingLandUnit) {
         end
         if self.RBIntTier3 then
             self.regenammount = self.regenammount + EXBP.Enhancements.EXCloakingSubsystems.NewRegenRate
-        end        
+        end
         --if not Buffs['EXRegenBoost'] then
         --    BuffBlueprint {
         --        Name = 'EXRegenBoost',
@@ -640,7 +640,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             wepTacMiss:ChangeMaxRadius(1)
         end
     end,
-    
+
     WeaponConfigCheck = function(self)
         if self.wcBuildMode then
             self:SetWeaponEnabledByLabel('ChronotronCannon', false)
@@ -781,7 +781,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:EnableUnitIntel('RadarStealthField')
             self:EnableUnitIntel('Sonar')
             self:EnableUnitIntel('SonarStealth')
-            self:EnableUnitIntel('SonarStealthField')                 
+            self:EnableUnitIntel('SonarStealthField')
         end
     end,
 
@@ -808,7 +808,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             local units = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.TECH1, self:GetPosition(), self:GetBlueprint().Enhancements.EXCombatEngineering.Radius)
             local units2 = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.TECH2, self:GetPosition(), self:GetBlueprint().Enhancements.EXCombatEngineering.Radius)
             local units3 = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.TECH3, self:GetPosition(), self:GetBlueprint().Enhancements.EXCombatEngineering.Radius)
-            
+
             --Give them a 5 second regen buff
             for _,unit in units do
                 Buff.ApplyBuff(unit, 'SeraphimACURegenAura')
@@ -819,19 +819,19 @@ ESL0001 = Class(SWalkingLandUnit) {
             for _,unit in units3 do
                 Buff.ApplyBuff(unit, 'SeraphimACURegenAura3')
             end
-            
+
             --Wait 5 seconds
             WaitSeconds(5)
         end
     end,
-       
+
     AdvancedRegenBuffThread = function(self)
         while not self:IsDead() do
             --Get friendly units in the area (including self)
             local units = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.TECH1, self:GetPosition(), self:GetBlueprint().Enhancements.EXAssaultEngineering.Radius)
             local units2 = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.TECH2, self:GetPosition(), self:GetBlueprint().Enhancements.EXAssaultEngineering.Radius)
             local units3 = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.TECH3, self:GetPosition(), self:GetBlueprint().Enhancements.EXAssaultEngineering.Radius)
-            
+
             --Give them a 5 second regen buff
             for _,unit in units do
                 Buff.ApplyBuff(unit, 'SeraphimAdvancedACURegenAura')
@@ -842,7 +842,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             for _,unit in units3 do
                 Buff.ApplyBuff(unit, 'SeraphimAdvancedACURegenAura3')
             end
-            
+
             --Wait 5 seconds
             WaitSeconds(5)
         end
@@ -1068,7 +1068,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                         },
                     },
                 }
-                
+
             end
             if not Buffs['SeraphimACURegenAura2'] then
                 BuffBlueprint {
@@ -1086,7 +1086,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                         },
                     },
                 }
-                
+
             end
             if not Buffs['SeraphimACURegenAura3'] then
                 BuffBlueprint {
@@ -1104,7 +1104,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                         },
                     },
                 }
-                
+
             end
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
             self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
@@ -1178,7 +1178,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     self.ShieldEffectsBag = {}
                 end
                 KillThread(self.RegenThreadHandle)
-                
+
             end
             local bp = self:GetBlueprint().Enhancements[enh]
             if not Buffs['SeraphimAdvancedACURegenAura'] then
@@ -1267,7 +1267,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXSeraHealthBoost5')  
+            Buff.ApplyBuff(self, 'EXSeraHealthBoost5')
             self.RBComEngineering = true
             self.RBAssEngineering = true
             self.RBApoEngineering = false
@@ -1287,7 +1287,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end
@@ -1566,7 +1566,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='EXImprovedContainmentBottleRemove' then    
+        elseif enh =='EXImprovedContainmentBottleRemove' then
             if Buff.HasBuff(self, 'EXSeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost10')
             end
@@ -1607,7 +1607,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
             self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXPowerBoosterRemove' then    
+        elseif enh =='EXPowerBoosterRemove' then
             self:SetWeaponEnabledByLabel('EXBigBallCannon', false)
             if Buff.HasBuff(self, 'EXSeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost10')
@@ -1819,8 +1819,8 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost22')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -1830,8 +1830,8 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXL2Lambda' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -1898,8 +1898,8 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost23')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -1909,8 +1909,8 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXL3Lambda' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -1996,8 +1996,8 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost24')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2007,8 +2007,8 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXElectronicsEnhancment' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2058,8 +2058,8 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost16')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2069,8 +2069,8 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh == 'EXElectronicCountermeasures' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2143,8 +2143,8 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost17')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2165,7 +2165,7 @@ ESL0001 = Class(SWalkingLandUnit) {
                 self.IntelEffectsBag = nil
             end
             self.StealthEnh = false
-            self.CloakEnh = true 
+            self.CloakEnh = true
             self:EnableUnitIntel('RadarStealth')
             self:EnableUnitIntel('SonarStealth')
             self:EnableUnitIntel('Cloak')
@@ -2194,7 +2194,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:DisableUnitIntel('Cloak')
             self:DisableUnitIntel('RadarStealth')
             self:DisableUnitIntel('SonarStealth')
-            self.CloakEnh = false 
+            self.CloakEnh = false
             self:RemoveCommandCap('RULEUCC_Teleport')
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
@@ -2209,8 +2209,8 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost18')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2224,8 +2224,8 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXBasicDefence' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
@@ -2263,7 +2263,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             Buff.ApplyBuff(self, 'EXSeraHealthBoost19')
             local wepOC = self:GetWeaponByLabel('OverCharge')
             wepOC:ChangeMaxRadius(bp.OverchargeRangeMod or 44)
-            wepOC:AddDamageMod(bp.OverchargeDamageMod)        
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
             self.RBComTier1 = true
             self.RBComTier2 = false
             self.RBComTier3 = false
@@ -2273,15 +2273,15 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost19')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
             local wepOC = self:GetWeaponByLabel('OverCharge')
             local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
             wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
+            wepOC:AddDamageMod(-bp.OverchargeDamageMod)
             self:StopSiloBuild()
             self.RBComTier1 = false
             self.RBComTier2 = false
@@ -2307,7 +2307,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             end
             Buff.ApplyBuff(self, 'EXSeraHealthBoost20')
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            wepOC:AddDamageMod(bp.OverchargeDamageMod2)        
+            wepOC:AddDamageMod(bp.OverchargeDamageMod2)
             self.wcTMissiles01 = true
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
@@ -2331,16 +2331,16 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost21')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
             local wepOC = self:GetWeaponByLabel('OverCharge')
             local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
             wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod2)        
+            wepOC:AddDamageMod(-bp.OverchargeDamageMod)
+            wepOC:AddDamageMod(-bp.OverchargeDamageMod2)
             self.wcTMissiles01 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
@@ -2364,10 +2364,10 @@ ESL0001 = Class(SWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXSeraHealthBoost21')   
+            Buff.ApplyBuff(self, 'EXSeraHealthBoost21')
             local wepOC = self:GetWeaponByLabel('OverCharge')
             wepOC:ChangeMaxRadius(bp.OverchargeRangeMod or 44)
-            wepOC:AddDamageMod(bp.OverchargeDamageMod3)        
+            wepOC:AddDamageMod(bp.OverchargeDamageMod3)
             wepOC:ChangeProjectileBlueprint(bp.NewProjectileBlueprint)
             self.RBComTier1 = true
             self.RBComTier2 = true
@@ -2389,17 +2389,17 @@ ESL0001 = Class(SWalkingLandUnit) {
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost21')
             end
             if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                for k, v in self.lambdaEmitterTable do
+                    IssueClearCommands({self.lambdaEmitterTable[k]})
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
             local wepOC = self:GetWeaponByLabel('OverCharge')
             local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
             wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod2)        
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod3)        
+            wepOC:AddDamageMod(-bp.OverchargeDamageMod)
+            wepOC:AddDamageMod(-bp.OverchargeDamageMod2)
+            wepOC:AddDamageMod(-bp.OverchargeDamageMod3)
             wepOC:ChangeProjectileBlueprint(bp.NewProjectileBlueprint)
             self.wcTMissiles01 = false
             self:ForkThread(self.WeaponRangeReset)
@@ -2448,27 +2448,27 @@ ESL0001 = Class(SWalkingLandUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
-    
+
     OnIntelEnabled = function(self)
         SWalkingLandUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
+        if self.CloakEnh and self:IsIntelEnabled('Cloak') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXCloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
+            end
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
+            end
+        end
     end,
 
     OnIntelDisabled = function(self)
@@ -2481,7 +2481,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self:SetMaintenanceConsumptionInactive()
         elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
-        end         
+        end
     end,
 
     OnPaused = function(self)
@@ -2528,7 +2528,7 @@ ESL0001 = Class(SWalkingLandUnit) {
         self.EXCloakTele = true
         SWalkingLandUnit.PlayTeleportChargeEffects(self, location)
     end,
-    
+
     PlayTeleportInEffects = function(self)
         SWalkingLandUnit.PlayTeleportInEffects(self)
         self:ForkThread(self.EXRecloakDelayThread)
