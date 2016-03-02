@@ -22,28 +22,8 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
     },
     
     Weapons = {
+        MissileWeapon = Class(GoliathRocket) {},
         HeavyGuassCannon = Class(HawkGaussCannonWeapon) {},
-        MissileWeapon = Class(GoliathRocket) {
-            
-            OnWeaponFired = function(self)
-                self.unit:PlayUnitSound('MissileFire')
-                self.unit.weaponCounter = self.unit.weaponCounter + 1
-                local wepCount = self.unit.weaponCounter
-                if wepCount == 4 then
-                    ForkThread(self.ReloadThread, self)
-                    self.unit.weaponCounter = 0            
-                end
-                GoliathRocket.OnWeaponFired(self)
-            end,
-            
-            ReloadThread = function(self)
-                self.unit:SetWeaponEnabledByLabel('MissileWeapon', false)
-                WaitSeconds(12.5)
-                if not self.unit:IsDead() then
-                    self.unit:SetWeaponEnabledByLabel('MissileWeapon', true)
-                end
-            end,
-        },
         TMDTurret = Class(GoliathTMDGun) {},
         Laser = Class(TDFGoliathShoulderBeam) {},
         HeadWeapon = Class(TDFMachineGunWeapon){},
@@ -70,7 +50,6 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
     end,
     
     OnStopBeingBuilt = function(self,builder,layer)    
-        self.weaponCounter = 0
         self.slots = {}
         self.transData = {}
         

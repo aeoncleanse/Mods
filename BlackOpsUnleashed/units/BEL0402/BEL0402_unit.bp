@@ -339,7 +339,7 @@ UnitBlueprint {
     },
     Weapon = {
         {
-        AboveWaterFireOnly = true,
+            AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             Audio = {
                 Fire = Sound {
@@ -443,8 +443,8 @@ UnitBlueprint {
             Label = 'MissileWeapon',
             MaxRadius = 110,
             MinRadius = 20,
-            MuzzleSalvoDelay = 0,
-            MuzzleSalvoSize = 1,
+            MuzzleSalvoDelay = 0.3,
+            MuzzleSalvoSize = 8,
             MuzzleVelocity = 5,
             ProjectileId = '/mods/BlackOpsUnleashed/projectiles/GoliathRocket01/GoliathRocket01_proj.bp',
             ProjectileLifetime = 20,
@@ -453,30 +453,15 @@ UnitBlueprint {
                     MuzzleBones = {
                         'Missile_Muzzle_1',
                         'Missile_Muzzle_2',
-                    },
-                    RackBone = 'Missile_Muzzle_1',
-               },
-               {
-                    MuzzleBones = {
                         'Missile_Muzzle_3',
-                        'Missile_Muzzle_8',
-                    },
-                    RackBone = 'Missile_Muzzle_3',
-               },
-               {
-                    MuzzleBones = {
                         'Missile_Muzzle_4',
-                        'Missile_Muzzle_7',
-                    },
-                    RackBone = 'Missile_Muzzle_4',
-               },
-               {
-                    MuzzleBones = {
                         'Missile_Muzzle_5',
                         'Missile_Muzzle_6',
+                        'Missile_Muzzle_7',
+                        'Missile_Muzzle_8',
                     },
-                    RackBone = 'Missile_Muzzle_5',
-               },
+                    RackBone = 'Missile_Muzzle_1',
+                },
             },
             RackFireTogether = false,
             RackRecoilDistance = 0,
@@ -486,8 +471,8 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_InDirectFire',
-            RateOfFire = 3.33,
-            RenderFireClock = false,
+            RateOfFire = 0.08,
+            RenderFireClock = true,
             SlavedToBody = true,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
@@ -579,7 +564,7 @@ UnitBlueprint {
             SlavedToBody = true,
             SlavedToBodyArcRange = 55,
             RateOfFire = 1,
-            RenderFireClock = true,
+            RenderFireClock = false,
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
