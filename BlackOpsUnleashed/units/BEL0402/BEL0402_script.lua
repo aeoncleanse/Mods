@@ -5,7 +5,7 @@ local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local HawkGaussCannonWeapon = Weapons2.HawkGaussCannonWeapon
 local GoliathTMDGun = Weapons2.GoliathTMDGun
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local TIFCommanderDeathWeapon = TWeapons.TIFCommanderDeathWeapon
 local GoliathRocket = Weapons2.GoliathRocket
 local TDFGoliathShoulderBeam = Weapons2.TDFGoliathShoulderBeam
 local utilities = import('/lua/utilities.lua')
@@ -47,7 +47,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         TMDTurret = Class(GoliathTMDGun) {},
         Laser = Class(TDFGoliathShoulderBeam) {},
         HeadWeapon = Class(TDFMachineGunWeapon){},
-        GoliathDeathNuke = Class(DeathNukeWeapon) {},
+        GoliathDeathNuke = Class(TIFCommanderDeathWeapon) {},
     },
 
     OnCreate = function(self,builder,layer)

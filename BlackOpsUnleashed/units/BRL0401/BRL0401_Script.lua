@@ -14,7 +14,7 @@ local BassieCannonWeapon01 = CybranWeaponsFile2.BassieCannonWeapon01
 local BasiliskAAMissile01 = CybranWeaponsFile2.BasiliskAAMissile01
 
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local CIFCommanderDeathWeapon = cWeapons.CIFCommanderDeathWeapon
 local CIFMissileLoaWeapon = import('/lua/cybranweapons.lua').CIFMissileLoaWeapon
 local CDFElectronBolterWeapon = cWeapons.CDFElectronBolterWeapon
 
@@ -32,7 +32,7 @@ BRL0401 = Class(CWalkingLandUnit) {
     PlayEndAnimDestructionEffects = false,
 
     Weapons = {
-        BasiliskDeathNuke = Class(DeathNukeWeapon) {},
+        BasiliskDeathNuke = Class(CIFCommanderDeathWeapon) {},
         TorsoWeapon = Class(CDFLaserHeavyWeapon){},
         HeadWeapon = Class(CDFLaserHeavyWeapon) {
             OnWeaponFired = function(self, muzzle)
