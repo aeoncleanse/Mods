@@ -97,7 +97,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
 
         -- Drone setup (load globals/tables & create drones)
         self:DroneSetup()
-        self:SetScriptBit('RULEUTC_IntelToggle', true)
+        self:SetScriptBit('RULEUTC_IntelToggle', false)
         self.FlamerEffectsBag = {}
         
         self.spoof = false
