@@ -17,6 +17,7 @@ local Effects = import('/lua/effecttemplates.lua')
 
 BRL0110 = Class(CWalkingLandUnit) {
     DestructionTicks = 400,
+    WeaponList = {'FlameGun', 'RPG', 'LaserGun', 'GatlingCannon'},
 
     Weapons = {
         DummyWeapon = Class(CIFGrenadeWeapon) {},
@@ -44,15 +45,7 @@ BRL0110 = Class(CWalkingLandUnit) {
                 end
                 CDFLaserHeavyWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-        },
-        
-        Suicide = Class(CMobileKamikazeBombWeapon) {        
-            OnFire = function(self)
-                self.unit:SetDeathWeaponEnabled(false)
-                CMobileKamikazeBombWeapon.OnFire(self)
-            end,
-        },
-        
+        },        
     },
     
     OnStopBeingBuilt = function(self,builder,layer)
@@ -60,57 +53,31 @@ BRL0110 = Class(CWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('FlameGun', false)
         self:SetWeaponEnabledByLabel('RPG', false)
         self:SetWeaponEnabledByLabel('GatlingCannon', false)
-        self:SetWeaponEnabledByLabel('Suicide', false)
         self:SetWeaponEnabledByLabel('LaserGun', false)
-        self.WeaponCheckFlame = false
-        self.WeaponCheckRPG = false
-        self.WeaponCheckGatling = false
-        self.WeaponCheckSuicide = false
-        self.WeaponCheckLaser = false
-        CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+        self.WeaponCheck = false
+        CWalkingLandUnit.OnStopBeingBuilt(self, builder, layer)
     end,
     
-    WeaponCheckThread = function(self) 
-        if self.WeaponCheckFlame then
-            self:SetWeaponEnabledByLabel('FlameGun', true)
-        else
-            self:SetWeaponEnabledByLabel('FlameGun', false)
-        end
-        if self.WeaponCheckRPG then
-            self:SetWeaponEnabledByLabel('RPG', true)
-        else
-            self:SetWeaponEnabledByLabel('RPG', false)
-        end
-        if self.WeaponCheckGatling then
-            self:SetWeaponEnabledByLabel('GatlingCannon', true)
-        else
-            self:SetWeaponEnabledByLabel('GatlingCannon', false)
-        end
-        if self.WeaponCheckSuicide then
-            self:SetWeaponEnabledByLabel('Suicide', true)
-        else
-            self:SetWeaponEnabledByLabel('Suicide', false)
-        end
-        if self.WeaponCheckLaser then
-            self:SetWeaponEnabledByLabel('LaserGun', true)
-        else
-            self:SetWeaponEnabledByLabel('LaserGun', false)
+    WeaponCheckThread = function(self)
+        for k, v in self.WeaponList do
+            self:SetWeaponEnabledByLabel(self.WeaponList[k], k == self.WeaponCheck)
         end
     end,
     
     OnTransportDetach = function(self, attachBone, unit)
         CWalkingLandUnit.OnTransportDetach(self, attachBone, unit)
-        LOG('*DETACHING FROM TRANSPORT')    
         self:ForkThread(self.WeaponCheckThread)
     end,
     
     WeaponSetup = function(self)
         if not self:IsDead() then
-            local WeaponType = Random(1,4)
+            self.WeaponCheck = Random(1,4)
             self:ShowBone('XRL0110', true)
             local dummywep = self:GetWeaponByLabel('DummyWeapon')
             local maxradius, minradius
-            if WeaponType == 1 then
+            
+            local check = self.WeaponCheck
+            if check == 1 then
                 self:HideBone('RPG_Barrel01', true)
                 self:HideBone('RPG_Barrel02', true)
                 self:HideBone('RPG_Muzzle01', true)
@@ -124,12 +91,11 @@ BRL0110 = Class(CWalkingLandUnit) {
                 local wep = self:GetWeaponByLabel('FlameGun')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
-                self.WeaponCheckFlame = true
                 -- Flamer speed & agility boost
                 local flamerspeed = wep:GetBlueprint().FlamerSpeedMult or 1.2
                 self:SetSpeedMult(flamerspeed)
                 self:SetTurnMult(flamerspeed)
-            elseif WeaponType == 2 then
+            elseif check == 2 then
                 -- RPG
                 self:HideBone('Flamer', true)
                 self:HideBone('Flamer_Muzzle', true)
@@ -142,8 +108,7 @@ BRL0110 = Class(CWalkingLandUnit) {
                 local wep = self:GetWeaponByLabel('RPG')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
-                self.WeaponCheckRPG = true
-            elseif WeaponType == 3 then
+            elseif check == 3 then
                 -- Gatling Pulse Cannon
                 self:HideBone('Flamer', true)
                 self:HideBone('Flamer_Muzzle', true)
@@ -156,8 +121,7 @@ BRL0110 = Class(CWalkingLandUnit) {
                 local wep = self:GetWeaponByLabel('GatlingCannon')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
-                self.WeaponCheckGatling = true
-            elseif WeaponType == 4 then
+            elseif check == 4 then
                 -- Particle Laser
                 self:HideBone('RPG_Barrel01', true)
                 self:HideBone('RPG_Barrel02', true)
@@ -173,7 +137,6 @@ BRL0110 = Class(CWalkingLandUnit) {
                 local wep = self:GetWeaponByLabel('LaserGun')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
-                self.WeaponCheckLaser = true
             end
             -- Configure dummy weapon radius, enable main weapon
             dummywep:ChangeMaxRadius(maxradius)
