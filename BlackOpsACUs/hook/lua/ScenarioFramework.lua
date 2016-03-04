@@ -13,6 +13,9 @@ function FakeGateInUnit(unit, callbackFunction)
             elseif v == 'CYBRAN' then
                 faction = 3
                 break
+            elseif v == 'SERAPHIM' then
+                faction = 4
+                break
             end
         end
 
@@ -94,6 +97,24 @@ function FakeGateInUnit(unit, callbackFunction)
             unit:HideBone('Combat_B02_RLeg', true)
             unit:HideBone('Back_CombatPack', true)
             unit:HideBone('Chest_Open', true)
+        elseif faction == 4 then
+            unit:SetMesh('/mods/BlackOpsACUs/units/xsl0001/ESL0001_PhaseShield_mesh', true)
+            unit:HideBone('Engineering', true)
+            unit:HideBone('Combat_Engineering', true)
+            unit:HideBone('Rapid_Cannon', true)
+            unit:HideBone('Basic_Gun_Up', true)
+            unit:HideBone('Big_Ball_Cannon', true)
+            unit:HideBone('Torpedo_Launcher', true)
+            unit:HideBone('Missile_Launcher', true)
+            unit:HideBone('IntelPack', true)
+            unit:HideBone('L_Spinner_B01', true)
+            unit:HideBone('L_Spinner_B02', true)
+            unit:HideBone('L_Spinner_B03', true)
+            unit:HideBone('S_Spinner_B01', true)
+            unit:HideBone('S_Spinner_B02', true)
+            unit:HideBone('S_Spinner_B03', true)
+            unit:HideBone('Left_AA_Mount', true)
+            unit:HideBone('Right_AA_Mount', true)
         end
 
         unit:SetUnSelectable(false)
