@@ -1,34 +1,33 @@
 function CreateArmyUnit(strArmy,strUnit)
     local tblUnit = FindUnit(strUnit,Scenario.Armies[strArmy].Units)
     local brain = GetArmyBrain(strArmy)
-    
+    local IDs = {'ual0001', 'uel0001', 'url0001', 'xsl0001'}
+
     if not brain.IgnoreArmyCaps then
         SetIgnoreArmyUnitCap(brain:GetArmyIndex(), true)
     end
-    
+
     if nil ~= tblUnit then
         if brain.BrainType == 'Human' then
-            if string.sub(tblUnit.type, 1, 7) == 'ual0001' then
-                tblUnit.type = 'eal0001'
-            elseif string.sub(tblUnit.type, 1, 7) == 'uel0001' then
-                tblUnit.type = 'eel0001'
-            elseif string.sub(tblUnit.type, 1, 7) == 'url0001' then
-                tblUnit.type = 'erl0001'
-            elseif string.sub(tblUnit.type, 1, 7) == 'xsl0001' then
-                tblUnit.type = 'esl0001'
+            for _, string in IDs do
+                if string.sub(tblUnit.type, 1, 7) == v then
+                    tblUnit.type == 'e' .. string.sub(v, 2)
+                end
             end
         end
+
         local unit = CreateUnitHPR(
             tblUnit.type,
             strArmy,
             tblUnit.Position[1], tblUnit.Position[2], tblUnit.Position[3],
             tblUnit.Orientation[1], tblUnit.Orientation[2], tblUnit.Orientation[3]
-       )
+        )
+
         if unit:GetBlueprint().Physics.FlattenSkirt then
             unit:CreateTarmac(true, true, true, false, false)
-        end             
+        end
+
         local platoon
-        local brain = GetArmyBrain(strArmy)
         if tblUnit.platoon ~= nil and tblUnit.platoon ~= '' then
             local i = 3
             while i <= table.getn(Scenario.Platoons[tblUnit.platoon]) do
