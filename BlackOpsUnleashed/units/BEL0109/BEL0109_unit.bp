@@ -156,7 +156,7 @@ UnitBlueprint {
         OrderOverrides = {
             RULEUTC_WeaponToggle = {
                 bitmapId = 'toggle-weapon-direct',
-                helpText = 'transform_stationary',
+                helpText = 'BO_transform',
             },
         },
         TechLevel = 'RULEUTL_Secret',
@@ -164,7 +164,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 26,
+        VisionRadius = 20,
     },
     Interface = {
         HelpText = '<LOC BEL0109_help>Tank Hunter/Mobile PD',
@@ -232,7 +232,7 @@ UnitBlueprint {
             },
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
-            Damage = 250,
+            Damage = 40,
             DamageType = 'Normal',
             DisplayName = 'Anti Matter Artillery',
             FireTargetLayerCapsTable = {
@@ -240,10 +240,10 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'MainGun',
-            MaxRadius = 20,
+            MaxRadius = 18,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            MuzzleVelocity = 50,
+            MuzzleVelocity = 25,
             ProjectileId = '/projectiles/TDFGauss04/TDFGauss04_proj.bp',
             ProjectileLifetime = 20,
             ProjectilesPerOnFire = 1,
@@ -263,7 +263,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 0.2,
+            RateOfFire = 0.5,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -276,7 +276,7 @@ UnitBlueprint {
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-            TrackingRadius = 1.4,
+            TrackingRadius = 1.15,
             TurretBoneMuzzle = 'Turret01_Barrel01_Muzzle01',
             TurretBonePitch = 'Turret01_Barrel01',
             TurretBoneYaw = 'Turret01',

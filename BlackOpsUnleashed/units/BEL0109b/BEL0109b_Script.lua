@@ -39,7 +39,7 @@ BEL0109b = Class(TLandUnit) {
     end,
     
     TankSpawn = function(self)
-        -- Only spawns the Avenger "C" turret only if the Avenger "B" Structure is not dead
+        -- Only spawns the Avenger "A" tank only if the Avenger "B" structure is not dead
         if not self:IsDead() then
 
             -- Gets the current orientation of the Avenger "B" in the game world
@@ -50,19 +50,18 @@ BEL0109b = Class(TLandUnit) {
 
             -- Gets the current health the Avenger "B"
             local health = self:GetHealth()
-            local numkills = self:GetStat('KILLS', 0).Value
 
-            -- Creates our Avenger "C" at the Avenger "B" location & direction
-            local AvengerC = CreateUnit('bel0109c', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
+            -- Creates our Avenger "A" at the Avenger "B" location & direction
+            local AvengerA = CreateUnit('bel0109', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
 
-            -- Passes the health of the Unit "B" to unit "C"and passes vet
-            AvengerC:SetHealth(self,health)
-            AvengerC:AddXP(self.xp)
+            -- Passes the health of the Unit "B" to unit "A" and passes vet
+            AvengerA:SetHealth(self,health)
+            AvengerA:AddXP(self.xp)
 
-            -- Nil's local AvengerB
-            AvengerC = nil
+            -- Nil's local Avenger A
+            AvengerA = nil
 
-            -- Avenger "B" removal scripts
+            -- Avenger "B" removal
             self:Destroy()
         end
    end,
