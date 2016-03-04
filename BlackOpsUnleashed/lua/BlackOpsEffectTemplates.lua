@@ -9,25 +9,6 @@ EmtBpPath = '/effects/emitters/'
 EmtBpPathAlt = '/mods/BlackOpsUnleashed/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 
--- ACUs Expansion Mod Section
-CybranACUEMPArrayHit01 = {
-    EXBlackopsBpPath .. 'exemp_flash_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_flash_02_emit.bp',
-    EXBlackopsBpPath .. 'exemp_flash_03_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_02_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_03_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_04_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_05_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_06_emit.bp',
-    EXBlackopsBpPath .. 'exemp_implosion_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_02_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_03_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_07_emit.bp',
-}
--- Section End
-
 WeaponSteam02 = {
     EmtBpPathAlt .. 'weapon_mist_02_emit.bp',
 }
