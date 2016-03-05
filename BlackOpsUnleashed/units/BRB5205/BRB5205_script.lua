@@ -46,6 +46,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         
         CAirStagingPlatformUnit.OnStopBeingBuilt(self)
     end,
+    
     InitialDroneSpawn = function(self)
         local numcreate = 4
 
@@ -63,7 +64,8 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
     end,
     
     SpawnDrone = function(self)
-    WaitSeconds(5)
+        WaitSeconds(5)
+        
         -- Sets up local Variables used and spawns a drone at the parents location
         local myOrientation = self:GetOrientation()
         if self.Side == 1 then
@@ -149,16 +151,6 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
 
             -- Drone clean up scripts
             self.Trash:Add(drone)
-        end
-    end,
-    
-    OnScriptBitClear = function(self, bit)
-        if bit == 1 then
-            self:SetEnergyMaintenanceConsumptionOverride(self.IntelMaintenance)
-            self:SetMaintenanceConsumptionActive()
-            LOG('*Hawk:trying to enable intel')
-            self:EnableUnitIntel('Sonar')
-            self:EnableUnitIntel('Radar')
         end
     end,
 
