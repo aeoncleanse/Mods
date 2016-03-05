@@ -119,6 +119,7 @@ UnitBlueprint {
         'OVERLAYCOUNTERINTEL',
         'OVERLAYINDIRECTFIRE',
         'CANNOTUSEAIRSTAGING',
+        'SHOWATTACKRETICLE',
     },
     CollisionOffsetY = -2,
     Defense = {
@@ -136,6 +137,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_transport>Transport',
+            '<LOC ability_stealthfield>Stealth Field',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BRA0409/BRA0409_AOpen.sca',
         AnimationClose = '/mods/BlackOpsUnleashed/units/BRA0409/BRA0409_AClose.sca',
