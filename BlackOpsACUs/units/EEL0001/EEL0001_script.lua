@@ -921,6 +921,11 @@ EEL0001 = Class(TWalkingLandUnit) {
         if not bp then return end
         if enh =='EXImprovedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER2COMMANDER)
+            
+            local bpEcon = self:GetBlueprint().Economy
+            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
+            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
+            
             if not Buffs['UEFACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'UEFACUT2BuildRate',
@@ -933,35 +938,18 @@ EEL0001 = Class(TWalkingLandUnit) {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
-            if not Buffs['EXUEFHealthBoost1'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost1',
-                    DisplayName = 'EXUEFHealthBoost1',
-                    BuffType = 'EXUEFHealthBoost1',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost1')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
         elseif enh =='EXImprovedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
             if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
