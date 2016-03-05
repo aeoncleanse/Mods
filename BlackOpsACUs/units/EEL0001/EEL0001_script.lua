@@ -915,16 +915,25 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:ForkThread(self.WeaponConfigCheck)
     end,
 
+    SetProduction = function(self, bp)
+        local energy = bp.ProductionPerSecondEnergy or 0
+        local mass = bp.ProductionPerSecondMass or 0
+        
+        local bpEcon = self:GetBlueprint().Economy
+        
+        self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
+        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondEnergy or 0)
+    end,
+    
     CreateEnhancement = function(self, enh)
         TWalkingLandUnit.CreateEnhancement(self, enh)
+        
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
+        
         if enh =='EXImprovedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER2COMMANDER)
-            
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
+            self:SetProduction(bp)
             
             if not Buffs['UEFACUT2BuildRate'] then
                 BuffBlueprint {
@@ -951,25 +960,15 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
         elseif enh =='EXImprovedEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
             if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
             end
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'EXUEFHealthBoost1') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost1')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            self:SetProduction()
         elseif enh =='EXAdvancedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:SetProduction(bp)
+
             if not Buffs['UEFACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'UEFACUT3BuildRate',
@@ -982,63 +981,28 @@ EEL0001 = Class(TWalkingLandUnit) {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'UEFACUT3BuildRate')
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
-            if not Buffs['EXUEFHealthBoost2'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost2',
-                    DisplayName = 'EXUEFHealthBoost2',
-                    BuffType = 'EXUEFHealthBoost2',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost2')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = true
-            self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            Buff.ApplyBuff(self, 'UEFACUT3BuildRate')
         elseif enh =='EXAdvancedEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'EXUEFHealthBoost1') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost1')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost2') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost2')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            self:SetProduction()
         elseif enh =='EXExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
+            self:SetProduction(bp)
+            
             if not Buffs['UEFACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'UEFACUT4BuildRate',
@@ -1051,60 +1015,30 @@ EEL0001 = Class(TWalkingLandUnit) {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'UEFACUT4BuildRate')
-            if not Buffs['EXUEFHealthBoost3'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost3',
-                    DisplayName = 'EXUEFHealthBoost3',
-                    BuffType = 'EXUEFHealthBoost3',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost3')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = true
-            self.RBExpEngineering = true
-            self:ForkThread(self.EXRegenBuffThread)
+            Buff.ApplyBuff(self, 'UEFACUT4BuildRate')
         elseif enh =='EXExperimentalEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'EXUEFHealthBoost1') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost1')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost2') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost2')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost3') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost3')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            self:SetProduction()
         elseif enh =='EXCombatEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
-            if not Buffs['UEFACUT2BuildRate'] then
+            if not Buffs['UEFACUT2BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'UEFACUT2BuildRate',
-                    DisplayName = 'UEFACUT2BuildRate',
+                    Name = 'UEFACUT2BuildCombat',
+                    DisplayName = 'UEFACUT2BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'REPLACE',
                     Duration = -1,
@@ -1113,26 +1047,19 @@ EEL0001 = Class(TWalkingLandUnit) {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
-            if not Buffs['EXUEFHealthBoost4'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost4',
-                    DisplayName = 'EXUEFHealthBoost4',
-                    BuffType = 'EXUEFHealthBoost4',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost4')
+            Buff.ApplyBuff(self, 'UEFACUT2BuildCombat')
+
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
                     v:Destroy()
@@ -1146,21 +1073,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-            self.RBComEngineering = true
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCombatEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
-                Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
+            if Buff.HasBuff(self, 'UEFACUT2BuildCombat') then
+                Buff.RemoveBuff(self, 'UEFACUT2BuildCombat')
             end
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
-            end
+            
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
                     v:Destroy()
@@ -1171,16 +1089,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAssaultEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
-            if not Buffs['UEFACUT3BuildRate'] then
+            if not Buffs['UEFACUT3BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'UEFACUT3BuildRate',
-                    DisplayName = 'UEFCUT3BuildRate',
+                    Name = 'UEFACUT3BuildCombat',
+                    DisplayName = 'UEFCUT3BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'REPLACE',
                     Duration = -1,
@@ -1189,48 +1103,29 @@ EEL0001 = Class(TWalkingLandUnit) {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'UEFACUT3BuildRate')
-            if not Buffs['EXUEFHealthBoost5'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost5',
-                    DisplayName = 'EXUEFHealthBoost5',
-                    BuffType = 'EXUEFHealthBoost5',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost5')
+            Buff.ApplyBuff(self, 'UEFACUT3BuildCombat')
+
             self.wcFlamer01 = false
             self.wcFlamer02 = true
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-            self.RBComEngineering = true
-            self.RBAssEngineering = true
-            self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAssaultEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
-            if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
-                Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
+            if Buff.HasBuff(self, 'UEFACUT3BuildCombat') then
+                Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
-            if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost5') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost5')
-            end
+
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
                     v:Destroy()
@@ -1241,16 +1136,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
-            if not Buffs['UEFACUT4BuildRate'] then
+            if not Buffs['UEFACUT4BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'UEFACUT4BuildRate',
-                    DisplayName = 'UEFCUT4BuildRate',
+                    Name = 'UEFACUT4BuildCombat',
+                    DisplayName = 'UEFACUT4BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'REPLACE',
                     Duration = -1,
@@ -1259,47 +1150,26 @@ EEL0001 = Class(TWalkingLandUnit) {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'UEFACUT4BuildRate')
-            if not Buffs['EXUEFHealthBoost6'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost6',
-                    DisplayName = 'EXUEFHealthBoost6',
-                    BuffType = 'EXUEFHealthBoost6',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost6')
-            self.RBComEngineering = true
-            self.RBAssEngineering = true
-            self.RBApoEngineering = true
-            self:ForkThread(self.EXRegenBuffThread)
+            Buff.ApplyBuff(self, 'UEFACUT4BuildCombat')
         elseif enh =='EXApocolypticEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
-            self:RestoreBuildRestrictions()
-            if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
-                Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
+            if Buff.HasBuff(self, 'UEFACUT4BuildCombat') then
+                Buff.RemoveBuff(self, 'UEFACUT4BuildCombat')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'EXUEFHealthBoost4') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost4')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost5') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost5')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost6') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost6')
-            end
+
             if self.FlamerEffectsBag then
                 for k, v in self.FlamerEffectsBag do
                     v:Destroy()
@@ -1310,10 +1180,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
+        -- End of Engineering Section
+            
         elseif enh =='EXZephyrBooster' then
             local wepZephyr = self:GetWeaponByLabel('RightZephyr')
             wepZephyr:ChangeMaxRadius(30)
