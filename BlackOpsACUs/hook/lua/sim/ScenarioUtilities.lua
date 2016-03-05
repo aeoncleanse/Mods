@@ -11,7 +11,7 @@ function CreateArmyUnit(strArmy,strUnit)
         if brain.BrainType == 'Human' then
             for _, string in IDs do
                 if string.sub(tblUnit.type, 1, 7) == v then
-                    tblUnit.type == 'e' .. string.sub(v, 2)
+                    tblUnit.type = 'e' .. string.sub(v, 2)
                 end
             end
         end
