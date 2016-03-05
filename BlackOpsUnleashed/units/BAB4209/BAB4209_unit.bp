@@ -39,7 +39,6 @@ UnitBlueprint {
         'BUILTBYTIER2COMMANDER',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
-        'BUILTBYTIER4COMMANDER',
         'AEON',
         'STRUCTURE',
         'INTELLIGENCE',

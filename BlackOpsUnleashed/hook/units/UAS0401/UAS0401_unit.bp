@@ -87,7 +87,6 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER3COMMANDER',
-        'BUILTBYTIER4COMMANDER',
         'BUILTBYTIER3ENGINEER',
         'AEON',
         'MOBILE',

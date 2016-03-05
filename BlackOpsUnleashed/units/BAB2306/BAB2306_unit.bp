@@ -31,7 +31,6 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
-        'BUILTBYTIER4COMMANDER',
         'AEON',
         'STRUCTURE',
         'STRATEGIC',

@@ -844,8 +844,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
         if enh =='EXImprovedEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['CYBRANACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT2BuildRate',
@@ -894,8 +893,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -907,8 +905,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAdvancedEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['CYBRANACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT3BuildRate',
@@ -957,8 +954,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -973,8 +969,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXExperimentalEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             local bp = self:GetBlueprint().Enhancements[enh]
             local bpEcon = self:GetBlueprint().Economy
             if not bp then return end
@@ -1023,8 +1018,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -1042,8 +1036,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCombatEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['CYBRANACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT2BuildRate',
@@ -1091,8 +1084,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end
@@ -1105,8 +1097,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBApoEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAssaultEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['CYBRANACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT3BuildRate',
@@ -1154,8 +1145,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end
@@ -1171,8 +1161,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBApoEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXApocolypticEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['CYBRANACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT4BuildRate',
@@ -1216,8 +1205,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXCybranHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXCybranHealthBoost4')
             end

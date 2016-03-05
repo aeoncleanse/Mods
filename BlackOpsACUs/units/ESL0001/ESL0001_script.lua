@@ -853,8 +853,7 @@ ESL0001 = Class(SWalkingLandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
         if enh =='EXImprovedEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['SERAPHIMACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT2BuildRate',
@@ -903,8 +902,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -916,8 +914,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAdvancedEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['SERAPHIMACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT3BuildRate',
@@ -966,8 +963,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -982,8 +978,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXExperimentalEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             local bp = self:GetBlueprint().Enhancements[enh]
             local bpEcon = self:GetBlueprint().Economy
             if not bp then return end
@@ -1032,8 +1027,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -1108,8 +1102,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             end
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
             self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['SERAPHIMACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT2BuildRate',
@@ -1160,8 +1153,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end
@@ -1234,8 +1226,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             end
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
             self.AdvancedRegenThreadHandle = self:ForkThread(self.AdvancedRegenBuffThread)
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['SERAPHIMACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT3BuildRate',
@@ -1286,8 +1277,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER)) 
             if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end
@@ -1299,8 +1289,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             self.RBApoEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXApocolypticEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['SERAPHIMACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT4BuildRate',
@@ -1351,8 +1340,7 @@ ESL0001 = Class(SWalkingLandUnit) {
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXSeraHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXSeraHealthBoost4')
             end

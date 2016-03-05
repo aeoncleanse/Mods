@@ -41,7 +41,6 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
-        'BUILTBYTIER4COMMANDER',
         'CYBRAN',
         'NAVAL',
         'STRUCTURE',

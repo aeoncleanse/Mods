@@ -950,8 +950,7 @@ EAL0001 = Class(AWalkingLandUnit) {
         AWalkingLandUnit.CreateEnhancement(self, enh)
         local bp = self:GetBlueprint().Enhancements[enh]
         if enh =='EXImprovedEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['AEONACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT2BuildRate',
@@ -1000,8 +999,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -1013,8 +1011,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAdvancedEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['AEONACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT3BuildRate',
@@ -1063,8 +1060,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             if Buff.HasBuff(self, 'AEONACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -1079,8 +1075,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXExperimentalEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             local bp = self:GetBlueprint().Enhancements[enh]
             local bpEcon = self:GetBlueprint().Economy
             if not bp then return end
@@ -1129,8 +1124,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             if Buff.HasBuff(self, 'AEONACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             local bpEcon = self:GetBlueprint().Economy
             self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
@@ -1148,8 +1142,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.RBExpEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXCombatEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['AEONACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT2BuildRate',
@@ -1197,8 +1190,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             end
             if not bp then return end
             self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXAeonHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXAeonHealthBoost4')
             end
@@ -1211,8 +1203,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.RBApoEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXAssaultEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['AEONACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT3BuildRate',
@@ -1260,8 +1251,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             if Buff.HasBuff(self, 'AEONACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))     
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
             if Buff.HasBuff(self, 'EXAeonHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXAeonHealthBoost4')
             end
@@ -1277,8 +1267,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             self.RBApoEngineering = false
             self:ForkThread(self.EXRegenBuffThread)
         elseif enh =='EXApocolypticEngineering' then
-            local cat = ParseEntityCategory(bp.BuildableCategoryAdds)
-            self:RemoveBuildRestriction(cat)
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['AEONACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT4BuildRate',
@@ -1322,8 +1311,7 @@ EAL0001 = Class(AWalkingLandUnit) {
             if Buff.HasBuff(self, 'AEONACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             if Buff.HasBuff(self, 'EXAeonHealthBoost4') then
                 Buff.RemoveBuff(self, 'EXAeonHealthBoost4')
             end
