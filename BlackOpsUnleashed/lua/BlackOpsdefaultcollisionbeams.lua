@@ -158,7 +158,7 @@ AeonACUPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
 
 EXCEMPArrayBeam03CollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {'/mods/BlackOpsACUs/effects/emitters/excemparraybeam01_emit.bp'},
-    FxBeamEndPoint = BlackOpsEffectTemplate.CybranACUEMPArrayHit01,
+    FxBeamEndPoint = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua').CybranACUEMPArrayHit01,
     FxBeamStartPoint = {},
     FxBeamStartPointScale = 0.05,
     FxBeamEndPointScale = 1,

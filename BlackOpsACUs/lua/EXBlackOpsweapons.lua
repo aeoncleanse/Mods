@@ -21,8 +21,6 @@ local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGenerator
 local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
 local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01
 local EXCollisionBeamFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua')
-local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
-
 
 HawkNapalmWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EffectTemplate.TGaussCannonFlash,
@@ -33,7 +31,7 @@ HawkGaussCannonWeapon = Class(DefaultProjectileWeapon) {
 }
 
 UEFACUAntiMatterWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = EXEffectTemplate.ACUAntiMatterMuzzle,
+    FxMuzzleFlash = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua').ACUAntiMatterMuzzle,
 }
 
 PDLaserGrid = Class(DefaultBeamWeapon) {
@@ -41,7 +39,7 @@ PDLaserGrid = Class(DefaultBeamWeapon) {
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
 
-    FxUpackingChargeEffects = {},--'/effects/emitters/quantum_generator_charge_01_emit.bp'},
+    FxUpackingChargeEffects = {}, -- '/effects/emitters/quantum_generator_charge_01_emit.bp'},
     FxUpackingChargeEffectScale = 1,
 
     PlayFxWeaponUnpackSequence = function(self)
@@ -99,7 +97,7 @@ PDLaserGrid2 = Class(DefaultBeamWeapon) {
 }
 
 UEFACUHeavyPlasmaGatlingCannonWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = EXEffectTemplate.UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
+    FxMuzzleFlash = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua').UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
     FxMuzzleFlashScale = 0.35,
 }
 
