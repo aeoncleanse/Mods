@@ -90,8 +90,10 @@ BRA0409 = Class(CAirUnit) {
     
     OnStopBeingBuilt = function(self,builder,layer)
         CAirUnit.OnStopBeingBuilt(self,builder,layer)
+
         self.AnimManip = CreateAnimator(self)
         self.Trash:Add(self.AnimManip)
+
         self:SetMaintenanceConsumptionInactive()
         self:SetScriptBit('RULEUTC_IntelToggle', true)
     end,
@@ -107,15 +109,37 @@ BRA0409 = Class(CAirUnit) {
             self.ThrustExhaustTT1 = self:ForkThread(self.MovementAmbientExhaustThread)
         end
         
-        if (new == 'TopSpeed') then
-            self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(2)       
-        elseif (new == 'Stopping') then
-            self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationClose, false):SetRate(2)
+        -- We've changed flight speed too soon to open
+        if self.OpenThread then
+            KillThread(self.OpenThread)
+            self.OpenThread = nil
+        end
+        
+        if new == 'TopSpeed' then
+            -- Only open after 2 seconds of top-speed flight
+            self.OpenThread = self:ForkThread(self.OpenAnimation)
+        elseif new == 'Stopping' then
+            -- Only close if opened
+            if self.open then
+                self.CloseThread = self:ForkThread(self.CloseAnimation)
+            end
         elseif new == 'Stopped' and self.ThrustExhaustTT1 ~= nil then
             KillThread(self.ThrustExhaustTT1)
             fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')
             self.ThrustExhaustTT1 = nil
         end         
+    end,
+    
+    OpenAnimation = function(self)
+        WaitSeconds(1.5)
+        self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(2)
+        self.open = true
+    end,
+    
+    CloseAnimation = function(self)
+        WaitSeconds(1.5)
+        self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationClose, false):SetRate(2)
+        self.open = false
     end,
     
     MovementAmbientExhaustThread = function(self)
