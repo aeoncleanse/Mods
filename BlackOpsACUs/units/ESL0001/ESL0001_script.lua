@@ -227,6 +227,9 @@ ESL0001 = Class(SWalkingLandUnit) {
         },
     },
 
+    __init = function(self)
+        ACUUnit.__init(self, 'ChronotronCannon')
+    end,
 
     OnCreate = function(self)
         SWalkingLandUnit.OnCreate(self)

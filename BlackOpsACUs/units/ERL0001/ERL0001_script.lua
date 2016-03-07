@@ -237,6 +237,10 @@ ERL0001 = Class(CWalkingLandUnit) {
             },    
         },
     },
+    
+    __init = function(self)
+        ACUUnit.__init(self, 'RightRipper')
+    end,
 
     -- ********
     -- Creation

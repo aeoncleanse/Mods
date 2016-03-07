@@ -204,7 +204,10 @@ EAL0001 = Class(AWalkingLandUnit) {
         },
     },
 
-
+    __init = function(self)
+        ACUUnit.__init(self, 'RightDisruptor')
+    end,
+    
     OnCreate = function(self)
         AWalkingLandUnit.OnCreate(self)
         self:SetCapturable(false)

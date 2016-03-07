@@ -94,6 +94,10 @@ EEL0001 = Class(ACUUnit) {
             end,
        },
     },
+    
+    __init = function(self)
+        ACUUnit.__init(self, 'RightZephyr')
+    end,
 
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
