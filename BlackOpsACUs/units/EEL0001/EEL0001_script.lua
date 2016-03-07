@@ -462,7 +462,7 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
     
-    CreateEnhancement = function(self, enh)
+    CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         
         local bp = self:GetBlueprint().Enhancements[enh]
@@ -477,11 +477,11 @@ EEL0001 = Class(ACUUnit) {
                     Name = 'UEFACUT2BuildRate',
                     DisplayName = 'UEFACUT2BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {
@@ -511,11 +511,11 @@ EEL0001 = Class(ACUUnit) {
                     Name = 'UEFACUT3BuildRate',
                     DisplayName = 'UEFCUT3BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {
@@ -545,11 +545,11 @@ EEL0001 = Class(ACUUnit) {
                     Name = 'UEFACUT4BuildRate',
                     DisplayName = 'UEFCUT4BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {
@@ -577,11 +577,11 @@ EEL0001 = Class(ACUUnit) {
                     Name = 'UEFACUT2BuildCombat',
                     DisplayName = 'UEFACUT2BuildCombat',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {
@@ -633,11 +633,11 @@ EEL0001 = Class(ACUUnit) {
                     Name = 'UEFACUT3BuildCombat',
                     DisplayName = 'UEFCUT3BuildCombat',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {
@@ -680,11 +680,11 @@ EEL0001 = Class(ACUUnit) {
                     Name = 'UEFACUT4BuildCombat',
                     DisplayName = 'UEFACUT4BuildCombat',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {
@@ -1331,6 +1331,17 @@ EEL0001 = Class(ACUUnit) {
             end
             KillThread(self.RebuildThread)
             KillThread(self.RebuildThread2)
+        end
+        
+        -- Remove prerequisites
+        if not removal then
+            if bp.RemoveEnhancements then
+                for k, v in bp.RemoveEnhancements do                
+                    if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
+                        self:CreateEnhancement(v .. 'Remove', true)
+                    end
+                end
+            end
         end
     end,
 
