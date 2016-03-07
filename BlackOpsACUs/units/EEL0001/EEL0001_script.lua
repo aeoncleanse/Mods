@@ -517,6 +517,29 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondEnergy or 0)
     end,
     
+    -- Function to toggle the Zephyr Booster
+    TogglePrimaryGun = function(self, damage, radius)
+        local wep = self:GetWeaponByLabel('RightZephyr')
+        local oc = self:GetWeaponByLabel('OverCharge')
+    
+        local wepRadius = radius or GetBlueprint().MaxRadius
+        local ocRadius = radius or GetBlueprint().MaxRadius
+    
+        -- Change Damage
+        wep:AddDamageMod(damage)
+        
+        -- Change Radius
+        wep:ChangeMaxRadius(wepRadius)
+        oc:ChangeMaxRadius(ocRadius)
+        
+        -- As radius is only passed when turning on, use the bool
+        if radius then
+            self:ShowBone('Zephyr_Amplifier', true)
+        else
+            self:HideBone('Zephyr_Amplifier', true)
+        end
+    end,
+    
     CreateEnhancement = function(self, enh)
         TWalkingLandUnit.CreateEnhancement(self, enh)
         
@@ -774,22 +797,10 @@ EEL0001 = Class(TWalkingLandUnit) {
         -- Zephyr Booster
             
         elseif enh =='EXZephyrBooster' then
-            local wep = self:GetWeaponByLabel('RightZephyr')
-            local oc = self:GetWeaponByLabel('OverCharge')
-            
-            wep:ChangeMaxRadius(bp.NewMaxRadius)
-            wep:AddDamageMod(bp.DamageMod)
-            oc:ChangeMaxRadius(bp.NewMaxRadius)
-            self:ShowBone('Zephyr_Amplifier', true)
+            self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh =='EXZephyrBoosterRemove' then
-            local wep = self:GetWeaponByLabel('RightZephyr')
-            local oc = self:GetWeaponByLabel('OverCharge')
-            
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            wep:AddDamageMod(bp.DamageMod)
-            oc:ChangeMaxRadius(oc:GetBlueprint().MaxRadius)
-            self:HideBone('Zephyr_Amplifier', true)
-            
+            self:TogglePrimaryGun(bp.DamageMod)
+
         -- Torpedoes
         
         elseif enh =='EXTorpedoLauncher' then
@@ -833,37 +844,23 @@ EEL0001 = Class(TWalkingLandUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFTorpHealth2')
-            
-            -- Upgrade weapon
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
             torp:ChangeRateOfFire(bp.NewTorpROF)
             
-            -- Install Zephyr Jury Rigging
-            local wep = self:GetWeaponByLabel('RightZephyr')
-            local oc = self:GetWeaponByLabel('OverCharge')
-            
-            wep:ChangeMaxRadius(bp.NewMaxRadius)
-            wep:AddDamageMod(bp.DamageMod)
-            oc:ChangeMaxRadius(bp.NewMaxRadius)
-            self:ShowBone('Zephyr_Amplifier', true)
+            -- Install Zephyr Cannon
+            self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh =='EXTorpedoRapidLoaderRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth2') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth2')
             end
             
-            -- Remove Zephyr Jury Rigging
-            local wep = self:GetWeaponByLabel('RightZephyr')
-            local oc = self:GetWeaponByLabel('OverCharge')
-            
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            wep:AddDamageMod(bp.DamageMod)
-            oc:ChangeMaxRadius(oc:GetBlueprint().MaxRadius)
-            self:HideBone('Zephyr_Amplifier', true)
-            
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
+            
+            self:TogglePrimaryGun(bp.DamageMod)
         elseif enh =='EXTorpedoClusterLauncher' then
             if not Buffs['UEFTorpHealth3'] then
                 BuffBlueprint {
@@ -882,7 +879,6 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             Buff.ApplyBuff(self, 'UEFTorpHealth3')
             
-            -- Upgrade Weapon
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
             
@@ -893,23 +889,22 @@ EEL0001 = Class(TWalkingLandUnit) {
             if Buff.HasBuff(self, 'UEFTorpHealth3') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth3')
             end
-            
-            -- Reset Weapons
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
             
             local wep = self:GetWeaponByLabel('RightZephyr')
             wep:AddDamageMod(bp.DamageMod)
             
-        -- Antimatter Cannon
+        -- AntiMatter Cannon
         
         elseif enh =='EXAntiMatterCannon' then
-            if not Buffs['EXUEFHealthBoost10'] then
+            if not Buffs['UEFAntimatterHealth1'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost10',
-                    DisplayName = 'EXUEFHealthBoost10',
-                    BuffType = 'EXUEFHealthBoost10',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFAntimatterHealth1',
+                    DisplayName = 'UEFAntimatterHealth1',
+                    BuffType = 'UEFAntimatterHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -919,35 +914,22 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost10')
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            wepZephyr:ChangeMaxRadius(30)
-            self.wcAMC01 = true
-            self.wcAMC02 = false
-            self.wcAMC03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+            Buff.ApplyBuff(self, 'UEFAntimatterHealth1')
+
+            self:SetWeaponEnabledByLabel('EXAntiMatterCannon01', true)
         elseif enh =='EXAntiMatterCannonRemove' then
-            if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
+            if Buff.HasBuff(self, 'UEFAntimatterHealth1') then
+                Buff.RemoveBuff(self, 'UEFAntimatterHealth1')
             end
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepZephyr:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcAMC01 = false
-            self.wcAMC02 = false
-            self.wcAMC03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+            
+            self:SetWeaponEnabledByLabel('EXAntiMatterCannon01', false)
         elseif enh =='EXImprovedContainmentBottle' then
-            if not Buffs['EXUEFHealthBoost11'] then
+            if not Buffs['UEFAntimatterHealth2'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost11',
-                    DisplayName = 'EXUEFHealthBoost11',
-                    BuffType = 'EXUEFHealthBoost11',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFAntimatterHealth2',
+                    DisplayName = 'UEFAntimatterHealth2',
+                    BuffType = 'UEFAntimatterHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -957,39 +939,32 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost11')
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            wepZephyr:ChangeMaxRadius(30)
-            self.wcAMC01 = false
-            self.wcAMC02 = true
-            self.wcAMC03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread)
+            Buff.ApplyBuff(self, 'UEFAntimatterHealth2')
+            
+            -- Buff AntiMatter Gun
+            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            gun:AddDamageMod(bp.AntiMatterDamageMod)
+            gun:ChangeDamageRadius(bp.NewDamageArea)
+            
+            -- Install Zephyr Cannon
+            self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh =='EXImprovedContainmentBottleRemove' then    
-            if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
+            if Buff.HasBuff(self, 'UEFAntimatterHealth2') then
+                Buff.RemoveBuff(self, 'UEFAntimatterHealth2')
             end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost11') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost11')
-            end
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepZephyr:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcAMC01 = false
-            self.wcAMC02 = false
-            self.wcAMC03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+            
+            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            gun:AddDamageMod(bp.AntiMatterDamageMod)
+            gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
+
+            self:TogglePrimaryGun(bp.DamageMod)
         elseif enh =='EXPowerBooster' then
-            if not Buffs['EXUEFHealthBoost12'] then
+            if not Buffs['UEFAntimatterHealth3'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost12',
-                    DisplayName = 'EXUEFHealthBoost12',
-                    BuffType = 'EXUEFHealthBoost12',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFAntimatterHealth3',
+                    DisplayName = 'UEFAntimatterHealth3',
+                    BuffType = 'UEFAntimatterHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -999,34 +974,30 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost12')
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            wepZephyr:ChangeMaxRadius(35)
-            self.wcAMC01 = false
-            self.wcAMC02 = false
-            self.wcAMC03 = true
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)     
-            self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXPowerBoosterRemove' then    
-            if Buff.HasBuff(self, 'EXUEFHealthBoost10') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost10')
+            Buff.ApplyBuff(self, 'UEFAntimatterHealth3')
+
+            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            gun:AddDamageMod(bp.AntiMatterDamageMod)
+            gun:ChangeDamageRadius(bp.NewDamageArea)
+            gun:ChangeMaxRadius(bp.NewAntiMatterMaxRadius)
+            
+            -- Use toggle function to increase MaxRadius of Zephyr Cannon
+            self:TogglePrimaryGun(0, bp.NewMaxRadius)
+        elseif enh =='EXPowerBoosterRemove' then
+            if Buff.HasBuff(self, 'UEFAntimatterHealth3') then
+                Buff.RemoveBuff(self, 'UEFAntimatterHealth3')
             end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost11') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost11')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost12') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost12')
-            end
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepZephyr:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcAMC01 = false
-            self.wcAMC02 = false
-            self.wcAMC03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+            
+            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            gun:AddDamageMod(bp.AntiMatterDamageMod)
+            gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
+            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+
+            -- Remove Zephyr Jury Rigging
+            self:TogglePrimaryGun(0, bp.NewMaxRadius)
+            
+        -- Gatling Cannon
+            
         elseif enh =='EXGattlingEnergyCannon' then
             if not Buffs['EXUEFHealthBoost13'] then
                 BuffBlueprint {
