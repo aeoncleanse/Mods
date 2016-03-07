@@ -1447,39 +1447,6 @@ EEL0001 = Class(TWalkingLandUnit) {
             },    
         },    
     },
-    
-    OnIntelEnabled = function(self)
-        TWalkingLandUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['Teleporter'].MaintenanceConsumptionPerSecondEnergy or 1)
-            self:SetMaintenanceConsumptionActive()
-            if not self.IntelEffectsBag then
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
-        elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['SpySatellite'].MaintenanceConsumptionPerSecondEnergy or 1)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
-    end,
-
-    OnIntelDisabled = function(self)
-        TWalkingLandUnit.OnIntelDisabled(self)
-        if self.IntelEffectsBag then
-            EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
-            self.IntelEffectsBag = nil
-        end
-        if self.CloakEnh and not self:IsIntelEnabled('Cloak') then
-            self:SetMaintenanceConsumptionInactive()
-        elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
-            self:SetMaintenanceConsumptionInactive()
-        end         
-
-    end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
