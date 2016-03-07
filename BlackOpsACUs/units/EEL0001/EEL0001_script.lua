@@ -60,9 +60,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
-        EXClusterMissles01 = Class(TIFCruiseMissileLauncher) {},
-        EXClusterMissles02 = Class(TIFCruiseMissileLauncher) {},
-        EXClusterMissles03 = Class(TIFCruiseMissileLauncher) {},
+        ClusterMissiles = Class(TIFCruiseMissileLauncher) {},
         EnergyLance01 = Class(PDLaserGrid) {
             PlayOnlyOneSoundCue = true,
         }, 
@@ -229,9 +227,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('EXFlameCannon02', false)
         self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
         self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
-        self:SetWeaponEnabledByLabel('EXClusterMissles01', false)
-        self:SetWeaponEnabledByLabel('EXClusterMissles02', false)
-        self:SetWeaponEnabledByLabel('EXClusterMissles03', false)
+        self:SetWeaponEnabledByLabel('ClusterMissiles', false)
         self:SetWeaponEnabledByLabel('EnergyLance01', false)
         self:SetWeaponEnabledByLabel('EnergyLance02', false)
         self:SetWeaponEnabledByLabel('TacMissile', false)
@@ -1184,7 +1180,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                     Name = 'UEFJammingHealth3',
                     DisplayName = 'UEFJammingHealth3',
                     BuffType = 'UEFJammingHealth',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1206,13 +1202,13 @@ EEL0001 = Class(TWalkingLandUnit) {
             
         -- Missile System
         
-        elseif enh =='EXClusterMisslePack' then
-            if not Buffs['EXUEFHealthBoost19'] then
+        elseif enh == 'ClusterMissilePack' then
+            if not Buffs['UEFMissileHealth1'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost19',
-                    DisplayName = 'EXUEFHealthBoost19',
-                    BuffType = 'EXUEFHealthBoost19',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFMissileHealth1',
+                    DisplayName = 'UEFMissileHealth1',
+                    BuffType = 'UEFMissileHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1222,158 +1218,112 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost19')
-            self.wcCMissiles01 = true
-            self.wcCMissiles02 = false
-            self.wcCMissiles03 = false
-            self.wcTMissiles01 = false
-            self.wcNMissiles01 = false
-
-
-            self.RBComTier1 = true
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-
-        elseif enh =='EXClusterMisslePackRemove' then
-            if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
+            Buff.ApplyBuff(self, 'UEFMissileHealth1')
+            
+            self:SetWeaponEnabledByLabel('ClusterMissiles', true)
+        elseif enh == 'ClusterMissilePackRemove' then
+            if Buff.HasBuff(self, 'UEFMissileHealth1') then
+                Buff.RemoveBuff(self, 'UEFMissileHealth1')
             end
-            self.wcCMissiles01 = false
-            self.wcCMissiles02 = false
-            self.wcCMissiles03 = false
-            self.wcTMissiles01 = false
-            self.wcNMissiles01 = false
-
-
-            self:StopSiloBuild()
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-
-        elseif enh =='EXTacticalMisslePack' then
+            
+            self:SetWeaponEnabledByLabel('ClusterMissiles', false)
+        elseif enh == 'TacticalMissilePack' then
+            if not Buffs['UEFMissileHealth2'] then
+                BuffBlueprint {
+                    Name = 'UEFMissileHealth2',
+                    DisplayName = 'UEFMissileHealth2',
+                    BuffType = 'UEFMissileHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+            Buff.ApplyBuff(self, 'UEFMissileHealth2')
+            
+            -- Enable Tactical Missiles
             self:AddCommandCap('RULEUCC_Tactical')
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
-            if not Buffs['EXUEFHealthBoost20'] then
+            self:SetWeaponEnabledByLabel('TacMissile', true)
+            
+            
+            -- Buff Cluster Missiles
+            local wep = self:GetWeaponByLabel('ClusterMissiles')
+            wep:AddDamageMod(bp.ClusterDamageMod)
+        elseif enh == 'TacticalMissilePackRemove' then
+            if Buff.HasBuff(self, 'UEFMissileHealth2') then
+                Buff.RemoveBuff(self, 'UEFMissileHealth2')
+            end
+            
+            local amt = self:GetTacticalSiloAmmoCount()
+            self:RemoveTacticalSiloAmmo(amt or 0)
+            self:StopSiloBuild()
+            self:SetWeaponEnabledByLabel('TacMissile', false)
+            self:RemoveCommandCap('RULEUCC_Tactical')
+            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+
+            local wep = self:GetWeaponByLabel('ClusterMissiles')
+            wep:AddDamageMod(bp.ClusterDamageMod)
+        elseif enh == 'TacticalNukeSubstitution' then
+            if not Buffs['UEFMissileHealth3'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost20',
-                    DisplayName = 'EXUEFHealthBoost20',
-                    BuffType = 'EXUEFHealthBoost20',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFMissileHealth3',
+                    DisplayName = 'UEFMissileHealth3',
+                    BuffType = 'UEFMissileHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost20')
-            self.wcCMissiles01 = false
-            self.wcCMissiles02 = true
-            self.wcCMissiles03 = false
-            self.wcTMissiles01 = true
-            self.wcNMissiles01 = false
-
-     
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = false
-
-        elseif enh =='EXTacticalNukeSubstitution' then
+            Buff.ApplyBuff(self, 'UEFMissileHealth3')
+        
+            -- Remove Tactical Missile
+            local amt = self:GetTacticalSiloAmmoCount()
+            self:RemoveTacticalSiloAmmo(amt or 0)
+            self:StopSiloBuild()
+            self:SetWeaponEnabledByLabel('TacMissile', false)
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+            
+            -- Add Nuke Missile
             self:AddCommandCap('RULEUCC_Nuke')
             self:AddCommandCap('RULEUCC_SiloBuildNuke')
-            local amt = self:GetTacticalSiloAmmoCount()
-            self:RemoveTacticalSiloAmmo(amt or 0)
-            self:StopSiloBuild()
-            if not Buffs['EXUEFHealthBoost21'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost21',
-                    DisplayName = 'EXUEFHealthBoost21',
-                    BuffType = 'EXUEFHealthBoost21',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
+            self:SetWeaponEnabledByLabel('TacNukeMissile', true)
+            
+            -- Buff Cluster Missiles
+            local wep = self:GetWeaponByLabel('ClusterMissiles')
+            wep:AddDamageMod(bp.ClusterDamageMod)
+        elseif enh == 'TacticalNukeSubstitutionRemove' then
+            if Buff.HasBuff(self, 'UEFMissileHealth3') then
+                Buff.RemoveBuff(self, 'UEFMissileHealth3')
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost21')
-            self.wcCMissiles01 = false
-            self.wcCMissiles02 = false
-            self.wcCMissiles03 = true
-            self.wcTMissiles01 = false
-            self.wcNMissiles01 = true
-
-    
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = true
-
-        elseif enh == 'EXTacticalMisslePackRemove' then
-            self:RemoveCommandCap('RULEUCC_Nuke')
-            self:RemoveCommandCap('RULEUCC_SiloBuildNuke')
-            self:RemoveCommandCap('RULEUCC_Tactical')
-            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
-            local amt = self:GetTacticalSiloAmmoCount()
-            self:RemoveTacticalSiloAmmo(amt or 0)
+        
             local amt = self:GetNukeSiloAmmoCount()
             self:RemoveNukeSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost20') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost20')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost21') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost21')
-            end
-            self.wcCMissiles01 = false
-            self.wcCMissiles02 = false
-            self.wcCMissiles03 = false
-            self.wcTMissiles01 = false
-            self.wcNMissiles01 = false
-
-
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-
-        elseif enh == 'EXTacticalNukeSubstitutionRemove' then
+            self:SetWeaponEnabledByLabel('TacNukeMissile', false)
             self:RemoveCommandCap('RULEUCC_Nuke')
             self:RemoveCommandCap('RULEUCC_SiloBuildNuke')
-            self:RemoveCommandCap('RULEUCC_Tactical')
-            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
-            local amt = self:GetTacticalSiloAmmoCount()
-            self:RemoveTacticalSiloAmmo(amt or 0)
-            local amt = self:GetNukeSiloAmmoCount()
-            self:RemoveNukeSiloAmmo(amt or 0)
-            self:StopSiloBuild()
-            if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost20') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost20')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost21') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost21')
-            end
-            self.wcCMissiles01 = false
-            self.wcCMissiles02 = false
-            self.wcCMissiles03 = false
-            self.wcTMissiles01 = false
-            self.wcNMissiles01 = false
-
-
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
+            
+            local wep = self:GetWeaponByLabel('ClusterMissiles')
+            wep:AddDamageMod(bp.ClusterDamageMod)
 
         -- Pod Subsystems
             
