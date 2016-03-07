@@ -189,35 +189,8 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.Trash:Add(self.RadarDish1)
         self.ShieldEffectsBag2 = {}
         self.FlamerEffectsBag = {}
-        self.wcBuildMode = false
-        self.wcOCMode = false
-        self.wcFlamer01 = false
-        self.wcFlamer02 = false
-        self.wcAMC01 = false
-        self.wcAMC02 = false
-        self.wcAMC03 = false
-        self.wcGatling01 = false
-        self.wcGatling02 = false
-        self.wcGatling03 = false
-        self.wcLance01 = false
-        self.wcLance02 = false
-        self.wcCMissiles01 = false
-        self.wcCMissiles02 = false
-        self.wcCMissiles03 = false
-        self.wcTMissiles01 = false
-        self.wcNMissiles01 = false
         self:ForkThread(self.GiveInitialResources)
-        self.RBDefTier1 = false
-        self.RBDefTier2 = false
-        self.RBDefTier3 = false
-        self.RBComTier1 = false
-        self.RBComTier2 = false
-        self.RBComTier3 = false
-        self.RBIntTier1 = false
-        self.RBIntTier2 = false
-        self.RBIntTier3 = false
         self.SpysatEnabled = false
-        self.DefaultGunBuffApplied = false
         
         -- Disable Upgrade Weapons
         self:SetWeaponEnabledByLabel('RightZephyr', false)
