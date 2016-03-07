@@ -634,8 +634,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.wcFlamer01 = true
             self.wcFlamer02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
         elseif enh == 'CombatEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT2BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT2BuildCombat')
@@ -650,8 +650,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.wcFlamer01 = false
             self.wcFlamer02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['UEFACUT3BuildCombat'] then
@@ -681,8 +681,8 @@ EEL0001 = Class(TWalkingLandUnit) {
 
             self.wcFlamer01 = false
             self.wcFlamer02 = true
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
@@ -697,8 +697,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.wcFlamer01 = false
             self.wcFlamer02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['UEFACUT4BuildCombat'] then
@@ -739,8 +739,8 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.wcFlamer01 = false
             self.wcFlamer02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
             
         -- Zephyr Booster
             
@@ -1043,7 +1043,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetMaintenanceConsumptionActive()
             self.Rotator1:SetTargetSpeed(90)
             self.Rotator2:SetTargetSpeed(-180)
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'EXShieldBatteryRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'EXShieldBatteryRemove')
@@ -1057,7 +1057,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             self.Rotator1:SetTargetSpeed(0)
             self.Rotator2:SetTargetSpeed(0)
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'EXActiveShielding' then
             self:DestroyShield()
             ForkThread(function()
@@ -1068,9 +1068,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:SetMaintenanceConsumptionActive()
             self.wcLance01 = true
             self.wcLance02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXActiveShieldingRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'EXActiveShieldingRemove')
@@ -1086,9 +1086,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.Rotator2:SetTargetSpeed(0)
             self.wcLance01 = false
             self.wcLance02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXImprovedShieldBattery' then
             self:DestroyShield()
             ForkThread(function()
@@ -1097,7 +1097,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'EXImprovedShieldBatteryRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'EXImprovedShieldBatteryRemove')
@@ -1113,9 +1113,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.Rotator2:SetTargetSpeed(0)
             self.wcLance01 = false
             self.wcLance02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXShieldExpander' then
             self:DestroyShield()
             ForkThread(function()
@@ -1124,7 +1124,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'EXShieldExpanderRemove' then
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
@@ -1139,9 +1139,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.Rotator2:SetTargetSpeed(0)
             self.wcLance01 = false
             self.wcLance02 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXElectronicsEnhancment' then
             self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
             self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
@@ -1167,9 +1167,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXElectronicsEnhancmentRemove' then
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
@@ -1183,9 +1183,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXElectronicCountermeasures' then
             self.SpysatEnabled = true
             self:ForkThread(self.EXSatSpawn)
@@ -1216,9 +1216,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXElectronicCountermeasuresRemove' then
             self.SpysatEnabled = false
             if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
@@ -1244,9 +1244,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXCloakingSubsystems' then
             self:AddCommandCap('RULEUCC_Teleport')
             if not Buffs['EXUEFHealthBoost18'] then
@@ -1268,9 +1268,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = true
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh == 'EXCloakingSubsystemsRemove' then
             self.SpysatEnabled = false
             if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
@@ -1300,9 +1300,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+
+
+
         elseif enh =='EXClusterMisslePack' then
             if not Buffs['EXUEFHealthBoost19'] then
                 BuffBlueprint {
@@ -1325,12 +1325,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcCMissiles03 = false
             self.wcTMissiles01 = false
             self.wcNMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
             self.RBComTier1 = true
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh =='EXClusterMisslePackRemove' then
             if Buff.HasBuff(self, 'EXUEFHealthBoost19') then
                 Buff.RemoveBuff(self, 'EXUEFHealthBoost19')
@@ -1340,13 +1340,13 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcCMissiles03 = false
             self.wcTMissiles01 = false
             self.wcNMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
             self:StopSiloBuild()
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh =='EXTacticalMisslePack' then
             self:AddCommandCap('RULEUCC_Tactical')
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
@@ -1371,12 +1371,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcCMissiles03 = false
             self.wcTMissiles01 = true
             self.wcNMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)     
+
+     
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh =='EXTacticalNukeSubstitution' then
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
@@ -1406,12 +1406,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcCMissiles03 = true
             self.wcTMissiles01 = false
             self.wcNMissiles01 = true
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)    
+
+    
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = true
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'EXTacticalMisslePackRemove' then
             self:RemoveCommandCap('RULEUCC_Nuke')
             self:RemoveCommandCap('RULEUCC_SiloBuildNuke')
@@ -1436,12 +1436,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcCMissiles03 = false
             self.wcTMissiles01 = false
             self.wcNMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'EXTacticalNukeSubstitutionRemove' then
             self:RemoveCommandCap('RULEUCC_Nuke')
             self:RemoveCommandCap('RULEUCC_SiloBuildNuke')
@@ -1466,12 +1466,12 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcCMissiles03 = false
             self.wcTMissiles01 = false
             self.wcNMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+
+
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+
         elseif enh == 'LeftPod' or enh == 'RightPod' then
             TWalkingLandUnit.CreateEnhancement(self, enh) -- moved from top to here so this happens only once for each enhancement
             -- making sure we have up to date information (dont delete! needed for bug fix below)
