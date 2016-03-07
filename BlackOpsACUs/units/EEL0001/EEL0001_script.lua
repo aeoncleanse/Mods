@@ -63,10 +63,10 @@ EEL0001 = Class(TWalkingLandUnit) {
         EXClusterMissles01 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles02 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles03 = Class(TIFCruiseMissileLauncher) {},
-        EXEnergyLance01 = Class(PDLaserGrid) {
+        EnergyLance01 = Class(PDLaserGrid) {
             PlayOnlyOneSoundCue = true,
         }, 
-        EXEnergyLance02 = Class(PDLaserGrid) {
+        EnergyLance02 = Class(PDLaserGrid) {
             PlayOnlyOneSoundCue = true,
         }, 
         OverCharge = Class(TDFOverchargeWeapon) {},
@@ -232,8 +232,8 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('EXClusterMissles01', false)
         self:SetWeaponEnabledByLabel('EXClusterMissles02', false)
         self:SetWeaponEnabledByLabel('EXClusterMissles03', false)
-        self:SetWeaponEnabledByLabel('EXEnergyLance01', false)
-        self:SetWeaponEnabledByLabel('EXEnergyLance02', false)
+        self:SetWeaponEnabledByLabel('EnergyLance01', false)
+        self:SetWeaponEnabledByLabel('EnergyLance02', false)
         self:SetWeaponEnabledByLabel('TacMissile', false)
         self:SetWeaponEnabledByLabel('TacNukeMissile', false)
         self:SetWeaponEnabledByLabel('DeathWeapon', false)
@@ -356,12 +356,15 @@ EEL0001 = Class(TWalkingLandUnit) {
 
         elseif pod == 'SpySat' and self.SpysatEnabled then 
             self.Satellite = nil
-            self:ForkThread(self.EXSatRespawn)
+            self:ForkThread(self.EXSatSpawn, true)
         end
         self:RequestRefreshUI()
     end,
 
-    EXSatSpawn = function(self)
+    EXSatSpawn = function(self, respawn)
+        if respawn then
+            WaitSeconds(300)
+        end
         if not self.Satellite and self.SpysatEnabled then
             local location = self:GetPosition('Torso')
             self.Satellite = CreateUnitHPR('EEA0002', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
@@ -372,23 +375,6 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:PlayUnitSound('LaunchSat')
             self.Satellite:DetachFrom()
             self.Satellite:Open()
-        end
-    end,
-
-    EXSatRespawn = function(self)
-        if self.SpysatEnabled then
-            WaitSeconds(300)
-            if self.SpysatEnabled and not self.Satellite then
-                local location = self:GetPosition('Torso')
-                self.Satellite = CreateUnitHPR('EEA0002', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-                self.Satellite:AttachTo(self, 'Back_IntelPack')
-                self.Trash:Add(self.Satellite)
-                self.Satellite.Parent = self
-                self.Satellite:SetParent(self, 'SpySat')
-                self:PlayUnitSound('LaunchSat')
-                self.Satellite:DetachFrom()
-                self.Satellite:Open()
-            end
         end
     end,
 
@@ -1093,18 +1079,15 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
             
-        -- Jamming    
+        -- Jamming
             
-        elseif enh == 'EXElectronicsEnhancment' then
-            self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
-            self.RadarDish1:SetTargetSpeed(45)
-            if not Buffs['EXUEFHealthBoost16'] then
+        elseif enh == 'ElectronicsEnhancment' then
+            if not Buffs['UEFJammingHealth1'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost16',
-                    DisplayName = 'EXUEFHealthBoost16',
-                    BuffType = 'EXUEFHealthBoost16',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFJammingHealth1',
+                    DisplayName = 'UEFJammingHealth1',
+                    BuffType = 'UEFJammingHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1114,45 +1097,64 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost16')
-            self.wcLance01 = true
-            self.wcLance02 = false
-            self.RBIntTier1 = true
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
+            Buff.ApplyBuff(self, 'UEFJammingHealth1')
+            
+            self:SetIntelRadius('Vision', bp.NewVisionRadius)
+            self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            self.RadarDish1:SetTargetSpeed(45)
 
-
-
-        elseif enh == 'EXElectronicsEnhancmentRemove' then
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            self.RadarDish1:SetTargetSpeed(0)
-            if Buff.HasBuff(self, 'EXUEFHealthBoost16') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost16')
+            self:SetWeaponEnabledByLabel('EnergyLance01', true)
+        elseif enh == 'ElectronicsEnhancmentRemove' then
+            if Buff.HasBuff(self, 'UEFJammingHealth1') then
+                Buff.RemoveBuff(self, 'UEFJammingHealth1')
             end
-            self.wcLance01 = false
-            self.wcLance02 = false
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
+        
+            local bpIntel = self:GetBlueprint().Intel
+            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            self.RadarDish1:SetTargetSpeed(0)
 
-
-
-        elseif enh == 'EXElectronicCountermeasures' then
+            self:SetWeaponEnabledByLabel('EnergyLance01', false)
+        elseif enh == 'SpySatellite' then
+            if not Buffs['UEFJammingHealth2'] then
+                BuffBlueprint {
+                    Name = 'UEFJammingHealth2',
+                    DisplayName = 'UEFJammingHealth2',
+                    BuffType = 'UEFJammingHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+            Buff.ApplyBuff(self, 'UEFJammingHealth2')
+            
             self.SpysatEnabled = true
             self:ForkThread(self.EXSatSpawn)
-            if self.IntelEffectsBag then
-                EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
-                self.IntelEffectsBag = nil
+            
+            self:SetWeaponEnabledByLabel('EnergyLance02', true)
+        elseif enh == 'SpySatelliteRemove' then
+            if Buff.HasBuff(self, 'UEFJammingHealth2') then
+                Buff.RemoveBuff(self, 'UEFJammingHealth2')
             end
-            self.CloakEnh = false        
-            self.StealthEnh = true
-            if not Buffs['EXUEFHealthBoost17'] then
+            
+            if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
+                self.Satellite:Kill()
+            end
+            self.SpysatEnabled = false
+            self.Satellite = nil
+            
+            self:SetWeaponEnabledByLabel('EnergyLance02', false)
+        elseif enh == 'Teleporter' then
+            if not Buffs['UEFJammingHealth3'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost17',
-                    DisplayName = 'EXUEFHealthBoost17',
-                    BuffType = 'EXUEFHealthBoost17',
+                    Name = 'UEFJammingHealth3',
+                    DisplayName = 'UEFJammingHealth3',
+                    BuffType = 'UEFJammingHealth',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1163,99 +1165,18 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost17')
-            self.wcLance01 = true
-            self.wcLance02 = true
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = false
-
-
-
-        elseif enh == 'EXElectronicCountermeasuresRemove' then
-            self.SpysatEnabled = false
-            if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
-                self.Satellite:Kill()
-            end
-            self.Satellite = nil
-            self.StealthEnh = false
-            self.CloakEnh = false 
-            self.StealthFieldEffects = false
-            self.CloakingEffects = false     
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            self.RadarDish1:SetTargetSpeed(0)
-            if Buff.HasBuff(self, 'EXUEFHealthBoost16') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost16')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost17') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost17')
-            end
-            self.wcLance01 = false
-            self.wcLance02 = false
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-
-
-
-        elseif enh == 'EXCloakingSubsystems' then
+            Buff.ApplyBuff(self, 'UEFJammingHealth3')
+            
             self:AddCommandCap('RULEUCC_Teleport')
-            if not Buffs['EXUEFHealthBoost18'] then
-                BuffBlueprint {
-                    Name = 'EXUEFHealthBoost18',
-                    DisplayName = 'EXUEFHealthBoost18',
-                    BuffType = 'EXUEFHealthBoost18',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
+        elseif enh == 'TeleporterRemove' then
+            if Buff.HasBuff(self, 'UEFJammingHealth3') then
+                Buff.RemoveBuff(self, 'UEFJammingHealth3')
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost18')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = true
-
-
-
-        elseif enh == 'EXCloakingSubsystemsRemove' then
-            self.SpysatEnabled = false
-            if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
-                self.Satellite:Kill()
-            end
-            self.Satellite = nil
-            self.StealthEnh = false
-            self.CloakEnh = false 
-            self.StealthFieldEffects = false
-            self.CloakingEffects = false     
+            
             self:RemoveCommandCap('RULEUCC_Teleport')
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            self.RadarDish1:SetTargetSpeed(0)
-            if Buff.HasBuff(self, 'EXUEFHealthBoost16') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost16')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost17') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost17')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost18') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost18')
-            end
-            self.wcLance01 = false
-            self.wcLance02 = false
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-
-
-
+            
+        -- Missile System
+        
         elseif enh =='EXClusterMisslePack' then
             if not Buffs['EXUEFHealthBoost19'] then
                 BuffBlueprint {
@@ -1530,14 +1451,14 @@ EEL0001 = Class(TWalkingLandUnit) {
     OnIntelEnabled = function(self)
         TWalkingLandUnit.OnIntelEnabled(self)
         if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXCloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 1)
+            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['Teleporter'].MaintenanceConsumptionPerSecondEnergy or 1)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end            
         elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['EXElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 1)
+            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['SpySatellite'].MaintenanceConsumptionPerSecondEnergy or 1)
             self:SetMaintenanceConsumptionActive()  
             if not self.IntelEffectsBag then 
                 self.IntelEffectsBag = {}

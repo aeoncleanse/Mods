@@ -1200,7 +1200,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        EXElectronicsEnhancment = {
+        ElectronicsEnhancment = {
             BuildCostEnergy = 22500,
             BuildCostMass = 510,
             BuildTime = 900,
@@ -1222,7 +1222,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        EXElectronicsEnhancmentRemove = {
+        ElectronicsEnhancmentRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1232,20 +1232,20 @@ UnitBlueprint {
             },
             Icon = 'exbint1',
             Name = 'Remove Electronic Enhancment',
-            Prerequisite = 'EXElectronicsEnhancment',
+            Prerequisite = 'ElectronicsEnhancment',
             RemoveEnhancements = {
-                'EXElectronicsEnhancment',
-                'EXElectronicsEnhancmentRemove',
+                'ElectronicsEnhancment',
+                'ElectronicsEnhancmentRemove',
             },
             Slot = 'Back',
         },
-        EXElectronicCountermeasures = {
+        SpySatellite = {
             BuildCostEnergy = 270000,
             BuildCostMass = 2250,
             BuildTime = 8100,
             Icon = 'exbint2',
             Name = 'Spysat Control Systems (T3)',
-            Prerequisite = 'EXElectronicsEnhancment',
+            Prerequisite = 'ElectronicsEnhancment',
             NewHealth = 10000,
             MaintenanceConsumptionPerSecondEnergy = 1,
             ShowBones = {
@@ -1262,7 +1262,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        EXElectronicCountermeasuresRemove = {
+        SpySatelliteRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1273,21 +1273,21 @@ UnitBlueprint {
             },
             Icon = 'exbint2',
             Name = 'Remove Spysat Control Systems',
-            Prerequisite = 'EXElectronicCountermeasures',
+            Prerequisite = 'SpySatellite',
             RemoveEnhancements = {
-                'EXElectronicsEnhancment',
-                'EXElectronicCountermeasures',
-                'EXElectronicCountermeasuresRemove',
+                'ElectronicsEnhancment',
+                'SpySatellite',
+                'SpySatelliteRemove',
             },
             Slot = 'Back',
         },
-        EXCloakingSubsystems = {
+        Teleporter = {
             BuildCostEnergy = 720000,
             BuildCostMass = 4500,
             BuildTime = 21600,
             Icon = 'exbint3',
             Name = 'Modified Recall Device (T4)',
-            Prerequisite = 'EXElectronicCountermeasures',
+            Prerequisite = 'SpySatellite',
             NewHealth = 18500,
             MaintenanceConsumptionPerSecondEnergy = 1,
             ShowBones = {
@@ -1304,7 +1304,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        EXCloakingSubsystemsRemove = {
+        TeleporterRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1315,12 +1315,12 @@ UnitBlueprint {
             },
             Icon = 'exbint3',
             Name = 'Remove Modified Recall Device',
-            Prerequisite = 'EXCloakingSubsystems',
+            Prerequisite = 'Teleporter',
             RemoveEnhancements = {
-                'EXElectronicsEnhancment',
-                'EXElectronicCountermeasures',
-                'EXCloakingSubsystems',
-                'EXCloakingSubsystemsRemove',
+                'ElectronicsEnhancment',
+                'SpySatellite',
+                'Teleporter',
+                'TeleporterRemove',
             },
             Slot = 'Back',
         },
@@ -2255,7 +2255,7 @@ UnitBlueprint {
             },
             FiringRandomness = 5,
             FiringTolerance = 0,
-            Label = 'EXEnergyLance01',
+            Label = 'EnergyLance01',
             MaxRadius = 22,
             MuzzleSalvoDelay = 0.3,
             MuzzleSalvoSize = 4,
@@ -2328,7 +2328,7 @@ UnitBlueprint {
             },
             FiringRandomness = 5,
             FiringTolerance = 0,
-            Label = 'EXEnergyLance02',
+            Label = 'EnergyLance02',
             MaxRadius = 22,
             MuzzleSalvoDelay = 0.3,
             MuzzleSalvoSize = 4,
