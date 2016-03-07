@@ -329,39 +329,68 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.UnitBuildOrder = nil
         self.BuildingUnit = false          
     end,
-
-    NotifyOfPodDeath = function(self, pod)
-        if pod == 'LeftPod' then
-            if self.HasRightPod then
-                TWalkingLandUnit.CreateEnhancement(self, 'RightPodRemove') -- cant use CreateEnhancement function
-                TWalkingLandUnit.CreateEnhancement(self, 'LeftPod') --makes the correct upgrade icon light up
-                if self.LeftPod and not self.LeftPod:IsDead() then
-                    self.LeftPod:Kill()
-                end
-            else
-                self:CreateEnhancement('LeftPodRemove')
+    
+    RebuildPod = function(self, PodNumber)
+        if PodNumber == 1 then
+            -- Force pod rebuilds to queue up
+            if self.RebuildingPod2 ~= nil then
+                WaitFor(self.RebuildingPod2)
             end
-            self.HasLeftPod = false
-        elseif pod == 'RightPod' then   --basically the same as above but we can use the CreateEnhancement function this time
-            if self.HasLeftPod then
-                TWalkingLandUnit.CreateEnhancement(self, 'RightPodRemove') -- cant use CreateEnhancement function
-                TWalkingLandUnit.CreateEnhancement(self, 'LeftPod') --makes the correct upgrade icon light up
-                if self.LeftPod and not self.LeftPod:IsDead() then
-                    self.RightPod:Kill()
-                end
-            else
-                self:CreateEnhancement('LeftPodRemove')
+            if self.HasLeftPod == true then
+                self.RebuildingPod = CreateEconomyEvent(self, 1600, 160, 10, self.SetWorkProgress)
+                self:RequestRefreshUI()
+                WaitFor(self.RebuildingPod)
+                self:SetWorkProgress(0.0)
+                self.RebuildingPod = nil
+                local location = self:GetPosition('AttachSpecial02')
+                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+                pod:SetParent(self, 'LeftPod')
+                pod:SetCreator(self)
+                self.Trash:Add(pod)
+                self.LeftPod = pod
             end
-            self.HasRightPod = false
-
-        elseif pod == 'SpySat' and self.SpysatEnabled then 
-            self.Satellite = nil
-            self:ForkThread(self.EXSatSpawn, true)
+        elseif PodNumber == 2 then
+            -- Force pod rebuilds to queue up
+            if self.RebuildingPod ~= nil then
+                WaitFor(self.RebuildingPod)
+            end
+            if self.HasRightPod == true then
+                self.RebuildingPod2 = CreateEconomyEvent(self, 1600, 160, 10, self.SetWorkProgress)
+                self:RequestRefreshUI()
+                WaitFor(self.RebuildingPod2)
+                self:SetWorkProgress(0.0)
+                self.RebuildingPod2 = nil
+                local location = self:GetPosition('AttachSpecial01')
+                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+                pod:SetParent(self, 'RightPod')
+                pod:SetCreator(self)
+                self.Trash:Add(pod)
+                self.RightPod = pod
+            end
         end
         self:RequestRefreshUI()
     end,
+    
+    NotifyOfPodDeath = function(self, pod, rebuildDrone)
+        if rebuildDrone == true then
+            if pod == 'LeftPod' then
+                if self.HasLeftPod == true then
+                    self.RebuildThread = self:ForkThread(self.RebuildPod, 1)
+                end
+            elseif pod == 'RightPod' then
+                if self.HasRightPod == true then
+                    self.RebuildThread2 = self:ForkThread(self.RebuildPod, 2)
+                end
+            elseif pod == 'SpySat' and self.SpysatEnabled then 
+                self.Satellite = nil
+                self:ForkThread(self.SatSpawn, true)
+            end
+        else
+            self:CreateEnhancement(pod..'Remove')
+        end
+    end,
 
-    EXSatSpawn = function(self, respawn)
+    SatSpawn = function(self, respawn)
         if respawn then
             WaitSeconds(300)
         end
@@ -1134,7 +1163,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             Buff.ApplyBuff(self, 'UEFJammingHealth2')
             
             self.SpysatEnabled = true
-            self:ForkThread(self.EXSatSpawn)
+            self:ForkThread(self.SatSpawn)
             
             self:SetWeaponEnabledByLabel('EnergyLance02', true)
         elseif enh == 'SpySatelliteRemove' then
@@ -1346,61 +1375,49 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
 
-        elseif enh == 'LeftPod' or enh == 'RightPod' then
-            TWalkingLandUnit.CreateEnhancement(self, enh) -- moved from top to here so this happens only once for each enhancement
-            -- making sure we have up to date information (dont delete! needed for bug fix below)
-            if not self.LeftPod or self.LeftPod:IsDead() then
+        -- Pod Subsystems
+            
+        elseif enh == 'LeftPod' then
+            local location = self:GetPosition('AttachSpecial02')
+            local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+            pod:SetParent(self, 'LeftPod')
+            pod:SetCreator(self)
+            self.Trash:Add(pod)
+            self.HasLeftPod = true
+            self.LeftPod = pod
+        elseif enh == 'RightPod' then
+            local location = self:GetPosition('AttachSpecial01')
+            local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+            pod:SetParent(self, 'RightPod')
+            pod:SetCreator(self)
+            self.Trash:Add(pod)
+            self.HasRightPod = true
+            self.RightPod = pod
+        elseif enh == 'LeftPodRemove' or enh == 'RightPodRemove' then
+            if self.HasLeftPod == true then
                 self.HasLeftPod = false
+                if self.LeftPod and not self.LeftPod.Dead then
+                    self.LeftPod:Kill()
+                    self.LeftPod = nil
+                end
+                if self.RebuildingPod ~= nil then
+                    RemoveEconomyEvent(self, self.RebuildingPod)
+                    self.RebuildingPod = nil
+                end
             end
-            if not self.RightPod or self.RightPod:IsDead() then
+            if self.HasRightPod == true then
                 self.HasRightPod = false
+                if self.RightPod and not self.RightPod.Dead then
+                    self.RightPod:Kill()
+                    self.RightPod = nil
+                end
+                if self.RebuildingPod2 ~= nil then
+                    RemoveEconomyEvent(self, self.RebuildingPod2)
+                    self.RebuildingPod2 = nil
+                end
             end
-            -- fix for a bug that occurs when pod 1 is destroyed while upgrading to get pod 2
-            if enh == 'RightPod' and (not self.HasLeftPod or not self.HasRightPod) then
-                TWalkingLandUnit.CreateEnhancement(self, 'RightPodRemove')
-                TWalkingLandUnit.CreateEnhancement(self, 'LeftPod')
-            end
-            -- add new pod to left or right
-            if not self.HasLeftPod then
-                local location = self:GetPosition('AttachSpecial02')
-                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-                pod:SetCreator(self)
-                pod:SetParent(self, 'LeftPod')
-                self.Trash:Add(pod)
-                self.LeftPod = pod
-                self.HasLeftPod = true
-            else
-                local location = self:GetPosition('AttachSpecial01')
-                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-                pod:SetCreator(self)
-                pod:SetParent(self, 'RightPod')
-                self.Trash:Add(pod)
-                self.RightPod = pod
-                self.HasRightPod = true
-            end
-            -- highlight correct icons: right if we have 2 pods, left if we have 1 pod (no other possibilities)
-            if self.HasLeftPod and self.HasRightPod then
-                TWalkingLandUnit.CreateEnhancement(self, 'RightPod')
-            else
-                TWalkingLandUnit.CreateEnhancement(self, 'LeftPod')
-            end
-        -- for removing the pod upgrades
-        elseif enh == 'RightPodRemove' then
-            TWalkingLandUnit.CreateEnhancement(self, enh) -- moved from top to here so this happens only once for each enhancement
-            if self.RightPod and not self.RightPod:IsDead() then
-                self.RightPod:Kill()
-                self.HasRightPod = false
-            end
-            if self.LeftPod and not self.LeftPod:IsDead() then
-                self.LeftPod:Kill()
-                self.HasLeftPod = false
-            end
-        elseif enh == 'LeftPodRemove' then
-            TWalkingLandUnit.CreateEnhancement(self, enh) -- moved from top to here so this happens only once for each enhancement
-            if self.LeftPod and not self.LeftPod:IsDead() then
-                self.LeftPod:Kill()
-                self.HasLeftPod = false
-            end
+            KillThread(self.RebuildThread)
+            KillThread(self.RebuildThread2)
         end
     end,
 
