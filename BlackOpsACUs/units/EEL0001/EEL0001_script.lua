@@ -33,8 +33,7 @@ EEL0001 = Class(ACUUnit) {
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
-        EXFlameCannon01 = Class(EXFlameCannonWeapon) {},
-        EXFlameCannon02 = Class(EXFlameCannonWeapon) {},
+        FlameCannon = Class(EXFlameCannonWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
         AntiMatterCannon = Class(UEFACUAntiMatterWeapon) {},
         GatlingEnergyCannon = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
@@ -189,8 +188,7 @@ EEL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('RightZephyr', false)
         self:SetWeaponEnabledByLabel('OverCharge', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('EXFlameCannon01', false)
-        self:SetWeaponEnabledByLabel('EXFlameCannon02', false)
+        self:SetWeaponEnabledByLabel('FlameCannon', false)
         self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
         self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
         self:SetWeaponEnabledByLabel('ClusterMissiles', false)
@@ -462,6 +460,21 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
     
+    SortFlameEffects = function(self, toggle)
+        -- Empty the bag
+        for k, v in self.FlamerEffectsBag do
+            v:Destroy()
+        end
+        self.FlamerEffectsBag = {}
+        
+        -- Fill it if we're turning on
+        if toggle then
+            for k, v in self.FlamerEffects do
+                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Flamer_Torch', self:GetArmy(), v):ScaleEmitter(0.0625))
+            end
+        end
+    end,
+    
     CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         
@@ -572,6 +585,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
+
             if not Buffs['UEFACUT2BuildCombat'] then
                 BuffBlueprint {
                     Name = 'UEFACUT2BuildCombat',
@@ -596,42 +610,23 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT2BuildCombat')
-
-            if self.FlamerEffectsBag then
-                for k, v in self.FlamerEffectsBag do
-                    v:Destroy()
-                end
-                self.FlamerEffectsBag = {}
-            end
-            for k, v in self.FlamerEffects do
-                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Flamer_Torch', self:GetArmy(), v):ScaleEmitter(0.0625))
-            end
-            self.wcFlamer01 = true
-            self.wcFlamer02 = false
-
-
+            
+            self:SetWeaponEnabledByLabel('FlameCannon', true)
+            self:SortFlameEffects(true)
         elseif enh == 'CombatEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT2BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT2BuildCombat')
             end
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             
-            if self.FlamerEffectsBag then
-                for k, v in self.FlamerEffectsBag do
-                    v:Destroy()
-                end
-                self.FlamerEffectsBag = {}
-            end
-            self.wcFlamer01 = false
-            self.wcFlamer02 = false
-
-
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SortFlameEffects()
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            
             if not Buffs['UEFACUT3BuildCombat'] then
                 BuffBlueprint {
                     Name = 'UEFACUT3BuildCombat',
-                    DisplayName = 'UEFCUT3BuildCombat',
+                    DisplayName = 'UEFACUT3BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'STACKS',
                     Duration = -1,
@@ -652,29 +647,23 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT3BuildCombat')
-
-            self.wcFlamer01 = false
-            self.wcFlamer02 = true
-
-
+            
+            local gun = self:GetWeaponByLabel('FlameCannon')
+            gun:AddDamageMod(bp.FlameDamageMod)
+            gun:ChangeMaxRadius(bp.FlameMaxRadius)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
             end
+            
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
 
-            if self.FlamerEffectsBag then
-                for k, v in self.FlamerEffectsBag do
-                    v:Destroy()
-                end
-                self.FlamerEffectsBag = {}
-            end
-            self.wcFlamer01 = false
-            self.wcFlamer02 = false
-
-
+            local gun = self:GetWeaponByLabel('FlameCannon')
+            gun:AddDamageMod(bp.FlameDamageMod)
+            gun:ChangeMaxRadius(gun:GetBlueprint().FlameMaxRadius)
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
+            
             if not Buffs['UEFACUT4BuildCombat'] then
                 BuffBlueprint {
                     Name = 'UEFACUT4BuildCombat',
@@ -704,15 +693,6 @@ EEL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'UEFACUT4BuildCombat')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-
-            if self.FlamerEffectsBag then
-                for k, v in self.FlamerEffectsBag do
-                    v:Destroy()
-                end
-                self.FlamerEffectsBag = {}
-            end
-            self.wcFlamer01 = false
-            self.wcFlamer02 = false
 
         -- Zephyr Booster
             
