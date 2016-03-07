@@ -44,9 +44,9 @@ EEL0001 = Class(TWalkingLandUnit) {
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
                 if not self.unit.SpinManip then 
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
-                    self.unit.SpinManip:SetTargetSpeed(0)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
+                self.unit.SpinManip:SetTargetSpeed(0)
             end,
             PlayFxRackSalvoChargeSequence = function(self)
                 if self.unit.SpinManip then
@@ -67,9 +67,9 @@ EEL0001 = Class(TWalkingLandUnit) {
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
                 if not self.unit.SpinManip then 
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
-                    self.unit.SpinManip:SetTargetSpeed(0)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
+                self.unit.SpinManip:SetTargetSpeed(0)
             end,
             PlayFxRackSalvoChargeSequence = function(self)
                 if self.unit.SpinManip then
@@ -90,9 +90,9 @@ EEL0001 = Class(TWalkingLandUnit) {
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
                 if not self.unit.SpinManip then 
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
-                    self.unit.SpinManip:SetTargetSpeed(0)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
+                self.unit.SpinManip:SetTargetSpeed(0)
             end,
             PlayFxRackSalvoChargeSequence = function(self)
                 if self.unit.SpinManip then
@@ -256,8 +256,6 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.wcCMissiles03 = false
         self.wcTMissiles01 = false
         self.wcNMissiles01 = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:ForkThread(self.WeaponRangeReset)
         self:ForkThread(self.GiveInitialResources)
         self.RBDefTier1 = false
         self.RBDefTier2 = false
@@ -749,7 +747,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
             
-        -- End of Engineering Section
+        -- Zephyr Booster
             
         elseif enh =='EXZephyrBooster' then
             local wep = self:GetWeaponByLabel('RightZephyr')
@@ -767,6 +765,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             wep:AddDamageMod(bp.DamageMod)
             oc:ChangeMaxRadius(oc:GetBlueprint().MaxRadius)
             self:HideBone('Zephyr_Amplifier', true)
+            
+        -- Torpedoes
+        
         elseif enh =='EXTorpedoLauncher' then
             if not Buffs['UEFTorpHealth1'] then
                 BuffBlueprint {
@@ -875,6 +876,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             
             local wep = self:GetWeaponByLabel('RightZephyr')
             wep:AddDamageMod(bp.DamageMod)
+            
+        -- Antimatter Cannon
+        
         elseif enh =='EXAntiMatterCannon' then
             if not Buffs['EXUEFHealthBoost10'] then
                 BuffBlueprint {
@@ -1622,12 +1626,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             {
                 Bones = {
                     'Head',
---                    'Right_Turret',
---                    'Left_Turret',
                     'Right_Arm_B01',
                     'Left_Arm_B01',
                     'Torso',
---                    'Chest_Left',
                     'Left_Leg_B01',
                     'Left_Leg_B02',
                     'Right_Leg_B01',
@@ -1641,12 +1642,9 @@ EEL0001 = Class(TWalkingLandUnit) {
             {
                 Bones = {
                     'Head',
---                    'Right_Turret',
---                    'Left_Turret',
                     'Right_Arm_B01',
                     'Left_Arm_B01',
                     'Torso',
---                    'Chest_Left',
                     'Left_Leg_B01',
                     'Left_Leg_B02',
                     'Right_Leg_B01',
@@ -1682,7 +1680,6 @@ EEL0001 = Class(TWalkingLandUnit) {
             if not self.IntelEffectsBag then 
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-                --self.CreateTerrainTypeEffects(self, self.IntelEffects.Jammer, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end                  
         end        
     end,
@@ -1721,7 +1718,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         TWalkingLandUnit.OnPaused(self)
         if self.BuildingUnit then
             TWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end    
+        end
     end,
     
     OnUnpaused = function(self)
