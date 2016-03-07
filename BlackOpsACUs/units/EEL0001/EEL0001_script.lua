@@ -45,12 +45,14 @@ EEL0001 = Class(ACUUnit) {
                 end
                 self.unit.SpinManip:SetTargetSpeed(0)
             end,
+            
             PlayFxRackSalvoChargeSequence = function(self)
                 if self.unit.SpinManip then
                     self.unit.SpinManip:SetTargetSpeed(500)
                 end
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
+            
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.unit.SpinManip then
                     self.unit.SpinManip:SetTargetSpeed(0)
@@ -115,51 +117,6 @@ EEL0001 = Class(ACUUnit) {
         self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
 
-    OnPrepareArmToBuild = function(self)
-        ACUUnit.OnPrepareArmToBuild(self)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(true)
-        self.BuildArmManipulator:SetPrecedence(20)
-        self.wcBuildMode = true
-        self:ForkThread(self.WeaponConfigCheck)
-        self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('RightZephyr'):GetHeadingPitch())
-    end,
-
-    OnStopCapture = function(self, target)
-        ACUUnit.OnStopCapture(self, target)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-    end,
-
-    OnFailedCapture = function(self, target)
-        ACUUnit.OnFailedCapture(self, target)
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-    end,
-
-    OnStopReclaim = function(self, target)
-        ACUUnit.OnStopReclaim(self, target)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-    end,
-
-    GiveInitialResources = function(self)
-        WaitTicks(5)
-        self:GetAIBrain():GiveResource('Energy', self:GetBlueprint().Economy.StorageEnergy)
-        self:GetAIBrain():GiveResource('Mass', self:GetBlueprint().Economy.StorageMass)
-    end,
-
     OnStopBeingBuilt = function(self,builder,layer)
         ACUUnit.OnStopBeingBuilt(self,builder,layer)
         if self:BeenDestroyed() then return end
@@ -172,7 +129,6 @@ EEL0001 = Class(ACUUnit) {
             end
         end
         self:BuildManipulatorSetEnabled(false)
-        self:SetMaintenanceConsumptionInactive()
         self.Rotator1 = CreateRotator(self, 'Back_ShieldPack_Spinner01', 'z', nil, 0, 20, 0)
         self.Rotator2 = CreateRotator(self, 'Back_ShieldPack_Spinner02', 'z', nil, 0, 40, 0)
         self.RadarDish1 = CreateRotator(self, 'Back_IntelPack_Dish', 'y', nil, 0, 20, 0)
@@ -246,19 +202,8 @@ EEL0001 = Class(ACUUnit) {
         if self.Animator then
             self.Animator:SetRate(0)
         end
-        self.UnitBeingBuilt = unitBeingBuilt
         self.UnitBuildOrder = order
-        self.BuildingUnit = true        
-    end,
-
-    OnFailedToBuild = function(self)
-        ACUUnit.OnFailedToBuild(self)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
+        self.BuildingUnit = true
     end,
 
     CreateBuildEffects = function(self, unitBeingBuilt, order)
@@ -274,17 +219,9 @@ EEL0001 = Class(ACUUnit) {
     OnStopBuild = function(self, unitBeingBuilt)
         ACUUnit.OnStopBuild(self, unitBeingBuilt)
         if self:BeenDestroyed() then return end
-        if (self.IdleAnim and not self:IsDead()) then
+        if self.IdleAnim and not self:IsDead() then
             self.Animator:PlayAnim(self.IdleAnim, true)
-        end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightZephyr'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-        self.UnitBeingBuilt = nil
-        self.UnitBuildOrder = nil
-        self.BuildingUnit = false          
+        end     
     end,
     
     RebuildPod = function(self, PodNumber)
@@ -423,7 +360,7 @@ EEL0001 = Class(ACUUnit) {
     OnTransportDetach = function(self, attachBone, unit)
         ACUUnit.OnTransportDetach(self, attachBone, unit)
         self:StopSiloBuild()
-        self:ForkThread(self.WeaponConfigCheck)
+
     end,
 
     -- New function to set up production numbers
@@ -1385,20 +1322,6 @@ EEL0001 = Class(ACUUnit) {
         ACUUnit.OnDestroy(self)
     end,
 
-    OnPaused = function(self)
-        ACUUnit.OnPaused(self)
-        if self.BuildingUnit then
-            ACUUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end
-    end,
-    
-    OnUnpaused = function(self)
-        if self.BuildingUnit then
-            ACUUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
-        end
-        ACUUnit.OnUnpaused(self)
-    end,      
-
     ShieldEffects2 = {
         '/mods/BlackOpsACUs/effects/emitters/ex_uef_shieldgen_01_emit.bp',
     },
@@ -1406,7 +1329,6 @@ EEL0001 = Class(ACUUnit) {
     FlamerEffects = {
         '/mods/BlackOpsACUs/effects/emitters/ex_flamer_torch_01.bp',
     },
-
 }
 
 TypeClass = EEL0001
