@@ -1036,29 +1036,19 @@ EEL0001 = Class(TWalkingLandUnit) {
             
         -- Shielding
 
-        elseif enh == 'EXShieldBattery' then
+        elseif enh == 'ShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
             self:CreateShield(bp)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self.Rotator1:SetTargetSpeed(90)
-            self.Rotator2:SetTargetSpeed(-180)
-
-        elseif enh == 'EXShieldBatteryRemove' then
+            self:OnScriptBitSet(0)
+        elseif enh == 'ShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'EXShieldBatteryRemove')
+            RemoveUnitEnhancement(self, 'ShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            if self.ShieldEffectsBag2 then
-                for k, v in self.ShieldEffectsBag2 do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag2 = {}
-            end
-            self.Rotator1:SetTargetSpeed(0)
-            self.Rotator2:SetTargetSpeed(0)
-
-        elseif enh == 'EXActiveShielding' then
+            self:OnScriptBitClear(0)
+        elseif enh == 'ActiveShielding' then
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
@@ -1066,29 +1056,13 @@ EEL0001 = Class(TWalkingLandUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self.wcLance01 = true
-            self.wcLance02 = false
-
-
-
-        elseif enh == 'EXActiveShieldingRemove' then
+            self:OnScriptBitSet(0)
+        elseif enh == 'ActiveShieldingRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'EXActiveShieldingRemove')
+            RemoveUnitEnhancement(self, 'ActiveShieldingRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            if self.ShieldEffectsBag2 then
-                for k, v in self.ShieldEffectsBag2 do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag2 = {}
-            end
-            self.Rotator1:SetTargetSpeed(0)
-            self.Rotator2:SetTargetSpeed(0)
-            self.wcLance01 = false
-            self.wcLance02 = false
-
-
-
+            self:OnScriptBitClear(0)
         elseif enh == 'EXImprovedShieldBattery' then
             self:DestroyShield()
             ForkThread(function()
@@ -1097,26 +1071,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-
-        elseif enh == 'EXImprovedShieldBatteryRemove' then
+            self:OnScriptBitSet(0)
+        elseif enh == 'ImprovedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'EXImprovedShieldBatteryRemove')
+            RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            if self.ShieldEffectsBag2 then
-                for k, v in self.ShieldEffectsBag2 do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag2 = {}
-            end
-            self.Rotator1:SetTargetSpeed(0)
-            self.Rotator2:SetTargetSpeed(0)
-            self.wcLance01 = false
-            self.wcLance02 = false
-
-
-
-        elseif enh == 'EXShieldExpander' then
+            self:OnScriptBitClear(0)
+        elseif enh == 'ShieldExpander' then
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
@@ -1124,24 +1086,15 @@ EEL0001 = Class(TWalkingLandUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-
-        elseif enh == 'EXShieldExpanderRemove' then
+            self:OnScriptBitSet(0)
+        elseif enh == 'ShieldExpanderRemove' then
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            if self.ShieldEffectsBag2 then
-                for k, v in self.ShieldEffectsBag2 do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag2 = {}
-            end
-            self.Rotator1:SetTargetSpeed(0)
-            self.Rotator2:SetTargetSpeed(0)
-            self.wcLance01 = false
-            self.wcLance02 = false
-
-
-
+            self:OnScriptBitClear(0)
+            
+        -- Jamming    
+            
         elseif enh == 'EXElectronicsEnhancment' then
             self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
             self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)

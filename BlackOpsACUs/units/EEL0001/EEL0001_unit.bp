@@ -1004,7 +1004,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        EXShieldBattery = {
+        ShieldBattery = {
             BuildCostEnergy = 45000,
             BuildCostMass = 840,
             BuildTime = 1800,
@@ -1034,7 +1034,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        EXShieldBatteryRemove = {
+        ShieldBatteryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1043,21 +1043,21 @@ UnitBlueprint {
             },
             Icon = 'exbsh1',
             Name = 'Remove Shield Battery',
-            Prerequisite = 'EXShieldBattery',
+            Prerequisite = 'ShieldBattery',
             RemoveEnhancements = {
                 'EXShieldBattery',
                 'EXShieldBatteryRemove',
             },
             Slot = 'Back',
         },
-        EXActiveShielding = {
+        ActiveShielding = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
             Icon = 'exbsh2',
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Improved Shield Battery (T3)',
-            Prerequisite = 'EXShieldBattery',
+            Prerequisite = 'ShieldBattery',
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
@@ -1082,7 +1082,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        EXActiveShieldingRemove = {
+        ActiveShieldingRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1092,22 +1092,22 @@ UnitBlueprint {
             },
             Icon = 'exbsh2',
             Name = 'Remove Improved Shield Battery',
-            Prerequisite = 'EXActiveShielding',
+            Prerequisite = 'ActiveShielding',
             RemoveEnhancements = {
-                'EXShieldBattery',
-                'EXActiveShielding',
-                'EXActiveShieldingRemove',
+                'ShieldBattery',
+                'ActiveShielding',
+                'ActiveShieldingRemove',
             },
             Slot = 'Back',
         },
-        EXImprovedShieldBattery = {
+        ImprovedShieldBattery = {
             BuildCostEnergy = 420000,
             BuildCostMass = 3600,
             BuildTime = 14400,
             Icon = 'exbsh3',
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Advanced Shield Battery (T4)',
-            Prerequisite = 'EXActiveShielding',
+            Prerequisite = 'ActiveShielding',
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
@@ -1132,7 +1132,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        EXImprovedShieldBatteryRemove = {
+        ImprovedShieldBatteryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1142,16 +1142,16 @@ UnitBlueprint {
             },
             Icon = 'exbsh3',
             Name = 'Remove Advanced Shield Battery',
-            Prerequisite = 'EXImprovedShieldBattery',
+            Prerequisite = 'ImprovedShieldBattery',
             RemoveEnhancements = {
-                'EXShieldBattery',
-                'EXActiveShielding',
-                'EXImprovedShieldBattery',
-                'EXImprovedShieldBatteryRemove',
+                'ShieldBattery',
+                'ActiveShielding',
+                'ImprovedShieldBattery',
+                'ImprovedShieldBatteryRemove',
             },
             Slot = 'Back',
         },
-        EXShieldExpander = {
+        ShieldExpander = {
             BuildCostEnergy = 60000,
             BuildCostMass = 1200,
             BuildTime = 14400,
@@ -1161,7 +1161,7 @@ UnitBlueprint {
             Mesh = '/effects/entities/Shield01/Shield01_mesh',
             MeshZ = '/effects/entities/Shield01/Shield01z_mesh',
             Name = 'Expanded Shield Bubble',
-            Prerequisite = 'EXImprovedShieldBattery',
+            Prerequisite = 'ImprovedShieldBattery',
             MaintenanceConsumptionPerSecondEnergy = 1,
             ShieldEnergyDrainRechargeTime = 5,
             ShieldEnhancementNumber = 5,
@@ -1180,7 +1180,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXShieldExpanderRemove = {
+        ShieldExpanderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1190,13 +1190,13 @@ UnitBlueprint {
             },
             Icon = 'exbsh4',
             Name = 'Remove Expanded Shield Bubble',
-            Prerequisite = 'EXShieldExpander',
+            Prerequisite = 'ShieldExpander',
             RemoveEnhancements = {
-                'EXShieldBattery',
-                'EXActiveShielding',
-                'EXImprovedShieldBattery',
-                'EXShieldExpander',
-                'EXShieldExpanderRemove',
+                'ShieldBattery',
+                'ActiveShielding',
+                'ImprovedShieldBattery',
+                'ShieldExpander',
+                'ShieldExpanderRemove',
             },
             Slot = 'Back',
         },
