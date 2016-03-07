@@ -8,7 +8,7 @@
 -----------------------------------------------------------------
 local Shield = import('/lua/shield.lua').Shield
 
-local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
+local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')
 local TDFZephyrCannonWeapon = TerranWeaponFile.TDFZephyrCannonWeapon
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
@@ -27,7 +27,7 @@ local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
 
-EEL0001 = Class(TWalkingLandUnit) {   
+EEL0001 = Class(ACUUnit) {   
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
@@ -95,7 +95,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     },
 
     OnCreate = function(self)
-        TWalkingLandUnit.OnCreate(self)
+        ACUUnit.OnCreate(self)
         self:SetCapturable(false)
         self:HideBone('Engineering_Suite', true)
         self:HideBone('Flamer', true)
@@ -117,7 +117,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnPrepareArmToBuild = function(self)
-        TWalkingLandUnit.OnPrepareArmToBuild(self)
+        ACUUnit.OnPrepareArmToBuild(self)
         if self:BeenDestroyed() then return end
         self:BuildManipulatorSetEnabled(true)
         self.BuildArmManipulator:SetPrecedence(20)
@@ -127,7 +127,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnStopCapture = function(self, target)
-        TWalkingLandUnit.OnStopCapture(self, target)
+        ACUUnit.OnStopCapture(self, target)
         if self:BeenDestroyed() then return end
         self:BuildManipulatorSetEnabled(false)
         self.BuildArmManipulator:SetPrecedence(0)
@@ -137,7 +137,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnFailedCapture = function(self, target)
-        TWalkingLandUnit.OnFailedCapture(self, target)
+        ACUUnit.OnFailedCapture(self, target)
         self:BuildManipulatorSetEnabled(false)
         self.BuildArmManipulator:SetPrecedence(0)
         self.wcBuildMode = false
@@ -146,7 +146,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnStopReclaim = function(self, target)
-        TWalkingLandUnit.OnStopReclaim(self, target)
+        ACUUnit.OnStopReclaim(self, target)
         if self:BeenDestroyed() then return end
         self:BuildManipulatorSetEnabled(false)
         self.BuildArmManipulator:SetPrecedence(0)
@@ -162,7 +162,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
-        TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+        ACUUnit.OnStopBeingBuilt(self,builder,layer)
         if self:BeenDestroyed() then return end
         self.Animator = CreateAnimator(self)
         self.Animator:SetPrecedence(0)
@@ -173,13 +173,6 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
         end
         self:BuildManipulatorSetEnabled(false)
-        self:DisableUnitIntel('Radar')
-        self:DisableUnitIntel('Sonar')
-        self:DisableUnitIntel('Spoof')
-        self:DisableUnitIntel('RadarStealth')
-        self:DisableUnitIntel('SonarStealth')
-        self:DisableUnitIntel('Cloak')
-        self:DisableUnitIntel('CloakField')
         self:SetMaintenanceConsumptionInactive()
         self.Rotator1 = CreateRotator(self, 'Back_ShieldPack_Spinner01', 'z', nil, 0, 20, 0)
         self.Rotator2 = CreateRotator(self, 'Back_ShieldPack_Spinner02', 'z', nil, 0, 40, 0)
@@ -206,10 +199,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('TacMissile', false)
         self:SetWeaponEnabledByLabel('TacNukeMissile', false)
         self:SetWeaponEnabledByLabel('DeathWeapon', false)
-        
     end,
-    
-
 
     PlayCommanderWarpInEffect = function(self)
         self:HideBone(0, true)
@@ -254,7 +244,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)
-        TWalkingLandUnit.OnStartBuild(self, unitBeingBuilt, order)
+        ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
         if self.Animator then
             self.Animator:SetRate(0)
         end
@@ -264,7 +254,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnFailedToBuild = function(self)
-        TWalkingLandUnit.OnFailedToBuild(self)
+        ACUUnit.OnFailedToBuild(self)
         if self:BeenDestroyed() then return end
         self:BuildManipulatorSetEnabled(false)
         self.BuildArmManipulator:SetPrecedence(0)
@@ -284,7 +274,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnStopBuild = function(self, unitBeingBuilt)
-        TWalkingLandUnit.OnStopBuild(self, unitBeingBuilt)
+        ACUUnit.OnStopBuild(self, unitBeingBuilt)
         if self:BeenDestroyed() then return end
         if (self.IdleAnim and not self:IsDead()) then
             self.Animator:PlayAnim(self.IdleAnim, true)
@@ -433,7 +423,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
 
     OnTransportDetach = function(self, attachBone, unit)
-        TWalkingLandUnit.OnTransportDetach(self, attachBone, unit)
+        ACUUnit.OnTransportDetach(self, attachBone, unit)
         self:StopSiloBuild()
         self:ForkThread(self.WeaponConfigCheck)
     end,
@@ -473,7 +463,7 @@ EEL0001 = Class(TWalkingLandUnit) {
     end,
     
     CreateEnhancement = function(self, enh)
-        TWalkingLandUnit.CreateEnhancement(self, enh)
+        ACUUnit.CreateEnhancement(self, enh)
         
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
@@ -724,8 +714,6 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer01 = false
             self.wcFlamer02 = false
 
-
-            
         -- Zephyr Booster
             
         elseif enh =='ZephyrBooster' then
@@ -1077,14 +1065,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
             
-        -- Jamming
+        -- Intel
             
         elseif enh == 'ElectronicsEnhancment' then
-            if not Buffs['UEFJammingHealth1'] then
+            if not Buffs['UEFIntelHealth1'] then
                 BuffBlueprint {
-                    Name = 'UEFJammingHealth1',
-                    DisplayName = 'UEFJammingHealth1',
-                    BuffType = 'UEFJammingHealth',
+                    Name = 'UEFIntelHealth1',
+                    DisplayName = 'UEFIntelHealth1',
+                    BuffType = 'UEFIntelHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1095,30 +1083,32 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'UEFJammingHealth1')
+            Buff.ApplyBuff(self, 'UEFIntelHealth1')
             
             self:SetIntelRadius('Vision', bp.NewVisionRadius)
+            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
             self:SetIntelRadius('Omni', bp.NewOmniRadius)
             self.RadarDish1:SetTargetSpeed(45)
 
             self:SetWeaponEnabledByLabel('EnergyLance01', true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
-            if Buff.HasBuff(self, 'UEFJammingHealth1') then
-                Buff.RemoveBuff(self, 'UEFJammingHealth1')
+            if Buff.HasBuff(self, 'UEFIntelHealth1') then
+                Buff.RemoveBuff(self, 'UEFIntelHealth1')
             end
         
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+            self:SetIntelRadius('WaterVision', bpIntel.WaterVisionRadius)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius)
             self.RadarDish1:SetTargetSpeed(0)
 
             self:SetWeaponEnabledByLabel('EnergyLance01', false)
         elseif enh == 'SpySatellite' then
-            if not Buffs['UEFJammingHealth2'] then
+            if not Buffs['UEFIntelHealth2'] then
                 BuffBlueprint {
-                    Name = 'UEFJammingHealth2',
-                    DisplayName = 'UEFJammingHealth2',
-                    BuffType = 'UEFJammingHealth',
+                    Name = 'UEFIntelHealth2',
+                    DisplayName = 'UEFIntelHealth2',
+                    BuffType = 'UEFIntelHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1129,15 +1119,15 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'UEFJammingHealth2')
+            Buff.ApplyBuff(self, 'UEFIntelHealth2')
             
             self.SpysatEnabled = true
             self:ForkThread(self.SatSpawn)
             
             self:SetWeaponEnabledByLabel('EnergyLance02', true)
         elseif enh == 'SpySatelliteRemove' then
-            if Buff.HasBuff(self, 'UEFJammingHealth2') then
-                Buff.RemoveBuff(self, 'UEFJammingHealth2')
+            if Buff.HasBuff(self, 'UEFIntelHealth2') then
+                Buff.RemoveBuff(self, 'UEFIntelHealth2')
             end
             
             if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
@@ -1148,11 +1138,11 @@ EEL0001 = Class(TWalkingLandUnit) {
             
             self:SetWeaponEnabledByLabel('EnergyLance02', false)
         elseif enh == 'Teleporter' then
-            if not Buffs['UEFJammingHealth3'] then
+            if not Buffs['UEFIntelHealth3'] then
                 BuffBlueprint {
-                    Name = 'UEFJammingHealth3',
-                    DisplayName = 'UEFJammingHealth3',
-                    BuffType = 'UEFJammingHealth',
+                    Name = 'UEFIntelHealth3',
+                    DisplayName = 'UEFIntelHealth3',
+                    BuffType = 'UEFIntelHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1163,12 +1153,12 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'UEFJammingHealth3')
+            Buff.ApplyBuff(self, 'UEFIntelHealth3')
             
             self:AddCommandCap('RULEUCC_Teleport')
         elseif enh == 'TeleporterRemove' then
-            if Buff.HasBuff(self, 'UEFJammingHealth3') then
-                Buff.RemoveBuff(self, 'UEFJammingHealth3')
+            if Buff.HasBuff(self, 'UEFIntelHealth3') then
+                Buff.RemoveBuff(self, 'UEFIntelHealth3')
             end
             
             self:RemoveCommandCap('RULEUCC_Teleport')
@@ -1393,7 +1383,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.Satellite:Kill()
             self.Satellite = nil
         end
-        TWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
+        ACUUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
     
     OnDestroy = function(self)
@@ -1401,21 +1391,21 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.Satellite:Destroy()
             self.Satellite = nil
         end
-        TWalkingLandUnit.OnDestroy(self)
+        ACUUnit.OnDestroy(self)
     end,
 
     OnPaused = function(self)
-        TWalkingLandUnit.OnPaused(self)
+        ACUUnit.OnPaused(self)
         if self.BuildingUnit then
-            TWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
+            ACUUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
         end
     end,
     
     OnUnpaused = function(self)
         if self.BuildingUnit then
-            TWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
+            ACUUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
         end
-        TWalkingLandUnit.OnUnpaused(self)
+        ACUUnit.OnUnpaused(self)
     end,      
 
     ShieldEffects2 = {
