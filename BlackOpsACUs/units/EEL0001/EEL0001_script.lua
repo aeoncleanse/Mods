@@ -37,7 +37,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         EXFlameCannon02 = Class(EXFlameCannonWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
         AntiMatterCannon = Class(UEFACUAntiMatterWeapon) {},
-        EXGattlingEnergyCannon01 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
+        GatlingEnergyCannon = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
             OnCreate = function(self)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
                 if not self.unit.SpinManip then 
@@ -59,52 +59,6 @@ EEL0001 = Class(TWalkingLandUnit) {
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-        },
-        EXGattlingEnergyCannon02 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
-            OnCreate = function(self)
-                UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then 
-                    self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
-                    self.unit.Trash:Add(self.unit.SpinManip)
-                end
-                self.unit.SpinManip:SetTargetSpeed(0)
-            end,
-            PlayFxRackSalvoChargeSequence = function(self)
-                if self.unit.SpinManip then
-                    self.unit.SpinManip:SetTargetSpeed(500)
-                end
-                UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.unit.SpinManip then
-                    self.unit.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
-                UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,    
-        },
-        EXGattlingEnergyCannon03 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
-            OnCreate = function(self)
-                UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then 
-                    self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
-                    self.unit.Trash:Add(self.unit.SpinManip)
-                end
-                self.unit.SpinManip:SetTargetSpeed(0)
-            end,
-            PlayFxRackSalvoChargeSequence = function(self)
-                if self.unit.SpinManip then
-                    self.unit.SpinManip:SetTargetSpeed(500)
-                end
-                UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.unit.SpinManip then
-                    self.unit.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
-                UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,    
         },
         EXClusterMissles01 = Class(TIFCruiseMissileLauncher) {},
         EXClusterMissles02 = Class(TIFCruiseMissileLauncher) {},
@@ -274,9 +228,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('EXFlameCannon01', false)
         self:SetWeaponEnabledByLabel('EXFlameCannon02', false)
         self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
-        self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon01', false)
-        self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon02', false)
-        self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon03', false)
+        self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
         self:SetWeaponEnabledByLabel('EXClusterMissles01', false)
         self:SetWeaponEnabledByLabel('EXClusterMissles02', false)
         self:SetWeaponEnabledByLabel('EXClusterMissles03', false)
@@ -994,13 +946,13 @@ EEL0001 = Class(TWalkingLandUnit) {
             
         -- Gatling Cannon
             
-        elseif enh =='EXGattlingEnergyCannon' then
-            if not Buffs['EXUEFHealthBoost13'] then
+        elseif enh == 'GatlingEnergyCannon' then
+            if not Buffs['UEFGatlingHeath1'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost13',
-                    DisplayName = 'EXUEFHealthBoost13',
-                    BuffType = 'EXUEFHealthBoost13',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFGatlingHeath1',
+                    DisplayName = 'UEFGatlingHeath1',
+                    BuffType = 'UEFGatlingHeath',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1010,35 +962,22 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost13')
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            wepZephyr:ChangeMaxRadius(35)
-            self.wcGatling01 = true
-            self.wcGatling02 = false
-            self.wcGatling03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXGattlingEnergyCannonRemove' then
-            if Buff.HasBuff(self, 'EXUEFHealthBoost13') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost13')
+            Buff.ApplyBuff(self, 'UEFGatlingHeath1')
+            
+            self:SetWeaponEnabledByLabel('GatlingEnergyCannon', true)
+        elseif enh == 'GatlingEnergyCannonRemove' then
+            if Buff.HasBuff(self, 'UEFGatlingHeath1') then
+                Buff.RemoveBuff(self, 'UEFGatlingHeath1')
             end
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepZephyr:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcGatling01 = false
-            self.wcGatling02 = false
-            self.wcGatling03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXImprovedCoolingSystem' then
-            if not Buffs['EXUEFHealthBoost14'] then
+            
+            self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
+        elseif enh == 'ImprovedCoolingSystem' then
+            if not Buffs['UEFGatlingHeath2'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost14',
-                    DisplayName = 'EXUEFHealthBoost14',
-                    BuffType = 'EXUEFHealthBoost14',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFGatlingHeath2',
+                    DisplayName = 'UEFGatlingHeath2',
+                    BuffType = 'UEFGatlingHeath',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1048,39 +987,30 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost14')
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            wepZephyr:ChangeMaxRadius(40)
-            self.wcGatling01 = false
-            self.wcGatling02 = true
-            self.wcGatling03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='EXImprovedCoolingSystemRemove' then
-            if Buff.HasBuff(self, 'EXUEFHealthBoost13') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost13')
+            Buff.ApplyBuff(self, 'UEFGatlingHeath2')
+            
+            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
+            gun:AddDamageMod(bp.GatlingDamageMod)
+            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+            
+            self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
+        elseif enh == 'ImprovedCoolingSystemRemove' then
+            if Buff.HasBuff(self, 'UEFGatlingHeath2') then
+                Buff.RemoveBuff(self, 'UEFGatlingHeath2')
             end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost14') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost14')
-            end
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepZephyr:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcGatling01 = false
-            self.wcGatling02 = false
-            self.wcGatling03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXEnergyShellHardener' then
-            if not Buffs['EXUEFHealthBoost15'] then
+            
+            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
+            gun:AddDamageMod(bp.GatlingDamageMod)
+            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            
+            self:TogglePrimaryGun(bp.DamageMod)
+        elseif enh == 'EnergyShellHardener' then
+            if not Buffs['UEFGatlingHeath3'] then
                 BuffBlueprint {
-                    Name = 'EXUEFHealthBoost15',
-                    DisplayName = 'EXUEFHealthBoost15',
-                    BuffType = 'EXUEFHealthBoost15',
-                    Stacks = 'REPLACE',
+                    Name = 'UEFGatlingHeath3',
+                    DisplayName = 'UEFGatlingHeath3',
+                    BuffType = 'UEFGatlingHeath',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1090,34 +1020,22 @@ EEL0001 = Class(TWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'EXUEFHealthBoost15')
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            wepZephyr:ChangeMaxRadius(45)
-            self.wcGatling01 = false
-            self.wcGatling02 = false
-            self.wcGatling03 = true
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
-        elseif enh =='EXEnergyShellHardenerRemove' then
-            if Buff.HasBuff(self, 'EXUEFHealthBoost13') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost13')
+            Buff.ApplyBuff(self, 'UEFGatlingHeath3')
+            
+            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
+            gun:AddDamageMod(bp.GatlingDamageMod)
+            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+        elseif enh == 'EnergyShellHardenerRemove' then
+            if Buff.HasBuff(self, 'UEFGatlingHeath3') then
+                Buff.RemoveBuff(self, 'UEFGatlingHeath3')
             end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost14') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost14')
-            end
-            if Buff.HasBuff(self, 'EXUEFHealthBoost15') then
-                Buff.RemoveBuff(self, 'EXUEFHealthBoost15')
-            end
-            local wepZephyr = self:GetWeaponByLabel('RightZephyr')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepZephyr:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcGatling01 = false
-            self.wcGatling02 = false
-            self.wcGatling03 = false
-            self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
-            self:ForkThread(self.EXRegenBuffThread)
+            
+            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
+            gun:AddDamageMod(bp.GatlingDamageMod)
+            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+            
+        -- Shielding
+
         elseif enh == 'EXShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
             self:CreateShield(bp)
