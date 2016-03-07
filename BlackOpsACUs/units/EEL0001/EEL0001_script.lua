@@ -268,7 +268,31 @@ EEL0001 = Class(TWalkingLandUnit) {
         self.RBIntTier3 = false
         self.SpysatEnabled = false
         self.DefaultGunBuffApplied = false
+        
+        -- Disable Upgrade Weapons
+        self:SetWeaponEnabledByLabel('RightZephyr', false)
+        self:SetWeaponEnabledByLabel('OverCharge', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
+        self:SetWeaponEnabledByLabel('EXFlameCannon01', false)
+        self:SetWeaponEnabledByLabel('EXFlameCannon02', false)
+        self:SetWeaponEnabledByLabel('EXAntiMatterCannon01', false)
+        self:SetWeaponEnabledByLabel('EXAntiMatterCannon02', false)
+        self:SetWeaponEnabledByLabel('EXAntiMatterCannon03', false)
+        self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon01', false)
+        self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon02', false)
+        self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon03', false)
+        self:SetWeaponEnabledByLabel('EXClusterMissles01', false)
+        self:SetWeaponEnabledByLabel('EXClusterMissles02', false)
+        self:SetWeaponEnabledByLabel('EXClusterMissles03', false)
+        self:SetWeaponEnabledByLabel('EXEnergyLance01', false)
+        self:SetWeaponEnabledByLabel('EXEnergyLance02', false)
+        self:SetWeaponEnabledByLabel('TacMissile', false)
+        self:SetWeaponEnabledByLabel('TacNukeMissile', false)
+        self:SetWeaponEnabledByLabel('DeathWeapon', false)
+        
     end,
+    
+
 
     PlayCommanderWarpInEffect = function(self)
         self:HideBone(0, true)
