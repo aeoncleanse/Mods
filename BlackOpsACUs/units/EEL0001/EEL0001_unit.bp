@@ -334,7 +334,7 @@ UnitBlueprint {
                 y = 30,
             },
         },
-        EXImprovedEngineering = {
+        ImprovedEngineering = {
             BuildCostEnergy = 30000,
             BuildCostMass = 750,
             BuildTime = 1500,
@@ -359,7 +359,7 @@ UnitBlueprint {
             },
             NewRegenRate = 30,
         },
-        EXImprovedEngineeringRemove = {
+        ImprovedEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -368,20 +368,20 @@ UnitBlueprint {
             },
             Icon = 'exles1',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'EXImprovedEngineering',
+            Prerequisite = 'ImprovedEngineering',
             RemoveEnhancements = {
-                'EXImprovedEngineering',
-                'EXImprovedEngineeringRemove',
+                'ImprovedEngineering',
+                'ImprovedEngineeringRemove',
             },
             Slot = 'LCH',
         },
-        EXAdvancedEngineering = {
+        AdvancedEngineering = {
             BuildCostEnergy = 105000,
             BuildCostMass = 2100,
             BuildTime = 6300,
             Icon = 'exles2',
             Name = 'Tech 3 Advanced Engineering (T2)',
-            Prerequisite = 'EXImprovedEngineering',
+            Prerequisite = 'ImprovedEngineering',
             NewBuildRate = 90,
             NewHealth = 6000,
             ProductionPerSecondEnergy = 1000,
@@ -401,7 +401,7 @@ UnitBlueprint {
             },
             NewRegenRate = 30,
         },
-        EXAdvancedEngineeringRemove = {
+        AdvancedEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -410,21 +410,21 @@ UnitBlueprint {
             },
             Icon = 'exles2',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'EXAdvancedEngineering',
+            Prerequisite = 'AdvancedEngineering',
             RemoveEnhancements = {
-                'EXImprovedEngineering',
-                'EXAdvancedEngineering',
-                'EXAdvancedEngineeringRemove',
+                'ImprovedEngineering',
+                'AdvancedEngineering',
+                'AdvancedEngineeringRemove',
             },
             Slot = 'LCH',
         },
-        EXExperimentalEngineering = {
+        ExperimentalEngineering = {
             BuildCostEnergy = 270000,
             BuildCostMass = 4050,
             BuildTime = 24300,
             Icon = 'exles3',
             Name = 'Tech 4 Experimental Engineering (T3)',
-            Prerequisite = 'EXAdvancedEngineering',
+            Prerequisite = 'AdvancedEngineering',
             NewBuildRate = 120,
             NewHealth = 12000,
             ProductionPerSecondEnergy = 3000,
@@ -444,7 +444,7 @@ UnitBlueprint {
             },
             NewRegenRate = 140,
         },
-        EXExperimentalEngineeringRemove = {
+        ExperimentalEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -453,16 +453,16 @@ UnitBlueprint {
             },
             Icon = 'exles3',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'EXExperimentalEngineering',
+            Prerequisite = 'ExperimentalEngineering',
             RemoveEnhancements = {
-                'EXImprovedEngineering',
-                'EXAdvancedEngineering',
-                'EXExperimentalEngineering',
-                'EXExperimentalEngineeringRemove',
+                'ImprovedEngineering',
+                'AdvancedEngineering',
+                'ExperimentalEngineering',
+                'ExperimentalEngineeringRemove',
             },
             Slot = 'LCH',
         },
-        EXCombatEngineering = {
+        CombatEngineering = {
             BuildCostEnergy = 24000,
             BuildCostMass = 600,
             BuildTime = 1200,
@@ -486,7 +486,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        EXCombatEngineeringRemove = {
+        CombatEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -496,20 +496,20 @@ UnitBlueprint {
             },
             Icon = 'exlce1',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'EXCombatEngineering',
+            Prerequisite = 'CombatEngineering',
             RemoveEnhancements = {
-                'EXCombatEngineering',
-                'EXCombatEngineeringRemove',
+                'CombatEngineering',
+                'CombatEngineeringRemove',
             },
             Slot = 'LCH',
         },
-        EXAssaultEngineering = {
+        AssaultEngineering = {
             BuildCostEnergy = 90000,
             BuildCostMass = 1800,
             BuildTime = 5400,
             Icon = 'exlce2',
             Name = 'Tech 3 Assault Engineering (T2)',
-            Prerequisite = 'EXCombatEngineering',
+            Prerequisite = 'CombatEngineering',
             NewBuildRate = 90,
             NewHealth = 5000,
             ShowBones = {
@@ -528,7 +528,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        EXAssaultEngineeringRemove = {
+        AssaultEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -538,21 +538,21 @@ UnitBlueprint {
             },
             Icon = 'exlce2',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'EXAssaultEngineering',
+            Prerequisite = 'AssaultEngineering',
             RemoveEnhancements = {
-                'EXCombatEngineering',
-                'EXAssaultEngineering',
-                'EXAssaultEngineeringRemove',
+                'CombatEngineering',
+                'AssaultEngineering',
+                'AssaultEngineeringRemove',
             },
             Slot = 'LCH',
         },
-        EXApocolypticEngineering = {
+        ApocolypticEngineering = {
             BuildCostEnergy = 240000,
             BuildCostMass = 3600,
             BuildTime = 21600,
             Icon = 'exlce3',
             Name = 'Tech 4 Apocolyptic Engineering (T3)',
-            Prerequisite = 'EXAssaultEngineering',
+            Prerequisite = 'AssaultEngineering',
             NewBuildRate = 120,
             NewHealth = 10000,
             ShowBones = {
@@ -571,7 +571,7 @@ UnitBlueprint {
             },
             NewRegenRate = 200,
         },
-        EXApocolypticEngineeringRemove = {
+        ApocolypticEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -581,16 +581,16 @@ UnitBlueprint {
             },
             Icon = 'exlce3',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'EXApocolypticEngineering',
+            Prerequisite = 'ApocolypticEngineering',
             RemoveEnhancements = {
-                'EXCombatEngineering',
-                'EXAssaultEngineering',
-                'EXApocolypticEngineering',
-                'EXApocolypticEngineeringRemove',
+                'CombatEngineering',
+                'AssaultEngineering',
+                'ApocolypticEngineering',
+                'ApocolypticEngineeringRemove',
             },
             Slot = 'LCH',
         },
-        EXZephyrBooster = {
+        ZephyrBooster = {
             BuildCostEnergy = 24000,
             BuildCostMass = 800,
             BuildTime = 800,
@@ -609,21 +609,21 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXZephyrBoosterRemove = {
+        ZephyrBoosterRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exrzb1',
             Name = 'Remove Jury Rigged Zephyr',
-            Prerequisite = 'EXZephyrBooster',
+            Prerequisite = 'ZephyrBooster',
             DamageMod = -100,
             RemoveEnhancements = {
-                'EXZephyrBooster',
-                'EXZephyrBoosterRemove',
+                'ZephyrBooster',
+                'ZephyrBoosterRemove',
             },
             Slot = 'RCH',
         },
-        EXTorpedoLauncher = {
+        TorpedoLauncher = {
             BuildCostEnergy = 45000,
             BuildCostMass = 990,
             BuildTime = 2700,
@@ -644,7 +644,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXTorpedoLauncherRemove = {
+        TorpedoLauncherRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -653,20 +653,20 @@ UnitBlueprint {
             },
             Icon = 'exrtorp1',
             Name = 'Remove Torpedo Launcher',
-            Prerequisite = 'EXTorpedoLauncher',
+            Prerequisite = 'TorpedoLauncher',
             RemoveEnhancements = {
-                'EXTorpedoLauncher',
-                'EXTorpedoLauncherRemove',
+                'TorpedoLauncher',
+                'TorpedoLauncherRemove',
             },
             Slot = 'RCH',
         },
-        EXTorpedoRapidLoader = {
+        TorpedoRapidLoader = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
             Icon = 'exrtorp2',
             Name = 'Improved Reloader (T3)',
-            Prerequisite = 'EXTorpedoLauncher',
+            Prerequisite = 'TorpedoLauncher',
             NewHealth = 2500,
             DamageMod = 100,
             NewMaxRadius = 30,
@@ -686,7 +686,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXTorpedoRapidLoaderRemove = {
+        TorpedoRapidLoaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -695,23 +695,23 @@ UnitBlueprint {
             },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
-            Prerequisite = 'EXTorpedoRapidLoader',
+            Prerequisite = 'TorpedoRapidLoader',
             DamageMod = -100,
             TorpDamageMod = -55,
             RemoveEnhancements = {
-                'EXTorpedoLauncher',
-                'EXTorpedoRapidLoader',
-                'EXTorpedoRapidLoaderRemove',
+                'TorpedoLauncher',
+                'TorpedoRapidLoader',
+                'TorpedoRapidLoaderRemove',
             },
             Slot = 'RCH',
         },
-        EXTorpedoClusterLauncher = {
+        TorpedoClusterLauncher = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-            Prerequisite = 'EXTorpedoRapidLoader',
+            Prerequisite = 'TorpedoRapidLoader',
             NewHealth = 6000,
             DamageMod = 200,
             TorpDamageMod = 425,
@@ -729,7 +729,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXTorpedoClusterLauncherRemove = {
+        TorpedoClusterLauncherRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -738,18 +738,18 @@ UnitBlueprint {
             },
             Icon = 'exrtorp3',
             Name = 'Remove Cluster Launcher',
-            Prerequisite = 'EXTorpedoClusterLauncher',
+            Prerequisite = 'TorpedoClusterLauncher',
             DamageMod = -200,
             TorpDamageMod = -425,
             RemoveEnhancements = {
-                'EXTorpedoLauncher',
-                'EXTorpedoRapidLoader',
-                'EXTorpedoClusterLauncher',
-                'EXTorpedoClusterLauncherRemove',
+                'TorpedoLauncher',
+                'TorpedoRapidLoader',
+                'TorpedoClusterLauncher',
+                'TorpedoClusterLauncherRemove',
             },
             Slot = 'RCH',
         },
-        EXAntiMatterCannon = {
+        AntiMatterCannon = {
             BuildCostEnergy = 45000,
             BuildCostMass = 1080,
             BuildTime = 2700,
@@ -770,7 +770,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXAntiMatterCannonRemove = {
+        AntiMatterCannonRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -779,20 +779,20 @@ UnitBlueprint {
             },
             Icon = 'exramc1',
             Name = 'Remove Anti-Matter Cannon',
-            Prerequisite = 'EXAntiMatterCannon',
+            Prerequisite = 'AntiMatterCannon',
             RemoveEnhancements = {
-                'EXAntiMatterCannon',
-                'EXAntiMatterCannonRemove',
+                'AntiMatterCannon',
+                'AntiMatterCannonRemove',
             },
             Slot = 'RCH',
         },
-        EXImprovedContainmentBottle = {
+        ImprovedContainmentBottle = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
             Icon = 'exramc2',
             Name = 'Improved Particle Accelerator (T3)',
-            Prerequisite = 'EXAntiMatterCannon',
+            Prerequisite = 'AntiMatterCannon',
             NewHealth = 2500,
             NewMaxRadius = 30,
             DamageMod = 100,
@@ -812,7 +812,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXImprovedContainmentBottleRemove = {
+        ImprovedContainmentBottleRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -821,23 +821,23 @@ UnitBlueprint {
             },
             Icon = 'exramc2',
             Name = 'Remove Improved Particle Accelerator',
-            Prerequisite = 'EXImprovedContainmentBottle',
+            Prerequisite = 'ImprovedContainmentBottle',
             DamageMod = -100,
             AntiMatterDamageMod = -1900,
             RemoveEnhancements = {
-                'EXAntiMatterCannon',
-                'EXImprovedContainmentBottle',
-                'EXImprovedContainmentBottleRemove',
+                'AntiMatterCannon',
+                'ImprovedContainmentBottle',
+                'ImprovedContainmentBottleRemove',
             },
             Slot = 'RCH',
         },
-        EXPowerBooster = {
+        PowerBooster = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exramc3',
             Name = 'Enhanced Mag Bottle (T4)',
-            Prerequisite = 'EXImprovedContainmentBottle',
+            Prerequisite = 'ImprovedContainmentBottle',
             NewHealth = 5500,
             NewMaxRadius = 35,
             NewAntiMatterMaxRadius = 35,
@@ -858,7 +858,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EXPowerBoosterRemove = {
+        PowerBoosterRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -867,14 +867,14 @@ UnitBlueprint {
             },
             Icon = 'exramc3',
             Name = 'Remove Enhanced Mag Bottle',
-            Prerequisite = 'EXPowerBooster',
+            Prerequisite = 'PowerBooster',
             AntiMatterDamageMod = -5500,
             NewMaxRadius = 30, -- This should always be set to only undo the buff
             RemoveEnhancements = {
-                'EXAntiMatterCannon',
-                'EXImprovedContainmentBottle',
-                'EXPowerBooster',
-                'EXPowerBoosterRemove',
+                'AntiMatterCannon',
+                'ImprovedContainmentBottle',
+                'PowerBooster',
+                'PowerBoosterRemove',
             },
             Slot = 'RCH',
         },

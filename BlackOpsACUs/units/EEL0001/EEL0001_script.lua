@@ -36,9 +36,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         EXFlameCannon01 = Class(EXFlameCannonWeapon) {},
         EXFlameCannon02 = Class(EXFlameCannonWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
-        EXAntiMatterCannon01 = Class(UEFACUAntiMatterWeapon) {},
-        EXAntiMatterCannon02 = Class(UEFACUAntiMatterWeapon) {},
-        EXAntiMatterCannon03 = Class(UEFACUAntiMatterWeapon) {},
+        AntiMatterCannon = Class(UEFACUAntiMatterWeapon) {},
         EXGattlingEnergyCannon01 = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
             OnCreate = function(self)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
@@ -275,9 +273,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('EXFlameCannon01', false)
         self:SetWeaponEnabledByLabel('EXFlameCannon02', false)
-        self:SetWeaponEnabledByLabel('EXAntiMatterCannon01', false)
-        self:SetWeaponEnabledByLabel('EXAntiMatterCannon02', false)
-        self:SetWeaponEnabledByLabel('EXAntiMatterCannon03', false)
+        self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
         self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon01', false)
         self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon02', false)
         self:SetWeaponEnabledByLabel('EXGattlingEnergyCannon03', false)
@@ -546,7 +542,7 @@ EEL0001 = Class(TWalkingLandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
         
-        if enh =='EXImprovedEngineering' then
+        if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER2COMMANDER)
             self:SetProduction(bp)
             
@@ -574,13 +570,13 @@ EEL0001 = Class(TWalkingLandUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
-        elseif enh =='EXImprovedEngineeringRemove' then
+        elseif enh == 'ImprovedEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
-        elseif enh =='EXAdvancedEngineering' then
+        elseif enh == 'AdvancedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:SetProduction(bp)
 
@@ -608,13 +604,13 @@ EEL0001 = Class(TWalkingLandUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT3BuildRate')
-        elseif enh =='EXAdvancedEngineeringRemove' then
+        elseif enh == 'AdvancedEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
-        elseif enh =='EXExperimentalEngineering' then
+        elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             self:SetProduction(bp)
             
@@ -642,13 +638,13 @@ EEL0001 = Class(TWalkingLandUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT4BuildRate')
-        elseif enh =='EXExperimentalEngineeringRemove' then
+        elseif enh == 'ExperimentalEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
             end
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
-        elseif enh =='EXCombatEngineering' then
+        elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
             if not Buffs['UEFACUT2BuildCombat'] then
                 BuffBlueprint {
@@ -688,7 +684,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-        elseif enh =='EXCombatEngineeringRemove' then
+        elseif enh == 'CombatEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT2BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT2BuildCombat')
             end
@@ -704,7 +700,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-        elseif enh =='EXAssaultEngineering' then
+        elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['UEFACUT3BuildCombat'] then
                 BuffBlueprint {
@@ -735,7 +731,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = true
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-        elseif enh =='EXAssaultEngineeringRemove' then
+        elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
             end
@@ -751,7 +747,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             self.wcFlamer02 = false
             self:ForkThread(self.WeaponRangeReset)
             self:ForkThread(self.WeaponConfigCheck)
-        elseif enh =='EXApocolypticEngineering' then
+        elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['UEFACUT4BuildCombat'] then
                 BuffBlueprint {
@@ -777,7 +773,7 @@ EEL0001 = Class(TWalkingLandUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT4BuildCombat')
-        elseif enh =='EXApocolypticEngineeringRemove' then
+        elseif enh == 'ApocolypticEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT4BuildCombat')
             end
@@ -796,14 +792,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             
         -- Zephyr Booster
             
-        elseif enh =='EXZephyrBooster' then
+        elseif enh =='ZephyrBooster' then
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh =='EXZephyrBoosterRemove' then
+        elseif enh =='ZephyrBoosterRemove' then
             self:TogglePrimaryGun(bp.DamageMod)
 
         -- Torpedoes
         
-        elseif enh =='EXTorpedoLauncher' then
+        elseif enh == 'TorpedoLauncher' then
             if not Buffs['UEFTorpHealth1'] then
                 BuffBlueprint {
                     Name = 'UEFTorpHealth1',
@@ -821,13 +817,13 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
-        elseif enh =='EXTorpedoLauncherRemove' then
+        elseif enh == 'TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth1') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth1')
             end
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        elseif enh =='EXTorpedoRapidLoader' then
+        elseif enh == 'TorpedoRapidLoader' then
             if not Buffs['UEFTorpHealth2'] then
                 BuffBlueprint {
                     Name = 'UEFTorpHealth2',
@@ -851,7 +847,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             
             -- Install Zephyr Cannon
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh =='EXTorpedoRapidLoaderRemove' then
+        elseif enh == 'TorpedoRapidLoaderRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth2') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth2')
             end
@@ -861,7 +857,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
             self:TogglePrimaryGun(bp.DamageMod)
-        elseif enh =='EXTorpedoClusterLauncher' then
+        elseif enh == 'TorpedoClusterLauncher' then
             if not Buffs['UEFTorpHealth3'] then
                 BuffBlueprint {
                     Name = 'UEFTorpHealth3',
@@ -885,7 +881,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             -- Improve Zephyr Cannon
             local wep = self:GetWeaponByLabel('RightZephyr')
             wep:AddDamageMod(bp.DamageMod)
-        elseif enh =='EXTorpedoClusterLauncherRemove' then
+        elseif enh == 'EXTorpedoClusterLauncherRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth3') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth3')
             end
@@ -898,7 +894,7 @@ EEL0001 = Class(TWalkingLandUnit) {
             
         -- AntiMatter Cannon
         
-        elseif enh =='EXAntiMatterCannon' then
+        elseif enh == 'AntiMatterCannon' then
             if not Buffs['UEFAntimatterHealth1'] then
                 BuffBlueprint {
                     Name = 'UEFAntimatterHealth1',
@@ -916,14 +912,14 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             Buff.ApplyBuff(self, 'UEFAntimatterHealth1')
 
-            self:SetWeaponEnabledByLabel('EXAntiMatterCannon01', true)
-        elseif enh =='EXAntiMatterCannonRemove' then
+            self:SetWeaponEnabledByLabel('AntiMatterCannon', true)
+        elseif enh == 'AntiMatterCannonRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth1') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth1')
             end
             
-            self:SetWeaponEnabledByLabel('EXAntiMatterCannon01', false)
-        elseif enh =='EXImprovedContainmentBottle' then
+            self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
+        elseif enh == 'ImprovedContainmentBottle' then
             if not Buffs['UEFAntimatterHealth2'] then
                 BuffBlueprint {
                     Name = 'UEFAntimatterHealth2',
@@ -942,23 +938,23 @@ EEL0001 = Class(TWalkingLandUnit) {
             Buff.ApplyBuff(self, 'UEFAntimatterHealth2')
             
             -- Buff AntiMatter Gun
-            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:AddDamageMod(bp.AntiMatterDamageMod)
             gun:ChangeDamageRadius(bp.NewDamageArea)
             
             -- Install Zephyr Cannon
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh =='EXImprovedContainmentBottleRemove' then    
+        elseif enh == 'ImprovedContainmentBottleRemove' then    
             if Buff.HasBuff(self, 'UEFAntimatterHealth2') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth2')
             end
             
-            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:AddDamageMod(bp.AntiMatterDamageMod)
             gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
 
             self:TogglePrimaryGun(bp.DamageMod)
-        elseif enh =='EXPowerBooster' then
+        elseif enh == 'PowerBooster' then
             if not Buffs['UEFAntimatterHealth3'] then
                 BuffBlueprint {
                     Name = 'UEFAntimatterHealth3',
@@ -976,19 +972,19 @@ EEL0001 = Class(TWalkingLandUnit) {
             end
             Buff.ApplyBuff(self, 'UEFAntimatterHealth3')
 
-            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:AddDamageMod(bp.AntiMatterDamageMod)
             gun:ChangeDamageRadius(bp.NewDamageArea)
             gun:ChangeMaxRadius(bp.NewAntiMatterMaxRadius)
             
             -- Use toggle function to increase MaxRadius of Zephyr Cannon
             self:TogglePrimaryGun(0, bp.NewMaxRadius)
-        elseif enh =='EXPowerBoosterRemove' then
+        elseif enh == 'PowerBoosterRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth3') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth3')
             end
             
-            local gun = self:GetWeaponByLabel('EXAntiMatterCannon01')
+            local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:AddDamageMod(bp.AntiMatterDamageMod)
             gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
