@@ -31,8 +31,8 @@ EEL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
-        DeathWeapon = Class(DeathNukeWeapon) {},
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
+        DeathWeapon = Class(DeathNukeWeapon) {},
         FlameCannon = Class(EXFlameCannonWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
         AntiMatterCannon = Class(UEFACUAntiMatterWeapon) {},
@@ -67,7 +67,7 @@ EEL0001 = Class(ACUUnit) {
         }, 
         EnergyLance02 = Class(PDLaserGrid) {
             PlayOnlyOneSoundCue = true,
-        }, 
+        },
         OverCharge = Class(TDFOverchargeWeapon) {},
         TacMissile = Class(TIFCruiseMissileLauncher) {
             CreateProjectileAtMuzzle = function(self)
@@ -92,7 +92,7 @@ EEL0001 = Class(ACUUnit) {
                 WaitFor(self.slider)
                 self.slider:Destroy()
             end,
-       },
+        },
     },
     
     __init = function(self)
@@ -145,8 +145,7 @@ EEL0001 = Class(ACUUnit) {
         self.SpysatEnabled = false
         
         -- Disable Upgrade Weapons
-        self:SetWeaponEnabledByLabel('RightZephyr', false)
-        self:SetWeaponEnabledByLabel('OverCharge', false)
+        self:SetWeaponEnabledByLabel('RightZephyr', true)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('FlameCannon', false)
         self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
@@ -660,6 +659,7 @@ EEL0001 = Class(ACUUnit) {
                     },
                 }
             end
+            Buff.ApplyBuff(self, 'UEFTorpHealth1')
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'TorpedoLauncherRemove' then
@@ -726,7 +726,7 @@ EEL0001 = Class(ACUUnit) {
             -- Improve Zephyr Cannon
             local wep = self:GetWeaponByLabel('RightZephyr')
             wep:AddDamageMod(bp.DamageMod)
-        elseif enh == 'EXTorpedoClusterLauncherRemove' then
+        elseif enh == 'TorpedoClusterLauncherRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth3') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth3')
             end
@@ -758,12 +758,16 @@ EEL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'UEFAntimatterHealth1')
 
             self:SetWeaponEnabledByLabel('AntiMatterCannon', true)
+            local gun = self:GetWeaponByLabel('AntiMatterCannon')
+            gun:ChangeMaxRadius(bp.NewMaxRadius)
         elseif enh == 'AntiMatterCannonRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth1') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth1')
             end
             
             self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
+            local gun = self:GetWeaponByLabel('AntiMatterCannon')
+            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
         elseif enh == 'ImprovedContainmentBottle' then
             if not Buffs['UEFAntimatterHealth2'] then
                 BuffBlueprint {
@@ -835,7 +839,7 @@ EEL0001 = Class(ACUUnit) {
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
             -- Remove Zephyr Jury Rigging
-            self:TogglePrimaryGun(0, bp.NewMaxRadius)
+            self:TogglePrimaryGun(0)
             
         -- Gatling Cannon
             
@@ -858,12 +862,16 @@ EEL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'UEFGatlingHeath1')
             
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', true)
+            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
+            gun:ChangeMaxRadius(35)
         elseif enh == 'GatlingEnergyCannonRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath1') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath1')
             end
             
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
+            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
+            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
         elseif enh == 'ImprovedCoolingSystem' then
             if not Buffs['UEFGatlingHeath2'] then
                 BuffBlueprint {
@@ -925,7 +933,7 @@ EEL0001 = Class(ACUUnit) {
             
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:AddDamageMod(bp.GatlingDamageMod)
-            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+            gun:ChangeMaxRadius(gun:GetBlueprint().GatlingMaxRadius)
             
         -- Shielding
 
@@ -1105,12 +1113,23 @@ EEL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'UEFMissileHealth1')
             
             self:SetWeaponEnabledByLabel('ClusterMissiles', true)
+            
+            -- Get rid of the range on the missiles to show this weapon's
+            local wep = self:GetWeaponByLabel('TacMissile')
+            wep:ChangeMaxRadius(22)
+            local wep2 = self:GetWeaponByLabel('TacNukeMissile')
+            wep2:ChangeMaxRadius(22)
         elseif enh == 'ClusterMissilePackRemove' then
             if Buff.HasBuff(self, 'UEFMissileHealth1') then
                 Buff.RemoveBuff(self, 'UEFMissileHealth1')
             end
             
             self:SetWeaponEnabledByLabel('ClusterMissiles', false)
+            
+            local wep = self:GetWeaponByLabel('TacMissile')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            local wep2 = self:GetWeaponByLabel('TacNukeMissile')
+            wep2:ChangeMaxRadius(wep2:GetBlueprint().MaxRadius)
         elseif enh == 'TacticalMissilePack' then
             if not Buffs['UEFMissileHealth2'] then
                 BuffBlueprint {
@@ -1137,11 +1156,12 @@ EEL0001 = Class(ACUUnit) {
             self:AddCommandCap('RULEUCC_Tactical')
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
             self:SetWeaponEnabledByLabel('TacMissile', true)
-            
+            local wep = self:GetWeaponByLabel('TacMissile')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             
             -- Buff Cluster Missiles
-            local wep = self:GetWeaponByLabel('ClusterMissiles')
-            wep:AddDamageMod(bp.ClusterDamageMod)
+            local cluster = self:GetWeaponByLabel('ClusterMissiles')
+            cluster:AddDamageMod(bp.ClusterDamageMod)
         elseif enh == 'TacticalMissilePackRemove' then
             if Buff.HasBuff(self, 'UEFMissileHealth2') then
                 Buff.RemoveBuff(self, 'UEFMissileHealth2')
@@ -1190,6 +1210,8 @@ EEL0001 = Class(ACUUnit) {
             self:AddCommandCap('RULEUCC_Nuke')
             self:AddCommandCap('RULEUCC_SiloBuildNuke')
             self:SetWeaponEnabledByLabel('TacNukeMissile', true)
+            local wep = self:GetWeaponByLabel('TacNukeMissile')
+            wep:ChangeMaxRadius(wep2:GetBlueprint().MaxRadius)
             
             -- Buff Cluster Missiles
             local wep = self:GetWeaponByLabel('ClusterMissiles')
