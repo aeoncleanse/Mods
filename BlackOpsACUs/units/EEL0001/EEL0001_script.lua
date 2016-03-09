@@ -382,8 +382,8 @@ EEL0001 = Class(ACUUnit) {
         local wep = self:GetWeaponByLabel('RightZephyr')
         local oc = self:GetWeaponByLabel('OverCharge')
     
-        local wepRadius = radius or GetBlueprint().MaxRadius
-        local ocRadius = radius or GetBlueprint().MaxRadius
+        local wepRadius = radius or wep:GetBlueprint().MaxRadius
+        local ocRadius = radius or oc:GetBlueprint().MaxRadius
     
         -- Change Damage
         wep:AddDamageMod(damage)
