@@ -140,6 +140,7 @@ UnitBlueprint {
         'OVERLAYSONAR',
         'OVERLAYANTIAIR',
         'OVERLAYANTINAVY',
+        'SHOWATTACKRETICLE',
     },
     Defense = {
         AirThreatLevel = 0,
