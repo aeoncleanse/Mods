@@ -374,7 +374,7 @@ EEL0001 = Class(ACUUnit) {
         local bpEcon = self:GetBlueprint().Economy
         
         self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
-        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondEnergy or 0)
+        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
     end,
     
     -- Function to toggle the Zephyr Booster
@@ -384,7 +384,7 @@ EEL0001 = Class(ACUUnit) {
     
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
-    
+
         -- Change Damage
         wep:AddDamageMod(damage)
         

@@ -307,7 +307,7 @@ UnitBlueprint {
         MaxBuildDistance = 10,
         NaturalProducer = true,
         NeedToFaceTargetToBuild = false,
-        ProductionPerSecondEnergy = 10,
+        ProductionPerSecondEnergy = 20,
         ProductionPerSecondMass = 1,
         StorageEnergy = 5000,
         StorageMass = 650,
@@ -343,7 +343,7 @@ UnitBlueprint {
             Name = 'Tech 2 Improved Engineering (T1)',
             NewBuildRate = 20,
             NewHealth = 2000,
-            ProductionPerSecondEnergy = 240,
+            ProductionPerSecondEnergy = 230,
             ProductionPerSecondMass = 3,
             ShowBones = {
                 'Engineering_Suite',
@@ -385,7 +385,7 @@ UnitBlueprint {
             Prerequisite = 'ImprovedEngineering',
             NewBuildRate = 60,
             NewHealth = 6000,
-            ProductionPerSecondEnergy = 1000,
+            ProductionPerSecondEnergy = 980,
             ProductionPerSecondMass = 6,
             ShowBones = {
                 'Engineering_Suite',
@@ -428,7 +428,7 @@ UnitBlueprint {
             Prerequisite = 'AdvancedEngineering',
             NewBuildRate = 20,
             NewHealth = 12000,
-            ProductionPerSecondEnergy = 3000,
+            ProductionPerSecondEnergy = 2980,
             ProductionPerSecondMass = 12,
             ShowBones = {
                 'Engineering_Suite',
