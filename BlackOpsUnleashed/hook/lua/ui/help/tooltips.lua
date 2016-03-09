@@ -22,6 +22,10 @@ Tooltips['BO_transform'] = {
     title = "Change Unit Mode",
     description = "Transforms the unit between its stationary and mobile modes",
 }
+Tooltips['BO_lock'] = {
+    title = "Lock Position",
+    description = "Locks the unit in place to prevent it moving",
+}
 Tooltips['spoof_toggle'] = {
     title = "Spoof Toggle",
     description = "Turns on/off the selected unit's Radar Spoofing",

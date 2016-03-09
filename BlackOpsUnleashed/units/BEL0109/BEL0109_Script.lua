@@ -13,54 +13,57 @@ BEL0109 = Class(TLandUnit) {
        MainGun = Class(TIFArtilleryWeapon) {
             PlayFxWeaponUnpackSequence = function(self)
                 -- Remove weapon toggle when unit begins unpacking
-                self.unit:RemoveToggleCap('RULEUTC_WeaponToggle')
+                self.unit.deployed = true
                 TIFArtilleryWeapon.PlayFxWeaponUnpackSequence(self)
             end,
             
             PlayFxWeaponPackSequence = function(self)
                 TIFArtilleryWeapon.PlayFxWeaponPackSequence(self)
                 -- Only reinstate after unit is fully finished repacking
-                self.unit:AddToggleCap('RULEUTC_WeaponToggle')
+                self.unit.deployed = false
             end,
+            
+            WeaponPackingState = State(TIFArtilleryWeapon.WeaponPackingState) {
+                Main = function(self)
+                    self.unit:SetBusy(true)
+
+                    local bp = self:GetBlueprint()
+                    WaitSeconds(self:GetBlueprint().WeaponRepackTimeout)
+
+                    self:AimManipulatorSetEnabled(false)
+                    if not self.unit.locked then
+                        self:PlayFxWeaponPackSequence()
+                        if bp.WeaponUnpackLocksMotion then
+                            self.unit:SetImmobile(false)
+                        end
+                    end
+                    ChangeState(self, self.IdleState)
+                end,
+            },
         },
     },
-        
+
     OnScriptBitSet = function(self, bit)
         TLandUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then
-            -- Remove the toggle when pressed
-            self:RemoveToggleCap('RULEUTC_WeaponToggle')
-            -- Spawn turret mode
-            self:ForkThread(self.TurretSpawn)
+        if bit == 7 then
+            if not self.deployed then
+                local wep = self:GetWeaponByLabel('MainGun')
+                wep:ForkThread(wep.PlayFxWeaponUnpackSequence)
+            end
+            self.locked = true
+            self:SetImmobile(true)
         end
     end,
     
-    TurretSpawn = function(self)
-        -- Only spawns the Avenger "B" structure only if the Avenger "A" tank is not dead
-        if not self.Dead then
-            -- Gets the current orientation of the Avenger "A" in the game world
-            local myOrientation = self:GetOrientation()
-
-            -- Gets the current position of the Avenger "A" in the game world
-            local location = self:GetPosition()
-
-            -- Gets the current health the Avenger "A"
-            local health = self:GetHealth()
-
-            -- Creates our Avenger "b" at the Avenger "a" location & direction
-            local AvengerB = CreateUnit('bel0109b', self:GetArmy(), location[1], location[2], location[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
-
-            -- Passes the health of the Unit "A" to unit "B" and passes vet
-            AvengerB:SetHealth(self, health)
-            AvengerB:AddXP(self.xp)
-
-            -- Nil's local Avenger B
-            AvengerB = nil
-
-            -- Avenger "A" removal
-            self:Destroy()
+    OnScriptBitClear = function(self, bit)
+        TLandUnit.OnScriptBitClear(self, bit)
+        if bit == 7 then
+            if not self:IsUnitState('Attacking') then
+                self:SetImmobile(false)
+            end
+            self.locked = false
         end
-    end,    
+    end,
 }
 
 TypeClass = BEL0109
