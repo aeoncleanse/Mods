@@ -1706,7 +1706,6 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'OverCharge',
-            ManualFire = true,
             MaxRadius = 22,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
