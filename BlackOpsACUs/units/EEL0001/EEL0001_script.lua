@@ -25,7 +25,7 @@ local UEFACUAntiMatterWeapon = Weapons2.UEFACUAntiMatterWeapon
 local PDLaserGrid = Weapons2.PDLaserGrid2 
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
-local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
+local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
 
 EEL0001 = Class(ACUUnit) {   
     DeathThreadDestructionWaitTime = 2,
@@ -39,7 +39,7 @@ EEL0001 = Class(ACUUnit) {
         GatlingEnergyCannon = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
             OnCreate = function(self)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then 
+                if not self.unit.SpinManip then
                     self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
                     self.unit.Trash:Add(self.unit.SpinManip)
                 end
@@ -860,7 +860,7 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFGatlingHeath1')
-            
+
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', true)
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:ChangeMaxRadius(35)

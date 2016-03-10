@@ -883,12 +883,12 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        GattlingEnergyCannon = {
+        GatlingEnergyCannon = {
             BuildCostEnergy = 45000,
             BuildCostMass = 900,
             BuildTime = 2700,
             Icon = 'exrgec1',
-            Name = 'Gattling Energy Cannon (T2)',
+            Name = 'Gatling Energy Cannon (T2)',
             NewHealth = 1000,
             ShowBones = {
                 'Gatling_Cannon',
@@ -904,7 +904,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        GattlingEnergyCannonRemove = {
+        GatlingEnergyCannonRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -912,11 +912,11 @@ UnitBlueprint {
                 'Gatling_Cannon',
             },
             Icon = 'exrgec1',
-            Name = 'Remove Gattling Energy Cannon',
-            Prerequisite = 'GattlingEnergyCannon',
+            Name = 'Remove Gatling Energy Cannon',
+            Prerequisite = 'GatlingEnergyCannon',
             RemoveEnhancements = {
-                'GattlingEnergyCannon',
-                'GattlingEnergyCannonRemove',
+                'GatlingEnergyCannon',
+                'GatlingEnergyCannonRemove',
             },
             Slot = 'RCH',
         },
@@ -926,7 +926,7 @@ UnitBlueprint {
             BuildTime = 8100,
             Icon = 'exrgec2',
             Name = 'Automatic Barrel Stabalizers (T3)',
-            Prerequisite = 'GattlingEnergyCannon',
+            Prerequisite = 'GatlingEnergyCannon',
             NewHealth = 2500,
             DamageMod = 100,
             NewMaxRadius = 30,
@@ -959,7 +959,7 @@ UnitBlueprint {
             DamageMod = -100,
             GatlingDamageMod = -175,
             RemoveEnhancements = {
-                'GattlingEnergyCannon',
+                'GatlingEnergyCannon',
                 'ImprovedCoolingSystem',
                 'ImprovedCoolingSystemRemove',
             },
@@ -1002,7 +1002,7 @@ UnitBlueprint {
             GatlingDamageMod = -550,
             GatlingMaxRadius = 40, -- Needs to undo only this upgrade
             RemoveEnhancements = {
-                'GattlingEnergyCannon',
+                'GatlingEnergyCannon',
                 'ImprovedCoolingSystem',
                 'EnergyShellHardener',
                 'EnergyShellHardenerRemove',
@@ -2020,7 +2020,7 @@ UnitBlueprint {
             Damage = 75,
             DamageRadius = 1,
             DamageType = 'Normal',
-            DisplayName = 'Plasma Gattling Cannon',
+            DisplayName = 'Plasma Gatling Cannon',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
                 Seabed = 'Land|Water|Seabed',
