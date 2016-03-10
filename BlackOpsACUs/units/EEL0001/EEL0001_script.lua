@@ -18,11 +18,11 @@ local TIFCruiseMissileLauncher = TerranWeaponFile.TIFCruiseMissileLauncher
 local TDFOverchargeWeapon = TerranWeaponFile.TDFOverchargeWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
-local UEFACUHeavyPlasmaGatlingCannonWeapon = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').UEFACUHeavyPlasmaGatlingCannonWeapon
 local Weapons2 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
+local UEFACUHeavyPlasmaGatlingCannonWeapon = Weapons2.UEFACUHeavyPlasmaGatlingCannonWeapon
 local EXFlameCannonWeapon = Weapons2.HawkGaussCannonWeapon
 local UEFACUAntiMatterWeapon = Weapons2.UEFACUAntiMatterWeapon
-local PDLaserGrid = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua').PDLaserGrid2 
+local PDLaserGrid = Weapons2.PDLaserGrid2 
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
 local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
@@ -1211,11 +1211,11 @@ EEL0001 = Class(ACUUnit) {
             self:AddCommandCap('RULEUCC_SiloBuildNuke')
             self:SetWeaponEnabledByLabel('TacNukeMissile', true)
             local wep = self:GetWeaponByLabel('TacNukeMissile')
-            wep:ChangeMaxRadius(wep2:GetBlueprint().MaxRadius)
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             
             -- Buff Cluster Missiles
-            local wep = self:GetWeaponByLabel('ClusterMissiles')
-            wep:AddDamageMod(bp.ClusterDamageMod)
+            local cluster = self:GetWeaponByLabel('ClusterMissiles')
+            cluster:AddDamageMod(bp.ClusterDamageMod)
         elseif enh == 'TacticalNukeSubstitutionRemove' then
             if Buff.HasBuff(self, 'UEFMissileHealth3') then
                 Buff.RemoveBuff(self, 'UEFMissileHealth3')
