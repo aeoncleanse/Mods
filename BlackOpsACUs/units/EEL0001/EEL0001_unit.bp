@@ -309,7 +309,7 @@ UnitBlueprint {
         NeedToFaceTargetToBuild = false,
         ProductionPerSecondEnergy = 20,
         ProductionPerSecondMass = 1,
-        StorageEnergy = 5000,
+        StorageEnergy = 4000,
         StorageMass = 650,
         TeleportEnergyMod = 0.03985,
         TeleportMassMod = 0.03985,
