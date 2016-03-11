@@ -2037,7 +2037,7 @@ UnitBlueprint {
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
             ProjectileId = '/mods/BlackOpsACUs/projectiles/UEFHeavyPlasmaGatlingCannon03/UEFHeavyPlasmaGatlingCannon03_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {

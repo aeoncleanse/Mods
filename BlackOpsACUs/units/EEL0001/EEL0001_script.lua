@@ -60,6 +60,14 @@ EEL0001 = Class(ACUUnit) {
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
+            
+            IdleState = State(UEFACUHeavyPlasmaGatlingCannonWeapon.IdleState) {
+                Main = function(self)
+                    if self.unit.SpinManip then
+                        self.unit.SpinManip:SetTargetSpeed(0)
+                    end
+                end,
+            },
         },
         ClusterMissiles = Class(TIFCruiseMissileLauncher) {},
         EnergyLance01 = Class(PDLaserGrid) {
