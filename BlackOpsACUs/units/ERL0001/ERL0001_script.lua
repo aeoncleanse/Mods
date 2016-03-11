@@ -23,7 +23,7 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 local CEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua').CEMPArrayBeam01 
 local CEMPArrayBeam02 = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua').CEMPArrayBeam02 
 local CEMPArrayBeam03 = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua').CEMPArrayBeam03 
-local RocketPack = import('/lua/cybranweapons.lua').CDFRocketIridiumWeapon02
+local RocketPack = CWeapons.CDFRocketIridiumWeapon02
 
 ERL0001 = Class(CWalkingLandUnit) {
     DeathThreadDestructionWaitTime = 2,
@@ -33,7 +33,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         RightRipper = Class(CCannonMolecularWeapon) {
             OnCreate = function(self)
                 CCannonMolecularWeapon.OnCreate(self)
-                --Disable buff 
+                -- Disable buff 
                 self:DisableBuff('STUN')
             end,
         },
@@ -165,86 +165,13 @@ ERL0001 = Class(CWalkingLandUnit) {
         AA03 = Class(CEMPArrayBeam02) {},
         AA04 = Class(CEMPArrayBeam02) {},
 
-        OverCharge = Class(CDFOverchargeWeapon) {
-            OnCreate = function(self)
-                CDFOverchargeWeapon.OnCreate(self)
-                self:SetWeaponEnabled(false)
-                self.AimControl:SetEnabled(false)
-                self.AimControl:SetPrecedence(0)
-                self.unit:SetOverchargePaused(false)
-            end,
-
-            OnEnableWeapon = function(self)
-                if self:BeenDestroyed() then return end
-                CDFOverchargeWeapon.OnEnableWeapon(self)
-                self:SetWeaponEnabled(true)
-                self.unit:SetWeaponEnabledByLabel('RightRipper', false)
-                self.unit:BuildManipulatorSetEnabled(false)
-                self.AimControl:SetEnabled(true)
-                self.AimControl:SetPrecedence(20)
-                self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.AimControl:SetHeadingPitch(self.unit:GetWeaponManipulatorByLabel('RightRipper'):GetHeadingPitch())
-            end,
-
-            OnWeaponFired = function(self)
-                CDFOverchargeWeapon.OnWeaponFired(self)
-                self:OnDisableWeapon()
-                self:ForkThread(self.PauseOvercharge)
-            end,
-            
-            OnDisableWeapon = function(self)
-                if self.unit:BeenDestroyed() then return end
-                self:SetWeaponEnabled(false)
-                self.unit:SetWeaponEnabledByLabel('RightRipper', true)
-                self.unit:BuildManipulatorSetEnabled(false)
-                self.AimControl:SetEnabled(false)
-                self.AimControl:SetPrecedence(0)
-                self.unit.BuildArmManipulator:SetPrecedence(0)
-                self.unit:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.AimControl:GetHeadingPitch())
-            end,
-            
-            PauseOvercharge = function(self)
-                if not self.unit:IsOverchargePaused() then
-                    self.unit:SetOverchargePaused(true)
-                    WaitSeconds(1/self:GetBlueprint().RateOfFire)
-                    self.unit:SetOverchargePaused(false)
-                end
-            end,
-            
-            OnFire = function(self)
-                if not self.unit:IsOverchargePaused() then
-                    CDFOverchargeWeapon.OnFire(self)
-                end
-            end,
-            IdleState = State(CDFOverchargeWeapon.IdleState) {
-                OnGotTarget = function(self)
-                    if not self.unit:IsOverchargePaused() then
-                        CDFOverchargeWeapon.IdleState.OnGotTarget(self)
-                    end
-                end,            
-                OnFire = function(self)
-                    if not self.unit:IsOverchargePaused() then
-                        ChangeState(self, self.RackSalvoFiringState)
-                    end
-                end,
-            },
-            RackSalvoFireReadyState = State(CDFOverchargeWeapon.RackSalvoFireReadyState) {
-                OnFire = function(self)
-                    if not self.unit:IsOverchargePaused() then
-                        CDFOverchargeWeapon.RackSalvoFireReadyState.OnFire(self)
-                    end
-                end,
-            },    
-        },
+        OverCharge = Class(CDFOverchargeWeapon) {},
     },
     
     __init = function(self)
         ACUUnit.__init(self, 'RightRipper')
     end,
 
-    -- ********
-    -- Creation
-    -- ********
     OnCreate = function(self)
         CWalkingLandUnit.OnCreate(self)
         self:SetCapturable(false)
@@ -274,49 +201,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:HideBone('Back_CombatPack', true)
         self:HideBone('Chest_Open', true)
         -- Restrict what enhancements will enable later
-        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
-    end,
-
-
-    OnPrepareArmToBuild = function(self)
-        CWalkingLandUnit.OnPrepareArmToBuild(self)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(true)
-        self.BuildArmManipulator:SetPrecedence(20)
-        self.wcBuildMode = true
-        self:ForkThread(self.WeaponConfigCheck)
-        self.BuildArmManipulator:SetHeadingPitch(self:GetWeaponManipulatorByLabel('RightRipper'):GetHeadingPitch())
-    end,
-
-    OnStopCapture = function(self, target)
-        CWalkingLandUnit.OnStopCapture(self, target)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-    end,
-
-    OnFailedCapture = function(self, target)
-        CWalkingLandUnit.OnFailedCapture(self, target)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-    end,
-
-    OnStopReclaim = function(self, target)
-        CWalkingLandUnit.OnStopReclaim(self, target)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
+        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
@@ -331,79 +216,41 @@ ERL0001 = Class(CWalkingLandUnit) {
         self.EMPArrayEffects01 = {}
         self.EMPArrayEffects02 = {}
         self.EMPArrayEffects03 = {}
-        self.wcBuildMode = false
-        self.wcOCMode = false
-        self.wcRocket01 = false
-        self.wcRocket02 = false
-        self.wcTorp01 = false
-        self.wcTorp02 = false
-        self.wcTorp03 = false
-        self.wcEMP01 = false
-        self.wcEMP02 = false
-        self.wcEMP03 = false
-        self.wcMasor01 = false
-        self.wcMasor02 = false
-        self.wcMasor03 = false
-        self.wcAA01 = false
-        self.wcAA02 = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:ForkThread(self.WeaponRangeReset)
         self:ForkThread(self.GiveInitialResources)
-        self.RBImpEngineering = false
-        self.RBAdvEngineering = false
-        self.RBExpEngineering = false
-        self.RBComEngineering = false
-        self.RBAssEngineering = false
-        self.RBApoEngineering = false
-        self.RBDefTier1 = false
-        self.RBDefTier2 = false
-        self.RBDefTier3 = false
-        self.RBComTier1 = false
-        self.RBComTier2 = false
-        self.RBComTier3 = false
-        self.RBIntTier1 = false
-        self.RBIntTier2 = false
-        self.RBIntTier3 = false
-        self.regenammount = 0
-        self:ForkThread(self.RegenBuffThread)
-        self:ForkThread(self.RegenHeartbeat)
-        self.DefaultGunBuffApplied = false
-    end,
-
-    OnFailedToBuild = function(self)
-        CWalkingLandUnit.OnFailedToBuild(self)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
+        
+        -- Disable Upgrade Weapons
+        self:SetWeaponEnabledByLabel('RightRipper', true)
+        self:SetWeaponEnabledByLabel('RocketPack01', false)
+        self:SetWeaponEnabledByLabel('RocketPack02', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
+        self:SetWeaponEnabledByLabel('EMPArray01', false)
+        self:SetWeaponEnabledByLabel('EMPArray02', false)
+        self:SetWeaponEnabledByLabel('EMPArray03', false)
+        self:SetWeaponEnabledByLabel('EMPArray04', false)
+        self:SetWeaponEnabledByLabel('EMPShot01', false)
+        self:SetWeaponEnabledByLabel('EMPShot02', false)
+        self:SetWeaponEnabledByLabel('EMPShot03', false)
+        self:SetWeaponEnabledByLabel('MLG01', false)
+        self:SetWeaponEnabledByLabel('MLG02', false)
+        self:SetWeaponEnabledByLabel('MLG03', false)
+        self:SetWeaponEnabledByLabel('AA01', false)
+        self:SetWeaponEnabledByLabel('AA02', false)
+        self:SetWeaponEnabledByLabel('AA03', false)
+        
+        
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)    
         CWalkingLandUnit.OnStartBuild(self, unitBeingBuilt, order)
-        self.UnitBeingBuilt = unitBeingBuilt
         self.UnitBuildOrder = order
-        self.BuildingUnit = true        
-    end,    
-
-    OnStopBuild = function(self, unitBeingBuilt)
-        CWalkingLandUnit.OnStopBuild(self, unitBeingBuilt)
-        if self:BeenDestroyed() then return end
-        self:BuildManipulatorSetEnabled(false)
-        self.BuildArmManipulator:SetPrecedence(0)
-        self.wcBuildMode = false
-        self:ForkThread(self.WeaponConfigCheck)
-        self:GetWeaponManipulatorByLabel('RightRipper'):SetHeadingPitch(self.BuildArmManipulator:GetHeadingPitch())
-        self.UnitBeingBuilt = nil
-        self.UnitBuildOrder = nil
-        self.BuildingUnit = false          
     end,
 
     PlayCommanderWarpInEffect = function(self)
         self:HideBone(0, true)
         self:SetUnSelectable(true)
-        self:SetBusy(true)        
+        self:SetBusy(true)
         self:SetBlockCommandQueue(true)
         self:ForkThread(self.WarpInEffectThread)
     end,
@@ -450,364 +297,47 @@ ERL0001 = Class(CWalkingLandUnit) {
         
         WaitSeconds(6)
         self:SetMesh(self:GetBlueprint().Display.MeshBlueprint, true)
-    end,    
-
-    GiveInitialResources = function(self)
-        WaitTicks(2)
-        self:GetAIBrain():GiveResource('Energy', self:GetBlueprint().Economy.StorageEnergy)
-        self:GetAIBrain():GiveResource('Mass', self:GetBlueprint().Economy.StorageMass)
     end,
 
-    RegenBuffThread = function(self)
-        --if Buff.HasBuff(self, 'RegenBoost') then
-        --    Buff.RemoveBuff(self, 'RegenBoost')
-        --end
-        self.regenammount = 0
-        local BP = self:GetBlueprint()
-        if self.RBImpEngineering then
-            self.regenammount = self.regenammount + BP.Enhancements.ImprovedEngineering.NewRegenRate
-        end
-        if self.RBAdvEngineering then
-            self.regenammount = self.regenammount + BP.Enhancements.AdvancedEngineering.NewRegenRate
-        end
-        if self.RBExpEngineering then
-            self.regenammount = self.regenammount + BP.Enhancements.ExperimentalEngineering.NewRegenRate
-        end
-        if self.RBComEngineering then
-            self.regenammount = self.regenammount + BP.Enhancements.CombatEngineering.NewRegenRate
-        end
-        if self.RBAssEngineering then
-            self.regenammount = self.regenammount + BP.Enhancements.AssaultEngineering.NewRegenRate
-        end
-        if self.RBApoEngineering then
-            self.regenammount = self.regenammount + BP.Enhancements.ApocolypticEngineering.NewRegenRate
-        end
-        if self.RBDefTier1 then
-            self.regenammount = self.regenammount + BP.Enhancements.ArmorPlating.NewRegenRate
-        end
-        if self.RBDefTier2 then
-            self.regenammount = self.regenammount + BP.Enhancements.StructuralIntegrity.NewRegenRate
-        end
-        if self.RBDefTier3 then
-            self.regenammount = self.regenammount + BP.Enhancements.CompositeMaterials.NewRegenRate
-        end
-        if self.RBComTier1 then
-            self.regenammount = self.regenammount + BP.Enhancements.MobilitySubsystems.NewRegenRate
-        end
-        if self.RBComTier2 then
-            self.regenammount = self.regenammount + BP.Enhancements.DefensiveSubsystems.NewRegenRate
-        end
-        if self.RBComTier3 then
-            self.regenammount = self.regenammount + BP.Enhancements.NanoKickerSubsystems.NewRegenRate
-        end
-        if self.RBIntTier1 then
-            self.regenammount = self.regenammount + BP.Enhancements.ElectronicsEnhancment.NewRegenRate
-        end
-        if self.RBIntTier2 then
-            self.regenammount = self.regenammount + BP.Enhancements.ElectronicCountermeasures.NewRegenRate
-        end
-        if self.RBIntTier3 then
-            self.regenammount = self.regenammount + BP.Enhancements.CloakingSubsystems.NewRegenRate
-        end        
-        --if not Buffs['RegenBoost'] then
-        --    BuffBlueprint {
-        --        Name = 'RegenBoost',
-        --        DisplayName = 'RegenBoost',
-        --        BuffType = 'RegenBoost',
-        --        Stacks = 'REPLACE',
-        --        Duration = -1,
-        --        Affects = {
-        --            Regen = {
-        --                Add = self.regenammount,
-        --                Mult = 1.0,
-        --            },
-        --        },
-        --    }
-        --end
-        --Buff.ApplyBuff(self, 'RegenBoost')
-        --LOG('xxxxxxxxxxxx Cybran Applied Regen', self.regenammount)
+    -- New function to set up production numbers
+    SetProduction = function(self, bp)
+        local energy = bp.ProductionPerSecondEnergy or 0
+        local mass = bp.ProductionPerSecondMass or 0
+        
+        local bpEcon = self:GetBlueprint().Economy
+        
+        self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
+        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
     end,
     
-    RegenHeartbeat = function(self)
-        self.regenapply = self.regenammount / 10
-        self.HealthDiff = self:GetMaxHealth() - self:GetHealth()
-        if self.HealthDiff <= self.regenapply then
-            self:SetHealth(self, self:GetHealth() + self.HealthDiff)
-            --LOG('xxxxxxxxxxxx Applied HealthDif', self.HealthDiff)
-        elseif self.HealthDiff >= self.regenapply then
-            self:SetHealth(self, self:GetHealth() + self.regenapply)
-            --LOG('xxxxxxxxxxxx Applied Regen', self.regenapply)
-        end
-        WaitSeconds(0.1)
-        --LOG('xxxxxxxxxxxx Heartbeat Delay and Reset')
-        self:ForkThread(self.RegenHeartbeat)
-    end,
-
-    DefaultGunBuffThread = function(self)
-        if not self.DefaultGunBuffApplied then
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeRateOfFire(2)
-            local wepOvercharge = self:GetWeaponByLabel('OverCharge')
-            wepOvercharge:ChangeMaxRadius(30)
-            self:ShowBone('Right_Upgrade', true)
-            self.DefaultGunBuffApplied = true
-        end
-    end,
-
-    WeaponRangeReset = function(self)
-        if not self.wcRocket01 then
-            local wepFlamer01 = self:GetWeaponByLabel('RocketPack01')
-            wepFlamer01:ChangeMaxRadius(1)
-        end
-        if not self.wcRocket02 then
-            local wepFlamer02 = self:GetWeaponByLabel('RocketPack02')
-            wepFlamer02:ChangeMaxRadius(1)
-        end
-        if not self.wcTorp01 then
-            local wepTorpedo01 = self:GetWeaponByLabel('TorpedoLauncher01')
-            wepTorpedo01:ChangeMaxRadius(1)
-        end
-        if not self.wcTorp02 then
-            local wepTorpedo02 = self:GetWeaponByLabel('TorpedoLauncher02')
-            wepTorpedo02:ChangeMaxRadius(1)
-        end
-        if not self.wcTorp03 then
-            local wepTorpedo03 = self:GetWeaponByLabel('TorpedoLauncher03')
-            wepTorpedo03:ChangeMaxRadius(1)
-        end
-        if not self.wcEMP01 and not self.wcEMP02 and not self.wcEMP03 then
-                local wepAntiMatter01 = self:GetWeaponByLabel('EMPArray01')
-                wepAntiMatter01:ChangeMaxRadius(1)
-                local wepAntiMatter02 = self:GetWeaponByLabel('EMPArray02')
-                wepAntiMatter02:ChangeMaxRadius(1)
-                local wepAntiMatter03 = self:GetWeaponByLabel('EMPArray03')
-                wepAntiMatter03:ChangeMaxRadius(1)
-                local wepAntiMatter04 = self:GetWeaponByLabel('EMPArray04')
-                wepAntiMatter04:ChangeMaxRadius(1)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot01')
-                wepAntiMatter06:ChangeMaxRadius(1)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot02')
-                wepAntiMatter06:ChangeMaxRadius(1)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot03')
-                wepAntiMatter06:ChangeMaxRadius(1)
-        end
-        if not self.wcMasor01 then
-            local wepGattling01 = self:GetWeaponByLabel('MLG01')
-            wepGattling01:ChangeMaxRadius(1)
-        end
-        if not self.wcMasor02 then
-            local wepGattling02 = self:GetWeaponByLabel('MLG02')
-            wepGattling02:ChangeMaxRadius(1)
-        end
-        if not self.wcMasor03 then
-            local wepGattling03 = self:GetWeaponByLabel('MLG03')
-            wepGattling03:ChangeMaxRadius(1)
-        end
-        if not self.wcAA01 then
-            local wepLance01 = self:GetWeaponByLabel('AA01')
-            wepLance01:ChangeMaxRadius(1)
-            local wepLance02 = self:GetWeaponByLabel('AA02')
-            wepLance02:ChangeMaxRadius(1)
-        end
-        if not self.wcAA02 then
-            local wepLance03 = self:GetWeaponByLabel('AA03')
-            wepLance03:ChangeMaxRadius(1)
-            local wepLance04 = self:GetWeaponByLabel('AA04')
-            wepLance04:ChangeMaxRadius(1)
-        end
-    end,
+    -- Function to toggle the Ripper
+    TogglePrimaryGun = function(self, damage, radius)
+        local wep = self:GetWeaponByLabel('RightRipper')
+        local oc = self:GetWeaponByLabel('OverCharge')
     
-    WeaponConfigCheck = function(self)
-        if self.wcBuildMode then
-            self:SetWeaponEnabledByLabel('RightRipper', false)
-            self:SetWeaponEnabledByLabel('OverCharge', false)
-            self:SetWeaponEnabledByLabel('RocketPack01', false)
-            self:SetWeaponEnabledByLabel('RocketPack02', false)
-            self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
-            self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
-            self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
-            self:SetWeaponEnabledByLabel('EMPArray01', false)
-            self:SetWeaponEnabledByLabel('EMPArray02', false)
-            self:SetWeaponEnabledByLabel('EMPArray03', false)
-            self:SetWeaponEnabledByLabel('EMPArray04', false)
-            self:SetWeaponEnabledByLabel('EMPShot01', false)
-            self:SetWeaponEnabledByLabel('EMPShot02', false)
-            self:SetWeaponEnabledByLabel('EMPShot03', false)
-            self:SetWeaponEnabledByLabel('MLG01', false)
-            self:SetWeaponEnabledByLabel('MLG02', false)
-            self:SetWeaponEnabledByLabel('MLG03', false)
-            self:SetWeaponEnabledByLabel('AA01', false)
-            self:SetWeaponEnabledByLabel('AA02', false)
-            self:SetWeaponEnabledByLabel('AA03', false)
-            self:SetWeaponEnabledByLabel('AA04', false)
-        end
-        if self.wcOCMode then
-            self:SetWeaponEnabledByLabel('RightRipper', false)
-            self:SetWeaponEnabledByLabel('RocketPack01', false)
-            self:SetWeaponEnabledByLabel('RocketPack02', false)
-            self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
-            self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
-            self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
-            self:SetWeaponEnabledByLabel('EMPArray01', false)
-            self:SetWeaponEnabledByLabel('EMPArray02', false)
-            self:SetWeaponEnabledByLabel('EMPArray03', false)
-            self:SetWeaponEnabledByLabel('EMPArray04', false)
-            self:SetWeaponEnabledByLabel('EMPShot01', false)
-            self:SetWeaponEnabledByLabel('EMPShot02', false)
-            self:SetWeaponEnabledByLabel('EMPShot03', false)
-            self:SetWeaponEnabledByLabel('MLG01', false)
-            self:SetWeaponEnabledByLabel('MLG02', false)
-            self:SetWeaponEnabledByLabel('MLG03', false)
-            self:SetWeaponEnabledByLabel('AA01', false)
-            self:SetWeaponEnabledByLabel('AA02', false)
-            self:SetWeaponEnabledByLabel('AA03', false)
-            self:SetWeaponEnabledByLabel('AA04', false)
-        end
-        if not self.wcBuildMode and not self.wcOCMode then
-            self:SetWeaponEnabledByLabel('RightRipper', true)
-            self:SetWeaponEnabledByLabel('OverCharge', false)
-            self:SetWeaponEnabledByLabel('EMPArray02', false)
-            self:SetWeaponEnabledByLabel('EMPArray03', false)
-            self:SetWeaponEnabledByLabel('EMPArray04', false)
-            self:SetWeaponEnabledByLabel('EMPShot01', false)
-            self:SetWeaponEnabledByLabel('EMPShot02', false)
-            self:SetWeaponEnabledByLabel('EMPShot03', false)
-            if self.wcRocket01 then
-                self:SetWeaponEnabledByLabel('RocketPack01', true)
-                local wepFlamer01 = self:GetWeaponByLabel('RocketPack01')
-                wepFlamer01:ChangeMaxRadius(22)
-            else
-                self:SetWeaponEnabledByLabel('RocketPack01', false)
-            end
-            if self.wcRocket02 then
-                self:SetWeaponEnabledByLabel('RocketPack02', true)
-                local wepFlamer02 = self:GetWeaponByLabel('RocketPack02')
-                wepFlamer02:ChangeMaxRadius(30)
-            else
-                self:SetWeaponEnabledByLabel('RocketPack02', false)
-            end
-            if self.wcTorp01 then
-                self:SetWeaponEnabledByLabel('TorpedoLauncher01', true)
-                local wepTorpedo01 = self:GetWeaponByLabel('TorpedoLauncher01')
-                wepTorpedo01:ChangeMaxRadius(60)
-            else
-                self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
-            end
-            if self.wcTorp02 then
-                self:SetWeaponEnabledByLabel('TorpedoLauncher02', true)
-                local wepTorpedo02 = self:GetWeaponByLabel('TorpedoLauncher02')
-                wepTorpedo02:ChangeMaxRadius(60)
-            else
-                self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
-            end
-            if self.wcTorp03 then
-                self:SetWeaponEnabledByLabel('TorpedoLauncher03', true)
-                local wepTorpedo03 = self:GetWeaponByLabel('TorpedoLauncher03')
-                wepTorpedo03:ChangeMaxRadius(60)
-            else
-                self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
-            end
-            if self.wcEMP01 then
-                self:SetWeaponEnabledByLabel('EMPArray01', true)
-                local wepAntiMatter01 = self:GetWeaponByLabel('EMPArray01')
-                wepAntiMatter01:ChangeMaxRadius(35)
-                local wepAntiMatter02 = self:GetWeaponByLabel('EMPArray02')
-                wepAntiMatter02:ChangeMaxRadius(35)
-                local wepAntiMatter03 = self:GetWeaponByLabel('EMPArray03')
-                wepAntiMatter03:ChangeMaxRadius(35)
-                local wepAntiMatter04 = self:GetWeaponByLabel('EMPArray04')
-                wepAntiMatter04:ChangeMaxRadius(35)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot01')
-                wepAntiMatter06:ChangeMaxRadius(35)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot02')
-                wepAntiMatter06:ChangeMaxRadius(35)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot03')
-                wepAntiMatter06:ChangeMaxRadius(35)
-            elseif self.wcEMP02 then
-                self:SetWeaponEnabledByLabel('EMPArray01', true)
-                local wepAntiMatter01 = self:GetWeaponByLabel('EMPArray01')
-                wepAntiMatter01:ChangeMaxRadius(40)
-                local wepAntiMatter02 = self:GetWeaponByLabel('EMPArray02')
-                wepAntiMatter02:ChangeMaxRadius(40)
-                local wepAntiMatter03 = self:GetWeaponByLabel('EMPArray03')
-                wepAntiMatter03:ChangeMaxRadius(40)
-                local wepAntiMatter04 = self:GetWeaponByLabel('EMPArray04')
-                wepAntiMatter04:ChangeMaxRadius(40)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot01')
-                wepAntiMatter06:ChangeMaxRadius(40)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot02')
-                wepAntiMatter06:ChangeMaxRadius(40)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot03')
-                wepAntiMatter06:ChangeMaxRadius(40)
-            elseif self.wcEMP03 then
-                self:SetWeaponEnabledByLabel('EMPArray01', true)
-                local wepAntiMatter01 = self:GetWeaponByLabel('EMPArray01')
-                wepAntiMatter01:ChangeMaxRadius(45)
-                local wepAntiMatter02 = self:GetWeaponByLabel('EMPArray02')
-                wepAntiMatter02:ChangeMaxRadius(45)
-                local wepAntiMatter03 = self:GetWeaponByLabel('EMPArray03')
-                wepAntiMatter03:ChangeMaxRadius(45)
-                local wepAntiMatter04 = self:GetWeaponByLabel('EMPArray04')
-                wepAntiMatter04:ChangeMaxRadius(45)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot01')
-                wepAntiMatter06:ChangeMaxRadius(45)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot02')
-                wepAntiMatter06:ChangeMaxRadius(45)
-                local wepAntiMatter06 = self:GetWeaponByLabel('EMPShot03')
-                wepAntiMatter06:ChangeMaxRadius(45)
-            elseif not self.wcEMP01 and not self.wcEMP01 and not self.wcEMP01 then
-                self:SetWeaponEnabledByLabel('EMPArray01', false)
-            end
-            if self.wcMasor01 then
-                self:SetWeaponEnabledByLabel('MLG01', true)
-                local wepGattling01 = self:GetWeaponByLabel('MLG01')
-                wepGattling01:ChangeMaxRadius(30)
-            else
-                self:SetWeaponEnabledByLabel('MLG01', false)
-            end
-            if self.wcMasor02 then
-                self:SetWeaponEnabledByLabel('MLG02', true)
-                local wepGattling02 = self:GetWeaponByLabel('MLG02')
-                wepGattling02:ChangeMaxRadius(30)
-            else
-                self:SetWeaponEnabledByLabel('MLG02', false)
-            end
-            if self.wcMasor03 then
-                self:SetWeaponEnabledByLabel('MLG03', true)
-                local wepGattling03 = self:GetWeaponByLabel('MLG03')
-                wepGattling03:ChangeMaxRadius(30)
-            else
-                self:SetWeaponEnabledByLabel('MLG03', false)
-            end
-            if self.wcAA01 then
-                self:SetWeaponEnabledByLabel('AA01', true)
-                local wepLance01 = self:GetWeaponByLabel('AA01')
-                wepLance01:ChangeMaxRadius(35)
-                self:SetWeaponEnabledByLabel('AA02', true)
-                local wepLance02 = self:GetWeaponByLabel('AA02')
-                wepLance02:ChangeMaxRadius(35)
-            else
-                self:SetWeaponEnabledByLabel('AA01', false)
-                self:SetWeaponEnabledByLabel('AA02', false)
-            end
-            if self.wcAA02 then
-                self:SetWeaponEnabledByLabel('AA03', true)
-                local wepLance03 = self:GetWeaponByLabel('AA03')
-                wepLance03:ChangeMaxRadius(35)
-                self:SetWeaponEnabledByLabel('AA04', true)
-                local wepLance04 = self:GetWeaponByLabel('AA04')
-                wepLance04:ChangeMaxRadius(35)
-            else
-                self:SetWeaponEnabledByLabel('AA03', false)
-                self:SetWeaponEnabledByLabel('AA04', false)
-            end
+        local wepRadius = radius or wep:GetBlueprint().MaxRadius
+        local ocRadius = radius or oc:GetBlueprint().MaxRadius
+
+        -- Change Damage
+        wep:AddDamageMod(damage)
+        
+        -- Change Radius
+        wep:ChangeMaxRadius(wepRadius)
+        oc:ChangeMaxRadius(ocRadius)
+        
+        -- As radius is only passed when turning on, use the bool
+        if radius then
+            self:ShowBone('Right_Turret', true)
+            self:ShowBone('Turret_Muzzle_02', true)
+        else
+            self:HideBone('Right_Turret', true)
+            self:HideBone('Turret_Muzzle_02', true)
         end
     end,
 
     OnTransportDetach = function(self, attachBone, unit)
         CWalkingLandUnit.OnTransportDetach(self, attachBone, unit)
         self:StopSiloBuild()
-        self:ForkThread(self.WeaponConfigCheck)
     end,
 
     OnScriptBitClear = function(self, bit)
@@ -834,10 +364,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         end
     end,
 
-    
-    -- *************
-    -- Build/Upgrade
-    -- *************
+
     CreateBuildEffects = function(self, unitBeingBuilt, order)
        EffectUtil.SpawnBuildBots(self, unitBeingBuilt, 5, self.BuildEffectsBag)
        EffectUtil.CreateCybranBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
@@ -1076,7 +603,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcRocket01 = true
             self.wcRocket02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComEngineering = true
             self.RBAssEngineering = false
             self.RBApoEngineering = false
@@ -1095,7 +622,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcRocket01 = false
             self.wcRocket02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComEngineering = false
             self.RBAssEngineering = false
             self.RBApoEngineering = false
@@ -1137,7 +664,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcRocket01 = false
             self.wcRocket02 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)      
+          
             self.RBComEngineering = true
             self.RBAssEngineering = true
             self.RBApoEngineering = false
@@ -1159,7 +686,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcRocket01 = false
             self.wcRocket02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComEngineering = false
             self.RBAssEngineering = false
             self.RBApoEngineering = false
@@ -1222,7 +749,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcRocket01 = false
             self.wcRocket02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComEngineering = false
             self.RBAssEngineering = false
             self.RBApoEngineering = false
@@ -1260,7 +787,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcTorp02 = false
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost7') then
@@ -1273,7 +800,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcTorp02 = false
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='TorpedoRapidLoader' then
             if not Buffs['CybranHealthBoost8'] then
@@ -1298,7 +825,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcTorp02 = true
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='TorpedoRapidLoaderRemove' then
@@ -1316,7 +843,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcTorp02 = false
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='TorpedoClusterLauncher' then
             if not Buffs['CybranHealthBoost9'] then
@@ -1341,7 +868,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcTorp02 = false
             self.wcTorp03 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='TorpedoClusterLauncherRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost7') then
@@ -1361,7 +888,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcTorp02 = false
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='EMPArray' then
             if not Buffs['CybranHealthBoost10'] then
@@ -1386,7 +913,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP02 = false
             self.wcEMP03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='EMPArrayRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost10') then
@@ -1399,7 +926,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP02 = false
             self.wcEMP03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='ImprovedCapacitors' then
             if not Buffs['CybranHealthBoost11'] then
@@ -1424,7 +951,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP02 = true
             self.wcEMP03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ImprovedCapacitorsRemove' then    
@@ -1441,7 +968,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP02 = false
             self.wcEMP03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='PowerBooster' then
             if not Buffs['CybranHealthBoost12'] then
@@ -1466,7 +993,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP02 = false
             self.wcEMP03 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='PowerBoosterRemove' then    
             self:SetWeaponEnabledByLabel('EMPArray01', false)
@@ -1486,7 +1013,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP02 = false
             self.wcEMP03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='Masor' then
             if not Buffs['CybranHealthBoost13'] then
@@ -1511,7 +1038,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor02 = false
             self.wcMasor03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='MasorRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost13') then
@@ -1524,7 +1051,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor02 = false
             self.wcMasor03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='ImprovedCoolingSystem' then
             if not Buffs['CybranHealthBoost14'] then
@@ -1549,7 +1076,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor02 = true
             self.wcMasor03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ImprovedCoolingSystemRemove' then
@@ -1566,7 +1093,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor02 = false
             self.wcMasor03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='AdvancedEmitterArray' then
             if not Buffs['CybranHealthBoost15'] then
@@ -1591,7 +1118,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor02 = false
             self.wcMasor03 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh =='AdvancedEmitterArrayRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost13') then
@@ -1610,7 +1137,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor02 = false
             self.wcMasor03 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self:ForkThread(self.RegenBuffThread)
         elseif enh == 'ArmorPlating' then
             if not Buffs['CybranHealthBoost22'] then
@@ -1632,7 +1159,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = true
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBDefTier1 = true
             self.RBDefTier2 = false
             self.RBDefTier3 = false
@@ -1644,7 +1171,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = false
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
@@ -1669,7 +1196,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = true
             self.wcAA02 = true
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBDefTier1 = true
             self.RBDefTier2 = true
             self.RBDefTier3 = false
@@ -1684,7 +1211,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = false
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
@@ -1723,7 +1250,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = false
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
@@ -1911,7 +1438,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = true
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = false
@@ -1928,7 +1455,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = false
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
@@ -1969,17 +1496,14 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcAA01 = false
             self.wcAA02 = false
             self:ForkThread(self.WeaponRangeReset)
-            self:ForkThread(self.WeaponConfigCheck)
+    
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
             self:ForkThread(self.RegenBuffThread)
         end
     end,
-    
-    -- **********
-    -- Intel
-    -- ********   
+
     IntelEffects = {
         Cloak = {
             {
@@ -2016,7 +1540,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             },    
         },    
     },
-    
+
     OnIntelEnabled = function(self)
         CWalkingLandUnit.OnIntelEnabled(self)
         if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
@@ -2047,40 +1571,7 @@ ERL0001 = Class(CWalkingLandUnit) {
         elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
         end         
-    end,
-        
-    -- *****
-    -- Death
-    -- *****
-    OnKilled = function(self, instigator, type, overkillRatio)
-        local bp
-        for k, v in self:GetBlueprint().Buffs do
-            if v.Add.OnDeath then
-                bp = v
-            end
-        end 
-        --if we could find a blueprint with v.Add.OnDeath, then add the buff 
-        if bp ~= nil then 
-            --Apply Buff
-            self:AddBuff(bp)
-        end
-        --otherwise, we should finish killing the unit
-        CWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
-    end,
-    
-    OnPaused = function(self)
-        CWalkingLandUnit.OnPaused(self)
-        if self.BuildingUnit then
-            CWalkingLandUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end    
-    end,
-    
-    OnUnpaused = function(self)
-        if self.BuildingUnit then
-            CWalkingLandUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
-        end
-        CWalkingLandUnit.OnUnpaused(self)
-    end,     
+    end, 
 }   
     
 TypeClass = ERL0001

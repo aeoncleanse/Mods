@@ -214,7 +214,6 @@ EEL0001 = Class(ACUUnit) {
             self.Animator:SetRate(0)
         end
         self.UnitBuildOrder = order
-        self.BuildingUnit = true
     end,
 
     CreateBuildEffects = function(self, unitBeingBuilt, order)
@@ -232,7 +231,7 @@ EEL0001 = Class(ACUUnit) {
         if self:BeenDestroyed() then return end
         if self.IdleAnim and not self:IsDead() then
             self.Animator:PlayAnim(self.IdleAnim, true)
-        end     
+        end
     end,
     
     RebuildPod = function(self, PodNumber)
@@ -371,7 +370,6 @@ EEL0001 = Class(ACUUnit) {
     OnTransportDetach = function(self, attachBone, unit)
         ACUUnit.OnTransportDetach(self, attachBone, unit)
         self:StopSiloBuild()
-
     end,
 
     -- New function to set up production numbers
