@@ -278,6 +278,28 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXB0000',
         SpawnRandomRotation = true,
+        TeleportEffects = {
+            ChargeFxAtUnitBones = {
+                {
+                    Bone = 'Torso',
+                    Offset = {
+                        0,
+                        0,
+                        -0.1,
+                    },
+                },
+            },
+            FxOffsetX = 0,
+            FxOffsetY = 0,
+            FxOffsetZ = -0.45,
+            FxSizeX = 2.31,
+            FxSizeY = 2.31,
+            FxSizeZ = 2.42,
+            PlayChargeFxAtDestination = true,
+            PlayChargeFxAtUnit = true,
+            PlayTeleportOutFx = true,
+            PlayTeleportInFx = true,
+        },
         TransportAnimation = {
             {
                 Animation = '/mods/BlackOpsACUs/units/eel0001/eel0001_afold.sca',
