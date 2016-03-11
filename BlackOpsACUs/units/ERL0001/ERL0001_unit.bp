@@ -142,8 +142,6 @@ UnitBlueprint {
         RegenRate = 15,
         SubThreatLevel = 0,
         SurfaceThreatLevel = 75,
-        NoTeleDistance = 40,
-        MaxTeleRange = 120,
     },
     Description = '<LOC url0001_desc>Armored Command Unit',
     Display = {
