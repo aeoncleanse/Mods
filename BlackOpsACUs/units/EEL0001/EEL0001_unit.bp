@@ -692,7 +692,7 @@ UnitBlueprint {
             Name = 'Improved Reloader (T3)',
             Prerequisite = 'TorpedoLauncher',
             NewHealth = 2500,
-            NewRoF = 2,
+            DamageMod = 100,
             NewMaxRadius = 30,
             TorpDamageMod = 55,
             NewTorpROF = 0.5,
