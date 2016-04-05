@@ -577,7 +577,7 @@ UnitBlueprint {
             Icon = 'exlce3',
             Name = 'Tech 4 Apocolyptic Engineering (T3)',
             Prerequisite = 'AssaultEngineering',
-            NewBuildRate = 20,
+            NewBuildRate = 30,
             NewHealth = 10000,
             NewRegenRate = 200,
             ShowBones = {
@@ -692,7 +692,7 @@ UnitBlueprint {
             Name = 'Improved Reloader (T3)',
             Prerequisite = 'TorpedoLauncher',
             NewHealth = 2500,
-            DamageMod = 100,
+            NewRoF = 2,
             NewMaxRadius = 30,
             TorpDamageMod = 55,
             NewTorpROF = 0.5,

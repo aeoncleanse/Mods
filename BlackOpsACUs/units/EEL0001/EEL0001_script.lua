@@ -1,31 +1,24 @@
 -----------------------------------------------------------------
-
 -- Author(s):  Exavier Macbeth
-
 -- Summary  :  BlackOps: Adv Command Unit - UEF ACU
-
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 local Shield = import('/lua/shield.lua').Shield
-
 local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')
+local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
 local TDFZephyrCannonWeapon = TerranWeaponFile.TDFZephyrCannonWeapon
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TIFCruiseMissileLauncher = TerranWeaponFile.TIFCruiseMissileLauncher
 local TDFOverchargeWeapon = TerranWeaponFile.TDFOverchargeWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
-local Weapons2 = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
-local UEFACUHeavyPlasmaGatlingCannonWeapon = Weapons2.UEFACUHeavyPlasmaGatlingCannonWeapon
-local EXFlameCannonWeapon = Weapons2.HawkGaussCannonWeapon
-local UEFACUAntiMatterWeapon = Weapons2.UEFACUAntiMatterWeapon
-local PDLaserGrid = Weapons2.PDLaserGrid2 
-local EffectUtils = import('/lua/effectutilities.lua')
-local Effects = import('/lua/effecttemplates.lua')
-local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
+local BOWeapons = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
+local UEFACUHeavyPlasmaGatlingCannonWeapon = BOWeapons.UEFACUHeavyPlasmaGatlingCannonWeapon
+local EXFlameCannonWeapon = BOWeapons.HawkGaussCannonWeapon
+local UEFACUAntiMatterWeapon = BOWeapons.UEFACUAntiMatterWeapon
+local PDLaserGrid = BOWeapons.PDLaserGrid2
 
 EEL0001 = Class(ACUUnit) {   
     DeathThreadDestructionWaitTime = 2,
@@ -57,7 +50,7 @@ EEL0001 = Class(ACUUnit) {
                 if self.unit.SpinManip then
                     self.unit.SpinManip:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
+                self.ExhaustEffects = EffectUtil.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), EffectTemplate.WeaponSteam01)
                 UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
             
@@ -565,6 +558,7 @@ EEL0001 = Class(ACUUnit) {
             end
             
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetWeaponEnabledByLabel('FlameCannon', false)
             self:SortFlameEffects()
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
@@ -606,7 +600,7 @@ EEL0001 = Class(ACUUnit) {
 
             local gun = self:GetWeaponByLabel('FlameCannon')
             gun:AddDamageMod(bp.FlameDamageMod)
-            gun:ChangeMaxRadius(gun:GetBlueprint().FlameMaxRadius)
+            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             
@@ -642,9 +636,9 @@ EEL0001 = Class(ACUUnit) {
 
         -- Zephyr Booster
             
-        elseif enh =='ZephyrBooster' then
+        elseif enh == 'ZephyrBooster' then
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh =='ZephyrBoosterRemove' then
+        elseif enh == 'ZephyrBoosterRemove' then
             self:TogglePrimaryGun(bp.DamageMod)
 
         -- Torpedoes

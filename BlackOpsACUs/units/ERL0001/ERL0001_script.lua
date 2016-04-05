@@ -1,31 +1,25 @@
 -----------------------------------------------------------------
-
 -- Author(s):  Exavier Macbeth
-
 -- Summary  :  BlackOps: Adv Command Unit - Cybran ACU
-
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
-local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
+local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
 local CWeapons = import('/lua/cybranweapons.lua')
-local EffectUtil = import('/lua/EffectUtilities.lua')
-local Buff = import('/lua/sim/Buff.lua')
-
---local CAAMissileNaniteWeapon = CWeapons.CAAMissileNaniteWeapon
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local CDFHeavyMicrowaveLaserGeneratorCom = CWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 local CDFOverchargeWeapon = CWeapons.CDFOverchargeWeapon
 local CANTorpedoLauncherWeapon = CWeapons.CANTorpedoLauncherWeapon
-local Entity = import('/lua/sim/Entity.lua').Entity
-local CEMPArrayBeam01 = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua').CEMPArrayBeam01 
-local CEMPArrayBeam02 = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua').CEMPArrayBeam02 
-local CEMPArrayBeam03 = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua').CEMPArrayBeam03 
 local RocketPack = CWeapons.CDFRocketIridiumWeapon02
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+local EffectUtil = import('/lua/EffectUtilities.lua')
+local Entity = import('/lua/sim/Entity.lua').Entity
+local Buff = import('/lua/sim/Buff.lua')
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local BOWeapons = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
+local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
+local CEMPArrayBeam02 = BOWeapons.CEMPArrayBeam02
 
-ERL0001 = Class(CWalkingLandUnit) {
+ERL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
@@ -37,11 +31,8 @@ ERL0001 = Class(CWalkingLandUnit) {
                 self:DisableBuff('STUN')
             end,
         },
-        RocketPack01 = Class(RocketPack) {},
-        RocketPack02 = Class(RocketPack) {},
-        TorpedoLauncher01 = Class(CANTorpedoLauncherWeapon) {},
-        TorpedoLauncher02 = Class(CANTorpedoLauncherWeapon) {},
-        TorpedoLauncher03 = Class(CANTorpedoLauncherWeapon) {},
+        RocketPack = Class(RocketPack) {},
+        TorpedoLauncher = Class(CANTorpedoLauncherWeapon) {},
         EMPArray01 = Class(CEMPArrayBeam01) {
             OnWeaponFired = function(self)
                 CEMPArrayBeam01.OnWeaponFired(self)
@@ -173,7 +164,7 @@ ERL0001 = Class(CWalkingLandUnit) {
     end,
 
     OnCreate = function(self)
-        CWalkingLandUnit.OnCreate(self)
+        ACUUnit.OnCreate(self)
         self:SetCapturable(false)
         if self:GetBlueprint().General.BuildBones then
             self:SetupBuildBones()
@@ -204,8 +195,8 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
 
-    OnStopBeingBuilt = function(self,builder,layer)
-        CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+    OnStopBeingBuilt = function(self, builder, layer)
+        ACUUnit.OnStopBeingBuilt(self, builder, layer)
         self:SetWeaponEnabledByLabel('RightRipper', true)
         self:SetMaintenanceConsumptionInactive()
         self:DisableUnitIntel('RadarStealth')
@@ -214,17 +205,12 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:DisableUnitIntel('CloakField')
         self:DisableUnitIntel('Sonar')
         self.EMPArrayEffects01 = {}
-        self.EMPArrayEffects02 = {}
-        self.EMPArrayEffects03 = {}
         self:ForkThread(self.GiveInitialResources)
         
         -- Disable Upgrade Weapons
         self:SetWeaponEnabledByLabel('RightRipper', true)
-        self:SetWeaponEnabledByLabel('RocketPack01', false)
-        self:SetWeaponEnabledByLabel('RocketPack02', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
+        self:SetWeaponEnabledByLabel('RocketPack', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('EMPArray01', false)
         self:SetWeaponEnabledByLabel('EMPArray02', false)
         self:SetWeaponEnabledByLabel('EMPArray03', false)
@@ -238,12 +224,10 @@ ERL0001 = Class(CWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('AA01', false)
         self:SetWeaponEnabledByLabel('AA02', false)
         self:SetWeaponEnabledByLabel('AA03', false)
-        
-        
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)    
-        CWalkingLandUnit.OnStartBuild(self, unitBeingBuilt, order)
+        ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
         self.UnitBuildOrder = order
     end,
 
@@ -311,15 +295,15 @@ ERL0001 = Class(CWalkingLandUnit) {
     end,
     
     -- Function to toggle the Ripper
-    TogglePrimaryGun = function(self, damage, radius)
+    TogglePrimaryGun = function(self, RoF, radius)
         local wep = self:GetWeaponByLabel('RightRipper')
         local oc = self:GetWeaponByLabel('OverCharge')
     
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
 
-        -- Change Damage
-        wep:AddDamageMod(damage)
+        -- Change RoF
+        wep:ChangeRateOfFire(RoF)
         
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)
@@ -327,16 +311,14 @@ ERL0001 = Class(CWalkingLandUnit) {
         
         -- As radius is only passed when turning on, use the bool
         if radius then
-            self:ShowBone('Right_Turret', true)
-            self:ShowBone('Turret_Muzzle_02', true)
+            self:ShowBone('Right_Upgrade', true)
         else
-            self:HideBone('Right_Turret', true)
-            self:HideBone('Turret_Muzzle_02', true)
+            self:HideBone('Right_Upgrade', true)
         end
     end,
 
     OnTransportDetach = function(self, attachBone, unit)
-        CWalkingLandUnit.OnTransportDetach(self, attachBone, unit)
+        ACUUnit.OnTransportDetach(self, attachBone, unit)
         self:StopSiloBuild()
     end,
 
@@ -364,148 +346,90 @@ ERL0001 = Class(CWalkingLandUnit) {
         end
     end,
 
-
     CreateBuildEffects = function(self, unitBeingBuilt, order)
        EffectUtil.SpawnBuildBots(self, unitBeingBuilt, 5, self.BuildEffectsBag)
        EffectUtil.CreateCybranBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
     CreateEnhancement = function(self, enh)
-        CWalkingLandUnit.CreateEnhancement(self, enh)
+        ACUUnit.CreateEnhancement(self, enh)
+        
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
+        
         if enh =='ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
+            self:SetProduction(bp)
+            
             if not Buffs['CYBRANACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT2BuildRate',
                     DisplayName = 'CYBRANACUT2BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CYBRANACUT2BuildRate')
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
-            if not Buffs['CybranHealthBoost1'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost1',
-                    DisplayName = 'CybranHealthBoost1',
-                    BuffType = 'CybranHealthBoost1',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost1')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CYBRANACUT2BuildRate')
         elseif enh =='ImprovedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
             if Buff.HasBuff(self, 'CYBRANACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT2BuildRate')
             end
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'CybranHealthBoost1') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost1')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            self:SetProduction()
         elseif enh =='AdvancedEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:SetProduction(bp)
+            
             if not Buffs['CYBRANACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT3BuildRate',
                     DisplayName = 'CYBRANCUT3BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CYBRANACUT3BuildRate')
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
-            if not Buffs['CybranHealthBoost2'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost2',
-                    DisplayName = 'CybranHealthBoost2',
-                    BuffType = 'CybranHealthBoost2',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost2')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = true
-            self.RBExpEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CYBRANACUT3BuildRate')
         elseif enh =='AdvancedEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'CybranHealthBoost1') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost1')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost2') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost2')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            self:SetProduction()
         elseif enh =='ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
+            self:SetProduction(bp)
+
             if not Buffs['CYBRANACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT4BuildRate',
@@ -515,262 +439,154 @@ ERL0001 = Class(CWalkingLandUnit) {
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CYBRANACUT4BuildRate')
-            if not Buffs['CybranHealthBoost3'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost3',
-                    DisplayName = 'CybranHealthBoost3',
-                    BuffType = 'CybranHealthBoost3',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost3')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = true
-            self.RBExpEngineering = true
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CYBRANACUT4BuildRate')
         elseif enh =='ExperimentalEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
             if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
             end
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'CybranHealthBoost1') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost1')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost2') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost2')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost3') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost3')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            self:SetProduction()
         elseif enh =='CombatEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
-            if not Buffs['CYBRANACUT2BuildRate'] then
+            
+            if not Buffs['CYBRANACUT2BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'CYBRANACUT2BuildRate',
-                    DisplayName = 'CYBRANACUT2BuildRate',
+                    Name = 'CYBRANACUT2BuildCombat',
+                    DisplayName = 'CYBRANACUT2BuildCombat',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CYBRANACUT2BuildRate')
-            if not Buffs['CybranHealthBoost4'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost4',
-                    DisplayName = 'CybranHealthBoost4',
-                    BuffType = 'CybranHealthBoost4',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost4')
-            self.wcRocket01 = true
-            self.wcRocket02 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self.RBComEngineering = true
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CYBRANACUT2BuildCombat')
+            
+            self:SetWeaponEnabledByLabel('RocketPack', true)
         elseif enh =='CombatEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff(self, 'CYBRANACUT2BuildRate') then
-                Buff.RemoveBuff(self, 'CYBRANACUT2BuildRate')
+            if Buff.HasBuff(self, 'CYBRANACUT2BuildCombat') then
+                Buff.RemoveBuff(self, 'CYBRANACUT2BuildCombat')
             end
-            if not bp then return end
-            self:RestoreBuildRestrictions()
+            
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'CybranHealthBoost4') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost4')
-            end
-            self.wcRocket01 = false
-            self.wcRocket02 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            self:SetWeaponEnabledByLabel('RocketPack', false)
         elseif enh =='AssaultEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
-            if not Buffs['CYBRANACUT3BuildRate'] then
+            
+            if not Buffs['CYBRANACUT3BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'CYBRANACUT3BuildRate',
+                    Name = 'CYBRANACUT3BuildCombat',
                     DisplayName = 'CYBRANCUT3BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
                             Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CYBRANACUT3BuildRate')
-            if not Buffs['CybranHealthBoost5'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost5',
-                    DisplayName = 'CybranHealthBoost5',
-                    BuffType = 'CybranHealthBoost5',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost5')
-            self.wcRocket01 = false
-            self.wcRocket02 = true
-            self:ForkThread(self.WeaponRangeReset)
-          
-            self.RBComEngineering = true
-            self.RBAssEngineering = true
-            self.RBApoEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CYBRANACUT3BuildCombat')
+            
+            local gun = self:GetWeaponByLabel('RocketPack')
+            gun:AddDamageMod(bp.RocketDamageMod)
+            gun:ChangeMaxRadius(bp.RocketMaxRadius)
         elseif enh =='AssaultEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
-            if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
-                Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
+            if Buff.HasBuff(self, 'CYBRANACUT3BuildCombat') then
+                Buff.RemoveBuff(self, 'CYBRANACUT3BuildCombat')
             end
+            
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'CybranHealthBoost4') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost4')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost5') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost5')
-            end
-            self.wcRocket01 = false
-            self.wcRocket02 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+
+            local gun = self:GetWeaponByLabel('RocketPack')
+            gun:AddDamageMod(bp.RocketDamageMod)
+            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
         elseif enh =='ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
-            if not Buffs['CYBRANACUT4BuildRate'] then
+            
+            if not Buffs['CYBRANACUT4BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'CYBRANACUT4BuildRate',
+                    Name = 'CYBRANACUT4BuildCombat',
                     DisplayName = 'CYBRANCUT4BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CYBRANACUT4BuildRate')
-            if not Buffs['CybranHealthBoost6'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost6',
-                    DisplayName = 'CybranHealthBoost6',
-                    BuffType = 'CybranHealthBoost6',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost6')
-            self.RBComEngineering = true
-            self.RBAssEngineering = true
-            self.RBApoEngineering = true
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CYBRANACUT4BuildCombat')
         elseif enh =='ApocolypticEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
-            if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
-                Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
+            if Buff.HasBuff(self, 'CYBRANACUT4BuildCombat') then
+                Buff.RemoveBuff(self, 'CYBRANACUT4BuildCombat')
             end
+            
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'CybranHealthBoost4') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost4')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost5') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost5')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost6') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost6')
-            end
-            self.wcRocket01 = false
-            self.wcRocket02 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            self:ForkThread(self.RegenBuffThread)
+        
+        -- Jury Rigged Ripper
+        
         elseif enh =='RipperBooster' then
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(30)
-            self:ForkThread(self.RegenBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread)
+            self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh =='RipperBoosterRemove' then
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self:ForkThread(self.RegenBuffThread)
+            self:TogglePrimaryGun(bp.NewRoF)
+
+        -- Torpedoes
+            
         elseif enh =='TorpedoLauncher' then
-            if not Buffs['CybranHealthBoost7'] then
+            if not Buffs['CybranTorpHealth1'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost7',
-                    DisplayName = 'CybranHealthBoost7',
-                    BuffType = 'CybranHealthBoost7',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranTorpHealth1',
+                    DisplayName = 'CybranTorpHealth1',
+                    BuffType = 'CybranTorpHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -780,35 +596,22 @@ ERL0001 = Class(CWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost7')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(30)
-            self.wcTorp01 = true
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CybranTorpHealth1')
+            
+            self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh =='TorpedoLauncherRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost7') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost7')
+            if Buff.HasBuff(self, 'CybranTorpHealth1') then
+                Buff.RemoveBuff(self, 'CybranTorpHealth1')
             end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self:ForkThread(self.RegenBuffThread)
+            
+            self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         elseif enh =='TorpedoRapidLoader' then
-            if not Buffs['CybranHealthBoost8'] then
+            if not Buffs['CybranTorpHealth2'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost8',
-                    DisplayName = 'CybranHealthBoost8',
-                    BuffType = 'CybranHealthBoost8',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranTorpHealth2',
+                    DisplayName = 'CybranTorpHealth2',
+                    BuffType = 'CybranTorpHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -818,40 +621,31 @@ ERL0001 = Class(CWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost8')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:AddDamageMod(50)
-            self.wcTorp01 = false
-            self.wcTorp02 = true
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self:ForkThread(self.RegenBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread)
+            Buff.ApplyBuff(self, 'CybranTorpHealth2')
+            
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamageMod)
+            torp:ChangeRateOfFire(bp.NewTorpROF)
+            
+            -- Install Jury Rigged Ripper
+            self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh =='TorpedoRapidLoaderRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost7') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost7')
+            if Buff.HasBuff(self, 'CybranTorpHealth2') then
+                Buff.RemoveBuff(self, 'CybranTorpHealth2')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost8') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost8')
-            end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            wepRipper:AddDamageMod(-50)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self:ForkThread(self.RegenBuffThread)
+            
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamageMod)
+            torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
+            
+            self:TogglePrimaryGun(bp.NewRoF)
         elseif enh =='TorpedoClusterLauncher' then
-            if not Buffs['CybranHealthBoost9'] then
+            if not Buffs['CybranTorpHealth3'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost9',
-                    DisplayName = 'CybranHealthBoost9',
-                    BuffType = 'CybranHealthBoost9',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranTorpHealth3',
+                    DisplayName = 'CybranTorpHealth3',
+                    BuffType = 'CybranTorpHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -861,35 +655,27 @@ ERL0001 = Class(CWalkingLandUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost9')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:AddDamageMod(100)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = true
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self:ForkThread(self.RegenBuffThread)
+            Buff.ApplyBuff(self, 'CybranTorpHealth3')
+            
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamageMod)
+            
+            -- Improve Ripper
+            local wep = self:GetWeaponByLabel('RightRipper')
+            wep:AddDamageMod(bp.DamageMod)
         elseif enh =='TorpedoClusterLauncherRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost7') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost7')
+            if Buff.HasBuff(self, 'CybranTorpHealth3') then
+                Buff.RemoveBuff(self, 'CybranTorpHealth3')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost8') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost8')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost9') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost9')
-            end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            wepRipper:AddDamageMod(-150)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            self:ForkThread(self.RegenBuffThread)
+
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamageMod)
+
+            local wep = self:GetWeaponByLabel('RightRipper')
+            wep:AddDamageMod(bp.DamageMod)
+            
+        -- EMP Array
+            
         elseif enh =='EMPArray' then
             if not Buffs['CybranHealthBoost10'] then
                 BuffBlueprint {
@@ -912,9 +698,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP01 = true
             self.wcEMP02 = false
             self.wcEMP03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='EMPArrayRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost10') then
                 Buff.RemoveBuff(self, 'CybranHealthBoost10')
@@ -925,9 +711,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP01 = false
             self.wcEMP02 = false
             self.wcEMP03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='ImprovedCapacitors' then
             if not Buffs['CybranHealthBoost11'] then
                 BuffBlueprint {
@@ -950,9 +736,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP01 = false
             self.wcEMP02 = true
             self.wcEMP03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ImprovedCapacitorsRemove' then    
             if Buff.HasBuff(self, 'CybranHealthBoost10') then
@@ -967,9 +753,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP01 = false
             self.wcEMP02 = false
             self.wcEMP03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='PowerBooster' then
             if not Buffs['CybranHealthBoost12'] then
                 BuffBlueprint {
@@ -992,9 +778,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP01 = false
             self.wcEMP02 = false
             self.wcEMP03 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='PowerBoosterRemove' then    
             self:SetWeaponEnabledByLabel('EMPArray01', false)
             if Buff.HasBuff(self, 'CybranHealthBoost10') then
@@ -1012,9 +798,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcEMP01 = false
             self.wcEMP02 = false
             self.wcEMP03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='Masor' then
             if not Buffs['CybranHealthBoost13'] then
                 BuffBlueprint {
@@ -1037,9 +823,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor01 = true
             self.wcMasor02 = false
             self.wcMasor03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='MasorRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost13') then
                 Buff.RemoveBuff(self, 'CybranHealthBoost13')
@@ -1050,9 +836,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor01 = false
             self.wcMasor02 = false
             self.wcMasor03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='ImprovedCoolingSystem' then
             if not Buffs['CybranHealthBoost14'] then
                 BuffBlueprint {
@@ -1075,9 +861,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor01 = false
             self.wcMasor02 = true
             self.wcMasor03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ImprovedCoolingSystemRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost13') then
@@ -1092,9 +878,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor01 = false
             self.wcMasor02 = false
             self.wcMasor03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='AdvancedEmitterArray' then
             if not Buffs['CybranHealthBoost15'] then
                 BuffBlueprint {
@@ -1117,9 +903,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor01 = false
             self.wcMasor02 = false
             self.wcMasor03 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='AdvancedEmitterArrayRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost13') then
                 Buff.RemoveBuff(self, 'CybranHealthBoost13')
@@ -1136,9 +922,9 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.wcMasor01 = false
             self.wcMasor02 = false
             self.wcMasor03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'ArmorPlating' then
             if not Buffs['CybranHealthBoost22'] then
                 BuffBlueprint {
@@ -1158,24 +944,24 @@ ERL0001 = Class(CWalkingLandUnit) {
             Buff.ApplyBuff(self, 'CybranHealthBoost22')
             self.wcAA01 = true
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBDefTier1 = true
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'ArmorPlatingRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost22') then
                 Buff.RemoveBuff(self, 'CybranHealthBoost22')
             end
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'StructuralIntegrity' then
             if not Buffs['CybranHealthBoost23'] then
                 BuffBlueprint {
@@ -1195,12 +981,12 @@ ERL0001 = Class(CWalkingLandUnit) {
             Buff.ApplyBuff(self, 'CybranHealthBoost23')
             self.wcAA01 = true
             self.wcAA02 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBDefTier1 = true
             self.RBDefTier2 = true
             self.RBDefTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'StructuralIntegrityRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost22') then
                 Buff.RemoveBuff(self, 'CybranHealthBoost22')
@@ -1210,12 +996,12 @@ ERL0001 = Class(CWalkingLandUnit) {
             end
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'CompositeMaterials' then
             if not Buffs['CybranHealthBoost24'] then
                 BuffBlueprint {
@@ -1236,7 +1022,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBDefTier1 = true
             self.RBDefTier2 = true
             self.RBDefTier3 = true
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'CompositeMaterialsRemove' then
             if Buff.HasBuff(self, 'CybranHealthBoost22') then
                 Buff.RemoveBuff(self, 'CybranHealthBoost22')
@@ -1249,12 +1035,12 @@ ERL0001 = Class(CWalkingLandUnit) {
             end
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'ElectronicsEnhancment' then
             self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
             self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
@@ -1277,7 +1063,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'ElectronicsEnhancmentRemove' then
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
@@ -1288,7 +1074,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'ElectronicCountermeasures' then
             self:AddToggleCap('RULEUTC_CloakToggle')
             if self.IntelEffectsBag then
@@ -1318,7 +1104,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'ElectronicCountermeasuresRemove' then
             self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('RadarStealth')
@@ -1339,7 +1125,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'CloakingSubsystems' then
             local bp = self:GetBlueprint().Enhancements[enh]
             if not bp then return end
@@ -1365,7 +1151,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = true
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'CloakingSubsystemsRemove' then
             self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('Cloak')
@@ -1385,7 +1171,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='MobilitySubsystems' then
             self:SetSpeedMult(1.41176)
             if not Buffs['CybranHealthBoost19'] then
@@ -1407,7 +1193,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBComTier1 = true
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='MobilitySubsystemsRemove' then
             self:SetSpeedMult(1)
             if Buff.HasBuff(self, 'CybranHealthBoost19') then
@@ -1416,7 +1202,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='DefensiveSubsystems' then
             if not Buffs['CybranHealthBoost20'] then
                 BuffBlueprint {
@@ -1437,12 +1223,12 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:AddCommandCap('RULEUCC_Teleport')
             self.wcAA01 = true
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'DefensiveSubsystemsRemove' then
             self:SetSpeedMult(1)
             if Buff.HasBuff(self, 'CybranHealthBoost19') then
@@ -1454,12 +1240,12 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:RemoveCommandCap('RULEUCC_Teleport')
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh =='NanoKickerSubsystems' then
             if not Buffs['CybranHealthBoost21'] then
                 BuffBlueprint {
@@ -1480,7 +1266,7 @@ ERL0001 = Class(CWalkingLandUnit) {
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = true
-            self:ForkThread(self.RegenBuffThread)
+
         elseif enh == 'NanoKickerSubsystemsRemove' then
             self:SetSpeedMult(1)
             if Buff.HasBuff(self, 'CybranHealthBoost19') then
@@ -1495,12 +1281,12 @@ ERL0001 = Class(CWalkingLandUnit) {
             self:RemoveCommandCap('RULEUCC_Teleport')
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.RegenBuffThread)
+
         end
     end,
 
@@ -1542,7 +1328,7 @@ ERL0001 = Class(CWalkingLandUnit) {
     },
 
     OnIntelEnabled = function(self)
-        CWalkingLandUnit.OnIntelEnabled(self)
+        ACUUnit.OnIntelEnabled(self)
         if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
@@ -1561,7 +1347,7 @@ ERL0001 = Class(CWalkingLandUnit) {
     end,
 
     OnIntelDisabled = function(self)
-        CWalkingLandUnit.OnIntelDisabled(self)
+        ACUUnit.OnIntelDisabled(self)
         if self.IntelEffectsBag then
             EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
             self.IntelEffectsBag = nil
