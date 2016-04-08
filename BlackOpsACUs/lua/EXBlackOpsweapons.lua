@@ -21,6 +21,8 @@ local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGenerator
 local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
 local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01
 local EXCollisionBeamFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua')
+local CWeapons = import('/lua/cybranweapons.lua')
+local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
 
 HawkNapalmWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EffectTemplate.TGaussCannonFlash,
@@ -58,21 +60,47 @@ EXCEMPArrayBeam01 = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.EXCEMPArrayBeam01CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
-
 }
 
 EXCEMPArrayBeam02 = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.EXCEMPArrayBeam02CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
-
 }
 
-EXCEMPArrayBeam03 = Class(DefaultBeamWeapon) {
-    BeamType = EXCollisionBeamFile.EXCEMPArrayBeam03CollisionBeam,
-    FxMuzzleFlash = {},
-    FxChargeMuzzleFlash = {},
-
+EMPWeapon = Class(CCannonMolecularWeapon) {
+    OnWeaponFired = function(self)
+        CCannonMolecularWeapon.OnWeaponFired(self)
+        self.targetaquired = self:GetCurrentTargetPos()
+        if self.targetaquired then
+            if self.unit.EMPArrayEffects01 then
+                for k, v in self.unit.EMPArrayEffects01 do
+                    v:Destroy()
+                end
+                self.unit.EMPArrayEffects01 = {}
+            end
+            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
+            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
+            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
+            table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
+            table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
+            table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
+            table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
+            table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
+            table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
+            self:ForkThread(self.ArrayEffectsCleanup)
+        end
+    end,
+    
+    ArrayEffectsCleanup = function(self)
+        WaitTicks(20)
+        if self.unit.EMPArrayEffects01 then
+            for k, v in self.unit.EMPArrayEffects01 do
+                v:Destroy()
+            end
+            self.unit.EMPArrayEffects01 = {}
+        end
+    end,
 }
 
 PDLaserGrid2 = Class(DefaultBeamWeapon) {

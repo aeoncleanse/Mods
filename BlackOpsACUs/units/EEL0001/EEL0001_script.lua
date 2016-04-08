@@ -70,6 +70,7 @@ EEL0001 = Class(ACUUnit) {
             PlayOnlyOneSoundCue = true,
         },
         OverCharge = Class(TDFOverchargeWeapon) {},
+        AutoOverCharge = Class(TDFOverchargeWeapon) {},
         TacMissile = Class(TIFCruiseMissileLauncher) {
             CreateProjectileAtMuzzle = function(self)
                 muzzle = self:GetBlueprint().RackBones[1].MuzzleBones[1]
@@ -380,9 +381,11 @@ EEL0001 = Class(ACUUnit) {
     TogglePrimaryGun = function(self, damage, radius)
         local wep = self:GetWeaponByLabel('RightZephyr')
         local oc = self:GetWeaponByLabel('OverCharge')
+        local aoc = self:GetWeaponByLabel('AutoOverCharge')
     
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
+        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
         -- Change Damage
         wep:AddDamageMod(damage)
@@ -390,6 +393,7 @@ EEL0001 = Class(ACUUnit) {
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
+        aoc:ChangeMaxRadius(aocRadius)
         
         -- As radius is only passed when turning on, use the bool
         if radius then

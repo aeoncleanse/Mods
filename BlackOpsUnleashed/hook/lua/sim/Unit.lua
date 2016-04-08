@@ -231,6 +231,7 @@ Unit = Class(oldUnit) {
                 if (not cloaked and self.CloakEffectEnabled) or self:GetHealth() <= 0 then
                     self:SetMesh(bpDisplay.MeshBlueprint, true)
                 elseif cloaked and not self.CloakEffectEnabled then
+                    WARN('CLOAK MESH')
                     self:SetMesh(bpDisplay.CloakMeshBlueprint , true)
                     self.CloakEffectEnabled = true
                 end

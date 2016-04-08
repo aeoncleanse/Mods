@@ -15,148 +15,28 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 local Buff = import('/lua/sim/Buff.lua')
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local BOWeapons = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
-local CEMPArrayBeam02 = BOWeapons.CEMPArrayBeam02
+local BOWeapons = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
+local EMPWeapon = BOWeapons.EMPWeapon
+local CEMPArrayBeam02 = BOWeapons.EXCEMPArrayBeam02
 
 ERL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
-        RightRipper = Class(CCannonMolecularWeapon) {
-            OnCreate = function(self)
-                CCannonMolecularWeapon.OnCreate(self)
-                -- Disable buff 
-                self:DisableBuff('STUN')
-            end,
-        },
+        RightRipper = Class(CCannonMolecularWeapon) {},
         RocketPack = Class(RocketPack) {},
         TorpedoLauncher = Class(CANTorpedoLauncherWeapon) {},
-        EMPArray01 = Class(CEMPArrayBeam01) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam01.OnWeaponFired(self)
-                local wep = self.unit:GetWeaponByLabel('EMPArray02')
-                local wep2 = self.unit:GetWeaponByLabel('EMPArray03')
-                local wep3 = self.unit:GetWeaponByLabel('EMPArray04')
-                local wep5 = self.unit:GetWeaponByLabel('EMPShot01')
-                local wep6 = self.unit:GetWeaponByLabel('EMPShot02')
-                local wep7 = self.unit:GetWeaponByLabel('EMPShot03')
-                self.targetaquired = self:GetCurrentTargetPos()
-                if self.targetaquired then
-                    if self.unit.EMPArrayEffects01 then
-                        for k, v in self.unit.EMPArrayEffects01 do
-                            v:Destroy()
-                        end
-                        self.unit.EMPArrayEffects01 = {}
-                    end
-                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
-                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
-                    table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/excemparraybeam02_emit.bp'))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_01_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_02_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_03_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_04_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_05_emit.bp'):ScaleEmitter(0.05))
-                    table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/effects/emitters/microwave_laser_end_06_emit.bp'):ScaleEmitter(0.05))
-                    self.unit:SetWeaponEnabledByLabel('EMPArray02', true)
-                    self.unit:SetWeaponEnabledByLabel('EMPArray03', true)
-                    self.unit:SetWeaponEnabledByLabel('EMPArray04', true)
-                    wep:SetTargetGround(self.targetaquired)
-                    wep2:SetTargetGround(self.targetaquired)
-                    wep3:SetTargetGround(self.targetaquired)
-                    wep:OnFire() 
-                    wep2:OnFire() 
-                    wep3:OnFire()
-                    if self.unit.wcEMP01 then
-                        self.unit:SetWeaponEnabledByLabel('EMPShot01', true)
-                        wep5:SetTargetGround(self.targetaquired)
-                        wep5:OnFire()
-                    elseif self.unit.wcEMP02 then
-                        self.unit:SetWeaponEnabledByLabel('EMPShot02', true)
-                        wep6:SetTargetGround(self.targetaquired)
-                        wep6:OnFire()
-                    elseif self.unit.wcEMP03 then
-                        self.unit:SetWeaponEnabledByLabel('EMPShot03', true)
-                        wep7:SetTargetGround(self.targetaquired)
-                        wep7:OnFire()
-                    end
-                    self:ForkThread(self.ArrayEffectsCleanup)
-                end
-            end,
-            ArrayEffectsCleanup = function(self)
-                WaitTicks(20)
-                if self.unit.EMPArrayEffects01 then
-                    for k, v in self.unit.EMPArrayEffects01 do
-                        v:Destroy()
-                    end
-                    self.unit.EMPArrayEffects01 = {}
-                end
-            end,
-        },
-        EMPArray02 = Class(CEMPArrayBeam02) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam02.OnWeaponFired(self)
-                    self:SetWeaponEnabled(false)
-            end,
-        },
-        EMPArray03 = Class(CEMPArrayBeam02) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam02.OnWeaponFired(self)
-                    self:SetWeaponEnabled(false)
-            end,
-        },
-        EMPArray04 = Class(CEMPArrayBeam02) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam02.OnWeaponFired(self)
-                    self:SetWeaponEnabled(false)
-            end,
-        },
-        EMPShot01 = Class(CCannonMolecularWeapon) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam02.OnWeaponFired(self)
-                    self:SetWeaponEnabled(false)
-            end,
-        },
-        EMPShot02 = Class(CCannonMolecularWeapon) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam02.OnWeaponFired(self)
-                    self:SetWeaponEnabled(false)
-            end,
-        },
-        EMPShot03 = Class(CCannonMolecularWeapon) {
-            OnWeaponFired = function(self)
-                CEMPArrayBeam02.OnWeaponFired(self)
-                    self:SetWeaponEnabled(false)
-            end,
-        },
-        MLG01 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
-        MLG02 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
-        MLG03 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        EMPShot01 = Class(EMPWeapon) {},
+        EMPShot02 = Class(EMPWeapon) {},
+        EMPShot03 = Class(EMPWeapon) {},
+        MLG = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         AA01 = Class(CEMPArrayBeam02) {},
         AA02 = Class(CEMPArrayBeam02) {},
         AA03 = Class(CEMPArrayBeam02) {},
         AA04 = Class(CEMPArrayBeam02) {},
-
         OverCharge = Class(CDFOverchargeWeapon) {},
+        AutoOverCharge = Class(CDFOverchargeWeapon) {},
     },
     
     __init = function(self)
@@ -211,16 +91,10 @@ ERL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('RightRipper', true)
         self:SetWeaponEnabledByLabel('RocketPack', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('EMPArray01', false)
-        self:SetWeaponEnabledByLabel('EMPArray02', false)
-        self:SetWeaponEnabledByLabel('EMPArray03', false)
-        self:SetWeaponEnabledByLabel('EMPArray04', false)
         self:SetWeaponEnabledByLabel('EMPShot01', false)
         self:SetWeaponEnabledByLabel('EMPShot02', false)
         self:SetWeaponEnabledByLabel('EMPShot03', false)
-        self:SetWeaponEnabledByLabel('MLG01', false)
-        self:SetWeaponEnabledByLabel('MLG02', false)
-        self:SetWeaponEnabledByLabel('MLG03', false)
+        self:SetWeaponEnabledByLabel('MLG', false)
         self:SetWeaponEnabledByLabel('AA01', false)
         self:SetWeaponEnabledByLabel('AA02', false)
         self:SetWeaponEnabledByLabel('AA03', false)
@@ -298,9 +172,11 @@ ERL0001 = Class(ACUUnit) {
     TogglePrimaryGun = function(self, RoF, radius)
         local wep = self:GetWeaponByLabel('RightRipper')
         local oc = self:GetWeaponByLabel('OverCharge')
+        local aoc = self:GetWeaponByLabel('AutoOverCharge')
     
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
+        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
         -- Change RoF
         wep:ChangeRateOfFire(RoF)
@@ -308,6 +184,7 @@ ERL0001 = Class(ACUUnit) {
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
+        aoc:ChangeMaxRadius(aocRadius)
         
         -- As radius is only passed when turning on, use the bool
         if radius then
@@ -351,10 +228,11 @@ ERL0001 = Class(ACUUnit) {
        EffectUtil.CreateCybranBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
-    CreateEnhancement = function(self, enh)
+    CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         
         local bp = self:GetBlueprint().Enhancements[enh]
+        local bpIntel = self:GetBlueprint().Intel
         if not bp then return end
         
         if enh =='ImprovedEngineering' then
@@ -675,14 +553,14 @@ ERL0001 = Class(ACUUnit) {
             wep:AddDamageMod(bp.DamageMod)
             
         -- EMP Array
-            
+
         elseif enh =='EMPArray' then
-            if not Buffs['CybranHealthBoost10'] then
+            if not Buffs['CybranEMPHealth1'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost10',
-                    DisplayName = 'CybranHealthBoost10',
-                    BuffType = 'CybranHealthBoost10',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranEMPHealth1',
+                    DisplayName = 'CybranEMPHealth1',
+                    BuffType = 'CybranEMPHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -692,35 +570,26 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost10')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(35)
-            self.wcEMP01 = true
-            self.wcEMP02 = false
-            self.wcEMP03 = false
-
-    
-
+            Buff.ApplyBuff(self, 'CybranEMPHealth1')
+            
+            self:SetWeaponEnabledByLabel('EMPShot01', true)
+            local wep = self:GetWeaponByLabel('EMPShot01')
+            wep:ChangeMaxRadius(bp.EMPRange)
         elseif enh =='EMPArrayRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost10') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost10')
+            if Buff.HasBuff(self, 'CybranEMPHealth1') then
+                Buff.RemoveBuff(self, 'CybranEMPHealth1')
             end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcEMP01 = false
-            self.wcEMP02 = false
-            self.wcEMP03 = false
 
-    
-
+            self:SetWeaponEnabledByLabel('EMPShot01', false)
+            local wep = self:GetWeaponByLabel('EMPShot01')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh =='ImprovedCapacitors' then
-            if not Buffs['CybranHealthBoost11'] then
+            if not Buffs['CybranEMPHealth2'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost11',
-                    DisplayName = 'CybranHealthBoost11',
-                    BuffType = 'CybranHealthBoost11',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranEMPHealth2',
+                    DisplayName = 'CybranEMPHealth2',
+                    BuffType = 'CybranEMPHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -730,39 +599,33 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost11')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(40)
-            self.wcEMP01 = false
-            self.wcEMP02 = true
-            self.wcEMP03 = false
+            Buff.ApplyBuff(self, 'CybranEMPHealth2')
 
-    
+            self:SetWeaponEnabledByLabel('EMPShot01', false)
+            self:SetWeaponEnabledByLabel('EMPShot02', true)
+            
+            local wep = self:GetWeaponByLabel('EMPShot02')
+            wep:ChangeMaxRadius(bp.EMPRange)
 
-            self:ForkThread(self.DefaultGunBuffThread)
+            -- Install Jury Rigged Ripper
+            self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh =='ImprovedCapacitorsRemove' then    
-            if Buff.HasBuff(self, 'CybranHealthBoost10') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost10')
+            if Buff.HasBuff(self, 'CybranEMPHealth2') then
+                Buff.RemoveBuff(self, 'CybranEMPHealth2')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost11') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost11')
-            end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcEMP01 = false
-            self.wcEMP02 = false
-            self.wcEMP03 = false
-
-    
-
+            
+            self:SetWeaponEnabledByLabel('EMPShot02', false)
+            local wep = self:GetWeaponByLabel('EMPShot02')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            
+            self:TogglePrimaryGun(bp.NewRoF)
         elseif enh =='PowerBooster' then
-            if not Buffs['CybranHealthBoost12'] then
+            if not Buffs['CybranEMPHealth3'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost12',
-                    DisplayName = 'CybranHealthBoost12',
-                    BuffType = 'CybranHealthBoost12',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranEMPHealth3',
+                    DisplayName = 'CybranEMPHealth3',
+                    BuffType = 'CybranEMPHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -772,42 +635,31 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost12')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(45)
-            self.wcEMP01 = false
-            self.wcEMP02 = false
-            self.wcEMP03 = true
-
-    
-
+            Buff.ApplyBuff(self, 'CybranEMPHealth3')
+            
+            self:SetWeaponEnabledByLabel('EMPShot02', false)
+            self:SetWeaponEnabledByLabel('EMPShot03', true)
+            
+            local wep = self:GetWeaponByLabel('EMPShot03')
+            wep:ChangeMaxRadius(bp.EMPRange)
         elseif enh =='PowerBoosterRemove' then    
-            self:SetWeaponEnabledByLabel('EMPArray01', false)
-            if Buff.HasBuff(self, 'CybranHealthBoost10') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost10')
+            if Buff.HasBuff(self, 'CybranEMPHealth3') then
+                Buff.RemoveBuff(self, 'CybranEMPHealth3')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost11') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost11')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost12') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost12')
-            end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcEMP01 = false
-            self.wcEMP02 = false
-            self.wcEMP03 = false
-
-    
-
-        elseif enh =='Masor' then
-            if not Buffs['CybranHealthBoost13'] then
+            
+            self:SetWeaponEnabledByLabel('EMPShot03', false)
+            local wep = self:GetWeaponByLabel('EMPShot03')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            
+        -- Mazer
+            
+        elseif enh =='Mazer' then
+            if not Buffs['CybranMazerHealth1'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost13',
-                    DisplayName = 'CybranHealthBoost13',
-                    BuffType = 'CybranHealthBoost13',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranMazerHealth1',
+                    DisplayName = 'CybranMazerHealth1',
+                    BuffType = 'CybranMazerHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -817,35 +669,22 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost13')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(30)
-            self.wcMasor01 = true
-            self.wcMasor02 = false
-            self.wcMasor03 = false
-
-    
-
-        elseif enh =='MasorRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost13') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost13')
+            Buff.ApplyBuff(self, 'CybranMazerHealth1')
+            
+            self:SetWeaponEnabledByLabel('MLG', true)
+        elseif enh =='MazerRemove' then
+            if Buff.HasBuff(self, 'CybranMazerHealth1') then
+                Buff.RemoveBuff(self, 'CybranMazerHealth1')
             end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcMasor01 = false
-            self.wcMasor02 = false
-            self.wcMasor03 = false
-
-    
-
+            
+            self:SetWeaponEnabledByLabel('MLG', false)
         elseif enh =='ImprovedCoolingSystem' then
-            if not Buffs['CybranHealthBoost14'] then
+            if not Buffs['CybranMazerHealth2'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost14',
-                    DisplayName = 'CybranHealthBoost14',
-                    BuffType = 'CybranHealthBoost14',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranMazerHealth2',
+                    DisplayName = 'CybranMazerHealth2',
+                    BuffType = 'CybranMazerHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -855,39 +694,31 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost14')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(30)
-            self.wcMasor01 = false
-            self.wcMasor02 = true
-            self.wcMasor03 = false
-
-    
-
-            self:ForkThread(self.DefaultGunBuffThread)
+            Buff.ApplyBuff(self, 'CybranMazerHealth2')
+            
+            local laser = self:GetWeaponByLabel('MLG')
+            laser:ChangeMaxRadius(bp.LaserRange)
+            laser:AddDamageMod(bp.LaserDamageMod)
+            
+            -- Install Jury Rigged Ripper
+            self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh =='ImprovedCoolingSystemRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost13') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost13')
+            if Buff.HasBuff(self, 'CybranMazerHealth2') then
+                Buff.RemoveBuff(self, 'CybranMazerHealth2')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost14') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost14')
-            end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcMasor01 = false
-            self.wcMasor02 = false
-            self.wcMasor03 = false
-
-    
-
+            
+            local laser = self:GetWeaponByLabel('MLG')
+            laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
+            laser:AddDamageMod(bp.LaserDamageMod)
+            
+            self:TogglePrimaryGun(bp.NewRoF)
         elseif enh =='AdvancedEmitterArray' then
-            if not Buffs['CybranHealthBoost15'] then
+            if not Buffs['CybranMazerHealth3'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost15',
-                    DisplayName = 'CybranHealthBoost15',
-                    BuffType = 'CybranHealthBoost15',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranMazerHealth3',
+                    DisplayName = 'CybranMazerHealth3',
+                    BuffType = 'CybranMazerHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -897,159 +728,118 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost15')
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            wepRipper:ChangeMaxRadius(30)
-            self.wcMasor01 = false
-            self.wcMasor02 = false
-            self.wcMasor03 = true
-
-    
-
+            Buff.ApplyBuff(self, 'CybranMazerHealth3')
+            
+            local laser = self:GetWeaponByLabel('MLG')
+            laser:AddDamageMod(bp.LaserDamageMod)
         elseif enh =='AdvancedEmitterArrayRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost13') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost13')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost14') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost14')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost15') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost15')
-            end
-            local wepRipper = self:GetWeaponByLabel('RightRipper')
-            local bpDisruptRipperRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepRipper:ChangeMaxRadius(bpDisruptRipperRadius or 22)
-            self.wcMasor01 = false
-            self.wcMasor02 = false
-            self.wcMasor03 = false
 
-    
-
+            if Buff.HasBuff(self, 'CybranMazerHealth3') then
+                Buff.RemoveBuff(self, 'CybranMazerHealth3')
+            end
+            
+            local laser = self:GetWeaponByLabel('MLG')
+            laser:AddDamageMod(bp.LaserDamageMod)
+            
+        -- Armor System
+            
         elseif enh == 'ArmorPlating' then
-            if not Buffs['CybranHealthBoost22'] then
+            if not Buffs['CybranArmorHealth1'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost22',
-                    DisplayName = 'CybranHealthBoost22',
-                    BuffType = 'CybranHealthBoost22',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranArmorHealth1',
+                    DisplayName = 'CybranArmorHealth1',
+                    BuffType = 'CybranArmorHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost22')
-            self.wcAA01 = true
-            self.wcAA02 = false
-
-    
-            self.RBDefTier1 = true
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
-
+            Buff.ApplyBuff(self, 'CybranArmorHealth1')
+            
+            self:SetWeaponEnabledByLabel('AA01', true)
+            self:SetWeaponEnabledByLabel('AA02', true)
         elseif enh == 'ArmorPlatingRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost22') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost22')
+            if Buff.HasBuff(self, 'CybranArmorHealth1') then
+                Buff.RemoveBuff(self, 'CybranArmorHealth1')
             end
-            self.wcAA01 = false
-            self.wcAA02 = false
-
-    
-            self.RBDefTier1 = false
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
-
+            
+            self:SetWeaponEnabledByLabel('AA01', false)
+            self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'StructuralIntegrity' then
-            if not Buffs['CybranHealthBoost23'] then
+            if not Buffs['CybranArmorHealth2'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost23',
-                    DisplayName = 'CybranHealthBoost23',
-                    BuffType = 'CybranHealthBoost23',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranArmorHealth2',
+                    DisplayName = 'CybranArmorHealth2',
+                    BuffType = 'CybranArmorHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost23')
-            self.wcAA01 = true
-            self.wcAA02 = true
-
-    
-            self.RBDefTier1 = true
-            self.RBDefTier2 = true
-            self.RBDefTier3 = false
-
+            Buff.ApplyBuff(self, 'CybranArmorHealth2')
+            
+            self:SetWeaponEnabledByLabel('AA03', true)
+            self:SetWeaponEnabledByLabel('AA04', true)
         elseif enh == 'StructuralIntegrityRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost22') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost22')
+            if Buff.HasBuff(self, 'CybranArmorHealth2') then
+                Buff.RemoveBuff(self, 'CybranArmorHealth2')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost23') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost23')
-            end
-            self.wcAA01 = false
-            self.wcAA02 = false
-
-    
-            self.RBDefTier1 = false
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
-
+            
+            self:SetWeaponEnabledByLabel('AA03', false)
+            self:SetWeaponEnabledByLabel('AA04', false)
         elseif enh == 'CompositeMaterials' then
-            if not Buffs['CybranHealthBoost24'] then
+            if not Buffs['CybranArmorHealth3'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost24',
-                    DisplayName = 'CybranHealthBoost24',
-                    BuffType = 'CybranHealthBoost24',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranArmorHealth3',
+                    DisplayName = 'CybranArmorHealth3',
+                    BuffType = 'CybranArmorHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost24')
-            self.RBDefTier1 = true
-            self.RBDefTier2 = true
-            self.RBDefTier3 = true
-
+            Buff.ApplyBuff(self, 'CybranArmorHealth3')
         elseif enh == 'CompositeMaterialsRemove' then
-            if Buff.HasBuff(self, 'CybranHealthBoost22') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost22')
+            if Buff.HasBuff(self, 'CybranArmorHealth3') then
+                Buff.RemoveBuff(self, 'CybranArmorHealth3')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost23') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost23')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost24') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost24')
-            end
-            self.wcAA01 = false
-            self.wcAA02 = false
-
-    
-            self.RBDefTier1 = false
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
-
+            
+        -- Counter-Intel Systems
+        
         elseif enh == 'ElectronicsEnhancment' then
-            self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
-            if not Buffs['CybranHealthBoost16'] then
+            if not Buffs['CybranIntelHealth1'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost16',
-                    DisplayName = 'CybranHealthBoost16',
-                    BuffType = 'CybranHealthBoost16',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranIntelHealth1',
+                    DisplayName = 'CybranIntelHealth1',
+                    BuffType = 'CybranIntelHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1059,234 +849,178 @@ ERL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost16')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
+            Buff.ApplyBuff(self, 'CybranIntelHealth1')
 
+            self:SetIntelRadius('Vision', bp.NewVisionRadius)
+            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
+            self:SetIntelRadius('Omni', bp.NewOmniRadius)
         elseif enh == 'ElectronicsEnhancmentRemove' then
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'CybranHealthBoost16') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost16')
+            if Buff.HasBuff(self, 'CybranIntelHealth1') then
+                Buff.RemoveBuff(self, 'CybranIntelHealth1')
             end
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-
+            
+            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+            self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
+            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
         elseif enh == 'ElectronicCountermeasures' then
-            self:AddToggleCap('RULEUTC_CloakToggle')
+            if not Buffs['CybranIntelHealth2'] then
+                BuffBlueprint {
+                    Name = 'CybranIntelHealth2',
+                    DisplayName = 'CybranIntelHealth2',
+                    BuffType = 'CybranIntelHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+            Buff.ApplyBuff(self, 'CybranIntelHealth2')
+            
             if self.IntelEffectsBag then
                 EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
                 self.IntelEffectsBag = nil
             end
-            self.CloakEnh = false        
-            self.StealthEnh = true
+            self:AddToggleCap('RULEUTC_CloakToggle')
             self:EnableUnitIntel('RadarStealth')
             self:EnableUnitIntel('SonarStealth')
-            if not Buffs['CybranHealthBoost17'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost17',
-                    DisplayName = 'CybranHealthBoost17',
-                    BuffType = 'CybranHealthBoost17',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CybranHealthBoost17')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = false
-
         elseif enh == 'ElectronicCountermeasuresRemove' then
+            if Buff.HasBuff(self, 'CybranIntelHealth2') then
+                Buff.RemoveBuff(self, 'CybranIntelHealth2')
+            end
+
             self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('RadarStealth')
-            self:DisableUnitIntel('SonarStealth')           
-            self.StealthEnh = false
-            self.CloakEnh = false 
-            self.StealthFieldEffects = false
-            self.CloakingEffects = false     
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'CybranHealthBoost16') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost16')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost17') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost17')
-            end
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-
+            self:DisableUnitIntel('SonarStealth')
         elseif enh == 'CloakingSubsystems' then
-            local bp = self:GetBlueprint().Enhancements[enh]
-            if not bp then return end
-            self.StealthEnh = false
-            self.CloakEnh = true 
+            if not Buffs['CybranIntelHealth3'] then
+                BuffBlueprint {
+                    Name = 'CybranIntelHealth3',
+                    DisplayName = 'CybranIntelHealth3',
+                    BuffType = 'CybranIntelHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+            Buff.ApplyBuff(self, 'CybranIntelHealth3')
+            
             self:EnableUnitIntel('Cloak')
-            if not Buffs['CybranHealthBoost18'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost18',
-                    DisplayName = 'CybranHealthBoost18',
-                    BuffType = 'CybranHealthBoost18',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'CybranHealthBoost18')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = true
-
         elseif enh == 'CloakingSubsystemsRemove' then
-            self:RemoveToggleCap('RULEUTC_CloakToggle')
+            if Buff.HasBuff(self, 'CybranIntelHealth3') then
+                Buff.RemoveBuff(self, 'CybranIntelHealth3')
+            end
+
             self:DisableUnitIntel('Cloak')
-            self.CloakEnh = false 
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'CybranHealthBoost16') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost16')
+            
+        -- Mobility Systems
+            
+        elseif enh == 'MobilitySubsystems' then
+            if not Buffs['CybranMobilityHealth1'] then
+                BuffBlueprint {
+                    Name = 'CybranMobilityHealth1',
+                    DisplayName = 'CybranMobilityHealth1',
+                    BuffType = 'CybranMobilityHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
+                    },
+                }
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost17') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost17')
-            end
-            if Buff.HasBuff(self, 'CybranHealthBoost18') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost18')
-            end
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
+            Buff.ApplyBuff(self, 'CybranMobilityHealth1')
 
-        elseif enh =='MobilitySubsystems' then
             self:SetSpeedMult(1.41176)
-            if not Buffs['CybranHealthBoost19'] then
-                BuffBlueprint {
-                    Name = 'CybranHealthBoost19',
-                    DisplayName = 'CybranHealthBoost19',
-                    BuffType = 'CybranHealthBoost19',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
+        elseif enh == 'MobilitySubsystemsRemove' then
+            if Buff.HasBuff(self, 'CybranMobilityHealth1') then
+                Buff.RemoveBuff(self, 'CybranMobilityHealth1')
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost19')
-            self.RBComTier1 = true
-            self.RBComTier2 = false
-            self.RBComTier3 = false
 
-        elseif enh =='MobilitySubsystemsRemove' then
             self:SetSpeedMult(1)
-            if Buff.HasBuff(self, 'CybranHealthBoost19') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost19')
-            end
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-
-        elseif enh =='DefensiveSubsystems' then
-            if not Buffs['CybranHealthBoost20'] then
+        elseif enh == 'DefensiveSubsystems' then
+            if not Buffs['CybranMobilityHealth2'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost20',
-                    DisplayName = 'CybranHealthBoost20',
-                    BuffType = 'CybranHealthBoost20',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranMobilityHealth2',
+                    DisplayName = 'CybranMobilityHealth2',
+                    BuffType = 'CybranMobilityHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost20')
+            Buff.ApplyBuff(self, 'CybranMobilityHealth2')
+
             self:AddCommandCap('RULEUCC_Teleport')
-            self.wcAA01 = true
-            self.wcAA02 = false
-
-    
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = false
-
         elseif enh == 'DefensiveSubsystemsRemove' then
-            self:SetSpeedMult(1)
-            if Buff.HasBuff(self, 'CybranHealthBoost19') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost19')
+            if Buff.HasBuff(self, 'CybranMobilityHealth2') then
+                Buff.RemoveBuff(self, 'CybranMobilityHealth2')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost20') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost20')
-            end
+            
             self:RemoveCommandCap('RULEUCC_Teleport')
-            self.wcAA01 = false
-            self.wcAA02 = false
-
-    
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-
-        elseif enh =='NanoKickerSubsystems' then
-            if not Buffs['CybranHealthBoost21'] then
+        elseif enh == 'NanoKickerSubsystems' then
+            if not Buffs['CybranMobilityHealth3'] then
                 BuffBlueprint {
-                    Name = 'CybranHealthBoost21',
-                    DisplayName = 'CybranHealthBoost21',
-                    BuffType = 'CybranHealthBoost21',
-                    Stacks = 'REPLACE',
+                    Name = 'CybranMobilityHealth3',
+                    DisplayName = 'CybranMobilityHealth3',
+                    BuffType = 'CybranMobilityHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'CybranHealthBoost21')
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = true
-
+            Buff.ApplyBuff(self, 'CybranMobilityHealth3')
         elseif enh == 'NanoKickerSubsystemsRemove' then
-            self:SetSpeedMult(1)
-            if Buff.HasBuff(self, 'CybranHealthBoost19') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost19')
+            if Buff.HasBuff(self, 'CybranMobilityHealth3') then
+                Buff.RemoveBuff(self, 'CybranMobilityHealth3')
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost20') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost20')
+        end
+        
+        -- Remove prerequisites
+        if not removal then
+            if bp.RemoveEnhancements then
+                for k, v in bp.RemoveEnhancements do                
+                    if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
+                        self:CreateEnhancement(v .. 'Remove', true)
+                    end
+                end
             end
-            if Buff.HasBuff(self, 'CybranHealthBoost21') then
-                Buff.RemoveBuff(self, 'CybranHealthBoost21')
-            end
-            self:RemoveCommandCap('RULEUCC_Teleport')
-            self.wcAA01 = false
-            self.wcAA02 = false
-
-    
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-
         end
     end,
 
@@ -1329,21 +1063,21 @@ ERL0001 = Class(ACUUnit) {
 
     OnIntelEnabled = function(self)
         ACUUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
+        if self:HasEnhancement('CloakingSubsystems') and self:IsIntelEnabled('Cloak') then 
+            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end            
-        elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['ElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
+        elseif self:HasEnhancement('ElectronicCountermeasures') and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
+            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['ElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy)
             self:SetMaintenanceConsumptionActive()  
             if not self.IntelEffectsBag then 
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
+            end
+        end
     end,
 
     OnIntelDisabled = function(self)
@@ -1352,12 +1086,12 @@ ERL0001 = Class(ACUUnit) {
             EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
             self.IntelEffectsBag = nil
         end
-        if self.CloakEnh and not self:IsIntelEnabled('Cloak') then
+        if self:HasEnhancement('CloakingSubsystems') and not self:IsIntelEnabled('Cloak') then
             self:SetMaintenanceConsumptionInactive()
-        elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
+        elseif self:HasEnhancement('ElectronicCountermeasures') and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
-        end         
-    end, 
+        end
+    end,
 }   
     
 TypeClass = ERL0001

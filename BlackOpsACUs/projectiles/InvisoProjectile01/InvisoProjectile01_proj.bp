@@ -23,7 +23,7 @@ ProjectileBlueprint {
         'STRATEGIC',
     },
     Display = {
-        StrategicIconSize = 0.5,
+        StrategicIconSize = 0,
     },
     General = {
         Category = 'Direct Fire',
