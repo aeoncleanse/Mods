@@ -236,7 +236,8 @@ ERL0001 = Class(ACUUnit) {
         if not bp then return end
         
         if enh =='ImprovedEngineering' then
-            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
+            self:RemoveBuildRestriction(categories.CYBRAN * categories.BUILTBYTIER2COMMANDER)
+            self:updateBuildRestrictions()
             self:SetProduction(bp)
             
             if not Buffs['CYBRANACUT2BuildRate'] then
@@ -272,6 +273,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetProduction()
         elseif enh =='AdvancedEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:updateBuildRestrictions()
             self:SetProduction(bp)
             
             if not Buffs['CYBRANACUT3BuildRate'] then
@@ -306,6 +308,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetProduction()
         elseif enh =='ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:updateBuildRestrictions()
             self:SetProduction(bp)
 
             if not Buffs['CYBRANACUT4BuildRate'] then
@@ -340,6 +343,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetProduction()
         elseif enh =='CombatEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
+            self:updateBuildRestrictions()
             
             if not Buffs['CYBRANACUT2BuildCombat'] then
                 BuffBlueprint {
@@ -376,6 +380,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('RocketPack', false)
         elseif enh =='AssaultEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:updateBuildRestrictions()
             
             if not Buffs['CYBRANACUT3BuildCombat'] then
                 BuffBlueprint {
@@ -415,8 +420,9 @@ ERL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('RocketPack')
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
-        elseif enh =='ApocolypticEngineering' then
+        elseif enh =='ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
+            self:updateBuildRestrictions()
             
             if not Buffs['CYBRANACUT4BuildCombat'] then
                 BuffBlueprint {
@@ -442,7 +448,7 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CYBRANACUT4BuildCombat')
-        elseif enh =='ApocolypticEngineeringRemove' then
+        elseif enh =='ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildCombat')
             end
@@ -1092,6 +1098,90 @@ ERL0001 = Class(ACUUnit) {
             self:SetMaintenanceConsumptionInactive()
         end
     end,
-}   
+    
+    updateBuildRestrictions = function(self)
+        local faction = nil
+        local type = nil
+        local techlevel = nil
+
+        --Defines the unit's faction
+        if EntityCategoryContains(categories.AEON, self) then
+            faction = categories.AEON
+        elseif EntityCategoryContains(categories.UEF, self) then
+            faction = categories.UEF
+        elseif EntityCategoryContains(categories.CYBRAN, self) then
+            faction = categories.CYBRAN
+        elseif EntityCategoryContains(categories.SERAPHIM, self) then
+            faction = categories.SERAPHIM
+        end
+
+        --Defines the unit's layer type
+        if EntityCategoryContains(categories.LAND, self) then
+            type = categories.LAND
+        elseif EntityCategoryContains(categories.AIR, self) then
+            type = categories.AIR
+        elseif EntityCategoryContains(categories.NAVAL, self) then
+            type = categories.NAVAL
+        end
+
+        local aiBrain = self:GetAIBrain()
+
+        --Sanity check.
+        if not faction then
+            return
+        end
+
+        self:AddBuildRestriction(categories.SUPPORTFACTORY)
+        
+        local upgradeNames = {
+            'ImprovedEngineering',
+            'AdvancedEngineering',
+            'ExperimentalEngineering',
+            'CombatEngineering',
+            'AssaultEngineering',
+            'ApocalypticEngineering'
+        }
+
+        --Check for the existence of HQs
+        for i,researchType in ipairs({categories.LAND, categories.AIR, categories.NAVAL}) do
+            --If there is a research station of the appropriate type, enable support factory construction
+            for id, unit in aiBrain:GetListOfUnits(categories.RESEARCH * categories.TECH2 * faction * researchType, false, true) do
+                if not unit.Dead and not unit:IsBeingBuilt() then
+                    for key, title in upgradeNames do
+                        if self:HasEnhancement(title) then
+                            self:RemoveBuildRestriction(categories.TECH2 * categories.SUPPORTFACTORY * faction * researchType)
+                            break
+                        end
+                    end
+                    break
+                end
+            end
+
+            for id, unit in aiBrain:GetListOfUnits(categories.RESEARCH * categories.TECH3 * faction * researchType, false, true) do
+                if not unit.Dead and not unit:IsBeingBuilt() then
+
+                    --Special case for the commander, since its engineering upgrades are implemented using build restrictions
+                    if self:HasEnhancement('ImprovedEngineering') or self:HasEnhancement('CombatEngineering') then
+                        self:RemoveBuildRestriction(categories.TECH2 * categories.SUPPORTFACTORY * faction * researchType)
+                    elseif self:HasEnhancement('AdvancedEngineering') or self:HasEnhancement('ExperimentalEngineering') then
+                        self:RemoveBuildRestriction(categories.TECH2 * categories.SUPPORTFACTORY * faction * researchType)
+                        self:RemoveBuildRestriction(categories.TECH3 * categories.SUPPORTFACTORY * faction * researchType)
+                    else
+                        for key, title in upgradeNames do
+                            if key > 2 then
+                                if self:HasEnhancement(title) then
+                                    self:RemoveBuildRestriction(categories.TECH2 * categories.SUPPORTFACTORY * faction * researchType)
+                                    self:RemoveBuildRestriction(categories.TECH3 * categories.SUPPORTFACTORY * faction * researchType)
+                                    break
+                                end
+                            end
+                        end
+                    end
+                    break
+                end
+            end
+        end
+    end,
+}
     
 TypeClass = ERL0001

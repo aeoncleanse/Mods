@@ -570,12 +570,12 @@ UnitBlueprint {
             Slot = 'LCH',
             FlameDamageMod = -3,
         },
-        ApocolypticEngineering = {
+        ApocalypticEngineering = {
             BuildCostEnergy = 240000,
             BuildCostMass = 3600,
             BuildTime = 21600,
             Icon = 'exlce3',
-            Name = 'Tech 4 Apocolyptic Engineering (T3)',
+            Name = 'Tech 4 Apocalyptic Engineering (T3)',
             Prerequisite = 'AssaultEngineering',
             NewBuildRate = 30,
             NewHealth = 10000,
@@ -595,7 +595,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        ApocolypticEngineeringRemove = {
+        ApocalypticEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -605,12 +605,12 @@ UnitBlueprint {
             },
             Icon = 'exlce3',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'ApocolypticEngineering',
+            Prerequisite = 'ApocalypticEngineering',
             RemoveEnhancements = {
                 'CombatEngineering',
                 'AssaultEngineering',
-                'ApocolypticEngineering',
-                'ApocolypticEngineeringRemove',
+                'ApocalypticEngineering',
+                'ApocalypticEngineeringRemove',
             },
             Slot = 'LCH',
         },
