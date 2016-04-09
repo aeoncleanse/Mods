@@ -1845,7 +1845,7 @@ UnitBlueprint {
                 Seabed = 'Seabed|Sub|Water',
             },
             FiringTolerance = 2,
-            Label = 'TorpedoLauncher01',
+            Label = 'TorpedoLauncher',
             MaxRadius = 60,
             MuzzleSalvoDelay = 0.2,
             MuzzleSalvoSize = 2,
