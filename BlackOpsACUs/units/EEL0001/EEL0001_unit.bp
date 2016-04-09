@@ -446,7 +446,7 @@ UnitBlueprint {
             Icon = 'exles3',
             Name = 'Tech 4 Experimental Engineering (T3)',
             Prerequisite = 'AdvancedEngineering',
-            NewBuildRate = 20,
+            NewBuildRate = 30,
             NewHealth = 12000,
             ProductionPerSecondEnergy = 2980,
             ProductionPerSecondMass = 12,
