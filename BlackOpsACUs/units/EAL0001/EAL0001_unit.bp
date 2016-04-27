@@ -1695,8 +1695,8 @@ UnitBlueprint {
             DamageType = 'Overcharge',
             DisplayName = 'Overcharge Cannon',
             EnergyChargeForFirstShot = false,
-            EnergyDrainPerSecond = 3000,
-            EnergyRequired = 3000,
+            EnergyDrainPerSecond = 5000,
+            EnergyRequired = 5000,
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
                 Seabed = 'Land|Water|Seabed',
