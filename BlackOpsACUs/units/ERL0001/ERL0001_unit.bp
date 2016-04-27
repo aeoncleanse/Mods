@@ -1168,7 +1168,7 @@ UnitBlueprint {
             Name = 'Electronic Countermeasures (T3)',
             Prerequisite = 'ElectronicsEnhancment',
             NewHealth = 22000,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 50,
             ShowBones = {
                 'Back_CounterIntelPack',
             },
@@ -1206,7 +1206,7 @@ UnitBlueprint {
             Name = 'Cloaking Subsystems (T4)',
             Prerequisite = 'ElectronicCountermeasures',
             NewHealth = 5000,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 3000,
             ShowBones = {
                 'Back_CounterIntelPack',
             },
@@ -1432,7 +1432,6 @@ UnitBlueprint {
     },
     Intel = {
         Cloak = true,
-        CloakFieldRadius = 120,
         FreeIntel = false,
         OmniRadius = 26,
         RadarStealth = true,

@@ -79,11 +79,10 @@ ERL0001 = Class(ACUUnit) {
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
         self:SetWeaponEnabledByLabel('RightRipper', true)
         self:SetMaintenanceConsumptionInactive()
-        self:DisableUnitIntel('RadarStealth')
-        self:DisableUnitIntel('SonarStealth')
-        self:DisableUnitIntel('Cloak')
-        self:DisableUnitIntel('CloakField')
-        self:DisableUnitIntel('Sonar')
+        self:DisableUnitIntel('Enhancement', 'RadarStealth')
+        self:DisableUnitIntel('Enhancement', 'SonarStealth')
+        self:DisableUnitIntel('Enhancement', 'Cloak')
+        self:DisableUnitIntel('Enhancement', 'Sonar')
         self.EMPArrayEffects01 = {}
         self:ForkThread(self.GiveInitialResources)
         
@@ -203,11 +202,9 @@ ERL0001 = Class(ACUUnit) {
         if bit == 8 then -- cloak toggle
             self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
-            self:EnableUnitIntel('Cloak')
-            self:EnableUnitIntel('RadarStealth')
-            self:EnableUnitIntel('RadarStealthField')
-            self:EnableUnitIntel('SonarStealth')
-            self:EnableUnitIntel('SonarStealthField')          
+            self:EnableUnitIntel('ToggleBit8', 'Cloak')
+            self:EnableUnitIntel('ToggleBit8', 'RadarStealth')
+            self:EnableUnitIntel('ToggleBit8', 'SonarStealth')       
         end
     end,
 
@@ -215,11 +212,9 @@ ERL0001 = Class(ACUUnit) {
         if bit == 8 then -- cloak toggle
             self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
-            self:DisableUnitIntel('Cloak')
-            self:DisableUnitIntel('RadarStealth')
-            self:DisableUnitIntel('RadarStealthField')
-            self:DisableUnitIntel('SonarStealth')
-            self:DisableUnitIntel('SonarStealthField')
+            self:DisableUnitIntel('ToggleBit8', 'Cloak')
+            self:DisableUnitIntel('ToggleBit8', 'RadarStealth')
+            self:DisableUnitIntel('ToggleBit8', 'SonarStealth')
         end
     end,
 
@@ -483,12 +478,14 @@ ERL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'CybranTorpHealth1')
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
+            self:EnableUnitIntel('Enhancement', 'Sonar')
         elseif enh =='TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'CybranTorpHealth1') then
                 Buff.RemoveBuff(self, 'CybranTorpHealth1')
             end
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
+            self:DisableUnitIntel('Enhancement', 'Sonar')
         elseif enh =='TorpedoRapidLoader' then
             if not Buffs['CybranTorpHealth2'] then
                 BuffBlueprint {
@@ -889,22 +886,22 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranIntelHealth2')
-            
+
             if self.IntelEffectsBag then
                 EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
                 self.IntelEffectsBag = nil
             end
             self:AddToggleCap('RULEUTC_CloakToggle')
-            self:EnableUnitIntel('RadarStealth')
-            self:EnableUnitIntel('SonarStealth')
+            self:EnableUnitIntel('Enhancement', 'RadarStealth')
+            self:EnableUnitIntel('Enhancement', 'SonarStealth')
         elseif enh == 'ElectronicCountermeasuresRemove' then
             if Buff.HasBuff(self, 'CybranIntelHealth2') then
                 Buff.RemoveBuff(self, 'CybranIntelHealth2')
             end
 
             self:RemoveToggleCap('RULEUTC_CloakToggle')
-            self:DisableUnitIntel('RadarStealth')
-            self:DisableUnitIntel('SonarStealth')
+            self:DisableUnitIntel('Enhancement', 'RadarStealth')
+            self:DisableUnitIntel('Enhancement', 'SonarStealth')
         elseif enh == 'CloakingSubsystems' then
             if not Buffs['CybranIntelHealth3'] then
                 BuffBlueprint {
@@ -923,13 +920,13 @@ ERL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'CybranIntelHealth3')
             
-            self:EnableUnitIntel('Cloak')
+            self:EnableUnitIntel('Enhancement', 'Cloak')
         elseif enh == 'CloakingSubsystemsRemove' then
             if Buff.HasBuff(self, 'CybranIntelHealth3') then
                 Buff.RemoveBuff(self, 'CybranIntelHealth3')
             end
 
-            self:DisableUnitIntel('Cloak')
+            self:DisableUnitIntel('Enhancement', 'Cloak')
             
         -- Mobility Systems
             
@@ -1069,7 +1066,7 @@ ERL0001 = Class(ACUUnit) {
 
     OnIntelEnabled = function(self)
         ACUUnit.OnIntelEnabled(self)
-        if self:HasEnhancement('CloakingSubsystems') and self:IsIntelEnabled('Cloak') then 
+        if self:HasEnhancement('CloakingSubsystems') and self:IsIntelEnabled('Cloak') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy)
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
