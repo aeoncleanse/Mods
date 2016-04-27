@@ -69,6 +69,28 @@ EXCEMPArrayBeam02 = Class(DefaultBeamWeapon) {
 }
 
 EMPWeapon = Class(CCannonMolecularWeapon) {
+    IdleState = State(CCannonMolecularWeapon.IdleState) {
+        OnGotTarget = function(self)
+            if not self.unit:IsUnitState('Building') then
+                CCannonMolecularWeapon.IdleState.OnGotTarget(self)
+            end
+        end,
+
+        OnFire = function(self)
+            if not self.unit:IsUnitState('Building') then
+                CCannonMolecularWeapon.IdleState.OnFire(self)
+            end
+        end,
+    },
+
+    RackSalvoFireReadyState = State(CCannonMolecularWeapon.RackSalvoFireReadyState) {
+        OnFire = function(self)
+            if not self.unit:IsUnitState('Building') then
+                CCannonMolecularWeapon.RackSalvoFireReadyState.OnFire(self)
+            end
+        end,
+    },
+
     OnWeaponFired = function(self)
         CCannonMolecularWeapon.OnWeaponFired(self)
         self.targetaquired = self:GetCurrentTargetPos()
@@ -91,7 +113,7 @@ EMPWeapon = Class(CCannonMolecularWeapon) {
             self:ForkThread(self.ArrayEffectsCleanup)
         end
     end,
-    
+
     ArrayEffectsCleanup = function(self)
         WaitTicks(20)
         if self.unit.EMPArrayEffects01 then

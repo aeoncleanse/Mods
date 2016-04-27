@@ -1928,9 +1928,9 @@ UnitBlueprint {
             RackBones = {
                 {
                     MuzzleBones = {
-                        'EMP_Array_Helper',
+                        'Turret_Muzzle_03',
                     },
-                    RackBone = 'EMP_Array_Helper',
+                    RackBone = 'Turret_Muzzle_03',
                 },
             },
             RackFireTogether = true,
@@ -1954,9 +1954,9 @@ UnitBlueprint {
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 1.15,
-            TurretBoneMuzzle = 'EMP_Array_Helper',
-            TurretBonePitch = 'EMP_Array_Helper',
-            TurretBoneYaw = 'EMP_Array_Helper',
+            TurretBoneMuzzle = 'Turret_Muzzle_03',
+            TurretBonePitch = 'Turret_Muzzle_03',
+            TurretBoneYaw = 'Turret_Muzzle_03',
             TurretDualManipulators = false,
             TurretPitch = 0,
             TurretPitchRange = 80,
@@ -2012,9 +2012,9 @@ UnitBlueprint {
             RackBones = {
                 {
                     MuzzleBones = {
-                        'EMP_Array_Helper',
+                        'Turret_Muzzle_03',
                     },
-                    RackBone = 'EMP_Array_Helper',
+                    RackBone = 'Turret_Muzzle_03',
                 },
             },
             RackFireTogether = true,
@@ -2038,9 +2038,9 @@ UnitBlueprint {
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 1.15,
-            TurretBoneMuzzle = 'EMP_Array_Helper',
-            TurretBonePitch = 'EMP_Array_Helper',
-            TurretBoneYaw = 'EMP_Array_Helper',
+            TurretBoneMuzzle = 'Turret_Muzzle_03',
+            TurretBonePitch = 'Turret_Muzzle_03',
+            TurretBoneYaw = 'Turret_Muzzle_03',
             TurretDualManipulators = false,
             TurretPitch = 0,
             TurretPitchRange = 80,
@@ -2096,9 +2096,9 @@ UnitBlueprint {
             RackBones = {
                 {
                     MuzzleBones = {
-                        'EMP_Array_Helper',
+                        'Turret_Muzzle_03',
                     },
-                    RackBone = 'EMP_Array_Helper',
+                    RackBone = 'Turret_Muzzle_03',
                 },
             },
             RackFireTogether = true,
@@ -2122,9 +2122,9 @@ UnitBlueprint {
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 1.15,
-            TurretBoneMuzzle = 'EMP_Array_Helper',
-            TurretBonePitch = 'EMP_Array_Helper',
-            TurretBoneYaw = 'EMP_Array_Helper',
+            TurretBoneMuzzle = 'Turret_Muzzle_03',
+            TurretBonePitch = 'Turret_Muzzle_03',
+            TurretBoneYaw = 'Turret_Muzzle_03',
             TurretDualManipulators = false,
             TurretPitch = 0,
             TurretPitchRange = 80,
