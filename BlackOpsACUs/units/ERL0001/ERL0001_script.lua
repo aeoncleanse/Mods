@@ -391,7 +391,7 @@ ERL0001 = Class(ACUUnit) {
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
                         MaxHealth = {

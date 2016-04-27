@@ -506,6 +506,7 @@ UnitBlueprint {
             Icon = 'exlce2',
             Name = 'Remove Engineering Suites',
             Prerequisite = 'AssaultEngineering',
+            RocketDamageMod = -8,
             RemoveEnhancements = {
                 'CombatEngineering',
                 'AssaultEngineering',
@@ -1773,7 +1774,7 @@ UnitBlueprint {
             },
             FiringRandomness = 1.25,
             FiringTolerance = 2,
-            Label = 'RocketPack01',
+            Label = 'RocketPack',
             LeadTarget = true,
             MaxRadius = 22,
             MinRadius = 1,
