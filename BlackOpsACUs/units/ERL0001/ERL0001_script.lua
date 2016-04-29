@@ -97,6 +97,7 @@ ERL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('AA01', false)
         self:SetWeaponEnabledByLabel('AA02', false)
         self:SetWeaponEnabledByLabel('AA03', false)
+        self:SetWeaponEnabledByLabel('AA04', false)
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)    
