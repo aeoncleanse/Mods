@@ -1,12 +1,8 @@
 local oldACUUnit = ACUUnit
 
 ACUUnit = Class(oldACUUnit) {
-    
-    -- Storage for upgrade weapons status
-    WeaponEnabled = {},
-
     BuildDisable = function(self)
-        while self:IsUnitState('Building') or self:IsUnitState('Enhancing') or self:IsUnitState('Upgrading')
+        while self:IsUnitState('Building') or self:IsUnitState('Enhancing') or self:IsUnitState('Upgrading') or
                 self:IsUnitState('Repairing') or self:IsUnitState('Reclaiming') do
             WaitSeconds(0.5)
         end

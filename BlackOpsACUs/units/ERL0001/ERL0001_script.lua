@@ -43,6 +43,9 @@ ERL0001 = Class(ACUUnit) {
         ACUUnit.__init(self, 'RightRipper')
     end,
 
+    -- Storage for upgrade weapons status
+    WeaponEnabled = {},
+
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
@@ -87,7 +90,6 @@ ERL0001 = Class(ACUUnit) {
         self:ForkThread(self.GiveInitialResources)
         
         -- Disable Upgrade Weapons
-        self:SetWeaponEnabledByLabel('RightRipper', true)
         self:SetWeaponEnabledByLabel('RocketPack', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('EMPShot01', false)

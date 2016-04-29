@@ -101,6 +101,9 @@ EEL0001 = Class(ACUUnit) {
         ACUUnit.__init(self, 'RightZephyr')
     end,
 
+    -- Storage for upgrade weapons status
+    WeaponEnabled = {},
+
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
