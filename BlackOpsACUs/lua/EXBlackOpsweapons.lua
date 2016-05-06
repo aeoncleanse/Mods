@@ -1,10 +1,7 @@
 -----------------------------------------------------------------
-
 -- File     :  /cdimage/lua/modules/BlackOpsweapons.lua
 -- Author(s):  Lt_hawkeye
-
 -- Summary  :  
-
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
@@ -23,6 +20,15 @@ local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionB
 local EXCollisionBeamFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua')
 local CWeapons = import('/lua/cybranweapons.lua')
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
+local Weapon = import('/lua/sim/Weapon.lua').Weapon
+
+local EXQuantumMaelstromWeapon = Class(Weapon) {
+    OnFire = function(self)
+        local blueprint = self:GetBlueprint()
+        DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
+            blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
+    end,
+}
 
 HawkNapalmWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EffectTemplate.TGaussCannonFlash,
@@ -60,6 +66,76 @@ EXCEMPArrayBeam01 = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.EXCEMPArrayBeam01CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
+    
+    OnWeaponFired = function(self)
+        EXCEMPArrayBeam01.OnWeaponFired(self)
+        
+        self.mypos = self.unit:GetPosition()
+        self.targetpos = self:GetCurrentTargetPos()
+        if self.targetpos then
+            self.targetdistance = VDist3(self.mypos,self.targetpos)
+            if self.unit.wcArtillery01 then
+                if (self.targetdistance >= 25) then
+                    self.unit:SetWeaponEnabledByLabel('RightDisruptor', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', true)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', false)
+                else
+                    self.unit:SetWeaponEnabledByLabel('RightDisruptor', true)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', false)
+                end
+            elseif self.unit.wcArtillery02 then
+                if (self.targetdistance >= 25) then
+                    self.unit:SetWeaponEnabledByLabel('RightDisruptor', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', true)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', false)
+                else
+                    self.unit:SetWeaponEnabledByLabel('RightDisruptor', true)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', false)
+                end
+            elseif self.unit.wcArtillery03 then
+                if (self.targetdistance >= 25) then
+                    self.unit:SetWeaponEnabledByLabel('RightDisruptor', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', true)
+                else
+                    self.unit:SetWeaponEnabledByLabel('RightDisruptor', true)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', false)
+                    self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', false)
+                end
+            elseif self.unit.wcBeam01 then
+                self.unit:SetWeaponEnabledByLabel('RightDisruptor', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam01', true)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam02', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam03', false)
+            elseif self.unit.wcBeam02 then
+                self.unit:SetWeaponEnabledByLabel('RightDisruptor', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam01', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam02', true)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam03', false)
+            elseif self.unit.wcBeam03 then
+                self.unit:SetWeaponEnabledByLabel('RightDisruptor', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam01', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam02', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam03', true)
+            elseif not self.unit.wcArtillery01 and not self.unit.wcArtillery02 and not self.unit.wcArtillery03 and not self.unit.wcBeam01 and not self.unit.wcBeam02 and not self.unit.wcBeam03 then
+                self.unit:SetWeaponEnabledByLabel('RightDisruptor', true)
+                self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery01', false)
+                self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery02', false)
+                self.unit:SetWeaponEnabledByLabel('EXMiasmaArtillery03', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam01', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam02', false)
+                self.unit:SetWeaponEnabledByLabel('EXPhasonBeam03', false)
+            end
+        end
+    end,
 }
 
 EXCEMPArrayBeam02 = Class(DefaultBeamWeapon) {
