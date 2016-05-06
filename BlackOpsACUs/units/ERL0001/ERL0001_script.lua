@@ -989,12 +989,18 @@ ERL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'CybranMobilityHealth2')
 
             self:AddCommandCap('RULEUCC_Teleport')
+            
+            self:SetWeaponEnabledByLabel('AA01', true)
+            self:SetWeaponEnabledByLabel('AA02', true)
         elseif enh == 'DefensiveSubsystemsRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth2') then
                 Buff.RemoveBuff(self, 'CybranMobilityHealth2')
             end
             
             self:RemoveCommandCap('RULEUCC_Teleport')
+            
+            self:SetWeaponEnabledByLabel('AA01', false)
+            self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'NanoKickerSubsystems' then
             if not Buffs['CybranMobilityHealth3'] then
                 BuffBlueprint {
