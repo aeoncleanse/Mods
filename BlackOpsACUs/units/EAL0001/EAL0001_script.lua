@@ -33,9 +33,7 @@ EAL0001 = Class(ACUUnit) {
         TargetPainter = Class(CEMPArrayBeam01) {},
         RightDisruptor = Class(ADFDisruptorCannonWeapon) {},
         ChronoDampener = Class(ADFChronoDampener) {},
-        TorpedoLauncher01 = Class(AANChronoTorpedoWeapon) {},
-        TorpedoLauncher02 = Class(AANChronoTorpedoWeapon) {},
-        TorpedoLauncher03 = Class(AANChronoTorpedoWeapon) {},
+        TorpedoLauncher = Class(AANChronoTorpedoWeapon) {},
         MiasmaArtillery01 = Class(AIFArtilleryMiasmaShellWeapon) {},
         MiasmaArtillery02 = Class(AIFArtilleryMiasmaShellWeapon) {},
         MiasmaArtillery03 = Class(AIFArtilleryMiasmaShellWeapon) {},
@@ -107,9 +105,7 @@ EAL0001 = Class(ACUUnit) {
         -- Disable Upgrade Weapons
         self:SetWeaponEnabledByLabel('TargetPainter', false)
         self:SetWeaponEnabledByLabel('ChronoDampener', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery01', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery02', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery02', false)
@@ -335,17 +331,17 @@ EAL0001 = Class(ACUUnit) {
     end,
     
     -- Function to toggle the Ripper
-    TogglePrimaryGun = function(self, RoF, radius)
+    TogglePrimaryGun = function(self, damage, radius)
         local wep = self:GetWeaponByLabel('RightDisruptor')
         local oc = self:GetWeaponByLabel('OverCharge')
         local aoc = self:GetWeaponByLabel('AutoOverCharge')
-    
+
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
         local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
         -- Change RoF
-        wep:ChangeRateOfFire(RoF)
+        wep:AddDamageMod(damage)
         
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)
@@ -354,9 +350,9 @@ EAL0001 = Class(ACUUnit) {
         
         -- As radius is only passed when turning on, use the bool
         if radius then
-            self:ShowBone('Right_Upgrade', true)
+            self:ShowBone('Basic_GunUp_Range', true)
         else
-            self:HideBone('Right_Upgrade', true)
+            self:HideBone('Basic_GunUp_Range', false)
         end
     end,
 
@@ -584,36 +580,24 @@ EAL0001 = Class(ACUUnit) {
 
         -- Disruptor Amplifier
             
-        elseif enh == 'DisruptorrBooster' then
+        elseif enh == 'DisruptorBooster' then
+            self:TogglePrimaryGun(bp.NewDamage)
+        elseif enh == 'DisruptorBoosterRemove' then
+            self:TogglePrimaryGun(bp.NewDamage)
+        elseif enh == 'DisruptorEnhancer' then
+            self:TogglePrimaryGun(0, bp.NewRadius)
+        elseif enh == 'DisruptorEnhancerRemove' then
+            self:TogglePrimaryGun(0)
             
-            self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh == 'DisruptorrBoosterRemove' then
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            
-        elseif enh == 'DisruptorrEnhancer' then
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:ChangeMaxRadius(35)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(35)
-            self.DisruptorRange = true
-            
-            self:ForkThread(self.DefaultGunBuffThread02)
-        elseif enh == 'DisruptorrEnhancerRemove' then
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.DisruptorRange = false
+        -- Torpedoes
             
         elseif enh == 'TorpedoLauncher' then
-            if not Buffs['AeonHealthBoost7'] then
+            if not Buffs['AeonTorpHealth1'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost7',
-                    DisplayName = 'AeonHealthBoost7',
-                    BuffType = 'AeonHealthBoost7',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonTorpHealth1',
+                    DisplayName = 'AeonTorpHealth1',
+                    BuffType = 'AeonTorpHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -623,39 +607,24 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost7')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:ChangeMaxRadius(35)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(35)
-            self.wcTorp01 = true
-            self.wcTorp02 = false
-            self.wcTorp03 = false
+            Buff.ApplyBuff(self, 'AeonTorpHealth1')
             
-            
-            
+            local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
+            local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', true)
         elseif enh == 'TorpedoLauncherRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost7') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost7')
+            if Buff.HasBuff(self, 'AeonTorpHealth1') then
+                Buff.RemoveBuff(self, 'AeonTorpHealth1')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
             
-            
-            
+            local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
+            local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         elseif enh == 'TorpedoRapidLoader' then
-            if not Buffs['AeonHealthBoost8'] then
+            if not Buffs['AeonTorpHealth2'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost8',
-                    DisplayName = 'AeonHealthBoost8',
-                    BuffType = 'AeonHealthBoost8',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonTorpHealth2',
+                    DisplayName = 'AeonTorpHealth2',
+                    BuffType = 'AeonTorpHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -665,43 +634,30 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost8')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:AddDamageMod(100)
-            self.wcTorp01 = false
-            self.wcTorp02 = true
-            self.wcTorp03 = false
+            Buff.ApplyBuff(self, 'AeonTorpHealth2')
             
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamage)
+            torp:ChangeRateOfFire(bp.TorpRoF)
             
-            
-            self:ForkThread(self.DefaultGunBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread02)
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoRapidLoaderRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost7') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost7')
+            if Buff.HasBuff(self, 'AeonTorpHealth2') then
+                Buff.RemoveBuff(self, 'AeonTorpHealth2')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost8') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost8')
-            end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            wepDisruptor:AddDamageMod(-100)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
             
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamage)
+            torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
-            
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoClusterLauncher' then
-            if not Buffs['AeonHealthBoost9'] then
+            if not Buffs['AeonTorpHealth3'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost9',
-                    DisplayName = 'AeonHealthBoost9',
-                    BuffType = 'AeonHealthBoost9',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonTorpHealth3',
+                    DisplayName = 'AeonTorpHealth3',
+                    BuffType = 'AeonTorpHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -711,44 +667,31 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost9')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:AddDamageMod(200)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = true
+            Buff.ApplyBuff(self, 'AeonTorpHealth3')
             
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamage)
             
-            
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoClusterLauncherRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost7') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost7')
+            if Buff.HasBuff(self, 'AeonTorpHealth3') then
+                Buff.RemoveBuff(self, 'AeonTorpHealth3')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost8') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost8')
-            end
-            if Buff.HasBuff(self, 'AeonHealthBoost9') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost9')
-            end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            wepDisruptor:AddDamageMod(-300)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
             
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.TorpDamage)
             
+            self:TogglePrimaryGun(bp.NewDamage)
+            
+        -- Artillery
             
         elseif enh == 'ArtilleryMiasma' then
-            if not Buffs['AeonHealthBoost10'] then
+            if not Buffs['AeonArtilleryHealth1'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost10',
-                    DisplayName = 'AeonHealthBoost10',
-                    BuffType = 'AeonHealthBoost10',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonArtilleryHealth1',
+                    DisplayName = 'AeonArtilleryHealth1',
+                    BuffType = 'AeonArtilleryHealth1',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -758,7 +701,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost10')
+            Buff.ApplyBuff(self, 'AeonArtilleryHealth1')
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             wepDisruptor:ChangeMaxRadius(35)
             local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
@@ -772,8 +715,8 @@ EAL0001 = Class(ACUUnit) {
             self:ForkThread(self.ArtyShieldCheck)
             
         elseif enh == 'ArtilleryMiasmaRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost10') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost10')
+            if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
+                Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
             end
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
@@ -789,12 +732,12 @@ EAL0001 = Class(ACUUnit) {
             self:ForkThread(self.ArtyShieldCheck)
             
         elseif enh == 'AdvancedShells' then
-            if not Buffs['AeonHealthBoost11'] then
+            if not Buffs['AeonArtilleryHealth2'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost11',
-                    DisplayName = 'AeonHealthBoost11',
-                    BuffType = 'AeonHealthBoost11',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonArtilleryHealth2',
+                    DisplayName = 'AeonArtilleryHealth2',
+                    BuffType = 'AeonArtilleryHealth2',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -804,7 +747,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost11')
+            Buff.ApplyBuff(self, 'AeonArtilleryHealth2')
             self.wcArtillery01 = false
             self.wcArtillery02 = true
             self.wcArtillery03 = false
@@ -813,15 +756,15 @@ EAL0001 = Class(ACUUnit) {
             
             self:ForkThread(self.ArtyShieldCheck)
             
-            self:ForkThread(self.DefaultGunBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread02)
+            
+            
         elseif enh == 'AdvancedShellsRemove' then    
             self:RemoveToggleCap('RULEUTC_WeaponToggle')
-            if Buff.HasBuff(self, 'AeonHealthBoost10') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost10')
+            if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
+                Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost11') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost11')
+            if Buff.HasBuff(self, 'AeonArtilleryHealth2') then
+                Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
             end
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
@@ -837,12 +780,12 @@ EAL0001 = Class(ACUUnit) {
             self:ForkThread(self.ArtyShieldCheck)
             
         elseif enh == 'ImprovedReloader' then
-            if not Buffs['AeonHealthBoost12'] then
+            if not Buffs['AeonArtilleryHealth3'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost12',
-                    DisplayName = 'AeonHealthBoost12',
-                    BuffType = 'AeonHealthBoost12',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonArtilleryHealth3',
+                    DisplayName = 'AeonArtilleryHealth3',
+                    BuffType = 'AeonArtilleryHealth3',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -852,7 +795,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost12')
+            Buff.ApplyBuff(self, 'AeonArtilleryHealth3')
             self.wcArtillery01 = false
             self.wcArtillery02 = false
             self.wcArtillery03 = true
@@ -863,14 +806,14 @@ EAL0001 = Class(ACUUnit) {
             
         elseif enh == 'ImprovedReloaderRemove' then    
             self:RemoveToggleCap('RULEUTC_WeaponToggle')
-            if Buff.HasBuff(self, 'AeonHealthBoost10') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost10')
+            if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
+                Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost11') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost11')
+            if Buff.HasBuff(self, 'AeonArtilleryHealth2') then
+                Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost12') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost12')
+            if Buff.HasBuff(self, 'AeonArtilleryHealth3') then
+                Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
             end
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
@@ -886,12 +829,12 @@ EAL0001 = Class(ACUUnit) {
             self:ForkThread(self.ArtyShieldCheck)
             
         elseif enh == 'BeamPhason' then
-            if not Buffs['AeonHealthBoost13'] then
+            if not Buffs['AeonBeamHealth1'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost13',
-                    DisplayName = 'AeonHealthBoost13',
-                    BuffType = 'AeonHealthBoost13',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonBeamHealth1',
+                    DisplayName = 'AeonBeamHealth1',
+                    BuffType = 'AeonBeamHealth1',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -901,7 +844,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost13')
+            Buff.ApplyBuff(self, 'AeonBeamHealth1')
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             wepDisruptor:ChangeMaxRadius(35)
             local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
@@ -913,8 +856,8 @@ EAL0001 = Class(ACUUnit) {
             
             
         elseif enh == 'BeamPhasonRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost13') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost13')
+            if Buff.HasBuff(self, 'AeonBeamHealth1') then
+                Buff.RemoveBuff(self, 'AeonBeamHealth1')
             end
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
@@ -928,12 +871,12 @@ EAL0001 = Class(ACUUnit) {
             
             
         elseif enh == 'ImprovedCoolingSystem' then
-            if not Buffs['AeonHealthBoost14'] then
+            if not Buffs['AeonBeamHealth2'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost14',
-                    DisplayName = 'AeonHealthBoost14',
-                    BuffType = 'AeonHealthBoost14',
-                    Stacks = 'REPLACE',
+                    Name = 'AeonBeamHealth2',
+                    DisplayName = 'AeonBeamHealth2',
+                    BuffType = 'AeonBeamHealth2',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -943,7 +886,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost14')
+            Buff.ApplyBuff(self, 'AeonBeamHealth2')
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             wepDisruptor:ChangeMaxRadius(40)
             self.wcBeam01 = false
@@ -952,14 +895,14 @@ EAL0001 = Class(ACUUnit) {
             
                 
             
-            self:ForkThread(self.DefaultGunBuffThread)
-            self:ForkThread(self.DefaultGunBuffThread02)
+            
+            
         elseif enh == 'ImprovedCoolingSystemRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost13') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost13')
+            if Buff.HasBuff(self, 'AeonBeamHealth1') then
+                Buff.RemoveBuff(self, 'AeonBeamHealth1')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost14') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost14')
+            if Buff.HasBuff(self, 'AeonBeamHealth2') then
+                Buff.RemoveBuff(self, 'AeonBeamHealth2')
             end
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
@@ -973,11 +916,11 @@ EAL0001 = Class(ACUUnit) {
             
             
         elseif enh == 'PowerBooster' then
-            if not Buffs['AeonHealthBoost15'] then
+            if not Buffs['AeonBeamHealth3'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost15',
-                    DisplayName = 'AeonHealthBoost15',
-                    BuffType = 'AeonHealthBoost15',
+                    Name = 'AeonBeamHealth3',
+                    DisplayName = 'AeonBeamHealth3',
+                    BuffType = 'AeonBeamHealth3',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -988,7 +931,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost15')
+            Buff.ApplyBuff(self, 'AeonBeamHealth3')
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             wepDisruptor:ChangeMaxRadius(40)
             self.wcBeam01 = false
@@ -998,14 +941,14 @@ EAL0001 = Class(ACUUnit) {
             
             
         elseif enh == 'PowerBoosterRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost13') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost13')
+            if Buff.HasBuff(self, 'AeonBeamHealth1') then
+                Buff.RemoveBuff(self, 'AeonBeamHealth1')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost14') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost14')
+            if Buff.HasBuff(self, 'AeonBeamHealth2') then
+                Buff.RemoveBuff(self, 'AeonBeamHealth2')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost15') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost15')
+            if Buff.HasBuff(self, 'AeonBeamHealth3') then
+                Buff.RemoveBuff(self, 'AeonBeamHealth3')
             end
             local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
@@ -1077,11 +1020,11 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'ElectronicsEnhancment' then
             self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
             self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
-            if not Buffs['AeonHealthBoost16'] then
+            if not Buffs['AeonIntelHealth1'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost16',
-                    DisplayName = 'AeonHealthBoost16',
-                    BuffType = 'AeonHealthBoost16',
+                    Name = 'AeonIntelHealth1',
+                    DisplayName = 'AeonIntelHealth1',
+                    BuffType = 'AeonIntelHealth1',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1092,7 +1035,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost16')
+            Buff.ApplyBuff(self, 'AeonIntelHealth1')
             self:SetWeaponEnabledByLabel('AntiMissile', true)
             self.RBIntTier1 = true
             self.RBIntTier2 = false
@@ -1102,8 +1045,8 @@ EAL0001 = Class(ACUUnit) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'AeonHealthBoost16') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost16')
+            if Buff.HasBuff(self, 'AeonIntelHealth1') then
+                Buff.RemoveBuff(self, 'AeonIntelHealth1')
             end
             self:SetWeaponEnabledByLabel('AntiMissile', false)
             self.RBIntTier1 = false
@@ -1111,11 +1054,11 @@ EAL0001 = Class(ACUUnit) {
             self.RBIntTier3 = false
             
         elseif enh == 'ElectronicCountermeasures' then
-            if not Buffs['AeonHealthBoost17'] then
+            if not Buffs['AeonIntelHealth2'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost17',
-                    DisplayName = 'AeonHealthBoost17',
-                    BuffType = 'AeonHealthBoost17',
+                    Name = 'AeonIntelHealth2',
+                    DisplayName = 'AeonIntelHealth2',
+                    BuffType = 'AeonIntelHealth2',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1126,7 +1069,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost17')
+            Buff.ApplyBuff(self, 'AeonIntelHealth2')
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = false
@@ -1136,11 +1079,11 @@ EAL0001 = Class(ACUUnit) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'AeonHealthBoost16') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost16')
+            if Buff.HasBuff(self, 'AeonIntelHealth1') then
+                Buff.RemoveBuff(self, 'AeonIntelHealth1')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost17') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost17')
+            if Buff.HasBuff(self, 'AeonIntelHealth2') then
+                Buff.RemoveBuff(self, 'AeonIntelHealth2')
             end
             self:SetWeaponEnabledByLabel('AntiMissile', false)
             self.RBIntTier1 = false
@@ -1150,11 +1093,11 @@ EAL0001 = Class(ACUUnit) {
             self:ForkThread(self.DisableRemoteViewingButtons)
         elseif enh == 'CloakingSubsystems' then
             self:AddCommandCap('RULEUCC_Teleport')
-            if not Buffs['AeonHealthBoost18'] then
+            if not Buffs['AeonIntelHealth3'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost18',
-                    DisplayName = 'AeonHealthBoost18',
-                    BuffType = 'AeonHealthBoost18',
+                    Name = 'AeonIntelHealth3',
+                    DisplayName = 'AeonIntelHealth3',
+                    BuffType = 'AeonIntelHealth3',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1165,7 +1108,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost18')
+            Buff.ApplyBuff(self, 'AeonIntelHealth3')
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = true
@@ -1175,14 +1118,14 @@ EAL0001 = Class(ACUUnit) {
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'AeonHealthBoost16') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost16')
+            if Buff.HasBuff(self, 'AeonIntelHealth1') then
+                Buff.RemoveBuff(self, 'AeonIntelHealth1')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost17') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost17')
+            if Buff.HasBuff(self, 'AeonIntelHealth2') then
+                Buff.RemoveBuff(self, 'AeonIntelHealth2')
             end
-            if Buff.HasBuff(self, 'AeonHealthBoost18') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost18')
+            if Buff.HasBuff(self, 'AeonIntelHealth3') then
+                Buff.RemoveBuff(self, 'AeonIntelHealth3')
             end
             self.RBIntTier1 = false
             self.RBIntTier2 = false
@@ -1217,11 +1160,11 @@ EAL0001 = Class(ACUUnit) {
                 table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
                 table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
                 table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            if not Buffs['AeonHealthBoost19'] then
+            if not Buffs['AeonMaelstromHealth1'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost19',
-                    DisplayName = 'AeonHealthBoost19',
-                    BuffType = 'AeonHealthBoost19',
+                    Name = 'AeonMaelstromHealth1',
+                    DisplayName = 'AeonMaelstromHealth1',
+                    BuffType = 'AeonMaelstromHealth1',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1232,7 +1175,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost19')
+            Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
             self.wcMaelstrom01 = true
             self.wcMaelstrom02 = false
             self.wcMaelstrom03 = false
@@ -1243,8 +1186,8 @@ EAL0001 = Class(ACUUnit) {
             self.RBComTier3 = false
             
         elseif enh == 'MaelstromQuantumRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost19') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost19')
+            if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
+                Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
             end
             self.wcMaelstrom01 = false
             self.wcMaelstrom02 = false
@@ -1261,12 +1204,12 @@ EAL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
-        elseif enh == 'Fieldpander' then
-            if not Buffs['AeonHealthBoost20'] then
+        elseif enh == 'FieldExpander' then
+            if not Buffs['AeonMaelstromHealth2'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost20',
-                    DisplayName = 'AeonHealthBoost20',
-                    BuffType = 'AeonHealthBoost20',
+                    Name = 'AeonMaelstromHealth2',
+                    DisplayName = 'AeonMaelstromHealth2',
+                    BuffType = 'AeonMaelstromHealth2',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1277,7 +1220,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost20')
+            Buff.ApplyBuff(self, 'AeonMaelstromHealth2')
             self:SetWeaponEnabledByLabel('AntiMissile', true)
             self.wcMaelstrom01 = false
             self.wcMaelstrom02 = true
@@ -1289,12 +1232,34 @@ EAL0001 = Class(ACUUnit) {
             self.RBComTier2 = true
             self.RBComTier3 = false
             
+        elseif enh == 'FieldExpanderRemove' then
+            if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
+                Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
+            end
+
+            self:SetWeaponEnabledByLabel('AntiMissile', false)
+            self.wcMaelstrom01 = false
+            self.wcMaelstrom02 = false
+            self.wcMaelstrom03 = false
+            self:SetWeaponEnabledByLabel('AntiMissile', false)
+            
+            
+                if self.MaelstromEffects01 then
+                    for k, v in self.MaelstromEffects01 do
+                        v:Destroy()
+                    end
+                    self.MaelstromEffects01 = {}
+                end
+            self.RBComTier1 = false
+            self.RBComTier2 = false
+            self.RBComTier3 = false
+            
         elseif enh == 'QuantumInstability' then
-            if not Buffs['AeonHealthBoost21'] then
+            if not Buffs['AeonMaelstromHealth3'] then
                 BuffBlueprint {
-                    Name = 'AeonHealthBoost21',
-                    DisplayName = 'AeonHealthBoost21',
-                    BuffType = 'AeonHealthBoost21',
+                    Name = 'AeonMaelstromHealth3',
+                    DisplayName = 'AeonMaelstromHealth3',
+                    BuffType = 'AeonMaelstromHealth3',
                     Stacks = 'REPLACE',
                     Duration = -1,
                     Affects = {
@@ -1305,7 +1270,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AeonHealthBoost21')
+            Buff.ApplyBuff(self, 'AeonMaelstromHealth3')
             self:SetWeaponEnabledByLabel('AntiMissile', false)
             self.wcMaelstrom01 = false
             self.wcMaelstrom02 = false
@@ -1315,43 +1280,11 @@ EAL0001 = Class(ACUUnit) {
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = true
-            
-        elseif enh == 'FieldpanderRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost19') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost19')
-            end
-            if Buff.HasBuff(self, 'AeonHealthBoost20') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost20')
-            end
-            if Buff.HasBuff(self, 'AeonHealthBoost21') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost21')
-            end
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.wcMaelstrom01 = false
-            self.wcMaelstrom02 = false
-            self.wcMaelstrom03 = false
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            
-            
-                if self.MaelstromEffects01 then
-                    for k, v in self.MaelstromEffects01 do
-                        v:Destroy()
-                    end
-                    self.MaelstromEffects01 = {}
-                end
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-            
+
         elseif enh == 'QuantumInstabilityRemove' then
-            if Buff.HasBuff(self, 'AeonHealthBoost19') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost19')
-            end
-            if Buff.HasBuff(self, 'AeonHealthBoost20') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost20')
-            end
-            if Buff.HasBuff(self, 'AeonHealthBoost21') then
-                Buff.RemoveBuff(self, 'AeonHealthBoost21')
+
+            if Buff.HasBuff(self, 'AeonMaelstromHealth3') then
+                Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
             end
             self:SetWeaponEnabledByLabel('AntiMissile', false)
             self.wcMaelstrom01 = false
@@ -1370,6 +1303,17 @@ EAL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
+        end
+
+        -- Remove prerequisites
+        if not removal then
+            if bp.RemoveEnhancements then
+                for k, v in bp.RemoveEnhancements do                
+                    if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
+                        self:CreateEnhancement(v .. 'Remove', true)
+                    end
+                end
+            end
         end
     end,
 
