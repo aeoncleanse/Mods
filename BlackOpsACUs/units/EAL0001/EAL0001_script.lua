@@ -34,12 +34,8 @@ EAL0001 = Class(ACUUnit) {
         RightDisruptor = Class(ADFDisruptorCannonWeapon) {},
         ChronoDampener = Class(ADFChronoDampener) {},
         TorpedoLauncher = Class(AANChronoTorpedoWeapon) {},
-        MiasmaArtillery01 = Class(AIFArtilleryMiasmaShellWeapon) {},
-        MiasmaArtillery02 = Class(AIFArtilleryMiasmaShellWeapon) {},
-        MiasmaArtillery03 = Class(AIFArtilleryMiasmaShellWeapon) {},
-        PhasonBeam01 = Class(AeonACUPhasonLaser) {},
-        PhasonBeam02 = Class(AeonACUPhasonLaser) {},
-        PhasonBeam03 = Class(AeonACUPhasonLaser) {},
+        MiasmaArtillery = Class(AIFArtilleryMiasmaShellWeapon) {},
+        PhasonBeam = Class(AeonACUPhasonLaser) {},
         QuantumMaelstrom01 = Class(QuantumMaelstromWeapon) {},
         QuantumMaelstrom02 = Class(QuantumMaelstromWeapon) {},
         QuantumMaelstrom03 = Class(QuantumMaelstromWeapon) {},
@@ -106,12 +102,8 @@ EAL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('TargetPainter', false)
         self:SetWeaponEnabledByLabel('ChronoDampener', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('MiasmaArtillery01', false)
-        self:SetWeaponEnabledByLabel('MiasmaArtillery02', false)
-        self:SetWeaponEnabledByLabel('MiasmaArtillery02', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam01', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam02', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam03', false)
+        self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
+        self:SetWeaponEnabledByLabel('PhasonBeam', false)
         self:SetWeaponEnabledByLabel('QuantumMaelstrom01', false)
         self:SetWeaponEnabledByLabel('QuantumMaelstrom02', false)
         self:SetWeaponEnabledByLabel('QuantumMaelstrom03', false)
@@ -122,101 +114,101 @@ EAL0001 = Class(ACUUnit) {
         self.Sync.Abilities.ScryTarget.Active = false
     end,
 
-        OnKilled = function(self, instigator, type, overkillRatio)
-            ACUUnit.OnKilled(self, instigator, type, overkillRatio)
-            if self.RemoteViewingData.Satellite then
-                self.RemoteViewingData.Satellite:DisableIntel('Vision')
-                self.RemoteViewingData.Satellite:Destroy()
-            end
-        end,
+    OnKilled = function(self, instigator, type, overkillRatio)
+        ACUUnit.OnKilled(self, instigator, type, overkillRatio)
+        if self.RemoteViewingData.Satellite then
+            self.RemoteViewingData.Satellite:DisableIntel('Vision')
+            self.RemoteViewingData.Satellite:Destroy()
+        end
+    end,
 
-        DisableRemoteViewingButtons = function(self)
-            self.Sync.Abilities = self:GetBlueprint().Abilities
-            self.Sync.Abilities.ScryTarget.Active = false
-            self:AddToggleCap('RULEUTC_IntelToggle')
-            self:RemoveToggleCap('RULEUTC_IntelToggle')
-        end,
+    DisableRemoteViewingButtons = function(self)
+        self.Sync.Abilities = self:GetBlueprint().Abilities
+        self.Sync.Abilities.ScryTarget.Active = false
+        self:AddToggleCap('RULEUTC_IntelToggle')
+        self:RemoveToggleCap('RULEUTC_IntelToggle')
+    end,
+
+    EnableRemoteViewingButtons = function(self)
+        self.Sync.Abilities = self:GetBlueprint().Abilities
+        self.Sync.Abilities.ScryTarget.Active = true
+        self:AddToggleCap('RULEUTC_IntelToggle')
+        self:RemoveToggleCap('RULEUTC_IntelToggle')
+    end,
+
+    RemoteCheck = function(self)
+        if self:HasEnhancement('ElectronicCountermeasures') and self.ScryActive then
+            self:DisableRemoteViewingButtons()
+            WaitSeconds(10)
+            if self:HasEnhancement('ElectronicCountermeasures') then
+                self:EnableRemoteViewingButtons()
+            end
+        end
+    end,
+
+    OnTargetLocation = function(self, location)
+        -- Initial energy drain here - we drain resources instantly when an eye is relocated (including initial move)
+        local aiBrain = self:GetAIBrain()
+        local bp = self:GetBlueprint()
+        local have = aiBrain:GetEconomyStored('ENERGY')
+        local need = bp.Economy.InitialRemoteViewingEnergyDrain
+        if not (have > need) then
+            return
+        end
+        local selfpos = self:GetPosition()
+        local destRange = VDist2(location[1], location[3], selfpos[1], selfpos[3])
+        if destRange <= 300 then
+            aiBrain:TakeResource('ENERGY', bp.Economy.InitialRemoteViewingEnergyDrain)
+
+            self.RemoteViewingData.VisibleLocation = location
+            self:CreateVisibleEntity()
+            self.ScryActive = true
+            self:ForkThread(self.RemoteCheck)
+        end
+    end,
+
+    CreateVisibleEntity = function(self)
+        -- Only give a visible area if we have a location and intel button enabled
+        if not self.RemoteViewingData.VisibleLocation then
+            return
+        end
         
-        EnableRemoteViewingButtons = function(self)
-            self.Sync.Abilities = self:GetBlueprint().Abilities
-            self.Sync.Abilities.ScryTarget.Active = true
-            self:AddToggleCap('RULEUTC_IntelToggle')
-            self:RemoveToggleCap('RULEUTC_IntelToggle')
-        end,
-
-        RemoteCheck = function(self)
-            if self.RBIntTier2 and self.ScryActive then
-                self:DisableRemoteViewingButtons()
-                WaitSeconds(10)
-                if self.RBIntTier2 then
-                    self:EnableRemoteViewingButtons()
-                end
-            end
-        end,
-
-        OnTargetLocation = function(self, location)
-            -- Initial energy drain here - we drain resources instantly when an eye is relocated (including initial move)
-            local aiBrain = self:GetAIBrain()
+        if self.RemoteViewingData.VisibleLocation and self.RemoteViewingData.DisableCounter == 0 and self.RemoteViewingData.IntelButton then
             local bp = self:GetBlueprint()
-            local have = aiBrain:GetEconomyStored('ENERGY')
-            local need = bp.Economy.InitialRemoteViewingEnergyDrain
-            if not (have > need) then
-                return
-            end
-            local selfpos = self:GetPosition()
-            local destRange = VDist2(location[1], location[3], selfpos[1], selfpos[3])
-            if destRange <= 300 then
-                aiBrain:TakeResource('ENERGY', bp.Economy.InitialRemoteViewingEnergyDrain)
-
-                self.RemoteViewingData.VisibleLocation = location
-                self:CreateVisibleEntity()
-                self.ScryActive = true
-                self:ForkThread(self.RemoteCheck)
-            end
-        end,
-
-        CreateVisibleEntity = function(self)
-            -- Only give a visible area if we have a location and intel button enabled
-            if not self.RemoteViewingData.VisibleLocation then
-                return
-            end
-            
-            if self.RemoteViewingData.VisibleLocation and self.RemoteViewingData.DisableCounter == 0 and self.RemoteViewingData.IntelButton then
-                local bp = self:GetBlueprint()
-                -- Create new visible area
-                if not self.RemoteViewingData.Satellite then
-                    local spec = {
-                        X = self.RemoteViewingData.VisibleLocation[1],
-                        Z = self.RemoteViewingData.VisibleLocation[3],
-                        Radius = bp.Intel.RemoteViewingRadius,
-                        LifeTime = -1,
-                        Omni = false,
-                        Radar = false,
-                        Vision = true,
-                        Army = self:GetAIBrain():GetArmyInd(),
-                    }
-                    self.RemoteViewingData.Satellite = VizMarker(spec)
-                    self.Trash:Add(self.RemoteViewingData.Satellite)
-                else
-                    -- Move and reactivate old visible area
-                    if not self.RemoteViewingData.Satellite:BeenDestroyed() then
-                        Warp(self.RemoteViewingData.Satellite, self.RemoteViewingData.VisibleLocation)
-                        self.RemoteViewingData.Satellite:EnableIntel('Vision')
-                    end
+            -- Create new visible area
+            if not self.RemoteViewingData.Satellite then
+                local spec = {
+                    X = self.RemoteViewingData.VisibleLocation[1],
+                    Z = self.RemoteViewingData.VisibleLocation[3],
+                    Radius = bp.Intel.RemoteViewingRadius,
+                    LifeTime = -1,
+                    Omni = false,
+                    Radar = false,
+                    Vision = true,
+                    Army = self:GetAIBrain():GetArmyInd(),
+                }
+                self.RemoteViewingData.Satellite = VizMarker(spec)
+                self.Trash:Add(self.RemoteViewingData.Satellite)
+            else
+                -- Move and reactivate old visible area
+                if not self.RemoteViewingData.Satellite:BeenDestroyed() then
+                    Warp(self.RemoteViewingData.Satellite, self.RemoteViewingData.VisibleLocation)
+                    self.RemoteViewingData.Satellite:EnableIntel('Vision')
                 end
-                self:ForkThread(self.DisableVisibleEntity)
             end
-        end,
+            self:ForkThread(self.DisableVisibleEntity)
+        end
+    end,
 
-        DisableVisibleEntity = function(self)
-            -- visible entity already off
-            WaitSeconds(5)
-            if self.RemoteViewingData.DisableCounter > 1 then return end
-            -- disable vis entity and monitor resources
-            if not self:IsDead() and self.RemoteViewingData.Satellite then
-                self.RemoteViewingData.Satellite:DisableIntel('Vision')
-            end
-        end,
+    DisableVisibleEntity = function(self)
+        -- visible entity already off
+        WaitSeconds(5)
+        if self.RemoteViewingData.DisableCounter > 1 then return end
+        -- disable vis entity and monitor resources
+        if not self:IsDead() and self.RemoteViewingData.Satellite then
+            self.RemoteViewingData.Satellite:DisableIntel('Vision')
+        end
+    end,
     
     OnStartBuild = function(self, unitBeingBuilt, order)
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
@@ -323,13 +315,13 @@ EAL0001 = Class(ACUUnit) {
     SetProduction = function(self, bp)
         local energy = bp.ProductionPerSecondEnergy or 0
         local mass = bp.ProductionPerSecondMass or 0
-        
+
         local bpEcon = self:GetBlueprint().Economy
-        
+
         self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
         self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
     end,
-    
+
     -- Function to toggle the Ripper
     TogglePrimaryGun = function(self, damage, radius)
         local wep = self:GetWeaponByLabel('RightDisruptor')
@@ -342,12 +334,12 @@ EAL0001 = Class(ACUUnit) {
 
         -- Change RoF
         wep:AddDamageMod(damage)
-        
+
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
         aoc:ChangeMaxRadius(aocRadius)
-        
+
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:ShowBone('Basic_GunUp_Range', true)
@@ -690,7 +682,7 @@ EAL0001 = Class(ACUUnit) {
                 BuffBlueprint {
                     Name = 'AeonArtilleryHealth1',
                     DisplayName = 'AeonArtilleryHealth1',
-                    BuffType = 'AeonArtilleryHealth1',
+                    BuffType = 'AeonArtilleryHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -702,41 +694,20 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonArtilleryHealth1')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:ChangeMaxRadius(35)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(100)
-            self.wcArtillery01 = true
-            self.wcArtillery02 = false
-            self.wcArtillery03 = false
-            self.ccArtillery = true
             
-            
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:SetWeaponEnabledByLabel('MiasmaArtillery', true)
         elseif enh == 'ArtilleryMiasmaRemove' then
             if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcArtillery01 = false
-            self.wcArtillery02 = false
-            self.wcArtillery03 = false
-            self.ccArtillery = false
             
-            
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
         elseif enh == 'AdvancedShells' then
             if not Buffs['AeonArtilleryHealth2'] then
                 BuffBlueprint {
                     Name = 'AeonArtilleryHealth2',
                     DisplayName = 'AeonArtilleryHealth2',
-                    BuffType = 'AeonArtilleryHealth2',
+                    BuffType = 'AeonArtilleryHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -748,43 +719,26 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonArtilleryHealth2')
-            self.wcArtillery01 = false
-            self.wcArtillery02 = true
-            self.wcArtillery03 = false
-            self.ccArtillery = true
             
+            local arty = self:GetWeaponByLabel('MiasmaArtillery')
+            arty:AddDamageMod(bp.Artillery)
             
-            self:ForkThread(self.ArtyShieldCheck)
-            
-            
-            
-        elseif enh == 'AdvancedShellsRemove' then    
-            self:RemoveToggleCap('RULEUTC_WeaponToggle')
-            if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
-                Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
-            end
+            self:TogglePrimaryGun(bp.NewDamage)
+        elseif enh == 'AdvancedShellsRemove' then
             if Buff.HasBuff(self, 'AeonArtilleryHealth2') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcArtillery01 = false
-            self.wcArtillery02 = false
-            self.wcArtillery03 = false
-            self.ccArtillery = false
             
+            local arty = self:GetWeaponByLabel('MiasmaArtillery')
+            arty:AddDamageMod(bp.Artillery)
             
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'ImprovedReloader' then
             if not Buffs['AeonArtilleryHealth3'] then
                 BuffBlueprint {
                     Name = 'AeonArtilleryHealth3',
                     DisplayName = 'AeonArtilleryHealth3',
-                    BuffType = 'AeonArtilleryHealth3',
+                    BuffType = 'AeonArtilleryHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -796,44 +750,27 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonArtilleryHealth3')
-            self.wcArtillery01 = false
-            self.wcArtillery02 = false
-            self.wcArtillery03 = true
-            self.ccArtillery = true
             
-            
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            local arty = self:GetWeaponByLabel('MiasmaArtillery')
+            arty:AddDamageMod(bp.ArtilleryDamage)
+            arty:ChangeRateOfFire(bp.ArtilleryRoF)
         elseif enh == 'ImprovedReloaderRemove' then    
-            self:RemoveToggleCap('RULEUTC_WeaponToggle')
-            if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
-                Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
-            end
-            if Buff.HasBuff(self, 'AeonArtilleryHealth2') then
-                Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
-            end
             if Buff.HasBuff(self, 'AeonArtilleryHealth3') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcArtillery01 = false
-            self.wcArtillery02 = false
-            self.wcArtillery03 = false
-            self.ccArtillery = false
             
+            local arty = self:GetWeaponByLabel('MiasmaArtillery')
+            arty:AddDamageMod(bp.ArtilleryDamage)
+            arty:ChangeRateOfFire(arty:GetBlueprint().RateOfFire)
             
-            self:ForkThread(self.ArtyShieldCheck)
+        --  Beam Weapon
             
         elseif enh == 'BeamPhason' then
             if not Buffs['AeonBeamHealth1'] then
                 BuffBlueprint {
                     Name = 'AeonBeamHealth1',
                     DisplayName = 'AeonBeamHealth1',
-                    BuffType = 'AeonBeamHealth1',
+                    BuffType = 'AeonBeamHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -845,37 +782,24 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonBeamHealth1')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:ChangeMaxRadius(35)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(35)
-            self.wcBeam01 = true
-            self.wcBeam02 = false
-            self.wcBeam03 = false
             
-            
-            
+            self:SetWeaponEnabledByLabel('PhasonBeam', true)
+            local beam = self:GetWeaponByLabel('PhasonBeam')
+            beam:ChangeMaxRadius(bp.BeamRadius)
         elseif enh == 'BeamPhasonRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth1') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth1')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcBeam01 = false
-            self.wcBeam02 = false
-            self.wcBeam03 = false
             
-            
-            
+            self:SetWeaponEnabledByLabel('PhasonBeam', false)
+            local beam = self:GetWeaponByLabel('PhasonBeam')
+            beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
         elseif enh == 'ImprovedCoolingSystem' then
             if not Buffs['AeonBeamHealth2'] then
                 BuffBlueprint {
                     Name = 'AeonBeamHealth2',
                     DisplayName = 'AeonBeamHealth2',
-                    BuffType = 'AeonBeamHealth2',
+                    BuffType = 'AeonBeamHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -887,41 +811,29 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonBeamHealth2')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:ChangeMaxRadius(40)
-            self.wcBeam01 = false
-            self.wcBeam02 = true
-            self.wcBeam03 = false
             
-                
+            local beam = self:GetWeaponByLabel('PhasonBeam')
+            beam:ChangeMaxRadius(bp.BeamRadius)
+            beam:AddDamageMod(bp.BeamDamage)
             
-            
-            
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'ImprovedCoolingSystemRemove' then
-            if Buff.HasBuff(self, 'AeonBeamHealth1') then
-                Buff.RemoveBuff(self, 'AeonBeamHealth1')
-            end
             if Buff.HasBuff(self, 'AeonBeamHealth2') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth2')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcBeam01 = false
-            self.wcBeam02 = false
-            self.wcBeam03 = false
             
+            local beam = self:GetWeaponByLabel('PhasonBeam')
+            beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
+            beam:AddDamageMod(bp.BeamDamage)
             
-            
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'PowerBooster' then
             if not Buffs['AeonBeamHealth3'] then
                 BuffBlueprint {
                     Name = 'AeonBeamHealth3',
                     DisplayName = 'AeonBeamHealth3',
-                    BuffType = 'AeonBeamHealth3',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonBeamHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -932,51 +844,33 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonBeamHealth3')
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            wepDisruptor:ChangeMaxRadius(40)
-            self.wcBeam01 = false
-            self.wcBeam02 = false
-            self.wcBeam03 = true
             
-            
-            
+            local beam = self:GetWeaponByLabel('PhasonBeam')
+            beam:AddDamageMod(bp.BeamDamage)
+            beam:ChangeDamageRadius(bp.BeamArea)
         elseif enh == 'PowerBoosterRemove' then
-            if Buff.HasBuff(self, 'AeonBeamHealth1') then
-                Buff.RemoveBuff(self, 'AeonBeamHealth1')
-            end
-            if Buff.HasBuff(self, 'AeonBeamHealth2') then
-                Buff.RemoveBuff(self, 'AeonBeamHealth2')
-            end
             if Buff.HasBuff(self, 'AeonBeamHealth3') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth3')
             end
-            local wepDisruptor = self:GetWeaponByLabel('RightDisruptor')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepDisruptor:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            local wepTargetPainter = self:GetWeaponByLabel('TargetPainter')
-            wepTargetPainter:ChangeMaxRadius(22)
-            self.wcBeam01 = false
-            self.wcBeam02 = false
-            self.wcBeam03 = false
             
+            local beam = self:GetWeaponByLabel('PhasonBeam')
+            beam:AddDamageMod(bp.BeamDamage)
+            beam:ChangeDamageRadius(beam:GetBlueprint().DamageRadius)
             
+        -- Shielding
             
         elseif enh == 'ShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
             self:CreateShield(bp)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self.ccShield = true
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:OnScriptBitSet(0)
         elseif enh == 'ShieldBatteryRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'ShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            self.ccShield = false
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:OnScriptBitClear(0)
         elseif enh == 'ActiveShielding' then
             self:DestroyShield()
             ForkThread(function()
@@ -985,17 +879,13 @@ EAL0001 = Class(ACUUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self.ccShield = true
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:OnScriptBitSet(0)
         elseif enh == 'ActiveShieldingRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'ActiveShieldingRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            self.ccShield = false
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:OnScriptBitClear(0)
         elseif enh == 'ImprovedShieldBattery' then
             self:DestroyShield()
             ForkThread(function()
@@ -1005,27 +895,24 @@ EAL0001 = Class(ACUUnit) {
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self:SetWeaponEnabledByLabel('AntiMissile', true)
-            self.ccShield = true
-            self:ForkThread(self.ArtyShieldCheck)
-            
+            self:OnScriptBitSet(0)
         elseif enh == 'ImprovedShieldBatteryRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.ccShield = false
-            self:ForkThread(self.ArtyShieldCheck)
+            self:OnScriptBitClear(0)
+
+        -- Intel
             
         elseif enh == 'ElectronicsEnhancment' then
-            self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
             if not Buffs['AeonIntelHealth1'] then
                 BuffBlueprint {
                     Name = 'AeonIntelHealth1',
                     DisplayName = 'AeonIntelHealth1',
-                    BuffType = 'AeonIntelHealth1',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonIntelHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1036,30 +923,30 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonIntelHealth1')
-            self:SetWeaponEnabledByLabel('AntiMissile', true)
-            self.RBIntTier1 = true
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
             
+            self:SetIntelRadius('Vision', bp.NewVisionRadius)
+            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
+            self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            
+            self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
             if Buff.HasBuff(self, 'AeonIntelHealth1') then
                 Buff.RemoveBuff(self, 'AeonIntelHealth1')
             end
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
             
+            local bpIntel = self:GetBlueprint().Intel
+            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+            self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
+            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            
+            self:SetWeaponEnabledByLabel('AntiMissile', false)
         elseif enh == 'ElectronicCountermeasures' then
             if not Buffs['AeonIntelHealth2'] then
                 BuffBlueprint {
                     Name = 'AeonIntelHealth2',
                     DisplayName = 'AeonIntelHealth2',
-                    BuffType = 'AeonIntelHealth2',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonIntelHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1070,35 +957,21 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonIntelHealth2')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = false
-            
+
             self:ForkThread(self.EnableRemoteViewingButtons)
         elseif enh == 'ElectronicCountermeasuresRemove' then
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'AeonIntelHealth1') then
-                Buff.RemoveBuff(self, 'AeonIntelHealth1')
-            end
             if Buff.HasBuff(self, 'AeonIntelHealth2') then
                 Buff.RemoveBuff(self, 'AeonIntelHealth2')
             end
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-            
+
             self:ForkThread(self.DisableRemoteViewingButtons)
-        elseif enh == 'CloakingSubsystems' then
-            self:AddCommandCap('RULEUCC_Teleport')
+        elseif enh == 'Teleporter' then
             if not Buffs['AeonIntelHealth3'] then
                 BuffBlueprint {
                     Name = 'AeonIntelHealth3',
                     DisplayName = 'AeonIntelHealth3',
-                    BuffType = 'AeonIntelHealth3',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonIntelHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1109,63 +982,51 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonIntelHealth3')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = true
             
-        elseif enh == 'CloakingSubsystemsRemove' then
-            self:RemoveCommandCap('RULEUCC_Teleport')
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'AeonIntelHealth1') then
-                Buff.RemoveBuff(self, 'AeonIntelHealth1')
-            end
-            if Buff.HasBuff(self, 'AeonIntelHealth2') then
-                Buff.RemoveBuff(self, 'AeonIntelHealth2')
-            end
+            self:AddCommandCap('RULEUCC_Teleport')
+        elseif enh == 'TeleporterRemove' then
             if Buff.HasBuff(self, 'AeonIntelHealth3') then
                 Buff.RemoveBuff(self, 'AeonIntelHealth3')
             end
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
+
+            self:RemoveCommandCap('RULEUCC_Teleport')
             
-            self:ForkThread(self.DisableRemoteViewingButtons)
+        -- Maelstrom
+            
         elseif enh == 'MaelstromQuantum' then
-                if self.MaelstromEffects01 then
-                    for k, v in self.MaelstromEffects01 do
-                        v:Destroy()
-                    end
-                    self.MaelstromEffects01 = {}
+            if self.MaelstromEffects01 then
+                for k, v in self.MaelstromEffects01 do
+                    v:Destroy()
                 end
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/maelstrom_aura_01_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/maelstrom_aura_02_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2.75, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-                table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+                self.MaelstromEffects01 = {}
+            end
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/maelstrom_aura_01_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsACUs/effects/emitters/maelstrom_aura_02_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2.75, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            
             if not Buffs['AeonMaelstromHealth1'] then
                 BuffBlueprint {
                     Name = 'AeonMaelstromHealth1',
                     DisplayName = 'AeonMaelstromHealth1',
-                    BuffType = 'AeonMaelstromHealth1',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonMaelstromHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1176,91 +1037,70 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
-            self.wcMaelstrom01 = true
-            self.wcMaelstrom02 = false
-            self.wcMaelstrom03 = false
             
-            
-            self.RBComTier1 = true
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-            
+            self:SetWeaponEnabledByLabel('QuantumMaelstrom01', true)
         elseif enh == 'MaelstromQuantumRemove' then
             if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
                 Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
             end
-            self.wcMaelstrom01 = false
-            self.wcMaelstrom02 = false
-            self.wcMaelstrom03 = false
             
-            
-                if self.MaelstromEffects01 then
-                    for k, v in self.MaelstromEffects01 do
-                        v:Destroy()
-                    end
-                    self.MaelstromEffects01 = {}
+            if self.MaelstromEffects01 then
+                for k, v in self.MaelstromEffects01 do
+                    v:Destroy()
                 end
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
+                self.MaelstromEffects01 = {}
+            end
             
+            self:SetWeaponEnabledByLabel('QuantumMaelstrom01', false)
         elseif enh == 'FieldExpander' then
             if not Buffs['AeonMaelstromHealth2'] then
                 BuffBlueprint {
                     Name = 'AeonMaelstromHealth2',
                     DisplayName = 'AeonMaelstromHealth2',
-                    BuffType = 'AeonMaelstromHealth2',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonMaelstromHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth2')
-            self:SetWeaponEnabledByLabel('AntiMissile', true)
-            self.wcMaelstrom01 = false
-            self.wcMaelstrom02 = true
-            self.wcMaelstrom03 = false
-            self:SetWeaponEnabledByLabel('AntiMissile', true)
             
-                
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = false
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            wep:AddDamageMod(bp.MaelstromDamage)
             
+            self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'FieldExpanderRemove' then
             if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
                 Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
             end
 
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.wcMaelstrom01 = false
-            self.wcMaelstrom02 = false
-            self.wcMaelstrom03 = false
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            
-            
-                if self.MaelstromEffects01 then
-                    for k, v in self.MaelstromEffects01 do
-                        v:Destroy()
-                    end
-                    self.MaelstromEffects01 = {}
+            if self.MaelstromEffects01 then
+                for k, v in self.MaelstromEffects01 do
+                    v:Destroy()
                 end
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
+                self.MaelstromEffects01 = {}
+            end
+
+            self:SetWeaponEnabledByLabel('AntiMissile', false)
             
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            wep:AddDamageMod(bp.MaelstromDamage)
         elseif enh == 'QuantumInstability' then
             if not Buffs['AeonMaelstromHealth3'] then
                 BuffBlueprint {
                     Name = 'AeonMaelstromHealth3',
                     DisplayName = 'AeonMaelstromHealth3',
-                    BuffType = 'AeonMaelstromHealth3',
-                    Stacks = 'REPLACE',
+                    BuffType = 'AeonMaelstromHealth',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1271,38 +1111,27 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth3')
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.wcMaelstrom01 = false
-            self.wcMaelstrom02 = false
-            self.wcMaelstrom03 = true
-            
-                  
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = true
 
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            wep:AddDamageMod(bp.MaelstromDamage)
+            wep:ChangeMaxRadius(bp.MaelstromRange)
+            wep:ChangeDamageRadius(bp.MaelstromRange)
         elseif enh == 'QuantumInstabilityRemove' then
-
             if Buff.HasBuff(self, 'AeonMaelstromHealth3') then
                 Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
             end
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            self.wcMaelstrom01 = false
-            self.wcMaelstrom02 = false
-            self.wcMaelstrom03 = false
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
-            
-            
-                if self.MaelstromEffects01 then
-                    for k, v in self.MaelstromEffects01 do
-                        v:Destroy()
-                    end
-                    self.MaelstromEffects01 = {}
+
+            if self.MaelstromEffects01 then
+                for k, v in self.MaelstromEffects01 do
+                    v:Destroy()
                 end
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-            
+                self.MaelstromEffects01 = {}
+            end
+
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            wep:AddDamageMod(bp.MaelstromDamage)
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            wep:ChangeDamageRadius(wep:GetBlueprint().DamageRadius)
         end
 
         -- Remove prerequisites
@@ -1351,38 +1180,6 @@ EAL0001 = Class(ACUUnit) {
             },    
         },    
     },
-    
-    OnIntelEnabled = function(self)
-        ACUUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()
-            if not self.IntelEffectsBag then
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
-        elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['ElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
-    end,
-
-    OnIntelDisabled = function(self)
-        ACUUnit.OnIntelDisabled(self)
-        if self.IntelEffectsBag then
-            EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
-            self.IntelEffectsBag = nil
-        end
-        if self.CloakEnh and not self:IsIntelEnabled('Cloak') then
-            self:SetMaintenanceConsumptionInactive()
-        elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
-            self:SetMaintenanceConsumptionInactive()
-        end         
-    end,  
 }
 
 TypeClass = EAL0001

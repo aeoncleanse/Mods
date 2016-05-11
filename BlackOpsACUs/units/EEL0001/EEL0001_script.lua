@@ -308,6 +308,22 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
 
+    OnKilled = function(self, instigator, type, overkillRatio)
+        if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
+            self.Satellite:Kill()
+            self.Satellite = nil
+        end
+        ACUUnit.OnKilled(self, instigator, type, overkillRatio)
+    end,
+    
+    OnDestroy = function(self)
+        if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
+            self.Satellite:Destroy()
+            self.Satellite = nil
+        end
+        ACUUnit.OnDestroy(self)
+    end,
+
     OnScriptBitClear = function(self, bit)
         if bit == 0 then -- shield toggle
             self.Rotator1:SetTargetSpeed(0)
@@ -320,8 +336,6 @@ EEL0001 = Class(ACUUnit) {
             end
             self:DisableShield()
             self:StopUnitAmbientSound('ActiveLoop')
-        elseif bit == 2 then 
-
         elseif bit == 8 then -- cloak toggle
             self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
@@ -353,8 +367,6 @@ EEL0001 = Class(ACUUnit) {
             end
             self:EnableShield()
             self:PlayUnitAmbientSound('ActiveLoop')
-        elseif bit == 2 then
-
         elseif bit == 8 then -- cloak toggle
             self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
@@ -977,7 +989,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
-        elseif enh == 'EXImprovedShieldBattery' then
+        elseif enh == 'ImprovedShieldBattery' then
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
@@ -1003,6 +1015,7 @@ EEL0001 = Class(ACUUnit) {
             self:OnScriptBitSet(0)
         elseif enh == 'ShieldExpanderRemove' then
             self:DestroyShield()
+            RemoveUnitEnhancement(self, 'ShieldExpanderRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
@@ -1344,22 +1357,6 @@ EEL0001 = Class(ACUUnit) {
             },    
         },    
     },
-
-    OnKilled = function(self, instigator, type, overkillRatio)
-        if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
-            self.Satellite:Kill()
-            self.Satellite = nil
-        end
-        ACUUnit.OnKilled(self, instigator, type, overkillRatio)
-    end,
-    
-    OnDestroy = function(self)
-        if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
-            self.Satellite:Destroy()
-            self.Satellite = nil
-        end
-        ACUUnit.OnDestroy(self)
-    end,
 
     ShieldEffects2 = {
         '/mods/BlackOpsACUs/effects/emitters/ex_uef_shieldgen_01_emit.bp',

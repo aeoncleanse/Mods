@@ -1245,7 +1245,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'UEL0001',
             },
-            NewRegenRate = 0,
         },
         ElectronicsEnhancmentRemove = {
             BuildCostEnergy = 1,
@@ -1285,7 +1284,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'UEL0001',
             },
-            NewRegenRate = 0,
         },
         SpySatelliteRemove = {
             BuildCostEnergy = 1,
@@ -1327,7 +1325,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'UEL0001',
             },
-            NewRegenRate = 0,
         },
         TeleporterRemove = {
             BuildCostEnergy = 1,
