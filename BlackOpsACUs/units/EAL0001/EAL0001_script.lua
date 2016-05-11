@@ -36,9 +36,7 @@ EAL0001 = Class(ACUUnit) {
         TorpedoLauncher = Class(AANChronoTorpedoWeapon) {},
         MiasmaArtillery = Class(AIFArtilleryMiasmaShellWeapon) {},
         PhasonBeam = Class(AeonACUPhasonLaser) {},
-        QuantumMaelstrom01 = Class(QuantumMaelstromWeapon) {},
-        QuantumMaelstrom02 = Class(QuantumMaelstromWeapon) {},
-        QuantumMaelstrom03 = Class(QuantumMaelstromWeapon) {},
+        QuantumMaelstrom = Class(QuantumMaelstromWeapon) {},
         AntiTorpedo = Class(AIFQuasarAntiTorpedoWeapon) {},
         AntiMissile = Class(AAMWillOWisp) {},
         OverCharge = Class(ADFOverchargeWeapon) {},
@@ -104,9 +102,7 @@ EAL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
         self:SetWeaponEnabledByLabel('PhasonBeam', false)
-        self:SetWeaponEnabledByLabel('QuantumMaelstrom01', false)
-        self:SetWeaponEnabledByLabel('QuantumMaelstrom02', false)
-        self:SetWeaponEnabledByLabel('QuantumMaelstrom03', false)
+        self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
         self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         self:SetWeaponEnabledByLabel('AntiMissile', false)        
         
@@ -1038,7 +1034,7 @@ EAL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
             
-            self:SetWeaponEnabledByLabel('QuantumMaelstrom01', true)
+            self:SetWeaponEnabledByLabel('QuantumMaelstrom', true)
         elseif enh == 'MaelstromQuantumRemove' then
             if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
                 Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
@@ -1051,7 +1047,7 @@ EAL0001 = Class(ACUUnit) {
                 self.MaelstromEffects01 = {}
             end
             
-            self:SetWeaponEnabledByLabel('QuantumMaelstrom01', false)
+            self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
         elseif enh == 'FieldExpander' then
             if not Buffs['AeonMaelstromHealth2'] then
                 BuffBlueprint {
@@ -1074,7 +1070,7 @@ EAL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth2')
             
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:AddDamageMod(bp.MaelstromDamage)
             
             self:SetWeaponEnabledByLabel('AntiMissile', true)
@@ -1092,7 +1088,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('AntiMissile', false)
             
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:AddDamageMod(bp.MaelstromDamage)
         elseif enh == 'QuantumInstability' then
             if not Buffs['AeonMaelstromHealth3'] then
@@ -1112,7 +1108,7 @@ EAL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth3')
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:AddDamageMod(bp.MaelstromDamage)
             wep:ChangeMaxRadius(bp.MaelstromRange)
             wep:ChangeDamageRadius(bp.MaelstromRange)
@@ -1128,7 +1124,7 @@ EAL0001 = Class(ACUUnit) {
                 self.MaelstromEffects01 = {}
             end
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom01')
+            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:AddDamageMod(bp.MaelstromDamage)
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             wep:ChangeDamageRadius(wep:GetBlueprint().DamageRadius)
