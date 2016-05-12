@@ -367,7 +367,7 @@ EAL0001 = Class(ACUUnit) {
         wep:ChangeMaxRadius(range)
     end,
 
-    CreateEnhancement = function(self, enh)
+    CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         
         local bp = self:GetBlueprint().Enhancements[enh]
