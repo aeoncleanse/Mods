@@ -101,7 +101,6 @@ EAL0001 = Class(ACUUnit) {
         self:DisableUnitIntel('Enhancement', 'CloakField')
 
         -- Disable Upgrade Weapons
-        self:SetWeaponEnabledByLabel('TargetPainter', false)
         self:SetWeaponEnabledByLabel('ChronoDampener', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery', false)

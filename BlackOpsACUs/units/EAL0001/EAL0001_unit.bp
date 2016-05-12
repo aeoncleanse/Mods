@@ -6,7 +6,7 @@ UnitBlueprint {
         },
     },
     AI = {
-        GuardRadius = 10,
+        GuardScanRadius = 36.75,
         TargetBones = {
             'Head',
             'Right_Arm_B01',
@@ -207,7 +207,7 @@ UnitBlueprint {
                             KneeBone = 'Left_Leg_B02',
                             Tread = {
                                 TreadMarks = 'CommanderPrint_albedo',
-                                TreadMarksSiz = 0.5,
+                                TreadMarksSizeX = 0.5,
                                 TreadMarksSizeZ = 0.5,
                                 TreadOffset = {
                                     0.15,
@@ -223,7 +223,7 @@ UnitBlueprint {
                             KneeBone = 'Right_Leg_B02',
                             Tread = {
                                 TreadMarks = 'CommanderPrint_albedo',
-                                TreadMarksSiz = 0.5,
+                                TreadMarksSizeX = 0.5,
                                 TreadMarksSizeZ = 0.5,
                                 TreadOffset = {
                                     -0.15,
@@ -1528,8 +1528,7 @@ UnitBlueprint {
         {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-            Audio = {
-            },
+            Audio = {},
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0,
             BeamLifetime = 0.1,
@@ -1561,7 +1560,7 @@ UnitBlueprint {
             },
             RackFireTogether = true,
             RackRecoilDistance = 0,
-            RackReloadTimeout = 10,
+            RackReloadTimeout = 0,
             RackSalvoChargeTime = 0,
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
