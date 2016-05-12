@@ -202,7 +202,7 @@ UnitBlueprint {
                 Footfall = {
                     Bones = {
                         {
-                            FootBone = 'Left_haust',
+                            FootBone = 'Left_Exhaust',
                             HipBone = 'Left_Leg_B01',
                             KneeBone = 'Left_Leg_B02',
                             Tread = {
@@ -218,7 +218,7 @@ UnitBlueprint {
                             Type = 'FootFall02',
                         },
                         {
-                            FootBone = 'Right_haust',
+                            FootBone = 'Right_Exhaust',
                             HipBone = 'Right_Leg_B01',
                             KneeBone = 'Right_Leg_B02',
                             Tread = {

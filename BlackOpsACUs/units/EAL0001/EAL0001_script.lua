@@ -18,7 +18,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
 local CSoothSayerAmbient = EffectTemplate.CSoothSayerAmbient
-local BOWeapons = import('/mods/BlackOpsACUs/lua/BlackOpsweapons.lua')
+local BOWeapons = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
 local AeonACUPhasonLaser = BOWeapons.AeonACUPhasonLaser 
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
 local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01 
@@ -47,6 +47,9 @@ EAL0001 = Class(ACUUnit) {
     __init = function(self)
         ACUUnit.__init(self, 'RightDisruptor')
     end,
+
+    -- Storage for upgrade weapons status
+    WeaponEnabled = {},
     
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
@@ -83,11 +86,11 @@ EAL0001 = Class(ACUUnit) {
         self:HideBone('Artillery_Pitch', true)
 
         -- Restrict what enhancements will enable later
-        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            self.RemoteViewingData = {}
-            self.RemoteViewingData.RemoteViewingFunctions = {}
-            self.RemoteViewingData.DisableCounter = 0
-            self.RemoteViewingData.IntelButton = true
+        self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+        self.RemoteViewingData = {}
+        self.RemoteViewingData.RemoteViewingFunctions = {}
+        self.RemoteViewingData.DisableCounter = 0
+        self.RemoteViewingData.IntelButton = true
     end,
 
     OnStopBeingBuilt = function(self, builder, layer)

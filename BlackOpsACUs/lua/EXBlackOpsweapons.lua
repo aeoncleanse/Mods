@@ -22,7 +22,7 @@ local CWeapons = import('/lua/cybranweapons.lua')
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 
-local EXQuantumMaelstromWeapon = Class(Weapon) {
+QuantumMaelstromWeapon = Class(Weapon) {
     OnFire = function(self)
         local blueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
@@ -62,7 +62,7 @@ PDLaserGrid = Class(DefaultBeamWeapon) {
     end,
 }
 
-EXCEMPArrayBeam01 = Class(DefaultBeamWeapon) {
+CEMPArrayBeam01 = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.EXCEMPArrayBeam01CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
