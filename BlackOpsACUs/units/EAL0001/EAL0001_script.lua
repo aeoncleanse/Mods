@@ -27,6 +27,7 @@ local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
 EAL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
+    PainterRange = {},
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
@@ -339,9 +340,29 @@ EAL0001 = Class(ACUUnit) {
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:ShowBone('Basic_GunUp_Range', true)
+            self:SetPainterRange('DisruptorEnhancer', radius, false)
         else
             self:HideBone('Basic_GunUp_Range', false)
+            self:SetPainterRange('DisruptorEnhancer', radius, true)
         end
+    end,
+    
+    -- Target painter. 0 damage as primary weapon, controls targeting
+    -- for the variety of changing ranges on the ACU with upgrades.
+    SetPainterRange = function(self, enh, newRange, delete)
+        if delete and self.PainterRange[enh] then
+            self.PainterRange[enh] = nil
+        elseif not delete and not self.PainterRange[enh] then
+            self.PainterRange[enh] = newRange
+        end 
+        
+        local range = 22
+        for upgrade, radius in self.PainterRange do
+            if radius > range then range = radius end
+        end
+        
+        local wep = self:GetWeaponByLabel('TargetPainter')
+        wep:ChangeMaxRadius(range)
     end,
 
     CreateEnhancement = function(self, enh)
@@ -523,6 +544,7 @@ EAL0001 = Class(ACUUnit) {
 
             local gun = self:GetWeaponByLabel('ChronoDampener')
             gun:ChangeMaxRadius(bp.ChronoMaxRadius)
+            self:SetPainterRange(enh, bp.ChronoMaxRadius)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
@@ -531,6 +553,7 @@ EAL0001 = Class(ACUUnit) {
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
             local gun = self:GetWeaponByLabel('ChronoDampener')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -692,12 +715,16 @@ EAL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'AeonArtilleryHealth1')
             
             self:SetWeaponEnabledByLabel('MiasmaArtillery', true)
+            
+            local wep = self:GetWeaponByLabel('MiasmaArtillery')
+            self:SetPainterRange(enh, wep:GetBlueprint().MaxRadius, false)
         elseif enh == 'ArtilleryMiasmaRemove' then
             if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
             end
             
             self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'AdvancedShells' then
             if not Buffs['AeonArtilleryHealth2'] then
                 BuffBlueprint {
@@ -782,6 +809,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam', true)
             local beam = self:GetWeaponByLabel('PhasonBeam')
             beam:ChangeMaxRadius(bp.BeamRadius)
+            self:SetPainterRange(enh, bp.BeamRadius, false)
         elseif enh == 'BeamPhasonRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth1') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth1')
@@ -790,6 +818,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam', false)
             local beam = self:GetWeaponByLabel('PhasonBeam')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
+            self:SetPainterRange(string.sub(enh, -6), 0, true)
         elseif enh == 'ImprovedCoolingSystem' then
             if not Buffs['AeonBeamHealth2'] then
                 BuffBlueprint {
@@ -811,6 +840,7 @@ EAL0001 = Class(ACUUnit) {
             local beam = self:GetWeaponByLabel('PhasonBeam')
             beam:ChangeMaxRadius(bp.BeamRadius)
             beam:AddDamageMod(bp.BeamDamage)
+            self:SetPainterRange(enh, bp.BeamRadius, false)
             
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'ImprovedCoolingSystemRemove' then
@@ -821,6 +851,7 @@ EAL0001 = Class(ACUUnit) {
             local beam = self:GetWeaponByLabel('PhasonBeam')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
             beam:AddDamageMod(bp.BeamDamage)
+            self:SetPainterRange(enh, 0, true)
             
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'PowerBooster' then
@@ -1112,6 +1143,7 @@ EAL0001 = Class(ACUUnit) {
             wep:AddDamageMod(bp.MaelstromDamage)
             wep:ChangeMaxRadius(bp.MaelstromRange)
             wep:ChangeDamageRadius(bp.MaelstromRange)
+            self:SetPainterRange(enh, bp.MaelstromRange, false)
         elseif enh == 'QuantumInstabilityRemove' then
             if Buff.HasBuff(self, 'AeonMaelstromHealth3') then
                 Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
@@ -1128,6 +1160,7 @@ EAL0001 = Class(ACUUnit) {
             wep:AddDamageMod(bp.MaelstromDamage)
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             wep:ChangeDamageRadius(wep:GetBlueprint().DamageRadius)
+            self:SetPainterRange(enh, 0, true)
         end
 
         -- Remove prerequisites
