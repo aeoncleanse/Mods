@@ -1759,7 +1759,7 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 2,
-            Label = 'OverCharge',
+            Label = 'AutoOverCharge',
             MaxRadius = 22,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,

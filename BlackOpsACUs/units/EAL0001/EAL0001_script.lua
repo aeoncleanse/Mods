@@ -653,7 +653,7 @@ EAL0001 = Class(ACUUnit) {
             torp:AddDamageMod(bp.TorpDamage)
             torp:ChangeRateOfFire(bp.TorpRoF)
             
-            self:TogglePrimaryGun(bp.NewDamage)
+            self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'TorpedoRapidLoaderRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth2') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth2')
@@ -663,7 +663,7 @@ EAL0001 = Class(ACUUnit) {
             torp:AddDamageMod(bp.TorpDamage)
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
-            self:TogglePrimaryGun(bp.NewDamage)
+            self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'TorpedoClusterLauncher' then
             if not Buffs['AeonTorpHealth3'] then
                 BuffBlueprint {
@@ -685,7 +685,7 @@ EAL0001 = Class(ACUUnit) {
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
             
-            self:TogglePrimaryGun(bp.NewDamage)
+            self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'TorpedoClusterLauncherRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth3') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth3')
@@ -694,7 +694,7 @@ EAL0001 = Class(ACUUnit) {
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
             
-            self:TogglePrimaryGun(bp.NewDamage)
+            self:TogglePrimaryGun(bp.GunDamage)
             
         -- Artillery
             
