@@ -522,7 +522,7 @@ EAL0001 = Class(ACUUnit) {
             if not Buffs['AEONACUT3BuildCombat'] then
                 BuffBlueprint {
                     Name = 'AEONACUT3BuildCombat',
-                    DisplayName = 'AEONCUT3BuildCombat',
+                    DisplayName = 'AEONACUT3BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'STACKS',
                     Duration = -1,
@@ -542,7 +542,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AEONACUT3BuildRate')
+            Buff.ApplyBuff(self, 'AEONACUT3BuildCombat')
 
             local gun = self:GetWeaponByLabel('ChronoDampener')
             gun:ChangeMaxRadius(bp.ChronoMaxRadius)
@@ -563,7 +563,7 @@ EAL0001 = Class(ACUUnit) {
             if not Buffs['AEONACUT4BuildCombat'] then
                 BuffBlueprint {
                     Name = 'AEONACUT4BuildCombat',
-                    DisplayName = 'AEONCUT4BuildCombat',
+                    DisplayName = 'AEONACUT4BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'STACKS',
                     Duration = -1,
@@ -583,7 +583,7 @@ EAL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'AEONACUT4BuildRate')
+            Buff.ApplyBuff(self, 'AEONACUT4BuildCombat')
         elseif enh == 'ApocolypticEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
