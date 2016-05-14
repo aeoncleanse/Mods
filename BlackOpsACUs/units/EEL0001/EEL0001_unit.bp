@@ -1752,7 +1752,7 @@ UnitBlueprint {
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.2,
             SlavedToBody = false,
-            TargetCheckInterval = 0.16,
+            TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'MOBILE',
@@ -1829,7 +1829,7 @@ UnitBlueprint {
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.2,
             SlavedToBody = false,
-            TargetCheckInterval = 0.16,
+            TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'MOBILE',
@@ -2253,10 +2253,10 @@ UnitBlueprint {
                 },
             },
             BallisticArc = 'RULEUBA_None',
-            BeamCollisionDelay = 0.2,
+            BeamCollisionDelay = 0,
             BeamLifetime = 0.2,
             CollideFriendly = false,
-            Damage = 50,
+            Damage = 20,
             DamageType = 'Normal',
             DisplayName = 'Energy Lance',
             FireTargetLayerCapsTable = {
@@ -2326,10 +2326,10 @@ UnitBlueprint {
                 },
             },
             BallisticArc = 'RULEUBA_None',
-            BeamCollisionDelay = 0.2,
+            BeamCollisionDelay = 0,
             BeamLifetime = 0.2,
             CollideFriendly = false,
-            Damage = 50,
+            Damage = 20,
             DamageType = 'Normal',
             DisplayName = 'Energy Lance',
             FireTargetLayerCapsTable = {
