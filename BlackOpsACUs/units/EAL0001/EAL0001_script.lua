@@ -91,6 +91,7 @@ EAL0001 = Class(ACUUnit) {
         self.RemoteViewingData.RemoteViewingFunctions = {}
         self.RemoteViewingData.DisableCounter = 0
         self.RemoteViewingData.IntelButton = true
+        self.MaelstromEffects01 = {}
     end,
 
     OnStopBeingBuilt = function(self, builder, layer)
