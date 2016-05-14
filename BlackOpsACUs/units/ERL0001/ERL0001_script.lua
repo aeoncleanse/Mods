@@ -958,7 +958,7 @@ ERL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'CybranMobilityHealth1')
 
-            self:SetSpeedMult(1.41176)
+            self:SetSpeedMult(2)
         elseif enh == 'MobilitySubsystemsRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth1') then
                 Buff.RemoveBuff(self, 'CybranMobilityHealth1')
