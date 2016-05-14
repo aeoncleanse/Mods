@@ -1,0 +1,10 @@
+name = "ExperiMENTALz"
+uid = "9e8ea941-c306-aaaf-b367-f00012340005"
+version = 1
+copyright = "IceDreamer"
+description = "The Experimental units have gone BONKERS!!!!!"
+author = "IceDreamer"
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false
