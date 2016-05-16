@@ -185,7 +185,7 @@ EAL0001 = Class(ACUUnit) {
                     Omni = false,
                     Radar = false,
                     Vision = true,
-                    Army = self:GetAIBrain():GetArmyInd(),
+                    Army = self:GetAIBrain():GetArmyIndex(),
                 }
                 self.RemoteViewingData.Satellite = VizMarker(spec)
                 self.Trash:Add(self.RemoteViewingData.Satellite)
