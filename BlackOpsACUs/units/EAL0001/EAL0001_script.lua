@@ -1109,8 +1109,8 @@ EAL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'FieldExpanderRemove' then
-            if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
-                Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
+            if Buff.HasBuff(self, 'AeonMaelstromHealth2') then
+                Buff.RemoveBuff(self, 'AeonMaelstromHealth2')
             end
 
             if self.MaelstromEffects01 then
