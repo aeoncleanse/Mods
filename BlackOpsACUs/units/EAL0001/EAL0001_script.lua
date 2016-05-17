@@ -34,6 +34,7 @@ EAL0001 = Class(ACUUnit) {
         TargetPainter = Class(CEMPArrayBeam01) {},
         RightDisruptor = Class(ADFDisruptorCannonWeapon) {},
         ChronoDampener = Class(ADFChronoDampener) {},
+        ChronoDampener2 = Class(ADFChronoDampener) {},
         TorpedoLauncher = Class(AANChronoTorpedoWeapon) {},
         MiasmaArtillery = Class(AIFArtilleryMiasmaShellWeapon) {},
         PhasonBeam = Class(AeonACUPhasonLaser) {},
@@ -103,6 +104,7 @@ EAL0001 = Class(ACUUnit) {
 
         -- Disable Upgrade Weapons
         self:SetWeaponEnabledByLabel('ChronoDampener', false)
+        self:SetWeaponEnabledByLabel('ChronoDampener2', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
         self:SetWeaponEnabledByLabel('PhasonBeam', false)
@@ -544,19 +546,22 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AEONACUT3BuildCombat')
-
-            local gun = self:GetWeaponByLabel('ChronoDampener')
-            gun:ChangeMaxRadius(bp.ChronoMaxRadius)
-            self:SetPainterRange(enh, bp.ChronoMaxRadius)
+            
+            self:SetWeaponEnabledByLabel('ChronoDampener', false)
+            self:SetWeaponEnabledByLabel('ChronoDampener2', true)
+            
+            local wep = self:GetWeaponByLabel('ChronoDampener2')
+            wep:ChangeMaxRadius(bp.NewChronoRadius)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
             end
 
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
-            local gun = self:GetWeaponByLabel('ChronoDampener')
-            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
-            self:SetPainterRange(enh, 0, true)
+            self:SetWeaponEnabledByLabel('ChronoDampener2', false)
+            
+            local wep = self:GetWeaponByLabel('ChronoDampener2')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
