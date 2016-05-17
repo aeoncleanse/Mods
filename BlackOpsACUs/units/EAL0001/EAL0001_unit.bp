@@ -1102,7 +1102,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'exbsh3',
             Name = 'Remove Advanced Shield Battery',
-            Prerequisite = 'ImprovedShieldBattery',
+            Prerequisite = 'AdvancedShieldBattery',
             RemoveEnhancements = {
                 'ShieldBattery',
                 'ImprovedShieldBattery',
