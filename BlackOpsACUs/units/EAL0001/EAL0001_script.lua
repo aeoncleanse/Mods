@@ -897,7 +897,6 @@ EAL0001 = Class(ACUUnit) {
             self:OnScriptBitSet(0)
         elseif enh == 'ShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
@@ -912,7 +911,6 @@ EAL0001 = Class(ACUUnit) {
             self:OnScriptBitSet(0)
         elseif enh == 'ImprovedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
@@ -928,7 +926,6 @@ EAL0001 = Class(ACUUnit) {
             self:OnScriptBitSet(0)
         elseif enh == 'AdvancedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'AdvancedShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:SetWeaponEnabledByLabel('AntiMissile', false)
