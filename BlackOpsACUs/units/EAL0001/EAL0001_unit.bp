@@ -68,7 +68,7 @@ UnitBlueprint {
             LodCutoff = 'UnitMove_LodCutoff',
         },
         Killed = Sound {
-            Bank = 'plosions',
+            Bank = 'Explosions',
             Cue = 'Aeon_Nuke_Impact',
             LodCutoff = 'UnitMove_LodCutoff',
         },
@@ -362,9 +362,6 @@ UnitBlueprint {
             NewHealth = 6000,
             ProductionPerSecondEnergy = 1500,
             ProductionPerSecondMass = 9,
-            ShowBones = {
-                'Engineering',
-            },
             Slot = 'LCH',
             UpgradeEffectBones = {
                 'Left_Turret',
@@ -379,9 +376,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            HideBones = {
-                'Engineering',
-            },
             Icon = 'exles2',
             Name = 'Remove Engineering Suites',
             Prerequisite = 'AdvancedEngineering',
@@ -403,9 +397,6 @@ UnitBlueprint {
             NewHealth = 12000,
             ProductionPerSecondEnergy = 4500,
             ProductionPerSecondMass = 18,
-            ShowBones = {
-                'Engineering',
-            },
             Slot = 'LCH',
             UpgradeEffectBones = {
                 'Left_Turret',
@@ -420,9 +411,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            HideBones = {
-                'Engineering',
-            },
             Icon = 'exles3',
             Name = 'Remove Engineering Suites',
             Prerequisite = 'ExperimentalEngineering',
@@ -442,6 +430,7 @@ UnitBlueprint {
             Name = 'Tech 2 Combat Engineering (T1)',
             NewBuildRate = 20,
             NewHealth = 1500,
+            ChronoRadius = 22,
             ShowBones = {
                 'Combat_Engineering',
             },
@@ -487,12 +476,6 @@ UnitBlueprint {
             NewBuildRate = 60,
             NewHealth = 5000,
             NewChronoRadius = 30,
-            ShowBones = {
-                'Combat_Engineering',
-            },
-            HideBones = {
-                'Left_Turret_Plates',
-            },
             Slot = 'LCH',
             UpgradeEffectBones = {
                 'Left_Turret',
@@ -507,12 +490,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            ShowBones = {
-                'Left_Turret_Plates',
-            },
-            HideBones = {
-                'Combat_Engineering',
-            },
             Icon = 'exlce2',
             Name = 'Remove Engineering Suites',
             Prerequisite = 'AssaultEngineering',
@@ -532,12 +509,6 @@ UnitBlueprint {
             Prerequisite = 'AssaultEngineering',
             NewBuildRate = 30,
             NewHealth = 10000,
-            ShowBones = {
-                'Combat_Engineering',
-            },
-            HideBones = {
-                'Left_Turret_Plates',
-            },
             Slot = 'LCH',
             UpgradeEffectBones = {
                 'Left_Turret',
@@ -552,12 +523,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            ShowBones = {
-                'Left_Turret_Plates',
-            },
-            HideBones = {
-                'Combat_Engineering',
-            },
             Icon = 'exlce3',
             Name = 'Remove Engineering Suites',
             Prerequisite = 'ApocolypticEngineering',
@@ -577,6 +542,9 @@ UnitBlueprint {
             Name = 'Jury Rigged Disruptor (T1)',
             NewDamage = 100,
             Slot = 'RCH',
+            ShowBones = {
+                'Basic_GunUp_RoF',
+            },
             UpgradeEffectBones = {
                 'Right_Turret',
                 'Right_Turret_Muzzle',
@@ -593,6 +561,9 @@ UnitBlueprint {
             Name = 'Remove Jury Rigged Disruptor',
             Prerequisite = 'JuryRiggedDisruptor',
             NewDamage = -100,
+            HideBones = {
+                'Basic_GunUp_RoF',
+            },
             RemoveEnhancements = {
                 'JuryRiggedDisruptor',
                 'JuryRiggedDisruptorRemove',
@@ -608,6 +579,9 @@ UnitBlueprint {
             Prerequisite = 'JuryRiggedDisruptor',
             NewRadius = 35,
             Slot = 'RCH',
+            ShowBones = {
+                'Basic_GunUp_Range',
+            },
             UpgradeEffectBones = {
                 'Right_Turret',
                 'Right_Turret_Muzzle',
@@ -623,6 +597,9 @@ UnitBlueprint {
             Icon = 'exrzb2',
             Name = 'Remove Disruptor Amplifier',
             Prerequisite = 'DisruptorAmplifier',
+            HideBones = {
+                'Basic_GunUp_Range',
+            },
             RemoveEnhancements = {
                 'JuryRiggedDisruptor',
                 'DisruptorAmplifier',
@@ -676,9 +653,6 @@ UnitBlueprint {
             TorpDamage = 120,
             TorpRoF = 0.25,
             GunDamage = 100,
-            ShowBones = {
-                'Torpedo_Launcher',
-            },
             Slot = 'RCH',
             UpgradeEffectBones = {
                 'Right_Turret',
@@ -692,9 +666,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            HideBones = {
-                'Torpedo_Launcher',
-            },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
             Prerequisite = 'ImprovedTorpLoader',
@@ -717,9 +688,6 @@ UnitBlueprint {
             NewHealth = 5000,
             TorpDamage = 1000,
             GunDamage = 200,
-            ShowBones = {
-                'Torpedo_Launcher',
-            },
             Slot = 'RCH',
             UpgradeEffectBones = {
                 'Right_Turret',
@@ -733,9 +701,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            HideBones = {
-                'Torpedo_Launcher',
-            },
             Icon = 'exrtorp3',
             Name = 'Remove Cluster Launcher',
             Prerequisite = 'AdvancedWarheads',
@@ -756,7 +721,17 @@ UnitBlueprint {
             Icon = 'exramc1',
             Name = 'Dual Miasma Artillery (T2)',
             NewHealth = 1000,
+            ArtyRadius = 100,
+            ArtyMinRadius = 20,
             Slot = 'RCH',
+            ShowBones = {
+                'Shoulder_Arty_L',
+                'Shoulder_Arty_R',
+                'Artillery_Torso',
+                'Artillery_Barrel_Left',
+                'Artillery_Barrel_Right',
+                'Artillery_Pitch',
+            },
             UpgradeEffectBones = {
                 'Right_Turret',
                 'Right_Turret_Muzzle',
@@ -775,6 +750,14 @@ UnitBlueprint {
             RemoveEnhancements = {
                 'DualMiasmaArtillery',
                 'DualMiasmaArtilleryRemove',
+            },
+            HideBones = {
+                'Shoulder_Arty_L',
+                'Shoulder_Arty_R',
+                'Artillery_Torso',
+                'Artillery_Barrel_Left',
+                'Artillery_Barrel_Right',
+                'Artillery_Pitch',
             },
             Slot = 'RCH',
         },
@@ -901,12 +884,6 @@ UnitBlueprint {
             BeamDamage = 120,
             BeamRadius = 40,
             NewDamage = 100,
-            ShowBones = {
-                'Laser_Cannon',
-            },
-            HideBones = {
-                'Right_Turret_Barrel',
-            },
             Slot = 'RCH',
             UpgradeEffectBones = {
                 'Right_Turret',
@@ -920,12 +897,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            ShowBones = {
-                'Right_Turret_Barrel',
-            },
-            HideBones = {
-                'Laser_Cannon',
-            },
             Icon = 'exrgec2',
             Name = 'Remove Dual Channel Booster',
             Prerequisite = 'DualChannelBooster',
@@ -948,12 +919,6 @@ UnitBlueprint {
             NewHealth = 5500,
             BeamDamage = 490,
             BeamArea = 2,
-            ShowBones = {
-                'Laser_Cannon',
-            },
-            HideBones = {
-                'Right_Turret_Barrel',
-            },
             Slot = 'RCH',
             UpgradeEffectBones = {
                 'Right_Turret',
@@ -967,12 +932,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            ShowBones = {
-                'Right_Turret_Barrel',
-            },
-            HideBones = {
-                'Laser_Cannon',
-            },
             Icon = 'exrgec3',
             Name = 'Remove Energized Molecular Inducer',
             Prerequisite = 'EnergizedMolecularInducer',
@@ -1004,6 +963,11 @@ UnitBlueprint {
             ShieldSize = 3,
             ShieldVerticalOffset = 0,
             Slot = 'Back',
+            ShowBones = {
+                'ShieldPack_Normal',
+                'Shoulder_Normal_L',
+                'Shoulder_Normal_R',
+            },
             UpgradeEffectBones = {
                 'ShieldPack_Normal',
             },
@@ -1022,6 +986,11 @@ UnitBlueprint {
             RemoveEnhancements = {
                 'ShieldBattery',
                 'ShieldBatteryRemove',
+            },
+            HideBones = {
+                'ShieldPack_Normal',
+                'Shoulder_Normal_L',
+                'Shoulder_Normal_R',
             },
             Slot = 'Back',
         },
@@ -1165,12 +1134,6 @@ UnitBlueprint {
             Prerequisite = 'ElectronicsEnhancment',
             NewHealth = 10000,
             MaintenanceConsumptionPerSecondEnergy = 500,
-            ShowBones = {
-                'IntelPack_Torso',
-                'IntelPack_Head',
-                'IntelPack_LShoulder',
-                'IntelPack_RShoulder',
-            },
             Slot = 'Back',
             UpgradeEffectBones = {
                 'IntelPack_Torso',
@@ -1186,12 +1149,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            HideBones = {
-                'IntelPack_Torso',
-                'IntelPack_Head',
-                'IntelPack_LShoulder',
-                'IntelPack_RShoulder',
-            },
             Icon = 'exbint2',
             Name = 'Remove Farsight Optics',
             Prerequisite = 'FarsightOptics',
@@ -1211,12 +1168,6 @@ UnitBlueprint {
             Prerequisite = 'FarsightOptics',
             NewHealth = 18500,
             MaintenanceConsumptionPerSecondEnergy = 1000,
-            ShowBones = {
-                'IntelPack_Torso',
-                'IntelPack_Head',
-                'IntelPack_LShoulder',
-                'IntelPack_RShoulder',
-            },
             Slot = 'Back',
             UpgradeEffectBones = {
                 'IntelPack_Torso',
@@ -1232,12 +1183,6 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            HideBones = {
-                'IntelPack_Torso',
-                'IntelPack_Head',
-                'IntelPack_LShoulder',
-                'IntelPack_RShoulder',
-            },
             Icon = 'exbint3',
             Name = 'Remove Farjump Teleporter',
             Prerequisite = 'Teleporter',
@@ -1256,6 +1201,7 @@ UnitBlueprint {
             Icon = 'exbbat1',
             Name = 'Quantum Maelstrom Generator (T2)',
             NewHealth = 5000,
+            MaelstromRadius = 22,
             ShowBones = {
                 'DamagePack_LArm',
                 'DamagePack_RArm',
@@ -1309,7 +1255,7 @@ UnitBlueprint {
             Name = 'Quantum Distortion Amplifier (T3)',
             Prerequisite = 'MaelstromQuantum',
             NewHealth = 8000,
-            MaelstromDamage = 10,
+            MaelstromDamage = 17,
             ShowBones = {
                 'DamagePack_LArm',
                 'DamagePack_RArm',
@@ -1347,7 +1293,6 @@ UnitBlueprint {
                 'DamagePack_LLeg_B01',
                 'DamagePack_LLeg_B02',
             },
-            MaelstromDamage = -10,
             Icon = 'exbbat2',
             Name = 'Remove Quantum Distortion Amplifier',
             Prerequisite = 'DistortionAmplifier',
@@ -1366,8 +1311,8 @@ UnitBlueprint {
             Name = 'Quantum Instability Enhancer (T4)',
             Prerequisite = 'DistortionAmplifier',
             NewHealth = 15000,
-            MaelstromDamage = 15,
-            MaelstromRange = 30,
+            MaelstromDamage = 32,
+            MaelstromRadius = 30,
             ShowBones = {
                 'DamagePack_LArm',
                 'DamagePack_RArm',
@@ -1405,7 +1350,6 @@ UnitBlueprint {
                 'DamagePack_LLeg_B01',
                 'DamagePack_LLeg_B02',
             },
-            MaelstromDamage = -15,
             Icon = 'exbbat3',
             Name = 'Remove Quantum Instability Enhancer',
             Prerequisite = 'QuantumInstability',
@@ -1531,7 +1475,7 @@ UnitBlueprint {
             BeamCollisionDelay = 0,
             BeamLifetime = 0.1,
             CollideFriendly = false,
-            Damage = 0.1,
+            Damage = 0,
             DamageRadius = 0,
             DamageType = 'Normal',
             DisplayName = 'Target Designator',
@@ -1746,7 +1690,7 @@ UnitBlueprint {
             Damage = 12000,
             DamageFriendly = false,
             DamageRadius = 2,
-            DamageType = 'AutoOvercharge',
+            DamageType = 'Overcharge',
             DisplayName = 'Overcharge Cannon',
             EnergyChargeForFirstShot = false,
             EnergyDrainPerSecond = 5000,
@@ -1872,7 +1816,7 @@ UnitBlueprint {
             },
             FiringTolerance = 360,
             Label = 'ChronoDampener',
-            MaxRadius = 22,
+            MaxRadius = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
@@ -1892,7 +1836,7 @@ UnitBlueprint {
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
-            RangeCategory = 'UWRC_DirectFire',
+            RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.2,
             TargetCheckInterval = 5,
             TargetPriorities = {
@@ -1943,7 +1887,7 @@ UnitBlueprint {
             },
             FiringTolerance = 360,
             Label = 'ChronoDampener2',
-            MaxRadius = 22,
+            MaxRadius = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
@@ -1963,7 +1907,7 @@ UnitBlueprint {
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
-            RangeCategory = 'UWRC_DirectFire',
+            RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.2,
             TargetCheckInterval = 5,
             TargetPriorities = {
@@ -2072,8 +2016,8 @@ UnitBlueprint {
             FiringRandomness = 1.5,
             FiringTolerance = 1,
             Label = 'MiasmaArtillery',
-            MaxRadius = 100,
-            MinRadius = 20,
+            MaxRadius = 0,
+            MinRadius = 0,
             MuzzleChargeDelay = 1,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
@@ -2229,7 +2173,7 @@ UnitBlueprint {
             Damage = 7,
             DamageFriendly = false,
             DamageRadius = 22,
-            DamageType = 'OverCharge',
+            DamageType = 'Overcharge',
             DisplayName = 'Disentigrations field',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
@@ -2238,7 +2182,7 @@ UnitBlueprint {
             },
             FiringTolerance = 360,
             Label = 'QuantumMaelstrom',
-            MaxRadius = 22,
+            MaxRadius = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,

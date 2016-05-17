@@ -25,8 +25,8 @@ local Weapon = import('/lua/sim/Weapon.lua').Weapon
 QuantumMaelstromWeapon = Class(Weapon) {
     OnFire = function(self)
         local blueprint = self:GetBlueprint()
-        DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
-            blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
+        DamageArea(self.unit, self.unit:GetPosition(), self.CurrentDamageRadius,
+            self.CurrentDamage, blueprint.DamageType, blueprint.DamageFriendly)
     end,
 }
 
