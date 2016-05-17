@@ -571,7 +571,7 @@ UnitBlueprint {
             },
             Slot = 'LCH',
         },
-        DisruptorBooster = {
+        JuryRiggedDisruptor = {
             BuildCostEnergy = 15000,
             BuildCostMass = 500,
             BuildTime = 500,
@@ -587,27 +587,27 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        DisruptorBoosterRemove = {
+        JuryRiggedDisruptorRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exrzb1',
             Name = 'Remove Jury Rigged Disruptor',
-            Prerequisite = 'DisruptorBooster',
+            Prerequisite = 'JuryRiggedDisruptor',
             NewDamage = -100,
             RemoveEnhancements = {
-                'DisruptorBooster',
-                'DisruptorBoosterRemove',
+                'JuryRiggedDisruptor',
+                'JuryRiggedDisruptorRemove',
             },
             Slot = 'RCH',
         },
-        DisruptorEnhancer = {
+        DisruptorAmplifier = {
             BuildCostEnergy = 15000,
             BuildCostMass = 500,
             BuildTime = 500,
             Icon = 'exrzb2',
             Name = 'Disruptor Amplifier (T1)',
-            Prerequisite = 'DisruptorBooster',
+            Prerequisite = 'JuryRiggedDisruptor',
             NewRadius = 35,
             Slot = 'RCH',
             UpgradeEffectBones = {
@@ -618,17 +618,17 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        DisruptorEnhancerRemove = {
+        DisruptorAmplifierRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exrzb2',
             Name = 'Remove Disruptor Amplifier',
-            Prerequisite = 'DisruptorEnhancer',
+            Prerequisite = 'DisruptorAmplifier',
             RemoveEnhancements = {
-                'DisruptorBooster',
-                'DisruptorEnhancer',
-                'DisruptorEnhancerRemove',
+                'JuryRiggedDisruptor',
+                'DisruptorAmplifier',
+                'DisruptorAmplifierRemove',
             },
             Slot = 'RCH',
         },
@@ -667,7 +667,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        TorpedoRapidLoader = {
+        ImprovedAutoLoader = {
             BuildCostEnergy = 480000,
             BuildCostMass = 3000,
             BuildTime = 10800,
@@ -690,7 +690,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        TorpedoRapidLoaderRemove = {
+        ImprovedAutoLoaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -699,23 +699,23 @@ UnitBlueprint {
             },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedAutoLoader',
             TorpDamage = -120,
             GunDamage = -100,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoRapidLoaderRemove',
+                'ImprovedAutoLoader',
+                'ImprovedAutoLoaderRemove',
             },
             Slot = 'RCH',
         },
-        TorpedoClusterLauncher = {
+        AdvancedWarheads = {
             BuildCostEnergy = 900000,
             BuildCostMass = 6300,
             BuildTime = 21600,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedAutoLoader',
             NewHealth = 5000,
             TorpDamage = 1000,
             GunDamage = 200,
@@ -731,7 +731,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        TorpedoClusterLauncherRemove = {
+        AdvancedWarheadsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -740,18 +740,18 @@ UnitBlueprint {
             },
             Icon = 'exrtorp3',
             Name = 'Remove Cluster Launcher',
-            Prerequisite = 'TorpedoClusterLauncher',
+            Prerequisite = 'AdvancedWarheads',
             TorpDamage = -1000,
             GunDamage = -200,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoClusterLauncher',
-                'TorpedoClusterLauncherRemove',
+                'ImprovedAutoLoader',
+                'AdvancedWarheads',
+                'AdvancedWarheadsRemove',
             },
             Slot = 'RCH',
         },
-        ArtilleryMiasma = {
+        DualMiasmaArtillery = {
             BuildCostEnergy = 45000,
             BuildCostMass = 990,
             BuildTime = 2700,
@@ -767,26 +767,26 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        ArtilleryMiasmaRemove = {
+        DualMiasmaArtilleryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exramc1',
             Name = 'Remove Dual Miasma Artillery',
-            Prerequisite = 'ArtilleryMiasma',
+            Prerequisite = 'DualMiasmaArtillery',
             RemoveEnhancements = {
-                'ArtilleryMiasma',
-                'ArtilleryMiasmaRemove',
+                'DualMiasmaArtillery',
+                'DualMiasmaArtilleryRemove',
             },
             Slot = 'RCH',
         },
-        AdvancedShells = {
+        AdvancedWarheadCompression = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
             Icon = 'exramc2',
             Name = 'Advanced Warhead Compression (T3)',
-            Prerequisite = 'ArtilleryMiasma',
+            Prerequisite = 'DualMiasmaArtillery',
             NewHealth = 2500,
             ArtilleryDamage = 300,
             NewDamage = 100,
@@ -799,29 +799,29 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        AdvancedShellsRemove = {
+        AdvancedWarheadCompressionRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exramc2',
             Name = 'Remove Advanced Warhead Compression',
-            Prerequisite = 'AdvancedShells',
+            Prerequisite = 'AdvancedWarheadCompression',
             ArtilleryDamage = -300,
             NewDamage = -100,
             RemoveEnhancements = {
-                'ArtilleryMiasma',
-                'AdvancedShells',
-                'AdvancedShellsRemove',
+                'DualMiasmaArtillery',
+                'AdvancedWarheadCompression',
+                'AdvancedWarheadCompressionRemove',
             },
             Slot = 'RCH',
         },
-        ImprovedReloader = {
+        ImprovedAutoLoader = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exramc3',
             Name = 'Improved Auto Loader (T4)',
-            Prerequisite = 'AdvancedShells',
+            Prerequisite = 'AdvancedWarheadCompression',
             NewHealth = 6000,
             ArtilleryDamage = 650,
             ArtilleryRoF = 0.2,
@@ -834,23 +834,23 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        ImprovedReloaderRemove = {
+        ImprovedAutoLoaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exramc3',
             Name = 'Remove Improved Auto Loader',
-            Prerequisite = 'ImprovedReloader',
+            Prerequisite = 'ImprovedAutoLoader',
             ArtilleryDamage = -650,
             RemoveEnhancements = {
-                'ArtilleryMiasma',
-                'AdvancedShells',
-                'ImprovedReloader',
-                'ImprovedReloaderRemove',
+                'DualMiasmaArtillery',
+                'AdvancedWarheadCompression',
+                'ImprovedAutoLoader',
+                'ImprovedAutoLoaderRemove',
             },
             Slot = 'RCH',
         },
-        BeamPhason = {
+        PhasonBeamCannon = {
             BuildCostEnergy = 45000,
             BuildCostMass = 1080,
             BuildTime = 2700,
@@ -873,7 +873,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        BeamPhasonRemove = {
+        PhasonBeamCannonRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -885,20 +885,20 @@ UnitBlueprint {
             },
             Icon = 'exrgec1',
             Name = 'Remove Phason Beam Cannon',
-            Prerequisite = 'BeamPhason',
+            Prerequisite = 'PhasonBeamCannon',
             RemoveEnhancements = {
-                'BeamPhason',
-                'BeamPhasonRemove',
+                'PhasonBeamCannon',
+                'PhasonBeamCannonRemove',
             },
             Slot = 'RCH',
         },
-        ImprovedCoolingSystem = {
+        DualChannelBooster = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
             Icon = 'exrgec2',
             Name = 'Dual Channel Booster (T3)',
-            Prerequisite = 'BeamPhason',
+            Prerequisite = 'PhasonBeamCannon',
             NewHealth = 2500,
             BeamDamage = 120,
             BeamRadius = 40,
@@ -918,7 +918,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        ImprovedCoolingSystemRemove = {
+        DualChannelBoosterRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -930,23 +930,23 @@ UnitBlueprint {
             },
             Icon = 'exrgec2',
             Name = 'Remove Dual Channel Booster',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'DualChannelBooster',
             BeamDamage = -120,
             NewDamage = -100,
             RemoveEnhancements = {
-                'BeamPhason',
-                'ImprovedCoolingSystem',
-                'ImprovedCoolingSystemRemove',
+                'PhasonBeamCannon',
+                'DualChannelBooster',
+                'DualChannelBoosterRemove',
             },
             Slot = 'RCH',
         },
-        PowerBooster = {
+        EnergizedMolecularInducer = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exrgec3',
             Name = 'Energized Molecular Inducer (T4)',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'DualChannelBooster',
             NewHealth = 5500,
             BeamDamage = 490,
             BeamArea = 2,
@@ -965,7 +965,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        PowerBoosterRemove = {
+        EnergizedMolecularInducerRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -977,13 +977,13 @@ UnitBlueprint {
             },
             Icon = 'exrgec3',
             Name = 'Remove Energized Molecular Inducer',
-            Prerequisite = 'PowerBooster',
+            Prerequisite = 'EnergizedMolecularInducer',
             BeamDamage = -490,
             RemoveEnhancements = {
-                'BeamPhason',
-                'ImprovedCoolingSystem',
-                'PowerBooster',
-                'PowerBoosterRemove',
+                'PhasonBeamCannon',
+                'DualChannelBooster',
+                'EnergizedMolecularInducer',
+                'EnergizedMolecularInducerRemove',
             },
             Slot = 'RCH',
         },
@@ -1027,7 +1027,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        ActiveShielding = {
+        ImprovedShieldBattery = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
@@ -1056,28 +1056,28 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        ActiveShieldingRemove = {
+        ImprovedShieldBatteryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exbsh2',
             Name = 'Remove Improved Shield Battery',
-            Prerequisite = 'ActiveShielding',
+            Prerequisite = 'ImprovedShieldBattery',
             RemoveEnhancements = {
                 'ShieldBattery',
-                'ActiveShielding',
-                'ActiveShieldingRemove',
+                'ImprovedShieldBattery',
+                'ImprovedShieldBatteryRemove',
             },
             Slot = 'Back',
         },
-        ImprovedShieldBattery = {
+        AdvancedShieldBattery = {
             BuildCostEnergy = 420000,
             BuildCostMass = 3600,
             BuildTime = 14400,
             Icon = 'exbsh3',
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Advanced Shield Battery (T4)',
-            Prerequisite = 'ActiveShielding',
+            Prerequisite = 'ImprovedShieldBattery',
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/EAL0001/EAL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
@@ -1098,7 +1098,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        ImprovedShieldBatteryRemove = {
+        AdvancedShieldBatteryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1107,9 +1107,9 @@ UnitBlueprint {
             Prerequisite = 'ImprovedShieldBattery',
             RemoveEnhancements = {
                 'ShieldBattery',
-                'ActiveShielding',
                 'ImprovedShieldBattery',
-                'ImprovedShieldBatteryRemove',
+                'AdvancedShieldBattery',
+                'AdvancedShieldBatteryRemove',
             },
             Slot = 'Back',
         },
@@ -1158,7 +1158,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        ElectronicCountermeasures = {
+        FarsightOptics = {
             BuildCostEnergy = 315000,
             BuildCostMass = 270,
             BuildTime = 8100,
@@ -1184,7 +1184,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        ElectronicCountermeasuresRemove = {
+        FarsightOpticsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1196,11 +1196,11 @@ UnitBlueprint {
             },
             Icon = 'exbint2',
             Name = 'Remove Farsight Optics',
-            Prerequisite = 'ElectronicCountermeasures',
+            Prerequisite = 'FarsightOptics',
             RemoveEnhancements = {
                 'ElectronicsEnhancment',
-                'ElectronicCountermeasures',
-                'ElectronicCountermeasuresRemove',
+                'FarsightOptics',
+                'FarsightOpticsRemove',
             },
             Slot = 'Back',
         },
@@ -1210,7 +1210,7 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbint3',
             Name = 'Farjump Teleporter (T4)',
-            Prerequisite = 'ElectronicCountermeasures',
+            Prerequisite = 'FarsightOptics',
             NewHealth = 18500,
             MaintenanceConsumptionPerSecondEnergy = 1000,
             ShowBones = {
@@ -1245,7 +1245,7 @@ UnitBlueprint {
             Prerequisite = 'Teleporter',
             RemoveEnhancements = {
                 'ElectronicsEnhancment',
-                'ElectronicCountermeasures',
+                'FarsightOptics',
                 'Teleporter',
                 'TeleporterRemove',
             },
@@ -1303,7 +1303,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        FieldExpander = {
+        DistortionAmplifier = {
             BuildCostEnergy = 480000,
             BuildCostMass = 2040,
             BuildTime = 10800,
@@ -1336,7 +1336,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        FieldExpanderRemove = {
+        DistortionAmplifierRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1352,11 +1352,11 @@ UnitBlueprint {
             MaelstromDamage = -10,
             Icon = 'exbbat2',
             Name = 'Remove Quantum Distortion Amplifier',
-            Prerequisite = 'FieldExpander',
+            Prerequisite = 'DistortionAmplifier',
             RemoveEnhancements = {
                 'MaelstromQuantum',
-                'FieldExpander',
-                'FieldExpanderRemove',
+                'DistortionAmplifier',
+                'DistortionAmplifierRemove',
             },
             Slot = 'Back',
         },
@@ -1366,7 +1366,7 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbbat3',
             Name = 'Quantum Instability Enhancer (T4)',
-            Prerequisite = 'FieldExpander',
+            Prerequisite = 'DistortionAmplifier',
             NewHealth = 15000,
             MaelstromDamage = 15,
             MaelstromRange = 30,
@@ -1413,7 +1413,7 @@ UnitBlueprint {
             Prerequisite = 'QuantumInstability',
             RemoveEnhancements = {
                 'MaelstromQuantum',
-                'FieldExpander',
+                'DistortionAmplifier',
                 'QuantumInstability',
                 'QuantumInstabilityRemove',
             },
