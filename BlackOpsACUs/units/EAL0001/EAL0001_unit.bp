@@ -667,7 +667,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        ImprovedAutoLoader = {
+        ImprovedTorpLoader = {
             BuildCostEnergy = 480000,
             BuildCostMass = 3000,
             BuildTime = 10800,
@@ -690,7 +690,7 @@ UnitBlueprint {
                 'UAL0001',
             },
         },
-        ImprovedAutoLoaderRemove = {
+        ImprovedTorpLoaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -699,13 +699,13 @@ UnitBlueprint {
             },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
-            Prerequisite = 'ImprovedAutoLoader',
+            Prerequisite = 'ImprovedTorpLoader',
             TorpDamage = -120,
             GunDamage = -100,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'ImprovedAutoLoader',
-                'ImprovedAutoLoaderRemove',
+                'ImprovedTorpLoader',
+                'ImprovedTorpLoaderRemove',
             },
             Slot = 'RCH',
         },
@@ -715,7 +715,7 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-            Prerequisite = 'ImprovedAutoLoader',
+            Prerequisite = 'ImprovedTorpLoader',
             NewHealth = 5000,
             TorpDamage = 1000,
             GunDamage = 200,
@@ -745,7 +745,7 @@ UnitBlueprint {
             GunDamage = -200,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'ImprovedAutoLoader',
+                'ImprovedTorpLoader',
                 'AdvancedWarheads',
                 'AdvancedWarheadsRemove',
             },

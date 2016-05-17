@@ -632,7 +632,7 @@ EAL0001 = Class(ACUUnit) {
             
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', false)
-        elseif enh == 'ImprovedAutoLoader' then
+        elseif enh == 'ImprovedTorpLoader' then
             if not Buffs['AeonTorpHealth2'] then
                 BuffBlueprint {
                     Name = 'AeonTorpHealth2',
@@ -655,7 +655,7 @@ EAL0001 = Class(ACUUnit) {
             torp:ChangeRateOfFire(bp.TorpRoF)
             
             self:TogglePrimaryGun(bp.GunDamage)
-        elseif enh == 'ImprovedAutoLoaderRemove' then
+        elseif enh == 'ImprovedTorpLoaderRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth2') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth2')
             end
