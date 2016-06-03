@@ -412,7 +412,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBImpEngineering = true
             self.RBAdvEngineering = false
             self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'ImprovedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
             if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
@@ -430,7 +430,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
             self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='AdvancedEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             if not Buffs['SERAPHIMACUT3BuildRate'] then
@@ -473,7 +473,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBImpEngineering = true
             self.RBAdvEngineering = true
             self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='AdvancedEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
@@ -494,7 +494,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
             self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             local bp = self:GetBlueprint().Enhancements[enh]
@@ -534,10 +534,9 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'SeraHealthBoost3')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = true
-            self.RBExpEngineering = true
-            self:ForkThread(self.EXRegenBuffThread)
+
+            
+            
         elseif enh =='ExperimentalEngineeringRemove' then
             local bp = self:GetBlueprint().Economy.BuildRate
             if not bp then return end
@@ -561,7 +560,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBImpEngineering = false
             self.RBAdvEngineering = false
             self.RBExpEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='CombatEngineering' then
             local bp = self:GetBlueprint().Enhancements[enh]
             if not Buffs['SeraphimACURegenAura'] then
@@ -656,7 +655,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComEngineering = true
             self.RBAssEngineering = false
             self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='CombatEngineeringRemove' then
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
@@ -678,7 +677,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComEngineering = false
             self.RBAssEngineering = false
             self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='AssaultEngineering' then
             if self.RegenThreadHandle then
                 if self.ShieldEffectsBag then
@@ -780,7 +779,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComEngineering = true
             self.RBAssEngineering = true
             self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='AssaultEngineeringRemove' then
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
@@ -805,7 +804,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComEngineering = false
             self.RBAssEngineering = false
             self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['SERAPHIMACUT4BuildRate'] then
@@ -843,7 +842,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComEngineering = true
             self.RBAssEngineering = true
             self.RBApoEngineering = true
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='ApocolypticEngineeringRemove' then
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
@@ -871,17 +870,17 @@ ESL0001 = Class(ACUUnit) {
             self.RBComEngineering = false
             self.RBAssEngineering = false
             self.RBApoEngineering = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='ChronotonBooster' then
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             wepChronotron:ChangeMaxRadius(30)
-            self:ForkThread(self.EXRegenBuffThread)
+            
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ChronotonBoosterRemove' then
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
             wepChronotron:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='TorpedoLauncher' then
             if not Buffs['SeraHealthBoost7'] then
                 BuffBlueprint {
@@ -906,7 +905,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost7') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost7')
@@ -919,7 +918,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='TorpedoRapidLoader' then
             if not Buffs['SeraHealthBoost8'] then
                 BuffBlueprint {
@@ -944,7 +943,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='TorpedoRapidLoaderRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost7') then
@@ -962,7 +961,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='TorpedoClusterLauncher' then
             if not Buffs['SeraHealthBoost9'] then
                 BuffBlueprint {
@@ -987,7 +986,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcTorp03 = true
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='TorpedoClusterLauncherRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost7') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost7')
@@ -1007,7 +1006,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcTorp03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='CannonBigBall' then
             if not Buffs['SeraHealthBoost10'] then
                 BuffBlueprint {
@@ -1032,7 +1031,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='CannonBigBallRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost10')
@@ -1045,7 +1044,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='ImprovedContainmentBottle' then
             if not Buffs['SeraHealthBoost11'] then
                 BuffBlueprint {
@@ -1070,7 +1069,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ImprovedContainmentBottleRemove' then    
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
@@ -1087,7 +1086,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='PowerBooster' then
             if not Buffs['SeraHealthBoost12'] then
                 BuffBlueprint {
@@ -1112,7 +1111,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall03 = true
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='PowerBoosterRemove' then    
             self:SetWeaponEnabledByLabel('BigBallCannon', false)
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
@@ -1132,7 +1131,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='CannonRapid' then
             if not Buffs['SeraHealthBoost13'] then
                 BuffBlueprint {
@@ -1157,7 +1156,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='CannonRapidRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost13')
@@ -1170,7 +1169,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='ImprovedCoolingSystem' then
             if not Buffs['SeraHealthBoost14'] then
                 BuffBlueprint {
@@ -1195,7 +1194,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
             self:ForkThread(self.DefaultGunBuffThread)
         elseif enh =='ImprovedCoolingSystemRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
@@ -1212,7 +1211,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='EnergyShellHardener' then
             if not Buffs['SeraHealthBoost15'] then
                 BuffBlueprint {
@@ -1237,7 +1236,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid03 = true
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='EnergyShellHardenerRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost13')
@@ -1256,7 +1255,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid03 = false
             self:ForkThread(self.WeaponRangeReset)
     
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'L1Lambda' then
             self.WeaponCheckAA01 = true
             self:SetWeaponEnabledByLabel('AA01', true)
@@ -1316,7 +1315,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBDefTier1 = true
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'L1LambdaRemove' then
             self.WeaponCheckAA01 = false
             self:SetWeaponEnabledByLabel('AA01', false)
@@ -1333,7 +1332,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'L2Lambda' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1392,7 +1391,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBDefTier1 = true
             self.RBDefTier2 = true
             self.RBDefTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'L2LambdaRemove' then
             self.WeaponCheckAA01 = false
             self:SetWeaponEnabledByLabel('AA01', false)
@@ -1412,7 +1411,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'L3Lambda' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1487,7 +1486,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBDefTier1 = true
             self.RBDefTier2 = true
             self.RBDefTier3 = true
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'L3LambdaRemove' then
             self.WeaponCheckAA01 = false
             self:SetWeaponEnabledByLabel('AA01', false)
@@ -1510,7 +1509,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBDefTier1 = false
             self.RBDefTier2 = false
             self.RBDefTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'ElectronicsEnhancment' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1555,7 +1554,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'ElectronicsEnhancmentRemove' then
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
@@ -1572,7 +1571,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'ElectronicCountermeasures' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1636,7 +1635,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'ElectronicCountermeasuresRemove' then
             self:RemoveCommandCap('RULEUCC_Teleport')
             local bpIntel = self:GetBlueprint().Intel
@@ -1661,7 +1660,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'CloakingSubsystems' then
             local bp = self:GetBlueprint().Enhancements[enh]
             if not bp then return end
@@ -1694,7 +1693,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier1 = true
             self.RBIntTier2 = true
             self.RBIntTier3 = true
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'CloakingSubsystemsRemove' then
             --self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('Cloak')
@@ -1727,7 +1726,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier1 = false
             self.RBIntTier2 = false
             self.RBIntTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='BasicDefence' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
@@ -1773,7 +1772,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier1 = true
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='BasicDefenceRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost19') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost19')
@@ -1792,7 +1791,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='TacticalMisslePack' then
             self:AddCommandCap('RULEUCC_Tactical')
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
@@ -1820,7 +1819,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'TacticalMisslePackRemove' then
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
@@ -1853,7 +1852,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh =='OverchargeOverdrive' then
             if not Buffs['SeraHealthBoost21'] then
                 BuffBlueprint {
@@ -1878,7 +1877,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier1 = true
             self.RBComTier2 = true
             self.RBComTier3 = true
-            self:ForkThread(self.EXRegenBuffThread)
+            
         elseif enh == 'OverchargeOverdriveRemove' then
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
@@ -1913,7 +1912,18 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier1 = false
             self.RBComTier2 = false
             self.RBComTier3 = false
-            self:ForkThread(self.EXRegenBuffThread)
+            
+        end
+        
+        -- Remove prerequisites
+        if not removal then
+            if bp.RemoveEnhancements then
+                for k, v in bp.RemoveEnhancements do                
+                    if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
+                        self:CreateEnhancement(v .. 'Remove', true)
+                    end
+                end
+            end
         end
     end,
 
@@ -1922,12 +1932,9 @@ ESL0001 = Class(ACUUnit) {
             {
                 Bones = {
                     'Body',
---                    'Right_Turret',
---                    'Left_Turret',
                     'Right_Arm_B01',
                     'Left_Arm_B01',
                     'Torso',
---                    'Chest_Left',
                     'Left_Leg_B01',
                     'Left_Leg_B02',
                     'Right_Leg_B01',
@@ -1941,12 +1948,9 @@ ESL0001 = Class(ACUUnit) {
             {
                 Bones = {
                     'Body',
---                    'Right_Turret',
---                    'Left_Turret',
                     'Right_Arm_B01',
                     'Left_Arm_B01',
                     'Torso',
---                    'Chest_Left',
                     'Left_Leg_B01',
                     'Left_Leg_B02',
                     'Right_Leg_B01',
@@ -1957,53 +1961,8 @@ ESL0001 = Class(ACUUnit) {
             },    
         },    
     },
-    
-    OnIntelEnabled = function(self)
-        ACUUnit.OnIntelEnabled(self)
-        if self.CloakEnh and self:IsIntelEnabled('Cloak') then 
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()
-            if not self.IntelEffectsBag then
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
-        elseif self.StealthEnh and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['ElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end                  
-        end        
-    end,
 
-    OnIntelDisabled = function(self)
-        ACUUnit.OnIntelDisabled(self)
-        if self.IntelEffectsBag then
-            EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
-            self.IntelEffectsBag = nil
-        end
-        if self.CloakEnh and not self:IsIntelEnabled('Cloak') then
-            self:SetMaintenanceConsumptionInactive()
-        elseif self.StealthEnh and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
-            self:SetMaintenanceConsumptionInactive()
-        end         
-    end,
-
-    OnPaused = function(self)
-        ACUUnit.OnPaused(self)
-        if self.BuildingUnit then
-            ACUUnit.StopBuildingEffects(self, self.UnitBeingBuilt)
-        end
-    end,
-
-    OnUnpaused = function(self)
-        if self.BuildingUnit then
-            ACUUnit.StartBuildingEffects(self, self.UnitBeingBuilt, self.UnitBuildOrder)
-        end
-        ACUUnit.OnUnpaused(self)
-    end,
-
+    -- TODO - WTF is this???
     OnMotionHorzEventChange = function(self, new, old)
         if self.RBIntTier3 then
             if ((new == 'Stopped' or new == 'Stopping') and (old == 'Cruise' or old == 'TopSpeed')) then
@@ -2014,32 +1973,6 @@ ESL0001 = Class(ACUUnit) {
         end
         ACUUnit.OnMotionHorzEventChange(self, new, old)
     end,
-
-    EXRecloakDelayThread = function(self)
-        WaitSeconds(3)
-        self.EXCloakTele = false
-    end,
-
-    EXOCCloakTiming = function(self)
-        WaitSeconds(5)
-        self.EXOCFire = false
-    end,
-
-    OnFailedTeleport = function(self)
-        ACUUnit.OnFailedTeleport(self)
-        self:ForkThread(self.EXRecloakDelayThread)
-    end,
-
-    PlayTeleportChargeEffects = function(self, location)
-        self.EXCloakTele = true
-        ACUUnit.PlayTeleportChargeEffects(self, location)
-    end,
-    
-    PlayTeleportInEffects = function(self)
-        ACUUnit.PlayTeleportInEffects(self)
-        self:ForkThread(self.EXRecloakDelayThread)
-    end,
-
 }
 
 TypeClass = ESL0001
