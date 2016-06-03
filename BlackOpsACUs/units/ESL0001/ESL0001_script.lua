@@ -295,9 +295,15 @@ ESL0001 = Class(ACUUnit) {
         return units
     end,
 
-    RegenBuffThread = function(self, type)
-        local bp = self:GetBlueprint().Enhancements[type]
-        local buff = 'SeraphimACU' .. type
+    RegenBuffThread = function(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        local buff
+
+        if enh == 'CombatEngineering' then
+            buff = 'SeraphimACURegenAura'
+        elseif enh == 'AssaultEngineering' then
+            buff = 'SeraphimACUAdvancedRegenAura'
+        end
 
         while not self.Dead do
             local units = self:GetUnitsToBuff(bp)
@@ -371,7 +377,7 @@ ESL0001 = Class(ACUUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
         if enh == 'ImprovedEngineering' then
-            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER))
+            self:RemoveBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
             
@@ -477,315 +483,212 @@ ESL0001 = Class(ACUUnit) {
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
-            local bp = self:GetBlueprint().Enhancements[enh]
+            self:RemoveBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER2COMMANDER)
+            self:updateBuildRestrictions()
+
+            -- Build buff tables
             if not Buffs['SeraphimACURegenAura'] then
                 BuffBlueprint {
                     Name = 'SeraphimACURegenAura',
                     DisplayName = 'SeraphimACURegenAura',
-                    BuffType = 'COMMANDERAURA',
-                    Stacks = 'STACKS',
+                    BuffType = 'COMMANDERAURA_RegenAura',
+                    Stacks = 'REPLACE',
                     Duration = 5,
                     Affects = {
                         Regen = {
                             Add = 0,
-                            Mult = bp.RegenPerSecond or 0.1,
+                            Mult = bp.RegenPerSecond,
                             Ceil = bp.RegenCeiling,
-                            Floor = bp.RegenFloor,
                         },
                     },
                 }
-                
             end
-            if not Buffs['SeraphimACURegenAura2'] then
+            
+            if not Buffs['SERAPHIMACUT2BuildCombat'] then -- Self Buff
                 BuffBlueprint {
-                    Name = 'SeraphimACURegenAura2',
-                    DisplayName = 'SeraphimACURegenAura2',
-                    BuffType = 'COMMANDERAURA',
-                    Stacks = 'STACKS',
-                    Duration = 5,
-                    Affects = {
-                        Regen = {
-                            Add = 0,
-                            Mult = bp.RegenPerSecond2 or 0.1,
-                            Ceil = bp.RegenCeiling,
-                            Floor = bp.RegenFloor,
-                        },
-                    },
-                }
-                
-            end
-            if not Buffs['SeraphimACURegenAura3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimACURegenAura3',
-                    DisplayName = 'SeraphimACURegenAura3',
-                    BuffType = 'COMMANDERAURA',
-                    Stacks = 'STACKS',
-                    Duration = 5,
-                    Affects = {
-                        Regen = {
-                            Add = 0,
-                            Mult = bp.RegenPerSecond3 or 0.1,
-                            Ceil = bp.RegenCeiling,
-                            Floor = bp.RegenFloor,
-                        },
-                    },
-                }
-                
-            end
-            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
-            self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
-            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER))
-            if not Buffs['SERAPHIMACUT2BuildRate'] then
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT2BuildRate',
-                    DisplayName = 'SERAPHIMACUT2BuildRate',
+                    Name = 'SERAPHIMACUT2BuildCombat',
+                    DisplayName = 'SERAPHIMACUT2BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')
-            if not Buffs['SeraHealthBoost4'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost4',
-                    DisplayName = 'SeraHealthBoost4',
-                    BuffType = 'SeraHealthBoost4',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost4')
-            self.RBComEngineering = true
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
             
+            -- Remove existing threads, then re-apply
+            if self.ShieldEffectsBag then
+                for k, v in self.ShieldEffectsBag do
+                    v:Destroy()
+                end
+                self.ShieldEffectsBag = {}
+            end
+
+            if self.RegenThreadHandler then
+                KillThread(self.RegenThreadHandler)
+                self.RegenThreadHandler = nil
+            end
+            self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, enh)
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
+
+            -- Affect the ACU
+            Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildCombat')
         elseif enh == 'CombatEngineeringRemove' then
+            if Buff.HasBuff(self, 'SERAPHIMACUT2BuildCombat') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildCombat')
+            end
+
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+
+            -- Kill regen aura
+            if self.RegenThreadHandler then
+                KillThread(self.RegenThreadHandler)
+                self.RegenThreadHandler = nil
+            end
+
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
                     v:Destroy()
                 end
                 self.ShieldEffectsBag = {}
             end
-            KillThread(self.RegenThreadHandle)
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
-            end
-            if not bp then return end
-            self:RestoreBuildRestrictions()
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'SeraHealthBoost4') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost4')
-            end
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            
         elseif enh == 'AssaultEngineering' then
-            if self.RegenThreadHandle then
-                if self.ShieldEffectsBag then
-                    for k, v in self.ShieldEffectsBag do
-                        v:Destroy()
-                    end
-                    self.ShieldEffectsBag = {}
-                end
-                KillThread(self.RegenThreadHandle)
-                
-            end
-            local bp = self:GetBlueprint().Enhancements[enh]
-            if not Buffs['SeraphimAdvancedACURegenAura'] then
-                BuffBlueprint {
-                    Name = 'SeraphimAdvancedACURegenAura',
-                    DisplayName = 'SeraphimAdvancedACURegenAura',
-                    BuffType = 'COMMANDERAURA',
-                    Stacks = 'STACKS',
-                    Duration = 5,
-                    Affects = {
-                        Regen = {
-                            Add = 0,
-                            Mult = bp.RegenPerSecond or 0.1,
-                            Ceil = bp.RegenCeiling,
-                            Floor = bp.RegenFloor,
-                        },
-                    },
-                }
-            end
-            if not Buffs['SeraphimAdvancedACURegenAura2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimAdvancedACURegenAura2',
-                    DisplayName = 'SeraphimAdvancedACURegenAura2',
-                    BuffType = 'COMMANDERAURA',
-                    Stacks = 'STACKS',
-                    Duration = 5,
-                    Affects = {
-                        Regen = {
-                            Add = 0,
-                            Mult = bp.RegenPerSecond2 or 0.1,
-                            Ceil = bp.RegenCeiling,
-                            Floor = bp.RegenFloor,
-                        },
-                    },
-                }
-            end
-            if not Buffs['SeraphimAdvancedACURegenAura3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimAdvancedACURegenAura3',
-                    DisplayName = 'SeraphimAdvancedACURegenAura3',
-                    BuffType = 'COMMANDERAURA',
-                    Stacks = 'STACKS',
-                    Duration = 5,
-                    Affects = {
-                        Regen = {
-                            Add = 0,
-                            Mult = bp.RegenPerSecond3 or 0.1,
-                            Ceil = bp.RegenCeiling,
-                            Floor = bp.RegenFloor,
-                        },
-                    },
-                }
-            end
-            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
-            self.AdvancedRegenThreadHandle = self:ForkThread(self.AdvancedRegenBuffThread)
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
-            if not Buffs['SERAPHIMACUT3BuildRate'] then
+            self:updateBuildRestrictions()
+        
+            -- Build buff tables
+            if not Buffs['SeraphimACUAdvancedRegenAura'] then
                 BuffBlueprint {
-                    Name = 'SERAPHIMACUT3BuildRate',
-                    DisplayName = 'SERAPHIMCUT3BuildRate',
+                    Name = 'SeraphimACUAdvancedRegenAura',
+                    DisplayName = 'SeraphimACUAdvancedRegenAura',
+                    BuffType = 'COMMANDERAURA_AdvancedRegenAura',
+                    Stacks = 'REPLACE',
+                    Duration = 5,
+                    Affects = {
+                        Regen = {
+                            Add = 0,
+                            Mult = bp.RegenPerSecond,
+                            Ceil = bp.RegenCeiling,
+                        },
+                        MaxHealth = {
+                            Add = 0,
+                            Mult = bp.MaxHealthFactor,
+                            DoNoFill = true,
+                        }
+                    },
+                }
+            end
+        
+            if not Buffs['SERAPHIMACUT3BuildCombat'] then -- Self Buff
+                BuffBlueprint {
+                    Name = 'SERAPHIMACUT3BuildCombat',
+                    DisplayName = 'SERAPHIMACUT3BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildRate')
-            if not Buffs['SeraHealthBoost5'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost5',
-                    DisplayName = 'SeraHealthBoost5',
-                    BuffType = 'SeraHealthBoost5',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost5')  
-            self.RBComEngineering = true
-            self.RBAssEngineering = true
-            self.RBApoEngineering = false
-            
-        elseif enh == 'AssaultEngineeringRemove' then
+        
+            -- Remove existing threads, then re-apply
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
                     v:Destroy()
                 end
                 self.ShieldEffectsBag = {}
             end
-            KillThread(self.AdvancedRegenThreadHandle)
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
-            if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
-            end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER)) 
-            if Buff.HasBuff(self, 'SeraHealthBoost4') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost4')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost5') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost5')
-            end
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
             
+            if self.RegenThreadHandler then
+                KillThread(self.RegenThreadHandler)
+                self.RegenThreadHandler = nil
+            end
+            self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, enh)
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
+
+            -- Affect the ACU
+            Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildCombat')
+        elseif enh == 'AssaultEngineeringRemove' then
+            if Buff.HasBuff(self, 'SERAPHIMACUT3BuildCombat') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildCombat')
+            end
+
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER)) 
+
+            -- Kill regen aura
+            if self.RegenThreadHandler then
+                KillThread(self.RegenThreadHandler)
+                self.RegenThreadHandler = nil
+            end
+
+            if self.ShieldEffectsBag then
+                for k, v in self.ShieldEffectsBag do
+                    v:Destroy()
+                end
+                self.ShieldEffectsBag = {}
+            end
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
-            if not Buffs['SERAPHIMACUT4BuildRate'] then
+            self:updateBuildRestrictions()
+        
+            if not Buffs['SERAPHIMACUT4BuildCombat'] then
                 BuffBlueprint {
-                    Name = 'SERAPHIMACUT4BuildRate',
-                    DisplayName = 'SERAPHIMCUT4BuildRate',
+                    Name = 'SERAPHIMACUT4BuildCombat',
+                    DisplayName = 'SERAPHIMACUT4BuildCombat',
                     BuffType = 'ACUBUILDRATE',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildRate')
-            if not Buffs['SeraHealthBoost6'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost6',
-                    DisplayName = 'SeraHealthBoost6',
-                    BuffType = 'SeraHealthBoost6',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost6')
-            self.RBComEngineering = true
-            self.RBAssEngineering = true
-            self.RBApoEngineering = true
-            
+        
+            Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildCombat')
         elseif enh == 'ApocolypticEngineeringRemove' then
-            if self.ShieldEffectsBag then
-                for k, v in self.ShieldEffectsBag do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag = {}
+            if Buff.HasBuff(self, 'SERAPHIMACUT4BuildCombat') then
+                Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildCombat')
             end
-            KillThread(self.AdvancedRegenThreadHandle)
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
-            if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
-            end
+        
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            if Buff.HasBuff(self, 'SeraHealthBoost4') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost4')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost5') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost5')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost6') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost6')
-            end
-            self.RBComEngineering = false
-            self.RBAssEngineering = false
-            self.RBApoEngineering = false
-            
+
+        -- Chronoton Booster
+        
         elseif enh == 'ChronotonBooster' then
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             wepChronotron:ChangeMaxRadius(30)
