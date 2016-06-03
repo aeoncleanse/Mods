@@ -370,205 +370,120 @@ ESL0001 = Class(ACUUnit) {
         ACUUnit.CreateEnhancement(self, enh)
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
-        if enh =='ImprovedEngineering' then
+        if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER))
+            self:updateBuildRestrictions()
+            self:SetProduction(bp)
+            
             if not Buffs['SERAPHIMACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT2BuildRate',
                     DisplayName = 'SERAPHIMACUT2BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
-            if not Buffs['SeraHealthBoost1'] then
-                BuffBlueprint {
-                    Name =  'SeraHealthBoost1',
-                    DisplayName =  'SeraHealthBoost1',
-                    BuffType =  'SeraHealthBoost1',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self,  'SeraHealthBoost1')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            
+            Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')            
         elseif enh == 'ImprovedEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
             if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
             end
-            if not bp then return end
-            self:RestoreBuildRestrictions()
+
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'SeraHealthBoost1') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost1')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            
-        elseif enh =='AdvancedEngineering' then
+            self:SetProduction()
+        elseif enh == 'AdvancedEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:updateBuildRestrictions()
+            self:SetProduction(bp)
+            
             if not Buffs['SERAPHIMACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT3BuildRate',
                     DisplayName = 'SERAPHIMCUT3BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
+                        },
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
                         },
                     },
                 }
             end
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildRate')
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
-            if not Buffs['SeraHealthBoost2'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost2',
-                    DisplayName = 'SeraHealthBoost2',
-                    BuffType = 'SeraHealthBoost2',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SeraHealthBoost2')
-            self.RBImpEngineering = true
-            self.RBAdvEngineering = true
-            self.RBExpEngineering = false
-            
-        elseif enh =='AdvancedEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
+        elseif enh == 'AdvancedEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'SeraHealthBoost1') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost1')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost2') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost2')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            
-        elseif enh =='ExperimentalEngineering' then
+            self:SetProduction()
+        elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local bpEcon = self:GetBlueprint().Economy
-            if not bp then return end
-            self:SetProductionPerSecondEnergy(bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass or 0)
+            self:updateBuildRestrictions()
+            self:SetProduction(bp)
+
             if not Buffs['SERAPHIMACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT4BuildRate',
                     DisplayName = 'SERAPHIMCUT4BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
-                            Add =  bp.NewBuildRate - self:GetBlueprint().Economy.BuildRate,
+                            Add =  bp.NewBuildRate,
                             Mult = 1,
                         },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildRate')
-            if not Buffs['SeraHealthBoost3'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost3',
-                    DisplayName = 'SeraHealthBoost3',
-                    BuffType = 'SeraHealthBoost3',
-                    Stacks = 'REPLACE',
-                    Duration = -1,
-                    Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost3')
-
-            
-            
-        elseif enh =='ExperimentalEngineeringRemove' then
-            local bp = self:GetBlueprint().Economy.BuildRate
-            if not bp then return end
-            self:RestoreBuildRestrictions()
+            Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildRate')
+        elseif enh == 'ExperimentalEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
             end
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-            local bpEcon = self:GetBlueprint().Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-            if Buff.HasBuff(self, 'SeraHealthBoost1') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost1')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost2') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost2')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost3') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost3')
-            end
-            self.RBImpEngineering = false
-            self.RBAdvEngineering = false
-            self.RBExpEngineering = false
-            
-        elseif enh =='CombatEngineering' then
+            self:SetProduction()
+        elseif enh == 'CombatEngineering' then
             local bp = self:GetBlueprint().Enhancements[enh]
             if not Buffs['SeraphimACURegenAura'] then
                 BuffBlueprint {
                     Name = 'SeraphimACURegenAura',
                     DisplayName = 'SeraphimACURegenAura',
                     BuffType = 'COMMANDERAURA',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = 5,
                     Affects = {
                         Regen = {
@@ -586,7 +501,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraphimACURegenAura2',
                     DisplayName = 'SeraphimACURegenAura2',
                     BuffType = 'COMMANDERAURA',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = 5,
                     Affects = {
                         Regen = {
@@ -604,7 +519,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraphimACURegenAura3',
                     DisplayName = 'SeraphimACURegenAura3',
                     BuffType = 'COMMANDERAURA',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = 5,
                     Affects = {
                         Regen = {
@@ -625,7 +540,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SERAPHIMACUT2BuildRate',
                     DisplayName = 'SERAPHIMACUT2BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
@@ -641,7 +556,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost4',
                     DisplayName = 'SeraHealthBoost4',
                     BuffType = 'SeraHealthBoost4',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -656,7 +571,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBAssEngineering = false
             self.RBApoEngineering = false
             
-        elseif enh =='CombatEngineeringRemove' then
+        elseif enh == 'CombatEngineeringRemove' then
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
                     v:Destroy()
@@ -678,7 +593,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBAssEngineering = false
             self.RBApoEngineering = false
             
-        elseif enh =='AssaultEngineering' then
+        elseif enh == 'AssaultEngineering' then
             if self.RegenThreadHandle then
                 if self.ShieldEffectsBag then
                     for k, v in self.ShieldEffectsBag do
@@ -695,7 +610,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraphimAdvancedACURegenAura',
                     DisplayName = 'SeraphimAdvancedACURegenAura',
                     BuffType = 'COMMANDERAURA',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = 5,
                     Affects = {
                         Regen = {
@@ -712,7 +627,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraphimAdvancedACURegenAura2',
                     DisplayName = 'SeraphimAdvancedACURegenAura2',
                     BuffType = 'COMMANDERAURA',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = 5,
                     Affects = {
                         Regen = {
@@ -729,7 +644,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraphimAdvancedACURegenAura3',
                     DisplayName = 'SeraphimAdvancedACURegenAura3',
                     BuffType = 'COMMANDERAURA',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = 5,
                     Affects = {
                         Regen = {
@@ -749,7 +664,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SERAPHIMACUT3BuildRate',
                     DisplayName = 'SERAPHIMCUT3BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
@@ -765,7 +680,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost5',
                     DisplayName = 'SeraHealthBoost5',
                     BuffType = 'SeraHealthBoost5',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -780,7 +695,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBAssEngineering = true
             self.RBApoEngineering = false
             
-        elseif enh =='AssaultEngineeringRemove' then
+        elseif enh == 'AssaultEngineeringRemove' then
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
                     v:Destroy()
@@ -805,14 +720,14 @@ ESL0001 = Class(ACUUnit) {
             self.RBAssEngineering = false
             self.RBApoEngineering = false
             
-        elseif enh =='ApocolypticEngineering' then
+        elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             if not Buffs['SERAPHIMACUT4BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT4BuildRate',
                     DisplayName = 'SERAPHIMCUT4BuildRate',
                     BuffType = 'ACUBUILDRATE',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         BuildRate = {
@@ -828,7 +743,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost6',
                     DisplayName = 'SeraHealthBoost6',
                     BuffType = 'SeraHealthBoost6',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -843,7 +758,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBAssEngineering = true
             self.RBApoEngineering = true
             
-        elseif enh =='ApocolypticEngineeringRemove' then
+        elseif enh == 'ApocolypticEngineeringRemove' then
             if self.ShieldEffectsBag then
                 for k, v in self.ShieldEffectsBag do
                     v:Destroy()
@@ -871,23 +786,23 @@ ESL0001 = Class(ACUUnit) {
             self.RBAssEngineering = false
             self.RBApoEngineering = false
             
-        elseif enh =='ChronotonBooster' then
+        elseif enh == 'ChronotonBooster' then
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             wepChronotron:ChangeMaxRadius(30)
             
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='ChronotonBoosterRemove' then
+        elseif enh == 'ChronotonBoosterRemove' then
             local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
             local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
             wepChronotron:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
             
-        elseif enh =='TorpedoLauncher' then
+        elseif enh == 'TorpedoLauncher' then
             if not Buffs['SeraHealthBoost7'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost7',
                     DisplayName = 'SeraHealthBoost7',
                     BuffType = 'SeraHealthBoost7',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -906,7 +821,7 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='TorpedoLauncherRemove' then
+        elseif enh == 'TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost7') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost7')
             end
@@ -919,13 +834,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='TorpedoRapidLoader' then
+        elseif enh == 'TorpedoRapidLoader' then
             if not Buffs['SeraHealthBoost8'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost8',
                     DisplayName = 'SeraHealthBoost8',
                     BuffType = 'SeraHealthBoost8',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -945,7 +860,7 @@ ESL0001 = Class(ACUUnit) {
     
             
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='TorpedoRapidLoaderRemove' then
+        elseif enh == 'TorpedoRapidLoaderRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost7') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost7')
             end
@@ -962,13 +877,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='TorpedoClusterLauncher' then
+        elseif enh == 'TorpedoClusterLauncher' then
             if not Buffs['SeraHealthBoost9'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost9',
                     DisplayName = 'SeraHealthBoost9',
                     BuffType = 'SeraHealthBoost9',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -987,7 +902,7 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='TorpedoClusterLauncherRemove' then
+        elseif enh == 'TorpedoClusterLauncherRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost7') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost7')
             end
@@ -1007,13 +922,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='CannonBigBall' then
+        elseif enh == 'CannonBigBall' then
             if not Buffs['SeraHealthBoost10'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost10',
                     DisplayName = 'SeraHealthBoost10',
                     BuffType = 'SeraHealthBoost10',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1032,7 +947,7 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='CannonBigBallRemove' then
+        elseif enh == 'CannonBigBallRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost10')
             end
@@ -1045,13 +960,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='ImprovedContainmentBottle' then
+        elseif enh == 'ImprovedContainmentBottle' then
             if not Buffs['SeraHealthBoost11'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost11',
                     DisplayName = 'SeraHealthBoost11',
                     BuffType = 'SeraHealthBoost11',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1071,7 +986,7 @@ ESL0001 = Class(ACUUnit) {
     
             
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='ImprovedContainmentBottleRemove' then    
+        elseif enh == 'ImprovedContainmentBottleRemove' then    
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost10')
             end
@@ -1087,13 +1002,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='PowerBooster' then
+        elseif enh == 'PowerBooster' then
             if not Buffs['SeraHealthBoost12'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost12',
                     DisplayName = 'SeraHealthBoost12',
                     BuffType = 'SeraHealthBoost12',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1112,7 +1027,7 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='PowerBoosterRemove' then    
+        elseif enh == 'PowerBoosterRemove' then    
             self:SetWeaponEnabledByLabel('BigBallCannon', false)
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost10')
@@ -1132,13 +1047,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='CannonRapid' then
+        elseif enh == 'CannonRapid' then
             if not Buffs['SeraHealthBoost13'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost13',
                     DisplayName = 'SeraHealthBoost13',
                     BuffType = 'SeraHealthBoost13',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1157,7 +1072,7 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='CannonRapidRemove' then
+        elseif enh == 'CannonRapidRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost13')
             end
@@ -1170,13 +1085,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='ImprovedCoolingSystem' then
+        elseif enh == 'ImprovedCoolingSystem' then
             if not Buffs['SeraHealthBoost14'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost14',
                     DisplayName = 'SeraHealthBoost14',
                     BuffType = 'SeraHealthBoost14',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1196,7 +1111,7 @@ ESL0001 = Class(ACUUnit) {
     
             
             self:ForkThread(self.DefaultGunBuffThread)
-        elseif enh =='ImprovedCoolingSystemRemove' then
+        elseif enh == 'ImprovedCoolingSystemRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost13')
             end
@@ -1212,13 +1127,13 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='EnergyShellHardener' then
+        elseif enh == 'EnergyShellHardener' then
             if not Buffs['SeraHealthBoost15'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost15',
                     DisplayName = 'SeraHealthBoost15',
                     BuffType = 'SeraHealthBoost15',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1237,7 +1152,7 @@ ESL0001 = Class(ACUUnit) {
             self:ForkThread(self.WeaponRangeReset)
     
             
-        elseif enh =='EnergyShellHardenerRemove' then
+        elseif enh == 'EnergyShellHardenerRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost13')
             end
@@ -1301,7 +1216,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost22',
                     DisplayName = 'SeraHealthBoost22',
                     BuffType = 'SeraHealthBoost22',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1377,7 +1292,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost23',
                     DisplayName = 'SeraHealthBoost23',
                     BuffType = 'SeraHealthBoost23',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1472,7 +1387,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost24',
                     DisplayName = 'SeraHealthBoost24',
                     BuffType = 'SeraHealthBoost24',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1540,7 +1455,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost16',
                     DisplayName = 'SeraHealthBoost16',
                     BuffType = 'SeraHealthBoost16',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1617,7 +1532,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost17',
                     DisplayName = 'SeraHealthBoost17',
                     BuffType = 'SeraHealthBoost17',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1679,7 +1594,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost18',
                     DisplayName = 'SeraHealthBoost18',
                     BuffType = 'SeraHealthBoost18',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1727,7 +1642,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBIntTier2 = false
             self.RBIntTier3 = false
             
-        elseif enh =='BasicDefence' then
+        elseif enh == 'BasicDefence' then
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
                     IssueClearCommands({self.lambdaEmitterTable[k]}) 
@@ -1755,7 +1670,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost19',
                     DisplayName = 'SeraHealthBoost19',
                     BuffType = 'SeraHealthBoost19',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1773,7 +1688,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
-        elseif enh =='BasicDefenceRemove' then
+        elseif enh == 'BasicDefenceRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost19') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost19')
             end
@@ -1792,7 +1707,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
-        elseif enh =='TacticalMisslePack' then
+        elseif enh == 'TacticalMisslePack' then
             self:AddCommandCap('RULEUCC_Tactical')
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
             if not Buffs['SeraHealthBoost20'] then
@@ -1800,7 +1715,7 @@ ESL0001 = Class(ACUUnit) {
                     Name = 'SeraHealthBoost20',
                     DisplayName = 'SeraHealthBoost20',
                     BuffType = 'SeraHealthBoost20',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
@@ -1853,13 +1768,13 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
-        elseif enh =='OverchargeOverdrive' then
+        elseif enh == 'OverchargeOverdrive' then
             if not Buffs['SeraHealthBoost21'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost21',
                     DisplayName = 'SeraHealthBoost21',
                     BuffType = 'SeraHealthBoost21',
-                    Stacks = 'REPLACE',
+                    Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
                         MaxHealth = {
