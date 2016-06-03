@@ -97,10 +97,6 @@ EAL0001 = Class(ACUUnit) {
 
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
-        self:DisableUnitIntel('Enhancement', 'RadarStealth')
-        self:DisableUnitIntel('Enhancement', 'SonarStealth')
-        self:DisableUnitIntel('Enhancement', 'Cloak')
-        self:DisableUnitIntel('Enhancement', 'CloakField')
 
         -- Disable Upgrade Weapons
         self:SetWeaponEnabledByLabel('ChronoDampener', false)
@@ -110,10 +106,11 @@ EAL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('PhasonBeam', false)
         self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
         self:SetWeaponEnabledByLabel('AntiTorpedo', false)
-        self:SetWeaponEnabledByLabel('AntiMissile', false)        
+        self:SetWeaponEnabledByLabel('AntiMissile', false)
         
         self.Sync.Abilities = self:GetBlueprint().Abilities
         self.Sync.Abilities.ScryTarget.Active = false
+        self:ForkThread(self.GiveInitialResources)
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
