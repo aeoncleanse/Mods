@@ -38,12 +38,10 @@ ESL0001 = Class(ACUUnit) {
         DeathWeapon = Class(DeathNukeWeapon) {},
         TargetPainter = Class(CEMPArrayBeam01) {},
         ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
-        TorpedoLauncher01 = Class(SANUallCavitationTorpedo) {},
-        TorpedoLauncher02 = Class(SANUallCavitationTorpedo) {},
-        TorpedoLauncher03 = Class(SANUallCavitationTorpedo) {},
+        TorpedoLauncher = Class(SANUallCavitationTorpedo) {},
         BigBallCannon01 = Class(SeraACUBigBallWeapon) {
             PlayFxMuzzleChargeSequence = function(self, muzzle)
-                --CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
+                -- CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
                 if not self.ClawTopRotator then 
                     self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
                     self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
@@ -190,9 +188,7 @@ ESL0001 = Class(ACUUnit) {
         ACUUnit.OnStopBeingBuilt(self,builder,layer)
         self:DisableRemoteViewingButtons()
         
-        self:SetWeaponEnabledByLabel('TorpedoLauncher01', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher02', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher03', false)
+        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('BigBallCannon01', false)
         self:SetWeaponEnabledByLabel('BigBallCannon02', false)
         self:SetWeaponEnabledByLabel('BigBallCannon03', false)
@@ -336,7 +332,7 @@ ESL0001 = Class(ACUUnit) {
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
         local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
-        -- Change RoF
+        -- Change Damage
         wep:AddDamageMod(damage)
 
         -- Change Radius
@@ -346,11 +342,9 @@ ESL0001 = Class(ACUUnit) {
         
         -- As radius is only passed when turning on, use the bool
         if radius then
-            self:ShowBone('Basic_GunUp_Range', true)
-            self:SetPainterRange('DisruptorAmplifier', radius, false)
+            self:SetPainterRange('ChronotonBooster', radius, false)
         else
-            self:HideBone('Basic_GunUp_Range', false)
-            self:SetPainterRange('DisruptorAmplifierRemove', radius, true)
+            self:SetPainterRange('ChronotonBoosterRemove', radius, true)
         end
     end,
     
@@ -690,21 +684,15 @@ ESL0001 = Class(ACUUnit) {
         -- Chronoton Booster
         
         elseif enh == 'ChronotonBooster' then
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            wepChronotron:ChangeMaxRadius(30)
-            
-            self:ForkThread(self.DefaultGunBuffThread)
+            self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'ChronotonBoosterRemove' then
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepChronotron:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoLauncher' then
-            if not Buffs['SeraHealthBoost7'] then
+            if not Buffs['SeraphimTorpHealth1'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost7',
-                    DisplayName = 'SeraHealthBoost7',
-                    BuffType = 'SeraHealthBoost7',
+                    Name = 'SeraphimTorpHealth1',
+                    DisplayName = 'SeraphimTorpHealth1',
+                    BuffType = 'SeraphimTorpHealth1',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -715,34 +703,21 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost7')
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            wepChronotron:ChangeMaxRadius(30)
-            self.wcTorp01 = true
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
+            Buff.ApplyBuff(self, 'SeraphimTorpHealth1')
             
+            self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'TorpedoLauncherRemove' then
-            if Buff.HasBuff(self, 'SeraHealthBoost7') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost7')
+            if Buff.HasBuff(self, 'SeraphimTorpHealth1') then
+                Buff.RemoveBuff(self, 'SeraphimTorpHealth1')
             end
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepChronotron:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
             
+            self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'TorpedoRapidLoader' then
-            if not Buffs['SeraHealthBoost8'] then
+            if not Buffs['SeraphimTorpHealth2'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost8',
-                    DisplayName = 'SeraHealthBoost8',
-                    BuffType = 'SeraHealthBoost8',
+                    Name = 'SeraphimTorpHealth2',
+                    DisplayName = 'SeraphimTorpHealth2',
+                    BuffType = 'SeraphimTorpHealth2',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -753,39 +728,29 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost8')
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            wepChronotron:AddDamageMod(100)
-            self.wcTorp01 = false
-            self.wcTorp02 = true
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            
-            self:ForkThread(self.DefaultGunBuffThread)
+            Buff.ApplyBuff(self, 'SeraphimTorpHealth2')
+
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.NewTorpDamage)
+            torp:ChangeRateOfFire(bp.NewTorpROF)
+
+            self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'TorpedoRapidLoaderRemove' then
-            if Buff.HasBuff(self, 'SeraHealthBoost7') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost7')
+            if Buff.HasBuff(self, 'SeraphimTorpHealth2') then
+                Buff.RemoveBuff(self, 'SeraphimTorpHealth2')
             end
-            if Buff.HasBuff(self, 'SeraHealthBoost8') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost8')
-            end
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepChronotron:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            wepChronotron:AddDamageMod(-100)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
+
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.NewTorpDamage)
+            torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
+            self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoClusterLauncher' then
-            if not Buffs['SeraHealthBoost9'] then
+            if not Buffs['SeraphimTorpHealth3'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost9',
-                    DisplayName = 'SeraHealthBoost9',
-                    BuffType = 'SeraHealthBoost9',
+                    Name = 'SeraphimTorpHealth3',
+                    DisplayName = 'SeraphimTorpHealth3',
+                    BuffType = 'SeraphimTorpHealth3',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -796,35 +761,26 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost9')
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            wepChronotron:AddDamageMod(200)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = true
-            self:ForkThread(self.WeaponRangeReset)
-    
-            
+            Buff.ApplyBuff(self, 'SeraphimTorpHealth3')
+
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.NewTorpDamage)
+
+            local gun = self:GetWeaponByLabel('ChronotronCannon')
+            gun:AddDamageMod(bp.NewDamage)
         elseif enh == 'TorpedoClusterLauncherRemove' then
-            if Buff.HasBuff(self, 'SeraHealthBoost7') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost7')
+            if Buff.HasBuff(self, 'SeraphimTorpHealth3') then
+                Buff.RemoveBuff(self, 'SeraphimTorpHealth3')
             end
-            if Buff.HasBuff(self, 'SeraHealthBoost8') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost8')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost9') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost9')
-            end
-            local wepChronotron = self:GetWeaponByLabel('ChronotronCannon')
-            local bpDisruptZephyrRadius = self:GetBlueprint().Weapon[1].MaxRadius
-            wepChronotron:ChangeMaxRadius(bpDisruptZephyrRadius or 22)
-            wepChronotron:AddDamageMod(-300)
-            self.wcTorp01 = false
-            self.wcTorp02 = false
-            self.wcTorp03 = false
-            self:ForkThread(self.WeaponRangeReset)
-    
-            
+
+            local torp = self:GetWeaponByLabel('TorpedoLauncher')
+            torp:AddDamageMod(bp.NewTorpDamage)
+
+            local gun = self:GetWeaponByLabel('ChronotronCannon')
+            gun:AddDamageMod(bp.NewDamage)
+
+        -- Big Cannon Ball
+
         elseif enh == 'CannonBigBall' then
             if not Buffs['SeraHealthBoost10'] then
                 BuffBlueprint {
@@ -847,7 +803,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall01 = true
             self.wcBigBall02 = false
             self.wcBigBall03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'CannonBigBallRemove' then
@@ -860,7 +816,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall01 = false
             self.wcBigBall02 = false
             self.wcBigBall03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'ImprovedContainmentBottle' then
@@ -885,10 +841,10 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall01 = false
             self.wcBigBall02 = true
             self.wcBigBall03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
-            self:ForkThread(self.DefaultGunBuffThread)
+
         elseif enh == 'ImprovedContainmentBottleRemove' then    
             if Buff.HasBuff(self, 'SeraHealthBoost10') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost10')
@@ -902,7 +858,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall01 = false
             self.wcBigBall02 = false
             self.wcBigBall03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'PowerBooster' then
@@ -927,7 +883,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall01 = false
             self.wcBigBall02 = false
             self.wcBigBall03 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'PowerBoosterRemove' then    
@@ -947,7 +903,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcBigBall01 = false
             self.wcBigBall02 = false
             self.wcBigBall03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'CannonRapid' then
@@ -972,7 +928,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid01 = true
             self.wcRapid02 = false
             self.wcRapid03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'CannonRapidRemove' then
@@ -985,7 +941,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid01 = false
             self.wcRapid02 = false
             self.wcRapid03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'ImprovedCoolingSystem' then
@@ -1010,10 +966,10 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid01 = false
             self.wcRapid02 = true
             self.wcRapid03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
-            self:ForkThread(self.DefaultGunBuffThread)
+
         elseif enh == 'ImprovedCoolingSystemRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost13') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost13')
@@ -1027,7 +983,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid01 = false
             self.wcRapid02 = false
             self.wcRapid03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'EnergyShellHardener' then
@@ -1052,7 +1008,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid01 = false
             self.wcRapid02 = false
             self.wcRapid03 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'EnergyShellHardenerRemove' then
@@ -1071,7 +1027,7 @@ ESL0001 = Class(ACUUnit) {
             self.wcRapid01 = false
             self.wcRapid02 = false
             self.wcRapid03 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             
         elseif enh == 'L1Lambda' then
@@ -1448,7 +1404,7 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraHealthBoost17')
             self.wcAA01 = true
             self.wcAA02 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBIntTier1 = true
             self.RBIntTier2 = true
@@ -1473,7 +1429,7 @@ ESL0001 = Class(ACUUnit) {
             end
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBIntTier1 = false
             self.RBIntTier2 = false
@@ -1539,7 +1495,7 @@ ESL0001 = Class(ACUUnit) {
             end
             self.wcAA01 = false
             self.wcAA02 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBIntTier1 = false
             self.RBIntTier2 = false
@@ -1632,7 +1588,7 @@ ESL0001 = Class(ACUUnit) {
             local wepOC = self:GetWeaponByLabel('OverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod2)        
             self.wcTMissiles01 = true
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBComTier1 = true
             self.RBComTier2 = true
@@ -1665,7 +1621,7 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
             wepOC:AddDamageMod(-bp.OverchargeDamageMod2)        
             self.wcTMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBComTier1 = false
             self.RBComTier2 = false
@@ -1725,7 +1681,7 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(-bp.OverchargeDamageMod3)        
             wepOC:ChangeProjectileBlueprint(bp.NewProjectileBlueprint)
             self.wcTMissiles01 = false
-            self:ForkThread(self.WeaponRangeReset)
+
     
             self.RBComTier1 = false
             self.RBComTier2 = false

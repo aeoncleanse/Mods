@@ -287,7 +287,7 @@ EAL0001 = Class(ACUUnit) {
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
         local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
-        -- Change RoF
+        -- Change Damage
         wep:AddDamageMod(damage)
 
         -- Change Radius
@@ -297,10 +297,8 @@ EAL0001 = Class(ACUUnit) {
         
         -- As radius is only passed when turning on, use the bool
         if radius then
-            self:ShowBone('Basic_GunUp_Range', true)
             self:SetPainterRange('DisruptorAmplifier', radius, false)
         else
-            self:HideBone('Basic_GunUp_Range', false)
             self:SetPainterRange('DisruptorAmplifierRemove', radius, true)
         end
     end,
@@ -664,7 +662,8 @@ EAL0001 = Class(ACUUnit) {
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
             
-            self:TogglePrimaryGun(bp.GunDamage)
+            local gun = self:GetWeaponByLabel('RightDisruptor')
+            gun:AddDamageMod(bp.GunDamage)
         elseif enh == 'AdvancedWarheadsRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth3') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth3')
@@ -673,7 +672,8 @@ EAL0001 = Class(ACUUnit) {
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
             
-            self:TogglePrimaryGun(bp.GunDamage)
+            local gun = self:GetWeaponByLabel('RightDisruptor')
+            gun:AddDamageMod(bp.GunDamage)
             
         -- Artillery
             
