@@ -453,9 +453,9 @@ ERL0001 = Class(ACUUnit) {
         
         -- Jury Rigged Ripper
         
-        elseif enh == 'RipperBooster' then
+        elseif enh == 'JuryRiggedRipper' then
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
-        elseif enh == 'RipperBoosterRemove' then
+        elseif enh == 'JuryRiggedRipperRemove' then
             self:TogglePrimaryGun(bp.NewRoF)
 
         -- Torpedoes
@@ -487,7 +487,7 @@ ERL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             self:DisableUnitIntel('Enhancement', 'Sonar')
-        elseif enh == 'TorpedoRapidLoader' then
+        elseif enh == 'ImprovedReloader' then
             if not Buffs['CybranTorpHealth2'] then
                 BuffBlueprint {
                     Name = 'CybranTorpHealth2',
@@ -511,7 +511,7 @@ ERL0001 = Class(ACUUnit) {
             
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
-        elseif enh == 'TorpedoRapidLoaderRemove' then
+        elseif enh == 'ImprovedReloaderRemove' then
             if Buff.HasBuff(self, 'CybranTorpHealth2') then
                 Buff.RemoveBuff(self, 'CybranTorpHealth2')
             end
@@ -521,7 +521,7 @@ ERL0001 = Class(ACUUnit) {
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
             self:TogglePrimaryGun(bp.NewRoF)
-        elseif enh == 'TorpedoClusterLauncher' then
+        elseif enh == 'AdvancedWarheads' then
             if not Buffs['CybranTorpHealth3'] then
                 BuffBlueprint {
                     Name = 'CybranTorpHealth3',
@@ -545,7 +545,7 @@ ERL0001 = Class(ACUUnit) {
             -- Improve Ripper
             local wep = self:GetWeaponByLabel('RightRipper')
             wep:AddDamageMod(bp.DamageMod)
-        elseif enh == 'TorpedoClusterLauncherRemove' then
+        elseif enh == 'AdvancedWarheadsRemove' then
             if Buff.HasBuff(self, 'CybranTorpHealth3') then
                 Buff.RemoveBuff(self, 'CybranTorpHealth3')
             end
@@ -587,7 +587,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot01', false)
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-        elseif enh == 'ImprovedCapacitors' then
+        elseif enh == 'AdjustedCrystalMatrix' then
             if not Buffs['CybranEMPHealth2'] then
                 BuffBlueprint {
                     Name = 'CybranEMPHealth2',
@@ -613,7 +613,7 @@ ERL0001 = Class(ACUUnit) {
 
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
-        elseif enh == 'ImprovedCapacitorsRemove' then    
+        elseif enh == 'AdjustedCrystalMatrixRemove' then    
             if Buff.HasBuff(self, 'CybranEMPHealth2') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth2')
             end
@@ -623,7 +623,7 @@ ERL0001 = Class(ACUUnit) {
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             
             self:TogglePrimaryGun(bp.NewRoF)
-        elseif enh == 'PowerBooster' then
+        elseif enh == 'EnhancedLaserEmitters' then
             if not Buffs['CybranEMPHealth3'] then
                 BuffBlueprint {
                     Name = 'CybranEMPHealth3',
@@ -646,7 +646,7 @@ ERL0001 = Class(ACUUnit) {
             
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(bp.EMPRange)
-        elseif enh == 'PowerBoosterRemove' then    
+        elseif enh == 'EnhancedLaserEmittersRemove' then    
             if Buff.HasBuff(self, 'CybranEMPHealth3') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth3')
             end
@@ -682,7 +682,7 @@ ERL0001 = Class(ACUUnit) {
             end
             
             self:SetWeaponEnabledByLabel('MLG', false)
-        elseif enh == 'ImprovedCoolingSystem' then
+        elseif enh == 'AlternatingLaserAssembly' then
             if not Buffs['CybranMazerHealth2'] then
                 BuffBlueprint {
                     Name = 'CybranMazerHealth2',
@@ -706,7 +706,7 @@ ERL0001 = Class(ACUUnit) {
             
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
-        elseif enh == 'ImprovedCoolingSystemRemove' then
+        elseif enh == 'AlternatingLaserAssemblyRemove' then
             if Buff.HasBuff(self, 'CybranMazerHealth2') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth2')
             end
@@ -716,7 +716,7 @@ ERL0001 = Class(ACUUnit) {
             laser:AddDamageMod(bp.LaserDamageMod)
             
             self:TogglePrimaryGun(bp.NewRoF)
-        elseif enh == 'AdvancedEmitterArray' then
+        elseif enh == 'SuperconductivePowerConduits' then
             if not Buffs['CybranMazerHealth3'] then
                 BuffBlueprint {
                     Name = 'CybranMazerHealth3',
@@ -736,7 +736,7 @@ ERL0001 = Class(ACUUnit) {
             
             local laser = self:GetWeaponByLabel('MLG')
             laser:AddDamageMod(bp.LaserDamageMod)
-        elseif enh == 'AdvancedEmitterArrayRemove' then
+        elseif enh == 'SuperconductivePowerConduitsRemove' then
 
             if Buff.HasBuff(self, 'CybranMazerHealth3') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth3')
@@ -778,7 +778,7 @@ ERL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
-        elseif enh == 'StructuralIntegrity' then
+        elseif enh == 'StructuralIntegrityFields' then
             if not Buffs['CybranArmorHealth2'] then
                 BuffBlueprint {
                     Name = 'CybranArmorHealth2',
@@ -802,7 +802,7 @@ ERL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('AA03', true)
             self:SetWeaponEnabledByLabel('AA04', true)
-        elseif enh == 'StructuralIntegrityRemove' then
+        elseif enh == 'StructuralIntegrityFieldsRemove' then
             if Buff.HasBuff(self, 'CybranArmorHealth2') then
                 Buff.RemoveBuff(self, 'CybranArmorHealth2')
             end
@@ -936,7 +936,7 @@ ERL0001 = Class(ACUUnit) {
             
         -- Mobility Systems
             
-        elseif enh == 'MobilitySubsystems' then
+        elseif enh == 'ActuatorReplacement' then
             if not Buffs['CybranMobilityHealth1'] then
                 BuffBlueprint {
                     Name = 'CybranMobilityHealth1',
@@ -959,13 +959,13 @@ ERL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'CybranMobilityHealth1')
 
             self:SetSpeedMult(2)
-        elseif enh == 'MobilitySubsystemsRemove' then
+        elseif enh == 'ActuatorReplacementRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth1') then
                 Buff.RemoveBuff(self, 'CybranMobilityHealth1')
             end
 
             self:SetSpeedMult(1)
-        elseif enh == 'DefensiveSubsystems' then
+        elseif enh == 'AntiAirSubsystem' then
             if not Buffs['CybranMobilityHealth2'] then
                 BuffBlueprint {
                     Name = 'CybranMobilityHealth2',
@@ -991,7 +991,7 @@ ERL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('AA01', true)
             self:SetWeaponEnabledByLabel('AA02', true)
-        elseif enh == 'DefensiveSubsystemsRemove' then
+        elseif enh == 'AntiAirSubsystemRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth2') then
                 Buff.RemoveBuff(self, 'CybranMobilityHealth2')
             end
@@ -1000,7 +1000,7 @@ ERL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
-        elseif enh == 'NanoKickerSubsystems' then
+        elseif enh == 'NanoRegenerationSubsystem' then
             if not Buffs['CybranMobilityHealth3'] then
                 BuffBlueprint {
                     Name = 'CybranMobilityHealth3',
@@ -1021,7 +1021,7 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMobilityHealth3')
-        elseif enh == 'NanoKickerSubsystemsRemove' then
+        elseif enh == 'NanoRegenerationSubsystemRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth3') then
                 Buff.RemoveBuff(self, 'CybranMobilityHealth3')
             end

@@ -556,7 +556,7 @@ UnitBlueprint {
             },
             Slot = 'LCH',
         },
-        RipperBooster = {
+        JuryRiggedRipper = {
             BuildCostEnergy = 24000,
             BuildCostMass = 800,
             BuildTime = 800,
@@ -573,17 +573,17 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        RipperBoosterRemove = {
+        JuryRiggedRipperRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exrzb1',
             Name = 'Remove Jury Rigged Ripper',
-            Prerequisite = 'RipperBooster',
+            Prerequisite = 'JuryRiggedRipper',
             NewRoF = 1,
             RemoveEnhancements = {
-                'RipperBooster',
-                'RipperBoosterRemove',
+                'JuryRiggedRipper',
+                'JuryRiggedRipperRemove',
             },
             Slot = 'RCH',
         },
@@ -622,7 +622,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        TorpedoRapidLoader = {
+        ImprovedReloader = {
             BuildCostEnergy = 105000,
             BuildCostMass = 1200,
             BuildTime = 5400,
@@ -646,7 +646,7 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        TorpedoRapidLoaderRemove = {
+        ImprovedReloaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -655,23 +655,23 @@ UnitBlueprint {
             },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedReloader',
             TorpDamageMod = -75,
             NewRoF = 1,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoRapidLoaderRemove',
+                'ImprovedReloader',
+                'ImprovedReloaderRemove',
             },
             Slot = 'RCH',
         },
-        TorpedoClusterLauncher = {
+        AdvancedWarheads = {
             BuildCostEnergy = 300000,
             BuildCostMass = 3000,
             BuildTime = 14400,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedReloader',
             NewHealth = 6000,
             TorpDamageMod = 400,
             DamageMod = 100,
@@ -687,7 +687,7 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        TorpedoClusterLauncherRemove = {
+        AdvancedWarheadsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -696,14 +696,14 @@ UnitBlueprint {
             },
             Icon = 'exrtorp3',
             Name = 'Remove Advanced Warheads',
-            Prerequisite = 'TorpedoClusterLauncher',
+            Prerequisite = 'AdvancedWarheads',
             TorpDamageMod = -400,
             DamageMod = -100,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoClusterLauncher',
-                'TorpedoClusterLauncherRemove',
+                'ImprovedReloader',
+                'AdvancedWarheads',
+                'AdvancedWarheadsRemove',
             },
             Slot = 'RCH',
         },
@@ -745,7 +745,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        ImprovedCapacitors = {
+        AdjustedCrystalMatrix = {
             BuildCostEnergy = 105000,
             BuildCostMass = 1200,
             BuildTime = 5400,
@@ -769,7 +769,7 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        ImprovedCapacitorsRemove = {
+        AdjustedCrystalMatrixRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -779,22 +779,22 @@ UnitBlueprint {
             },
             Icon = 'exramc2',
             Name = 'Remove Adjusted Crystal Matrix',
-            Prerequisite = 'ImprovedCapacitors',
+            Prerequisite = 'AdjustedCrystalMatrix',
             NewRoF = 1,
             RemoveEnhancements = {
                 'EMPArray',
-                'ImprovedCapacitors',
-                'ImprovedCapacitorsRemove',
+                'AdjustedCrystalMatrix',
+                'AdjustedCrystalMatrixRemove',
             },
             Slot = 'RCH',
         },
-        PowerBooster = {
+        EnhancedLaserEmitters = {
             BuildCostEnergy = 300000,
             BuildCostMass = 3000,
             BuildTime = 14400,
             Icon = 'exramc3',
             Name = 'Enhanced Laser Emitters (T4)',
-            Prerequisite = 'ImprovedCapacitors',
+            Prerequisite = 'AdjustedCrystalMatrix',
             NewHealth = 6000,
             NewRoF = 2,
             NewMaxRadius = 30,
@@ -812,7 +812,7 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        PowerBoosterRemove = {
+        EnhancedLaserEmittersRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -822,13 +822,13 @@ UnitBlueprint {
             },
             Icon = 'exramc3',
             Name = 'Remove Enhanced Laser Emitters',
-            Prerequisite = 'PowerBooster',
+            Prerequisite = 'EnhancedLaserEmitters',
             NewRoF = 1,
             RemoveEnhancements = {
                 'EMPArray',
-                'ImprovedCapacitors',
-                'PowerBooster',
-                'PowerBoosterRemove',
+                'AdjustedCrystalMatrix',
+                'EnhancedLaserEmitters',
+                'EnhancedLaserEmittersRemove',
             },
             Slot = 'RCH',
         },
@@ -873,7 +873,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        ImprovedCoolingSystem = {
+        AlternatingLaserAssembly = {
             BuildCostEnergy = 480000,
             BuildCostMass = 3000,
             BuildTime = 10800,
@@ -900,7 +900,7 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        ImprovedCoolingSystemRemove = {
+        AlternatingLaserAssemblyRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -912,23 +912,23 @@ UnitBlueprint {
             },
             Icon = 'exrgec2',
             Name = 'Remove Alternating Laser Assembly',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'AlternatingLaserAssembly',
             NewRoF = 1,
             LaserDamageMod = -45,
             RemoveEnhancements = {
                 'Mazer',
-                'ImprovedCoolingSystem',
-                'ImprovedCoolingSystemRemove',
+                'AlternatingLaserAssembly',
+                'AlternatingLaserAssemblyRemove',
             },
             Slot = 'RCH',
         },
-        AdvancedEmitterArray = {
+        SuperconductivePowerConduits = {
             BuildCostEnergy = 900000,
             BuildCostMass = 6300,
             BuildTime = 21600,
             Icon = 'exrgec3',
             Name = 'Superconductive Power Conduits (T4)',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'AlternatingLaserAssembly',
             NewHealth = 5000,
             LaserDamageMod = 180,
             ShowBones = {
@@ -946,7 +946,7 @@ UnitBlueprint {
                 'URL0001',
             },
         },
-        AdvancedEmitterArrayRemove = {
+        SuperconductivePowerConduitsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -958,13 +958,13 @@ UnitBlueprint {
             },
             Icon = 'exrgec3',
             Name = 'Remove Superconductive Power Conduits',
-            Prerequisite = 'AdvancedEmitterArray',
+            Prerequisite = 'SuperconductivePowerConduits',
             LaserDamageMod = -180,
             RemoveEnhancements = {
                 'Mazer',
-                'ImprovedCoolingSystem',
-                'AdvancedEmitterArray',
-                'AdvancedEmitterArrayRemove',
+                'AlternatingLaserAssembly',
+                'SuperconductivePowerConduits',
+                'SuperconductivePowerConduitsRemove',
             },
             Slot = 'RCH',
         },
@@ -1017,7 +1017,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        StructuralIntegrity = {
+        StructuralIntegrityFields = {
             BuildCostEnergy = 180000,
             BuildCostMass = 3000,
             BuildTime = 10800,
@@ -1045,7 +1045,7 @@ UnitBlueprint {
             },
             NewRegenRate = 150,
         },
-        StructuralIntegrityRemove = {
+        StructuralIntegrityFieldsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1062,11 +1062,11 @@ UnitBlueprint {
             },
             Icon = 'exbsh2',
             Name = 'Remove Structural Integrity Fields',
-            Prerequisite = 'StructuralIntegrity',
+            Prerequisite = 'StructuralIntegrityFields',
             RemoveEnhancements = {
                 'ArmorPlating',
-                'StructuralIntegrity',
-                'StructuralIntegrityRemove',
+                'StructuralIntegrityFields',
+                'StructuralIntegrityFieldsRemove',
             },
             Slot = 'Back',
         },
@@ -1076,7 +1076,7 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbsh3',
             Name = 'Composite Materials (T4)',
-            Prerequisite = 'StructuralIntegrity',
+            Prerequisite = 'StructuralIntegrityFields',
             NewHealth = 18000,
             ShowBones = {
                 'Back_CombatPack',
@@ -1118,7 +1118,7 @@ UnitBlueprint {
             Prerequisite = 'CompositeMaterials',
             RemoveEnhancements = {
                 'ArmorPlating',
-                'StructuralIntegrity',
+                'StructuralIntegrityFields',
                 'CompositeMaterials',
                 'CompositeMaterialsRemove',
             },
@@ -1237,7 +1237,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        MobilitySubsystems = {
+        ActuatorReplacement = {
             BuildCostEnergy = 45000,
             BuildCostMass = 840,
             BuildTime = 1800,
@@ -1264,7 +1264,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        MobilitySubsystemsRemove = {
+        ActuatorReplacementRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1277,20 +1277,20 @@ UnitBlueprint {
             },
             Icon = 'exbbat1',
             Name = 'Remove Actuator Replacment',
-            Prerequisite = 'MobilitySubsystems',
+            Prerequisite = 'ActuatorReplacement',
             RemoveEnhancements = {
-                'MobilitySubsystems',
-                'MobilitySubsystemsRemove',
+                'ActuatorReplacement',
+                'ActuatorReplacementRemove',
             },
             Slot = 'Back',
         },
-        DefensiveSubsystems = {
+        AntiAirSubsystem = {
             BuildCostEnergy = 450000,
             BuildCostMass = 3600,
             BuildTime = 16200,
             Icon = 'exbbat2',
             Name = 'Anti-Air Subsystem (T3)',
-            Prerequisite = 'MobilitySubsystems',
+            Prerequisite = 'ActuatorReplacement',
             NewHealth = 6000,
             ShowBones = {
                 'Back_MobilityPack',
@@ -1314,7 +1314,7 @@ UnitBlueprint {
             },
             NewRegenRate = 100,
         },
-        DefensiveSubsystemsRemove = {
+        AntiAirSubsystemRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1329,22 +1329,22 @@ UnitBlueprint {
             },
             Icon = 'exbbat2',
             Name = 'Remove Anti-Air Subsystem',
-            Prerequisite = 'DefensiveSubsystems',
+            Prerequisite = 'AntiAirSubsystem',
             ClusterDamageMod = 83,
             RemoveEnhancements = {
-                'MobilitySubsystems',
-                'DefensiveSubsystems',
-                'DefensiveSubsystemsRemove',
+                'ActuatorReplacement',
+                'AntiAirSubsystem',
+                'AntiAirSubsystemRemove',
             },
             Slot = 'Back',
         },
-        NanoKickerSubsystems = {
+        NanoRegenerationSubsystem = {
             BuildCostEnergy = 315000,
             BuildCostMass = 2700,
             BuildTime = 10800,
             Icon = 'exbbat3',
             Name = 'Nano Regeneration Subsystem (T4)',
-            Prerequisite = 'DefensiveSubsystems',
+            Prerequisite = 'AntiAirSubsystem',
             NewHealth = 11000,
             ShowBones = {
                 'Back_MobilityPack',
@@ -1368,7 +1368,7 @@ UnitBlueprint {
             },
             NewRegenRate = 100,
         },
-        NanoKickerSubsystemsRemove = {
+        NanoRegenerationSubsystemRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1383,14 +1383,14 @@ UnitBlueprint {
             },
             Icon = 'exbbat3',
             Name = 'Remove Nano Regeneration Subsystem',
-            Prerequisite = 'NanoKickerSubsystems',
+            Prerequisite = 'NanoRegenerationSubsystem',
             ClusterDamageMod2 = 84,
             ClusterDamageMod = 250,
             RemoveEnhancements = {
-                'MobilitySubsystems',
-                'DefensiveSubsystems',
-                'NanoKickerSubsystems',
-                'NanoKickerSubsystemsRemove',
+                'ActuatorReplacement',
+                'AntiAirSubsystem',
+                'NanoRegenerationSubsystem',
+                'NanoRegenerationSubsystemRemove',
             },
             Slot = 'Back',
         },
