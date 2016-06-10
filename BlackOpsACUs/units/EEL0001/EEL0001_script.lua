@@ -661,9 +661,9 @@ EEL0001 = Class(ACUUnit) {
 
         -- Zephyr Booster
             
-        elseif enh == 'ZephyrBooster' then
+        elseif enh == 'JuryRiggedZephyr' then
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh == 'ZephyrBoosterRemove' then
+        elseif enh == 'JuryRiggedZephyrRemove' then
             self:TogglePrimaryGun(bp.DamageMod)
 
         -- Torpedoes
@@ -693,7 +693,7 @@ EEL0001 = Class(ACUUnit) {
             end
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        elseif enh == 'TorpedoRapidLoader' then
+        elseif enh == 'ImprovedReloader' then
             if not Buffs['UEFTorpHealth2'] then
                 BuffBlueprint {
                     Name = 'UEFTorpHealth2',
@@ -717,7 +717,7 @@ EEL0001 = Class(ACUUnit) {
             
             -- Install Zephyr Cannon
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh == 'TorpedoRapidLoaderRemove' then
+        elseif enh == 'ImprovedReloaderRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth2') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth2')
             end
@@ -727,7 +727,7 @@ EEL0001 = Class(ACUUnit) {
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
             self:TogglePrimaryGun(bp.DamageMod)
-        elseif enh == 'TorpedoClusterLauncher' then
+        elseif enh == 'AdvancedWarheads' then
             if not Buffs['UEFTorpHealth3'] then
                 BuffBlueprint {
                     Name = 'UEFTorpHealth3',
@@ -751,7 +751,7 @@ EEL0001 = Class(ACUUnit) {
             -- Improve Zephyr Cannon
             local wep = self:GetWeaponByLabel('RightZephyr')
             wep:AddDamageMod(bp.DamageMod)
-        elseif enh == 'TorpedoClusterLauncherRemove' then
+        elseif enh == 'AdvancedWarheadsRemove' then
             if Buff.HasBuff(self, 'UEFTorpHealth3') then
                 Buff.RemoveBuff(self, 'UEFTorpHealth3')
             end
@@ -793,7 +793,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
-        elseif enh == 'ImprovedContainmentBottle' then
+        elseif enh == 'ImprovedParticleAccelerator' then
             if not Buffs['UEFAntimatterHealth2'] then
                 BuffBlueprint {
                     Name = 'UEFAntimatterHealth2',
@@ -818,7 +818,7 @@ EEL0001 = Class(ACUUnit) {
             
             -- Install Zephyr Cannon
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh == 'ImprovedContainmentBottleRemove' then    
+        elseif enh == 'ImprovedParticleAcceleratorRemove' then    
             if Buff.HasBuff(self, 'UEFAntimatterHealth2') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth2')
             end
@@ -828,7 +828,7 @@ EEL0001 = Class(ACUUnit) {
             gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
 
             self:TogglePrimaryGun(bp.DamageMod)
-        elseif enh == 'PowerBooster' then
+        elseif enh == 'EnhancedMagBottle' then
             if not Buffs['UEFAntimatterHealth3'] then
                 BuffBlueprint {
                     Name = 'UEFAntimatterHealth3',
@@ -853,7 +853,7 @@ EEL0001 = Class(ACUUnit) {
             
             -- Use toggle function to increase MaxRadius of Zephyr Cannon
             self:TogglePrimaryGun(0, bp.NewMaxRadius)
-        elseif enh == 'PowerBoosterRemove' then
+        elseif enh == 'EnhancedMagBottleRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth3') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth3')
             end
@@ -897,7 +897,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
-        elseif enh == 'ImprovedCoolingSystem' then
+        elseif enh == 'AutomaticBarrelStabalizers' then
             if not Buffs['UEFGatlingHeath2'] then
                 BuffBlueprint {
                     Name = 'UEFGatlingHeath2',
@@ -920,7 +920,7 @@ EEL0001 = Class(ACUUnit) {
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
             
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
-        elseif enh == 'ImprovedCoolingSystemRemove' then
+        elseif enh == 'AutomaticBarrelStabalizersRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath2') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath2')
             end
@@ -930,7 +930,7 @@ EEL0001 = Class(ACUUnit) {
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
             
             self:TogglePrimaryGun(bp.DamageMod)
-        elseif enh == 'EnergyShellHardener' then
+        elseif enh == 'EnhancedPowerSubsystems' then
             if not Buffs['UEFGatlingHeath3'] then
                 BuffBlueprint {
                     Name = 'UEFGatlingHeath3',
@@ -951,7 +951,7 @@ EEL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
-        elseif enh == 'EnergyShellHardenerRemove' then
+        elseif enh == 'EnhancedPowerSubsystemsRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath3') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath3')
             end
@@ -974,21 +974,6 @@ EEL0001 = Class(ACUUnit) {
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
-        elseif enh == 'ActiveShielding' then
-            self:DestroyShield()
-            ForkThread(function()
-                WaitTicks(1)
-                self:CreateShield(bp)
-            end)
-            self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()
-            self:OnScriptBitSet(0)
-        elseif enh == 'ActiveShieldingRemove' then
-            self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ActiveShieldingRemove')
-            self:SetMaintenanceConsumptionInactive()
-            self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            self:OnScriptBitClear(0)
         elseif enh == 'ImprovedShieldBattery' then
             self:DestroyShield()
             ForkThread(function()
@@ -1000,11 +985,11 @@ EEL0001 = Class(ACUUnit) {
             self:OnScriptBitSet(0)
         elseif enh == 'ImprovedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
+            RemoveUnitEnhancement(self, 'ActiveShieldingRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
-        elseif enh == 'ShieldExpander' then
+        elseif enh == 'AdvancedShieldBattery' then
             self:DestroyShield()
             ForkThread(function()
                 WaitTicks(1)
@@ -1013,9 +998,24 @@ EEL0001 = Class(ACUUnit) {
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self:OnScriptBitSet(0)
-        elseif enh == 'ShieldExpanderRemove' then
+        elseif enh == 'AdvancedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ShieldExpanderRemove')
+            RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
+            self:SetMaintenanceConsumptionInactive()
+            self:RemoveToggleCap('RULEUTC_ShieldToggle')
+            self:OnScriptBitClear(0)
+        elseif enh == 'ExpandedShieldBubble' then
+            self:DestroyShield()
+            ForkThread(function()
+                WaitTicks(1)
+                self:CreateShield(bp)
+            end)
+            self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
+            self:SetMaintenanceConsumptionActive()
+            self:OnScriptBitSet(0)
+        elseif enh == 'ExpandedShieldBubbleRemove' then
+            self:DestroyShield()
+            RemoveUnitEnhancement(self, 'ExpandedShieldBubbleRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)

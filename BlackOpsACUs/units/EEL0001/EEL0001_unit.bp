@@ -614,7 +614,7 @@ UnitBlueprint {
             },
             Slot = 'LCH',
         },
-        ZephyrBooster = {
+        JuryRiggedZephyr = {
             BuildCostEnergy = 24000,
             BuildCostMass = 800,
             BuildTime = 800,
@@ -633,17 +633,17 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        ZephyrBoosterRemove = {
+        JuryRiggedZephyrRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exrzb1',
             Name = 'Remove Jury Rigged Zephyr',
-            Prerequisite = 'ZephyrBooster',
+            Prerequisite = 'JuryRiggedZephyr',
             DamageMod = -100,
             RemoveEnhancements = {
-                'ZephyrBooster',
-                'ZephyrBoosterRemove',
+                'JuryRiggedZephyr',
+                'JuryRiggedZephyrRemove',
             },
             Slot = 'RCH',
         },
@@ -684,7 +684,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        TorpedoRapidLoader = {
+        ImprovedReloader = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
@@ -710,7 +710,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        TorpedoRapidLoaderRemove = {
+        ImprovedReloaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -719,23 +719,23 @@ UnitBlueprint {
             },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedReloader',
             DamageMod = -100,
             TorpDamageMod = -55,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoRapidLoaderRemove',
+                'ImprovedReloader',
+                'ImprovedReloaderRemove',
             },
             Slot = 'RCH',
         },
-        TorpedoClusterLauncher = {
+        AdvancedWarheads = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedReloader',
             NewHealth = 6000,
             DamageMod = 200,
             TorpDamageMod = 425,
@@ -753,7 +753,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        TorpedoClusterLauncherRemove = {
+        AdvancedWarheadsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -762,14 +762,14 @@ UnitBlueprint {
             },
             Icon = 'exrtorp3',
             Name = 'Remove Cluster Launcher',
-            Prerequisite = 'TorpedoClusterLauncher',
+            Prerequisite = 'AdvancedWarheads',
             DamageMod = -200,
             TorpDamageMod = -425,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoClusterLauncher',
-                'TorpedoClusterLauncherRemove',
+                'ImprovedReloader',
+                'AdvancedWarheads',
+                'AdvancedWarheadsRemove',
             },
             Slot = 'RCH',
         },
@@ -811,7 +811,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        ImprovedContainmentBottle = {
+        ImprovedParticleAccelerator = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
@@ -837,7 +837,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        ImprovedContainmentBottleRemove = {
+        ImprovedParticleAcceleratorRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -846,23 +846,23 @@ UnitBlueprint {
             },
             Icon = 'exramc2',
             Name = 'Remove Improved Particle Accelerator',
-            Prerequisite = 'ImprovedContainmentBottle',
+            Prerequisite = 'ImprovedParticleAccelerator',
             DamageMod = -100,
             AntiMatterDamageMod = -1900,
             RemoveEnhancements = {
                 'AntiMatterCannon',
-                'ImprovedContainmentBottle',
-                'ImprovedContainmentBottleRemove',
+                'ImprovedParticleAccelerator',
+                'ImprovedParticleAcceleratorRemove',
             },
             Slot = 'RCH',
         },
-        PowerBooster = {
+        EnhancedMagBottle = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exramc3',
             Name = 'Enhanced Mag Bottle (T4)',
-            Prerequisite = 'ImprovedContainmentBottle',
+            Prerequisite = 'ImprovedParticleAccelerator',
             NewHealth = 5500,
             NewMaxRadius = 35,
             NewAntiMatterMaxRadius = 35,
@@ -883,7 +883,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        PowerBoosterRemove = {
+        EnhancedMagBottleRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -892,14 +892,14 @@ UnitBlueprint {
             },
             Icon = 'exramc3',
             Name = 'Remove Enhanced Mag Bottle',
-            Prerequisite = 'PowerBooster',
+            Prerequisite = 'EnhancedMagBottle',
             AntiMatterDamageMod = -5500,
             NewMaxRadius = 22, -- Default range
             RemoveEnhancements = {
                 'AntiMatterCannon',
-                'ImprovedContainmentBottle',
-                'PowerBooster',
-                'PowerBoosterRemove',
+                'ImprovedParticleAccelerator',
+                'EnhancedMagBottle',
+                'EnhancedMagBottleRemove',
             },
             Slot = 'RCH',
         },
@@ -940,7 +940,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        ImprovedCoolingSystem = {
+        AutomaticBarrelStabalizers = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
@@ -966,7 +966,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        ImprovedCoolingSystemRemove = {
+        AutomaticBarrelStabalizersRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -975,23 +975,23 @@ UnitBlueprint {
             },
             Icon = 'exrgec2',
             Name = 'Remove Automatic Barrel Stabalizers',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'AutomaticBarrelStabalizers',
             DamageMod = -100,
             GatlingDamageMod = -175,
             RemoveEnhancements = {
                 'GatlingEnergyCannon',
-                'ImprovedCoolingSystem',
-                'ImprovedCoolingSystemRemove',
+                'AutomaticBarrelStabalizers',
+                'AutomaticBarrelStabalizersRemove',
             },
             Slot = 'RCH',
         },
-        EnergyShellHardener = {
+        EnhancedPowerSubsystems = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exrgec3',
             Name = 'Enhanced Power Subsystems (T4)',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'AutomaticBarrelStabalizers',
             NewHealth = 6000,
             GatlingMaxRadius = 45,
             GatlingDamageMod = 550,
@@ -1009,7 +1009,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        EnergyShellHardenerRemove = {
+        EnhancedPowerSubsystemsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1018,14 +1018,14 @@ UnitBlueprint {
             },
             Icon = 'exrgec3',
             Name = 'Remove Enhanced Power Subsystems',
-            Prerequisite = 'EnergyShellHardener',
+            Prerequisite = 'EnhancedPowerSubsystems',
             GatlingDamageMod = -550,
             GatlingMaxRadius = 40, -- Needs to undo only this upgrade
             RemoveEnhancements = {
                 'GatlingEnergyCannon',
-                'ImprovedCoolingSystem',
-                'EnergyShellHardener',
-                'EnergyShellHardenerRemove',
+                'AutomaticBarrelStabalizers',
+                'EnhancedPowerSubsystems',
+                'EnhancedPowerSubsystemsRemove',
             },
             Slot = 'RCH',
         },
@@ -1075,7 +1075,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        ActiveShielding = {
+        ImprovedShieldBattery = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
@@ -1107,7 +1107,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        ActiveShieldingRemove = {
+        ImprovedShieldBatteryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1117,22 +1117,22 @@ UnitBlueprint {
             },
             Icon = 'exbsh2',
             Name = 'Remove Improved Shield Battery',
-            Prerequisite = 'ActiveShielding',
+            Prerequisite = 'ImprovedShieldBattery',
             RemoveEnhancements = {
                 'ShieldBattery',
-                'ActiveShielding',
-                'ActiveShieldingRemove',
+                'ImprovedShieldBattery',
+                'ImprovedShieldBatteryRemove',
             },
             Slot = 'Back',
         },
-        ImprovedShieldBattery = {
+        AdvancedShieldBattery = {
             BuildCostEnergy = 420000,
             BuildCostMass = 3600,
             BuildTime = 14400,
             Icon = 'exbsh3',
             ImpactEffects = 'UEFShieldHit01',
             Name = 'Advanced Shield Battery (T4)',
-            Prerequisite = 'ActiveShielding',
+            Prerequisite = 'ImprovedShieldBattery',
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
@@ -1157,7 +1157,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        ImprovedShieldBatteryRemove = {
+        AdvancedShieldBatteryRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1167,16 +1167,16 @@ UnitBlueprint {
             },
             Icon = 'exbsh3',
             Name = 'Remove Advanced Shield Battery',
-            Prerequisite = 'ImprovedShieldBattery',
+            Prerequisite = 'AdvancedShieldBattery',
             RemoveEnhancements = {
                 'ShieldBattery',
-                'ActiveShielding',
                 'ImprovedShieldBattery',
-                'ImprovedShieldBatteryRemove',
+                'AdvancedShieldBattery',
+                'AdvancedShieldBatteryRemove',
             },
             Slot = 'Back',
         },
-        ShieldExpander = {
+        ExpandedShieldBubble = {
             BuildCostEnergy = 60000,
             BuildCostMass = 1200,
             BuildTime = 14400,
@@ -1186,7 +1186,7 @@ UnitBlueprint {
             Mesh = '/effects/entities/Shield01/Shield01_mesh',
             MeshZ = '/effects/entities/Shield01/Shield01z_mesh',
             Name = 'Expanded Shield Bubble',
-            Prerequisite = 'ImprovedShieldBattery',
+            Prerequisite = 'AdvancedShieldBattery',
             MaintenanceConsumptionPerSecondEnergy = 1,
             ShieldEnergyDrainRechargeTime = 5,
             ShieldEnhancementNumber = 5,
@@ -1205,7 +1205,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        ShieldExpanderRemove = {
+        ExpandedShieldBubbleRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1215,13 +1215,13 @@ UnitBlueprint {
             },
             Icon = 'exbsh4',
             Name = 'Remove Expanded Shield Bubble',
-            Prerequisite = 'ShieldExpander',
+            Prerequisite = 'ExpandedShieldBubble',
             RemoveEnhancements = {
                 'ShieldBattery',
-                'ActiveShielding',
                 'ImprovedShieldBattery',
-                'ShieldExpander',
-                'ShieldExpanderRemove',
+                'AdvancedShieldBattery',
+                'ExpandedShieldBubble',
+                'ExpandedShieldBubbleRemove',
             },
             Slot = 'Back',
         },
