@@ -674,9 +674,9 @@ EAL0001 = Class(ACUUnit) {
             
             local gun = self:GetWeaponByLabel('RightDisruptor')
             gun:AddDamageMod(bp.GunDamage)
-            
+
         -- Artillery
-            
+
         elseif enh == 'DualMiasmaArtillery' then
             if not Buffs['AeonArtilleryHealth1'] then
                 BuffBlueprint {
@@ -694,9 +694,9 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonArtilleryHealth1')
-            
+
             self:SetWeaponEnabledByLabel('MiasmaArtillery', true)
-            
+
             local wep = self:GetWeaponByLabel('MiasmaArtillery')
             wep:ChangeMaxRadius(bp.ArtyRadius)
             wep:ChangeMinRadius(bp.ArtyMinRadius)
@@ -708,14 +708,14 @@ EAL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
             end
-            
+
             self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
             local wep = self:GetWeaponByLabel('MiasmaArtillery')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             wep:ChangeMinRadius(wep:GetBlueprint().MinRadius)
-            
+
             self:SetPainterRange(enh, 0, true)
-            
+
             self:SpecialBones()
         elseif enh == 'AdvancedWarheadCompression' then
             if not Buffs['AeonArtilleryHealth2'] then
