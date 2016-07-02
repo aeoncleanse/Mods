@@ -274,9 +274,9 @@ ESL0001 = Class(ACUUnit) {
         
         -- As radius is only passed when turning on, use the bool
         if radius then
-            self:SetPainterRange('ChronotonBooster', radius, false)
+            self:SetPainterRange('JuryRiggedChronotron', radius, false)
         else
-            self:SetPainterRange('ChronotonBoosterRemove', radius, true)
+            self:SetPainterRange('JuryRiggedChronotronRemove', radius, true)
         end
     end,
     
@@ -296,6 +296,33 @@ ESL0001 = Class(ACUUnit) {
         
         local wep = self:GetWeaponByLabel('TargetPainter')
         wep:ChangeMaxRadius(range)
+    end,
+
+    -- Size is 'L' or 'S', bone is 1 through 4, unit is the unit ID ending
+    CreateLambdaUnit = function(self, size, bone, unit, removal)
+        local boneLabel = size .. '_Lambda_B0' .. bone
+        
+        -- If this is a removal, take the quick way out
+        if removal and self.lambdaEmitterTable[boneLabel] then
+            IssueClearCommands({self.lambdaEmitterTable[boneLabel]}) 
+            IssueKillSelf({self.lambdaEmitterTable[boneLabel]})
+            self.lambdaEmitterTable[boneLabel] = nil
+            return
+        end
+
+        local orientation = self:GetOrientation()
+        local boneLocation = self:GetPosition(boneLabel)
+        local unitID = 'esb000' .. unit
+
+        local lambdaUnit = CreateUnit(unitID, self:GetArmy(),
+                                      boneLocation[1], boneLocation[2], boneLocation[3],
+                                      orientation[1], orientation[2], orientation[3], orientation[4], 'Land')
+
+        self.lambdaEmitterTable[boneLabel] = lambdaUnit
+        lambdaUnit:AttachTo(self, boneLabel)
+        lambdaUnit:SetParent(self, 'esl0001')
+        lambdaUnit:SetCreator(self)
+        self.Trash:Add(lambdaUnit)
     end,
 
     CreateEnhancement = function(self, enh)
@@ -615,9 +642,9 @@ ESL0001 = Class(ACUUnit) {
 
         -- Chronoton Booster
         
-        elseif enh == 'ChronotonBooster' then
+        elseif enh == 'JuryRiggedChronotron' then
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
-        elseif enh == 'ChronotonBoosterRemove' then
+        elseif enh == 'JuryRiggedChronotronRemove' then
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoLauncher' then
             if not Buffs['SeraphimTorpHealth1'] then
@@ -644,7 +671,7 @@ ESL0001 = Class(ACUUnit) {
             end
             
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
-        elseif enh == 'TorpedoRapidLoader' then
+        elseif enh == 'ImprovedReloader' then
             if not Buffs['SeraphimTorpHealth2'] then
                 BuffBlueprint {
                     Name = 'SeraphimTorpHealth2',
@@ -667,7 +694,7 @@ ESL0001 = Class(ACUUnit) {
             torp:ChangeRateOfFire(bp.NewTorpROF)
 
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
-        elseif enh == 'TorpedoRapidLoaderRemove' then
+        elseif enh == 'ImprovedReloaderRemove' then
             if Buff.HasBuff(self, 'SeraphimTorpHealth2') then
                 Buff.RemoveBuff(self, 'SeraphimTorpHealth2')
             end
@@ -677,7 +704,7 @@ ESL0001 = Class(ACUUnit) {
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
             
             self:TogglePrimaryGun(bp.NewDamage)
-        elseif enh == 'TorpedoClusterLauncher' then
+        elseif enh == 'AdvancedWarheads' then
             if not Buffs['SeraphimTorpHealth3'] then
                 BuffBlueprint {
                     Name = 'SeraphimTorpHealth3',
@@ -700,7 +727,7 @@ ESL0001 = Class(ACUUnit) {
 
             local gun = self:GetWeaponByLabel('ChronotronCannon')
             gun:AddDamageMod(bp.NewDamage)
-        elseif enh == 'TorpedoClusterLauncherRemove' then
+        elseif enh == 'AdvancedWarheadsRemove' then
             if Buff.HasBuff(self, 'SeraphimTorpHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimTorpHealth3')
             end
@@ -738,7 +765,7 @@ ESL0001 = Class(ACUUnit) {
             end
 
             self:SetWeaponEnabledByLabel('BigBallCannon', false)
-        elseif enh == 'ImprovedContainmentBottle' then
+        elseif enh == 'PowerConversionEnhancer' then
             if not Buffs['SeraphimBallHealth2'] then
                 BuffBlueprint {
                     Name = 'SeraphimBallHealth2',
@@ -763,7 +790,7 @@ ESL0001 = Class(ACUUnit) {
 
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
-        elseif enh == 'ImprovedContainmentBottleRemove' then
+        elseif enh == 'PowerConversionEnhancerRemove' then
             if Buff.HasBuff(self, 'SeraphimBallHealth2') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth2')
             end
@@ -775,7 +802,7 @@ ESL0001 = Class(ACUUnit) {
 
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
-        elseif enh == 'PowerBooster' then
+        elseif enh == 'AdvancedDistortionAlgorithms' then
             if not Buffs['SeraphimBallHealth3'] then
                 BuffBlueprint {
                     Name = 'SeraphimBallHealth3',
@@ -796,7 +823,7 @@ ESL0001 = Class(ACUUnit) {
             local cannon = self:GetWeaponByLabel('BigBallCannon')
             cannon:AddDamageMod(bp.StormDamage)
             cannon:ChangeMaxRadius(bp.StormRange)
-        elseif enh == 'PowerBoosterRemove' then    
+        elseif enh == 'AdvancedDistortionAlgorithmsRemove' then    
             if Buff.HasBuff(self, 'SeraphimBallHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth3')
             end
@@ -807,7 +834,7 @@ ESL0001 = Class(ACUUnit) {
 
         -- Gatling Cannon
 
-        elseif enh == 'CannonRapid' then
+        elseif enh == 'PlasmaGatlingCannon' then
             if not Buffs['SeraphimGatlingHealth1'] then
                 BuffBlueprint {
                     Name = 'SeraphimGatlingHealth1',
@@ -826,13 +853,13 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimGatlingHealth1')
             
             self:SetWeaponEnabledByLabel('RapidCannon', true)
-        elseif enh == 'CannonRapidRemove' then
+        elseif enh == 'PlasmaGatlingCannonRemove' then
             if Buff.HasBuff(self, 'SeraphimGatlingHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimGatlingHealth1')
             end
 
             self:SetWeaponEnabledByLabel('RapidCannon', false)
-        elseif enh == 'ImprovedCoolingSystem' then
+        elseif enh == 'PhasedEnergyFields' then
             if not Buffs['SeraphimGatlingHealth2'] then
                 BuffBlueprint {
                     Name = 'SeraphimGatlingHealth2',
@@ -856,7 +883,7 @@ ESL0001 = Class(ACUUnit) {
 
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
-        elseif enh == 'ImprovedCoolingSystemRemove' then
+        elseif enh == 'PhasedEnergyFieldsRemove' then
             if Buff.HasBuff(self, 'SeraphimGatlingHealth2') then
                 Buff.RemoveBuff(self, 'SeraphimGatlingHealth2')
             end
@@ -867,7 +894,7 @@ ESL0001 = Class(ACUUnit) {
 
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
-        elseif enh == 'EnergyShellHardener' then
+        elseif enh == 'SecondaryPowerFeeds' then
             if not Buffs['SeraphimGatlingHealth3'] then
                 BuffBlueprint {
                     Name = 'SeraphimGatlingHealth3',
@@ -887,7 +914,7 @@ ESL0001 = Class(ACUUnit) {
 
             local gun = self:GetWeaponByLabel('RapidCannon')
             gun:AddDamageMod(bp.GatlingDamage)
-        elseif enh == 'EnergyShellHardenerRemove' then
+        elseif enh == 'SecondaryPowerFeedsRemove' then
             if Buff.HasBuff(self, 'SeraphimGatlingHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimGatlingHealth3')
             end
@@ -897,51 +924,12 @@ ESL0001 = Class(ACUUnit) {
 
         -- Lambda System
 
-        elseif enh == 'L1Lambda' then
-            self.WeaponCheckAA01 = true
-            self:SetWeaponEnabledByLabel('AA01', true)
-            self:SetWeaponEnabledByLabel('AA02', true)
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            local lambdaEmitterSm01 = CreateUnit('esb0002', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Land')
-            local lambdaEmitterLg01 = CreateUnit('esb0001', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
-            --[[
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            --local lambdaEmitterSm01 = CreateUnitHPR('esb0005', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], 0, 0, 0)
-            --local lambdaEmitterLg01 = CreateUnitHPR('esb0005', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], 0, 0, 0)
-            local lambdaEmitterSm01 = CreateUnit('esb0005', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Air')
-            local lambdaEmitterLg01 = CreateUnit('esb0005', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Air')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
-            ]]--
-            if not Buffs['SeraHealthBoost22'] then
+        elseif enh == 'LambdaFieldEmitters' then
+            if not Buffs['SeraphimLambdaHealth1'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost22',
-                    DisplayName = 'SeraHealthBoost22',
-                    BuffType = 'SeraHealthBoost22',
+                    Name = 'SeraphimLambdaHealth1',
+                    DisplayName = 'SeraphimLambdaHealth1',
+                    BuffType = 'SeraphimLambdaHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -952,52 +940,41 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost22')
-            self.RBDefTier1 = true
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
-            
-        elseif enh == 'L1LambdaRemove' then
-            self.WeaponCheckAA01 = false
-            self:SetWeaponEnabledByLabel('AA01', false)
-            self:SetWeaponEnabledByLabel('AA02', false)
-            if Buff.HasBuff(self, 'SeraHealthBoost22') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost22')
+            Buff.ApplyBuff(self, 'SeraphimLambdaHealth1')
+
+            -- Create Lambda units and attach
+            self:CreateLambdaUnit('S', '1', '2')
+            self:CreateLambdaUnit('L', '1', '1')
+        elseif enh == 'LambdaFieldEmittersRemove' then
+            if Buff.HasBuff(self, 'SeraphimLambdaHealth1') then
+                Buff.RemoveBuff(self, 'SeraphimLambdaHealth1')
             end
+
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
                     IssueClearCommands({self.lambdaEmitterTable[k]}) 
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
-            self.RBDefTier1 = false
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
-            
-        elseif enh == 'L2Lambda' then
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
+        elseif enh == 'EnhancedLambdaEmitters' then
+            if not Buffs['SeraphimLambdaHealth2'] then
+                BuffBlueprint {
+                    Name = 'SeraphimLambdaHealth2',
+                    DisplayName = 'SeraphimLambdaHealth2',
+                    BuffType = 'SeraphimLambdaHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                    },
+                }
             end
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            local lambdaEmitterSm01 = CreateUnit('esb0002', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Land')
-            local lambdaEmitterLg01 = CreateUnit('esb0001', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
-             local platOrientSm02 = self:GetOrientation()
+            Buff.ApplyBuff(self, 'SeraphimLambdaHealth2')
+
+            local platOrientSm02 = self:GetOrientation()
             local platOrientLg02 = self:GetOrientation()
             local locationSm02 = self:GetPosition('S_Lambda_B02')
             local locationLg02 = self:GetPosition('L_Lambda_B02')
@@ -1013,11 +990,23 @@ ESL0001 = Class(ACUUnit) {
             lambdaEmitterLg02:SetCreator(self)
             self.Trash:Add(lambdaEmitterSm02)
             self.Trash:Add(lambdaEmitterLg02)
-            if not Buffs['SeraHealthBoost23'] then
+        elseif enh == 'EnhancedLambdaEmittersRemove' then
+            if Buff.HasBuff(self, 'SeraphimLambdaHealth2') then
+                Buff.RemoveBuff(self, 'SeraphimLambdaHealth2')
+            end
+
+            if table.getn({self.lambdaEmitterTable}) > 0 then
+                for k, v in self.lambdaEmitterTable do 
+                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
+                    IssueKillSelf({self.lambdaEmitterTable[k]})
+                end
+            end
+        elseif enh == 'ControlledQuantumRuptures' then
+            if not Buffs['SeraphimLambdaHealth3'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost23',
-                    DisplayName = 'SeraHealthBoost23',
-                    BuffType = 'SeraHealthBoost23',
+                    Name = 'SeraphimLambdaHealth3',
+                    DisplayName = 'SeraphimLambdaHealth3',
+                    BuffType = 'SeraphimLambdaHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1028,70 +1017,12 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost23')
-            self.RBDefTier1 = true
-            self.RBDefTier2 = true
-            self.RBDefTier3 = false
+            Buff.ApplyBuff(self, 'SeraphimLambdaHealth3')
+
             
-        elseif enh == 'L2LambdaRemove' then
-            self.WeaponCheckAA01 = false
-            self:SetWeaponEnabledByLabel('AA01', false)
-            self:SetWeaponEnabledByLabel('AA02', false)
-            if Buff.HasBuff(self, 'SeraHealthBoost22') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost22')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost23') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost23')
-            end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            self.RBDefTier1 = false
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
             
-        elseif enh == 'L3Lambda' then
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            local lambdaEmitterSm01 = CreateUnit('esb0002', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Land')
-            local lambdaEmitterLg01 = CreateUnit('esb0001', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
-             local platOrientSm02 = self:GetOrientation()
-            local platOrientLg02 = self:GetOrientation()
-            local locationSm02 = self:GetPosition('S_Lambda_B02')
-            local locationLg02 = self:GetPosition('L_Lambda_B02')
-            local lambdaEmitterSm02 = CreateUnit('esb0003', self:GetArmy(), locationSm02[1], locationSm02[2], locationSm02[3], platOrientSm02[1], platOrientSm02[2], platOrientSm02[3], platOrientSm02[4], 'Land')
-            local lambdaEmitterLg02 = CreateUnit('esb0001', self:GetArmy(), locationLg02[1], locationLg02[2], locationLg02[3], platOrientLg02[1], platOrientLg02[2], platOrientLg02[3], platOrientLg02[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm02)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg02)
-            lambdaEmitterSm02:AttachTo(self, 'S_Lambda_B02')
-            lambdaEmitterLg02:AttachTo(self, 'L_Lambda_B02')
-            lambdaEmitterSm02:SetParent(self, 'esl0001')
-            lambdaEmitterLg02:SetParent(self, 'esl0001')
-            lambdaEmitterSm02:SetCreator(self)
-            lambdaEmitterLg02:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm02)
-            self.Trash:Add(lambdaEmitterLg02)
+            
+            
             local platOrientSm03 = self:GetOrientation()
             local platOrientLg03 = self:GetOrientation()
             local locationSm03 = self:GetPosition('S_Lambda_B03')
@@ -1108,72 +1039,22 @@ ESL0001 = Class(ACUUnit) {
             lambdaEmitterLg03:SetCreator(self)
             self.Trash:Add(lambdaEmitterSm03)
             self.Trash:Add(lambdaEmitterLg03)
-            if not Buffs['SeraHealthBoost24'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost24',
-                    DisplayName = 'SeraHealthBoost24',
-                    BuffType = 'SeraHealthBoost24',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
+        elseif enh == 'ControlledQuantumRupturesRemove' then
+            if Buff.HasBuff(self, 'SeraphimLambdaHealth3') then
+                Buff.RemoveBuff(self, 'SeraphimLambdaHealth3')
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost24')
-            self.RBDefTier1 = true
-            self.RBDefTier2 = true
-            self.RBDefTier3 = true
-            
-        elseif enh == 'L3LambdaRemove' then
-            self.WeaponCheckAA01 = false
-            self:SetWeaponEnabledByLabel('AA01', false)
-            self:SetWeaponEnabledByLabel('AA02', false)
-            if Buff.HasBuff(self, 'SeraHealthBoost22') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost22')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost23') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost23')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost24') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost24')
-            end
+
             if table.getn({self.lambdaEmitterTable}) > 0 then
                 for k, v in self.lambdaEmitterTable do 
                     IssueClearCommands({self.lambdaEmitterTable[k]}) 
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
-            self.RBDefTier1 = false
-            self.RBDefTier2 = false
-            self.RBDefTier3 = false
             
+        -- END OF LAMBDA, BEGIN NEXT SET
+
         elseif enh == 'ElectronicsEnhancment' then
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            local lambdaEmitterSm01 = CreateUnit('esb0002', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Land')
-            local lambdaEmitterLg01 = CreateUnit('esb0001', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
+
             self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
             self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
             if not Buffs['SeraHealthBoost16'] then
@@ -1192,9 +1073,6 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'SeraHealthBoost16')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
             
         elseif enh == 'ElectronicsEnhancmentRemove' then
             local bpIntel = self:GetBlueprint().Intel
@@ -1203,55 +1081,10 @@ ESL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'SeraHealthBoost16') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost16')
             end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
+
             
         elseif enh == 'ElectronicCountermeasures' then
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            local lambdaEmitterSm01 = CreateUnit('esb0002', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Land')
-            local lambdaEmitterLg01 = CreateUnit('esb0001', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
-             local platOrientSm02 = self:GetOrientation()
-            local platOrientLg02 = self:GetOrientation()
-            local locationSm02 = self:GetPosition('S_Lambda_B02')
-            local locationLg02 = self:GetPosition('L_Lambda_B02')
-            local lambdaEmitterSm02 = CreateUnit('esb0003', self:GetArmy(), locationSm02[1], locationSm02[2], locationSm02[3], platOrientSm02[1], platOrientSm02[2], platOrientSm02[3], platOrientSm02[4], 'Land')
-            local lambdaEmitterLg02 = CreateUnit('esb0001', self:GetArmy(), locationLg02[1], locationLg02[2], locationLg02[3], platOrientLg02[1], platOrientLg02[2], platOrientLg02[3], platOrientLg02[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm02)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg02)
-            lambdaEmitterSm02:AttachTo(self, 'S_Lambda_B02')
-            lambdaEmitterLg02:AttachTo(self, 'L_Lambda_B02')
-            lambdaEmitterSm02:SetParent(self, 'esl0001')
-            lambdaEmitterLg02:SetParent(self, 'esl0001')
-            lambdaEmitterSm02:SetCreator(self)
-            lambdaEmitterLg02:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm02)
-            self.Trash:Add(lambdaEmitterLg02)
+
             self:AddCommandCap('RULEUCC_Teleport')
             if not Buffs['SeraHealthBoost17'] then
                 BuffBlueprint {
@@ -1269,13 +1102,6 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'SeraHealthBoost17')
-            self.wcAA01 = true
-            self.wcAA02 = true
-
-    
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = false
             
         elseif enh == 'ElectronicCountermeasuresRemove' then
             self:RemoveCommandCap('RULEUCC_Teleport')
@@ -1360,37 +1186,9 @@ ESL0001 = Class(ACUUnit) {
                     IssueKillSelf({self.lambdaEmitterTable[k]})
                 end
             end
-            self.wcAA01 = false
-            self.wcAA02 = false
-
-    
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
             
         elseif enh == 'BasicDefence' then
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            local platOrientSm01 = self:GetOrientation()
-            local platOrientLg01 = self:GetOrientation()
-            local locationSm01 = self:GetPosition('S_Lambda_B01')
-            local locationLg01 = self:GetPosition('L_Lambda_B01')
-            local lambdaEmitterSm01 = CreateUnit('esb0002', self:GetArmy(), locationSm01[1], locationSm01[2], locationSm01[3], platOrientSm01[1], platOrientSm01[2], platOrientSm01[3], platOrientSm01[4], 'Land')
-            local lambdaEmitterLg01 = CreateUnit('esb0001', self:GetArmy(), locationLg01[1], locationLg01[2], locationLg01[3], platOrientLg01[1], platOrientLg01[2], platOrientLg01[3], platOrientLg01[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm01)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg01)
-            lambdaEmitterSm01:AttachTo(self, 'S_Lambda_B01')
-            lambdaEmitterLg01:AttachTo(self, 'L_Lambda_B01')
-            lambdaEmitterSm01:SetParent(self, 'esl0001')
-            lambdaEmitterLg01:SetParent(self, 'esl0001')
-            lambdaEmitterSm01:SetCreator(self)
-            lambdaEmitterLg01:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm01)
-            self.Trash:Add(lambdaEmitterLg01)
+
             if not Buffs['SeraHealthBoost19'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost19',
@@ -1418,20 +1216,12 @@ ESL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'SeraHealthBoost19') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost19')
             end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
+
             local wepOC = self:GetWeaponByLabel('OverCharge')
             local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
             wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
             wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
             self:StopSiloBuild()
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
             
         elseif enh == 'TacticalMisslePack' then
             self:AddCommandCap('RULEUCC_Tactical')

@@ -569,7 +569,7 @@ UnitBlueprint {
             },
             Slot = 'LCH',
         },
-        ChronotonBooster = {
+        JuryRiggedChronotron = {
             BuildCostEnergy = 24000,
             BuildCostMass = 800,
             BuildTime = 800,
@@ -589,20 +589,20 @@ UnitBlueprint {
                 'Body',
             },
         },
-        ChronotonBoosterRemove = {
+        JuryRiggedChronotronRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exrzb1',
             Name = 'Remove Jury Rigged Chronoton',
-            Prerequisite = 'ChronotonBooster',
+            Prerequisite = 'JuryRiggedChronotron',
             NewDamage = -100,
             HideBones = {
                 'Basic_Gun_Up',
             },
             RemoveEnhancements = {
-                'ChronotonBooster',
-                'ChronotonBoosterRemove',
+                'JuryRiggedChronotron',
+                'JuryRiggedChronotronRemove',
             },
             Slot = 'RCH',
         },
@@ -641,7 +641,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        TorpedoRapidLoader = {
+        ImprovedReloader = {
             BuildCostEnergy = 225000,
             BuildCostMass = 1800,
             BuildTime = 8100,
@@ -665,7 +665,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        TorpedoRapidLoaderRemove = {
+        ImprovedReloaderRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -674,23 +674,23 @@ UnitBlueprint {
             },
             Icon = 'exrtorp2',
             Name = 'Remove Improved Reloader',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedReloader',
             NewDamage = -100,
             NewTorpDamage = -25,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoRapidLoaderRemove',
+                'ImprovedReloader',
+                'ImprovedReloaderRemove',
             },
             Slot = 'RCH',
         },
-        TorpedoClusterLauncher = {
+        AdvancedWarheads = {
             BuildCostEnergy = 525000,
             BuildCostMass = 4500,
             BuildTime = 18000,
             Icon = 'exrtorp3',
             Name = 'Advanced Warheads (T4)',
-            Prerequisite = 'TorpedoRapidLoader',
+            Prerequisite = 'ImprovedReloader',
             NewHealth = 5500,
             NewDamage = 200,
             NewTorpDamage = 475,
@@ -706,7 +706,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        TorpedoClusterLauncherRemove = {
+        AdvancedWarheadsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -715,14 +715,14 @@ UnitBlueprint {
             },
             Icon = 'exrtorp3',
             Name = 'Remove Cluster Launcher',
-            Prerequisite = 'TorpedoClusterLauncher',
+            Prerequisite = 'AdvancedWarheads',
             NewDamage = -200,
             NewTorpDamage = -475,
             RemoveEnhancements = {
                 'TorpedoLauncher',
-                'TorpedoRapidLoader',
-                'TorpedoClusterLauncher',
-                'TorpedoClusterLauncherRemove',
+                'ImprovedReloader',
+                'AdvancedWarheads',
+                'AdvancedWarheadsRemove',
             },
             Slot = 'RCH',
         },
@@ -767,7 +767,7 @@ UnitBlueprint {
             },
             Slot = 'RCH',
         },
-        ImprovedContainmentBottle = {
+        PowerConversionEnhancer = {
             BuildCostEnergy = 480000,
             BuildCostMass = 3000,
             BuildTime = 10800,
@@ -795,7 +795,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        ImprovedContainmentBottleRemove = {
+        PowerConversionEnhancerRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -807,23 +807,23 @@ UnitBlueprint {
             },
             Icon = 'exramc2',
             Name = 'Remove Power Conversion Enhancer',
-            Prerequisite = 'ImprovedContainmentBottle',
+            Prerequisite = 'PowerConversionEnhancer',
             StormDamage = -70,
             NewDamage = -100,
             RemoveEnhancements = {
                 'QuantumStormCannon',
-                'ImprovedContainmentBottle',
-                'ImprovedContainmentBottleRemove',
+                'PowerConversionEnhancer',
+                'PowerConversionEnhancerRemove',
             },
             Slot = 'RCH',
         },
-        PowerBooster = {
+        AdvancedDistortionAlgorithms = {
             BuildCostEnergy = 900000,
             BuildCostMass = 6300,
             BuildTime = 21600,
             Icon = 'exramc3',
             Name = 'Advanced Distortion Algorithms (T4)',
-            Prerequisite = 'ImprovedContainmentBottle',
+            Prerequisite = 'PowerConversionEnhancer',
             NewHealth = 5000,
             StormDamage = 290,
             StormRange = 45,
@@ -842,7 +842,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        PowerBoosterRemove = {
+        AdvancedDistortionAlgorithmsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -854,17 +854,17 @@ UnitBlueprint {
             },
             Icon = 'exramc3',
             Name = 'Remove Advanced Distortion Algorithms',
-            Prerequisite = 'PowerBooster',
+            Prerequisite = 'AdvancedDistortionAlgorithms',
             StormDamage = -290,
             RemoveEnhancements = {
                 'QuantumStormCannon',
-                'ImprovedContainmentBottle',
-                'PowerBooster',
-                'PowerBoosterRemove',
+                'PowerConversionEnhancer',
+                'AdvancedDistortionAlgorithms',
+                'AdvancedDistortionAlgorithmsRemove',
             },
             Slot = 'RCH',
         },
-        CannonRapid = {
+        PlasmaGatlingCannon = {
             BuildCostEnergy = 21000,
             BuildCostMass = 840,
             BuildTime = 1800,
@@ -883,7 +883,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        CannonRapidRemove = {
+        PlasmaGatlingCannonRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -892,20 +892,20 @@ UnitBlueprint {
             },
             Icon = 'exrgec1',
             Name = 'Remove Plasma Gatling Cannon',
-            Prerequisite = 'CannonRapid',
+            Prerequisite = 'PlasmaGatlingCannon',
             RemoveEnhancements = {
-                'CannonRapid',
-                'CannonRapidRemove',
+                'PlasmaGatlingCannon',
+                'PlasmaGatlingCannonRemove',
             },
             Slot = 'RCH',
         },
-        ImprovedCoolingSystem = {
+        PhasedEnergyFields = {
             BuildCostEnergy = 105000,
             BuildCostMass = 1200,
             BuildTime = 5400,
             Icon = 'exrgec2',
             Name = 'Phased Energy Fields (T3)',
-            Prerequisite = 'CannonRapid',
+            Prerequisite = 'PlasmaGatlingCannon',
             NewHealth = 3000,
             GatlingDamage = 225,
             GatlingRange = 35,
@@ -923,7 +923,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        ImprovedCoolingSystemRemove = {
+        PhasedEnergyFieldsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -932,23 +932,23 @@ UnitBlueprint {
             },
             Icon = 'exrgec2',
             Name = 'Remove Phased Energy Fields',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'PhasedEnergyFields',
             GatlingDamage = -225,
             NewDamage = -100,
             RemoveEnhancements = {
-                'CannonRapid',
-                'ImprovedCoolingSystem',
-                'ImprovedCoolingSystemRemove',
+                'PlasmaGatlingCannon',
+                'PhasedEnergyFields',
+                'PhasedEnergyFieldsRemove',
             },
             Slot = 'RCH',
         },
-        EnergyShellHardener = {
+        SecondaryPowerFeeds = {
             BuildCostEnergy = 300000,
             BuildCostMass = 3000,
             BuildTime = 14400,
             Icon = 'exrgec3',
             Name = 'Secondary Power Feeds (T4)',
-            Prerequisite = 'ImprovedCoolingSystem',
+            Prerequisite = 'PhasedEnergyFields',
             NewHealth = 6000,
             GatlingDamage = 650,
             ShowBones = {
@@ -963,7 +963,7 @@ UnitBlueprint {
                 'Body',
             },
         },
-        EnergyShellHardenerRemove = {
+        SecondaryPowerFeedsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -972,17 +972,17 @@ UnitBlueprint {
             },
             Icon = 'exrgec3',
             Name = 'Remove Secondary Power Feeds',
-            Prerequisite = 'EnergyShellHardener',
+            Prerequisite = 'SecondaryPowerFeeds',
             GatlingDamage = -650,
             RemoveEnhancements = {
-                'CannonRapid',
-                'ImprovedCoolingSystem',
-                'EnergyShellHardener',
-                'EnergyShellHardenerRemove',
+                'PlasmaGatlingCannon',
+                'PhasedEnergyFields',
+                'SecondaryPowerFeeds',
+                'SecondaryPowerFeedsRemove',
             },
             Slot = 'RCH',
         },
-        L1Lambda = {
+        LambdaFieldEmitters = {
             BuildCostEnergy = 60000,
             BuildCostMass = 720,
             BuildTime = 1800,
@@ -1008,7 +1008,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        L1LambdaRemove = {
+        LambdaFieldEmittersRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1022,20 +1022,20 @@ UnitBlueprint {
             },
             Icon = 'exbsh1',
             Name = 'Remove Lambda Field Emitters',
-            Prerequisite = 'L1Lambda',
+            Prerequisite = 'LambdaFieldEmitters',
             RemoveEnhancements = {
-                'L1Lambda',
-                'L1LambdaRemove',
+                'LambdaFieldEmitters',
+                'LambdaFieldEmittersRemove',
             },
             Slot = 'Back',
         },
-        L2Lambda = {
+        EnhancedLambdaEmitters = {
             BuildCostEnergy = 360000,
             BuildCostMass = 1530,
             BuildTime = 8100,
             Icon = 'exbsh2',
             Name = 'Enhanced Lambda Emitters (T3)',
-            Prerequisite = 'L1Lambda',
+            Prerequisite = 'LambdaFieldEmitters',
             NewHealth = 12000,
             ShowBones = {
                 'L_Spinner_B01',
@@ -1056,7 +1056,7 @@ UnitBlueprint {
             },
             NewRegenRate = 100,
         },
-        L2LambdaRemove = {
+        EnhancedLambdaEmittersRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1070,21 +1070,21 @@ UnitBlueprint {
             },
             Icon = 'exbsh2',
             Name = 'Remove Enhanced Lambda Emitters',
-            Prerequisite = 'L2Lambda',
+            Prerequisite = 'EnhancedLambdaEmitters',
             RemoveEnhancements = {
-                'L1Lambda',
-                'L2Lambda',
-                'L2LambdaRemove',
+                'LambdaFieldEmitters',
+                'EnhancedLambdaEmitters',
+                'EnhancedLambdaEmittersRemove',
             },
             Slot = 'Back',
         },
-        L3Lambda = {
+        ControlledQuantumRuptures = {
             BuildCostEnergy = 600000,
             BuildCostMass = 2400,
             BuildTime = 14400,
             Icon = 'exbsh3',
             Name = 'Controlled Quantum Ruptures (T4)',
-            Prerequisite = 'L2Lambda',
+            Prerequisite = 'EnhancedLambdaEmitters',
             NewHealth = 20000,
             ShowBones = {
                 'L_Spinner_B01',
@@ -1103,7 +1103,7 @@ UnitBlueprint {
             },
             NewRegenRate = 0,
         },
-        L3LambdaRemove = {
+        ControlledQuantumRupturesRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1117,12 +1117,12 @@ UnitBlueprint {
             },
             Icon = 'exbsh3',
             Name = 'Remove Controlled Quantum Ruptures',
-            Prerequisite = 'L3Lambda',
+            Prerequisite = 'ControlledQuantumRuptures',
             RemoveEnhancements = {
-                'L1Lambda',
-                'L2Lambda',
-                'L3Lambda',
-                'L3LambdaRemove',
+                'LambdaFieldEmitters',
+                'EnhancedLambdaEmitters',
+                'ControlledQuantumRuptures',
+                'ControlledQuantumRupturesRemove',
             },
             Slot = 'Back',
         },
