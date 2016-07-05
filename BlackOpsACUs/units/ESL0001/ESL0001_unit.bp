@@ -278,7 +278,6 @@ UnitBlueprint {
             'BUILTBYTIER3COMMANDER SERAPHIM',
             'BUILTBYTIER4COMMANDER SERAPHIM',
         },
-        InitialRemoteViewingEnergyDrain = 3000,
         MaxBuildDistance = 15,
         NaturalProducer = true,
         NeedToFaceTargetToBuild = false,
@@ -1101,7 +1100,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'Body',
             },
-            NewRegenRate = 0,
         },
         ControlledQuantumRupturesRemove = {
             BuildCostEnergy = 1,
@@ -1177,7 +1175,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        ElectronicCountermeasures = {
+        PersonalTeleporter = {
             BuildCostEnergy = 540000,
             BuildCostMass = 4500,
             BuildTime = 16200,
@@ -1185,7 +1183,7 @@ UnitBlueprint {
             Name = 'Teleporter Subsystems (T3)',
             Prerequisite = 'ElectronicsEnhancment',
             NewHealth = 10000,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 1000,
             ShowBones = {
                 'IntelPack',
                 'L_Spinner_B01',
@@ -1206,9 +1204,8 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'Body',
             },
-            NewRegenRate = 0,
         },
-        ElectronicCountermeasuresRemove = {
+        PersonalTeleporterRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1225,11 +1222,11 @@ UnitBlueprint {
             },
             Icon = 'exbint2',
             Name = 'Remove Teleporter Subsystems',
-            Prerequisite = 'ElectronicCountermeasures',
+            Prerequisite = 'PersonalTeleporter',
             RemoveEnhancements = {
                 'ElectronicsEnhancment',
-                'ElectronicCountermeasures',
-                'ElectronicCountermeasuresRemove',
+                'PersonalTeleporter',
+                'PersonalTeleporterRemove',
             },
             Slot = 'Back',
         },
@@ -1239,9 +1236,9 @@ UnitBlueprint {
             BuildTime = 10800,
             Icon = 'exbint3',
             Name = 'Phasic Cloaking (T4)',
-            Prerequisite = 'ElectronicCountermeasures',
+            Prerequisite = 'PersonalTeleporter',
             NewHealth = 18500,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 3000,
             ShowBones = {
                 'IntelPack',
                 'L_Spinner_B01',
@@ -1260,7 +1257,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'Body',
             },
-            NewRegenRate = 0,
         },
         CloakingSubsystemsRemove = {
             BuildCostEnergy = 1,
@@ -1282,13 +1278,13 @@ UnitBlueprint {
             Prerequisite = 'CloakingSubsystems',
             RemoveEnhancements = {
                 'ElectronicsEnhancment',
-                'ElectronicCountermeasures',
+                'PersonalTeleporter',
                 'CloakingSubsystems',
                 'CloakingSubsystemsRemove',
             },
             Slot = 'Back',
         },
-        BasicDefence = {
+        ImprovedCombatSystems = {
             BuildCostEnergy = 67500,
             BuildCostMass = 1080,
             BuildTime = 2700,
@@ -1319,7 +1315,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        BasicDefenceRemove = {
+        ImprovedCombatSystemsRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1338,10 +1334,10 @@ UnitBlueprint {
             },
             Icon = 'exbbat1',
             Name = 'Remove Improved Combat Systems',
-            Prerequisite = 'BasicDefence',
+            Prerequisite = 'ImprovedCombatSystems',
             RemoveEnhancements = {
-                'BasicDefence',
-                'BasicDefenceRemove',
+                'ImprovedCombatSystems',
+                'ImprovedCombatSystemsRemove',
             },
             Slot = 'Back',
         },
@@ -1351,7 +1347,7 @@ UnitBlueprint {
             BuildTime = 10800,
             Icon = 'exbbat2',
             Name = 'Tactical Missile System (T3)',
-            Prerequisite = 'BasicDefence',
+            Prerequisite = 'ImprovedCombatSystems',
             NewHealth = 8000,
             OverchargeDamageMod = 4000,
             OverchargeDamageMod2 = 6000,
@@ -1396,13 +1392,13 @@ UnitBlueprint {
             Name = 'Remove Tactical Missile System',
             Prerequisite = 'TacticalMisslePack',
             RemoveEnhancements = {
-                'BasicDefence',
+                'ImprovedCombatSystems',
                 'TacticalMisslePack',
                 'TacticalMisslePackRemove',
             },
             Slot = 'Back',
         },
-        OverchargeOverdrive = {
+        OverchargeAmplifier = {
             BuildCostEnergy = 450000,
             BuildCostMass = 5400,
             BuildTime = 21600,
@@ -1435,7 +1431,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        OverchargeOverdriveRemove = {
+        OverchargeAmplifierRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1454,12 +1450,12 @@ UnitBlueprint {
             },
             Icon = 'exbbat3',
             Name = 'Remove Overcharge Amplifier',
-            Prerequisite = 'OverchargeOverdrive',
+            Prerequisite = 'OverchargeAmplifier',
             RemoveEnhancements = {
-                'BasicDefence',
+                'ImprovedCombatSystems',
                 'TacticalMisslePack',
-                'OverchargeOverdrive',
-                'OverchargeOverdriveRemove',
+                'OverchargeAmplifier',
+                'OverchargeAmplifierRemove',
             },
             Slot = 'Back',
         },
@@ -1503,13 +1499,17 @@ UnitBlueprint {
     },
     Intel = {
         Cloak = true,
-        CloakFieldRadius = 200,
+        CloakField = true,
+        CloakFieldRadius = 20,
         FreeIntel = false,
         OmniRadius = 26,
-        RemoteViewingRadius = 100,
         RadarStealth = true,
+        RadarStealthField = true,
+        RadarStealthFieldRadius = 20,
         ReactivateTime = 2,
         SonarStealth = true,
+        SonarStealthField = true,
+        SonarStealthFieldRadius = 20,
         VisionRadius = 26,
         WaterVisionRadius = 26,
     },

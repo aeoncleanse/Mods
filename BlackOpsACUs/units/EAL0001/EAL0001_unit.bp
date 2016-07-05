@@ -1403,16 +1403,9 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        Cloak = true,
-        CloakFieldRadius = 250,
-        FreeIntel = false,
         OmniRadius = 26,
-        RadarStealth = true,
-        ReactivateTime = 2,
-        SonarStealth = true,
         VisionRadius = 26,
         WaterVisionRadius = 26,
-        ReactivateTime = 5,
         RemoteViewingRadius = 20,
     },
     Interface = {

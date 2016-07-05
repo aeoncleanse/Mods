@@ -136,7 +136,6 @@ ESL0001 = Class(ACUUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         ACUUnit.OnStopBeingBuilt(self,builder,layer)
-        self:DisableRemoteViewingButtons()
         
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('BigBallCannon', false)
@@ -144,14 +143,21 @@ ESL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('AA01', false)
         self:SetWeaponEnabledByLabel('AA02', false)
         self:SetWeaponEnabledByLabel('Missile', false)
-        
+
+        self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
+        self:DisableUnitIntel('ToggleBit5', 'RadarStealthField')
+        self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
+        self:DisableUnitIntel('ToggleBit5', 'SonarStealthField')
+        self:DisableUnitIntel('ToggleBit8', 'Cloak')
+        self:DisableUnitIntel('ToggleBit8', 'CloakField')
+
         self:ForkThread(self.GiveInitialResources)
-        self.ShieldEffectsBag = {}
+        self.RegenFieldFXBag = {}
         self.lambdaEmitterTable = {}
-        StartRotators()
+        self:StartRotators()
     end,
     
-    StartRotators = function()
+    StartRotators = function(self)
         if not self.RotatorManipulator1 then
             self.RotatorManipulator1 = CreateRotator(self, 'S_Spinner_B01', 'y')
             self.Trash:Add(self.RotatorManipulator1)
@@ -325,7 +331,97 @@ ESL0001 = Class(ACUUnit) {
         self.Trash:Add(lambdaUnit)
     end,
 
-    CreateEnhancement = function(self, enh)
+    OnMotionHorzEventChange = function(self, new, old)
+        if new ~= 'Stopped' and self.HiddenACU then
+            self:SetScriptBit('RULEUTC_CloakToggle', true) -- Disable counter-intel
+        end
+
+        ACUUnit.OnMotionHorzEventChange(self, new, old)
+    end,
+
+    OnIntelEnabled = function(self)
+        ACUUnit.OnIntelEnabled(self)
+        if self:HasEnhancement('CloakingSubsystems') and self.HiddenACU then
+            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy)
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
+                self.IntelEffectsBag = {}
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
+            end
+        end
+    end,
+
+    OnIntelDisabled = function(self)
+        ACUUnit.OnIntelDisabled(self)
+        if self.IntelEffectsBag then
+            EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
+            self.IntelEffectsBag = nil
+        end
+        if self:HasEnhancement('CloakingSubsystems') and not self.HiddenACU then
+            self:SetMaintenanceConsumptionInactive()
+        end
+    end,
+
+    -- Set custom flag and add Stealth and Cloak toggles to the switch
+    OnScriptBitSet = function(self, bit)
+        if bit == 8 then
+            if self.CloakThread then
+                KillThread(self.CloakThread)
+                self.CloakThread = nil
+            end
+
+            self.HiddenACU = false
+            self:SetFireState(0)
+            self:SetMaintenanceConsumptionInactive()
+            self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
+            self:DisableUnitIntel('ToggleBit5', 'RadarStealthField')
+            self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
+            self:DisableUnitIntel('ToggleBit5', 'SonarStealthField')
+            self:DisableUnitIntel('ToggleBit8', 'Cloak')
+            self:DisableUnitIntel('ToggleBit8', 'CloakField')
+
+            if not self.MaintenanceConsumption then
+                self.ToggledOff = true
+            end
+        else
+            ACUUnit.OnScriptBitSet(self, bit)
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        if bit == 8 then
+            if not self.CloakThread then
+                self.CloakThread = ForkThread(function()
+                    WaitSeconds(2)
+
+                    self.HiddenACU = true
+                    self:SetFireState(1)
+                    self:SetMaintenanceConsumptionActive()
+                    self:EnableUnitIntel('ToggleBit5', 'RadarStealth')
+                    self:EnableUnitIntel('ToggleBit5', 'RadarStealthField')
+                    self:EnableUnitIntel('ToggleBit5', 'SonarStealth')
+                    self:EnableUnitIntel('ToggleBit5', 'SonarStealthField')
+                    self:EnableUnitIntel('ToggleBit8', 'Cloak')
+                    self:EnableUnitIntel('ToggleBit8', 'CloakField')
+
+                    IssueStop({self}) -- This later stop stops people circumventing the no-motion clause
+                    IssueClearCommands({self})
+
+                    if self.MaintenanceConsumption then
+                        self.ToggledOff = false
+                    end
+                end)
+            end
+
+            -- This sends one stop, to force the unit to a halt etc
+            IssueStop({self})
+            IssueClearCommands({self})
+        else
+            ACUUnit.OnScriptBitClear(self, bit)
+        end
+    end,
+
+    CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
@@ -482,11 +578,11 @@ ESL0001 = Class(ACUUnit) {
             end
             
             -- Remove existing threads, then re-apply
-            if self.ShieldEffectsBag then
-                for k, v in self.ShieldEffectsBag do
+            if self.RegenFieldFXBag then
+                for k, v in self.RegenFieldFXBag do
                     v:Destroy()
                 end
-                self.ShieldEffectsBag = {}
+                self.RegenFieldFXBag = {}
             end
 
             if self.RegenThreadHandler then
@@ -494,7 +590,7 @@ ESL0001 = Class(ACUUnit) {
                 self.RegenThreadHandler = nil
             end
             self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, enh)
-            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
+            table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             -- Affect the ACU
             Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildCombat')
@@ -511,11 +607,11 @@ ESL0001 = Class(ACUUnit) {
                 self.RegenThreadHandler = nil
             end
 
-            if self.ShieldEffectsBag then
-                for k, v in self.ShieldEffectsBag do
+            if self.RegenFieldFXBag then
+                for k, v in self.RegenFieldFXBag do
                     v:Destroy()
                 end
-                self.ShieldEffectsBag = {}
+                self.RegenFieldFXBag = {}
             end
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
@@ -569,11 +665,11 @@ ESL0001 = Class(ACUUnit) {
             end
         
             -- Remove existing threads, then re-apply
-            if self.ShieldEffectsBag then
-                for k, v in self.ShieldEffectsBag do
+            if self.RegenFieldFXBag then
+                for k, v in self.RegenFieldFXBag do
                     v:Destroy()
                 end
-                self.ShieldEffectsBag = {}
+                self.RegenFieldFXBag = {}
             end
             
             if self.RegenThreadHandler then
@@ -581,7 +677,7 @@ ESL0001 = Class(ACUUnit) {
                 self.RegenThreadHandler = nil
             end
             self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, enh)
-            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
+            table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             -- Affect the ACU
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildCombat')
@@ -598,11 +694,11 @@ ESL0001 = Class(ACUUnit) {
                 self.RegenThreadHandler = nil
             end
 
-            if self.ShieldEffectsBag then
-                for k, v in self.ShieldEffectsBag do
+            if self.RegenFieldFXBag then
+                for k, v in self.RegenFieldFXBag do
                     v:Destroy()
                 end
-                self.ShieldEffectsBag = {}
+                self.RegenFieldFXBag = {}
             end
         elseif enh == 'ApocolypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
@@ -950,12 +1046,8 @@ ESL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'SeraphimLambdaHealth1')
             end
 
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
+            self:CreateLambdaUnit('S', '1', '2', true)
+            self:CreateLambdaUnit('L', '1', '1', true)
         elseif enh == 'EnhancedLambdaEmitters' then
             if not Buffs['SeraphimLambdaHealth2'] then
                 BuffBlueprint {
@@ -974,33 +1066,16 @@ ESL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth2')
 
-            local platOrientSm02 = self:GetOrientation()
-            local platOrientLg02 = self:GetOrientation()
-            local locationSm02 = self:GetPosition('S_Lambda_B02')
-            local locationLg02 = self:GetPosition('L_Lambda_B02')
-            local lambdaEmitterSm02 = CreateUnit('esb0003', self:GetArmy(), locationSm02[1], locationSm02[2], locationSm02[3], platOrientSm02[1], platOrientSm02[2], platOrientSm02[3], platOrientSm02[4], 'Land')
-            local lambdaEmitterLg02 = CreateUnit('esb0001', self:GetArmy(), locationLg02[1], locationLg02[2], locationLg02[3], platOrientLg02[1], platOrientLg02[2], platOrientLg02[3], platOrientLg02[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm02)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg02)
-            lambdaEmitterSm02:AttachTo(self, 'S_Lambda_B02')
-            lambdaEmitterLg02:AttachTo(self, 'L_Lambda_B02')
-            lambdaEmitterSm02:SetParent(self, 'esl0001')
-            lambdaEmitterLg02:SetParent(self, 'esl0001')
-            lambdaEmitterSm02:SetCreator(self)
-            lambdaEmitterLg02:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm02)
-            self.Trash:Add(lambdaEmitterLg02)
+            
+            self:CreateLambdaUnit('S', '2', '3')
+            self:CreateLambdaUnit('L', '2', '1')
         elseif enh == 'EnhancedLambdaEmittersRemove' then
             if Buff.HasBuff(self, 'SeraphimLambdaHealth2') then
                 Buff.RemoveBuff(self, 'SeraphimLambdaHealth2')
             end
 
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
+            self:CreateLambdaUnit('S', '2', '3', true)
+            self:CreateLambdaUnit('L', '2', '1', true)
         elseif enh == 'ControlledQuantumRuptures' then
             if not Buffs['SeraphimLambdaHealth3'] then
                 BuffBlueprint {
@@ -1019,49 +1094,58 @@ ESL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth3')
 
-            
-            
-            
-            
-            local platOrientSm03 = self:GetOrientation()
-            local platOrientLg03 = self:GetOrientation()
-            local locationSm03 = self:GetPosition('S_Lambda_B03')
-            local locationLg03 = self:GetPosition('L_Lambda_B03')
-            local lambdaEmitterSm03 = CreateUnit('esb0004', self:GetArmy(), locationSm03[1], locationSm03[2], locationSm03[3], platOrientSm03[1], platOrientSm03[2], platOrientSm03[3], platOrientSm03[4], 'Land')
-            local lambdaEmitterLg03 = CreateUnit('esb0004', self:GetArmy(), locationLg03[1], locationLg03[2], locationLg03[3], platOrientLg03[1], platOrientLg03[2], platOrientLg03[3], platOrientLg03[4], 'Land')
-            table.insert (self.lambdaEmitterTable, lambdaEmitterSm03)
-            table.insert (self.lambdaEmitterTable, lambdaEmitterLg03)
-            lambdaEmitterSm03:AttachTo(self, 'S_Lambda_B03')
-            lambdaEmitterLg03:AttachTo(self, 'L_Lambda_B03')
-            lambdaEmitterSm03:SetParent(self, 'esl0001')
-            lambdaEmitterLg03:SetParent(self, 'esl0001')
-            lambdaEmitterSm03:SetCreator(self)
-            lambdaEmitterLg03:SetCreator(self)
-            self.Trash:Add(lambdaEmitterSm03)
-            self.Trash:Add(lambdaEmitterLg03)
+            self:CreateLambdaUnit('S', '3', '4')
+            self:CreateLambdaUnit('L', '3', '4')
         elseif enh == 'ControlledQuantumRupturesRemove' then
             if Buff.HasBuff(self, 'SeraphimLambdaHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimLambdaHealth3')
             end
 
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
+            self:CreateLambdaUnit('S', '3', '4', true)
+            self:CreateLambdaUnit('L', '3', '4', true)
             
-        -- END OF LAMBDA, BEGIN NEXT SET
+        -- Intel Systems
 
         elseif enh == 'ElectronicsEnhancment' then
-
-            self:SetIntelRadius('Vision', bp.NewVisionRadius or 50)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius or 50)
-            if not Buffs['SeraHealthBoost16'] then
+            if not Buffs['SeraphimIntelHealth1'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost16',
-                    DisplayName = 'SeraHealthBoost16',
-                    BuffType = 'SeraHealthBoost16',
+                    Name = 'SeraphimIntelHealth1',
+                    DisplayName = 'SeraphimIntelHealth1',
+                    BuffType = 'SeraphimIntelHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        }
+                    },
+                }
+            end
+            Buff.ApplyBuff(self, 'SeraphimIntelHealth1')
+
+            self:SetIntelRadius('Vision', bp.NewVisionRadius)
+            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
+            self:SetIntelRadius('Omni', bp.NewOmniRadius)
+        elseif enh == 'ElectronicsEnhancmentRemove' then
+            if Buff.HasBuff(self, 'SeraphimIntelHealth1') then
+                Buff.RemoveBuff(self, 'SeraphimIntelHealth1')
+            end
+
+            local bpIntel = self:GetBlueprint().Intel
+            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+            self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
+            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+        elseif enh == 'PersonalTeleporter' then
+            if not Buffs['SeraphimIntelHealth2'] then
+                BuffBlueprint {
+                    Name = 'SeraphimIntelHealth2',
+                    DisplayName = 'SeraphimIntelHealth2',
+                    BuffType = 'SeraphimIntelHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1072,25 +1156,27 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost16')
-            
-        elseif enh == 'ElectronicsEnhancmentRemove' then
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'SeraHealthBoost16') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost16')
-            end
-
-            
-        elseif enh == 'ElectronicCountermeasures' then
+            Buff.ApplyBuff(self, 'SeraphimIntelHealth2')
 
             self:AddCommandCap('RULEUCC_Teleport')
-            if not Buffs['SeraHealthBoost17'] then
+
+            self:SetWeaponEnabledByLabel('AA01', true)
+            self:SetWeaponEnabledByLabel('AA02', true)
+        elseif enh == 'PersonalTeleporterRemove' then
+            if Buff.HasBuff(self, 'SeraphimIntelHealth2') then
+                Buff.RemoveBuff(self, 'SeraphimIntelHealth2')
+            end
+
+            self:RemoveCommandCap('RULEUCC_Teleport')
+
+            self:SetWeaponEnabledByLabel('AA01', false)
+            self:SetWeaponEnabledByLabel('AA02', false)
+        elseif enh == 'CloakingSubsystems' then
+            if not Buffs['SeraphimIntelHealth3'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost17',
-                    DisplayName = 'SeraHealthBoost17',
-                    BuffType = 'SeraHealthBoost17',
+                    Name = 'SeraphimIntelHealth3',
+                    DisplayName = 'SeraphimIntelHealth3',
+                    BuffType = 'SeraphimIntelHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1101,93 +1187,30 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost17')
-            
-        elseif enh == 'ElectronicCountermeasuresRemove' then
-            self:RemoveCommandCap('RULEUCC_Teleport')
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'SeraHealthBoost16') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost16')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost17') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost17')
-            end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            self.wcAA01 = false
-            self.wcAA02 = false
+            Buff.ApplyBuff(self, 'SeraphimIntelHealth3')
 
-    
-            self.RBIntTier1 = false
-            self.RBIntTier2 = false
-            self.RBIntTier3 = false
-            
-        elseif enh == 'CloakingSubsystems' then
-            local bp = self:GetBlueprint().Enhancements[enh]
-            if not bp then return end
-            --self:AddToggleCap('RULEUTC_CloakToggle')
             if self.IntelEffectsBag then
-                EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
+                EffectUtil.CleanupEffectBag(self, 'IntelEffectsBag')
                 self.IntelEffectsBag = nil
             end
-            self.StealthEnh = false
-            self.CloakEnh = true 
-            self:EnableUnitIntel('RadarStealth')
-            self:EnableUnitIntel('SonarStealth')
-            self:EnableUnitIntel('Cloak')
-            if not Buffs['SeraHealthBoost18'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost18',
-                    DisplayName = 'SeraHealthBoost18',
-                    BuffType = 'SeraHealthBoost18',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SeraHealthBoost18')
-            self.RBIntTier1 = true
-            self.RBIntTier2 = true
-            self.RBIntTier3 = true
-            
+
+            self:AddToggleCap('RULEUTC_CloakToggle')
+            self:SetScriptBit('RULEUTC_CloakToggle', true)
         elseif enh == 'CloakingSubsystemsRemove' then
-            --self:RemoveToggleCap('RULEUTC_CloakToggle')
-            self:DisableUnitIntel('Cloak')
-            self:DisableUnitIntel('RadarStealth')
-            self:DisableUnitIntel('SonarStealth')
-            self.CloakEnh = false 
-            self:RemoveCommandCap('RULEUCC_Teleport')
-            local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-            if Buff.HasBuff(self, 'SeraHealthBoost16') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost16')
+            if Buff.HasBuff(self, 'SeraphimIntelHealth3') then
+                Buff.RemoveBuff(self, 'SeraphimIntelHealth3')
             end
-            if Buff.HasBuff(self, 'SeraHealthBoost17') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost17')
+
+            if self.IntelEffectsBag then
+                EffectUtil.CleanupEffectBag(self, 'IntelEffectsBag')
+                self.IntelEffectsBag = nil
             end
-            if Buff.HasBuff(self, 'SeraHealthBoost18') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost18')
-            end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
+
+            self:RemoveToggleCap('RULEUTC_CloakToggle')
+
+        -- Defensive Systems
             
-        elseif enh == 'BasicDefence' then
+        elseif enh == 'ImprovedCombatSystems' then
 
             if not Buffs['SeraHealthBoost19'] then
                 BuffBlueprint {
@@ -1212,7 +1235,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
-        elseif enh == 'BasicDefenceRemove' then
+        elseif enh == 'ImprovedCombatSystemsRemove' then
             if Buff.HasBuff(self, 'SeraHealthBoost19') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost19')
             end
@@ -1284,7 +1307,7 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier2 = false
             self.RBComTier3 = false
             
-        elseif enh == 'OverchargeOverdrive' then
+        elseif enh == 'OverchargeAmplifier' then
             if not Buffs['SeraHealthBoost21'] then
                 BuffBlueprint {
                     Name = 'SeraHealthBoost21',
@@ -1309,18 +1332,13 @@ ESL0001 = Class(ACUUnit) {
             self.RBComTier2 = true
             self.RBComTier3 = true
             
-        elseif enh == 'OverchargeOverdriveRemove' then
+        elseif enh == 'OverchargeAmplifierRemove' then
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
             local amt = self:GetTacticalSiloAmmoCount()
             self:RemoveTacticalSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff(self, 'SeraHealthBoost19') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost19')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost20') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost20')
-            end
+
             if Buff.HasBuff(self, 'SeraHealthBoost21') then
                 Buff.RemoveBuff(self, 'SeraHealthBoost21')
             end
@@ -1337,15 +1355,8 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(-bp.OverchargeDamageMod2)        
             wepOC:AddDamageMod(-bp.OverchargeDamageMod3)        
             wepOC:ChangeProjectileBlueprint(bp.NewProjectileBlueprint)
-            self.wcTMissiles01 = false
-
-    
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-            
         end
-        
+
         -- Remove prerequisites
         if not removal then
             if bp.RemoveEnhancements then
@@ -1392,18 +1403,6 @@ ESL0001 = Class(ACUUnit) {
             },    
         },    
     },
-
-    -- TODO - WTF is this???
-    OnMotionHorzEventChange = function(self, new, old)
-        if self.RBIntTier3 then
-            if ((new == 'Stopped' or new == 'Stopping') and (old == 'Cruise' or old == 'TopSpeed')) then
-                self.EXMoving = false
-            elseif (old == 'Stopped' or (old == 'Stopping' and (new == 'Cruise' or new == 'TopSpeed'))) then
-                self.EXMoving = true
-            end
-        end
-        ACUUnit.OnMotionHorzEventChange(self, new, old)
-    end,
 }
 
 TypeClass = ESL0001

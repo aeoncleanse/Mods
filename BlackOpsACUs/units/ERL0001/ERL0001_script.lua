@@ -202,22 +202,34 @@ ERL0001 = Class(ACUUnit) {
     end,
 
     OnScriptBitClear = function(self, bit)
-        if bit == 8 then -- cloak toggle
+        if bit == 8 then -- Cloak toggle
             self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('ToggleBit8', 'Cloak')
             self:EnableUnitIntel('ToggleBit8', 'RadarStealth')
-            self:EnableUnitIntel('ToggleBit8', 'SonarStealth')       
+            self:EnableUnitIntel('ToggleBit8', 'SonarStealth')
+
+            if self.MaintenanceConsumption then
+                self.ToggledOff = false
+            end
+        else
+            ACUUnit.OnScriptBitClear(self, bit)
         end
     end,
 
     OnScriptBitSet = function(self, bit)
-        if bit == 8 then -- cloak toggle
+        if bit == 8 then -- Cloak toggle
             self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('ToggleBit8', 'Cloak')
             self:DisableUnitIntel('ToggleBit8', 'RadarStealth')
             self:DisableUnitIntel('ToggleBit8', 'SonarStealth')
+
+            if not self.MaintenanceConsumption then
+                self.ToggledOff = true
+            end
+        else
+            ACUUnit.OnScriptBitSet(self, bit)
         end
     end,
 
@@ -893,7 +905,8 @@ ERL0001 = Class(ACUUnit) {
                 EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
                 self.IntelEffectsBag = nil
             end
-            self:AddToggleCap('RULEUTC_CloakToggle')
+
+            self:AddToggleCap('RULEUTC_StealthToggle')
             self:EnableUnitIntel('Enhancement', 'RadarStealth')
             self:EnableUnitIntel('Enhancement', 'SonarStealth')
         elseif enh == 'ElectronicCountermeasuresRemove' then
@@ -901,7 +914,7 @@ ERL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'CybranIntelHealth2')
             end
 
-            self:RemoveToggleCap('RULEUTC_CloakToggle')
+            self:RemoveToggleCap('RULEUTC_StealthToggle')
             self:DisableUnitIntel('Enhancement', 'RadarStealth')
             self:DisableUnitIntel('Enhancement', 'SonarStealth')
         elseif enh == 'CloakingSubsystems' then
@@ -926,12 +939,15 @@ ERL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'CybranIntelHealth3')
             
+            self:RemoveToggleCap('RULEUTC_StealthToggle')
+            self:AddToggleCap('RULEUTC_CloakToggle')
             self:EnableUnitIntel('Enhancement', 'Cloak')
         elseif enh == 'CloakingSubsystemsRemove' then
             if Buff.HasBuff(self, 'CybranIntelHealth3') then
                 Buff.RemoveBuff(self, 'CybranIntelHealth3')
             end
 
+            self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('Enhancement', 'Cloak')
             
         -- Mobility Systems
