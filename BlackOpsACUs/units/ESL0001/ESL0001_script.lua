@@ -798,12 +798,22 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimBallHealth1')
 
             self:SetWeaponEnabledByLabel('BigBallCannon', true)
+
+            local wep = self:GetWeaponByLabel('BigBallCannon')
+            wep:ChangeMaxRadius(bp.CannonMaxRadius)
+
+            self:SetPainterRange(enh, bp.CannonMaxRadius, false)
         elseif enh == 'QuantumStormCannonRemove' then
             if Buff.HasBuff(self, 'SeraphimBallHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth1')
             end
 
             self:SetWeaponEnabledByLabel('BigBallCannon', false)
+
+            local wep = self:GetWeaponByLabel('BigBallCannon')
+            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'PowerConversionEnhancer' then
             if not Buffs['SeraphimBallHealth2'] then
                 BuffBlueprint {
@@ -827,6 +837,8 @@ ESL0001 = Class(ACUUnit) {
             cannon:ChangeMaxRadius(bp.StormRange)
             cannon:ChangeDamageRadius(bp.StormRadius)
 
+            self:SetPainterRange(enh, bp.StormRange, false)
+
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'PowerConversionEnhancerRemove' then
@@ -838,6 +850,8 @@ ESL0001 = Class(ACUUnit) {
             cannon:AddDamageMod(bp.StormDamage)
             cannon:ChangeMaxRadius(cannon:GetBlueprint().MaxRadius)
             cannon:ChangeDamageRadius(cannon:GetBlueprint().DamageRadius)
+
+            self:SetPainterRange(enh, 0, true)
 
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
@@ -862,6 +876,8 @@ ESL0001 = Class(ACUUnit) {
             local cannon = self:GetWeaponByLabel('BigBallCannon')
             cannon:AddDamageMod(bp.StormDamage)
             cannon:ChangeMaxRadius(bp.StormRange)
+
+            self:SetPainterRange(enh, bp.StormRange, false)
         elseif enh == 'AdvancedDistortionAlgorithmsRemove' then    
             if Buff.HasBuff(self, 'SeraphimBallHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth3')
@@ -870,6 +886,8 @@ ESL0001 = Class(ACUUnit) {
             local cannon = self:GetWeaponByLabel('BigBallCannon')
             cannon:AddDamageMod(bp.StormDamage)
             cannon:ChangeMaxRadius(cannon:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
 
         -- Gatling Cannon
 
@@ -890,14 +908,21 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'SeraphimGatlingHealth1')
-            
+
             self:SetWeaponEnabledByLabel('RapidCannon', true)
+
+            local wep = self:GetWeaponByLabel('RapidCannon')
+            wep:ChangeMaxRadius(bp.GatlingRange)
+
+            self:SetPainterRange(enh, bp.GatlingRange, false)
         elseif enh == 'PlasmaGatlingCannonRemove' then
             if Buff.HasBuff(self, 'SeraphimGatlingHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimGatlingHealth1')
             end
 
             self:SetWeaponEnabledByLabel('RapidCannon', false)
+
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'PhasedEnergyFields' then
             if not Buffs['SeraphimGatlingHealth2'] then
                 BuffBlueprint {
@@ -920,6 +945,8 @@ ESL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamage)
             gun:ChangeMaxRadius(bp.GatlingRange)
 
+            self:SetPainterRange(enh, bp.GatlingRange, false)
+
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'PhasedEnergyFieldsRemove' then
@@ -930,6 +957,8 @@ ESL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('RapidCannon')
             gun:AddDamageMod(bp.GatlingDamage)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
 
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)

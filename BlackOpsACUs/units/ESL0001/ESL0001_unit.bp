@@ -732,6 +732,7 @@ UnitBlueprint {
             Icon = 'exramc1',
             Name = 'Quantum Storm Cannon (T2)',
             NewHealth = 1000,
+            CannonMaxRadius = 35,
             ShowBones = {
                 'Big_Ball_Cannon',
             },
@@ -870,6 +871,7 @@ UnitBlueprint {
             Icon = 'exrgec1',
             Name = 'Plasma Gatling Cannon (T2)',
             NewHealth = 1000,
+            GatlingRange = 30,
             ShowBones = {
                 'Rapid_Cannon',
             },
@@ -1960,7 +1962,7 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'BigBallCannon',
-            MaxRadius = 35,
+            MaxRadius = 22,
             MinRadius = 2,
             MuzzleChargeDelay = 2.5,
             MuzzleSalvoDelay = 0,
@@ -2032,7 +2034,7 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'RapidCannon01',
-            MaxRadius = 30,
+            MaxRadius = 22,
             MinRadius = 2,
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,

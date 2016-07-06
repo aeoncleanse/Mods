@@ -810,7 +810,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam', false)
             local beam = self:GetWeaponByLabel('PhasonBeam')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
-            self:SetPainterRange(string.sub(enh, -6), 0, true)
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'DualChannelBooster' then
             if not Buffs['AeonBeamHealth2'] then
                 BuffBlueprint {
