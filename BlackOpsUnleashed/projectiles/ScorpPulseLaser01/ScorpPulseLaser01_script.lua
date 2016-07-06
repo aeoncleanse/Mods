@@ -5,6 +5,6 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 --------------------------------------------------------------------------------
 
-ScorpPulseLaser01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ScorpPulseLaser) {}
+ScorpPulseLaser01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').ScorpPulseLaser) {}
 
 TypeClass = ScorpPulseLaser01

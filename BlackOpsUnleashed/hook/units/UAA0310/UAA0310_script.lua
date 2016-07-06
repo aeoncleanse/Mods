@@ -7,7 +7,7 @@
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
 local aWeapons = import('/lua/aeonweapons.lua')
-local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
+local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local AQuantumBeamGenerator = aWeapons.AQuantumBeamGenerator
 local AAAZealotMissileWeapon = aWeapons.AAAZealotMissileWeapon
 local AANDepthChargeBombWeapon = aWeapons.AANDepthChargeBombWeapon

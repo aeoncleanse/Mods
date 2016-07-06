@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------
 
-local ACUShadowCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ACUShadowCannonProjectile
+local ACUShadowCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').ACUShadowCannonProjectile
 
 ACUShadowCannon01 = Class(ACUShadowCannonProjectile) {}
 

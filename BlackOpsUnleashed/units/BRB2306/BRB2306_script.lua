@@ -8,7 +8,7 @@
 local CRadarUnit = import('/lua/cybranunits.lua').CRadarUnit
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
-local StunZapperWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').StunZapperWeapon
+local StunZapperWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').StunZapperWeapon
 
 BRB2306 = Class(CRadarUnit) { 
     ChargeEffects01 = {

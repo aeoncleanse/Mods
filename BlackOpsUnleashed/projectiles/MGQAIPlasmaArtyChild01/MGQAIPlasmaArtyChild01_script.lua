@@ -5,7 +5,7 @@
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------
 
-local MGQAIPlasmaArtyChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGQAIPlasmaArtyChildProjectile
+local MGQAIPlasmaArtyChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').MGQAIPlasmaArtyChildProjectile
 
 MGQAIPlasmaArtyChild01 = Class(MGQAIPlasmaArtyChildProjectile) {}
 

@@ -5,7 +5,7 @@
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -------------------------------------------------------------------------------
 
-local CybranHailfire01ChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').CybranHailfire01ChildProjectile
+local CybranHailfire01ChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').CybranHailfire01ChildProjectile
 
 CybranHailfire02child = Class(CybranHailfire01ChildProjectile) {}
 

@@ -7,7 +7,7 @@
 
 local CSeaUnit = import('/lua/cybranunits.lua').CSeaUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
-local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
+local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local CDFProtonCannonWeapon = CybranWeaponsFile.CDFProtonCannonWeapon
 local CAANanoDartWeapon = CybranWeaponsFile.CAANanoDartWeapon
 local CAMZapperWeapon02 = CybranWeaponsFile.CAMZapperWeapon02

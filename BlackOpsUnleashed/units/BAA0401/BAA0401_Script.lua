@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
-local ArtemisLaserGenerator = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').ArtemisLaserGenerator
+local ArtemisLaserGenerator = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').ArtemisLaserGenerator
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local BlackOpsEffectTemplate = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua')
 local explosion = import('/lua/defaultexplosions.lua')

@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
-local CybranWeaponsFile2 = import('/lua/BlackOpsweapons.lua')
+local CybranWeaponsFile2 = import('/lua/BlackOpsWeapons.lua')
 local MGAALaserWeapon = CybranWeaponsFile2.MGAALaserWeapon
 
 BRB0005 = Class(CStructureUnit) {

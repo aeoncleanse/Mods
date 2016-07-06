@@ -1,6 +1,6 @@
 -- Cybran laser 'bolt'
 
-local MGQAILaserHeavyProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGQAILaserHeavyProjectile
+local MGQAILaserHeavyProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').MGQAILaserHeavyProjectile
 
 MGQAILaserHeavy01 = Class(MGQAILaserHeavyProjectile) {}
 

@@ -10,7 +10,7 @@ local WeaponsFile = import('/lua/cybranweapons.lua')
 local CANNaniteTorpedoWeapon = WeaponsFile.CANNaniteTorpedoWeapon
 local CDFElectronBolterWeapon = WeaponsFile.CDFElectronBolterWeapon
 local CKrilTorpedoLauncherWeapon = import('/lua/cybranweapons.lua').CKrilTorpedoLauncherWeapon
-local TorpRedirectField = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').TorpRedirectField
+local TorpRedirectField = import('/mods/BlackOpsUnleashed/lua/BlackOpsDefaultAntiProjectile.lua').TorpRedirectField
 
 BRS0305 = Class(CSubUnit) {
     DeathThreadDestructionWaitTime = 0,

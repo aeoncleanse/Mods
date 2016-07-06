@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------------
 
-local AMTorpedoCluster = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').AMTorpedoCluster
+local AMTorpedoCluster = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').AMTorpedoCluster
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 

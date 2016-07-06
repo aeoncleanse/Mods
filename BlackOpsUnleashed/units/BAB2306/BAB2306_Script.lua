@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
-local MiniPhasonLaser = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').MiniPhasonLaser
+local MiniPhasonLaser = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').MiniPhasonLaser
 
 BAB2306 = Class(AStructureUnit) {
     Weapons = {

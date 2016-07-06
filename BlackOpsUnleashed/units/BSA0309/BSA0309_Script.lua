@@ -11,8 +11,8 @@ local util = import('/lua/utilities.lua')
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SAAShleoCannonWeapon = SeraphimWeapons.SAAShleoCannonWeapon
 local SDFHeavyPhasicAutoGunWeapon = SeraphimWeapons.SDFHeavyPhasicAutoGunWeapon
-local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
-local SeraLambdaFieldDestroyer = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
+local SeraLambdaFieldRedirector = import('/mods/BlackOpsUnleashed/lua/BlackOpsDefaultAntiProjectile.lua').SeraLambdaFieldRedirector
+local SeraLambdaFieldDestroyer = import('/mods/BlackOpsUnleashed/lua/BlackOpsDefaultAntiProjectile.lua').SeraLambdaFieldDestroyer
 
 BSA0309 = Class(AirTransport) {
     AirDestructionEffectBones = { 'XSA0309','Left_Attachpoint08','Right_Attachpoint02'},

@@ -1,6 +1,6 @@
 -- Aeon Serpentine Missile
 
-local MIRVChild01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MIRVChild01Projectile
+local MIRVChild01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').MIRVChild01Projectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
 MIRVChild01 = Class(MIRVChild01Projectile) {

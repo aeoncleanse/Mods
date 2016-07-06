@@ -1,4 +1,4 @@
-local MiniRocketPRojectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MiniRocketPRojectile
+local MiniRocketPRojectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').MiniRocketPRojectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 AWMissileCruise01 = Class(MiniRocketPRojectile) {

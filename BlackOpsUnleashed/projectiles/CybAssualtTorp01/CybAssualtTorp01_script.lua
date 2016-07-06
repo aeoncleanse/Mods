@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------
 
-local AssaultTorpedoSubProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').AssaultTorpedoSubProjectile
+local AssaultTorpedoSubProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').AssaultTorpedoSubProjectile
 
 CANKrilTorpedo01 = Class(AssaultTorpedoSubProjectile) {
 

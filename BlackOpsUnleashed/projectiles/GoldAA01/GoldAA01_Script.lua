@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-local GoldAAProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GoldAAProjectile
+local GoldAAProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').GoldAAProjectile
 local RandF = import('/lua/utilities.lua').GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 

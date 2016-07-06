@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------
 
-local SonicWaveProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SonicWaveProjectile
+local SonicWaveProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').SonicWaveProjectile
 
 SonicWave01 = Class(SonicWaveProjectile) {}
 

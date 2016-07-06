@@ -7,7 +7,7 @@
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponsFile = import('/lua/terranweapons.lua')
-local WeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
+local WeaponsFile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local TAALinkedRailgun = WeaponsFile.TAALinkedRailgun
 local ZCannonWeapon = WeaponsFile2.ZCannonWeapon
 local TDFShipGaussCannonWeapon = WeaponsFile.TDFShipGaussCannonWeapon

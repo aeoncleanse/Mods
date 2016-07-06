@@ -1,6 +1,6 @@
 -- Cybran Anti Air Missile
 
-local DumbRocketProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').DumbRocketProjectile
+local DumbRocketProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').DumbRocketProjectile
 
 DumbRocket01 = Class(DumbRocketProjectile) {}
 

@@ -1,5 +1,5 @@
 -- Terran Anti Air Missile
-local CitadelHVM01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').CitadelHVM01Projectile
+local CitadelHVM01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').CitadelHVM01Projectile
 
 CitadelHVM01 = Class(CitadelHVM01Projectile) {
     OnImpact = function(self, TargetType, TargetEntity)

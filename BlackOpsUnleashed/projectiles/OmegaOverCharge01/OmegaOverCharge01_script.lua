@@ -5,6 +5,6 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------------------
 
-OmegaOverCharge01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SOmegaCannonOverCharge) {}
+OmegaOverCharge01 = Class(import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').SOmegaCannonOverCharge) {}
 
 TypeClass = OmegaOverCharge01

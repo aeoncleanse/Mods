@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -------------------------------------------------------------------------------------------------
 
-local SLaanseTacticalMissile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SLaanseTacticalMissile
+local SLaanseTacticalMissile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').SLaanseTacticalMissile
 
 SIFLaanseTacticalMissile01 = Class(SLaanseTacticalMissile) {
     

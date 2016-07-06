@@ -1,6 +1,6 @@
 -- Aeon Artillery Projectile
 
-local MGHeadshotProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGHeadshotProjectile
+local MGHeadshotProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').MGHeadshotProjectile
 
 AeonTeleHarb01 = Class(MGHeadshotProjectile) {
     OnImpact = function(self, targetType, targetEntity)

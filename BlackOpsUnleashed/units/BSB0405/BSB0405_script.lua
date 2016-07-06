@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local SShieldStructureUnit = import('/lua/seraphimunits.lua').SShieldStructureUnit
-local WeaponsFile = import ('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
+local WeaponsFile = import ('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local LambdaWeapon = WeaponsFile.LambdaWeapon
 local SSeraphimSubCommanderGateway01 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway01
 local SSeraphimSubCommanderGateway02 = import('/lua/EffectTemplates.lua').SeraphimSubCommanderGateway02

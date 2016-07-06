@@ -1,6 +1,6 @@
 -- Flamethrower Projectile
 
-local NapalmProjectile01 = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').NapalmProjectile01
+local NapalmProjectile01 = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').NapalmProjectile01
 
 Napalm = Class(NapalmProjectile01) {}
 

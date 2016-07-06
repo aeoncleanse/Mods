@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
-local BOHellstormGun = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').BOHellstormGun
+local BOHellstormGun = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').BOHellstormGun
 
 -- Weapon bones for recoil effects 
 local muzzleBones = { 'Muzzle01', 'Muzzle02', 'Muzzle03' } 

@@ -1,6 +1,6 @@
 -- Aeon Serpentine Missile
 
-local MGQAIRocketChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').MGQAIRocketChildProjectile
+local MGQAIRocketChildProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').MGQAIRocketChildProjectile
 
 MGQAIRocket01 = Class(MGQAIRocketChildProjectile) {
     OnCreate = function(self)

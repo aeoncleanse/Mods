@@ -1,6 +1,6 @@
 -- script for projectile Missile
 
-local GargEMPWarheadProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').GargEMPWarheadProjectile
+local GargEMPWarheadProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').GargEMPWarheadProjectile
 
 GargEMPWarhead01 = Class(GargEMPWarheadProjectile) {
     FxSplashScale = 0.5,

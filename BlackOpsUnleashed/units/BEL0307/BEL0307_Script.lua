@@ -6,10 +6,10 @@
 -----------------------------------------------------------------
 
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
-local RailGunWeapon01 = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').RailGunWeapon01
+local RailGunWeapon01 = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').RailGunWeapon01
 local TIFCruiseMissileUnpackingLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileUnpackingLauncher
-local JuggLaserweapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').JuggLaserweapon
-local JuggPlasmaGatlingCannonWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua').JuggPlasmaGatlingCannonWeapon
+local JuggLaserweapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').JuggLaserweapon
+local JuggPlasmaGatlingCannonWeapon = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua').JuggPlasmaGatlingCannonWeapon
 local utilities = import('/lua/Utilities.lua')
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')

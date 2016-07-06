@@ -1,6 +1,6 @@
 -- Cybran Artillery Projectile
 
-local SeaDragonShell = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').SeaDragonShell
+local SeaDragonShell = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').SeaDragonShell
 SeaDragonShell01 = Class(SeaDragonShell) {
     
     OnImpact = function(self, targetType, targetEntity)

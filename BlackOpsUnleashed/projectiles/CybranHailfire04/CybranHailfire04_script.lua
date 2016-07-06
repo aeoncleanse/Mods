@@ -1,6 +1,6 @@
 -- Cybran Anti Air Projectile
 
-local CybranHailfire04Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').CybranHailfire04Projectile
+local CybranHailfire04Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').CybranHailfire04Projectile
 
 CAANanoDart02 = Class(CybranHailfire04Projectile) {
    OnCreate = function(self)

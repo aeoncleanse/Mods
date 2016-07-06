@@ -5,7 +5,7 @@
 -- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------------
 
-local ArtemisCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').ArtemisCannonProjectile
+local ArtemisCannonProjectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').ArtemisCannonProjectile
 
 ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
     OnImpact = function(self, TargetType, TargetEntity)

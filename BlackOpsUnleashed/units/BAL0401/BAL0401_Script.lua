@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
-local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsweapons.lua')
+local WeaponsFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local GoldenLaserGenerator = WeaponsFile.GoldenLaserGenerator
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon

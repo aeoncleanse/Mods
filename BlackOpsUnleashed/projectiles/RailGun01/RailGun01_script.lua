@@ -5,7 +5,7 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------------------------------------------------
 
-local RailGun01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsprojectiles.lua').RailGun01Projectile
+local RailGun01Projectile = import('/mods/BlackOpsUnleashed/lua/BlackOpsProjectiles.lua').RailGun01Projectile
 
 RailGun01 = Class(RailGun01Projectile) {
     OnImpact = function(self, TargetType, TargetEntity)

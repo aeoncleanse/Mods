@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /lua/BlackOpsdefaultcollisionbeams.lua
+-- File     :  /lua/BlackOpsDefaultCollisionBeams.lua
 -- Author(s):  Lt_hawkeye
 -- Summary  :  Custom definitions collision beams
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
