@@ -6,7 +6,7 @@
 -----------------------------------------------------------------
 
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
-local SeraLambdaField = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
+local SeraLambdaField = import('/mods/BlackOpsACUs/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldRedirector
 
 ESB0001 = Class(SStructureUnit) {
 

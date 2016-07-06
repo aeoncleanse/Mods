@@ -9,6 +9,99 @@ EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 EXBlackopsBpPath = '/mods/BlackOpsACUs/effects/emitters/'
 
+OmegaOverChargeLandHit = {
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_01_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_02_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_03_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_04_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_04_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_05_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_06_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',                  
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_02_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_03_emit.bp',
+}
+
+OmegaOverChargeUnitHit = {
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_01_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_02_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_04_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_05_emit.bp',
+    EmtBpPath .. 'destruction_unit_hit_shrapnel_01_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',                  
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_02_emit.bp',
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_03_emit.bp',
+}
+
+OmegaOverChargeProjectileFxTrails = {
+    EmtBpPathAlt .. 'omega_overcharge_projectile_fxtrail_01_emit.bp',
+    EmtBpPathAlt .. 'omega_overcharge_projectile_fxtrail_02_emit.bp',
+    EmtBpPathAlt .. 'omega_overcharge_projectile_fxtrail_03_emit.bp',
+}
+
+-- UEF ACU Anti Matter Cannon
+ACUAntiMatterPoly = {
+    EmtBpPathAlt .. 'examc_polytrail_01_emit.bp',
+}
+
+ACUAntiMatterFx = {
+    EmtBpPathAlt .. 'examc_fxtrail_01_emit.bp',
+    EmtBpPathAlt .. 'examc_fxtrail_02_emit.bp',
+    EmtBpPathAlt .. 'examc_fxtrail_03_emit.bp',
+    EmtBpPathAlt .. 'examc_fxtrail_04_emit.bp',
+    EmtBpPathAlt .. 'examc_fxtrail_05_emit.bp',
+}
+
+FlameThrowerHitLand01 = {
+    EmtBpPathAlt .. 'exflamer_flash_emit.bp',
+    EmtBpPathAlt .. 'exflamer_thick_smoke_emit.bp',
+    EmtBpPathAlt .. 'exflamer_thin_smoke_emit.bp',
+    EmtBpPathAlt .. 'exflamer_01_emit.bp',
+    EmtBpPathAlt .. 'exflamer_02_emit.bp',
+    EmtBpPathAlt .. 'exflamer_03_emit.bp',
+}
+
+FlameThrowerHitWater01 = {
+    EmtBpPathAlt .. 'exflamer_waterflash_emit.bp',
+    EmtBpPathAlt .. 'exflamer_water_smoke_emit.bp',
+    EmtBpPathAlt .. 'exflamer_oilslick_emit.bp',
+    EmtBpPathAlt .. 'exflamer_lines_emit.bp',
+    EmtBpPathAlt .. 'exflamer_water_ripples_emit.bp',
+    EmtBpPathAlt .. 'exflamer_water_dots_emit.bp',    
+}
+
+-- Lambda Effects
+EXLambdaRedirector = {
+    EmtBpPathAlt .. 'lambda_distortion_01.bp',
+    EmtBpPathAlt .. 'lambda_redirect_bright_01.bp',
+    EmtBpPathAlt .. 'lambda_redirect_bright_01.bp',
+    EmtBpPathAlt .. 'lambda_redirect_bright_02.bp',
+    EmtBpPathAlt .. 'lambda_redirect_bright_02.bp',
+    EmtBpPathAlt .. 'lambda_redirect_bright_03.bp',
+    EmtBpPathAlt .. 'lambda_distortion_01.bp',
+}
+
+EXLambdaDestoyer = {
+    EmtBpPathAlt .. 'lambda_distortion_01.bp',
+    EmtBpPathAlt .. 'lambda_destroy_dark_01.bp',
+    EmtBpPathAlt .. 'lambda_destroy_dark_02.bp',
+    EmtBpPathAlt .. 'lambda_destroy_dark_03b.bp',
+    EmtBpPathAlt .. 'lambda_destroy_dark_04.bp',
+    EmtBpPathAlt .. 'lambda_destroy_bright_01.bp',
+    EmtBpPathAlt .. 'lambda_destroy_bright_01.bp',
+    EmtBpPathAlt .. 'lambda_distortion_01.bp',
+}
+
+ACUAntiMatterMuzzle = {
+    EmtBpPathAlt .. 'examc_muzzle_flash_01_emit.bp',
+    EmtBpPathAlt .. 'examc_muzzle_flash_02_emit.bp',
+    EmtBpPathAlt .. 'examc_muzzle_flash_03_emit.bp',
+    EmtBpPathAlt .. 'examc_muzzle_flash_04_emit.bp',
+    EmtBpPathAlt .. 'examc_muzzle_flash_05_emit.bp',
+    EmtBpPathAlt .. 'examc_muzzle_flash_06_emit.bp',
+    EmtBpPathAlt .. 'examc_muzzle_flash_07_emit.bp',
+}
+
 -- Overrides the Unleashed one
 ACUAntiMatter01 = {
     EXBlackopsBpPath .. 'examc_flash_01_emit.bp',

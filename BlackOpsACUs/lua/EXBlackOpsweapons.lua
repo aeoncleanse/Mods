@@ -17,7 +17,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGeneratorCollisionBeam
 local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
 local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01
-local EXCollisionBeamFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultcollisionbeams.lua')
+local EXCollisionBeamFile = import('/mods/BlackOpsACUs/lua/ACUsDefaultCollisionBeams.lua')
 local CWeapons = import('/lua/cybranweapons.lua')
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
@@ -73,7 +73,7 @@ HawkGaussCannonWeapon = Class(DefaultProjectileWeapon) {
 }
 
 UEFACUAntiMatterWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = import('/mods/BlackOpsUnleashed/lua/BlackOpsEffectTemplates.lua').ACUAntiMatterMuzzle,
+    FxMuzzleFlash = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua').ACUAntiMatterMuzzle,
 }
 
 PDLaserGrid = Class(DefaultBeamWeapon) {
