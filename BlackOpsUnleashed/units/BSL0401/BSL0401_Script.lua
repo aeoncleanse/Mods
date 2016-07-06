@@ -719,19 +719,25 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit) {
                 self.CreateUnitDestructionDebris(self, true, true, true)
             end
         end
-
-        
-        -- Spawn an engineer (temp energy being)
-        local position = self:GetPosition()
-        local spiritUnit = CreateUnitHPR('XSL0402', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
-        
-        -- Create effects for spawning of energy being
-        for k, v in self.SpawnEffects do
-            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v)
-        end    
         
         self:PlayUnitSound('Destroyed')
         self:Destroy()
+    end,
+    
+    OnDestroy = function(self)
+        SHoverLandUnit.OnDestroy(self)
+
+        -- Don't make the energy being if not built
+        if self:GetFractionComplete() ~= 1 then return end
+        
+        -- Spawn the Energy Being
+        local position = self:GetPosition()
+        local spiritUnit = CreateUnitHPR('XSL0402', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
+
+        -- Create effects for spawning of energy being
+        for k, v in self.SpawnEffects do
+            CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v)
+        end
     end,
 }
 
