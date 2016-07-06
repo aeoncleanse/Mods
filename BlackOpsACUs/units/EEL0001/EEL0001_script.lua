@@ -22,6 +22,7 @@ local PDLaserGrid = BOWeapons.PDLaserGrid2
 
 EEL0001 = Class(ACUUnit) {   
     DeathThreadDestructionWaitTime = 2,
+    PainterRange = {},
 
     Weapons = {
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
@@ -413,8 +414,10 @@ EEL0001 = Class(ACUUnit) {
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:ShowBone('Zephyr_Amplifier', true)
+            self:SetPainterRange('JuryRiggedZephyr', radius, false)
         else
             self:HideBone('Zephyr_Amplifier', true)
+            self:SetPainterRange('JuryRiggedZephyrRemove', radius, true)
         end
     end,
     
@@ -431,6 +434,24 @@ EEL0001 = Class(ACUUnit) {
                 table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Flamer_Torch', self:GetArmy(), v):ScaleEmitter(0.0625))
             end
         end
+    end,
+
+    -- Target painter. 0 damage as primary weapon, controls targeting
+    -- for the variety of changing ranges on the ACU with upgrades.
+    SetPainterRange = function(self, enh, newRange, delete)
+        if delete and self.PainterRange[string.sub(enh, 0, -7)] then
+            self.PainterRange[string.sub(enh, 0, -7)] = nil
+        elseif not delete and not self.PainterRange[enh] then
+            self.PainterRange[enh] = newRange
+        end 
+        
+        local range = 22
+        for upgrade, radius in self.PainterRange do
+            if radius > range then range = radius end
+        end
+        
+        local wep = self:GetWeaponByLabel('TargetPainter')
+        wep:ChangeMaxRadius(range)
     end,
     
     CreateEnhancement = function(self, enh, removal)
@@ -611,20 +632,24 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFACUT3BuildCombat')
-            
+
             local gun = self:GetWeaponByLabel('FlameCannon')
             gun:AddDamageMod(bp.FlameDamageMod)
             gun:ChangeMaxRadius(bp.FlameMaxRadius)
+
+            self:SetPainterRange(enh, bp.FlameMaxRadius, false)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
             end
-            
+
             self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
 
             local gun = self:GetWeaponByLabel('FlameCannon')
             gun:AddDamageMod(bp.FlameDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -785,14 +810,18 @@ EEL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AntiMatterCannon', true)
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:ChangeMaxRadius(bp.NewMaxRadius)
+
+            self:SetPainterRange(enh, bp.NewMaxRadius, false)
         elseif enh == 'AntiMatterCannonRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth1') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth1')
             end
-            
+
             self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'ImprovedParticleAccelerator' then
             if not Buffs['UEFAntimatterHealth2'] then
                 BuffBlueprint {
@@ -850,24 +879,28 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.AntiMatterDamageMod)
             gun:ChangeDamageRadius(bp.NewDamageArea)
             gun:ChangeMaxRadius(bp.NewAntiMatterMaxRadius)
-            
+
+            self:SetPainterRange(enh, bp.NewAntiMatterMaxRadius, false)
+
             -- Use toggle function to increase MaxRadius of Zephyr Cannon
             self:TogglePrimaryGun(0, bp.NewMaxRadius)
         elseif enh == 'EnhancedMagBottleRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth3') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth3')
             end
-            
+
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:AddDamageMod(bp.AntiMatterDamageMod)
             gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
+            self:SetPainterRange(enh, 0, true)
+
             -- Remove Zephyr Jury Rigging
             self:TogglePrimaryGun(0)
-            
+
         -- Gatling Cannon
-            
+
         elseif enh == 'GatlingEnergyCannon' then
             if not Buffs['UEFGatlingHeath1'] then
                 BuffBlueprint {
@@ -888,15 +921,19 @@ EEL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', true)
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:ChangeMaxRadius(35)
+            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+
+            self:SetPainterRange(enh, bp.GatlingMaxRadius, false)
         elseif enh == 'GatlingEnergyCannonRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath1') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath1')
             end
-            
+
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'AutomaticBarrelStabalizers' then
             if not Buffs['UEFGatlingHeath2'] then
                 BuffBlueprint {
@@ -914,21 +951,25 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFGatlingHeath2')
-            
+
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
-            
+
+            self:SetPainterRange(enh, bp.GatlingMaxRadius, false)
+
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh == 'AutomaticBarrelStabalizersRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath2') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath2')
             end
-            
+
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
-            
+
+            self:SetPainterRange(enh, 0, true)
+
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'EnhancedPowerSubsystems' then
             if not Buffs['UEFGatlingHeath3'] then
@@ -947,18 +988,22 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFGatlingHeath3')
-            
+
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+
+            self:SetPainterRange(enh, bp.GatlingMaxRadius, false)
         elseif enh == 'EnhancedPowerSubsystemsRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath3') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath3')
             end
-            
+
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().GatlingMaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
             
         -- Shielding
 
@@ -1137,20 +1182,28 @@ EEL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'UEFMissileHealth1')
-            
+
             self:SetWeaponEnabledByLabel('ClusterMissiles', true)
-            
+            local cluster = self:GetWeaponByLabel('ClusterMissiles')
+            cluster:ChangeMaxRadius(bp.ClusterMaxRadius)
+
+            self:SetPainterRange(enh, bp.ClusterMaxRadius, false)
+
             -- Get rid of the range on the missiles to show this weapon's
             local wep = self:GetWeaponByLabel('TacMissile')
-            wep:ChangeMaxRadius(22)
+            wep:ChangeMaxRadius(bp.ClusterMaxRadius)
             local wep2 = self:GetWeaponByLabel('TacNukeMissile')
-            wep2:ChangeMaxRadius(22)
+            wep2:ChangeMaxRadius(bp.ClusterMaxRadius)
         elseif enh == 'ClusterMissilePackRemove' then
             if Buff.HasBuff(self, 'UEFMissileHealth1') then
                 Buff.RemoveBuff(self, 'UEFMissileHealth1')
             end
             
             self:SetWeaponEnabledByLabel('ClusterMissiles', false)
+            local cluster = self:GetWeaponByLabel('ClusterMissiles')
+            cluster:ChangeMaxRadius(cluster:GetBlueprint().MaxRadius)
+            
+            self:SetPainterRange(enh, 0, true)
             
             local wep = self:GetWeaponByLabel('TacMissile')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
