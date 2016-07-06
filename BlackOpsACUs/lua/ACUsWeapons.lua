@@ -73,7 +73,7 @@ HawkGaussCannonWeapon = Class(DefaultProjectileWeapon) {
 }
 
 UEFACUAntiMatterWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua').ACUAntiMatterMuzzle,
+    FxMuzzleFlash = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua').ACUAntiMatterMuzzle,
 }
 
 PDLaserGrid = Class(DefaultBeamWeapon) {
@@ -165,7 +165,7 @@ PDLaserGrid2 = Class(DefaultBeamWeapon) {
 }
 
 UEFACUHeavyPlasmaGatlingCannonWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua').UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
+    FxMuzzleFlash = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua').UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
     FxMuzzleFlashScale = 0.35,
 }
 

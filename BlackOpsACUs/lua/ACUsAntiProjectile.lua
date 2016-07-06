@@ -1,5 +1,5 @@
 local Entity = import('/lua/sim/Entity.lua').Entity
-local BlackOpsEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua')
 
 SeraLambdaFieldRedirector = Class(Entity) {
 

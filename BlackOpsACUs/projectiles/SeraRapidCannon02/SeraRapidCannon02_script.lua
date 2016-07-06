@@ -7,7 +7,7 @@
 
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
-local SeraRapidCannon01Projectile = import('/mods/BlackOpsACUs/lua/EXBlackOpsprojectiles.lua').SeraRapidCannon01Projectile02
+local SeraRapidCannon01Projectile = import('/mods/BlackOpsACUs/lua/ACUsProjectiles.lua').SeraRapidCannon01Projectile02
 SeraRapidCannon02 = Class(SeraRapidCannon01Projectile) {}
 TypeClass = SeraRapidCannon02
 

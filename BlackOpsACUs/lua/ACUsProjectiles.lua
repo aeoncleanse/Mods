@@ -18,7 +18,7 @@ local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local DepthCharge = import('/lua/defaultantiprojectile.lua').DepthCharge
 local util = import('/lua/utilities.lua')
-local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
+local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua')
 
 -- Null Shell
 EXNullShell = Class(Projectile) {}

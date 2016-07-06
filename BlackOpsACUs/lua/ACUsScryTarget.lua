@@ -7,11 +7,11 @@ local ScriptTask = import('/lua/sim/ScriptTask.lua').ScriptTask
 local TASKSTATUS = import('/lua/sim/ScriptTask.lua').TASKSTATUS
 local AIRESULT = import('/lua/sim/ScriptTask.lua').AIRESULT
 
-EXScryTarget = Class(ScriptTask) {
+ACUsScryTarget = Class(ScriptTask) {
     
     OnCreate = function(self,commandData)
         ScriptTask.OnCreate(self,commandData)
-        local unit = self:GetUnit():OnEXScryTarget(commandData.Location)
+        local unit = self:GetUnit():OnACUsScryTarget(commandData.Location)
     end,
     
     TaskTick = function(self)

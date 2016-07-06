@@ -8,6 +8,6 @@
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-UEFHeavyPlasmaGatlingCannon01 = Class(import('/mods/BlackOpsACUs/lua/EXBlackOpsprojectiles.lua').UEFHeavyPlasmaGatlingCannon01) {
+UEFHeavyPlasmaGatlingCannon01 = Class(import('/mods/BlackOpsACUs/lua/ACUsProjectiles.lua').UEFHeavyPlasmaGatlingCannon01) {
 }
 TypeClass = UEFHeavyPlasmaGatlingCannon01

@@ -16,7 +16,7 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 local Buff = import('/lua/sim/Buff.lua')
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local BOWeapons = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
+local BOWeapons = import('/mods/BlackOpsACUs/lua/ACUsWeapons.lua')
 local EMPWeapon = BOWeapons.EMPWeapon
 local CEMPArrayBeam02 = BOWeapons.EXCEMPArrayBeam02
 

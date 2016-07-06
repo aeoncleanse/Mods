@@ -10,7 +10,7 @@ local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsEffectTemplate = import('/mods/BlackOpsACUs/lua/EXBlackOpsEffectTemplates.lua')
+local BlackOpsEffectTemplate = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua')
 
 EEA0002 = Class(TAirUnit) {
     Parent = nil,

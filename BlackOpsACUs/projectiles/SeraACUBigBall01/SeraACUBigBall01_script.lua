@@ -6,7 +6,7 @@
 -- Summary  :  Experimental Phason Projectile script, XSL0401
 
 -- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-local SeraACUBigBall01Projectile01 = import('/mods/BlackOpsACUs/lua/EXBlackOpsprojectiles.lua').SeraACUQuantumStormProjectile01
+local SeraACUBigBall01Projectile01 = import('/mods/BlackOpsACUs/lua/ACUsProjectiles.lua').SeraACUQuantumStormProjectile01
 SeraACUBigBall01 = Class(SeraACUBigBall01Projectile01) {}
 
 TypeClass = SeraACUBigBall01

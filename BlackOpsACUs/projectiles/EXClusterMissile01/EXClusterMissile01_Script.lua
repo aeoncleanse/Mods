@@ -1,6 +1,6 @@
 -- Terran Land-Based Cruise Missile
 
-local TMissileCruiseProjectile = import('/mods/BlackOpsACUs/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
+local TMissileCruiseProjectile = import('/mods/BlackOpsACUs/lua/ACUsProjectiles.lua').UEFACUClusterMIssileProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

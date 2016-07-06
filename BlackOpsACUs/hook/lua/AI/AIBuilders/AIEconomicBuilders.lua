@@ -21,7 +21,7 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
-local BOUC = '/mods/BlackOpsACUs/lua/EXBlackopsUpgradeConditions.lua'
+local BOUC = '/mods/BlackOpsACUs/lua/ACUsUpgradeConditions.lua'
 
 do
 -- Overwriting Duncanes's To Prevent Issues
