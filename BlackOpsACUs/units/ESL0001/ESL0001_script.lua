@@ -15,7 +15,6 @@ local SDFChronotronOverChargeCannonWeapon = SWeapons.SDFChronotronCannonOverChar
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
-local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local SDFAireauWeapon = SWeapons.SDFAireauWeapon
 local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
@@ -24,11 +23,8 @@ local BOWeapons = import('/mods/BlackOpsACUs/lua/EXBlackOpsweapons.lua')
 local SeraACURapidWeapon = BOWeapons.SeraACURapidWeapon 
 local SeraACUBigBallWeapon = BOWeapons.SeraACUBigBallWeapon 
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01 
-
--- Setup as RemoteViewing child unit rather than ACUUnit
-local RemoteViewing = import('/lua/RemoteViewing.lua').RemoteViewing
-ACUUnit = RemoteViewing(ACUUnit)
+local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
+local SeraACUMissile = BOWeapons.SeraACUMissile
 
 ESL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
@@ -39,64 +35,11 @@ ESL0001 = Class(ACUUnit) {
         TargetPainter = Class(CEMPArrayBeam01) {},
         ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
         TorpedoLauncher = Class(SANUallCavitationTorpedo) {},
-        BigBallCannon = Class(SeraACUBigBallWeapon) {
-            PlayFxMuzzleChargeSequence = function(self, muzzle)
-                -- CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
-                if not self.ClawTopRotator then 
-                    self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
-                    self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
-
-                    self.unit.Trash:Add(self.ClawTopRotator)
-                    self.unit.Trash:Add(self.ClawBottomRotator)
-                end
-
-                self.ClawTopRotator:SetGoal(-15):SetSpeed(10)
-                self.ClawBottomRotator:SetGoal(15):SetSpeed(10)
-
-                SDFSinnuntheWeapon.PlayFxMuzzleChargeSequence(self, muzzle)
-
-                self:ForkThread(function()
-                    WaitSeconds(self.unit:GetBlueprint().Weapon[7].MuzzleChargeDelay)
-
-                    self.ClawTopRotator:SetGoal(0):SetSpeed(50)
-                    self.ClawBottomRotator:SetGoal(0):SetSpeed(50)
-                end)
-            end,
-        },
+        BigBallCannon = Class(SeraACUBigBallWeapon) {},
         RapidCannon = Class(SeraACURapidWeapon) {},
         AA01 = Class(SAAOlarisCannonWeapon) {},
         AA02 = Class(SAAOlarisCannonWeapon) {},
-        Missile = Class(SIFLaanseTacticalMissileLauncher) {
-            CurrentRack = 1,
-                
-            PlayFxMuzzleSequence = function(self, muzzle)
-                local bp = self:GetBlueprint()
-                self.MissileRotator = CreateRotator(self.unit, bp.RackBones[self.CurrentRack].RackBone, 'x', nil, 0, 0, 0)
-                muzzle = bp.RackBones[self.CurrentRack].MuzzleBones[1]
-                self.MissileRotator:SetGoal(-10):SetSpeed(10)
-                SIFLaanseTacticalMissileLauncher.PlayFxMuzzleSequence(self, muzzle)
-                WaitFor(self.MissileRotator)
-                WaitTicks(1)
-            end,
-                
-            CreateProjectileAtMuzzle = function(self, muzzle)
-                muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
-                if self.CurrentRack >= 2 then
-                    self.CurrentRack = 1
-                else
-                    self.CurrentRack = self.CurrentRack + 1
-                end
-                SIFLaanseTacticalMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
-            end,
-                
-            PlayFxRackReloadSequence = function(self)
-                WaitTicks(1)
-                self.MissileRotator:SetGoal(0):SetSpeed(10)
-                WaitFor(self.MissileRotator)
-                self.MissileRotator:Destroy()
-                self.MissileRotator = nil
-            end,
-        },
+        Missile = Class(SeraACUMissile) {},
         OverCharge = Class(SDFChronotronOverChargeCannonWeapon) {},
         AutoOverCharge = Class(SDFChronotronOverChargeCannonWeapon) {},
     },
@@ -1122,7 +1065,7 @@ ESL0001 = Class(ACUUnit) {
                         Regen = {
                             Add = bp.NewRegenRate,
                             Mult = 1.0,
-                        }
+                        },
                     },
                 }
             end
@@ -1209,14 +1152,13 @@ ESL0001 = Class(ACUUnit) {
             self:RemoveToggleCap('RULEUTC_CloakToggle')
 
         -- Defensive Systems
-            
-        elseif enh == 'ImprovedCombatSystems' then
 
-            if not Buffs['SeraHealthBoost19'] then
+        elseif enh == 'ImprovedCombatSystems' then
+            if not Buffs['SeraphimCombatHealth1'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost19',
-                    DisplayName = 'SeraHealthBoost19',
-                    BuffType = 'SeraHealthBoost19',
+                    Name = 'SeraphimCombatHealth1',
+                    DisplayName = 'SeraphimCombatHealth1',
+                    BuffType = 'SeraphimCombatHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1224,95 +1166,81 @@ ESL0001 = Class(ACUUnit) {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost19')
+            Buff.ApplyBuff(self, 'SeraphimCombatHealth1')
+
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            wepOC:ChangeMaxRadius(bp.OverchargeRangeMod or 44)
-            wepOC:AddDamageMod(bp.OverchargeDamageMod)        
-            self.RBComTier1 = true
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-            
+            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
+            wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'ImprovedCombatSystemsRemove' then
-            if Buff.HasBuff(self, 'SeraHealthBoost19') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost19')
+            if Buff.HasBuff(self, 'SeraphimCombatHealth1') then
+                Buff.RemoveBuff(self, 'SeraphimCombatHealth1')
             end
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
-            self:StopSiloBuild()
-            
+            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
+            wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'TacticalMisslePack' then
+            if not Buffs['SeraphimCombatHealth2'] then
+                BuffBlueprint {
+                    Name = 'SeraphimCombatHealth2',
+                    DisplayName = 'SeraphimCombatHealth2',
+                    BuffType = 'SeraphimCombatHealth',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+            Buff.ApplyBuff(self, 'SeraphimCombatHealth2')
+
             self:AddCommandCap('RULEUCC_Tactical')
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
-            if not Buffs['SeraHealthBoost20'] then
-                BuffBlueprint {
-                    Name = 'SeraHealthBoost20',
-                    DisplayName = 'SeraHealthBoost20',
-                    BuffType = 'SeraHealthBoost20',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-            Buff.ApplyBuff(self, 'SeraHealthBoost20')
-            local wepOC = self:GetWeaponByLabel('OverCharge')
-            wepOC:AddDamageMod(bp.OverchargeDamageMod2)        
-            self.wcTMissiles01 = true
 
-    
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = false
-            
+            local wepOC = self:GetWeaponByLabel('OverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
+            wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
+
+            self:SetWeaponEnabledByLabel('Missile', true)
         elseif enh == 'TacticalMisslePackRemove' then
+            if Buff.HasBuff(self, 'SeraphimCombatHealth2') then
+                Buff.RemoveBuff(self, 'SeraphimCombatHealth2')
+            end
+
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+
             local amt = self:GetTacticalSiloAmmoCount()
             self:RemoveTacticalSiloAmmo(amt or 0)
             self:StopSiloBuild()
-            if Buff.HasBuff(self, 'SeraHealthBoost19') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost19')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost20') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost20')
-            end
-            if Buff.HasBuff(self, 'SeraHealthBoost21') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost21')
-            end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
-            local wepOC = self:GetWeaponByLabel('OverCharge')
-            local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod2)        
-            self.wcTMissiles01 = false
 
-    
-            self.RBComTier1 = false
-            self.RBComTier2 = false
-            self.RBComTier3 = false
-            
+            local wepOC = self:GetWeaponByLabel('OverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
+            wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifier' then
-            if not Buffs['SeraHealthBoost21'] then
+            if not Buffs['SeraphimCombatHealth3'] then
                 BuffBlueprint {
-                    Name = 'SeraHealthBoost21',
-                    DisplayName = 'SeraHealthBoost21',
-                    BuffType = 'SeraHealthBoost21',
+                    Name = 'SeraphimCombatHealth3',
+                    DisplayName = 'SeraphimCombatHealth3',
+                    BuffType = 'SeraphimCombatHealth',
                     Stacks = 'STACKS',
                     Duration = -1,
                     Affects = {
@@ -1323,38 +1251,21 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SeraHealthBoost21')   
-            local wepOC = self:GetWeaponByLabel('OverCharge')
-            wepOC:ChangeMaxRadius(bp.OverchargeRangeMod or 44)
-            wepOC:AddDamageMod(bp.OverchargeDamageMod3)        
-            wepOC:ChangeProjectileBlueprint(bp.NewProjectileBlueprint)
-            self.RBComTier1 = true
-            self.RBComTier2 = true
-            self.RBComTier3 = true
-            
-        elseif enh == 'OverchargeAmplifierRemove' then
-            self:RemoveCommandCap('RULEUCC_Tactical')
-            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
-            local amt = self:GetTacticalSiloAmmoCount()
-            self:RemoveTacticalSiloAmmo(amt or 0)
-            self:StopSiloBuild()
+            Buff.ApplyBuff(self, 'SeraphimCombatHealth3')
 
-            if Buff.HasBuff(self, 'SeraHealthBoost21') then
-                Buff.RemoveBuff(self, 'SeraHealthBoost21')
-            end
-            if table.getn({self.lambdaEmitterTable}) > 0 then
-                for k, v in self.lambdaEmitterTable do 
-                    IssueClearCommands({self.lambdaEmitterTable[k]}) 
-                    IssueKillSelf({self.lambdaEmitterTable[k]})
-                end
-            end
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local bpDisruptOCRadius = self:GetBlueprint().Weapon[2].MaxRadius
-            wepOC:ChangeMaxRadius(bpDisruptOCRadius or 22)
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod)        
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod2)        
-            wepOC:AddDamageMod(-bp.OverchargeDamageMod3)        
-            wepOC:ChangeProjectileBlueprint(bp.NewProjectileBlueprint)
+            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
+            wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
+        elseif enh == 'OverchargeAmplifierRemove' then
+            if Buff.HasBuff(self, 'SeraphimCombatHealth3') then
+                Buff.RemoveBuff(self, 'SeraphimCombatHealth3')
+            end
+
+            local wepOC = self:GetWeaponByLabel('OverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            wepOC:AddDamageMod(bp.OverchargeDamageMod)
+            wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         end
 
         -- Remove prerequisites

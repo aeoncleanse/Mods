@@ -21,6 +21,40 @@ local EXCollisionBeamFile = import('/mods/BlackOpsUnleashed/lua/BlackOpsdefaultc
 local CWeapons = import('/lua/cybranweapons.lua')
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
+local SWeapons = import('/lua/seraphimweapons.lua')
+local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
+
+SeraACUMissile = Class(SIFLaanseTacticalMissileLauncher) {
+    CurrentRack = 1,
+        
+    PlayFxMuzzleSequence = function(self, muzzle)
+        local bp = self:GetBlueprint()
+        self.MissileRotator = CreateRotator(self.unit, bp.RackBones[self.CurrentRack].RackBone, 'x', nil, 0, 0, 0)
+        muzzle = bp.RackBones[self.CurrentRack].MuzzleBones[1]
+        self.MissileRotator:SetGoal(-10):SetSpeed(10)
+        SIFLaanseTacticalMissileLauncher.PlayFxMuzzleSequence(self, muzzle)
+        WaitFor(self.MissileRotator)
+        WaitTicks(1)
+    end,
+        
+    CreateProjectileAtMuzzle = function(self, muzzle)
+        muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
+        if self.CurrentRack >= 2 then
+            self.CurrentRack = 1
+        else
+            self.CurrentRack = self.CurrentRack + 1
+        end
+        SIFLaanseTacticalMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
+    end,
+        
+    PlayFxRackReloadSequence = function(self)
+        WaitTicks(1)
+        self.MissileRotator:SetGoal(0):SetSpeed(10)
+        WaitFor(self.MissileRotator)
+        self.MissileRotator:Destroy()
+        self.MissileRotator = nil
+    end,
+},
 
 QuantumMaelstromWeapon = Class(Weapon) {
     OnFire = function(self)
@@ -166,4 +200,27 @@ SeraACUBigBallWeapon = Class(DefaultProjectileWeapon) {
     FxChargeMuzzleFlash = EffectTemplate.SDFSinnutheWeaponChargeMuzzleFlash,
     FxChargeMuzzleFlashScale = 0.33,
     FxMuzzleFlashScale = 0.33,
+    
+    PlayFxMuzzleChargeSequence = function(self, muzzle)
+        -- CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
+        if not self.ClawTopRotator then 
+            self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
+            self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
+
+            self.unit.Trash:Add(self.ClawTopRotator)
+            self.unit.Trash:Add(self.ClawBottomRotator)
+        end
+
+        self.ClawTopRotator:SetGoal(-15):SetSpeed(10)
+        self.ClawBottomRotator:SetGoal(15):SetSpeed(10)
+
+        SDFSinnuntheWeapon.PlayFxMuzzleChargeSequence(self, muzzle)
+
+        self:ForkThread(function()
+            WaitSeconds(self.unit:GetBlueprint().Weapon[7].MuzzleChargeDelay)
+
+            self.ClawTopRotator:SetGoal(0):SetSpeed(50)
+            self.ClawBottomRotator:SetGoal(0):SetSpeed(50)
+        end)
+    end,
 }
