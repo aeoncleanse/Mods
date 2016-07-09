@@ -7,6 +7,7 @@
 
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
 local TIFArtilleryWeapon = import('/lua/terranweapons.lua').TIFArtilleryWeapon
+local Weapon = import('/lua/sim/Weapon.lua').Weapon
 
 BEL0109 = Class(TLandUnit) {
     Weapons = {
@@ -14,29 +15,32 @@ BEL0109 = Class(TLandUnit) {
             PlayFxWeaponUnpackSequence = function(self)
                 -- Remove weapon toggle when unit begins unpacking
                 self.unit.deployed = true
+
                 TIFArtilleryWeapon.PlayFxWeaponUnpackSequence(self)
             end,
-            
+
             PlayFxWeaponPackSequence = function(self)
                 TIFArtilleryWeapon.PlayFxWeaponPackSequence(self)
+
                 -- Only reinstate after unit is fully finished repacking
                 self.unit.deployed = false
             end,
-            
+
             WeaponPackingState = State(TIFArtilleryWeapon.WeaponPackingState) {
                 Main = function(self)
+                    -- Don't pack if in the lock state
+                    if self.unit.locked then
+                        ChangeState(self, self.IdleState)
+                        return
+                    end
+
                     self.unit:SetBusy(true)
 
-                    local bp = self:GetBlueprint()
-                    WaitSeconds(self:GetBlueprint().WeaponRepackTimeout)
-
                     self:AimManipulatorSetEnabled(false)
-                    if not self.unit.locked then
-                        self:PlayFxWeaponPackSequence()
-                        if bp.WeaponUnpackLocksMotion then
-                            self.unit:SetImmobile(false)
-                        end
-                    end
+                    self:PlayFxWeaponPackSequence()
+
+                    self.unit:SetImmobile(false)
+
                     ChangeState(self, self.IdleState)
                 end,
             },
@@ -44,24 +48,39 @@ BEL0109 = Class(TLandUnit) {
     },
 
     OnScriptBitSet = function(self, bit)
-        TLandUnit.OnScriptBitSet(self, bit)
         if bit == 7 then
+            self:EnableSpecialToggle()
+
+            -- Only unpack and stop if not already
             if not self.deployed then
                 local wep = self:GetWeaponByLabel('MainGun')
-                wep:ForkThread(wep.PlayFxWeaponUnpackSequence)
+                ChangeState(wep, wep.WeaponUnpackingState)
+
+                IssueStop({self})
+                IssueClearCommands({self})
             end
+
+            -- Set the lock tag. Motion will lock when the weapon unpacks
             self.locked = true
-            self:SetImmobile(true)
+        else
+            TLandUnit.OnScriptBitSet(self, bit)
         end
     end,
     
     OnScriptBitClear = function(self, bit)
-        TLandUnit.OnScriptBitClear(self, bit)
         if bit == 7 then
+            self:DisableSpecialToggle()
+
+            -- Only pack up if the unit isn't firing at something
             if not self:IsUnitState('Attacking') then
-                self:SetImmobile(false)
+                local wep = self:GetWeaponByLabel('MainGun')
+                ChangeState(wep, wep.WeaponPackingState)
             end
+
+            -- Turn off the lock. Motion will be enabled when the weapon packs up
             self.locked = false
+        else
+            TLandUnit.OnScriptBitClear(self, bit)
         end
     end,
 }

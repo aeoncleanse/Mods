@@ -149,9 +149,6 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'land',
-        ToggleCaps = {
-            RULEUTC_WeaponToggle = true,
-        },
         OrderOverrides = {
             RULEUTC_SpecialToggle = {
                 bitmapId = 'toggle-anchor',
@@ -291,9 +288,9 @@ UnitBlueprint {
             TurretYawSpeed = 60,
             Turreted = true,
             WeaponCategory = 'Artillery',
-            WeaponRepackTimeout = 2,
+            WeaponRepackTimeout = 1,
             WeaponUnpackAnimation = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_aactivate.sca',
-            WeaponUnpackAnimationRate = 2.5,
+            WeaponUnpackAnimationRate = 3,
             WeaponUnpackLocksMotion = true,
             WeaponUnpacks = true,
         },
