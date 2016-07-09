@@ -21,7 +21,7 @@ local CSoothSayerAmbient = EffectTemplate.CSoothSayerAmbient
 local BOWeapons = import('/mods/BlackOpsACUs/lua/ACUsWeapons.lua')
 local AeonACUPhasonLaser = BOWeapons.AeonACUPhasonLaser 
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01 
+local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
 local QuantumMaelstromWeapon = BOWeapons.QuantumMaelstromWeapon
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 

@@ -1874,7 +1874,6 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
-            OverChargeWeapon = true,
             ProjectileId = '/projectiles/TDFOverCharge01/TDFOverCharge01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
@@ -1898,7 +1897,11 @@ UnitBlueprint {
             TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'MOBILE',
+                'MOBILE EXPERIMENTAL',
+                'MOBILE TECH3',
+                'MOBILE TECH2',
+                'MOBILE TECH1',
+                'COMMAND',
                 'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
