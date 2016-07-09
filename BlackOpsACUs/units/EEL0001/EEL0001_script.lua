@@ -19,13 +19,15 @@ local UEFACUHeavyPlasmaGatlingCannonWeapon = BOWeapons.UEFACUHeavyPlasmaGatlingC
 local EXFlameCannonWeapon = BOWeapons.HawkGaussCannonWeapon
 local UEFACUAntiMatterWeapon = BOWeapons.UEFACUAntiMatterWeapon
 local PDLaserGrid = BOWeapons.PDLaserGrid2
+local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
 
-EEL0001 = Class(ACUUnit) {   
+EEL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
 
     Weapons = {
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
+        TargetPainter = Class(CEMPArrayBeam01) {},
         DeathWeapon = Class(DeathNukeWeapon) {},
         FlameCannon = Class(EXFlameCannonWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
