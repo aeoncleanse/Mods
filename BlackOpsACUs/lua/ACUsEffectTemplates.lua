@@ -7,7 +7,7 @@
 
 EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
-EXBlackopsBpPath = '/mods/BlackOpsACUs/effects/emitters/'
+EmtBpPathAlt = '/mods/BlackOpsACUs/effects/emitters/'
 
 OmegaOverChargeLandHit = {
     EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_01_emit.bp',
@@ -104,19 +104,19 @@ ACUAntiMatterMuzzle = {
 
 -- Overrides the Unleashed one
 ACUAntiMatter01 = {
-    EXBlackopsBpPath .. 'examc_flash_01_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_01_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_02_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_03_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_04_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_05_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_07_emit.bp',
-    EXBlackopsBpPath .. 'examc_hit_08_emit.bp',
-    EXBlackopsBpPath .. 'examc_ring_01_emit.bp',
-    EXBlackopsBpPath .. 'examc_ring_02_emit.bp',
-    EXBlackopsBpPath .. 'examc_ring_03_emit.bp',
-    EXBlackopsBpPath .. 'examc_ring_04_emit.bp',
-    EXBlackopsBpPath .. 'examc_shoackwave_01_emit.bp',
+    EmtBpPathAlt .. 'examc_flash_01_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_01_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_02_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_03_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_04_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_05_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_07_emit.bp',
+    EmtBpPathAlt .. 'examc_hit_08_emit.bp',
+    EmtBpPathAlt .. 'examc_ring_01_emit.bp',
+    EmtBpPathAlt .. 'examc_ring_02_emit.bp',
+    EmtBpPathAlt .. 'examc_ring_03_emit.bp',
+    EmtBpPathAlt .. 'examc_ring_04_emit.bp',
+    EmtBpPathAlt .. 'examc_shoackwave_01_emit.bp',
 }
 
 -- UEF ACU Gattling Cannon
@@ -130,16 +130,16 @@ UEFACUHeavyPlasmaGatlingCannonMuzzleFlash = {
 
 -- Serephim Quantum Storm
 SeraACUQuantumStormProjectileHit01 = {
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_01_emit.bp', -- small blue flash
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_02_emit.bp', -- flash
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_03_emit.bp', -- shockwave
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_04_emit.bp', -- dark glow
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_05_emit.bp', -- blue glow
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_06_emit.bp', -- blue shockwave
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_07_emit.bp', -- blue Spikes
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_08_emit.bp', -- dark mist
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_09_emit.bp', -- blue sparks
-    EXBlackopsBpPath .. 'seraphim_experimental_phasonproj_hit_10_emit.bp', -- lightning
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_01_emit.bp', -- small blue flash
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_02_emit.bp', -- flash
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_03_emit.bp', -- shockwave
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_04_emit.bp', -- dark glow
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_05_emit.bp', -- blue glow
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_06_emit.bp', -- blue shockwave
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_07_emit.bp', -- blue Spikes
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_08_emit.bp', -- dark mist
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_09_emit.bp', -- blue sparks
+    EmtBpPathAlt .. 'seraphim_experimental_phasonproj_hit_10_emit.bp', -- lightning
 }
 
 SeraACUQuantumStormProjectileHit02 = {
@@ -150,50 +150,50 @@ SeraACUQuantumStormProjectileHitUnit = table.concatenate(SeraACUQuantumStormProj
 
 -- Serephim Rapid Cannon
 SeraACURapidCannonPoly = {
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_01_emit.bp',
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_02_emit.bp',
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_03_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_01_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_02_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_03_emit.bp',
 }
 
 SeraACURapidCannonPoly02 = {
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_04_emit.bp',
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_05_emit.bp',
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_06_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_04_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_05_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_06_emit.bp',
 }
 
 SeraACURapidCannonPoly03 = {
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_07_emit.bp',
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_08_emit.bp',
-    EXBlackopsBpPath .. 'seraphim_aireau_autocannon_polytrail_09_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_07_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_08_emit.bp',
+    EmtBpPathAlt .. 'seraphim_aireau_autocannon_polytrail_09_emit.bp',
 }
 
 -- Cybran EMP Array
 CybranACUEMPArrayHit01 = {
-    EXBlackopsBpPath .. 'exemp_flash_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_flash_02_emit.bp',
-    EXBlackopsBpPath .. 'exemp_flash_03_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_02_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_03_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_04_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_05_emit.bp',
-    EXBlackopsBpPath .. 'exemp_hit_06_emit.bp',
-    EXBlackopsBpPath .. 'exemp_implosion_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_01_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_02_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_03_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_07_emit.bp',
+    EmtBpPathAlt .. 'exemp_flash_01_emit.bp',
+    EmtBpPathAlt .. 'exemp_flash_02_emit.bp',
+    EmtBpPathAlt .. 'exemp_flash_03_emit.bp',
+    EmtBpPathAlt .. 'exemp_hit_01_emit.bp',
+    EmtBpPathAlt .. 'exemp_hit_02_emit.bp',
+    EmtBpPathAlt .. 'exemp_hit_03_emit.bp',
+    EmtBpPathAlt .. 'exemp_hit_04_emit.bp',
+    EmtBpPathAlt .. 'exemp_hit_05_emit.bp',
+    EmtBpPathAlt .. 'exemp_hit_06_emit.bp',
+    EmtBpPathAlt .. 'exemp_implosion_01_emit.bp',
+    EmtBpPathAlt .. 'exemp_shockwave_01_emit.bp',
+    EmtBpPathAlt .. 'exemp_shockwave_02_emit.bp',
+    EmtBpPathAlt .. 'exemp_shockwave_03_emit.bp',
+    EmtBpPathAlt .. 'exemp_shockwave_07_emit.bp',
 }
 
 CybranACUEMPArrayHit02 = {
-    EXBlackopsBpPath .. 'exemp_shockwave_04_emit.bp',
-    EXBlackopsBpPath .. 'exemp_shockwave_05_emit.bp',
+    EmtBpPathAlt .. 'exemp_shockwave_04_emit.bp',
+    EmtBpPathAlt .. 'exemp_shockwave_05_emit.bp',
 }
 
 -- UEF Gatling Projectiles
-UEFHeavyPlasmaGatlingCannon03PolyTrail = EXBlackopsBpPath .. 'exgc_l1upgrade_polytrail_01_emit.bp'
-UEFHeavyPlasmaGatlingCannon01PolyTrail = EXBlackopsBpPath .. 'exgc_l2upgrade_polytrail_01_emit.bp'
-UEFHeavyPlasmaGatlingCannon02PolyTrail = EXBlackopsBpPath .. 'exgc_l3upgrade_polytrail_01_emit.bp'
+UEFHeavyPlasmaGatlingCannon03PolyTrail = EmtBpPathAlt .. 'exgc_l1upgrade_polytrail_01_emit.bp'
+UEFHeavyPlasmaGatlingCannon01PolyTrail = EmtBpPathAlt .. 'exgc_l2upgrade_polytrail_01_emit.bp'
+UEFHeavyPlasmaGatlingCannon02PolyTrail = EmtBpPathAlt .. 'exgc_l3upgrade_polytrail_01_emit.bp'
 
 -- UEF Cruise Missile 01
 UEFCruiseMissile01Trails = {
@@ -202,7 +202,7 @@ UEFCruiseMissile01Trails = {
 }
 
 -- Sat Death
-SatDeathSmoke = {EXBlackopsBpPath .. 'sat_death_smoke_emit.bp',}
+SatDeathSmoke = {EmtBpPathAlt .. 'sat_death_smoke_emit.bp',}
 SatDamageFire01 = {
     EmtBpPath .. 'destruction_damaged_fire_01_emit.bp',
     EmtBpPath .. 'destruction_damaged_fire_distort_01_emit.bp',

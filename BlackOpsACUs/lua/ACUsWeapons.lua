@@ -54,7 +54,7 @@ SeraACUMissile = Class(SIFLaanseTacticalMissileLauncher) {
         self.MissileRotator:Destroy()
         self.MissileRotator = nil
     end,
-},
+}
 
 QuantumMaelstromWeapon = Class(Weapon) {
     OnFire = function(self)

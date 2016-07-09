@@ -1,4 +1,20 @@
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
+
 -- Section including code for the ACUs Expansion Mod
+
+-- Base class that defines supreme commander specific defaults
+HawkCollisionBeam = Class(CollisionBeam) {
+    FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
+    FxImpactLand = {},
+    FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
+    FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
+    FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
+    FxImpactProp = {},
+    FxImpactShield = {},    
+    FxImpactNone = {},
+}
+
 PDLaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeam = {'/effects/emitters/em_pdlaser_beam_01_emit.bp'},
     FxBeamEndPoint = {
