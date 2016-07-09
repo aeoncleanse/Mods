@@ -280,7 +280,7 @@ UnitBlueprint {
             'BUILTBYTIER3COMMANDER AEON',
             'BUILTBYTIER4COMMANDER AEON',
         },
-        MaxBuildDistance = 15,
+        MaxBuildDistance = 10,
         NaturalProducer = true,
         NeedToFaceTargetToBuild = false,
         ProductionPerSecondEnergy = 20,

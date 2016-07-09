@@ -278,7 +278,7 @@ UnitBlueprint {
             'BUILTBYTIER3COMMANDER SERAPHIM',
             'BUILTBYTIER4COMMANDER SERAPHIM',
         },
-        MaxBuildDistance = 15,
+        MaxBuildDistance = 10,
         NaturalProducer = true,
         NeedToFaceTargetToBuild = false,
         ProductionPerSecondEnergy = 20,
