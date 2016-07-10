@@ -9,3 +9,4 @@ selectable = true
 enabled = true
 exclusive = false
 ui_only = false
+special_thanks = "Uveso, Softles, Nojoke185, ZephyrWarrior, Raistlfiren, Nocaps"
