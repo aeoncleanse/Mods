@@ -134,7 +134,7 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'Aeon',
-        Icon = 'land',
+        Icon = 'amph',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
         UnitName = '<LOC bab1202_name>HC-2',

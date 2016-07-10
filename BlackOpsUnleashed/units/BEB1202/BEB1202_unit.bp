@@ -127,7 +127,7 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'UEF',
-        Icon = 'land',
+        Icon = 'amph',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
         UnitName = '<LOC beb1202_name>HCPP - X2000',
