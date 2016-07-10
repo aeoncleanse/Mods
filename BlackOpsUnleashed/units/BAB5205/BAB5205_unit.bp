@@ -134,7 +134,7 @@ UnitBlueprint {
             RULEUCC_Transport = true,
         },
         FactionName = 'Aeon',
-        Icon = 'amph',
+        Icon = 'land',
         OrderOverrides = {
             RULEUCC_Transport = {
                 bitmapId = 'deploy',
