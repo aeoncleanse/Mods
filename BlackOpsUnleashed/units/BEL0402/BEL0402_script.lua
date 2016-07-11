@@ -1,6 +1,4 @@
-local Buff = import('/lua/sim/Buff.lua')
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
-local TWeapons = import('/lua/terranweapons.lua')
 local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local HawkGaussCannonWeapon = Weapons2.HawkGaussCannonWeapon
@@ -163,8 +161,6 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             KillThread(self.HeartBeatThread)
             -- Clean up any in-progress construction
             ChangeState(self, self.DeadState)
-            self.Trash:Destroy()
-            self.Trash = TrashBag()
             -- Immediately kill existing drones
             if next(self.DroneTable) then
                 for name, drone in self.DroneTable do
@@ -639,9 +635,9 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             local position = self:GetPosition(vBone)
             local offset = utilities.GetDifferenceVector(position, basePosition)
             velocity = utilities.GetDirectionVector(position, basePosition) 
-            velocity.x = velocity.x + utilities.GetRandomFloat(-0.45, 0.45)
-            velocity.z = velocity.z + utilities.GetRandomFloat(-0.45, 0.45)
-            velocity.y = velocity.y + utilities.GetRandomFloat(0.0, 0.65)
+            velocity.x = velocity.x + RandomFloat(-0.45, 0.45)
+            velocity.z = velocity.z + RandomFloat(-0.45, 0.45)
+            velocity.y = velocity.y + RandomFloat(0.0, 0.65)
 
             -- Ammo Cookoff projectiles and damage
             self.DamageData = {
@@ -895,6 +891,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         local army = self:GetArmy()
         CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_003_albedo', '', 'Albedo', 40, 40, 500, 0, army)
         self:CreateWreckage(0.1)
+        self.Trash:Destroy()
         self:Destroy()
     end,
 }
