@@ -124,7 +124,7 @@ UnitBlueprint {
             },
         },
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Advanced',
+        TechLevel = 'RULEUTL_Basic',
         UnitName = '<LOC bab5202_name>Enclave',
         UnitWeight = 1,
     },

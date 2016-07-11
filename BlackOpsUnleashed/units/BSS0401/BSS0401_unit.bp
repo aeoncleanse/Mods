@@ -191,7 +191,7 @@ UnitBlueprint {
         },
         FactionName = 'Seraphim',
         Icon = 'sea',
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Experimental',
         UnitName = '<LOC BSS0401_name>Hovatha-Hauthu',
         UnitWeight = 1,
     },

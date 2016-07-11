@@ -128,7 +128,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'amph',
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC bab1202_name>HC-3',
         UnitWeight = 1,
         UpgradesFrom = 'urb1102',

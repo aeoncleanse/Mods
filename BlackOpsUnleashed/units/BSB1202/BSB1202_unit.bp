@@ -135,7 +135,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'amph',
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC bsb1202_name>Uya-atoh',
         UnitWeight = 1,
         UpgradesFrom = 'xsb1102',

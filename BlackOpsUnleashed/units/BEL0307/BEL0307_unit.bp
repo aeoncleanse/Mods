@@ -239,7 +239,7 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'amph',
-        TechLevel = 'RULEUTL_Advanced',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BEL0307_name>Juggernaut',
         UnitWeight = 1,
     },
@@ -517,7 +517,7 @@ UnitBlueprint {
             MaxRadius = 40,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             HeadingArcCenter = 90,
             HeadingArcRange = 100,
@@ -611,7 +611,7 @@ UnitBlueprint {
             MaxRadius = 40,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             HeadingArcCenter = -90,
             HeadingArcRange = 100,

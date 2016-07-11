@@ -129,7 +129,7 @@ UnitBlueprint {
             },
         },
         MovementEffects = {
-        
+
             Land = {
                 Effects = {
                     {
@@ -141,7 +141,7 @@ UnitBlueprint {
                         Type = 'GroundKickup01',
                     },
                 },
-                
+
                 Footfall = {
                     Bones = {
                         {
@@ -227,7 +227,7 @@ UnitBlueprint {
         },
         FactionName = 'Cybran',
         Icon = 'amph',
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Experimental',
         ToggleCaps = {
             RULEUTC_WeaponToggle = true,
         },

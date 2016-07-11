@@ -167,7 +167,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Advanced',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BAB2308_name>Purifier',
         UnitWeight = 1,
     },

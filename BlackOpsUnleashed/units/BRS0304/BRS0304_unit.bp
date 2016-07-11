@@ -208,7 +208,7 @@ UnitBlueprint {
                 bitmapId = 'toggle-weapon-air',
             },
         },
-        TechLevel = 'RULEUTL_Advanced',
+        TechLevel = 'RULEUTL_Secret',
         ToggleCaps = {
             RULEUTC_WeaponToggle = true,
         },
@@ -509,7 +509,7 @@ UnitBlueprint {
             DoNotCollideList = {
                 'TORPEDO',
                 'MISSILE',
-            },            
+            },
             RackBones = {
                 {
                     MuzzleBones = {

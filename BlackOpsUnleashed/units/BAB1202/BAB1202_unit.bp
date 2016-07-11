@@ -136,7 +136,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'amph',
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC bab1202_name>HC-2',
         UnitWeight = 1,
         UpgradesFrom = 'uab1102',

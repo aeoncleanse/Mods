@@ -155,7 +155,7 @@ UnitBlueprint {
                 helpText = 'BO_lock',
             },
         },
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Basic',
         ToggleCaps = {
             RULEUTC_SpecialToggle = true,
         },

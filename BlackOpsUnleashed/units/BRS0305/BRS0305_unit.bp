@@ -255,7 +255,7 @@ UnitBlueprint {
         },
         FactionName = 'Cybran',
         Icon = 'sea',
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BRS0305_name>Leviathan',
         UnitWeight = 1,
     },

@@ -190,7 +190,7 @@ UnitBlueprint {
         },
         FactionName = 'UEF',
         Icon = 'sea',
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Experimental',
         UnitName = '<LOC BES0402_name>Conquest Class',
         UnitWeight = 1,
     },
