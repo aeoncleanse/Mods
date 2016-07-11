@@ -161,8 +161,6 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             KillThread(self.HeartBeatThread)
             -- Clean up any in-progress construction
             ChangeState(self, self.DeadState)
-            self.Trash:Destroy()
-            self.Trash = TrashBag()
             -- Immediately kill existing drones
             if next(self.DroneTable) then
                 for name, drone in self.DroneTable do
@@ -893,6 +891,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         local army = self:GetArmy()
         CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_003_albedo', '', 'Albedo', 40, 40, 500, 0, army)
         self:CreateWreckage(0.1)
+        self.Trash:Destroy()
         self:Destroy()
     end,
 }
