@@ -168,7 +168,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC brb1106_name>Stain',
         UnitWeight = 1,
     },

@@ -145,7 +145,7 @@ UnitBlueprint {
         ToggleCaps = {
             RULEUTC_IntelToggle = true,
         },
-        TechLevel = 'RULEUTL_Advanced',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC bab5205_name>Sanctuary',
         UnitWeight = 1,
     },

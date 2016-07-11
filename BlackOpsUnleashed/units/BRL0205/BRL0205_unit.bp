@@ -181,7 +181,7 @@ UnitBlueprint {
         ToggleCaps = {
             RULEUTC_CloakToggle = true,
         },
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC BRL0205_name>Scorpion',
         UnitWeight = 1,
     },
@@ -232,7 +232,7 @@ UnitBlueprint {
     StrategicIconSortPriority = 135,
     Transport = {
         CanFireFromTransport = false,
-        TransporClass = 2, 
+        TransporClass = 2,
     },
     Veteran = {
         Level1 = 6,

@@ -136,7 +136,7 @@ UnitBlueprint {
                         Scale = 4.2,
                         Type = 'SeaIdle01',
                     },
-                    
+
                 },
             },
         },
@@ -168,7 +168,7 @@ UnitBlueprint {
                         Scale = 1.5,
                         Type = 'RightFrontWake',
                     },
-                    
+
                     {
                         Bones = {
                             'Back_Left_Wake',
@@ -219,7 +219,7 @@ UnitBlueprint {
                 helpText = 'deploy',
             },
         },
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Experimental',
         UnitName = '<LOC BRS0402_name>SeaDragon MKII Class',
         UnitWeight = 1,
     },
@@ -349,7 +349,7 @@ UnitBlueprint {
             RackRecoilDistance = 0,
             RackReloadTimeout = 0,
             RackSalvoChargeTime = 1.5,
-            RackSalvoFiresAfterCharge = false, 
+            RackSalvoFiresAfterCharge = false,
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
             RackSlavedToTurret = true,
@@ -446,7 +446,7 @@ UnitBlueprint {
             RackRecoilDistance = 0,
             RackReloadTimeout = 0,
             RackSalvoChargeTime = 1.5,
-            RackSalvoFiresAfterCharge = false, 
+            RackSalvoFiresAfterCharge = false,
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
             RackSlavedToTurret = true,
@@ -483,7 +483,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire Naval',
         },
-        
+
         {
             AboveWaterTargetsOnly = true,
             Audio = {

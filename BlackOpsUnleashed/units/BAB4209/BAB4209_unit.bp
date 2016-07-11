@@ -197,7 +197,7 @@ UnitBlueprint {
                 helpText = 'Toggle Anti-Teleport Field',
             },
         },
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC bab4209_name>Quantum Wake Generator',
         UnitWeight = 1,
         UpgradesTo = 'bab4309',

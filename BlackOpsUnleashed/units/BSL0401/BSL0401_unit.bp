@@ -240,12 +240,12 @@ UnitBlueprint {
             Attachpoint = 'AttachSpecial07',
             UnitID = 'BSA0004',
         },
-    }, 
+    },
     Economy = {
         BuildCostEnergy = 156000,
         BuildCostMass = 15600,
         BuildTime = 11700,
-        BuildRate = 30, 
+        BuildRate = 30,
     },
     General = {
         Category = 'Direct Fire',
@@ -266,7 +266,7 @@ UnitBlueprint {
         },
         FactionName = 'Seraphim',
         Icon = 'amph',
-        TechLevel = 'RULEUTL_Secret',
+        TechLevel = 'RULEUTL_Experimental',
         UnitName = '<LOC bsl0401_name>Yenzotha',
         UnitWeight = 1,
         ToggleCaps = {
@@ -282,7 +282,7 @@ UnitBlueprint {
                 bitmapId = 'area-assist',
                 helpText = 'drone_assist',
             },
-        }, 
+        },
     },
     Intel = {
         VisionRadius = 50,
@@ -346,7 +346,7 @@ UnitBlueprint {
         Level5 = 125,
     },
     Weapon = {
-        {   
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -397,7 +397,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             NotExclusive = true,
             RackBones = {
@@ -446,7 +446,7 @@ UnitBlueprint {
             WeaponUnpacks = true,
             WeaponCategory = 'Direct Fire Experimental',
         },
-        {   
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -499,7 +499,7 @@ UnitBlueprint {
             NotExclusive = true,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             RackBones = {
                 {
@@ -547,7 +547,7 @@ UnitBlueprint {
             WeaponUnpacks = true,
             WeaponCategory = 'Direct Fire Experimental',
         },
-        {   
+        {
             AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
             AimsStraightOnDisable = true,
@@ -600,7 +600,7 @@ UnitBlueprint {
             NotExclusive = true,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             RackBones = {
                 {

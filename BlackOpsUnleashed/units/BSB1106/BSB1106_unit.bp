@@ -163,7 +163,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'land',
         SelectionPriority = 5,
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC bsb1106_name>Orba',
         UnitWeight = 1,
     },

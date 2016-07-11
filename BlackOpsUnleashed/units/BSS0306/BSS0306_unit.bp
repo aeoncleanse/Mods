@@ -166,7 +166,7 @@ UnitBlueprint {
         },
         FactionName = 'Seraphim',
         Icon = 'sea',
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BSS0306_name>Ithaluthe-Esel',
         UnitWeight = 1,
     },

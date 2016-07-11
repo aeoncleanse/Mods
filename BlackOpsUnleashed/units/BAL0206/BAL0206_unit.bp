@@ -134,7 +134,7 @@ UnitBlueprint {
         },
         FactionName = 'Aeon',
         Icon = 'land',
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC bal0206_name>Zealot',
         UnitWeight = 1,
     },
