@@ -1,0 +1,40 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "ual0001",
+    Economy = {
+        BuildCostMass = 1000,
+    },
+    Veteran = {
+        RequirementMult = 1,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uel0001",
+    Economy = {
+        BuildCostMass = 1000,
+    },
+    Veteran = {
+        RequirementMult = 1,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "url0001",
+    Economy = {
+        BuildCostMass = 1000,
+    },
+    Veteran = {
+        RequirementMult = 1,
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsl0001",
+    Economy = {
+        BuildCostMass = 1000,
+    },
+    Veteran = {
+        RequirementMult = 1,
+    },
+}
