@@ -1,0 +1,277 @@
+------------------------------------------------------------------------------------------
+--  File     :  /merge/bomber_units.lua
+--  Modded by:  Resin_Smoker
+--  Summary  :  Simple Merge file to add flags required for hover_bomber_fix    
+--  Copyright © 2014 Gas Powered Games, Inc.  All rights reserved.
+------------------------------------------------------------------------------------------ 
+
+------------------------------------------------------------------------------------------ 
+-- Aeon Units
+------------------------------------------------------------------------------------------ 
+--> Aeon T1 Attack Bomber, Shimmer
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="uaa0103",
+	
+    Air = {
+    	BreakOffDistance = 35,    	
+		CombatTurnSpeed = 1.0,
+		RandomBreakOffDistanceMult = 1.0,
+		TightTurnMultiplier = 1.00,
+    },
+    
+    DesiredShooterCap = 1,
+    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    
+	Weapon = {
+		{
+			BombDropThreshold = 3.0,
+			FiringTolerance = 6,
+			HeadingArcRange = 10.0,
+			MinRadius = 5,
+			NeedToComputeBombDrop = true,
+			RangeCategory = 'UWRC_DirectFire',
+			SlavedToBody = true,
+			SlavedToBodyArcRange = 10.0,
+            TargetPriorities = {
+				'MOBILE ENGINEER',
+                'MOBILE ANTIAIR',
+                'MOBILE TECH1',						
+                'STRUCTURE ENERGYPRODUCTION',                						
+                'ALLUNITS',
+            },
+		},
+	},	
+}
+
+--> Aeon T2 Torpedo Bomber, Skimmer
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="uaa0204",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+--> Aeon T3 Strat Bomber, Shocker
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="uaa0304",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+--> Aeon T3 Torpedo Bomber, Solace
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xaa0306",
+	
+    Categories = {
+    	'BOMBER',
+    },
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+------------------------------------------------------------------------------------------ 
+-- Cybran Units
+------------------------------------------------------------------------------------------ 
+--> Cybran T1 Attack Bomber, Zeus
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="ura0103",
+	
+    Air = {
+    	BreakOffDistance = 35,    	
+		CombatTurnSpeed = 1.0,
+		RandomBreakOffDistanceMult = 1.0,
+		TightTurnMultiplier = 1.00,
+    },
+    
+    DesiredShooterCap = 1,
+    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    
+	Weapon = {
+		{
+			BombDropThreshold = 3.0,
+			FiringTolerance = 6,			
+			HeadingArcRange = 10.0,
+			MinRadius = 5,
+			NeedToComputeBombDrop = true,
+			RangeCategory = 'UWRC_DirectFire',
+			SlavedToBody = true,
+			SlavedToBodyArcRange = 10.0,
+            TargetPriorities = {
+				'MOBILE ENGINEER',
+                'MOBILE ANTIAIR',
+                'MOBILE TECH1',						
+                'STRUCTURE ENERGYPRODUCTION',                						
+                'ALLUNITS',
+            },
+		},
+	},		
+}
+
+--> Cybran T2 Fighter / Bomber, Corsair
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="dra0202",
+    
+	Physics = {
+		Elevation = 16,							#18
+	},	
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       	
+	Weapon = {
+		{
+		},
+		{
+			MuzzleVelocity = 30,				#35
+		},
+	}, 	
+}
+
+--> Cybran T2 Torpedo Bomber, Cormarant
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="ura0204",
+
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh    
+}
+
+--> Cybran T3 Strat Bomber, Revenat
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="ura0304",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+------------------------------------------------------------------------------------------ 
+-- Seraphim Units
+------------------------------------------------------------------------------------------ 
+--> Seraphim T1 Attack Bomber, Sinnve
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xsa0103",
+	
+    Air = {
+    	BreakOffDistance = 35,    	
+		CombatTurnSpeed = 1.0,
+		RandomBreakOffDistanceMult = 1.0,
+		TightTurnMultiplier = 1.00,
+    },
+    
+    DesiredShooterCap = 1,
+    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    
+	Weapon = {
+		{
+			BombDropThreshold = 3.0,
+			FiringTolerance = 6,			
+			HeadingArcRange = 10.0,
+			MinRadius = 5,
+			NeedToComputeBombDrop = true,
+			RangeCategory = 'UWRC_DirectFire',
+			SlavedToBody = true,
+			SlavedToBodyArcRange = 10.0,
+            TargetPriorities = {
+				'MOBILE ENGINEER',
+                'MOBILE ANTIAIR',
+                'MOBILE TECH1',						
+                'STRUCTURE ENERGYPRODUCTION',                							
+                'ALLUNITS',
+            },
+		},
+	},		
+}
+
+--> Seraphim T2 Fighter/Bomber, Notha
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xsa0202",
+	
+    Categories = {
+    	'BOMBER',
+    }, 
+    
+    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+--> Seraphim T2 Torpedo Bomber, Uosioz
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xsa0204",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+--> Seraphim T3 Strat Bomber, Sinntha
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xsa0304",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+--> Seraphim Experimental Bomber, Ahwassa
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xsa0402",
+	
+    Categories = {
+    	'BOMBER',
+    },    		
+}
+
+------------------------------------------------------------------------------------------ 
+-- UEF Units
+------------------------------------------------------------------------------------------ 
+--> Seraphim T1 Attack Bomber, Scorcher
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="uea0103",
+	
+    Air = {
+    	BreakOffDistance = 35,    	
+		CombatTurnSpeed = 1.0,
+		RandomBreakOffDistanceMult = 1.0,
+		TightTurnMultiplier = 1.00,
+    },
+    
+    DesiredShooterCap = 1,
+    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+	Weapon = {
+		{
+			BombDropThreshold = 3.0,
+			FiringTolerance = 6,			
+			HeadingArcRange = 10.0,
+			MinRadius = 5,
+			NeedToComputeBombDrop = true,
+			RangeCategory = 'UWRC_DirectFire',
+			SlavedToBody = true,
+			SlavedToBodyArcRange = 10.0,
+            TargetPriorities = {
+				'MOBILE ENGINEER',
+                'MOBILE ANTIAIR',
+                'MOBILE TECH1',						
+                'STRUCTURE ENERGYPRODUCTION',                							
+                'ALLUNITS',
+            },
+		},
+	},		
+}
+
+--> UEF T2 Torpedo Bomber, Stork
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="uea0204",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
+
+--> UEF T3 Strat Bomber, Ambassador
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="uea0304",
+    
+	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+}
