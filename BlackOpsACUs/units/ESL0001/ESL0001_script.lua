@@ -1,9 +1,6 @@
 -----------------------------------------------------------------
-
 -- Author(s):  Exavier Macbeth
-
 -- Summary  :  BlackOps: Adv Command Unit - Serephim ACU
-
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
