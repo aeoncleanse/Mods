@@ -1,0 +1,66 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xss0302",						#Seraphim Battleship
+	Weapon = {
+		{
+		},
+		{
+		},
+		{
+		},
+		{
+		},
+		{
+		},
+		{
+		},
+		{											#Nuclear Weapon
+			NukeOuterRingDamage = 3000,				#500
+		},
+	},
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uab2305",						#Aeon Strategic Missile Launcher
+	Weapon = {
+		{
+			NukeOuterRingDamage = 5000,				#500
+		},
+	},
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "ueb2305",						#UEF Strategic Missile Launcher
+	Weapon = {
+		{
+			NukeOuterRingDamage = 5000,				#500
+		},
+	},
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "urb2305",						#Cybran Strategic Missile Launcher
+	Weapon = {
+		{
+			NukeOuterRingDamage = 5000,				#500
+		},
+	},
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsb2305",						#Seraphim Strategic Missile Launcher
+	Weapon = {
+		{
+			NukeOuterRingDamage = 5000,				#500
+		},
+	},
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsb2401",						#Seraphim Experimental Strategic Missile Launcher
+	Weapon = {
+		{
+			NukeOuterRingDamage = 10000,			#7500
+		},
+	},
+}

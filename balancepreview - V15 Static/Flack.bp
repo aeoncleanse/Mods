@@ -1,0 +1,45 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uab2204",						#Aeon T2 Static Flack
+    Weapon = {
+        {
+            Damage = 320,
+            DamageRadius = 3.5,
+            MuzzleVelocity = 35,
+            RateOfFire = 0.5,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "ueb2204",						#UEF T2 Static Flack
+    Weapon = {
+        {
+            Damage = 150,
+            DamageRadius = 4,
+            MuzzleVelocity = 35,
+            RateofFire = 1,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "urb2204",						#Cybran T2 Static Flack
+    Weapon = {
+        {
+            DamageRadius = 6,
+            MuzzleVelocity = 30,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsb2204",						#Seraphim T2 Static Flack
+    Weapon = {
+        {
+            Damage = 56,
+            DamageRadius = 5,
+            MuzzleVelocity = 30,
+        },
+    },
+}

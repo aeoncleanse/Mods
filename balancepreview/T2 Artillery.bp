@@ -1,0 +1,53 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "ueb2303",						#UEF T2 Artillery
+    Economy = {
+        BuildTime = 1447,
+    },
+	Weapon = {
+        {
+            FiringRandomness = 1.75,
+            DamageRadius = 3.5,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "uab2303",						#Aeon T2 Artillery
+    Economy = {
+        BuildTime = 1937,
+    },
+	Weapon = {
+        {
+            FiringRandomness = 1.25,
+            DamageRadius = 2.5,
+        },
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "urb2303",						#Cybran T2 Artillery
+    Economy = {
+        BuildTime = 1320,
+    },
+	Weapon = {
+        {
+            FiringRandomness = 2,
+            DamageRadius = 4,
+        },
+    },
+}
+UnitBlueprint {
+	Merge = true,
+	BlueprintId = "xsb2303",						#Seraphim T2 Artillery
+    Economy = {
+        BuildTime = 1509,
+    },
+	Weapon = {
+        {
+            FiringRandomness = 1.5,
+            DamageRadius = 3,
+        },
+    },
+}
