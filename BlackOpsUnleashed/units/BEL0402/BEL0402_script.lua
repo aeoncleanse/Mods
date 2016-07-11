@@ -637,9 +637,9 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             local position = self:GetPosition(vBone)
             local offset = utilities.GetDifferenceVector(position, basePosition)
             velocity = utilities.GetDirectionVector(position, basePosition) 
-            velocity.x = velocity.x + utilities.GetRandomFloat(-0.45, 0.45)
-            velocity.z = velocity.z + utilities.GetRandomFloat(-0.45, 0.45)
-            velocity.y = velocity.y + utilities.GetRandomFloat(0.0, 0.65)
+            velocity.x = velocity.x + RandomFloat(-0.45, 0.45)
+            velocity.z = velocity.z + RandomFloat(-0.45, 0.45)
+            velocity.y = velocity.y + RandomFloat(0.0, 0.65)
 
             -- Ammo Cookoff projectiles and damage
             self.DamageData = {
