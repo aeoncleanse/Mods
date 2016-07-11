@@ -1,6 +1,4 @@
-local Buff = import('/lua/sim/Buff.lua')
 local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
-local TWeapons = import('/lua/terranweapons.lua')
 local Weapons2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local HawkGaussCannonWeapon = Weapons2.HawkGaussCannonWeapon
