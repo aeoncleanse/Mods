@@ -15,8 +15,8 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local SANUallCavitationTorpedo = SWeapons.SANUallCavitationTorpedo
 local BOWeapons = import('/mods/BlackOpsACUs/lua/ACUsWeapons.lua')
-local SeraACURapidWeapon = BOWeapons.SeraACURapidWeapon 
-local SeraACUBigBallWeapon = BOWeapons.SeraACUBigBallWeapon 
+local SeraACURapidWeapon = BOWeapons.SeraACURapidWeapon
+local SeraACUBigBallWeapon = BOWeapons.SeraACUBigBallWeapon
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
 local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
 local SeraACUMissile = BOWeapons.SeraACUMissile
@@ -1282,6 +1282,10 @@ ESL0001 = Class(ACUUnit) {
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
