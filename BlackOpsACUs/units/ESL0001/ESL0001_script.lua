@@ -1004,6 +1004,10 @@ ESL0001 = Class(ACUUnit) {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
@@ -1030,6 +1034,10 @@ ESL0001 = Class(ACUUnit) {
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
