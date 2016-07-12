@@ -51,12 +51,8 @@ EAL0001 = Class(ACUUnit) {
 
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
-    
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
-        
+
+    HideBonesForStart = function(self)
         self:HideBone('Engineering', true)
         self:HideBone('Combat_Engineering', true)
         self:HideBone('Left_Turret_Plates', true)
@@ -85,6 +81,13 @@ EAL0001 = Class(ACUUnit) {
         self:HideBone('Artillery_Barrel_Left', true)
         self:HideBone('Artillery_Barrel_Right', true)
         self:HideBone('Artillery_Pitch', true)
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:SetupBuildBones()
+        self:HideBonesForStart()
 
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
@@ -232,6 +235,7 @@ EAL0001 = Class(ACUUnit) {
         WaitSeconds(2.1)
         self:SetMesh('/mods/BlackOpsACUs/units/eal0001/EAL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
+        self:HideBonesForStart()
         self:SetUnSelectable(false)
         self:SetBusy(false)        
         self:SetBlockCommandQueue(false)

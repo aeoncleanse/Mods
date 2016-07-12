@@ -107,9 +107,7 @@ EEL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
+    HideBonesForStart = function(self)
         self:HideBone('Engineering_Suite', true)
         self:HideBone('Flamer', true)
         self:HideBone('HAC', true)
@@ -122,6 +120,13 @@ EEL0001 = Class(ACUUnit) {
         self:HideBone('Zephyr_Amplifier', true)
         self:HideBone('Back_IntelPack', true)
         self:HideBone('Torpedo_Launcher', true)
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:HideBonesForStart()
+
         self:SetupBuildBones()
         self.HasLeftPod = false
         self.HasRightPod = false
@@ -180,18 +185,8 @@ EEL0001 = Class(ACUUnit) {
         WaitSeconds(2.1)
         self:SetMesh('/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
-        self:HideBone('Engineering_Suite', true)
-        self:HideBone('Flamer', true)
-        self:HideBone('HAC', true)
-        self:HideBone('Gatling_Cannon', true)
-        self:HideBone('Back_MissilePack_B01', true)
-        self:HideBone('Back_SalvoLauncher', true)
-        self:HideBone('Back_ShieldPack', true)
-        self:HideBone('Left_Lance_Turret', true)
-        self:HideBone('Right_Lance_Turret', true)
-        self:HideBone('Zephyr_Amplifier', true)
-        self:HideBone('Back_IntelPack', true)
-        self:HideBone('Torpedo_Launcher', true)
+        self:HideBonesForStart()
+
         self:SetUnSelectable(false)
         self:SetBusy(false)
         self:SetBlockCommandQueue(false)

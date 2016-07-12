@@ -48,11 +48,7 @@ ESL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
-        
+    HideBonesForStart = function(self)
         self:HideBone('Engineering', true)
         self:HideBone('Combat_Engineering', true)
         self:HideBone('Rapid_Cannon', true)
@@ -69,7 +65,14 @@ ESL0001 = Class(ACUUnit) {
         self:HideBone('S_Spinner_B03', true)
         self:HideBone('Left_AA_Mount', true)
         self:HideBone('Right_AA_Mount', true)
-        
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:SetupBuildBones()
+        self:HideBonesForStart()
+
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
@@ -130,6 +133,7 @@ ESL0001 = Class(ACUUnit) {
         self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
         self:ShowBone(0, true)
+        self:HideBonesForStart()
         self:SetUnSelectable(false)
         self:SetBusy(false)
         self:SetBlockCommandQueue(false)

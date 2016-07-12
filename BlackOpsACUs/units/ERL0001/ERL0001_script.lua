@@ -47,11 +47,7 @@ ERL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
-
+    HideBonesForStart = function(self)
         self:HideBone('Mobility_LLeg_B01', true)
         self:HideBone('Mobility_LLeg_B02', true)
         self:HideBone('Mobility_RLeg_B01', true)
@@ -74,6 +70,14 @@ ERL0001 = Class(ACUUnit) {
         self:HideBone('Combat_B02_RLeg', true)
         self:HideBone('Back_CombatPack', true)
         self:HideBone('Chest_Open', true)
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:SetupBuildBones()
+        self:HideBonesForStart()
+
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
@@ -121,28 +125,7 @@ ERL0001 = Class(ACUUnit) {
         WaitSeconds(2.1)
         self:SetMesh('/mods/BlackOpsACUs/units/erl0001/ERL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
-        self:HideBone('Mobility_LLeg_B01', true)
-        self:HideBone('Mobility_LLeg_B02', true)
-        self:HideBone('Mobility_RLeg_B01', true)
-        self:HideBone('Mobility_RLeg_B02', true)
-        self:HideBone('Back_AA_B01', true)
-        self:HideBone('Back_AA_B02R', true)
-        self:HideBone('Back_AA_B02L', true)
-        self:HideBone('Engineering', true)
-        self:HideBone('Combat_Engineering', true)
-        self:HideBone('Right_Upgrade', true)
-        self:HideBone('EMP_Array', true)
-        self:HideBone('EMP_Array_Cable', true)
-        self:HideBone('Back_MobilityPack', true)
-        self:HideBone('Back_CounterIntelPack', true)
-        self:HideBone('Torpedo_Launcher', true)
-        self:HideBone('Combat_B03_Head', true)
-        self:HideBone('Combat_B01_LArm', true)
-        self:HideBone('Combat_B01_RArm', true)
-        self:HideBone('Combat_B02_LLeg', true)
-        self:HideBone('Combat_B02_RLeg', true)
-        self:HideBone('Back_CombatPack', true)
-        self:HideBone('Chest_Open', true)
+        self:HideBonesForStart()
         self:SetUnSelectable(false)
         self:SetBusy(false)        
         self:SetBlockCommandQueue(false)
