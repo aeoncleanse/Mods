@@ -1212,7 +1212,7 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimCombatHealth1')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'ImprovedCombatSystemsRemove' then
@@ -1221,7 +1221,7 @@ ESL0001 = Class(ACUUnit) {
             end
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'TacticalMisslePack' then
@@ -1250,7 +1250,7 @@ ESL0001 = Class(ACUUnit) {
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
 
@@ -1268,7 +1268,7 @@ ESL0001 = Class(ACUUnit) {
             self:StopSiloBuild()
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifier' then
@@ -1290,7 +1290,7 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimCombatHealth3')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifierRemove' then
@@ -1299,7 +1299,7 @@ ESL0001 = Class(ACUUnit) {
             end
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         end
