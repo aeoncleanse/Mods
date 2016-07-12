@@ -23,6 +23,7 @@ local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local SWeapons = import('/lua/seraphimweapons.lua')
 local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
+local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
 
 SeraACUMissile = Class(SIFLaanseTacticalMissileLauncher) {
     CurrentRack = 1,
