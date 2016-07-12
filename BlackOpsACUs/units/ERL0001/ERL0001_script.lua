@@ -31,7 +31,9 @@ ERL0001 = Class(ACUUnit) {
         EMPShot01 = Class(EMPWeapon) {},
         EMPShot02 = Class(EMPWeapon) {},
         EMPShot03 = Class(EMPWeapon) {},
-        MLG = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MLG01 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MLG02 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MLG03 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         AA01 = Class(CEMPArrayBeam02) {},
         AA02 = Class(CEMPArrayBeam02) {},
         AA03 = Class(CEMPArrayBeam02) {},
@@ -99,7 +101,9 @@ ERL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('EMPShot01', false)
         self:SetWeaponEnabledByLabel('EMPShot02', false)
         self:SetWeaponEnabledByLabel('EMPShot03', false)
-        self:SetWeaponEnabledByLabel('MLG', false)
+        self:SetWeaponEnabledByLabel('MLG01', false)
+        self:SetWeaponEnabledByLabel('MLG02', false)
+        self:SetWeaponEnabledByLabel('MLG03', false)
         self:SetWeaponEnabledByLabel('AA01', false)
         self:SetWeaponEnabledByLabel('AA02', false)
         self:SetWeaponEnabledByLabel('AA03', false)
@@ -649,9 +653,9 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot03', false)
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            
+
         -- Mazer
-            
+
         elseif enh == 'Mazer' then
             if not Buffs['CybranMazerHealth1'] then
                 BuffBlueprint {
@@ -669,14 +673,14 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMazerHealth1')
-            
-            self:SetWeaponEnabledByLabel('MLG', true)
+
+            self:SetWeaponEnabledByLabel('MLG01', true)
         elseif enh == 'MazerRemove' then
             if Buff.HasBuff(self, 'CybranMazerHealth1') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth1')
             end
-            
-            self:SetWeaponEnabledByLabel('MLG', false)
+
+            self:SetWeaponEnabledByLabel('MLG01', false)
         elseif enh == 'AlternatingLaserAssembly' then
             if not Buffs['CybranMazerHealth2'] then
                 BuffBlueprint {
@@ -694,22 +698,23 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMazerHealth2')
-            
-            local laser = self:GetWeaponByLabel('MLG')
+
+            self:SetWeaponEnabledByLabel('MLG01', false)
+            self:SetWeaponEnabledByLabel('MLG02', true)
+            local laser = self:GetWeaponByLabel('MLG02')
             laser:ChangeMaxRadius(bp.LaserRange)
-            laser:AddDamageMod(bp.LaserDamageMod)
-            
+
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh == 'AlternatingLaserAssemblyRemove' then
             if Buff.HasBuff(self, 'CybranMazerHealth2') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth2')
             end
-            
-            local laser = self:GetWeaponByLabel('MLG')
+
+            self:SetWeaponEnabledByLabel('MLG02', false)
+            local laser = self:GetWeaponByLabel('MLG02')
             laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
-            laser:AddDamageMod(bp.LaserDamageMod)
-            
+
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'SuperconductivePowerConduits' then
             if not Buffs['CybranMazerHealth3'] then
@@ -728,17 +733,20 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMazerHealth3')
-            
-            local laser = self:GetWeaponByLabel('MLG')
-            laser:AddDamageMod(bp.LaserDamageMod)
+
+            self:SetWeaponEnabledByLabel('MLG02', false)
+            self:SetWeaponEnabledByLabel('MLG03', true)
+            local laser = self:GetWeaponByLabel('MLG03')
+            laser:ChangeMaxRadius(bp.LaserRange)
         elseif enh == 'SuperconductivePowerConduitsRemove' then
 
             if Buff.HasBuff(self, 'CybranMazerHealth3') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth3')
             end
             
-            local laser = self:GetWeaponByLabel('MLG')
-            laser:AddDamageMod(bp.LaserDamageMod)
+            self:SetWeaponEnabledByLabel('MLG03', false)
+            local laser = self:GetWeaponByLabel('MLG03')
+            laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
             
         -- Armor System
             
