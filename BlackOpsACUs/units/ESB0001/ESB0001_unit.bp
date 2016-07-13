@@ -42,7 +42,6 @@ UnitBlueprint {
     },
     Description = 'Lambda Emitter',
     Display = {
-        AnimationPermOpen = '/mods/BlackOpsACUs/units/ESB0001/ESB0001_Activate.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -51,6 +50,7 @@ UnitBlueprint {
                     ShaderName = 'Unit',
                 },
                 {
+                    MeshName = 'ESB0001_LOD0.scm',
                     AlbedoName = 'ESB0001_lod1_albedo.dds',
                     LODCutoff = 215,
                     ShaderName = 'Unit',
