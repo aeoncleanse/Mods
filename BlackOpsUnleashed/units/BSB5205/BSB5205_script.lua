@@ -12,6 +12,12 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         AjelluTorpedoDefense02 = Class(import('/lua/seraphimweapons.lua').SDFAjelluAntiTorpedoDefense) {},
     },
 
+    ShieldEffects = {
+        '/effects/emitters/seraphim_shield_generator_t3_02_emit.bp',
+        '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
+        '/effects/emitters/seraphim_shield_generator_t2_03_emit.bp',
+    },
+
     OnStopBeingBuilt = function(self,builder,layer)
         self:ForkThread(self.InitialDroneSpawn)
         self:ForkThread(self.InitialRepairDroneSpawn)
