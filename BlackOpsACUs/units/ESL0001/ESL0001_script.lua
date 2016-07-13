@@ -252,7 +252,7 @@ ESL0001 = Class(ACUUnit) {
         
         -- If this is a removal, take the quick way out
         if removal and self.lambdaEmitterTable[boneLabel] then
-            IssueClearCommands({self.lambdaEmitterTable[boneLabel]}) 
+            IssueClearCommands({self.lambdaEmitterTable[boneLabel]})
             IssueKillSelf({self.lambdaEmitterTable[boneLabel]})
             self.lambdaEmitterTable[boneLabel] = nil
             return

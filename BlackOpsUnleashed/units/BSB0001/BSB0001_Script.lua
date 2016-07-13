@@ -18,11 +18,6 @@ BSB0001 = Class(SShieldLandUnit) {
         self.Drone = droneName
     end,
 
-    ShieldEffects = {
-        '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
-        '/effects/emitters/seraphim_shield_generator_t2_03_emit.bp',
-    },
-    
     OnCreate = function(self, builder, layer)
         SShieldLandUnit.OnCreate(self, builder, layer)
         self.ShieldEffectsBag = {}
@@ -32,9 +27,11 @@ BSB0001 = Class(SShieldLandUnit) {
             end
             self.ShieldEffectsBag = {}
         end
+
         for k, v in self.ShieldEffects do
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(1))
         end
+
         local bp = self:GetBlueprint().Defense.SeraLambdaFieldRedirector01
         local bp2 = self:GetBlueprint().Defense.SeraLambdaFieldRedirector02
         local bp3 = self:GetBlueprint().Defense.SeraLambdaFieldRedirector03
@@ -46,30 +43,35 @@ BSB0001 = Class(SShieldLandUnit) {
             AttachBone = bp.AttachBone,
             RedirectRateOfFire = bp.RedirectRateOfFire
         }
+
         local SeraLambdaFieldRedirector02 = SeraLambdaFieldRedirector {
             Owner = self,
             Radius = bp2.Radius,
             AttachBone = bp2.AttachBone,
             RedirectRateOfFire = bp2.RedirectRateOfFire
         }
+
         local SeraLambdaFieldRedirector03 = SeraLambdaFieldRedirector {
             Owner = self,
             Radius = bp3.Radius,
             AttachBone = bp3.AttachBone,
             RedirectRateOfFire = bp3.RedirectRateOfFire
         }
+
         local SeraLambdaFieldDestroyer01 = SeraLambdaFieldDestroyer {
             Owner = self,
             Radius = bp4.Radius,
             AttachBone = bp4.AttachBone,
             RedirectRateOfFire = bp4.RedirectRateOfFire
         }
+
         local SeraLambdaFieldDestroyer02 = SeraLambdaFieldDestroyer {
             Owner = self,
             Radius = bp5.Radius,
             AttachBone = bp5.AttachBone,
             RedirectRateOfFire = bp5.RedirectRateOfFire
         }
+
         self.Trash:Add(SeraLambdaFieldRedirector01)
         self.Trash:Add(SeraLambdaFieldRedirector02)
         self.Trash:Add(SeraLambdaFieldRedirector03)
@@ -77,11 +79,11 @@ BSB0001 = Class(SShieldLandUnit) {
         self.Trash:Add(SeraLambdaFieldDestroyer02)
         self.UnitComplete = true
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.ShieldEffctsBag then
             for k,v in self.ShieldEffectsBag do
@@ -90,7 +92,7 @@ BSB0001 = Class(SShieldLandUnit) {
         end
         SShieldLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     DeathThread = function(self)
         self:Destroy()
     end,

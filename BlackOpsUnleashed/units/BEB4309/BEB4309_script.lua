@@ -8,12 +8,6 @@
 local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
 
 BEB4309 = Class(TStructureUnit) {
-    AntiTeleport = {
-        '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
-        '/effects/emitters/seraphim_shield_generator_t2_03_emit.bp',
-    },
-    
-
     OnStopBeingBuilt = function(self,builder,layer)
         TStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetScriptBit('RULEUTC_ShieldToggle', true)
@@ -22,37 +16,35 @@ BEB4309 = Class(TStructureUnit) {
         self.AntiTeleportBag = {}
         self:ForkThread(self.ResourceThread)
     end,
-    
+
     OnScriptBitSet = function(self, bit)
         TStructureUnit.OnScriptBitSet(self, bit)
         if bit == 0 then 
         self:ForkThread(self.antiteleportEmitter)
         self:ForkThread(self.AntiteleportEffects)
         self:SetMaintenanceConsumptionActive()
-            
-            if(not self.Rotator1) then
-                self.Rotator1 = CreateRotator(self, 'Spinner_Upper', 'y')
-                self.Trash:Add(self.Rotator1)
-            end
-                self.Rotator1:SetTargetSpeed(-70)
-                self.Rotator1:SetAccel(30)
 
-            if(not self.Rotator2) then
-                self.Rotator2 = CreateRotator(self, 'Spinner_middle', 'y')
-                self.Trash:Add(self.Rotator2)
-            end
-                self.Rotator2:SetTargetSpeed(500)
-                self.Rotator2:SetAccel(100)
-        
-            if(not self.Rotator3) then
-                self.Rotator3 = CreateRotator(self, 'Spinner_lower', 'y')
-                self.Trash:Add(self.Rotator3)
-            end
-                self.Rotator3:SetTargetSpeed(-70)
-                self.Rotator3:SetAccel(30)
+        if not self.Rotator1 then
+            self.Rotator1 = CreateRotator(self, 'Spinner_Upper', 'y')
+            self.Trash:Add(self.Rotator1)
+        end
+            self.Rotator1:SetTargetSpeed(-70)
+            self.Rotator1:SetAccel(30)
+        if not self.Rotator2 then
+            self.Rotator2 = CreateRotator(self, 'Spinner_middle', 'y')
+            self.Trash:Add(self.Rotator2)
+        end
+            self.Rotator2:SetTargetSpeed(500)
+            self.Rotator2:SetAccel(100)
+        if not self.Rotator3 then
+            self.Rotator3 = CreateRotator(self, 'Spinner_lower', 'y')
+            self.Trash:Add(self.Rotator3)
+        end
+            self.Rotator3:SetTargetSpeed(-70)
+            self.Rotator3:SetAccel(30)
         end
     end,
-    
+
     AntiteleportEffects = function(self)
         if self.AntiTeleportBag then
             for k, v in self.AntiTeleportBag do
@@ -61,50 +53,47 @@ BEB4309 = Class(TStructureUnit) {
             self.AntiTeleportBag = {}
         end
         for k, v in self.AntiTeleport do
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect02', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect03', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect03', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect04', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect04', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect05', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect05', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect06', self:GetArmy(), v ):ScaleEmitter(0.1) )
-            table.insert( self.AntiTeleportBag, CreateAttachedEmitter( self, 'Effect06', self:GetArmy(), v ):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0) )
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect02', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect03', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect03', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect05', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect05', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, 0.5, 0))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect06', self:GetArmy(), v):ScaleEmitter(0.1))
+            table.insert(self.AntiTeleportBag, CreateAttachedEmitter(self, 'Effect06', self:GetArmy(), v):ScaleEmitter(0.1):OffsetEmitter(0, -0.5, 0))
         end
     end,
-    
+
     OnScriptBitClear = function(self, bit)
         TStructureUnit.OnScriptBitClear(self, bit)
         if bit == 0 then 
         self:ForkThread(self.KillantiteleportEmitter)
         self:SetMaintenanceConsumptionInactive()
-            
-            if(not self.Rotator1) then
+
+            if not self.Rotator1 then
                 self.Rotator1 = CreateRotator(self, 'Spinner_Upper', 'y')
                 self.Trash:Add(self.Rotator1)
             end
                 self.Rotator1:SetTargetSpeed(0)
                 self.Rotator1:SetAccel(30)
-
-            if(not self.Rotator2) then
+            if not self.Rotator2 then
                 self.Rotator2 = CreateRotator(self, 'Spinner_middle', 'y')
                 self.Trash:Add(self.Rotator2)
             end
                 self.Rotator2:SetTargetSpeed(0)
                 self.Rotator2:SetAccel(100)
-        
-            if(not self.Rotator3) then
+            if not self.Rotator3 then
                 self.Rotator3 = CreateRotator(self, 'Spinner_lower', 'y')
                 self.Trash:Add(self.Rotator3)
             end
                 self.Rotator3:SetTargetSpeed(0)
                 self.Rotator3:SetAccel(30)
-                
             if self.AntiTeleportBag then
                 for k, v in self.AntiTeleportBag do
                     v:Destroy()
@@ -120,7 +109,7 @@ BEB4309 = Class(TStructureUnit) {
             if not self:IsDead() then
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
-            
+
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('XEB4309')
 
@@ -138,7 +127,6 @@ BEB4309 = Class(TStructureUnit) {
         end 
     end,
 
-
     KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
         -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
         if table.getn({self.antiteleportEmitterTable}) > 0 then
@@ -147,9 +135,8 @@ BEB4309 = Class(TStructureUnit) {
                 IssueKillSelf({self.antiteleportEmitterTable[k]})
             end
         end
-
     end,
-    
+
     ResourceThread = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
@@ -173,7 +160,7 @@ BEB4309 = Class(TStructureUnit) {
             end
         end
     end,
-    
+
     ResourceThread2 = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')

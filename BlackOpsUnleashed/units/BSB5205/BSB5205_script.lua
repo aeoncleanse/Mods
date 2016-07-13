@@ -11,13 +11,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         TorpedoTurret02 = Class(import('/lua/seraphimweapons.lua').SANHeavyCavitationTorpedo) {},
         AjelluTorpedoDefense02 = Class(import('/lua/seraphimweapons.lua').SDFAjelluAntiTorpedoDefense) {},
     },
-    
-    ShieldEffects = {
-        '/effects/emitters/seraphim_shield_generator_t3_02_emit.bp',
-        '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
-        '/effects/emitters/seraphim_shield_generator_t3_04_emit.bp',
-    },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         self:ForkThread(self.InitialDroneSpawn)
         self:ForkThread(self.InitialRepairDroneSpawn)
@@ -49,11 +43,11 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
             self:SetWeaponEnabledByLabel('AjelluTorpedoDefense01', true)
             self:SetWeaponEnabledByLabel('AjelluTorpedoDefense02', true)
         end
-        
+
         self.ShieldEffectsBag = {}
         self.Rotator1 = CreateRotator(self, 'Spinner01', 'y', nil, 10, 5, 10)
         self.Trash:Add(self.Rotator1)
-        
+
         for k, v in SeraphimAirStagePlat02 do
             CreateAttachedEmitter(self, 'XSB5202', self:GetArmy(), v)
         end
@@ -86,12 +80,14 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         if self.Rotator1 then
             self.Rotator1:SetTargetSpeed(10)
         end
+
         if self.ShieldEffectsBag then
             for k, v in self.ShieldEffectsBag do
                 v:Destroy()
             end
             self.ShieldEffectsBag = {}
         end
+
         for k, v in self.ShieldEffects do
             table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ) )
         end
@@ -493,7 +489,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
                 IssueKillSelf({self.DroneTable[k]})
             end
         end
-        
+
         if table.getn({self.RepairDroneTable}) > 0 then
             for k, v in self.RepairDroneTable do
                 IssueClearCommands({self.RepairDroneTable[k]})
