@@ -13,12 +13,10 @@ local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
-local SDFAireauWeapon = SWeapons.SDFAireauWeapon
-local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
 local SANUallCavitationTorpedo = SWeapons.SANUallCavitationTorpedo
 local BOWeapons = import('/mods/BlackOpsACUs/lua/ACUsWeapons.lua')
-local SeraACURapidWeapon = BOWeapons.SeraACURapidWeapon 
-local SeraACUBigBallWeapon = BOWeapons.SeraACUBigBallWeapon 
+local SeraACURapidWeapon = BOWeapons.SeraACURapidWeapon
+local SeraACUBigBallWeapon = BOWeapons.SeraACUBigBallWeapon
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
 local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
 local SeraACUMissile = BOWeapons.SeraACUMissile
@@ -48,11 +46,7 @@ ESL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
-        
+    HideBonesForStart = function(self)
         self:HideBone('Engineering', true)
         self:HideBone('Combat_Engineering', true)
         self:HideBone('Rapid_Cannon', true)
@@ -69,7 +63,14 @@ ESL0001 = Class(ACUUnit) {
         self:HideBone('S_Spinner_B03', true)
         self:HideBone('Left_AA_Mount', true)
         self:HideBone('Right_AA_Mount', true)
-        
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:SetupBuildBones()
+        self:HideBonesForStart()
+
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
@@ -130,6 +131,7 @@ ESL0001 = Class(ACUUnit) {
         self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
         WaitSeconds(2.1)
         self:ShowBone(0, true)
+        self:HideBonesForStart()
         self:SetUnSelectable(false)
         self:SetBusy(false)
         self:SetBlockCommandQueue(false)
@@ -1002,6 +1004,10 @@ ESL0001 = Class(ACUUnit) {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
@@ -1028,6 +1034,10 @@ ESL0001 = Class(ACUUnit) {
                     Affects = {
                         MaxHealth = {
                             Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+                        Regen = {
+                            Add = bp.NewRegenRate,
                             Mult = 1.0,
                         },
                     },
@@ -1202,7 +1212,7 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimCombatHealth1')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'ImprovedCombatSystemsRemove' then
@@ -1211,7 +1221,7 @@ ESL0001 = Class(ACUUnit) {
             end
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'TacticalMisslePack' then
@@ -1240,7 +1250,7 @@ ESL0001 = Class(ACUUnit) {
             self:AddCommandCap('RULEUCC_SiloBuildTactical')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
 
@@ -1258,7 +1268,7 @@ ESL0001 = Class(ACUUnit) {
             self:StopSiloBuild()
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifier' then
@@ -1274,13 +1284,17 @@ ESL0001 = Class(ACUUnit) {
                             Add = bp.NewHealth,
                             Mult = 1.0,
                         },
+                        Regen = {
+                            Add = bp.NewRegenRate,
+                            Mult = 1.0,
+                        },
                     },
                 }
             end
             Buff.ApplyBuff(self, 'SeraphimCombatHealth3')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifierRemove' then
@@ -1289,7 +1303,7 @@ ESL0001 = Class(ACUUnit) {
             end
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
-            local wepAutoOC = self:GetWeaponByLabel('AutOverCharge')
+            local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         end

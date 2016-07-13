@@ -560,7 +560,7 @@ SOmegaCannonOverCharge = Class(MultiPolyTrailProjectile) {
     FxNoneHitScale = 4,
     FxShieldHitScale = 4,
     FxTrails = EXEffectTemplate.OmegaOverChargeProjectileFxTrails,
-    PolyTrails = EXEffectTemplate.OmegaOverChargeProjectileTrails,
+    PolyTrails = EXEffectTemplate.OmegaOverChargeProjectileFxTrails,
     PolyTrailOffset = {0,0,0},
 }
 

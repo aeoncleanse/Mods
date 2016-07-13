@@ -134,7 +134,7 @@ UnitBlueprint {
             RULEUCC_Transport = true,
         },
         FactionName = 'Aeon',
-        Icon = 'land',
+        Icon = 'amph',
         OrderOverrides = {
             RULEUCC_Transport = {
                 bitmapId = 'deploy',
@@ -187,9 +187,9 @@ UnitBlueprint {
         SkirtSizeZ = 12,
         TurnRate = 0,
     },
-    SelectionSizeX = 1.7,
-    SelectionSizeZ = 1.7,
-    SelectionThickness = 0.4,
+    SelectionSizeX = 6.15,
+    SelectionSizeZ = 6.15,
+    SelectionThickness = 0.22,
     SizeX = 9,
     SizeY = 3.0,
     SizeZ = 9,
