@@ -9,7 +9,6 @@ UnitBlueprint {
             '<LOC ability_upgradable>Upgradeable',
         },
     },
-
     Economy = {
         BuildRate = 10,
         BuildableCategory = {
