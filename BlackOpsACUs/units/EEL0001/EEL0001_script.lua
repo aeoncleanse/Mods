@@ -80,10 +80,12 @@ EEL0001 = Class(ACUUnit) {
                 self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
                 self.slider:SetGoal(0, 0, 0.22)
                 WaitFor(self.slider)
-                TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
+                local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
                 self.slider:SetGoal(0, 0, 0)
                 WaitFor(self.slider)
                 self.slider:Destroy()
+
+                return proj
             end,
         },
         TacNukeMissile = Class(TIFCruiseMissileLauncher) {
@@ -92,10 +94,12 @@ EEL0001 = Class(ACUUnit) {
                 self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
                 self.slider:SetGoal(0, 0, 0.22)
                 WaitFor(self.slider)
-                TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
+                local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
                 self.slider:SetGoal(0, 0, 0)
                 WaitFor(self.slider)
                 self.slider:Destroy()
+
+                return proj
             end,
         },
     },
