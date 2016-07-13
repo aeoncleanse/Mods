@@ -37,7 +37,9 @@ EAL0001 = Class(ACUUnit) {
         ChronoDampener2 = Class(ADFChronoDampener) {},
         TorpedoLauncher = Class(AANChronoTorpedoWeapon) {},
         MiasmaArtillery = Class(AIFArtilleryMiasmaShellWeapon) {},
-        PhasonBeam = Class(AeonACUPhasonLaser) {},
+        PhasonBeam01 = Class(AeonACUPhasonLaser) {},
+        PhasonBeam02 = Class(AeonACUPhasonLaser) {},
+        PhasonBeam03 = Class(AeonACUPhasonLaser) {},
         QuantumMaelstrom = Class(QuantumMaelstromWeapon) {},
         AntiTorpedo = Class(AIFQuasarAntiTorpedoWeapon) {},
         AntiMissile = Class(AAMWillOWisp) {},
@@ -106,7 +108,9 @@ EAL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('ChronoDampener2', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam', false)
+        self:SetWeaponEnabledByLabel('PhasonBeam01', false)
+        self:SetWeaponEnabledByLabel('PhasonBeam02', false)
+        self:SetWeaponEnabledByLabel('PhasonBeam03', false)
         self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
         self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         self:SetWeaponEnabledByLabel('AntiMissile', false)
@@ -769,7 +773,7 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonArtilleryHealth3')
-            
+
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
             arty:ChangeRateOfFire(bp.ArtilleryRoF)
@@ -777,13 +781,13 @@ EAL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'AeonArtilleryHealth3') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
             end
-            
+
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
             arty:ChangeRateOfFire(arty:GetBlueprint().RateOfFire)
-            
+
         --  Beam Weapon
-            
+
         elseif enh == 'PhasonBeamCannon' then
             if not Buffs['AeonBeamHealth1'] then
                 BuffBlueprint {
@@ -801,18 +805,18 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonBeamHealth1')
-            
-            self:SetWeaponEnabledByLabel('PhasonBeam', true)
-            local beam = self:GetWeaponByLabel('PhasonBeam')
+
+            self:SetWeaponEnabledByLabel('PhasonBeam01', true)
+            local beam = self:GetWeaponByLabel('PhasonBeam01')
             beam:ChangeMaxRadius(bp.BeamRadius)
             self:SetPainterRange(enh, bp.BeamRadius, false)
         elseif enh == 'PhasonBeamCannonRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth1') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth1')
             end
-            
-            self:SetWeaponEnabledByLabel('PhasonBeam', false)
-            local beam = self:GetWeaponByLabel('PhasonBeam')
+
+            self:SetWeaponEnabledByLabel('PhasonBeam01', false)
+            local beam = self:GetWeaponByLabel('PhasonBeam01')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
             self:SetPainterRange(enh, 0, true)
         elseif enh == 'DualChannelBooster' then
@@ -832,23 +836,24 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonBeamHealth2')
-            
-            local beam = self:GetWeaponByLabel('PhasonBeam')
+
+            self:SetWeaponEnabledByLabel('PhasonBeam01', false)
+            self:SetWeaponEnabledByLabel('PhasonBeam02', true)
+            local beam = self:GetWeaponByLabel('PhasonBeam02')
             beam:ChangeMaxRadius(bp.BeamRadius)
-            beam:AddDamageMod(bp.BeamDamage)
             self:SetPainterRange(enh, bp.BeamRadius, false)
-            
+
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'DualChannelBoosterRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth2') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth2')
             end
-            
-            local beam = self:GetWeaponByLabel('PhasonBeam')
+
+            self:SetWeaponEnabledByLabel('PhasonBeam02', false)
+            local beam = self:GetWeaponByLabel('PhasonBeam02')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
-            beam:AddDamageMod(bp.BeamDamage)
             self:SetPainterRange(enh, 0, true)
-            
+
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'EnergizedMolecularInducer' then
             if not Buffs['AeonBeamHealth3'] then
@@ -867,18 +872,21 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonBeamHealth3')
-            
-            local beam = self:GetWeaponByLabel('PhasonBeam')
-            beam:AddDamageMod(bp.BeamDamage)
-            beam:ChangeDamageRadius(bp.BeamArea)
+
+            self:SetWeaponEnabledByLabel('PhasonBeam02', false)
+            self:SetWeaponEnabledByLabel('PhasonBeam03', true)
+            local beam = self:GetWeaponByLabel('PhasonBeam03')
+            beam:ChangeMaxRadius(bp.BeamRadius)
+            self:SetPainterRange(enh, bp.BeamRadius, false)
         elseif enh == 'EnergizedMolecularInducerRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth3') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth3')
             end
-            
-            local beam = self:GetWeaponByLabel('PhasonBeam')
-            beam:AddDamageMod(bp.BeamDamage)
-            beam:ChangeDamageRadius(beam:GetBlueprint().DamageRadius)
+
+            self:SetWeaponEnabledByLabel('PhasonBeam03', false)
+            local beam = self:GetWeaponByLabel('PhasonBeam03')
+            beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
+            self:SetPainterRange(enh, 0, true)
             
         -- Shielding
             
