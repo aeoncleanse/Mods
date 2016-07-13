@@ -22,6 +22,9 @@ UnitBlueprint {
     },
     General = {
         UpgradesTo = 'brb1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
     },
 }
 
