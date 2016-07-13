@@ -51,6 +51,7 @@ UnitBlueprint {
                     ShaderName = 'Unit',
                 },
                 {
+                    MeshName = 'ESB0002_LOD0.scm',
                     AlbedoName = 'ESB0002_lod1_albedo.dds',
                     LODCutoff = 215,
                     ShaderName = 'Unit',
