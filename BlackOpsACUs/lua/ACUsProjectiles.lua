@@ -18,7 +18,7 @@ local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local DepthCharge = import('/lua/defaultantiprojectile.lua').DepthCharge
 local util = import('/lua/utilities.lua')
-local EXEffectTemplate = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua')
+local ACUsEffectTemplate = import('/mods/BlackOpsACUs/lua/ACUsEffectTemplates.lua')
 
 -- Null Shell
 EXNullShell = Class(Projectile) {}
@@ -145,11 +145,11 @@ FlameThrowerProjectile01 = Class(EmitterProjectile) {
     FxImpactTrajectoryAligned = false,
 
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.FlameThrowerHitLand01,
-    FxImpactProp = EXEffectTemplate.FlameThrowerHitLand01,
-    FxImpactLand = EXEffectTemplate.FlameThrowerHitLand01,
-    FxImpactWater = EXEffectTemplate.FlameThrowerHitWater01,
-    FxImpactShield = EXEffectTemplate.FlameThrowerHitLand01,
+    FxImpactUnit = ACUsEffectTemplate.FlameThrowerHitLand01,
+    FxImpactProp = ACUsEffectTemplate.FlameThrowerHitLand01,
+    FxImpactLand = ACUsEffectTemplate.FlameThrowerHitLand01,
+    FxImpactWater = ACUsEffectTemplate.FlameThrowerHitWater01,
+    FxImpactShield = ACUsEffectTemplate.FlameThrowerHitLand01,
     FxImpactUnderWater = {},
 
     FxLandHitScale = 0.7,
@@ -161,15 +161,15 @@ FlameThrowerProjectile01 = Class(EmitterProjectile) {
 
 --  UEF ACU Antimatter Cannon
 UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
-    FxTrails = EXEffectTemplate.ACUAntiMatterFx,
-    PolyTrail = EXEffectTemplate.ACUAntiMatterPoly,
+    FxTrails = ACUsEffectTemplate.ACUAntiMatterFx,
+    PolyTrail = ACUsEffectTemplate.ACUAntiMatterPoly,
     
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactProp = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactLand = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactWater = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactShield = EXEffectTemplate.ACUAntiMatter01,
+    FxImpactUnit = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactProp = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactLand = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactWater = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactShield = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactUnderWater = {},
     FxSplatScale = 4,
 
@@ -193,15 +193,15 @@ UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
 }
 
 UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
-    FxTrails = EXEffectTemplate.ACUAntiMatterFx,
-    PolyTrail = EXEffectTemplate.ACUAntiMatterPoly,
+    FxTrails = ACUsEffectTemplate.ACUAntiMatterFx,
+    PolyTrail = ACUsEffectTemplate.ACUAntiMatterPoly,
     
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactProp = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactLand = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactWater = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactShield = EXEffectTemplate.ACUAntiMatter01,
+    FxImpactUnit = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactProp = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactLand = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactWater = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactShield = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactUnderWater = {},
     FxSplatScale = 5.5,
     
@@ -226,15 +226,15 @@ UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
 }
 
 UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile) {
-    FxTrails = EXEffectTemplate.ACUAntiMatterFx,
-    PolyTrail = EXEffectTemplate.ACUAntiMatterPoly,
+    FxTrails = ACUsEffectTemplate.ACUAntiMatterFx,
+    PolyTrail = ACUsEffectTemplate.ACUAntiMatterPoly,
     
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactProp = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactLand = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactWater = EXEffectTemplate.ACUAntiMatter01,
-    FxImpactShield = EXEffectTemplate.ACUAntiMatter01,
+    FxImpactUnit = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactProp = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactLand = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactWater = ACUsEffectTemplate.ACUAntiMatter01,
+    FxImpactShield = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactUnderWater = {},
     FxSplatScale = 8,
     
@@ -260,7 +260,7 @@ UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile) {
 --  UEF ACU Cluster Missle Pack
 UEFACUClusterMIssileProjectile = Class(SinglePolyTrailProjectile) {
     DestroyOnImpact = false,
-    FxTrails = EXEffectTemplate.UEFCruiseMissile01Trails,
+    FxTrails = ACUsEffectTemplate.UEFCruiseMissile01Trails,
     FxTrailOffset = -0.3,
     FxTrailScale = 1.5,
     BeamName = '/effects/emitters/missile_munition_exhaust_beam_01_emit.bp',
@@ -287,11 +287,11 @@ UEFACUClusterMIssileProjectile02 = Class(EXEmitterProjectile) {
 SeraACUQuantumStormProjectile01 = Class(EmitterProjectile) {
     FxImpactTrajectoryAligned = false,
     FxTrails = EffectTemplate.SDFExperimentalPhasonProjFXTrails01,
-    FxImpactUnit = EXEffectTemplate.SeraACUQuantumStormProjectileHitUnit,
-    FxImpactProp = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactLand = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactWater = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactShield = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactUnit = ACUsEffectTemplate.SeraACUQuantumStormProjectileHitUnit,
+    FxImpactProp = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactLand = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactWater = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactShield = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
 
     FxLandHitScale = 0.5,
     FxPropHitScale = 0.5,
@@ -303,11 +303,11 @@ SeraACUQuantumStormProjectile01 = Class(EmitterProjectile) {
 SeraACUQuantumStormProjectile02 = Class(EmitterProjectile) {
     FxImpactTrajectoryAligned = false,
     FxTrails = EffectTemplate.SDFExperimentalPhasonProjFXTrails01,
-    FxImpactUnit = EXEffectTemplate.SeraACUQuantumStormProjectileHitUnit,
-    FxImpactProp = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactLand = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactWater = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactShield = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactUnit = ACUsEffectTemplate.SeraACUQuantumStormProjectileHitUnit,
+    FxImpactProp = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactLand = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactWater = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactShield = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
     
     FxLandHitScale = 0.7,
     FxPropHitScale = 0.7,
@@ -319,11 +319,11 @@ SeraACUQuantumStormProjectile02 = Class(EmitterProjectile) {
 SeraACUQuantumStormProjectile03 = Class(EmitterProjectile) {
     FxImpactTrajectoryAligned = false,
     FxTrails = EffectTemplate.SDFExperimentalPhasonProjFXTrails01,
-    FxImpactUnit = EXEffectTemplate.SeraACUQuantumStormProjectileHitUnit,
-    FxImpactProp = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactLand = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactWater = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    FxImpactShield = EXEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactUnit = ACUsEffectTemplate.SeraACUQuantumStormProjectileHitUnit,
+    FxImpactProp = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactLand = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactWater = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
+    FxImpactShield = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
     
     FxLandHitScale = 0.7,
     FxPropHitScale = 0.7,
@@ -342,7 +342,7 @@ SeraRapidCannon01Projectile = Class(MultiPolyTrailProjectile) {
     FxImpactShield = EffectTemplate.SDFAireauWeaponHit01,
     RandomPolyTrails = 1,
     
-    PolyTrails = EXEffectTemplate.SeraACURapidCannonPoly,
+    PolyTrails = ACUsEffectTemplate.SeraACURapidCannonPoly,
     PolyTrailOffset = {0,0,0},
 
     FxLandHitScale = 0.7,
@@ -362,7 +362,7 @@ SeraRapidCannon01Projectile02 = Class(MultiPolyTrailProjectile) {
     FxImpactShield = EffectTemplate.SDFAireauWeaponHit01,
     RandomPolyTrails = 1,
     
-    PolyTrails = EXEffectTemplate.SeraACURapidCannonPoly02,
+    PolyTrails = ACUsEffectTemplate.SeraACURapidCannonPoly02,
     PolyTrailOffset = {0,0,0},
 
     FxLandHitScale = 0.7,
@@ -382,7 +382,7 @@ SeraRapidCannon01Projectile03 = Class(MultiPolyTrailProjectile) {
     FxImpactShield = EffectTemplate.SDFAireauWeaponHit01,
     RandomPolyTrails = 1,
     
-    PolyTrails = EXEffectTemplate.SeraACURapidCannonPoly03,
+    PolyTrails = ACUsEffectTemplate.SeraACURapidCannonPoly03,
     PolyTrailOffset = {0,0,0},
 
     FxLandHitScale = 0.7,
@@ -395,11 +395,11 @@ SeraRapidCannon01Projectile03 = Class(MultiPolyTrailProjectile) {
 --  Cybran EMP Array Detonation
 EXInvisoProectilechild01 = Class(EXMultiCompositeEmitterProjectile) {
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactProp = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactLand = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactWater = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactShield = EXEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactWater = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactUnderWater = {},
     FxSplatScale = 4,
 
@@ -413,11 +413,11 @@ EXInvisoProectilechild01 = Class(EXMultiCompositeEmitterProjectile) {
 EXInvisoProectile01 = Class(EXInvisoProectilechild01) {
     
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactProp = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactLand = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactWater = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactShield = EXEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactWater = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactUnderWater = {},
     FxSplatScale = 4,
     
@@ -449,11 +449,11 @@ EXInvisoProectile01 = Class(EXInvisoProectilechild01) {
 
 EXInvisoProectilechild02 = Class(EXMultiCompositeEmitterProjectile) {
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactProp = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactLand = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactWater = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactShield = EXEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactWater = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactUnderWater = {},
     FxSplatScale = 6,
 
@@ -466,11 +466,11 @@ EXInvisoProectilechild02 = Class(EXMultiCompositeEmitterProjectile) {
 
 EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactProp = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactLand = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactWater = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactShield = EXEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactWater = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactUnderWater = {},
     FxSplatScale = 6,
     
@@ -501,11 +501,11 @@ EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
 
 EXInvisoProectilechild03 = Class(EXMultiCompositeEmitterProjectile) {
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactProp = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactLand = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactWater = EXEffectTemplate.CybranACUEMPArrayHit02,
-    FxImpactShield = EXEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactWater = ACUsEffectTemplate.CybranACUEMPArrayHit02,
+    FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactUnderWater = {},
     FxSplatScale = 8,
 
@@ -519,11 +519,11 @@ EXInvisoProectilechild03 = Class(EXMultiCompositeEmitterProjectile) {
 
 EXInvisoProectile03 = Class(EXInvisoProectilechild03) {
     -- Hit Effects
-    FxImpactUnit = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactProp = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactLand = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactWater = EXEffectTemplate.CybranACUEMPArrayHit01,
-    FxImpactShield = EXEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactWater = ACUsEffectTemplate.CybranACUEMPArrayHit01,
+    FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactUnderWater = {},
     FxSplatScale = 8,
 
@@ -549,18 +549,18 @@ EXInvisoProectile03 = Class(EXInvisoProectilechild03) {
 --  Serephim Overcharge Projectile
 SOmegaCannonOverCharge = Class(MultiPolyTrailProjectile) {
     FxImpactTrajectoryAligned = false,
-    FxImpactLand = EXEffectTemplate.OmegaOverChargeLandHit,
-    FxImpactNone = EXEffectTemplate.OmegaOverChargeLandHit,
-    FxImpactProp = EXEffectTemplate.OmegaOverChargeLandHit,    
-    FxImpactUnit = EXEffectTemplate.OmegaOverChargeUnitHit,
-    FxImpactShield = EXEffectTemplate.OmegaOverChargeLandHit,
+    FxImpactLand = ACUsEffectTemplate.OmegaOverChargeLandHit,
+    FxImpactNone = ACUsEffectTemplate.OmegaOverChargeLandHit,
+    FxImpactProp = ACUsEffectTemplate.OmegaOverChargeLandHit,    
+    FxImpactUnit = ACUsEffectTemplate.OmegaOverChargeUnitHit,
+    FxImpactShield = ACUsEffectTemplate.OmegaOverChargeLandHit,
     FxLandHitScale = 4,
     FxPropHitScale = 4,
     FxUnitHitScale = 4,
     FxNoneHitScale = 4,
     FxShieldHitScale = 4,
-    FxTrails = EXEffectTemplate.OmegaOverChargeProjectileFxTrails,
-    PolyTrails = EXEffectTemplate.OmegaOverChargeProjectileFxTrails,
+    FxTrails = ACUsEffectTemplate.OmegaOverChargeProjectileFxTrails,
+    PolyTrails = ACUsEffectTemplate.OmegaOverChargeProjectileFxTrails,
     PolyTrailOffset = {0,0,0},
 }
 
@@ -574,7 +574,7 @@ UEFHeavyPlasmaGatlingCannon03 = Class(SinglePolyTrailProjectile) {
     FxImpactShield = EffectTemplate.THeavyPlasmaGatlingCannonHit,
     FxImpactUnderWater = {},
     FxTrails = EffectTemplate.THeavyPlasmaGatlingCannonFxTrails,
-    PolyTrail = EXEffectTemplate.UEFHeavyPlasmaGatlingCannon03PolyTrail,
+    PolyTrail = ACUsEffectTemplate.UEFHeavyPlasmaGatlingCannon03PolyTrail,
 }
 
 --  UEF Gattling Projectile V2
@@ -587,7 +587,7 @@ UEFHeavyPlasmaGatlingCannon01 = Class(SinglePolyTrailProjectile) {
     FxImpactShield = EffectTemplate.THeavyPlasmaGatlingCannonHit,
     FxImpactUnderWater = {},
     FxTrails = EffectTemplate.THeavyPlasmaGatlingCannonFxTrails,
-    PolyTrail = EXEffectTemplate.UEFHeavyPlasmaGatlingCannon01PolyTrail,
+    PolyTrail = ACUsEffectTemplate.UEFHeavyPlasmaGatlingCannon01PolyTrail,
 }
 
 --  UEF Gatling Projectile V3
@@ -600,5 +600,5 @@ UEFHeavyPlasmaGatlingCannon02 = Class(SinglePolyTrailProjectile) {
     FxImpactShield = EffectTemplate.THeavyPlasmaGatlingCannonHit,
     FxImpactUnderWater = {},
     FxTrails = EffectTemplate.THeavyPlasmaGatlingCannonFxTrails,
-    PolyTrail = EXEffectTemplate.UEFHeavyPlasmaGatlingCannon02PolyTrail,
+    PolyTrail = ACUsEffectTemplate.UEFHeavyPlasmaGatlingCannon02PolyTrail,
 }
