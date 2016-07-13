@@ -9,7 +9,6 @@ UnitBlueprint {
             '<LOC ability_upgradable>Upgradeable',
         },
     },
-
     Economy = {
         BuildRate = 10,
         BuildableCategory = {
@@ -23,6 +22,9 @@ UnitBlueprint {
     },
     General = {
         UpgradesTo = 'bab1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
     },
 }
 

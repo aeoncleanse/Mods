@@ -1,6 +1,6 @@
 UnitBlueprint {
     Merge = true,
-    BlueprintId="xsb1102",-- T1 aeon hydro
+    BlueprintId="xsb1102",-- T1 seraphim hydro
     Categories = {
         'SHOWQUEUE',
     },
@@ -9,7 +9,6 @@ UnitBlueprint {
             '<LOC ability_upgradable>Upgradeable',
         },
     },
-
     Economy = {
         BuildRate = 10,
         BuildableCategory = {
@@ -23,6 +22,9 @@ UnitBlueprint {
     },
     General = {
         UpgradesTo = 'bsb1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
     },
 }
 
