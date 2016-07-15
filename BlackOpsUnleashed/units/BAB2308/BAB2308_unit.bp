@@ -214,7 +214,7 @@ UnitBlueprint {
         DamageAmount = 2000,
         DamageRadius = 6,
     },
-    StrategicIconName = 'icon_structure2_missile',
+    StrategicIconName = 'icon_structure3_missile',
     StrategicIconSortPriority = 180,
     Veteran = {
         Level1 = 18,

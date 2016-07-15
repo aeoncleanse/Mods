@@ -250,7 +250,7 @@ UnitBlueprint {
     SizeX = 4,
     SizeY = 12,
     SizeZ = 4,
-    StrategicIconName = 'icon_structure3_directfire',
+    StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 240,
     Weapon = {
         {

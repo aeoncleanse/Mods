@@ -224,7 +224,7 @@ UnitBlueprint {
     SizeX = 1.8,
     SizeY = 1.3,
     SizeZ = 1.8,
-    StrategicIconName = 'icon_structure3_intel',
+    StrategicIconName = 'icon_structure2_intel',
     StrategicIconSortPriority = 225,
     Weapon = {
         {

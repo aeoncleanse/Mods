@@ -181,7 +181,7 @@ UnitBlueprint {
     SizeX = 0.6,
     SizeY = 0.6,
     SizeZ = 0.6,
-    StrategicIconName = 'icon_bot3_sniper',
+    StrategicIconName = 'icon_bot1_sniper',
     StrategicIconSortPriority = 135,
     Transport = {
         CanFireFromTransport = false,
