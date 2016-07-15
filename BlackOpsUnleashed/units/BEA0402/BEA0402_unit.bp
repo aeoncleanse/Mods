@@ -167,6 +167,8 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
             '<LOC ability_aa>Anti-Air',
+            '<LOC ability_repairs>Repairs',
+            '<LOC ability_radar>Radar',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BEA0402/BEA0402_Aactivate.sca',
         AnimationActivate = '/mods/BlackOpsUnleashed/units/BEA0402/BEA0402_ADeploy.sca',

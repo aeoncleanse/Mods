@@ -135,9 +135,11 @@ UnitBlueprint {
     Description = '<LOC bra0409_desc>Experimental Assault Transport',
     Display = {
         Abilities = {
-            '<LOC ability_aa>Anti-Air',
             '<LOC ability_transport>Transport',
+            '<LOC ability_aa>Anti-Air',
             '<LOC ability_stealthfield>Stealth Field',
+            '<LOC ability_stun>EMP Weapon',
+            '<LOC ability_manuallaunch>Manual Launch',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BRA0409/BRA0409_AOpen.sca',
         AnimationClose = '/mods/BlackOpsUnleashed/units/BRA0409/BRA0409_AClose.sca',

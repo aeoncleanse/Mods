@@ -72,7 +72,7 @@ UnitBlueprint {
     Description = '<LOC bsb2303_desc>Land Mine Dispenser',
     Display = {
         Abilities = {
-            '<LOC ability_mine>Deploys Land Mines',
+            '<LOC ability_manuallaunch>Manual Launch',
         },
         Mesh = {
             IconFadeInZoom = 130,

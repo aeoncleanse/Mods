@@ -56,6 +56,10 @@ UnitBlueprint {
     },
     Description = '<LOC bsl0402_desc>Unidentified Residual Energy Signature',
     Display = {
+        Abilities = {
+            '<LOC ability_hover>Hover',
+            '<LOC ability_aa>Anti-Air',
+        },
         IdleEffects = {
             Water = {
                 Effects = {

@@ -61,6 +61,7 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_amphibious>Amphibious',
         },
         Mesh = {
             IconFadeInZoom = 130,
