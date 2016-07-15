@@ -70,14 +70,6 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
         },
-        AnimationDeath = {
-            {
-                Animation = '/units/bsb5202/bsb5202_ADeath.sca',
-                AnimationRateMax = 1,
-                AnimationRateMin = 1,
-                Weight = 1,
-            },
-        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
