@@ -100,7 +100,7 @@ UnitBlueprint {
             '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_aa>Anti-Air',
         },
-        AnimationOpen = '/units/BEB5205/BEB5205_aopen.sca',
+        AnimationOpen = '/mods/blackopsunleashed/units/beb5205/BEB5205_aopen.sca',
         IdleEffects = {
             Water = {
                 Effects = {

@@ -39,7 +39,7 @@ UnitBlueprint {
     Description = '<LOC xsc9010_desc>Jammer Crystal',
     Display = {
         Mesh = {
-            IconFadeInZoom = 99999999,
+            IconFadeInZoom = 9999999,
             LODs = {
                 {
                     LODCutoff = 120,

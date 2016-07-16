@@ -168,8 +168,6 @@ UnitBlueprint {
             '<LOC ability_airstaging>Air Staging',
             '<LOC ability_aa>Anti-Air',
         },
-        AnimationOpen = '/mods/BlackOpsUnleashed/units/BEA0402/BEA0402_Aactivate.sca',
-        AnimationActivate = '/mods/BlackOpsUnleashed/units/BEA0402/BEA0402_ADeploy.sca',
         AttackReticle = 3,
         Mesh = {
             IconFadeInZoom = 130,
