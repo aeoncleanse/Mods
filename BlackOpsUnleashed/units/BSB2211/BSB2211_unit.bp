@@ -52,6 +52,11 @@ UnitBlueprint {
     },
     Description = '<LOC bsb2210_desc>Mine',
     Display = {
+        Abilities = {
+            '<LOC ability_suicideweapon>Suicide Weapon',
+            '<LOC ability_personalstealth>Personal Stealth',
+            '<LOC ability_cloak>Cloaking',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

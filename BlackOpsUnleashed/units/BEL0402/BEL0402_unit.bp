@@ -105,11 +105,13 @@ UnitBlueprint {
     },
     Description = '<LOC bel0402_desc>Experimental Assault Bot',
     Display = {
-            Abilities = {
-            '<LOC ability_amphibious>Amphibious',
-            '<LOC ability_attkdrones>Anti-Air Drones',
+        Abilities = {
             '<LOC ability_massive>Massive',
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_amphibious>Amphibious',
+            '<LOC ability_personalstealth>Personal Stealth',
+            '<LOC ability_tacmissiledef>Tactical Missile Defense',
+            '<LOC ability_attkdrones>Anti-Air Drones',
         },
         AnimationDeath = {
             {

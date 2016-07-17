@@ -123,6 +123,8 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_engineeringsuite>Engineering Suite',
+            '<LOC ability_reclaim>Reclaims',
+            '<LOC ability_repairs>Repairs',
         },
         LayerChangeEffects = {
             AirLand = {

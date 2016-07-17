@@ -167,6 +167,8 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
             '<LOC ability_aa>Anti-Air',
+            '<LOC ability_repairs>Repairs',
+            '<LOC ability_radar>Radar',
         },
         AttackReticle = 3,
         Mesh = {

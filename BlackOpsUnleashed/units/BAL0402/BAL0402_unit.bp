@@ -75,6 +75,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_hover>Hover',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
+            '<LOC ability_deathaoe>Volatile',
         },
         IdleEffects = {
             Land = {

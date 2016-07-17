@@ -86,11 +86,9 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_aa>Anti-Air',
-            '<LOC ability_bs>Build Suite',
             '<LOC ability_radar>Radar',
-            '<LOC ability_sonar>Sonar',
-            '<LOC ability_tacmissiledef>Tactical Missile Defense',
             '<LOC ability_stratmissiledef>Strategic Missile Defense',
+            '<LOC ability_tacmissiledef>Tactical Missile Defense',
         },
         AnimationDeath = {
             {

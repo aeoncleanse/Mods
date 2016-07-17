@@ -93,12 +93,12 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
-            '<LOC ability_shielddome>Shield Dome',
-            '<LOC ability_engineeringsuite>Engineering Suite',
-            '<LOC ability_sonar>Sonar',
-            '<LOC ability_radar>Radar',
-            '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_aa>Anti-Air',
+            '<LOC ability_radar>Radar',
+            '<LOC ability_shielddome>Shield Dome',
+            '<LOC ability_sonar>Sonar',
+            '<LOC ability_torpedo>Torpedoes',
+            '<LOC ability_aquatic>Aquatic',
         },
         AnimationOpen = '/mods/blackopsunleashed/units/beb5205/BEB5205_aopen.sca',
         IdleEffects = {

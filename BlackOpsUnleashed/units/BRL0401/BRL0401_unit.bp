@@ -106,6 +106,7 @@ UnitBlueprint {
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_massive>Massive',
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_stun>EMP Weapon',
         },
         AnimationDeath = {
             {

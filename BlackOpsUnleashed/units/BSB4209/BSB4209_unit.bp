@@ -57,6 +57,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_upgradable>Upgradeable',
         },
         AnimationUpgrade = '/mods/BlackOpsUnleashed/units/bsb4209/bsb4209_aupgrade.sca',
         AnimationDeath = {
