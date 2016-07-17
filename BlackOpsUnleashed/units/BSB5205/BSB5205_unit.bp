@@ -86,11 +86,12 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
-            '<LOC ability_drone>Attack/Repair Drones',
             '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_sonar>Sonar',
             '<LOC ability_radar>Radar',
-            '<LOC ability_shieldbubble>Shield Bubble',
+            '<LOC ability_torpedodef>Torpedo Defense',
+            '<LOC ability_aquatic>Aquatic',
+            '<LOC ability_shielddome>Shield Dome',
         },
         Mesh = {
             IconFadeInZoom = 130,

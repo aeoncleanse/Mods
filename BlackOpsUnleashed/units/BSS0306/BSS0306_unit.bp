@@ -72,10 +72,11 @@ UnitBlueprint {
     Description = '<LOC bss0306_desc>Heavy Cruiser',
     Display = {
         Abilities = {
+            '<LOC ability_omni>Omni Sensor',
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_radar>Radar',
             '<LOC ability_sonar>Sonar',
-            '<LOC ability_omni>Omni',
+            '<LOC ability_submersible>Submersible',
         },
         AnimationDeath = {
             {

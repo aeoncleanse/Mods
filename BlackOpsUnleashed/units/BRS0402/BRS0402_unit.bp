@@ -97,12 +97,13 @@ UnitBlueprint {
     Description = '<LOC brs0402_desc>Experimental Dreadnaught',
     Display = {
         Abilities = {
+            '<LOC ability_airstaging>Air Staging',
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_radar>Radar',
             '<LOC ability_sonar>Sonar',
-            '<LOC ability_airstaging>Air Staging',
-            '<LOC ability_tacmissiledef>Tactical Missile Defense',
             '<LOC ability_torpedo>Torpedoes',
+            '<LOC ability_tacmissiledef>Tactical Missile Defense',
+            '<LOC ability_repairs>Repairs',
         },
         AnimationDeath = {
             {

@@ -76,12 +76,12 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
-            '<LOC ability_engineeringsuite>Engineering Suite',
-            '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_stealthfield>Stealth Field',
-            '<LOC ability_cloakfield>Cloak Field',
-            '<LOC ability_radar>Radar',
+            '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_sonar>Sonar',
+            '<LOC ability_radar>Radar',
+            '<LOC ability_aquatic>Aquatic',
+            '<LOC ability_aa>Anti-Air',
         },
         IdleEffects = {
             Water = {
