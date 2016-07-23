@@ -7,7 +7,7 @@
 
 local AMassStorageUnit = import('/lua/aeonunits.lua').AMassStorageUnit
 
-BAB1106 = Class(AMassStorageUnit) {
+UAB1306 = Class(AMassStorageUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         AMassStorageUnit.OnStopBeingBuilt(self,builder,layer)
         self.Trash:Add(CreateStorageManip(self, 'M_Storage_1', 'MASS', 0, 0, 0, 0, 0, .7))
@@ -17,4 +17,4 @@ BAB1106 = Class(AMassStorageUnit) {
     end,
 }
 
-TypeClass = BAB1106
+TypeClass = UAB1306

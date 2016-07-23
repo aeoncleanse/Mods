@@ -51,7 +51,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = '<LOC bab1106_desc>Mass & Energy Storage',
+    Description = '<LOC uab1306_desc>Mass & Energy Storage',
     Display = {
         Abilities = {
             'Storage',
@@ -128,7 +128,7 @@ UnitBlueprint {
         BuildCostMass = 640,
         BuildTime = 900,
         RebuildBonusIds = {
-            'bab1106',
+            'uab1306',
         },
         StorageMass = 1000,
         StorageEnergy = 4000,
@@ -158,11 +158,11 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Secret',
-        UnitName = '<LOC bab1106_name>Vajun',
+        UnitName = '<LOC uab1306_name>Vajun',
         UnitWeight = 1,
     },
     Interface = {
-        HelpText = '<LOC bab1106_help>Mass & Energy Storage',
+        HelpText = '<LOC uab1306_help>Mass & Energy Storage',
     },
     LifeBarHeight = 0.075,
     LifeBarOffset = 0.35,
