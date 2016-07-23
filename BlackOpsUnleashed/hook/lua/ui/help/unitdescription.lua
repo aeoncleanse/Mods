@@ -35,7 +35,7 @@ Description['bel0211'] = "<LOC Unit_Description_10009> The Inferno uses a pair o
 Description['beb5102'] = "<LOC Unit_Description_10010> Low end repair pad, quick to build for early refuel and repair."
 Description['beb4209'] = "<LOC Unit_Description_10017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['beb4309'] = "<LOC Unit_Description_10018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['beb1106'] = "<LOC Unit_Description_10019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['ueb1306'] = "<LOC Unit_Description_10019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['beb2303'] = "<LOC Unit_Description_10020> Rapid-Fire Howitzer Emplacement, showers the target area with low yield explosives, uses energy to fire."
 
 -- Aeon

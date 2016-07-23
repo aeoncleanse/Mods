@@ -5,13 +5,13 @@
 -----------------------------------------------------------------
 UnitList = {
     EnergyStorage = {
-        UEF = {'beb1106', 50}, -- Atlas (Mass & Energy Storage)
+        UEF = {'ueb1306', 50}, -- Atlas (Mass & Energy Storage)
         Cybran = {'brb1106', 50}, -- Stain (Mass & Energy Storage)
         Aeon = {'bab1106', 50}, -- Vajun (Mass & Energy Storage)
         Seraphim = {'bsb1106', 50}, -- Orba (Mass & Energy Storage)
     },
     MassStorage = {
-        UEF = {'beb1106', 50}, -- Atlas (Mass & Energy Storage)
+        UEF = {'ueb1306', 50}, -- Atlas (Mass & Energy Storage)
         Cybran = {'brb1106', 50}, -- Stain (Mass & Energy Storage)
         Aeon = {'bab1106', 50}, -- Vajun (Mass & Energy Storage)
         Seraphim = {'bsb1106', 50}, -- Orba (Mass & Energy Storage)

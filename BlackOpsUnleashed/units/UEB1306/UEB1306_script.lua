@@ -7,7 +7,7 @@
 
 local TMassStorageUnit = import('/lua/terranunits.lua').TMassStorageUnit
 
-BEB1106 = Class(TMassStorageUnit) {
+UEB1306 = Class(TMassStorageUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         TMassStorageUnit.OnStopBeingBuilt(self,builder,layer)
         self.Trash:Add(CreateStorageManip(self, 'Mass', 'MASS', 0, 0, 0, 0, 0, 0.6))
@@ -15,4 +15,4 @@ BEB1106 = Class(TMassStorageUnit) {
     end,
 }
 
-TypeClass = BEB1106
+TypeClass = UEB1306
