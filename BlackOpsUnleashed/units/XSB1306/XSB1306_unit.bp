@@ -56,7 +56,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = '<LOC bsb1106_desc>Mass & Energy Storage',
+    Description = '<LOC xsb1306_desc>Mass & Energy Storage',
     Display = {
         Abilities = {
             'Storage',
@@ -134,7 +134,7 @@ UnitBlueprint {
         BuildCostMass = 640,
         BuildTime = 900,
         RebuildBonusIds = {
-            'bsb1106',
+            'xsb1306',
         },
         StorageMass = 1000,
         StorageEnergy = 4000,
@@ -164,11 +164,11 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Secret',
-        UnitName = '<LOC bsb1106_name>Orba',
+        UnitName = '<LOC xsb1306_name>Orba',
         UnitWeight = 1,
     },
     Interface = {
-        HelpText = '<LOC bsb1106_help>Mass & Energy Storage',
+        HelpText = '<LOC xsb1306_help>Mass & Energy Storage',
     },
     LifeBarHeight = 0.075,
     LifeBarOffset = 0.4,

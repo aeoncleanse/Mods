@@ -72,7 +72,7 @@ Description['bsb5102'] = "<LOC Unit_Description_40011> Low end repair pad, quick
 Description['bsb2306'] = "<LOC Unit_Description_40012> Fires an energy projectile that creates a small lightning entity that will attack nearby enemy units."
 Description['bsb4209'] = "<LOC Unit_Description_40017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['bsb4309'] = "<LOC Unit_Description_40018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['bsb1106'] = "<LOC Unit_Description_40019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['xsb1306'] = "<LOC Unit_Description_40019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['bsb2303'] = "<LOC Unit_Description_40020> Launches a tactical missile, that when impacts the target area, creates a large amount of mines."
 Description['bsl0401'] = "<LOC Unit_Description_40021> Experimental hover tank, carries small beam drones into battle, also armed with an experimental Phason Beam which increases in damage the longer the beam is active."
 
