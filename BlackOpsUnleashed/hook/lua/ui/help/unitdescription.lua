@@ -20,7 +20,7 @@ Description['brb5102'] = "<LOC Unit_Description_20014> Low end repair pad, quick
 Description['brb4401'] = "<LOC Unit_Description_20015> The Shadow creates an energy field around it and bends light to make it and anything else close by invisible to visual sensors."
 Description['brb4209'] = "<LOC Unit_Description_20017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['brb4309'] = "<LOC Unit_Description_20018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['brb1106'] = "<LOC Unit_Description_20019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['urb1306'] = "<LOC Unit_Description_20019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['brb2303'] = "<LOC Unit_Description_20020> Rapid-Fire rocket launcher, showers the target area with low yield explosives, uses energy to fire."
 
 -- UEF

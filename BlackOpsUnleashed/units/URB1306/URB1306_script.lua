@@ -7,7 +7,7 @@
 
 local CMassStorageUnit = import('/lua/cybranunits.lua').CMassStorageUnit
 
-BRB1106 = Class(CMassStorageUnit) {
+URB1306 = Class(CMassStorageUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         CMassStorageUnit.OnStopBeingBuilt(self,builder,layer)
         self:ForkThread(self.AnimThread)
@@ -23,4 +23,4 @@ BRB1106 = Class(CMassStorageUnit) {
     end,
 }
 
-TypeClass = BRB1106
+TypeClass = URB1306
