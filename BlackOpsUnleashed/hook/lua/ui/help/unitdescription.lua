@@ -20,7 +20,7 @@ Description['brb5102'] = "<LOC Unit_Description_20014> Low end repair pad, quick
 Description['brb4401'] = "<LOC Unit_Description_20015> The Shadow creates an energy field around it and bends light to make it and anything else close by invisible to visual sensors."
 Description['brb4209'] = "<LOC Unit_Description_20017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['brb4309'] = "<LOC Unit_Description_20018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['brb1106'] = "<LOC Unit_Description_20019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['urb1306'] = "<LOC Unit_Description_20019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['brb2303'] = "<LOC Unit_Description_20020> Rapid-Fire rocket launcher, showers the target area with low yield explosives, uses energy to fire."
 
 -- UEF
@@ -35,7 +35,7 @@ Description['bel0211'] = "<LOC Unit_Description_10009> The Inferno uses a pair o
 Description['beb5102'] = "<LOC Unit_Description_10010> Low end repair pad, quick to build for early refuel and repair."
 Description['beb4209'] = "<LOC Unit_Description_10017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['beb4309'] = "<LOC Unit_Description_10018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['beb1106'] = "<LOC Unit_Description_10019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['ueb1306'] = "<LOC Unit_Description_10019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['beb2303'] = "<LOC Unit_Description_10020> Rapid-Fire Howitzer Emplacement, showers the target area with low yield explosives, uses energy to fire."
 
 -- Aeon
@@ -53,7 +53,7 @@ Description['bab2308'] = "<LOC Unit_Description_30013> The Purifier fires a Tact
 Description['bab4307'] = "<LOC Unit_Description_30014> Long range Anti-Missle defense. Long range but slow rate of fire."
 Description['bab4209'] = "<LOC Unit_Description_30017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['bab4309'] = "<LOC Unit_Description_30018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['bab1106'] = "<LOC Unit_Description_30019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['uab1306'] = "<LOC Unit_Description_30019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['bab2303'] = "<LOC Unit_Description_30020> Medium yield energy mortar, fires quick bursts at enemies in range."
 Description['bal0402'] = "<LOC Unit_Description_30021> Super-heavy hover tank, designed to provide long range fire support on land or on water."
 
@@ -72,7 +72,7 @@ Description['bsb5102'] = "<LOC Unit_Description_40011> Low end repair pad, quick
 Description['bsb2306'] = "<LOC Unit_Description_40012> Fires an energy projectile that creates a small lightning entity that will attack nearby enemy units."
 Description['bsb4209'] = "<LOC Unit_Description_40017> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. Can be upgraded for a larger area of effect."
 Description['bsb4309'] = "<LOC Unit_Description_40018> Creates and amplifies the effects of Quantum Wakes, preventing enemies from teleporting units within the affected area. The affected area is larger than the T2 version."
-Description['bsb1106'] = "<LOC Unit_Description_40019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
+Description['xsb1306'] = "<LOC Unit_Description_40019> Advanced Storage building, provides bonus for both Mass and Energy producing structures as well as storing Mass and Energy."
 Description['bsb2303'] = "<LOC Unit_Description_40020> Launches a tactical missile, that when impacts the target area, creates a large amount of mines."
 Description['bsl0401'] = "<LOC Unit_Description_40021> Experimental hover tank, carries small beam drones into battle, also armed with an experimental Phason Beam which increases in damage the longer the beam is active."
 

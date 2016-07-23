@@ -7,7 +7,7 @@
 
 local SMassStorageUnit = import('/lua/seraphimunits.lua').SMassStorageUnit
 
-BSB1106 = Class(SMassStorageUnit) {
+XSB1306 = Class(SMassStorageUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
         SMassStorageUnit.OnStopBeingBuilt(self, builder, layer)
         self.Trash:Add(CreateStorageManip(self, 'Mass', 'MASS', 0, 0, 0, 0, 0, .41))
@@ -15,4 +15,4 @@ BSB1106 = Class(SMassStorageUnit) {
     end,
 }
 
-TypeClass = BSB1106
+TypeClass = XSB1306
