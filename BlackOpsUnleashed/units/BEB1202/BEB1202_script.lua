@@ -19,8 +19,6 @@ BEB1202 = Class(TEnergyCreationUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         TEnergyCreationUnit.OnStopBeingBuilt(self,builder,layer)
         self.EffectsBag = {}
-        self.AnimManip = CreateAnimator(self)
-        self.Trash:Add(self.AnimManip)
         ChangeState(self, self.ActiveState)
     end,
 
@@ -31,10 +29,6 @@ BEB1202 = Class(TEnergyCreationUnit) {
             if myBlueprint.Audio.Activate then
                 self:PlaySound(myBlueprint.Audio.Activate)
             end
-
-            self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(1)
-            WaitFor(self.AnimManip)
-
             local effects = {}
             local bones = {}
             local scale = 1
