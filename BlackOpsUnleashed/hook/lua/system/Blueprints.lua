@@ -177,6 +177,8 @@ function CalculateNewLod(uBP)
     end
     -- Set the new LODCutoff inside blueprint LOD-1 or LOD-2
     uBP.Display.Mesh.LODs[1].LODCutoff = mq
-    -- display strategic icons from LOD 130 on, so they will hide smaller units.
-    uBP.Display.Mesh.IconFadeInZoom = 130
+    -- display strategic icons from LOD 130 on, so they will hide smaller units. Except special units.
+    if uBP.Display.Mesh.IconFadeInZoom and uBP.Display.Mesh.IconFadeInZoom < 1000 then
+        uBP.Display.Mesh.IconFadeInZoom = 130
+    end
 end
