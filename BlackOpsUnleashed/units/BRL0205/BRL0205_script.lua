@@ -65,6 +65,9 @@ XRL0205 = Class(CWalkingLandUnit) {
     OnCreate = function(self)
         CWalkingLandUnit.OnCreate(self)
         if self:GetBlueprint().General.BuildBones then
+            local bp = self:GetBlueprint()
+            self.BuildArmManipulator = CreateBuilderArmController(self, bp.General.BuildBones.YawBone or 0 , bp.General.BuildBones.PitchBone or 0, bp.General.BuildBones.AimBone or 0)
+            self.Trash:Add(self.BuildArmManipulator)
             self:SetupBuildBones()
             -- Override default 360 degree build arm arc with laserarm weapon settings
             -- This is currently useless as I can't get the unit to call OnPrepareArmForBuild
