@@ -65,7 +65,6 @@ XRL0205 = Class(CWalkingLandUnit) {
     OnCreate = function(self)
         CWalkingLandUnit.OnCreate(self)
         if self:GetBlueprint().General.BuildBones then
-LOG('OnCreate')
             local bp = self:GetBlueprint()
             self.BuildArmManipulator = CreateBuilderArmController(self, bp.General.BuildBones.YawBone or 0 , bp.General.BuildBones.PitchBone or 0, bp.General.BuildBones.AimBone or 0)
             self.Trash:Add(self.BuildArmManipulator)
