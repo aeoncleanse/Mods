@@ -100,9 +100,6 @@ UnitBlueprint {
     },
     Description = '<LOC baa0401_desc>Experimental Satellite',
     Display = {
-        Abilities = {
-            'Orbital',
-        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

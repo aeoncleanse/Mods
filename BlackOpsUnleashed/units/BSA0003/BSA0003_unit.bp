@@ -112,7 +112,7 @@ UnitBlueprint {
     Description = '<LOC bsa0003_desc>Elite Gunship',
     Display = {
         Abilities = {
-            'Groundattack',
+            'ability_groundattack',
         },
         LayerChangeEffects = {
             AirLand = {

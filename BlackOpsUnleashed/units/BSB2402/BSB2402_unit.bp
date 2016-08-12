@@ -54,9 +54,6 @@ UnitBlueprint {
     },
     Description = '<LOC bss2402_desc>Seraphim Quantum Rift Archway',
     Display = {
-        Abilities = {
-            '<LOC ability_factory>Factory',
-        },
         AnimationDeath = {
             {
                 Animation = '/mods/BlackOpsUnleashed/units/BSB2402/BSB2402_adeath.sca',

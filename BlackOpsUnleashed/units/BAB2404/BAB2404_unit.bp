@@ -70,9 +70,6 @@ UnitBlueprint {
     },
     Description = '<LOC bab2404_desc>Artemis Satelite Control',
     Display = {
-        Abilities = {
-            '<LOC ability_factory>Factory',
-        },
         BuildAttachBone = 'Attachpoint',
         Mesh = {
             IconFadeInZoom = 130,

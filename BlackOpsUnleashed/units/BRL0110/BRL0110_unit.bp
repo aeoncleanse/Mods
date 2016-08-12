@@ -70,7 +70,7 @@ UnitBlueprint {
             '<LOC ability_ran>Random Weapon:',
             '<LOC ability_lsr>Beam Laser',
             '<LOC ability_gat>Gattling Pulse Laser',
-            '<LOC ability_rkt>RPG',
+            '<LOC ability_rkt>Rocket-propelled Grenades',
             '<LOC ability_flm>Flamethrower',
         },
         AnimationDeath = {
