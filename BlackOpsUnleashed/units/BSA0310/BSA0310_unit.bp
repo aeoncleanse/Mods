@@ -114,7 +114,7 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_aa>Anti-Air',
-            '<LOC ability_shielddestroy>Shield Disruptor',
+            '<LOC ability_shieldisrupt>Shield Disruptor',
         },
         LayerChangeEffects = {
             AirLand = {

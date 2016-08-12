@@ -74,7 +74,7 @@ UnitBlueprint {
     Description = '<LOC bel0109_desc>Tank Hunter/Mobile PD',
     Display = {
         Abilities = {
-            '<LOC ability_tank>Deploys to fire, and can be locked into position',
+            '<LOC ability_deploys>Deploys to fire, and can be locked into position',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_aactivate.sca',
         AnimationActivate = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_AClose.sca',

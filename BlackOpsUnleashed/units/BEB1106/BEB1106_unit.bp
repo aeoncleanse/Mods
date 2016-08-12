@@ -52,9 +52,6 @@ UnitBlueprint {
     },
     Description = '<LOC beb1106_desc>Mass & Energy Storage',
     Display = {
-        Abilities = {
-            'Storage',
-        },
         BlinkingLights = {
             {
                 BLBone = 0,
