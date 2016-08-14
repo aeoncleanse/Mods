@@ -52,7 +52,7 @@ UnitBlueprint {
     Description = '<LOC beb4309_desc>Anti-Teleport Field Tower',
     Display = {
         Abilities = {
-            '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
+            '<LOC ability_antiteleport>Anti-Teleport Field: Prevents Teleportation',
             '<LOC ability_deathaoe>Volatile',
         },
         Mesh = {

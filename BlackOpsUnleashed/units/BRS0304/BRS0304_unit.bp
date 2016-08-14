@@ -93,12 +93,11 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
             '<LOC ability_aa>Anti-Air',
-            '<LOC ability_radar>Radar',
+            '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_torpedodef>Torpedo Defense',
             '<LOC ability_sonar>Sonar',
-            '<LOC ability_torpedo>Torpedoes',
+            '<LOC ability_radar>Radar',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
-            '<LOC ability_repairs>Repairs',
         },
         AnimationDeath = {
             {

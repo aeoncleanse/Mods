@@ -64,7 +64,7 @@ UnitBlueprint {
     Description = '<LOC bel0308_desc>Artillery Support Bot',
     Display = {
         Abilities = {
-            'Directfire',
+            '<LOC ability_directfire>Directfire',
         },
         AnimationDeath = {
             {

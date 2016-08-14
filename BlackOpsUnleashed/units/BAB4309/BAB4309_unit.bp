@@ -63,7 +63,7 @@ UnitBlueprint {
     Description = '<LOC bab4309_desc>Anti-Teleport Generator',
     Display = {
         Abilities = {
-            '<LOC ability_anti>Anti-Teleport Field: Prevents Teleportation',
+            '<LOC ability_antiteleport>Anti-Teleport Field: Prevents Teleportation',
             '<LOC ability_deathaoe>Volatile',
         },
         DamageEffects = {

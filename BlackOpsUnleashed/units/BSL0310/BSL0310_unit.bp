@@ -71,7 +71,7 @@ UnitBlueprint {
     Description = '<LOC bsl0310_desc>Lambda Equipped Assault Bot',
     Display = {
         Abilities = {
-            '<LOC ability_lam>Lambda Field',
+            '<LOC ability_lambdafield>Lambda Field',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
         },
         AnimationDeath = {

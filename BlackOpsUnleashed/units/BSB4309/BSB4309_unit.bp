@@ -53,7 +53,7 @@ UnitBlueprint {
     Description = '<LOC bsb4309_desc>Anti-Teleport Tower',
     Display = {
         Abilities = {
-            '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
+            '<LOC ability_antiteleport>Anti-Teleport Field: Prevents Teleportation',
             '<LOC ability_deathaoe>Volatile',
         },
         AnimationOn = '/mods/BlackOpsUnleashed/units/BSB4309/BSB4309_Aactivate.sca',

@@ -111,7 +111,7 @@ UnitBlueprint {
             '<LOC ability_amphibious>Amphibious',
             '<LOC ability_personalstealth>Personal Stealth',
             '<LOC ability_tacmissiledef>Tactical Missile Defense',
-            '<LOC ability_attkdrones>Anti-Air Drones',
+            '<LOC ability_aadrones>Anti-Air Drones',
         },
         AnimationDeath = {
             {

@@ -59,7 +59,7 @@ UnitBlueprint {
     Description = '<LOC bsb1106_desc>Mass & Energy Storage',
     Display = {
         Abilities = {
-            'Storage',
+            '<LOC ability_storage>Storage',
         },
         BlinkingLights = {
             {

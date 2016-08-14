@@ -67,11 +67,11 @@ UnitBlueprint {
     Description = '<LOC brl0110_desc>Multi-Weapon Assault Bot',
     Display = {
         Abilities = {
-            '<LOC ability_ran>Random Weapon:',
-            '<LOC ability_lsr>Beam Laser',
-            '<LOC ability_gat>Gattling Pulse Laser',
-            '<LOC ability_rkt>RPG',
-            '<LOC ability_flm>Flamethrower',
+            '<LOC ability_randomweapon>Random Weapon',
+            '<LOC ability_beamlaser>Beam Laser',
+            '<LOC ability_gattlinglaser>Gattling Pulse Laser',
+            '<LOC ability_rpg>Rocket-propelled Grenades',
+            '<LOC ability_flamer>Flamethrower',
         },
         AnimationDeath = {
             {

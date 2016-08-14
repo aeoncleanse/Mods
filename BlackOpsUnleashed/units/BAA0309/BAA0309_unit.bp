@@ -140,7 +140,7 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_transport>Transport',
-            '<LOC ability_tele>Teleport',
+            '<LOC ability_teleport>Teleport',
         },
         AnimationPermOpen = '/mods/BlackOpsUnleashed/units/BAA0309/BAA0309_aopen01.sca',
         ForcedBuildSpin = 90,

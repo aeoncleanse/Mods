@@ -61,7 +61,7 @@ UnitBlueprint {
     Description = '<LOC brb4209_desc>Anti-Teleport Tower',
     Display = {
         Abilities = {
-           '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
+            '<LOC ability_antiteleport>Anti-Teleport Field: Prevents Teleportation',
            '<LOC ability_upgradable>Upgradeable',
            '<LOC ability_deathaoe>Volatile',
         },

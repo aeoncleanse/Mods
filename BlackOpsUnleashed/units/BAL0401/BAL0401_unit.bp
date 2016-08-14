@@ -90,8 +90,9 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_amphibious>Amphibious',
-            '<LOC ability_massive>Massive',
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_massive>Massive',
+            '<LOC ability_deploys>Deploys',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BAL0401/BAL0401_ADeploy01.sca',
         AnimationDeath = {

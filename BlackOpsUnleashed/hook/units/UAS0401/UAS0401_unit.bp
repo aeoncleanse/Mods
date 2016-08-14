@@ -128,7 +128,7 @@ UnitBlueprint {
             '<LOC ability_factory>Factory',
             '<LOC ability_radar>Radar',
             '<LOC ability_sonar>Sonar',
-            '<LOC ability_attkdrones>Attack Drones',
+            '<LOC ability_aadrones>Anti-Air Drones',
             '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_torpedodef>Torpedo Defense',
         },
