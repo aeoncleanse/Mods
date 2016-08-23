@@ -276,6 +276,7 @@ UnitBlueprint {
         Class1AttachSize = 1,
         Class2AttachSize = 1,
         Class3AttachSize = 1,
+        ClassGenericUpTo = 3,
         DockingSlots = 8,
         RepairRate = 10,
         TransportClass = 10,
