@@ -444,7 +444,7 @@ EEL0001 = Class(ACUUnit) {
             self.PainterRange[string.sub(enh, 0, -7)] = nil
         elseif not delete and not self.PainterRange[enh] then
             self.PainterRange[enh] = newRange
-        end 
+        end
         
         local range = 22
         for upgrade, radius in self.PainterRange do
@@ -454,7 +454,7 @@ EEL0001 = Class(ACUUnit) {
         local wep = self:GetWeaponByLabel('TargetPainter')
         wep:ChangeMaxRadius(range)
     end,
-    
+
     CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         
