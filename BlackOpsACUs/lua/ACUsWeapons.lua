@@ -103,7 +103,7 @@ CEMPArrayBeam01 = Class(DefaultBeamWeapon) {
     FxChargeMuzzleFlash = {},
 }
 
-EXCEMPArrayBeam02 = Class(DefaultBeamWeapon) {
+CEMPArrayBeam02 = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.EXCEMPArrayBeam02CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
