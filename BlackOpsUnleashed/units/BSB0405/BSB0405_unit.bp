@@ -59,7 +59,6 @@ UnitBlueprint {
         'SORTSTRATEGIC',
         'OVERLAYDIRECTFIRE',
     },
-    CollisionOffsetY = 0,
     Defense = {
         AirThreatLevel = 0,
         dontOKControl = true,
@@ -248,6 +247,7 @@ UnitBlueprint {
     },
     SelectionSizeX = 3.5,
     SelectionSizeZ = 3.5,
+    SelectionCenterOffsetZ = 0.5,
     SelectionThickness = 0.36,
     SizeX = 4,
     SizeY = 12,
