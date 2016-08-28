@@ -9,7 +9,7 @@ function CreateArmyUnit(strArmy,strUnit)
 
     if nil ~= tblUnit then
         if brain.BrainType == 'Human' then
-            for _, string in IDs do
+            for _, v in IDs do
                 if string.sub(tblUnit.type, 1, 7) == v then
                     tblUnit.type = 'e' .. string.sub(v, 2)
                 end
