@@ -323,7 +323,6 @@ UnitBlueprint {
             'BUILTBYTIER3COMMANDER UEF',
             'BUILTBYTIER4COMMANDER UEF',
         },
-        MaintenanceConsumptionPerSecondEnergy = 1,
         MaxBuildDistance = 10,
         NaturalProducer = true,
         NeedToFaceTargetToBuild = false,
@@ -1039,7 +1038,7 @@ UnitBlueprint {
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 375,
             ShieldEnergyDrainRechargeTime = 5,
             ShieldMaxHealth = 7000,
             ShieldRechargeTime = 150,
@@ -1057,7 +1056,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'UEL0001',
             },
-            NewRegenRate = 0,
         },
         ShieldBatteryRemove = {
             BuildCostEnergy = 1,
@@ -1070,8 +1068,8 @@ UnitBlueprint {
             Name = 'Remove Shield Battery',
             Prerequisite = 'ShieldBattery',
             RemoveEnhancements = {
-                'EXShieldBattery',
-                'EXShieldBatteryRemove',
+                'ShieldBattery',
+                'ShieldBatteryRemove',
             },
             Slot = 'Back',
         },
@@ -1086,7 +1084,7 @@ UnitBlueprint {
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 625,
             ShieldEnergyDrainRechargeTime = 5,
             ShieldMaxHealth = 20000,
             ShieldRechargeTime = 150,
@@ -1105,7 +1103,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'UEL0001',
             },
-            NewRegenRate = 0,
         },
         ImprovedShieldBatteryRemove = {
             BuildCostEnergy = 1,
@@ -1136,7 +1133,7 @@ UnitBlueprint {
             OwnerShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
             PersonalShield = true,
             RegenAssistMult = 10,
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 1000,
             ShieldEnergyDrainRechargeTime = 5,
             ShieldMaxHealth = 40000,
             ShieldRechargeTime = 150,
@@ -1155,7 +1152,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'UEL0001',
             },
-            NewRegenRate = 0,
         },
         AdvancedShieldBatteryRemove = {
             BuildCostEnergy = 1,
@@ -1187,7 +1183,7 @@ UnitBlueprint {
             MeshZ = '/effects/entities/Shield01/Shield01z_mesh',
             Name = 'Expanded Shield Bubble',
             Prerequisite = 'AdvancedShieldBattery',
-            MaintenanceConsumptionPerSecondEnergy = 1,
+            MaintenanceConsumptionPerSecondEnergy = 2000,
             ShieldEnergyDrainRechargeTime = 5,
             ShieldEnhancementNumber = 5,
             ShieldMaxHealth = 40000,
