@@ -5,8 +5,8 @@
 -----------------------------------------------------------------
 UnitList = {
     T3GroundDefense = {
-        Cybran = {'brb2306', 50}, -- Manticore (Heavy Point Defense) 
+        Cybran = {'brb2306', 60}, -- Manticore (Heavy Point Defense) 
         Aeon = {'bab2308', 20}, -- Purifier (Tactical Missile Launcher) 
-        Seraphim = {'bsb2306', 50}, -- Uttauthuum (Heavy Point Defense) 
+        Seraphim = {'bsb2306', 60}, -- Uttauthuum (Heavy Point Defense) 
     },
 }
