@@ -5,9 +5,9 @@
 -----------------------------------------------------------------
 UnitList = {
     T2AirStagingPlatform = {
-        UEF = {'beb5205', 50}, -- Naval Yard (Advanced Air Staging Facility) 
-        Cybran = {'brb5102', 50}, -- Ina (Light Air Staging Facility) 
-        Aeon = {'bab5102', 50}, -- Enclave (Light Staging Facility) 
-        Seraphim = {'bsb5205', 50}, -- Iathuum-Hovathu (Advanced Air Staging Beacon) 
+        UEF = {'beb5205', 20}, -- Naval Yard (Advanced Air Staging Facility) 
+        Cybran = {'brb5102', 20}, -- Ina (Light Air Staging Facility) 
+        Aeon = {'bab5102', 20}, -- Enclave (Light Staging Facility) 
+        Seraphim = {'bsb5205', 20}, -- Iathuum-Hovathu (Advanced Air Staging Beacon) 
     },
 }
