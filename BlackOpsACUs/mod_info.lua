@@ -10,4 +10,6 @@ enabled = true
 exclusive = false
 ui_only = false
 special_thanks = "Uveso, Softles, Nojoke185, ZephyrWarrior, Raistlfiren, Nocaps"
-conflicts = "5048d937-4872-4e86-9f09-dd1806a0629c"
+conflicts = {
+  "5048d937-4872-4e86-9f09-dd1806a0629c", -- Notify
+}
