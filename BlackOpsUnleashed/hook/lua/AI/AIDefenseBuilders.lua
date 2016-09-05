@@ -8,7 +8,6 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENGINEER * categories.TECH3}}, #DUNCAN - was 8
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.SHIELD * categories.STRUCTURE}}, #DUNCAN - Added Sructure
-            { MIBC, 'FactionIndex', {1, 2, 4}},
             { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }}, #DUNCAN - was 0.9, 1.4
             { IBC, 'BrainNotLowPowerMode', {} },
         },
