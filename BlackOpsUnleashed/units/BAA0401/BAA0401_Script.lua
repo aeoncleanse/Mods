@@ -318,6 +318,22 @@ BAA0401 = Class(AAirUnit) {
 
         WaitSeconds(0.5)
     end,
+
+	CreateSCUEffects = function(self, bone, army )
+        local sides = 1
+        local angle = (1*math.pi) / sides
+        local velocity = 2
+        local OffsetMod = 1
+        local projectiles = {}
+
+        for i = 0, (sides-1) do
+            local X = math.sin(i*angle)
+            local Z = math.cos(i*angle)
+            local proj =  self:CreateProjectile('/effects/Entities/SCUDeath01/SCUDeath01_proj.bp', X * OffsetMod , 2, Z * OffsetMod, X, 0, Z)
+                :SetVelocity(velocity)
+            table.insert( projectiles, proj )
+        end  
+    end,
     
     DeathThread = function(self)
         local bp = self:GetBlueprint()
@@ -332,6 +348,15 @@ BAA0401 = Class(AAirUnit) {
         CreateDeathExplosion( self, 'DamageBone05', 1)
         LOG('waiting 0.5 seconds')
         WaitSeconds(0.5)
+
+		for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'DeathImpact') then
+            	self:CreateSCUEffects( 'BAA0401', army ) -- spawns the final explsoion and does the final area damage
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+
         CreateDeathExplosion(self, 'BAA0401', 5)
         self:CreateWreckage(0.1)
         self:Destroy()
