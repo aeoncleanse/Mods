@@ -42,8 +42,8 @@ BAB2404 = Class(ALandFactoryUnit) {
         ALandFactoryUnit.OnStartBuild(self, unitBeingBuilt, order)
         local drone = unitBeingBuilt
         self.PetDrone = drone
-        drone:SetParent(self)
-        
+        self.PetDrone.Parent = self
+       
         -- Drone clean up scripts
         if self.BuildingEffect01Bag then
             for k, v in self.BuildingEffect01Bag do
@@ -105,7 +105,9 @@ BAB2404 = Class(ALandFactoryUnit) {
     NotifyOfDroneDeath = function(self)
         -- Remove build restriction if sat has been lost
         self.PetDrone = nil
-        self:RemoveBuildRestriction(categories.BUILTBYARTEMIS)
+        if not self.Dead then
+            self:RemoveBuildRestriction(categories.BUILTBYARTEMIS)
+        end
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)

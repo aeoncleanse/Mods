@@ -240,10 +240,6 @@ BAA0401 = Class(AAirUnit) {
         ArtemisCannon = Class(TDFMachineGunWeapon) {},
     },
     
-    SetParent = function(self, parent)
-        self.Parent = parent
-    end,
-    
     OnStopBeingBuilt = function(self, builder, layer)
         self.ChargeEffects01Bag = {}
         self.ChargeEffects02Bag = {}
@@ -340,7 +336,7 @@ BAA0401 = Class(AAirUnit) {
         self:CreateWreckage(0.1)
         self:Destroy()
         -- notify the station after hitting the ground.
-        if self.Parent then
+        if self.Parent and not self.Parent.Dead then
             self.Parent:NotifyOfDroneDeath()
         end
     end,
