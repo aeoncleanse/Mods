@@ -81,7 +81,6 @@ BAB2404 = Class(ALandFactoryUnit) {
     
     OnStopBuild = function(self, unitBeingBuilt, order)
         ALandFactoryUnit.OnStopBuild(self, unitBeingBuilt, order)
-        self.PetDrone = nil
         if self.BuildingEffect01Bag then
             for k, v in self.BuildingEffect01Bag do
                 v:Destroy()
