@@ -274,9 +274,6 @@ BAA0401 = Class(AAirUnit) {
     end,
     
     OnKilled = function(self, instigator, type, overkillRatio)
-        if self.Parent then
-            self.Parent:NotifyOfDroneDeath()
-        end
         self:ForkThread(self.DeathEffectsThread)
         AAirUnit.OnKilled(self, instigator, type, overkillRatio)        
     end,
@@ -342,6 +339,10 @@ BAA0401 = Class(AAirUnit) {
         CreateDeathExplosion(self, 'BAA0401', 5)
         self:CreateWreckage(0.1)
         self:Destroy()
+        -- notify the station after hitting the ground.
+        if self.Parent then
+            self.Parent:NotifyOfDroneDeath()
+        end
     end,
 }
 
