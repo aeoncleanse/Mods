@@ -105,7 +105,7 @@ BAB2404 = Class(ALandFactoryUnit) {
     NotifyOfDroneDeath = function(self)
         -- Remove build restriction if sat has been lost
         self.PetDrone = nil
-        if not self.Dead then
+        if self and not self.Dead then
             self:RemoveBuildRestriction(categories.BUILTBYARTEMIS)
         end
     end,
