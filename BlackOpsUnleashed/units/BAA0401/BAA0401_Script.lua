@@ -252,8 +252,7 @@ BAA0401 = Class(AAirUnit) {
             self.OpenAnim = CreateAnimator(self)
             WaitSeconds(6)
 
-            self.OpenAnim:PlayAnim( '/units/BAA0401/BAA0401_Aopen.sca' )
-
+            self.OpenAnim:PlayAnim('/units/BAA0401/BAA0401_Aopen.sca')
         end,
     },
 
@@ -326,12 +325,12 @@ BAA0401 = Class(AAirUnit) {
         local OffsetMod = 1
         local projectiles = {}
 
-        for i = 0, (sides-1) do
+        for i = 0, (sides - 1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/Entities/SCUDeath01/SCUDeath01_proj.bp', X * OffsetMod , 2, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end
     end,
 
@@ -350,8 +349,8 @@ BAA0401 = Class(AAirUnit) {
         WaitSeconds(0.5)
 
         for i, numWeapons in bp.Weapon do
-            if(bp.Weapon[i].Label == 'DeathImpact') then
-                self:CreateSCUEffects( 'BAA0401', army ) -- spawns the final explsoion and does the final area damage
+            if bp.Weapon[i].Label == 'DeathImpact' then
+                self:CreateSCUEffects('BAA0401', army) -- spawns the final explsoion and does the final area damage
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
                 break
             end
