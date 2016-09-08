@@ -4,12 +4,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'T3 Shield D Engineer Factory Adj',
         PlatoonTemplate = 'T3EngineerBuilder',
-        Priority = 950, #DUNCAN - was 875
+        Priority = 950,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENGINEER * categories.TECH3}}, #DUNCAN - was 8
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.SHIELD * categories.STRUCTURE}}, #DUNCAN - Added Sructure
-            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }}, #DUNCAN - was 0.9, 1.4
-            { IBC, 'BrainNotLowPowerMode', {} },
+            {UCBC, 'HaveGreaterThanUnitsWithCategory', {4, categories.ENGINEER * categories.TECH3}},
+            {UCBC, 'UnitsLessAtLocation', {'LocationType', 8, categories.SHIELD * categories.STRUCTURE}},
+            {EBC, 'GreaterThanEconEfficiencyOverTime', {0.8, 1.1}},
+            {IBC, 'BrainNotLowPowerMode', {}},
         },
         BuilderType = 'Any',
         BuilderData = {
