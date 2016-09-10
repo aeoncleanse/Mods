@@ -101,10 +101,11 @@ BSB2402 = Class(SLandFactoryUnit) {
         -- Kill the expansion factory spawns
         if self.leftDrone and not self.leftDrone.Dead then
             IssueClearCommands({self.leftDrone})
+            self.leftDrone:Kill()
+        end
+        if self.rightDrone and not self.rightDrone.Dead then
             IssueClearCommands({self.rightDrone})
-        elseif self.rightDrone and not self.rightDrone.Dead then
-            IssueKillSelf({self.leftDrone})
-            IssueKillSelf({self.rightDrone})
+            self.rightDrone:Kill()
         end
 
         SLandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)        
