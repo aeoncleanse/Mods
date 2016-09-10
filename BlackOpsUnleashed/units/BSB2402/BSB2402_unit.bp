@@ -93,9 +93,9 @@ UnitBlueprint {
         BuildCostEnergy = 5850000,
         BuildCostMass = 180000,
         BuildTime = 90000,
-        BuildRate = 1080,
+        BuildRate = 300,
         BuildableCategory = {
-            'BUILTBYRIFTGATE SERAPHIM',
+            'BUILTBYARCH',
         },
         RebuildBonusIds = {
             'bsb2402',

@@ -55,6 +55,7 @@ UnitBlueprint {
         'BOT',
         'OVERLAYDIRECTFIRE',
         'OVERLAYDEFENSE',
+        'BUILTBYARCH',
     },
     CollisionOffsetZ = 0,
     Defense = {

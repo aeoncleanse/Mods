@@ -1,0 +1,7 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId = "xsl0305",    -- Seraphim T3 Sniper Bot
+    Categories = {
+        'BUILTBYRIFTGATE',
+    },
+}

@@ -1,0 +1,7 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId = "xsl0111",    -- Seraphim T2 Mobile Missile Launcher
+    Categories = {
+        'BUILTBYRIFTGATE',
+    },
+}
