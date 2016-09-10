@@ -1,7 +1,0 @@
-UnitBlueprint {
-    Merge = true,
-    BlueprintId = "xsl0303",    -- Seraphim T3 Siege Tank
-    Categories = {
-        'BUILTBYRIFTGATE',
-    },
-}

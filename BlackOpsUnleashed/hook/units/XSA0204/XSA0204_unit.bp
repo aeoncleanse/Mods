@@ -1,7 +1,0 @@
-UnitBlueprint {
-    Merge = true,
-    BlueprintId = "xsa0204",    -- Seraphim Torpedo Bomber
-    Categories = {
-        'BUILTBYRIFTGATE',
-    },
-}
