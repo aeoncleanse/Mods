@@ -1373,7 +1373,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            OverchargeDamageMod2 = -6000,
+            OverchargeDamageMod = -6000,
             HideBones = {
                 'Missile_Launcher',
                 'L_Spinner_B01',

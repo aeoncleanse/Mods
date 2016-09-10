@@ -34,13 +34,10 @@ ESB0001 = Class(SStructureUnit) {
 
         for k, v in self.ShieldEffects do
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625))
-            WARN('1')
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, -0.5, 0))
-            WARN('2')
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, 0.5, 0))
-            WARN('3')
         end
-WARN('4')
+
         local bp = self:GetBlueprint().Defense.SeraLambdaField01
         local bp2 = self:GetBlueprint().Defense.SeraLambdaField02
         local SeraLambdaField01 = SeraLambdaField {
@@ -59,7 +56,6 @@ WARN('4')
 
         self.Trash:Add(SeraLambdaField01)
         self.UnitComplete = true
-        WARN('5')
     end,
 
     -- Make this unit invulnerable
