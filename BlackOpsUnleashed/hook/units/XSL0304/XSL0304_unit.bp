@@ -1,7 +1,0 @@
-UnitBlueprint {
-    Merge = true,
-    BlueprintId = "xsl0304",    -- Seraphim T3 Mobile Heavy Artillery
-    Categories = {
-        'BUILTBYRIFTGATE',
-    },
-}

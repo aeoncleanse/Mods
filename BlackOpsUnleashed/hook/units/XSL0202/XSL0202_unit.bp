@@ -1,7 +1,0 @@
-UnitBlueprint {
-    Merge = true,
-    BlueprintId = "xsl0202",    -- Seraphim T2 Assault Bot
-    Categories = {
-        'BUILTBYRIFTGATE',
-    },
-}

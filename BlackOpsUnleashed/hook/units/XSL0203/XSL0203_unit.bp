@@ -1,7 +1,0 @@
-UnitBlueprint {
-    Merge = true,
-    BlueprintId = "xsl0203",    -- Seraphim T2 Hover Tank
-    Categories = {
-        'BUILTBYRIFTGATE',
-    },
-}

@@ -1,7 +1,0 @@
-UnitBlueprint {
-    Merge = true,
-    BlueprintId = "xsl0307",    -- Seraphim T3 Mobile Shield Generator
-    Categories = {
-        'BUILTBYRIFTGATE',
-    },
-}
