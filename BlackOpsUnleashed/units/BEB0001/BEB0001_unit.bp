@@ -40,6 +40,7 @@ UnitBlueprint {
         'INSIGNIFICANTUNIT',
         'TECH2',
         'DRONE',
+        'AIR',
         'AIRSTAGINGPLATFORM',
         'VISIBLETORECON',
         'OVERLAYMISC',
@@ -57,6 +58,10 @@ UnitBlueprint {
     },
     Description = '<LOC beb0001_desc>Air Staging Facility',
     Display = {
+        Abilities = {
+            '<LOC ability_airstaging>Air Staging',
+            '<LOC ability_personalstealth>Personal Stealth',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

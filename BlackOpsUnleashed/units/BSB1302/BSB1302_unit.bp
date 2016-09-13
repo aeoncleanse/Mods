@@ -58,7 +58,8 @@ UnitBlueprint {
     Description = '<LOC bsb1302_desc>Hydrocarbon Power Plant',
     Display = {
         Abilities = {
-            'Energy',
+            '<LOC ability_amphibious>Amphibious',
+            '<LOC ability_deathaoe>Volatile',
         },
         LoopingAnimation = '/units/XSB1102/XSB1102_aloop.sca',
         Mesh = {

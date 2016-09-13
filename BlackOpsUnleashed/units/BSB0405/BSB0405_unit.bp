@@ -59,7 +59,6 @@ UnitBlueprint {
         'SORTSTRATEGIC',
         'OVERLAYDIRECTFIRE',
     },
-    CollisionOffsetY = 0,
     Defense = {
         AirThreatLevel = 0,
         dontOKControl = true,
@@ -75,6 +74,8 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_stun>EMP Weapon',
+            '<LOC ability_radar>Radar',
         },
         AnimationDeath = {
             {
@@ -246,11 +247,12 @@ UnitBlueprint {
     },
     SelectionSizeX = 3.5,
     SelectionSizeZ = 3.5,
+    SelectionCenterOffsetZ = 0.5,
     SelectionThickness = 0.36,
     SizeX = 4,
     SizeY = 12,
     SizeZ = 4,
-    StrategicIconName = 'icon_structure3_directfire',
+    StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 240,
     Weapon = {
         {

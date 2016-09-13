@@ -80,10 +80,12 @@ EEL0001 = Class(ACUUnit) {
                 self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
                 self.slider:SetGoal(0, 0, 0.22)
                 WaitFor(self.slider)
-                TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
+                local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
                 self.slider:SetGoal(0, 0, 0)
                 WaitFor(self.slider)
                 self.slider:Destroy()
+
+                return proj
             end,
         },
         TacNukeMissile = Class(TIFCruiseMissileLauncher) {
@@ -92,10 +94,12 @@ EEL0001 = Class(ACUUnit) {
                 self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
                 self.slider:SetGoal(0, 0, 0.22)
                 WaitFor(self.slider)
-                TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
+                local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
                 self.slider:SetGoal(0, 0, 0)
                 WaitFor(self.slider)
                 self.slider:Destroy()
+
+                return proj
             end,
         },
     },
@@ -107,9 +111,7 @@ EEL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
+    HideBonesForStart = function(self)
         self:HideBone('Engineering_Suite', true)
         self:HideBone('Flamer', true)
         self:HideBone('HAC', true)
@@ -122,6 +124,13 @@ EEL0001 = Class(ACUUnit) {
         self:HideBone('Zephyr_Amplifier', true)
         self:HideBone('Back_IntelPack', true)
         self:HideBone('Torpedo_Launcher', true)
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:HideBonesForStart()
+
         self:SetupBuildBones()
         self.HasLeftPod = false
         self.HasRightPod = false
@@ -180,18 +189,8 @@ EEL0001 = Class(ACUUnit) {
         WaitSeconds(2.1)
         self:SetMesh('/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
-        self:HideBone('Engineering_Suite', true)
-        self:HideBone('Flamer', true)
-        self:HideBone('HAC', true)
-        self:HideBone('Gatling_Cannon', true)
-        self:HideBone('Back_MissilePack_B01', true)
-        self:HideBone('Back_SalvoLauncher', true)
-        self:HideBone('Back_ShieldPack', true)
-        self:HideBone('Left_Lance_Turret', true)
-        self:HideBone('Right_Lance_Turret', true)
-        self:HideBone('Zephyr_Amplifier', true)
-        self:HideBone('Back_IntelPack', true)
-        self:HideBone('Torpedo_Launcher', true)
+        self:HideBonesForStart()
+
         self:SetUnSelectable(false)
         self:SetBusy(false)
         self:SetBlockCommandQueue(false)
@@ -445,7 +444,7 @@ EEL0001 = Class(ACUUnit) {
             self.PainterRange[string.sub(enh, 0, -7)] = nil
         elseif not delete and not self.PainterRange[enh] then
             self.PainterRange[enh] = newRange
-        end 
+        end
         
         local range = 22
         for upgrade, radius in self.PainterRange do
@@ -455,7 +454,7 @@ EEL0001 = Class(ACUUnit) {
         local wep = self:GetWeaponByLabel('TargetPainter')
         wep:ChangeMaxRadius(range)
     end,
-    
+
     CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
         

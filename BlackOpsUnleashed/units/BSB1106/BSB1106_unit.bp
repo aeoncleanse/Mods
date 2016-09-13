@@ -59,7 +59,7 @@ UnitBlueprint {
     Description = '<LOC bsb1106_desc>Mass & Energy Storage',
     Display = {
         Abilities = {
-            'Storage',
+            '<LOC ability_storage>Storage',
         },
         BlinkingLights = {
             {
@@ -197,8 +197,8 @@ UnitBlueprint {
         SkirtSizeZ = 2,
         TurnRate = 0,
     },
-    SelectionSizeX = 0.8,
-    SelectionSizeZ = 0.8,
+    SelectionSizeX = 0.95,
+    SelectionSizeZ = 0.95,
     SelectionThickness = 0.6,
     SizeX = 1.0,
     SizeY = 0.6,

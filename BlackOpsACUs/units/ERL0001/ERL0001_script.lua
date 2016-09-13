@@ -18,20 +18,25 @@ local Buff = import('/lua/sim/Buff.lua')
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local BOWeapons = import('/mods/BlackOpsACUs/lua/ACUsWeapons.lua')
 local EMPWeapon = BOWeapons.EMPWeapon
-local CEMPArrayBeam02 = BOWeapons.EXCEMPArrayBeam02
+local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
+local CEMPArrayBeam02 = BOWeapons.CEMPArrayBeam02
 
 ERL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
+    PainterRange = {},
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
         RightRipper = Class(CCannonMolecularWeapon) {},
+        TargetPainter = Class(CEMPArrayBeam01) {},
         RocketPack = Class(RocketPack) {},
         TorpedoLauncher = Class(CANTorpedoLauncherWeapon) {},
         EMPShot01 = Class(EMPWeapon) {},
         EMPShot02 = Class(EMPWeapon) {},
         EMPShot03 = Class(EMPWeapon) {},
-        MLG = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MLG01 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MLG02 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MLG03 = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         AA01 = Class(CEMPArrayBeam02) {},
         AA02 = Class(CEMPArrayBeam02) {},
         AA03 = Class(CEMPArrayBeam02) {},
@@ -47,11 +52,7 @@ ERL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
-
+    HideBonesForStart = function(self)
         self:HideBone('Mobility_LLeg_B01', true)
         self:HideBone('Mobility_LLeg_B02', true)
         self:HideBone('Mobility_RLeg_B01', true)
@@ -74,6 +75,14 @@ ERL0001 = Class(ACUUnit) {
         self:HideBone('Combat_B02_RLeg', true)
         self:HideBone('Back_CombatPack', true)
         self:HideBone('Chest_Open', true)
+    end,
+
+    OnCreate = function(self)
+        ACUUnit.OnCreate(self)
+        self:SetCapturable(false)
+        self:SetupBuildBones()
+        self:HideBonesForStart()
+
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
     end,
@@ -95,7 +104,9 @@ ERL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('EMPShot01', false)
         self:SetWeaponEnabledByLabel('EMPShot02', false)
         self:SetWeaponEnabledByLabel('EMPShot03', false)
-        self:SetWeaponEnabledByLabel('MLG', false)
+        self:SetWeaponEnabledByLabel('MLG01', false)
+        self:SetWeaponEnabledByLabel('MLG02', false)
+        self:SetWeaponEnabledByLabel('MLG03', false)
         self:SetWeaponEnabledByLabel('AA01', false)
         self:SetWeaponEnabledByLabel('AA02', false)
         self:SetWeaponEnabledByLabel('AA03', false)
@@ -121,28 +132,7 @@ ERL0001 = Class(ACUUnit) {
         WaitSeconds(2.1)
         self:SetMesh('/mods/BlackOpsACUs/units/erl0001/ERL0001_PhaseShield_mesh', true)
         self:ShowBone(0, true)
-        self:HideBone('Mobility_LLeg_B01', true)
-        self:HideBone('Mobility_LLeg_B02', true)
-        self:HideBone('Mobility_RLeg_B01', true)
-        self:HideBone('Mobility_RLeg_B02', true)
-        self:HideBone('Back_AA_B01', true)
-        self:HideBone('Back_AA_B02R', true)
-        self:HideBone('Back_AA_B02L', true)
-        self:HideBone('Engineering', true)
-        self:HideBone('Combat_Engineering', true)
-        self:HideBone('Right_Upgrade', true)
-        self:HideBone('EMP_Array', true)
-        self:HideBone('EMP_Array_Cable', true)
-        self:HideBone('Back_MobilityPack', true)
-        self:HideBone('Back_CounterIntelPack', true)
-        self:HideBone('Torpedo_Launcher', true)
-        self:HideBone('Combat_B03_Head', true)
-        self:HideBone('Combat_B01_LArm', true)
-        self:HideBone('Combat_B01_RArm', true)
-        self:HideBone('Combat_B02_LLeg', true)
-        self:HideBone('Combat_B02_RLeg', true)
-        self:HideBone('Back_CombatPack', true)
-        self:HideBone('Chest_Open', true)
+        self:HideBonesForStart()
         self:SetUnSelectable(false)
         self:SetBusy(false)        
         self:SetBlockCommandQueue(false)
@@ -191,9 +181,29 @@ ERL0001 = Class(ACUUnit) {
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:ShowBone('Right_Upgrade', true)
+            self:SetPainterRange('JuryRiggedRipper', radius, false)
         else
             self:HideBone('Right_Upgrade', true)
+            self:SetPainterRange('JuryRiggedRipperRemove', radius, true)
         end
+    end,
+
+    -- Target painter. 0 damage as primary weapon, controls targeting
+    -- for the variety of changing ranges on the ACU with upgrades.
+    SetPainterRange = function(self, enh, newRange, delete)
+        if delete and self.PainterRange[string.sub(enh, 0, -7)] then
+            self.PainterRange[string.sub(enh, 0, -7)] = nil
+        elseif not delete and not self.PainterRange[enh] then
+            self.PainterRange[enh] = newRange
+        end 
+        
+        local range = 22
+        for upgrade, radius in self.PainterRange do
+            if radius > range then range = radius end
+        end
+        
+        local wep = self:GetWeaponByLabel('TargetPainter')
+        wep:ChangeMaxRadius(range)
     end,
 
     OnTransportDetach = function(self, attachBone, unit)
@@ -240,10 +250,10 @@ ERL0001 = Class(ACUUnit) {
 
     CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
-        
+
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
-        
+
         if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
@@ -418,6 +428,8 @@ ERL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('RocketPack')
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(bp.RocketMaxRadius)
+            
+            self:SetPainterRange(enh, bp.RocketMaxRadius, false)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildCombat')
@@ -428,6 +440,8 @@ ERL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('RocketPack')
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -591,6 +605,8 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot01', true)
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(bp.EMPRange)
+            
+            self:SetPainterRange(enh, bp.EMPRange, false)
         elseif enh == 'EMPArrayRemove' then
             if Buff.HasBuff(self, 'CybranEMPHealth1') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth1')
@@ -599,6 +615,8 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot01', false)
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            
+            self:SetPainterRange(enh, 0, true)
         elseif enh == 'AdjustedCrystalMatrix' then
             if not Buffs['CybranEMPHealth2'] then
                 BuffBlueprint {
@@ -623,6 +641,8 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot02')
             wep:ChangeMaxRadius(bp.EMPRange)
 
+            self:SetPainterRange(enh, bp.EMPRange, false)
+
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh == 'AdjustedCrystalMatrixRemove' then    
@@ -633,6 +653,8 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot02', false)
             local wep = self:GetWeaponByLabel('EMPShot02')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
             
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'EnhancedLaserEmitters' then
@@ -658,6 +680,8 @@ ERL0001 = Class(ACUUnit) {
             
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(bp.EMPRange)
+            
+            self:SetPainterRange(enh, bp.EMPRange, false)
         elseif enh == 'EnhancedLaserEmittersRemove' then    
             if Buff.HasBuff(self, 'CybranEMPHealth3') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth3')
@@ -666,9 +690,11 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot03', false)
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            
+
+            self:SetPainterRange(enh, 0, true)
+
         -- Mazer
-            
+
         elseif enh == 'Mazer' then
             if not Buffs['CybranMazerHealth1'] then
                 BuffBlueprint {
@@ -686,14 +712,14 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMazerHealth1')
-            
-            self:SetWeaponEnabledByLabel('MLG', true)
+
+            self:SetWeaponEnabledByLabel('MLG01', true)
         elseif enh == 'MazerRemove' then
             if Buff.HasBuff(self, 'CybranMazerHealth1') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth1')
             end
-            
-            self:SetWeaponEnabledByLabel('MLG', false)
+
+            self:SetWeaponEnabledByLabel('MLG01', false)
         elseif enh == 'AlternatingLaserAssembly' then
             if not Buffs['CybranMazerHealth2'] then
                 BuffBlueprint {
@@ -711,22 +737,27 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMazerHealth2')
-            
-            local laser = self:GetWeaponByLabel('MLG')
+
+            self:SetWeaponEnabledByLabel('MLG01', false)
+            self:SetWeaponEnabledByLabel('MLG02', true)
+            local laser = self:GetWeaponByLabel('MLG02')
             laser:ChangeMaxRadius(bp.LaserRange)
-            laser:AddDamageMod(bp.LaserDamageMod)
-            
+
+            self:SetPainterRange(enh, bp.LaserRange, false)
+
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh == 'AlternatingLaserAssemblyRemove' then
             if Buff.HasBuff(self, 'CybranMazerHealth2') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth2')
             end
-            
-            local laser = self:GetWeaponByLabel('MLG')
+
+            self:SetWeaponEnabledByLabel('MLG02', false)
+            local laser = self:GetWeaponByLabel('MLG02')
             laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
-            laser:AddDamageMod(bp.LaserDamageMod)
-            
+
+            self:SetPainterRange(enh, 0, true)
+
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'SuperconductivePowerConduits' then
             if not Buffs['CybranMazerHealth3'] then
@@ -745,17 +776,24 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranMazerHealth3')
-            
-            local laser = self:GetWeaponByLabel('MLG')
-            laser:AddDamageMod(bp.LaserDamageMod)
+
+            self:SetWeaponEnabledByLabel('MLG02', false)
+            self:SetWeaponEnabledByLabel('MLG03', true)
+            local laser = self:GetWeaponByLabel('MLG03')
+            laser:ChangeMaxRadius(bp.LaserRange)
+
+            self:SetPainterRange(enh, bp.LaserRange, false)
         elseif enh == 'SuperconductivePowerConduitsRemove' then
 
             if Buff.HasBuff(self, 'CybranMazerHealth3') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth3')
             end
             
-            local laser = self:GetWeaponByLabel('MLG')
-            laser:AddDamageMod(bp.LaserDamageMod)
+            self:SetWeaponEnabledByLabel('MLG03', false)
+            local laser = self:GetWeaponByLabel('MLG03')
+            laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
+
+            self:SetPainterRange(enh, 0, true)
             
         -- Armor System
             

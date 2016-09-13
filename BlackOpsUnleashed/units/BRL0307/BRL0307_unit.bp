@@ -69,7 +69,7 @@ UnitBlueprint {
     Description = '<LOC brl0307_desc>Mobile Rocket Artillery',
     Display = {
         Abilities = {
-            '<LOC ability_emp>Stun Weapon',
+            '<LOC ability_stun>EMP Weapon',
         },
         AnimationWalk = '/mods/BlackOpsUnleashed/units/BRL0307/BRL0307_AWalk01.sca',
         AnimationWalkRate = 4.4,

@@ -56,8 +56,9 @@ UnitBlueprint {
     Description = '<LOC brb1202_desc>Hydrocarbon Power Plant',
     Display = {
         Abilities = {
-            '<LOC ability_upgradable>Upgradeable',
             '<LOC ability_deathaoe>Volatile',
+            '<LOC ability_upgradable>Upgradeable',
+            '<LOC ability_amphibious>Amphibious',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -119,6 +120,7 @@ UnitBlueprint {
             RULEUCC_Move = false,
             RULEUCC_Nuke = false,
             RULEUCC_Patrol = false,
+            RULEUCC_Pause = true,
             RULEUCC_Reclaim = false,
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = false,

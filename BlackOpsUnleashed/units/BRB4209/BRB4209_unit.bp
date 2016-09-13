@@ -61,11 +61,11 @@ UnitBlueprint {
     Description = '<LOC brb4209_desc>Anti-Teleport Tower',
     Display = {
         Abilities = {
-           '<LOC ability_anti>Anti-Teleport Field:Prevents Teleportation',
+            '<LOC ability_antiteleport>Anti-Teleport Field: Prevents Teleportation',
            '<LOC ability_upgradable>Upgradeable',
            '<LOC ability_deathaoe>Volatile',
         },
-        AnimationUpgrade = '/units/brb4209/brb4209_aupgrade.sca',
+        AnimationUpgrade = '/mods/blackopsunleashed/units/brb4209/brb4209_aupgrade.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -187,7 +187,7 @@ UnitBlueprint {
     SizeX = 1,
     SizeY = 3.5,
     SizeZ = 1,
-    StrategicIconName = 'icon_structure3_intel',
+    StrategicIconName = 'icon_structure2_intel',
     StrategicIconSortPriority = 225,
     Weapon = {
         {

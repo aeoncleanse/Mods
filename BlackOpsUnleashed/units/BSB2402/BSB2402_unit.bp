@@ -43,9 +43,6 @@ UnitBlueprint {
         'SHOWQUEUE',
         'SORTCONSTRUCTION',
     },
-    CollisionOffsetX = 0,
-    CollisionOffsetY = 0,
-    CollisionOffsetZ = 0,
     Defense = {
         ArmorType = 'Normal',
         Health = 75000,
@@ -54,9 +51,6 @@ UnitBlueprint {
     },
     Description = '<LOC bss2402_desc>Seraphim Quantum Rift Archway',
     Display = {
-        Abilities = {
-            '<LOC ability_factory>Factory',
-        },
         AnimationDeath = {
             {
                 Animation = '/mods/BlackOpsUnleashed/units/BSB2402/BSB2402_adeath.sca',
@@ -99,9 +93,19 @@ UnitBlueprint {
         BuildCostEnergy = 5850000,
         BuildCostMass = 180000,
         BuildTime = 90000,
-        BuildRate = 1080,
+        BuildRate = 300,
         BuildableCategory = {
-            'BUILTBYRIFTGATE SERAPHIM',
+            'dslk004', -- Seraphim T3 AA Lightning Tank
+            'xsa0202', -- Seraphim Fighter Bomber
+            'xsa0203', -- Seraphim Gunship
+            'xsa0204', -- Seraphim Torpedo Bomber
+            'xsl0111', -- Seraphim T2 Mobile Missile Launcher
+            'xsl0202', -- Seraphim T2 Assault Bot
+            'xsl0205', -- Seraphim T2 Hover Flak
+            'xsl0303', -- Seraphim T3 Siege Tank
+            'xsl0304', -- Seraphim T3 Mobile Heavy Artillery
+            'xsl0305', -- Seraphim T3 Sniper Bot
+            'xsl0307', -- Seraphim T3 Mobile Shield Generator
         },
         RebuildBonusIds = {
             'bsb2402',
@@ -184,16 +188,16 @@ UnitBlueprint {
         MotionType = 'RULEUMT_None',
         SkirtOffsetX = -0.5,
         SkirtOffsetZ = -0.5,
-        SkirtSizeX = 24,
-        SkirtSizeZ = 10,
+        SkirtSizeX = 26,
+        SkirtSizeZ = 11,
         TurnRate = 0,
     },
-    SelectionSizeX = 15,
+    SelectionSizeX = 13,
     SelectionSizeZ = 4,
     SelectionThickness = 0.1,
-    SizeX = 20,
+    SizeX = 18,
     SizeY = 10,
-    SizeZ = 5,
+    SizeZ = 4,
     StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 207,
     Wreckage = {

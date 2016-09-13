@@ -87,9 +87,10 @@ UnitBlueprint {
     Description = '<LOC brl0205_desc>Ambush Bot',
     Display = {
         Abilities = {
-            '<LOC ability_repairs>Repairs',
-            '<LOC ability_personalstealth>Personal Stealth',
             '<LOC ability_cloak>Cloaking',
+            '<LOC ability_personalstealth>Personal Stealth',
+            '<LOC ability_repairs>Repairs',
+            '<LOC ability_stun>EMP Weapon',
         },
         AnimationDeath = {
             {

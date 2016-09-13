@@ -5,7 +5,7 @@
 -- Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
+local AirTransport = import('/lua/defaultunits.lua').AirTransport
 local explosion = import('/lua/defaultexplosions.lua')
 local weaponfile2 = import('/mods/BlackOpsUnleashed/lua/BlackOpsWeapons.lua')
 local MartyrHeavyMicrowaveLaserGenerator = weaponfile2.MartyrHeavyMicrowaveLaserGenerator
@@ -14,7 +14,7 @@ local RedHeavyTurboLaserWeapon = weaponfile2.RedHeavyTurboLaserWeapon
 local util = import('/lua/utilities.lua')
 local fxutil = import('/lua/effectutilities.lua')
 
-BRA0409 = Class(CAirUnit) {
+BRA0409 = Class(AirTransport) {
     DestroyNoFallRandomChance = 1.1,
     Weapons = {
         AA01 = Class(MartyrHeavyMicrowaveLaserGenerator) {},
@@ -62,17 +62,17 @@ BRA0409 = Class(CAirUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         self:TransportDetachAllUnits(true)
-        CAirUnit.OnKilled(self, instigator, type, overkillRatio)
+        AirTransport.OnKilled(self, instigator, type, overkillRatio)
     end,
     
     OnTransportAttach = function(self, attachBone, unit)
-        CAirUnit.OnTransportAttach(self, attachBone, unit)
+        AirTransport.OnTransportAttach(self, attachBone, unit)
         unit:SetCanTakeDamage(false)
     end,
 
     OnTransportDetach = function(self, attachBone, unit)
         unit:SetCanTakeDamage(true)
-        CAirUnit.OnTransportDetach(self, attachBone, unit)
+        AirTransport.OnTransportDetach(self, attachBone, unit)
     end,
 
     -- Override air destruction effects so we can do something custom here
@@ -89,7 +89,7 @@ BRA0409 = Class(CAirUnit) {
     end,
     
     OnStopBeingBuilt = function(self,builder,layer)
-        CAirUnit.OnStopBeingBuilt(self,builder,layer)
+        AirTransport.OnStopBeingBuilt(self,builder,layer)
 
         self.AnimManip = CreateAnimator(self)
         self.Trash:Add(self.AnimManip)
@@ -99,7 +99,7 @@ BRA0409 = Class(CAirUnit) {
     end,
     
     OnMotionHorzEventChange = function(self, new, old)
-        CAirUnit.OnMotionHorzEventChange(self, new, old)
+        AirTransport.OnMotionHorzEventChange(self, new, old)
         if self.ThrustExhaustTT1 == nil then 
             if self.MovementAmbientExhaustEffectsBag then
                 fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')

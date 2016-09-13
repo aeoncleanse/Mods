@@ -60,7 +60,7 @@ UnitBlueprint {
     Description = '<LOC bab2303_desc>Energy Mortar Emplacement',
     Display = {
         Abilities = {
-            'Indirectfire',
+            '<LOC ability_indirectfire>Indirectfire',
         },
         Mesh = {
             IconFadeInZoom = 130,

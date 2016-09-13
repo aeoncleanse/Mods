@@ -65,7 +65,7 @@ UnitBlueprint {
     Description = '<LOC bsl0106_desc>Protector bot',
     Display = {
         Abilities = {
-            '<LOC ability_tar>Forced Targeting',
+            '<LOC ability_forcetargeting>Forced Targeting',
         },
         AnimationDeath = {
             {

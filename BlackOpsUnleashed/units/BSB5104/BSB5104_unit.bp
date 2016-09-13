@@ -70,14 +70,6 @@ UnitBlueprint {
         Abilities = {
             '<LOC ability_airstaging>Air Staging',
         },
-        AnimationDeath = {
-            {
-                Animation = '/units/bsb5202/bsb5202_ADeath.sca',
-                AnimationRateMax = 1,
-                AnimationRateMin = 1,
-                Weight = 1,
-            },
-        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -177,10 +169,11 @@ UnitBlueprint {
         SkirtSizeZ = 4,
         TurnRate = 0,
     },
-    SelectionSizeX = 2.15,
-    SelectionSizeZ = 2.15,
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionCenterOffsetZ = 0.2,
     SelectionThickness = 0.32,
-    SizeX = 2.75,
+    SizeX = 2.0,
     SizeY = 1,
     SizeZ = 2.75,
     StrategicIconName = 'icon_structure1_air',

@@ -40,7 +40,6 @@ ProjectileBlueprint {
             },
         },
         StrategicIconSize = 3,
-        MeshBlueprint = '/projectiles/AIFMissileSerpentine01/AIFMissileSerpentine01_mesh.bp',
         UniformScale = 0.05,
     },
     Economy = {

@@ -74,7 +74,7 @@ UnitBlueprint {
     Description = '<LOC bel0109_desc>Tank Hunter/Mobile PD',
     Display = {
         Abilities = {
-            '<LOC ability_tank>Deploys to fire, and can be locked into position',
+            '<LOC ability_deploys>Deploys to fire, and can be locked into position',
         },
         AnimationOpen = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_aactivate.sca',
         AnimationActivate = '/mods/BlackOpsUnleashed/units/BEL0109/BEL0109_AClose.sca',
@@ -197,14 +197,13 @@ UnitBlueprint {
         TurnRadius = 0,
         TurnRate = 70,
     },
-    SelectionCenterOffsetX = 0,
-    SelectionCenterOffsetZ = -0.05,
-    SelectionSizeX = 0.6,
-    SelectionSizeZ = 0.95,
+    SelectionSizeX = 0.5,
+    SelectionSizeZ = 0.8,
     SelectionThickness = 0.45,
     SizeX = 0.7,
     SizeY = 0.5,
     SizeZ = 1.1,
+    CollisionOffsetZ = 0.25,
     StrategicIconName = 'icon_land1_directfire',
     StrategicIconSortPriority = 115,
     Transport = {

@@ -113,7 +113,8 @@ UnitBlueprint {
     Description = '<LOC bsa0310_desc>Missile Gunship',
     Display = {
         Abilities = {
-            '<LOC ability_shielddestroy>Shield Disruptor',
+            '<LOC ability_aa>Anti-Air',
+            '<LOC ability_shieldisrupt>Shield Disruptor',
         },
         LayerChangeEffects = {
             AirLand = {
