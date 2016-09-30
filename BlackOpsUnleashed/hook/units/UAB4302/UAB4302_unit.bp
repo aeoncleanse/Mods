@@ -63,7 +63,7 @@ UnitBlueprint {
                 'SATELLITE',
                 'ALLUNITS',
             },
-            TargetRestrictDisallow = 'UNTARGETABLE',
+            TargetRestrictDisallow = 'UNTARGETABLE, eea0002',
             TargetRestrictOnlyAllow = 'SATELLITE',
             TrackingRadius = 2,
             Turreted = false,
