@@ -11,9 +11,9 @@ Callbacks.CapMex = function(data, units)
     for _, u in units do
         local FactionName = u:GetBlueprint().General.FactionName
         if u:CanBuild(BOLetterArray[FactionName]..'b1106') then
-            msid = BOLetterArray[u:GetBlueprint().General.FactionName]..'b1106'
+            msid = BOLetterArray[FactionName]..'b1106'
         else
-            msid = LetterArray[u:GetBlueprint().General.FactionName]..'b1106'
+            msid = LetterArray[FactionName]..'b1106'
         end
         IssueBuildMobile({u}, Vector(pos.x, pos.y, pos.z-2), msid, {})
         IssueBuildMobile({u}, Vector(pos.x+2, pos.y, pos.z), msid, {})
