@@ -60,11 +60,11 @@ UnitBlueprint {
             RateOfFire = 0.5,
             TargetCheckInterval = 0.1,
             TargetPriorities = {
-                'SATELLITE',
+                'baa0401',
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-            TargetRestrictOnlyAllow = 'SATELLITE',
+            TargetRestrictOnlyAllow = 'baa0401',
             TrackingRadius = 2,
             Turreted = false,
             WeaponCategory = 'Defense',
