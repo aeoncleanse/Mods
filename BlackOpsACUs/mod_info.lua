@@ -1,4 +1,4 @@
-name = "BlackOpsACUs"
+name = "BlackOps ACUs"
 uid = "9e8ea941-c306-4751-b367-e00000000305"
 version = 10
 copyright = "2009 Exavier Macbeth, lt_hawkeye, orangeknight, IceDreamer"
