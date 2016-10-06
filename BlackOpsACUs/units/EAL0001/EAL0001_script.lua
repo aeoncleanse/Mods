@@ -14,10 +14,8 @@ local AANChronoTorpedoWeapon = AWeapons.AANChronoTorpedoWeapon
 local ADFPhasonLaser = AWeapons.ADFPhasonLaser
 local AAMWillOWisp = AWeapons.AAMWillOWisp
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
-local CSoothSayerAmbient = EffectTemplate.CSoothSayerAmbient
 local BOWeapons = import('/mods/BlackOpsACUs/lua/ACUsWeapons.lua')
 local AeonACUPhasonLaser = BOWeapons.AeonACUPhasonLaser 
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
@@ -54,42 +52,13 @@ EAL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    HideBonesForStart = function(self)
-        self:HideBone('Engineering', true)
-        self:HideBone('Combat_Engineering', true)
-        self:HideBone('Left_Turret_Plates', true)
-        self:HideBone('Basic_GunUp_Range', true)
-        self:HideBone('Basic_GunUp_RoF', true)
-        self:HideBone('Torpedo_Launcher', true)
-        self:HideBone('Laser_Cannon', true)
-        self:HideBone('IntelPack_Torso', true)
-        self:HideBone('IntelPack_Head', true)
-        self:HideBone('IntelPack_LShoulder', true)
-        self:HideBone('IntelPack_RShoulder', true)
-        self:HideBone('DamagePack_LArm', true)
-        self:HideBone('DamagePack_RArm', true)
-        self:HideBone('DamagePack_Torso', true)
-        self:HideBone('DamagePack_RLeg_B01', true)
-        self:HideBone('DamagePack_RLeg_B02', true)
-        self:HideBone('DamagePack_LLeg_B01', true)
-        self:HideBone('DamagePack_LLeg_B02', true)
-        self:HideBone('ShieldPack_Normal', true)
-        self:HideBone('Shoulder_Arty_L', true)
-        self:HideBone('ShieldPack_Arty_LArm', true)
-        self:HideBone('Shoulder_Arty_R', true)
-        self:HideBone('ShieldPack_Arty_RArm', true)
-        self:HideBone('Artillery_Torso', true)
-        self:HideBone('ShieldPack_Artillery', true)
-        self:HideBone('Artillery_Barrel_Left', true)
-        self:HideBone('Artillery_Barrel_Right', true)
-        self:HideBone('Artillery_Pitch', true)
-    end,
-
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
-        self:SetupBuildBones()
-        self:HideBonesForStart()
+
+        for _, v in bp.Display.WarpInEffect.HideBones do
+            self:HideBone(v, true)
+        end
 
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
@@ -207,10 +176,10 @@ EAL0001 = Class(ACUUnit) {
     end,
 
     DisableVisibleEntity = function(self)
-        -- visible entity already off
+        -- Visible entity already off
         WaitSeconds(5)
         if self.RemoteViewingData.DisableCounter > 1 then return end
-        -- disable vis entity and monitor resources
+        -- Disable vis entity and monitor resources
         if not self:IsDead() and self.RemoteViewingData.Satellite then
             self.RemoteViewingData.Satellite:DisableIntel('Vision')
         end
@@ -225,50 +194,20 @@ EAL0001 = Class(ACUUnit) {
         EffectUtil.CreateAeonCommanderBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
-    PlayCommanderWarpInEffect = function(self)
-        self:HideBone(0, true)
-        self:SetUnSelectable(true)
-        self:SetBusy(true)
-        self:SetBlockCommandQueue(true)
-        self:ForkThread(self.WarpInEffectThread)
-    end,
-
-    WarpInEffectThread = function(self)
-        self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-        WaitSeconds(2.1)
-        self:SetMesh('/mods/BlackOpsACUs/units/eal0001/EAL0001_PhaseShield_mesh', true)
-        self:ShowBone(0, true)
-        self:HideBonesForStart()
-        self:SetUnSelectable(false)
-        self:SetBusy(false)        
-        self:SetBlockCommandQueue(false)
-        local totalBones = self:GetBoneCount() - 1
-        local army = self:GetArmy()
-        for k, v in EffectTemplate.UnitTeleportSteam01 do
-            for bone = 1, totalBones do
-                CreateAttachedEmitter(self,bone,army, v)
-            end
-        end
-
-        WaitSeconds(6)
-        self:SetMesh(self:GetBlueprint().Display.MeshBlueprint, true)
-    end,
-
     OnTransportDetach = function(self, attachBone, unit)
         ACUUnit.OnTransportDetach(self, attachBone, unit)
         self:StopSiloBuild()
     end,
 
     OnScriptBitClear = function(self, bit)
-        if bit == 0 then -- shield toggle
+        if bit == 0 then -- Shield toggle
             self:DisableShield()
             self:StopUnitAmbientSound('ActiveLoop')
         end
     end,
 
     OnScriptBitSet = function(self, bit)
-        if bit == 0 then -- shield toggle
+        if bit == 0 then -- Shield toggle
             self:EnableShield()
             self:PlayUnitAmbientSound('ActiveLoop')
         end

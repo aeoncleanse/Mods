@@ -311,6 +311,23 @@ UnitBlueprint {
             },
         },
         UniformScale = 0.105,
+        WarpInEffect = {
+            HideBones = {
+                'Engineering_Suite',
+                'Flamer',
+                'HAC',
+                'Gatling_Cannon',
+                'Back_MissilePack_B01',
+                'Back_SalvoLauncher',
+                'Back_ShieldPack',
+                'Left_Lance_Turret',
+                'Right_Lance_Turret',
+                'Zephyr_Amplifier',
+                'Back_IntelPack',
+                'Torpedo_Launcher',
+            },
+            PhaseShieldMesh = '/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh',
+        },
     },
     Economy = {
         BuildCostEnergy = 5000000,

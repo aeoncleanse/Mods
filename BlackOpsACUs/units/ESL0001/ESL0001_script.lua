@@ -10,7 +10,6 @@ local SWeapons = import('/lua/seraphimweapons.lua')
 local SDFChronotronCannonWeapon = SWeapons.SDFChronotronCannonWeapon
 local SDFChronotronOverChargeCannonWeapon = SWeapons.SDFChronotronCannonOverChargeWeapon
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local SANUallCavitationTorpedo = SWeapons.SANUallCavitationTorpedo
@@ -46,30 +45,14 @@ ESL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    HideBonesForStart = function(self)
-        self:HideBone('Engineering', true)
-        self:HideBone('Combat_Engineering', true)
-        self:HideBone('Rapid_Cannon', true)
-        self:HideBone('Basic_Gun_Up', true)
-        self:HideBone('Big_Ball_Cannon', true)
-        self:HideBone('Torpedo_Launcher', true)
-        self:HideBone('Missile_Launcher', true)
-        self:HideBone('IntelPack', true)
-        self:HideBone('L_Spinner_B01', true)
-        self:HideBone('L_Spinner_B02', true)
-        self:HideBone('L_Spinner_B03', true)
-        self:HideBone('S_Spinner_B01', true)
-        self:HideBone('S_Spinner_B02', true)
-        self:HideBone('S_Spinner_B03', true)
-        self:HideBone('Left_AA_Mount', true)
-        self:HideBone('Right_AA_Mount', true)
-    end,
-
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
         self:SetupBuildBones()
-        self:HideBonesForStart()
+
+        for _, v in bp.Display.WarpInEffect.HideBones do
+            self:HideBone(v, true)
+        end
 
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
@@ -116,34 +99,6 @@ ESL0001 = Class(ACUUnit) {
     OnStartBuild = function(self, unitBeingBuilt, order)
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
         self.UnitBuildOrder = order  
-    end,
-    
-    PlayCommanderWarpInEffect = function(self)
-        self:HideBone(0, true)
-        self:SetUnSelectable(true)
-        self:SetBusy(true)
-        self:SetBlockCommandQueue(true)
-        self:ForkThread(self.WarpInEffectThread)
-    end, 
-    
-    WarpInEffectThread = function(self)
-        self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-        WaitSeconds(2.1)
-        self:ShowBone(0, true)
-        self:HideBonesForStart()
-        self:SetUnSelectable(false)
-        self:SetBusy(false)
-        self:SetBlockCommandQueue(false)
-        local totalBones = self:GetBoneCount() - 1
-        local army = self:GetArmy()
-        for k, v in EffectTemplate.UnitTeleportSteam01 do
-            for bone = 1, totalBones do
-                CreateAttachedEmitter(self,bone,army, v)
-            end
-        end
-
-        WaitSeconds(6)
     end,
 
     CreateBuildEffects = function(self, unitBeingBuilt, order)

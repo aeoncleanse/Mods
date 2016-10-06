@@ -111,25 +111,13 @@ EEL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    HideBonesForStart = function(self)
-        self:HideBone('Engineering_Suite', true)
-        self:HideBone('Flamer', true)
-        self:HideBone('HAC', true)
-        self:HideBone('Gatling_Cannon', true)
-        self:HideBone('Back_MissilePack_B01', true)
-        self:HideBone('Back_SalvoLauncher', true)
-        self:HideBone('Back_ShieldPack', true)
-        self:HideBone('Left_Lance_Turret', true)
-        self:HideBone('Right_Lance_Turret', true)
-        self:HideBone('Zephyr_Amplifier', true)
-        self:HideBone('Back_IntelPack', true)
-        self:HideBone('Torpedo_Launcher', true)
-    end,
-
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
-        self:HideBonesForStart()
+
+        for _, v in bp.Display.WarpInEffect.HideBones do
+            self:HideBone(v, true)
+        end
 
         self:SetupBuildBones()
         self.HasLeftPod = false
@@ -173,38 +161,6 @@ EEL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('TacMissile', false)
         self:SetWeaponEnabledByLabel('TacNukeMissile', false)
         self:SetWeaponEnabledByLabel('DeathWeapon', false)
-    end,
-
-    PlayCommanderWarpInEffect = function(self)
-        self:HideBone(0, true)
-        self:SetUnSelectable(true)
-        self:SetBusy(true)
-        self:SetBlockCommandQueue(true)
-        self:ForkThread(self.WarpInEffectThread)
-    end,
-
-    WarpInEffectThread = function(self)
-        self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-        WaitSeconds(2.1)
-        self:SetMesh('/mods/BlackOpsACUs/units/eel0001/EEL0001_PhaseShield_mesh', true)
-        self:ShowBone(0, true)
-        self:HideBonesForStart()
-
-        self:SetUnSelectable(false)
-        self:SetBusy(false)
-        self:SetBlockCommandQueue(false)
-
-        local totalBones = self:GetBoneCount() - 1
-        local army = self:GetArmy()
-        for k, v in EffectTemplate.UnitTeleportSteam01 do
-            for bone = 1, totalBones do
-                CreateAttachedEmitter(self,bone,army, v)
-            end
-        end
-
-        WaitSeconds(6)
-        self:SetMesh(self:GetBlueprint().Display.MeshBlueprint, true)
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)

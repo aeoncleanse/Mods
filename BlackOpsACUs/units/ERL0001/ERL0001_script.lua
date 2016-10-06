@@ -11,7 +11,6 @@ local CDFHeavyMicrowaveLaserGeneratorCom = CWeapons.CDFHeavyMicrowaveLaserGenera
 local CDFOverchargeWeapon = CWeapons.CDFOverchargeWeapon
 local CANTorpedoLauncherWeapon = CWeapons.CANTorpedoLauncherWeapon
 local RocketPack = CWeapons.CDFRocketIridiumWeapon02
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 local Buff = import('/lua/sim/Buff.lua')
@@ -52,36 +51,14 @@ ERL0001 = Class(ACUUnit) {
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
-    HideBonesForStart = function(self)
-        self:HideBone('Mobility_LLeg_B01', true)
-        self:HideBone('Mobility_LLeg_B02', true)
-        self:HideBone('Mobility_RLeg_B01', true)
-        self:HideBone('Mobility_RLeg_B02', true)
-        self:HideBone('Back_AA_B01', true)
-        self:HideBone('Back_AA_B02R', true)
-        self:HideBone('Back_AA_B02L', true)
-        self:HideBone('Engineering', true)
-        self:HideBone('Combat_Engineering', true)
-        self:HideBone('Right_Upgrade', true)
-        self:HideBone('EMP_Array', true)
-        self:HideBone('EMP_Array_Cable', true)
-        self:HideBone('Back_MobilityPack', true)
-        self:HideBone('Back_CounterIntelPack', true)
-        self:HideBone('Torpedo_Launcher', true)
-        self:HideBone('Combat_B03_Head', true)
-        self:HideBone('Combat_B01_LArm', true)
-        self:HideBone('Combat_B01_RArm', true)
-        self:HideBone('Combat_B02_LLeg', true)
-        self:HideBone('Combat_B02_RLeg', true)
-        self:HideBone('Back_CombatPack', true)
-        self:HideBone('Chest_Open', true)
-    end,
-
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
         self:SetupBuildBones()
-        self:HideBonesForStart()
+
+        for _, v in bp.Display.WarpInEffect.HideBones do
+            self:HideBone(v, true)
+        end
 
         -- Restrict what enhancements will enable later
         self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
@@ -116,37 +93,6 @@ ERL0001 = Class(ACUUnit) {
     OnStartBuild = function(self, unitBeingBuilt, order)    
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
         self.UnitBuildOrder = order
-    end,
-
-    PlayCommanderWarpInEffect = function(self)
-        self:HideBone(0, true)
-        self:SetUnSelectable(true)
-        self:SetBusy(true)
-        self:SetBlockCommandQueue(true)
-        self:ForkThread(self.WarpInEffectThread)
-    end,
-
-    WarpInEffectThread = function(self)
-        self:PlayUnitSound('CommanderArrival')
-        self:CreateProjectile('/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-        WaitSeconds(2.1)
-        self:SetMesh('/mods/BlackOpsACUs/units/erl0001/ERL0001_PhaseShield_mesh', true)
-        self:ShowBone(0, true)
-        self:HideBonesForStart()
-        self:SetUnSelectable(false)
-        self:SetBusy(false)        
-        self:SetBlockCommandQueue(false)
-
-        local totalBones = self:GetBoneCount() - 1
-        local army = self:GetArmy()
-        for k, v in EffectTemplate.UnitTeleportSteam01 do
-            for bone = 1, totalBones do
-                CreateAttachedEmitter(self,bone,army, v)
-            end
-        end
-        
-        WaitSeconds(6)
-        self:SetMesh(self:GetBlueprint().Display.MeshBlueprint, true)
     end,
 
     -- New function to set up production numbers
