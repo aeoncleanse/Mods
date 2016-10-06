@@ -50,6 +50,7 @@ ESL0001 = Class(ACUUnit) {
         self:SetCapturable(false)
         self:SetupBuildBones()
 
+        local bp = self:GetBlueprint()
         for _, v in bp.Display.WarpInEffect.HideBones do
             self:HideBone(v, true)
         end
