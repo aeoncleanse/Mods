@@ -1,5 +1,5 @@
 name = "BlackOps Unleashed"
-uid = "9e8ea941-c306-aaaf-b367-f00000000005"
+uid = "9e8ea941-c306-aaaf-b367-u00000010000"
 version = 10
 copyright = "2009 Exavier Macbeth, lt_hawkeye, orangeknight"
 description = "The ultimate unit pack, re-engineered for FAF 3660 or later"
@@ -9,4 +9,4 @@ selectable = true
 enabled = true
 exclusive = false
 ui_only = false
-special_thanks = "Uveso, Softles, Nojoke185, ZephyrWarrior, Raistlfiren, Nocaps"
+special_thanks = "Uveso, Softles, Nojoke185, ZephyrWarrior, Raistlfiren, Nocaps, Netjaxx"
