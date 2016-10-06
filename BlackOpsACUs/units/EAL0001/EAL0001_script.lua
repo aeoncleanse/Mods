@@ -55,6 +55,7 @@ EAL0001 = Class(ACUUnit) {
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
         self:SetCapturable(false)
+        self:SetupBuildBones()
 
         local bp = self:GetBlueprint()
         for _, v in bp.Display.WarpInEffect.HideBones do
