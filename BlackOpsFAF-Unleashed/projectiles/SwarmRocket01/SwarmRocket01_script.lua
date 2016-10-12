@@ -39,7 +39,7 @@ CAAMissileNanite02 = Class(CAAMissileNaniteProjectile) {
     
     SplitThread = function(self)
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
-        local ChildProjectileBP = '/projectiles/SwarmRocket02/SwarmRocket02_proj.bp'  
+        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/SwarmRocket02/SwarmRocket02_proj.bp'  
 
         -- Split effects
         for k, v in FxFragEffect do

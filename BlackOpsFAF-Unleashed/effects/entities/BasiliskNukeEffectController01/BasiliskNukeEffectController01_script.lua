@@ -11,8 +11,8 @@ local RandomInt = import('/lua/utilities.lua').GetRandomInt
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local BlackOpsEffectTemplate = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsEffectTemplates.lua')
 local Util = import('/lua/utilities.lua')
-local BasiliskNukeEffect04 = '/projectiles/MGQAIPlasmaArty01/MGQAIPlasmaArty01_proj.bp' 
-local BasiliskNukeEffect05 = '/effects/Entities/BasiliskNukeEffect05/CybranNukeEffect05_proj.bp'
+local BasiliskNukeEffect04 = '/mods/BlackOpsFAF-Unleashed/projectiles/MGQAIPlasmaArty01/MGQAIPlasmaArty01_proj.bp' 
+local BasiliskNukeEffect05 = '/mods/BlackOpsFAF-Unleashed/effects/Entities/BasiliskNukeEffect05/CybranNukeEffect05_proj.bp'
 
 BasiliskNukeEffectController01 = Class(NullShell) {
     PassData = function(self, Data)  
@@ -103,7 +103,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
         
         -- Create initial fireball dome effect
         local FireballDomeYOffset = -20
-        self:CreateProjectile('/effects/entities/BasiliskNukeEffect01/BasiliskNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
+        self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/effects/entities/BasiliskNukeEffect01/BasiliskNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         WaitSeconds(1.1)
         
         -- These include waits

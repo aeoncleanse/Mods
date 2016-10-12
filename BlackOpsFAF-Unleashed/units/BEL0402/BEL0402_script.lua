@@ -651,7 +651,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                 DoTTime = 2.5, 
                 DamageType = 'Normal',
                 } 
-            ammocookoff = self:CreateProjectile('/projectiles/NapalmProjectile01/Napalm01_proj.bp', offset.x, offset.y + yBoneOffset, offset.z, velocity.x, velocity.y, velocity.z)
+            ammocookoff = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/projectiles/NapalmProjectile01/Napalm01_proj.bp', offset.x, offset.y + yBoneOffset, offset.z, velocity.x, velocity.y, velocity.z)
             ammocookoff:SetVelocity(Random(2,5))  
             ammocookoff:SetLifetime(20) 
             ammocookoff:PassDamageData(self.DamageData)

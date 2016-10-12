@@ -27,7 +27,7 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
         if dist > 0 and dist <= 15 then
             WaitSeconds(0.1)
             local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
-            local ChildProjectileBP = '/projectiles/CybranHailfire01child/CybranHailfire01child_proj.bp'  
+            local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/CybranHailfire01child/CybranHailfire01child_proj.bp'  
               
             -- Split effects
             for k, v in FxFragEffect do

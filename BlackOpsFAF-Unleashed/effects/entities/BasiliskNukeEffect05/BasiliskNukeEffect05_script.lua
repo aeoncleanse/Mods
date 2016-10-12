@@ -6,10 +6,10 @@
 -----------------------------------------------------------------------------------
 
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local BlackOpsFAF-UnleashedEffectTemplate = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsEffectTemplates.lua')
+local BlackOpsUnleashedEffectTemplate = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsEffectTemplates.lua')
 
 BasiliskNukeEffect05 = Class(import('/lua/sim/defaultprojectiles.lua').EmitterProjectile) {
-    FxTrails = BlackOpsFAF-UnleashedEffectTemplate.BasiliskNukePlumeFxTrails01,
+    FxTrails = BlackOpsUnleashedEffectTemplate.BasiliskNukePlumeFxTrails01,
     FxTrailScale = 0.5,
 }
 

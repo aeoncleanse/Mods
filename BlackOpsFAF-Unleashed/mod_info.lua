@@ -1,6 +1,6 @@
 name = "BlackOps FAF: Unleashed"
-uid = "9e8ea941-c306-aaaf-b367-u00000010000"
-version = 10
+uid = "9e8ea941-c306-aaaf-b367-u00000011000"
+version = 11
 copyright = "2009 Exavier Macbeth, lt_hawkeye, orangeknight"
 description = "The ultimate unit pack, re-engineered for FAF 3660 or later"
 author = "Exavier Macbeth, lt_hawkeye, orangeknight - Revamped 2016 by IceDreamer"
