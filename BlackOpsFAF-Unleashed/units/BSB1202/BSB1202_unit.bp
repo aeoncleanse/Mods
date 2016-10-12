@@ -107,7 +107,7 @@ UnitBlueprint {
         BuildableCategory = {
             'bsb1302',
         },
-        ProductionPerSecondEnergy = 875,
+        ProductionPerSecondEnergy = 500,
         RebuildBonusIds = {
             'bsb1202',
             'bsb1302',
