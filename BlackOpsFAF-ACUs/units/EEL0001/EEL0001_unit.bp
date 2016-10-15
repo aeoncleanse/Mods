@@ -134,7 +134,6 @@ UnitBlueprint {
         'OVERLAYINDIRECTFIRE',
         'OVERLAYOMNI',
         'OVERLAYDEFENSE',
-        'ANTITELEPORT',
         'OVERLAYCOUNTERINTEL',
         'OVERLAYRADAR',
         'OVERLAYSONAR',

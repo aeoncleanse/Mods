@@ -135,7 +135,6 @@ UnitBlueprint {
         'OVERLAYDIRECTFIRE',
         'OVERLAYINDIRECTFIRE',
         'OVERLAYOMNI',
-        'ANTITELEPORT',
         'OVERLAYCOUNTERINTEL',
         'OVERLAYANTINAVY',
         'OPTICS',

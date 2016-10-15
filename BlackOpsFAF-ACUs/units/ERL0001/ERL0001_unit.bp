@@ -129,7 +129,6 @@ UnitBlueprint {
         'SHOWQUEUE',
         'OVERLAYDIRECTFIRE',
         'OVERLAYOMNI',
-        'ANTITELEPORT',
         'OVERLAYCOUNTERINTEL',
         'OVERLAYANTIAIR',
     },

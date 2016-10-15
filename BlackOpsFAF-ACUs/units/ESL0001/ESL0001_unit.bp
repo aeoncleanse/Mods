@@ -133,7 +133,6 @@ UnitBlueprint {
         'OVERLAYOMNI',
         'OVERLAYDIRECTFIRE',
         'OVERLAYINDIRECTFIRE',
-        'ANTITELEPORT',
         'OVERLAYCOUNTERINTEL',
         'OVERLAYANTIAIR',
     },
