@@ -93,8 +93,8 @@ UnitBlueprint {
     Economy = {
         AdjacentStructureEnergyMod = -4,
         BuildCostEnergy = 24750,
-        BuildCostMass = 1980,
-        BuildTime = 1650,
+        BuildCostMass = 1000,
+        BuildTime = 4000,
         BuildRate = 15,
         BuildableCategory = {
             'brb1302',

@@ -97,9 +97,9 @@ UnitBlueprint {
     Economy = {
         AdjacentStructureEnergyMod = -5,
         BuildCostEnergy = 74250,
-        BuildCostMass = 4950,
+        BuildCostMass = 3000,
         BuildTime = 4950,
-        ProductionPerSecondEnergy = 2500,
+        ProductionPerSecondEnergy = 3000,
         RebuildBonusIds = {
             'bsb1302',
         },
