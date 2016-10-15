@@ -71,7 +71,7 @@ FlameThrowerHitWater01 = {
 }
 
 -- Lambda Effects
-EXLambdaRedirector = {
+LambdaRedirector = {
     EmtBpPathAlt .. 'lambda_distortion_01.bp',
     EmtBpPathAlt .. 'lambda_redirect_bright_01.bp',
     EmtBpPathAlt .. 'lambda_redirect_bright_01.bp',
@@ -81,7 +81,7 @@ EXLambdaRedirector = {
     EmtBpPathAlt .. 'lambda_distortion_01.bp',
 }
 
-EXLambdaDestoyer = {
+LambdaDestroyer = {
     EmtBpPathAlt .. 'lambda_distortion_01.bp',
     EmtBpPathAlt .. 'lambda_destroy_dark_01.bp',
     EmtBpPathAlt .. 'lambda_destroy_dark_02.bp',

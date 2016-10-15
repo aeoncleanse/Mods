@@ -21,15 +21,10 @@ UnitBlueprint {
     },
     Defense = {
         AirThreatLevel = 0,
-        SeraLambdaField01 = {
+        LambdaField = {
             AttachBone = 'XSB0001',
-            Radius = 4,
-            RedirectRateOfFire = 2,
-        },
-        SeraLambdaField02 = {
-            AttachBone = 'XSB0001',
-            Radius = 3,
-            RedirectRateOfFire = 2,
+            Radius = 5,
+            Probability = 20,
         },
         ArmorType = 'Structure',
         EconomyThreatLevel = 0,
