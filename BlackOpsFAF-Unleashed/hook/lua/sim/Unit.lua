@@ -1,4 +1,5 @@
 local BlackOpsEffectTemplate = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsEffectTemplates.lua')
+local FloatingEntityText = import('/lua/SimSync.lua').FloatingEntityText
 
 local oldUnit = Unit
 Unit = Class(oldUnit) {
@@ -63,14 +64,14 @@ Unit = Class(oldUnit) {
             FloatingEntityText(id,'Destination Out Of Range')
             return
         end
-        
+
         -- Teleport Blocker Check
         for num, brain in ArmyBrains do
             local unitList = brain:GetListOfUnits(categories.ANTITELEPORT, false)
             for i, unit in unitList do
                 -- If it's an ally, then we skip.
                 if IsEnemy(self:GetArmy(), unit:GetArmy()) then
-                    local blockerRange = unit:GetBlueprint().Defense.blockerRange
+                    local blockerRange = unit:GetBlueprint().Defense.NoTeleDistance
                     if blockerRange then
                         local blockerPosition = unit:GetPosition()
                         local targetDest = VDist2(location[1], location[3], blockerPosition[1], blockerPosition[3])
@@ -86,7 +87,7 @@ Unit = Class(oldUnit) {
                 end
             end
         end
-        
+
         -- Economy Check and Drain
         local bp = self:GetBlueprint()
         local telecost = bp.Economy.TeleportBurstEnergyCost or 0
