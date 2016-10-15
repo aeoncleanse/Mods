@@ -60,6 +60,8 @@ BEL0109 = Class(TLandUnit) {
                 IssueClearCommands({self})
             end
 
+            self:SetBlockCommandQueue(true) --Prevent orders being given which stall the unit into not firing at anything
+
             -- Set the lock tag. Motion will lock when the weapon unpacks
             self.locked = true
         else
@@ -70,12 +72,10 @@ BEL0109 = Class(TLandUnit) {
     OnScriptBitClear = function(self, bit)
         if bit == 7 then
             self:DisableSpecialToggle()
+            self:SetBlockCommandQueue(false)
 
-            -- Only pack up if the unit isn't firing at something
-            if not self:IsUnitState('Attacking') then
-                local wep = self:GetWeaponByLabel('MainGun')
-                ChangeState(wep, wep.WeaponPackingState)
-            end
+            local wep = self:GetWeaponByLabel('MainGun')
+            ChangeState(wep, wep.IdleState)
 
             -- Turn off the lock. Motion will be enabled when the weapon packs up
             self.locked = false
