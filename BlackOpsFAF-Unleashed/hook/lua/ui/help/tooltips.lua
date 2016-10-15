@@ -20,7 +20,7 @@ Tooltips['fire_wep'] = {
 }
 Tooltips['BO_transform'] = {
     title = "Change Unit Mode",
-    description = "Transforms the unit between its stationary and mobile modes",
+    description = "Transforms the unit between its slow, long-range mode and its fast, firect fire mode",
 }
 Tooltips['BO_lock'] = {
     title = "Lock Position",

@@ -179,7 +179,7 @@ BRL0401 = Class(CWalkingLandUnit) {
             
             self:ForkThread(function()
                 self.mobileWeapons = 0
-                self:SetSpeedMult(0.75)
+                self:SetSpeedMult(0.5)
                 
                 self:RemoveToggleCap('RULEUTC_WeaponToggle')
                 self:SetWeaponEnabledByLabel('SideCannons', false)
