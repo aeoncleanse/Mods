@@ -204,6 +204,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.3,
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 25,
+            MuzzleVelocityReduceDistance = 95,
             ProjectileId = '/mods/BlackOpsFAF-Unleashed/projectiles/ArchAngelMissile01/ArchAngelMissile01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {

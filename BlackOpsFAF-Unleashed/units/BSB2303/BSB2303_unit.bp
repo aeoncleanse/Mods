@@ -210,7 +210,7 @@ UnitBlueprint {
             DamageFriendly = false,
             DamageRadius = 5,
             DamageType = 'Normal',
-            DisplayName = 'Laanse Tactical Missile Launcher',
+            DisplayName = 'Mine Launcher',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
@@ -227,6 +227,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 10,
+            MuzzleVelocityReduceDistance = 140,
             ProjectileId = '/mods/BlackOpsFAF-Unleashed/projectiles/MineTosserShell01/MineTosserShell01_proj.bp',
             ProjectileLifetime = 30,
             RackBones = {

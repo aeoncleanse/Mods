@@ -206,6 +206,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
+            MuzzleVelocityReduceDistance = 95,
             ProjectileId = '/mods/BlackOpsFAF-Unleashed/projectiles/CybranHailfire04/CybranHailfire04_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
