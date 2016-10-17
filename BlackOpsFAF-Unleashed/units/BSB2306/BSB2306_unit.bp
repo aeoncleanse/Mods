@@ -199,6 +199,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_LowArc',
             CollideFriendly = false,
             Damage = 600,
+            DamageRadius = 3,
             DamageType = 'Normal',
             EnergyDrainPerSecond = 1500,
             EnergyRequired = 1500,
@@ -214,6 +215,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 22,
+            MuzzleVelocityReduceDistance = 75,
             ProjectileId = '/mods/BlackOpsFAF-Unleashed/projectiles/SeraHeavyLightningCannon01/SeraHeavyLightningCannon01_proj.bp',
             ProjectilesPerOnFire = 1,
             RackBones = {
