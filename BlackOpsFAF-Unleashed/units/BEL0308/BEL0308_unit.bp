@@ -218,7 +218,7 @@ UnitBlueprint {
             DoTTime = 2.5,
             DamageFriendly = true,
             DamageRadius = 2.5,
-            DamageType = 'Normal',
+            DamageType = 'Fire',
             DisplayName = 'Napalm Artillery',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
@@ -234,6 +234,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 20,
+            MuzzleVelocityReduceDistance = 55,
             ProjectileId = '/mods/BlackOpsFAF-Unleashed/projectiles/RapierNapalmShell01/RapierNapalmShell01_proj.bp',
             RackBones = {
                 {
