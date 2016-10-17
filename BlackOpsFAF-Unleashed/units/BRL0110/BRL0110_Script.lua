@@ -17,7 +17,7 @@ local Effects = import('/lua/effecttemplates.lua')
 
 BRL0110 = Class(CWalkingLandUnit) {
     DestructionTicks = 400,
-    WeaponList = {'FlameGun', 'RPG', 'LaserGun', 'GatlingCannon'},
+    WeaponList = {'FlameGun', 'RPG', 'GatlingCannon', 'LaserGun'},
 
     Weapons = {
         DummyWeapon = Class(CIFGrenadeWeapon) {},
@@ -54,7 +54,8 @@ BRL0110 = Class(CWalkingLandUnit) {
         self:SetWeaponEnabledByLabel('RPG', false)
         self:SetWeaponEnabledByLabel('GatlingCannon', false)
         self:SetWeaponEnabledByLabel('LaserGun', false)
-        self.WeaponCheck = false
+        self:HideBone('Suicide', true)
+
         CWalkingLandUnit.OnStopBeingBuilt(self, builder, layer)
     end,
     
@@ -71,7 +72,7 @@ BRL0110 = Class(CWalkingLandUnit) {
     
     WeaponSetup = function(self)
         if not self:IsDead() then
-            self.WeaponCheck = Random(1,4)
+            self.WeaponCheck = Random(1, 4)
             self:ShowBone('XRL0110', true)
             local dummywep = self:GetWeaponByLabel('DummyWeapon')
             local maxradius, minradius
@@ -86,43 +87,33 @@ BRL0110 = Class(CWalkingLandUnit) {
                 self:HideBone('Gat_Spinner', true)
                 self:HideBone('Gat_Muzzle', true)
                 self:HideBone('Gat_Exhaust', true)
-                self:HideBone('Suicide', true)
                 self:HideBone('Eye_Laser_Muzzle', true)
                 local wep = self:GetWeaponByLabel('FlameGun')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
-                -- Flamer speed & agility boost
-                local flamerspeed = wep:GetBlueprint().FlamerSpeedMult or 1.2
-                self:SetSpeedMult(flamerspeed)
-                self:SetTurnMult(flamerspeed)
             elseif check == 2 then
-                -- RPG
                 self:HideBone('Flamer', true)
                 self:HideBone('Flamer_Muzzle', true)
                 self:HideBone('Gat_Barrel01', true)
                 self:HideBone('Gat_Spinner', true)
                 self:HideBone('Gat_Muzzle', true)
                 self:HideBone('Gat_Exhaust', true)
-                self:HideBone('Suicide', true)
                 self:HideBone('Eye_Laser_Muzzle', true)
                 local wep = self:GetWeaponByLabel('RPG')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
             elseif check == 3 then
-                -- Gatling Pulse Cannon
                 self:HideBone('Flamer', true)
                 self:HideBone('Flamer_Muzzle', true)
                 self:HideBone('RPG_Barrel01', true)
                 self:HideBone('RPG_Barrel02', true)
                 self:HideBone('RPG_Muzzle01', true)
                 self:HideBone('RPG_Muzzle02', true)
-                self:HideBone('Suicide', true)
                 self:HideBone('Eye_Laser_Muzzle', true)
                 local wep = self:GetWeaponByLabel('GatlingCannon')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
             elseif check == 4 then
-                -- Particle Laser
                 self:HideBone('RPG_Barrel01', true)
                 self:HideBone('RPG_Barrel02', true)
                 self:HideBone('RPG_Muzzle01', true)
@@ -133,7 +124,6 @@ BRL0110 = Class(CWalkingLandUnit) {
                 self:HideBone('Gat_Exhaust', true)
                 self:HideBone('Flamer', true)
                 self:HideBone('Flamer_Muzzle', true)
-                self:HideBone('Suicide', true)
                 local wep = self:GetWeaponByLabel('LaserGun')
                 maxradius = wep:GetBlueprint().MaxRadius
                 minradius = wep:GetBlueprint().MinRadius or 0
