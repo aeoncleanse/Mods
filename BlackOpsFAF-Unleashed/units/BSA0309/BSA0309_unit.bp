@@ -129,20 +129,10 @@ UnitBlueprint {
     CollisionOffsetZ = 1.5,
     Defense = {
         AirThreatLevel = 6,
-        SeraLambdaFieldRedirector01 = {
-            AttachBone = 'XSA0309',
-            Radius = 15,
-            RedirectRateOfFire = 10,
-        },
-        SeraLambdaFieldRedirector02 = {
+        LambdaField = {
             AttachBone = 'XSA0309',
             Radius = 10,
-            RedirectRateOfFire = 10,
-        },
-        SeraLambdaFieldDestroyer01 = {
-            AttachBone = 'XSA0309',
-            Radius = 10,
-            RedirectRateOfFire = 10,
+            Probability = 30,
         },
         ArmorType = 'Light',
         EconomyThreatLevel = 0,

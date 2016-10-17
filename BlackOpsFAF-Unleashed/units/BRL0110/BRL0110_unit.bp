@@ -418,7 +418,7 @@ UnitBlueprint {
             TurretYawRange = 180,
             TurretYawSpeed = 180,
             Turreted = true,
-            WeaponCategory = 'Direct Fire',
+            WeaponCategory = 'Indirect Fire',
         },
         {
             AboveWaterTargetsOnly = true,
@@ -469,7 +469,7 @@ UnitBlueprint {
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
-            RateOfFire = 1,
+            RateOfFire = 0.1,
             TargetCheckInterval = 0.25,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

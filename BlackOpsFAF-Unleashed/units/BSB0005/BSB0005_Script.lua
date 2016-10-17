@@ -6,7 +6,6 @@
 -----------------------------------------------------------------
 
 local SShieldLandUnit = import('/lua/seraphimunits.lua').SShieldLandUnit
-local SeraLambdaFieldRedirector = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsDefaultAntiProjectile.lua').SeraLambdaFieldRedirector
 local SeraLambdaFieldDestroyer = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsDefaultAntiProjectile.lua').SeraLambdaFieldDestroyer
 
 BSB0005 = Class(SShieldLandUnit) {
@@ -17,32 +16,24 @@ BSB0005 = Class(SShieldLandUnit) {
         self.Parent = parent
         self.Drone = droneName
     end,
-    
+
     OnCreate = function(self, builder, layer)
         SShieldLandUnit.OnCreate(self, builder, layer)
-        local bp = self:GetBlueprint().Defense.SeraLambdaFieldRedirector01
-        local bp3 = self:GetBlueprint().Defense.SeraLambdaFieldDestroyer01
-        local SeraLambdaFieldRedirector01 = SeraLambdaFieldRedirector {
+        local bp = self:GetBlueprint().Defense.LambdaField
+        local field = SeraLambdaFieldDestroyer {
             Owner = self,
             Radius = bp.Radius,
             AttachBone = bp.AttachBone,
-            RedirectRateOfFire = bp.RedirectRateOfFire
+            Probability = bp.Probability
         }
-        local SeraLambdaFieldDestroyer01 = SeraLambdaFieldDestroyer {
-            Owner = self,
-            Radius = bp3.Radius,
-            AttachBone = bp3.AttachBone,
-            RedirectRateOfFire = bp3.RedirectRateOfFire
-        }
-        self.Trash:Add(SeraLambdaFieldRedirector01)
-        self.Trash:Add(SeraLambdaFieldDestroyer01)
+        self.Trash:Add(field)
         self.UnitComplete = true
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,
-    
+
     DeathThread = function(self)
         self:Destroy()
     end,
