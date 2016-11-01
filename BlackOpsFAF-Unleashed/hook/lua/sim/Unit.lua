@@ -19,32 +19,6 @@ Unit = Class(oldUnit) {
         self.EXPhaseEnabled = false
         self.EXTeleportCooldownCharge = false
         self.EXPhaseCharge = 0
-        self:ForkThread(self.CloakEffectControlThread)
-    end,
-
-    -- Overrode this so that there will be no doubt if the cloak effect is active or not
-    -- This is an engine function
-    SetMesh = function(self, meshBp, keepActor)
-        oldUnit.SetMesh(self, meshBp, keepActor)
-        self.CloakEffectEnabled = false;
-    end,
-
-    -- While the CloakEffectControlThread will activate the cloak effect eventually,
-    -- this method tries to provide a faster response time to intel changes
-    OnIntelEnabled = function(self)
-        oldUnit.OnIntelEnabled(self)
-        if not self:IsDead() then
-            self:UpdateCloakEffect()
-        end
-    end,
-
-    -- While the CloakEffectControlThread will deactivate the cloak effect eventually,
-    -- this method tries to provide a faster response time to intel changes
-    OnIntelDisabled = function(self)
-        oldUnit.OnIntelDisabled(self)
-        if not self:IsDead() then
-            self:UpdateCloakEffect()
-        end
     end,
 
     CleanupTeleportChargeEffects = function(self)
@@ -179,65 +153,6 @@ Unit = Class(oldUnit) {
     -------------------------------------------------------
     -- The rest of the functions are added anew by BlackOps
     -------------------------------------------------------
-    
-    -- This thread runs constantly in the background for all units. It ensures that the cloak effect and cloak field are always in the correct state
-    CloakEffectControlThread = function(self)
-        if not self:IsDead() then
-            local bp = self:GetBlueprint()
-            if not bp.Intel.CustomCloak then
-                local bpDisplay = bp.Display
-                while not (self == nil or self:GetHealth() <= 0 or self:IsDead()) do
-                    WaitSeconds(0.2)
-                    self:UpdateCloakEffect()
-                    local CloakFieldIsActive = self:IsIntelEnabled('CloakField')
-                    if CloakFieldIsActive then
-                        local position = self:GetPosition(0)
-                        -- Range must be (radius - 2) because it seems GPG did that for the actual field for some reason.
-                        -- Anything beyond (radius - 2) is not cloaked by the cloak field
-                        local range = bp.Intel.CloakFieldRadius - 2
-                        local brain = self:GetAIBrain()
-                        local UnitsInRange = brain:GetUnitsAroundPoint(categories.ALLUNITS, position, range, 'Ally')
-                        for num, unit in UnitsInRange do
-                            unit:MarkUnitAsInCloakField()
-                        end
-                    end
-                end
-            end
-        end
-    end,
-
-    -- Fork the thread that will deactivate the cloak effect, killing any previous threads that may be running
-    MarkUnitAsInCloakField = function(self)
-        self.InCloakField = true
-        if self.InCloakFieldThread then
-            KillThread(self.InCloakFieldThread)
-            self.InCloakFieldThread = nil
-        end
-        self.InCloakFieldThread = self:ForkThread(self.InCloakFieldWatchThread)
-    end,
-
-    -- Will deactive the cloak effect if it is not renewed by the cloak field
-    InCloakFieldWatchThread = function(self)
-        WaitSeconds(0.2)
-        self.InCloakField = false
-    end,
-
-    -- This is the core of the entire mod. The effect is actually applied here.
-    UpdateCloakEffect = function(self)
-        if not self:IsDead() then
-            local bp = self:GetBlueprint()
-            local bpDisplay = bp.Display
-            if not bp.Intel.CustomCloak then
-                local cloaked = self:IsIntelEnabled('Cloak') or self.InCloakField
-                if (not cloaked and self.CloakEffectEnabled) or self:GetHealth() <= 0 then
-                    self:SetMesh(bpDisplay.MeshBlueprint, true)
-                elseif cloaked and not self.CloakEffectEnabled then
-                    self:SetMesh(bpDisplay.CloakMeshBlueprint , true)
-                    self.CloakEffectEnabled = true
-                end
-            end
-        end
-    end,
     
     EXTeleportChargeEffects = function(self)
         if not self:IsDead() then
