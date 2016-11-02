@@ -223,7 +223,7 @@ UnitBlueprint {
     },
     Intel = {
         VisionRadius = 32,
-        CloakFieldRadius = 250,
+        CloakFieldRadius = 250, -- Used only to show teleport range
     },
     Interface = {
         HelpText = '<LOC BAA0309_help>T3 Heavy Air Transport',

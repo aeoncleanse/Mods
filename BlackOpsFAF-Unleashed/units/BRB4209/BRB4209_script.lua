@@ -12,7 +12,7 @@ BRB4209 = Class(CStructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         CStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetScriptBit('RULEUTC_ShieldToggle', true)
-        self:DisableUnitIntel('CloakField')
+        self:DisableUnitIntel('unitScript', 'CloakField') -- Used to show anti-tele range
         self.antiteleportEmitterTable = {}
         self:ForkThread(self.ResourceThread)
     end,

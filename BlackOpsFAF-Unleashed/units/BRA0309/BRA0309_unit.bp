@@ -237,6 +237,7 @@ UnitBlueprint {
     },
     Intel = {
         VisionRadius = 32,
+        Cloak = true,
         CloakFieldRadius = 13,
         ReactivateTime = 5,
     },

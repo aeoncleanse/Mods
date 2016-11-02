@@ -40,7 +40,7 @@ BAA0309 = Class(AirTransport) {
     
     OnStopBeingBuilt = function(self,builder,layer)
         AirTransport.OnStopBeingBuilt(self,builder,layer)
-        self:DisableUnitIntel('CloakField')
+        self:DisableUnitIntel('unitScript', 'CloakField') -- It's only used to denote the Tele range
     end,
 }
 

@@ -70,11 +70,8 @@ ESL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('Missile', false)
 
         self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
-        self:DisableUnitIntel('ToggleBit5', 'RadarStealthField')
         self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
-        self:DisableUnitIntel('ToggleBit5', 'SonarStealthField')
         self:DisableUnitIntel('ToggleBit8', 'Cloak')
-        self:DisableUnitIntel('ToggleBit8', 'CloakField')
 
         self:ForkThread(self.GiveInitialResources)
         self.RegenFieldFXBag = {}
@@ -272,11 +269,8 @@ ESL0001 = Class(ACUUnit) {
             self:SetFireState(0)
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
-            self:DisableUnitIntel('ToggleBit5', 'RadarStealthField')
             self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
-            self:DisableUnitIntel('ToggleBit5', 'SonarStealthField')
             self:DisableUnitIntel('ToggleBit8', 'Cloak')
-            self:DisableUnitIntel('ToggleBit8', 'CloakField')
 
             if not self.MaintenanceConsumption then
                 self.ToggledOff = true
@@ -296,11 +290,8 @@ ESL0001 = Class(ACUUnit) {
                     self:SetFireState(1)
                     self:SetMaintenanceConsumptionActive()
                     self:EnableUnitIntel('ToggleBit5', 'RadarStealth')
-                    self:EnableUnitIntel('ToggleBit5', 'RadarStealthField')
                     self:EnableUnitIntel('ToggleBit5', 'SonarStealth')
-                    self:EnableUnitIntel('ToggleBit5', 'SonarStealthField')
                     self:EnableUnitIntel('ToggleBit8', 'Cloak')
-                    self:EnableUnitIntel('ToggleBit8', 'CloakField')
 
                     IssueStop({self}) -- This later stop stops people circumventing the no-motion clause
                     IssueClearCommands({self})

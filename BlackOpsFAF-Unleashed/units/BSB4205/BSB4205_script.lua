@@ -31,7 +31,7 @@ BSB4205 = Class(SStructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         SStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetMaintenanceConsumptionActive()
-        self:DisableUnitIntel('CloakField')
+        self:DisableUnitIntel('unitScript', 'CloakField') -- Used to show restoration range
         if not self.ShieldEffectsBag then
             self.ShieldEffectsBag = {}
         end

@@ -20,7 +20,7 @@ BSB4309 = Class(SStructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         SStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetScriptBit('RULEUTC_ShieldToggle', true)
-        self:DisableUnitIntel('CloakField')
+        self:DisableUnitIntel('unitScript', 'CloakField') -- Used to show anti-tele range
         self.antiteleportEmitterTable = {}
         self.AntiTeleportBag = {}
         self.AntiTeleportOrbsBag = {}

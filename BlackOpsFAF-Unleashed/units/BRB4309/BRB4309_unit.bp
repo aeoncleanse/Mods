@@ -142,7 +142,7 @@ UnitBlueprint {
     Intel = {
         FreeIntel = true,
         VisionRadius = 25,
-        CloakFieldRadius = 50,
+        CloakFieldRadius = 50, -- Used to show anti-tele range
     },
     Interface = {
         HelpText = '<LOC brb4309_help>Anti-Teleport Tower',

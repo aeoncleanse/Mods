@@ -21,7 +21,7 @@ BAB4209 = Class(AStructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         AStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetScriptBit('RULEUTC_ShieldToggle', true)
-        self:DisableUnitIntel('CloakField')
+        self:DisableUnitIntel('unitScript', 'CloakField') -- Used to show anti-tele range
         self.AmbientEffectsBag = {}
         self.antiteleportEmitterTable = {}
         self:ForkThread(self.ResourceThread)

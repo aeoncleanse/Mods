@@ -63,9 +63,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         end
     end,
     
-    SpawnDrone = function(self)
-        WaitSeconds(5)
-        
+    SpawnDrone = function(self)        
         -- Sets up local Variables used and spawns a drone at the parents location
         local myOrientation = self:GetOrientation()
         if self.Side == 1 then
