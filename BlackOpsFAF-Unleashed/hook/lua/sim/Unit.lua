@@ -27,7 +27,6 @@ Unit = Class(oldUnit) {
     end,
     
     OnTeleportUnit = function(self, teleporter, location, orientation)
-        WARN('OnTeleportUnit')
         local id = self:GetEntityId()
         
         -- Teleport Cooldown Charge
@@ -40,7 +39,7 @@ Unit = Class(oldUnit) {
             FloatingEntityText(id,'Destination Out Of Range')
             return
         end
-        WARN('1')
+
         -- Teleport Blocker Check
         for num, brain in ArmyBrains do
             local unitList = brain:GetListOfUnits(categories.ANTITELEPORT, false)
@@ -65,7 +64,7 @@ Unit = Class(oldUnit) {
                 end
             end
         end
-        WARN('2')
+
         -- Economy Check and Drain
         local bp = self:GetBlueprint()
         local telecost = bp.Economy.TeleportBurstEnergyCost or 0
@@ -80,7 +79,7 @@ Unit = Class(oldUnit) {
                 return
             end
         end
-        WARN('3')
+
         oldUnit.OnTeleportUnit(self, teleporter, location, orientation) 
     end,
 
