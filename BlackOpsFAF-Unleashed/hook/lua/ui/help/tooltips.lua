@@ -30,3 +30,7 @@ Tooltips['spoof_toggle'] = {
     title = "Spoof Toggle",
     description = "Turns on/off the selected unit's Radar Spoofing",
 }
+Tooltips['tele_transport'] = {
+    title = "Teleport Transport",
+    description = "Teleports to destination. Requires at least 5000 Energy in storage",
+}

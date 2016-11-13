@@ -216,6 +216,11 @@ UnitBlueprint {
         ConstructionBar = true,
         FactionName = 'Aeon',
         Icon = 'air',
+        OrderOverrides = {
+            RULEUCC_Teleport = {
+                helpText = 'tele_transport',
+            },
+        },
         SelectionPriority = 2,
         TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BAA0309_name>Illuminate',
