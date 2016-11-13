@@ -1,4 +1,7 @@
 -- overwrite the original function. Destructive hook !
+local LetterArray = { ["Aeon"] = "ua", ["UEF"] = "ue", ["Cybran"] = "ur", ["Seraphim"] = "xs" }
+local BOLetterArray = { ["Aeon"] = "ba", ["UEF"] = "be", ["Cybran"] = "br", ["Seraphim"] = "bs" }
+
 Callbacks.CapMex = function(data, units)
     local units = EntityCategoryFilterDown(categories.ENGINEER, SecureUnits(units))
     if not units[1] then return end
@@ -6,8 +9,7 @@ Callbacks.CapMex = function(data, units)
     if not mex or not EntityCategoryContains(categories.MASSEXTRACTION * categories.STRUCTURE, mex) then return end
     local pos = mex:GetPosition()
     local msid
-    local LetterArray = { ["Aeon"] = "ua", ["UEF"] = "ue", ["Cybran"] = "ur", ["Seraphim"] = "xs" }
-    local BOLetterArray = { ["Aeon"] = "ba", ["UEF"] = "be", ["Cybran"] = "br", ["Seraphim"] = "bs" }
+
     for _, u in units do
         local FactionName = u:GetBlueprint().General.FactionName
         if u:CanBuild(BOLetterArray[FactionName]..'b1106') then
