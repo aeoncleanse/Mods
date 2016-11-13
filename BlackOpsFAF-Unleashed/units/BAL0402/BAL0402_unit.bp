@@ -585,15 +585,16 @@ UnitBlueprint {
             Flare = {
                 Category = 'MISSILE',
                 Radius = 16,
+                Stack = true, -- special flag to trigger multi-sphere collision
             },
             Label = 'AntiMissile1',
             MaxRadius = 22,
             MuzzleSalvoDelay = 2.3,
             MuzzleSalvoSize = 2,
-            MuzzleVelocity = 5,
+            MuzzleVelocity = 15,
             NotExclusive = true,
             ProjectileId = '/projectiles/AIMAntiMissile01/AIMAntiMissile01_proj.bp',
-            ProjectileLifetime = 6,
+            ProjectileLifetime = 3,
             RackBones = {
                 {
                     MuzzleBones = {
