@@ -149,6 +149,10 @@ UnitBlueprint {
                 bitmapId = 'deploy',
                 helpText = 'deploy',
             },
+            RULEUTC_IntelToggle = {
+                bitmapId = 'stealth-field',
+                helpText = 'toggle_stealth_field',
+            },
         },
         SelectionPriority = 5,
         ToggleCaps = {
@@ -159,9 +163,11 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
+        CloakField = true,
         RadarStealth = true,
         SonarStealth = true,
         RadarRadius = 80,
+        CloakFieldRadius = 15,
         RadarStealthFieldRadius = 15,
         SonarStealthFieldRadius = 15,
         SonarRadius = 80,

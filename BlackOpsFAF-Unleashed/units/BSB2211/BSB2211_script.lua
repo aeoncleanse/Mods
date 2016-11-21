@@ -20,6 +20,23 @@ BSB2211 = Class(TStructureUnit) {
         },
     },
     
+    OnStopBeingBuilt = function(self,builder,layer)
+        TStructureUnit.OnStopBeingBuilt(self,builder,layer)
+        self.DelayedCloakThread = self:ForkThread(self.CloakDelayed)
+    end,
+
+    CloakDelayed = function(self)
+        if not self.Dead then
+            WaitSeconds(2)
+            self.IntelDisables['RadarStealth']['ToggleBit5'] = true
+            self.IntelDisables['Cloak']['ToggleBit3'] = true
+            self:EnableUnitIntel('ToggleBit5', 'RadarStealth')
+            self:EnableUnitIntel('ToggleBit3', 'Cloak')
+        end
+        KillThread(self.DelayedCloakThread)
+        self.DelayedCloakThread = nil
+    end,
+
     OnCreate = function(self,builder,layer)
         TStructureUnit.OnCreate(self,builder,layer)
         self:SetMaintenanceConsumptionActive()
