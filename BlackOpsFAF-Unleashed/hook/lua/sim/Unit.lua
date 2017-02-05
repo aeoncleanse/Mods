@@ -1,5 +1,4 @@
 local BlackOpsEffectTemplate = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsEffectTemplates.lua')
-local FloatingEntityText = import('/lua/SimSync.lua').FloatingEntityText
 
 local oldUnit = Unit
 Unit = Class(oldUnit) {
@@ -35,7 +34,6 @@ Unit = Class(oldUnit) {
         local myposition = self:GetPosition()
         local destRange = VDist2(location[1], location[3], myposition[1], myposition[3])
         if maxRange and destRange > maxRange then
-            LOG('Out of range')
             FloatingEntityText(id,'Destination Out Of Range')
             return
         end
@@ -52,11 +50,9 @@ Unit = Class(oldUnit) {
                         local targetDest = VDist2(location[1], location[3], blockerPosition[1], blockerPosition[3])
                         local sourceCheck = VDist2(myposition[1], myposition[3], blockerPosition[1], blockerPosition[3])
                         if blockerRange and blockerRange >= targetDest then
-                            LOG('Destination Scrambled')
                             FloatingEntityText(id, 'Teleport Destination Scrambled')
                             return
                         elseif blockerRange and blockerRange >= sourceCheck then
-                            LOG('Source scrambled')
                             FloatingEntityText(id, 'Teleport Source Location Scrambled')
                             return
                         end
