@@ -227,6 +227,12 @@ UnitBlueprint {
         },
         FactionName = 'Cybran',
         Icon = 'air',
+        OrderOverrides = {
+            RULEUTC_IntelToggle = {
+                bitmapId = 'stealth-field',
+                helpText = 'toggle_stealth_field',
+            },
+        },
         SelectionPriority = 2,
         TechLevel = 'RULEUTL_Secret',
         ToggleCaps = {
@@ -237,7 +243,7 @@ UnitBlueprint {
     },
     Intel = {
         VisionRadius = 32,
-        Cloak = true,
+        CloakField = true,
         CloakFieldRadius = 13,
         ReactivateTime = 5,
     },

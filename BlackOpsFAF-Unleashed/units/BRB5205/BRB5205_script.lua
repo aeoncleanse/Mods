@@ -45,6 +45,19 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         end
         
         CAirStagingPlatformUnit.OnStopBeingBuilt(self)
+        self.DelayedCloakThread = self:ForkThread(self.CloakDelayed)
+    end,
+
+    CloakDelayed = function(self)
+        if not self.Dead then
+            WaitSeconds(2)
+            self.IntelDisables['RadarStealth']['ToggleBit5'] = true
+            self.IntelDisables['CloakField']['ToggleBit3'] = true
+            self:EnableUnitIntel('ToggleBit5', 'RadarStealth')
+            self:EnableUnitIntel('ToggleBit3', 'CloakField')
+        end
+        KillThread(self.DelayedCloakThread)
+        self.DelayedCloakThread = nil
     end,
     
     InitialDroneSpawn = function(self)
