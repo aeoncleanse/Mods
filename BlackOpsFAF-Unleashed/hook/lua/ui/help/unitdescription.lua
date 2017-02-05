@@ -38,7 +38,7 @@ Description['beb1106'] = "<LOC Unit_Description_10019> Advanced Storage building
 Description['beb2303'] = "<LOC Unit_Description_10020> Rapid-Fire Howitzer Emplacement, showers the target area with low yield explosives, uses energy to fire."
 
 -- Aeon
-Description['baa0309'] = "<LOC Unit_Description_30001> The Illuminate can ferry large amounts of units across the battlefield. This special transport makes up for is lack of armor with a teleportation device."
+Description['baa0309'] = "<LOC Unit_Description_30001> The Illuminate can ferry large amounts of units across the battlefield. This special transport makes up for is lack of armor with a teleportation device. Requires at least 5000 Energy Storage to attempt Teleport."
 Description['bal0110'] = "<LOC Unit_Description_30002> This tiny unit must unpack to fire its long range low powered sniper bolt. Even though its power is nothing compared to the advanced sniper unit; masses of these units can be deadly to lone commanders."
 Description['bab2306'] = "<LOC Unit_Description_30003> Heavy point defense, unlike its tech 2 counterpart the Beam turret is able to quickly change targets and constantly focus the beam resulting in very little overkill."
 Description['bal0206'] = "<LOC Unit_Description_30004> A middle of the road unit, the Zealot can be easily produced and deployed to the front lines making it an excelent support/assault unit in any ground force."
