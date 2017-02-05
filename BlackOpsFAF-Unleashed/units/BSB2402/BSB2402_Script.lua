@@ -97,6 +97,17 @@ BSB2402 = Class(SLandFactoryUnit) {
         end
     end,
 
+    OnFailedToBuild = function(self)
+        IssueStop({self.leftDrone})
+        IssueClearCommands({self.leftDrone})
+        IssueFactoryAssist({self.leftDrone}, self)
+        IssueStop({self.rightDrone})
+        IssueClearCommands({self.rightDrone})
+        IssueFactoryAssist({self.rightDrone}, self)
+
+        SLandFactoryUnit.OnFailedToBuild(self)
+    end,
+
     OnKilled = function(self, instigator, type, overkillRatio)
         -- Kill the expansion factory spawns
         if self.leftDrone and not self.leftDrone.Dead then
