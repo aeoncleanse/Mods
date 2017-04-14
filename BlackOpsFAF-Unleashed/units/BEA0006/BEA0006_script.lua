@@ -75,7 +75,8 @@ BEA0005 = Class(TAirUnit) {
 
     -- Monitors drone distance from the carrier, issuing recalls and releases as necessary
     DroneLinkHeartbeat = function(self)
-        while (self and not self:IsDead()) and (self.Carrier and not self.Carrier:IsDead()) do
+        WARN('DroneLinkHeartbeat')
+        while self and not self.Dead and self.Carrier and not self.Carrier.Dead do
             local distance = self:GetDistanceFromAttachpoint()
             if distance > self.MaxRange and self.AwayFromCarrier == false then
                 self:DroneRecall()
@@ -121,6 +122,7 @@ BEA0005 = Class(TAirUnit) {
     
     -- Cancels drone lockdown and returns it to normal speed
     DroneRelease = function(self)
+        WARN('DroneRelease')
         self.AwayFromCarrier = false
         -- Restore standard mobility
         self:SetSpeedMult(1.0)

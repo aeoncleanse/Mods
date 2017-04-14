@@ -14,107 +14,66 @@ local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local BaseTransport = import('/lua/defaultunits.lua').BaseTransport
 
-BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
-    FlamerEffects = {
-        '/mods/BlackOpsFAF-Unleashed/effects/emitters/ex_flamer_torch_01.bp',
-    },
-    
+BEL0402 = Class(TWalkingLandUnit, BaseTransport) {
+    FlamerEffects = '/mods/BlackOpsFAF-Unleashed/effects/emitters/ex_flamer_torch_01.bp',
+
     Weapons = {
         MissileWeapon = Class(GoliathRocket) {},
         HeavyGuassCannon = Class(HawkGaussCannonWeapon) {},
         TMDTurret = Class(GoliathTMDGun) {},
         Laser = Class(TDFGoliathShoulderBeam) {},
-        HeadWeapon = Class(TDFMachineGunWeapon){},
         GoliathDeathNuke = Class(DeathNukeWeapon) {},
     },
 
-    OnCreate = function(self,builder,layer)
-        TWalkingLandUnit.OnCreate(self,builder,layer)
-        if self:GetAIBrain().BrainType ~= 'Human' then
-            local headwep = self:GetWeaponByLabel('HeadWeapon')
-            headwep:ChangeMaxRadius(500)
-        end
-    end,
-    
-    OnStartBeingBuilt = function(self, builder, layer)
-        TWalkingLandUnit.OnStartBeingBuilt(self, builder, layer)
+    OnStopBeingBuilt = function(self, builder, layer)
+        -- First, animate to stand up, and wait for it
         if not self.AnimationManipulator then
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
         end
-        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)
-        
-        self.gettingBuilt = true
-    end,
-    
-    OnStopBeingBuilt = function(self,builder,layer)    
-        self.slots = {}
-        self.transData = {}
-        
-        if self.AnimationManipulator then
-            self:SetUnSelectable(true)
-            self.AnimationManipulator:SetRate(1)            
-            self:ForkThread(function()
-                WaitSeconds(self.AnimationManipulator:GetAnimationDuration()*self.AnimationManipulator:GetRate())
-                self:SetUnSelectable(false)
-                self.AnimationManipulator:Destroy()
-            end)
-        end 
-        
-        -- Button status toggles
-        self.DroneMaintenance = true
-        self.DroneAssist = true
-        
-        -- Assist management globals
-        self.MyAttacker = nil
-        self.MyTarget = nil
 
-        -- Drone construction/repair buildrate
-        self.BuildRate = self:GetBlueprint().Economy.BuildRate or 30
+        self:SetUnSelectable(true)
+        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(1)
+        self:ForkThread(function()
+            WaitSeconds(self.AnimationManipulator:GetAnimationDuration())
+            self:SetUnSelectable(false)
+            self.AnimationManipulator:Destroy()
+        end)
 
-        -- Drone setup (load globals/tables & create drones)
-        self:DroneSetup()
-        self:SetScriptBit('RULEUTC_IntelToggle', false)
-        self.FlamerEffectsBag = {}
-        
-        self.spoof = false
-        self.gettingBuilt = false
-        self:ForkThread(self.CheckAIThread)
-
-        if self.FlamerEffectsBag then
-                for k, v in self.FlamerEffectsBag do
-                    v:Destroy()
-                end
-                self.FlamerEffectsBag = {}
-            end
-            for k, v in self.FlamerEffects do
-                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Right_Pilot_Light', self:GetArmy(), v):ScaleEmitter(0.0625))
-                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Left_Pilot_Light', self:GetArmy(), v):ScaleEmitter(0.0625))
-            end
-            TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
-    end,
-
-    CheckAIThread = function(self)
-        if self:GetAIBrain().BrainType ~= 'Human' then
-            self:SetScriptBit('RULEUTC_IntelToggle', false)
+        -- Create drones
+        self.droneData = table.deepcopy(self:GetBlueprint().DroneData)
+        for drone, data in self.droneData do
+            CreateDrone(self, drone)
         end
+
+        -- Enable intel? Give it jamming :)
+        --self:SetScriptBit('RULEUTC_IntelToggle', false)
+
+        -- Turn on flamethrower pilot lights
+        self.FlamerEffectsBag = {}
+        table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Right_Pilot_Light', self:GetArmy(), self.FlamerEffects):ScaleEmitter(0.0625))
+        table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Left_Pilot_Light', self:GetArmy(), self.FlamerEffects):ScaleEmitter(0.0625))
+
+        TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
     end,
-    
+
     -- Places the Goliath's first drone-targetable attacker into a global
     OnDamage = function(self, instigator, amount, vector, damagetype)
-        if not self:IsDead()
-        and self.MyAttacker == nil
-        and self:IsValidDroneTarget(instigator) then
-            self.MyAttacker = instigator
+        if not self.Dead and self.DroneTarget == nil and self:IsValidDroneTarget(instigator) then
+            self:SignalDroneTarget(instigator)
         end
         TWalkingLandUnit.OnDamage(self, instigator, amount, vector, damagetype)
     end,
-    
+
     -- Drone control buttons
     OnScriptBitSet = function(self, bit)
         -- Drone assist toggle, on
         if bit == 1 then
             self.DroneAssist = false
+        elseif bit == 3 then
+            self:SetMaintenanceConsumptionInactive()
+            self:DisableUnitIntel('Radar')
+            self:DisableUnitIntel('RadarStealth')
         -- Drone recall button
         elseif bit == 7 then
             self:RecallDrones()
@@ -124,11 +83,15 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             TWalkingLandUnit.OnScriptBitSet(self, bit)
         end
     end,
-    
+
     OnScriptBitClear = function(self, bit)
         -- Drone assist toggle, off
         if bit == 1 then
             self.DroneAssist = true
+        elseif bit == 3 then
+            self:SetMaintenanceConsumptionActive()
+            self:EnableUnitIntel('Radar')
+            self:EnableUnitIntel('RadarStealth')
         -- Recall button reset, do nothing
         elseif bit == 7 then
             return
@@ -136,14 +99,14 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             TWalkingLandUnit.OnScriptBitClear(self, bit)
         end
     end,
-    
+
     -- Handles drone docking
     OnTransportAttach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = attachBone
         unit:SetDoNotTarget(true)
         BaseTransport.OnTransportAttach(self, attachBone, unit)
     end,
-    
+
     -- Handles drone undocking, also called when docked drones die
     OnTransportDetach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = false
@@ -156,9 +119,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
 
     -- Cleans up threads and drones on death
     OnKilled = function(self, instigator, type, overkillRatio)
-        if self.gettingBuilt == false then
-            -- Kill our heartbeat thread
-            KillThread(self.HeartBeatThread)
+        if self:GetFractionComplete() == 1 then
             -- Clean up any in-progress construction
             ChangeState(self, self.DeadState)
             -- Immediately kill existing drones
@@ -167,71 +128,36 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                     IssueClearCommands({drone})
                     IssueKillSelf({drone})
                 end
-            end 
-            if self.spoof == true then
-                self.landChildUnit:Destroy()
             end
         end
         TWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
-    -- Initial drone setup - loads globals, DroneData table, and creates drones
-    DroneSetup = function(self)
-        -- Drone handle table, used to issue orders to all drones at once
-        self.DroneTable = {}
-        
-        -- Drone construction globals
-        self.BuildingDrone = false
-        self.ControlRange = self:GetBlueprint().AI.DroneControlRange or 70
-        self.ReturnRange = self:GetBlueprint().AI.DroneReturnRange or (ControlRange / 2)
-        self.AssistRange = self.ControlRange + 10
-        self.AirMonitorRange = self:GetBlueprint().AI.AirMonitorRange or (self.AssistRange / 2)
-        self.HeartBeatInterval = self:GetBlueprint().AI.AssistHeartbeatInterval or 1
 
-        self.DroneData = table.deepcopy(self:GetBlueprint().DroneData)
-        
-        -- Load other data from drone BP and spawn drones
-        for droneName, droneData in self.DroneData do
-            -- Set drone name variable
-            if not droneData.Name then
-                droneData.Name = droneName
-            end
-            droneData.Blueprint = table.deepcopy(GetUnitBlueprintByName(droneData.UnitID))
-            droneData.Economy = droneData.Blueprint.Economy
-            droneData.BuildProgress = 1
+    -- Initial drone setup
+    CreateDrone = function(self, drone)
+        local droneData = self.droneData
+        local army = self:GetArmy()
+        local data = droneData[drone]
+        local location = self:GetPosition(data.Attachpoint)
 
-            -- Create this drone
-            self:ForkThread(self.CreateDrone, droneName)
-        end
-            
-        -- Assist/monitor heartbeat thread
-        self.HeartBeatThread = self:ForkThread(self.AssistHeartBeat)
-        
-        -- Begin drone maintenance monitoring
-        ChangeState(self, self.DroneMaintenanceState)
+        local newDrone = CreateUnitHPR(data.UnitID, army, location[1], location[2], location[3], 0, 0, 0)
+        newDrone:SetParent(self, drone)
+        newDrone:SetCreator(self)
+        self.Trash:Add(newDrone)
+
+        newDrone:IssueGuard({self})
+
+        self[drone] = newDrone
+
+        --- THings to make drones do
+        -- Attack nearby air units (SHould do this just naturally while guarding)
+        -- Prioritize a thing attacking me
+        -- Dock on command for repair and rescue
+        -- Auto dock with no enemies nearby to repair
+        -- Attack target by means of a target command
+        -- Be able to use pause on myself to pause construction of new drones
     end,
-    
-    -- Creates specified drone from its entry in DroneData and creates handles
-    CreateDrone = function(self, droneName)
-        if not self:IsDead() and not self.DroneTable[droneName] and not self.DroneData[droneName].Active then
-            if not self:IsValidBone(self.DroneData[droneName].Attachpoint) then
-                error("*ERROR: Attachpoint '" .. self.DroneData[droneName].Attachpoint .. "' not a valid bone!", 2)
-                return
-            end
-            local location = self:GetPosition(self.DroneData[droneName].Attachpoint)
-            local newdrone = CreateUnitHPR(self.DroneData[droneName].UnitID, self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-            newdrone:SetParent(self, self.DroneData[droneName].Name)
-            newdrone:SetCreator(self)
-            self.DroneTable[droneName] = newdrone
-            self.DroneData[droneName].Active = newdrone
-            self.DroneData[droneName].Docked = false
-            self.DroneData[droneName].Damaged = false
-            self.DroneData[droneName].BuildProgress = 1
-            self.Trash:Add(newdrone)
-            self:RequestRefreshUI()
-        end
-    end,
-    
+
     -- Clears all handles and active DroneData variables for the calling drone.
     NotifyOfDroneDeath = function(self,droneName)
         self.DroneTable[droneName] = nil
@@ -241,103 +167,13 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         self.DroneData[droneName].BuildProgress = 0
     end,
 
-    DroneMaintenanceState = State {
-        Main = function(self)
-            self.DroneMaintenance = true            
-            -- Resume any interrupted drone rebuilds
-            if self.BuildingDrone then
-                ChangeState(self, self.DroneRebuildingState)
-            end            
-            -- Check for dead or damaged drones
-            while self and not self:IsDead() and not self.BuildingDrone do
-                for droneName, droneData in self.DroneData do
-                    if not droneData.Active or (droneData.Active and droneData.Damaged and droneData.Docked) then
-                        self.BuildingDrone = droneName
-                        ChangeState(self, self.DroneRebuildingState)
-                    end
-                end
-                WaitTicks(2)
-            end
-        end,
-
-        OnPaused = function(self)
-            ChangeState(self, self.PausedState)
-        end,
-    },
-    
-    -- Active construction/repair state - consumes resources and advances progress
-    DroneRebuildingState = State {
-        Main = function(self)
-            -- Flag as repair if drone is alive and damaged
-            local isRepair = self.DroneData[self.BuildingDrone].Active and self.DroneData[self.BuildingDrone].Damaged
-            -- Calculate build time from buildrate
-            local buildTimeSeconds = self.DroneData[self.BuildingDrone].Economy.BuildTime / self.BuildRate
-            -- Enable econ consumption
-            self:EnableResourceConsumption(self.DroneData[self.BuildingDrone].Economy)
-            
-            -- Begin or resume construction if not repair
-            if not isRepair then
-                -- Set progress bar/variable to 0 for fresh drone construction
-                if not self.DroneData[self.BuildingDrone].BuildProgress then
-                    self:SetWorkProgress(0.01)
-                end
-                -- Construction runs until buildprogress >= 1
-                while self and not self:IsDead()
-                and self.DroneData[self.BuildingDrone].BuildProgress < 1 do
-                    WaitTicks(1)
-                    local tickprogress = (self:GetResourceConsumed() * 0.1) / buildTimeSeconds
-                    self.DroneData[self.BuildingDrone].BuildProgress = self.DroneData[self.BuildingDrone].BuildProgress + tickprogress
-                    self:SetWorkProgress(self.DroneData[self.BuildingDrone].BuildProgress)
-                end
-                self:CreateDrone(self.BuildingDrone)
-            elseif isRepair then
-                local repairingDrone = self.DroneData[self.BuildingDrone].Active
-                local maxhealth = repairingDrone:GetMaxHealth()
-                -- Repair runs while drone is alive, damaged, and docked
-                while self and not self:IsDead()
-                and self.DroneData[self.BuildingDrone].Damaged
-                and self.DroneData[self.BuildingDrone].Docked
-                and repairingDrone and not repairingDrone:IsDead() do
-                    WaitTicks(1)
-                    local restorehealth = ((self:GetResourceConsumed() * 0.1) / buildTimeSeconds) * maxhealth
-                    repairingDrone:AdjustHealth(self, restorehealth)
-                    -- Repair progress = drone health percent, and the progressbar reflects this
-                    local totalprogress = repairingDrone:GetHealth() / maxhealth
-                    self:SetWorkProgress(totalprogress)
-                    if self.DroneData[self.BuildingDrone] and totalprogress >= 1 then
-                        self.DroneData[self.BuildingDrone].Damaged = false
-                    end
-                end
-            end
-            -- Return to Maintenance State to check/wait for other jobs
-            self:CleanupDroneMaintenance(self.BuildingDrone)
-            ChangeState(self, self.DroneMaintenanceState)
-        end,
-        
-        OnPaused = function(self)
-            ChangeState(self, self.PausedState)
-        end,
-    },
-    
-    -- Paused state, econ and construction progress halted
-    PausedState = State {
-        Main = function(self)
-            self:DisableResourceConsumption()
-            self.DroneMaintenance = false
-        end,
-
-        OnUnpaused = function(self)
-            ChangeState(self, self.DroneMaintenanceState)
-        end,        
-    },
-    
     -- Set on unit death, ends production and consumption immediately
     DeadState = State {
         Main = function(self)
-            if self.gettingBuilt == false then
+            if self:GetFractionComplete() == 1 then
                 self:CleanupDroneMaintenance(nil, true)
             end
-        end,        
+        end,
     },
 
     -- Enables economy drain
@@ -355,7 +191,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         self:SetConsumptionPerSecondMass(0)
         self:SetConsumptionActive(false)
     end,
-    
+
     -- Resets resume/progress data, clears effects
     -- Used to clean up finished construction and repair, and to interrupt repairs when undocking
     CleanupDroneMaintenance = function(self, droneName, deadState)
@@ -365,17 +201,18 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             self:DisableResourceConsumption()
         end
     end,
-    
+
     -- Manages drone assistance and firestate propagation
     AssistHeartBeat = function(self)
+        WARN('AssistHeartBeat')
         local SuspendAssist = 0
         local LastFireState
         local LastDroneTarget
         -- The Goliath's current weapon target is now used for better, earlier drone deployment
         -- Best results achieved so far have been with the missile launcher, due to range
         local TargetWeapon = self:GetWeaponByLabel('Laser')
-        
-        while not self:IsDead() do
+
+        while not self.Dead do
             -- Refresh current firestate and check for holdfire
             local MyFireState = self:GetFireState()
             local HoldFire = MyFireState == 1
@@ -386,14 +223,14 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             else
                 self.MyTarget = nil
             end
-            
+
             -- Propagate the Goliath's fire state to the drones, to keep them from retaliating when the Goliath is on hold-fire
             -- This also allows you to set both drones to target-ground, although I'm not sure how that'd be useful
             if LastFireState ~= MyFireState then
                 LastFireState = MyFireState
                 self:SetDroneFirestate(MyFireState)
             end
-            
+
             -- Drone Assist management
             -- New target priority:
             -- 1. Nearby gunships - these can attack both drones and Goliath, otherwise often killing drones while they're elsewise occupied
@@ -410,24 +247,26 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             -- submerged, recently taken-off highaltair, or out-of-range target.  Likewise, when the Goliath submerges, the drones will
             -- continue engaging only until the last assigned target is destroyed, at which point they will dock with the underwater Goliath.
             if self.DroneAssist and not HoldFire and SuspendAssist <= 0 then
+                --WARN('1')
                 local NewDroneTarget
-                
+
                 local GunshipTarget = self:SearchForGunshipTarget(self.AirMonitorRange)
                 if GunshipTarget and not GunshipTarget:IsDead() then
                     if GunshipTarget ~= LastDroneTarget then
                         NewDroneTarget = GunshipTarget
                     end
-                elseif self.MyAttacker ~= nil and not self.MyAttacker:IsDead() and self:IsTargetInRange(self.MyAttacker) then
-                    if self.MyAttacker ~= LastDroneTarget then
-                        NewDroneTarget = self.MyAttacker
+                elseif self.DroneTarget ~= nil and not self.DroneTarget:IsDead() and self:IsTargetInRange(self.DroneTarget) then
+                    if self.DroneTarget ~= LastDroneTarget then
+                        NewDroneTarget = self.DroneTarget
                     end
-                -- If our previous attacker is no longer valid, clear MyAttacker to re-enable the OnDamage check
-                elseif self.MyAttacker ~= nil then
-                    self.MyAttacker = nil
+                -- If our previous attacker is no longer valid, clear DroneTarget to re-enable the OnDamage check
+                elseif self.DroneTarget ~= nil then
+                    self.DroneTarget = nil
                 end
-                
+                --WARN('2')
                 -- Assign chosen target, if valid
                 if NewDroneTarget and self:IsValidDroneTarget(NewDroneTarget) then
+                    --WARN('3')
                     if NewDroneTarget == GunshipTarget then
                         -- Suspend the assist targeting for 7 heartbeats if we have a gunship target, to keep them at top priority
                         SuspendAssist = 7
@@ -436,8 +275,8 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                     self:AssignDroneTarget(NewDroneTarget)
                 -- Otherwise re-check our existing target:
                 else
-                    if LastDroneTarget and self:IsValidDroneTarget(LastDroneTarget)
-                    and self:IsTargetInRange(LastDroneTarget) then
+                    --WARN('4')
+                    if LastDroneTarget and self:IsValidDroneTarget(LastDroneTarget) and self:IsTargetInRange(LastDroneTarget) then
                         -- Dispatch any docked (usually newly-built) drones, if it's still valid
                         if self:GetDronesDocked() then
                             self:AssignDroneTarget(LastDroneTarget)
@@ -447,27 +286,29 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                         LastDroneTarget = nil
                     end
                 end
-                
+
             -- Otherwise, tick down the assistance suspension timer (if set)
             elseif SuspendAssist > 0 then
                 SuspendAssist = SuspendAssist - 1
             end
-            
+
             WaitSeconds(self.HeartBeatInterval)
         end
     end,
-            
+
     -- Recalls all drones to the carrier at 2x speed under temp command lockdown
     RecallDrones = function(self)
+        WARN('RecallDrones')
         if next(self.DroneTable) then
             for id, drone in self.DroneTable do
                 drone:DroneRecall()
             end
-        end        
+        end
     end,
-    
+
     -- Issues an attack order for all drones
     AssignDroneTarget = function(self, dronetarget)
+        WARN('AssignDroneTarget')
         if next(self.DroneTable) then
             for id, drone in self.DroneTable do
                 if drone.AwayFromCarrier == false then
@@ -475,12 +316,13 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                     if targetblip ~= nil then
                         IssueClearCommands({drone})
                         IssueAttack({drone}, targetblip)
+                        drone.AwayFromCarrier = true
                     end
                 end
             end
         end
     end,
-    
+
     -- Sets a firestate for all drones
     SetDroneFirestate = function(self, firestate)
         if next(self.DroneTable) then
@@ -491,7 +333,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             end
         end
     end,
-    
+
     -- Checks whether any drones are docked.  Used by AssistHeartBeat.
     -- Returns a table of dronenames that are currently docked, or false if none
     GetDronesDocked = function(self)
@@ -519,7 +361,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         end
         return target
     end,
-    
+
     -- De-blip a weapon target - stolen from the GC tractorclaw script
     GetRealTarget = function(self, target)
         if target and not IsUnit(target) then
@@ -531,9 +373,9 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                 return unitTarget
             end
         end
-        return target      
+        return target
     end,
-    
+
     -- Runs a potential target through filters to insure that drones can attack it; checks are as simple and efficient as possible
     IsValidDroneTarget = function(self, target)
         local ivdt
@@ -548,7 +390,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         end
         return ivdt
     end,
-    
+
     -- Insures that potential retaliation targets are within drone control range
     IsTargetInRange = function(self, target)
         local tpos = target:GetPosition()
@@ -561,71 +403,35 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         return itir
     end,
 
-    OnScriptBitClear = function(self, bit)
-        TWalkingLandUnit.OnScriptBitClear(self, bit)
-        if bit == 3 then 
-            self.spoof = true
-            self:SetMaintenanceConsumptionActive()
-            self:EnableUnitIntel('Radar')
-            self:EnableUnitIntel('RadarStealth')
-            self:ForkThread(self.SpoofingThread)
-        end
-    end,
-    
-    OnScriptBitSet = function(self, bit)
-        TWalkingLandUnit.OnScriptBitSet(self, bit)
-        if bit == 3 then
-            self.spoof = false
-            self:SetMaintenanceConsumptionInactive()
-            self:DisableUnitIntel('Radar')
-            self:DisableUnitIntel('RadarStealth')
-        end
-    end,
-    
-    SpoofingThread = function(self)
-        local position = self:GetPosition()
-
-        while self.spoof == true do
-            local pos = Random(-70,70)
-            self.landChildUnit = CreateUnitHPR('BEL9010', self:GetArmy(), position[1] + pos, position[2], position[3] + pos, 0, 0, 0)
-            self.landChildUnit.parentCrystal = self
-
-            WaitSeconds(Random(3,13))
-
-            self.landChildUnit:Destroy()
-            self.landChildUnit = nil
-        end
-    end,
-
     DestructionEffectBones = {
         'Left_Arm_Muzzle',
     },
 
     CreateDamageEffects = function(self, bone, army)
         for k, v in EffectTemplate.DamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(3.0)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(3.0)
         end
     end,
 
-    CreateExplosionDebris = function( self, bone, Army )
+    CreateExplosionDebris = function(self, bone, army)
         for k, v in EffectTemplate.ExplosionEffectsSml01 do
-            CreateAttachedEmitter( self, bone, Army, v ):ScaleEmitter(2.0)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(2.0)
         end
     end,
-    
-    CreateDeathExplosionDustRing = function( self )
+
+    CreateDeathExplosionDustRing = function(self)
         local blanketSides = 18
-        local blanketAngle = (2*math.pi) / blanketSides
+        local blanketAngle = (2 * math.pi) / blanketSides
         local blanketStrength = 1
         local blanketVelocity = 2.8
 
-        for i = 0, (blanketSides-1) do
-            local blanketX = math.sin(i*blanketAngle)
-            local blanketZ = math.cos(i*blanketAngle)
+        for i = 0, (blanketSides - 1) do
+            local blanketX = math.sin(i * blanketAngle)
+            local blanketZ = math.cos(i * blanketAngle)
 
             local Blanketparts = self:CreateProjectile('/effects/entities/DestructionDust01/DestructionDust01_proj.bp', blanketX, 1.5, blanketZ + 4, blanketX, 0, blanketZ)
                 :SetVelocity(blanketVelocity):SetAcceleration(-0.3)
-        end        
+        end
     end,
 
     CreateAmmoCookOff = function(self, Army, bones, yBoneOffset)
@@ -634,7 +440,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         for k, vBone in bones do
             local position = self:GetPosition(vBone)
             local offset = utilities.GetDifferenceVector(position, basePosition)
-            velocity = utilities.GetDirectionVector(position, basePosition) 
+            velocity = utilities.GetDirectionVector(position, basePosition)
             velocity.x = velocity.x + RandomFloat(-0.45, 0.45)
             velocity.z = velocity.z + RandomFloat(-0.45, 0.45)
             velocity.y = velocity.y + RandomFloat(0.0, 0.65)
@@ -642,66 +448,66 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             -- Ammo Cookoff projectiles and damage
             self.DamageData = {
                 BallisticArc = 'RULEUBA_LowArc',
-                UseGravity = true, 
-                CollideFriendly = true, 
-                DamageFriendly = true, 
+                UseGravity = true,
+                CollideFriendly = true,
+                DamageFriendly = true,
                 Damage = 500,
                 DamageRadius = 3,
                 DoTPulses = 15,
-                DoTTime = 2.5, 
+                DoTTime = 2.5,
                 DamageType = 'Normal',
-                } 
+                }
             ammocookoff = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/projectiles/NapalmProjectile01/Napalm01_proj.bp', offset.x, offset.y + yBoneOffset, offset.z, velocity.x, velocity.y, velocity.z)
-            ammocookoff:SetVelocity(Random(2,5))  
-            ammocookoff:SetLifetime(20) 
+            ammocookoff:SetVelocity(Random(2,5))
+            ammocookoff:SetLifetime(20)
             ammocookoff:PassDamageData(self.DamageData)
             self.Trash:Add(ammocookoff)
         end
     end,
-    
+
     CreateGroundPlumeConvectionEffects = function(self,army)
-    for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-          CreateEmitterAtEntity(self, army, v ) 
-    end
-    
-    local sides = 10
-    local angle = (2*math.pi) / sides
-    local inner_lower_limit = 2
+        for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
+              CreateEmitterAtEntity(self, army, v )
+        end
+
+        local sides = 10
+        local angle = (2 * math.pi) / sides
+        local inner_lower_limit = 2
         local outer_lower_limit = 2
         local outer_upper_limit = 2
-    
-    local inner_lower_height = 1
-    local inner_upper_height = 3
-    local outer_lower_height = 2
-    local outer_upper_height = 3
-      
-    sides = 8
-    angle = (2*math.pi) / sides
-    for i = 0, (sides-1)
-    do
-        local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
-        local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-        local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-        local velocity = RandomFloat( 1, 3 ) * 3
-        self:CreateProjectile('/effects/entities/UEFNukeEffect05/UEFNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
-            :SetVelocity(x * velocity, 0, z * velocity)
-    end 
+
+        local inner_lower_height = 1
+        local inner_upper_height = 3
+        local outer_lower_height = 2
+        local outer_upper_height = 3
+
+        sides = 8
+        angle = (2*math.pi) / sides
+        for i = 0, (sides-1)
+        do
+            local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
+            local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
+            local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
+            local velocity = RandomFloat( 1, 3 ) * 3
+            self:CreateProjectile('/effects/entities/UEFNukeEffect05/UEFNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
+                :SetVelocity(x * velocity, 0, z * velocity)
+        end
     end,
-    
+
     CreateInitialFireballSmokeRing = function(self)
         local sides = 12
         local angle = (2*math.pi) / sides
         local velocity = 5
-        local OffsetMod = 8       
+        local OffsetMod = 8
 
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
             self:CreateProjectile('/effects/entities/UEFNukeShockwave01/UEFNukeShockwave01_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity):SetAcceleration(-0.5)
-        end   
-    end,  
-    
+        end
+    end,
+
     CreateOuterRingWaveSmokeRing = function(self)
         local sides = 32
         local angle = (2*math.pi) / sides
@@ -721,9 +527,9 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
             v:SetAcceleration(-0.45)
-        end         
-    end,      
-    
+        end
+    end,
+
     CreateFlavorPlumes = function(self)
         local numProjectiles = 8
         local angle = (2*math.pi) / numProjectiles
@@ -731,7 +537,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         local angleVariation = angle * 0.75
         local projectiles = {}
 
-        local xVec = 0 
+        local xVec = 0
         local yVec = 0
         local zVec = 0
         local velocity = 0
@@ -741,7 +547,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         for i = 0, (numProjectiles -1) do
             xVec = math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
             yVec = RandomFloat(0.2, 1)
-            zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation)) 
+            zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
             velocity = 3.4 + (yVec * RandomFloat(2,5))
             table.insert(projectiles, self:CreateProjectile('/effects/entities/UEFNukeFlavorPlume01/UEFNukeFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity) )
         end
@@ -753,14 +559,14 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             v:SetVelocity(2):SetBallisticAcceleration(-0.15)
         end
     end,
-    
+
     CreateHeadConvectionSpinners = function(self)
         local sides = 8
         local angle = (2*math.pi) / sides
         local HeightOffset = 0
         local velocity = 1
         local OffsetMod = 10
-        local projectiles = {}        
+        local projectiles = {}
 
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
@@ -768,8 +574,8 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             local proj = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/effects/entities/GoliathNukeEffect03/GoliathNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
-        end   
-    
+        end
+
     WaitSeconds(1)
         for i = 0, (sides-1) do
             local x = math.sin(i*angle)
@@ -777,9 +583,9 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
             local proj = projectiles[i+1]
         proj:SetVelocityAlign(false)
         proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
-        proj:SetVelocity(0,3,0) 
-          proj:SetBallisticAcceleration(-0.05)            
-        end   
+        proj:SetVelocity(0,3,0)
+          proj:SetBallisticAcceleration(-0.05)
+        end
     end,
 
     DeathThread = function(self, overkillRatio , instigator)
@@ -787,7 +593,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         local army = self:GetArmy()
         local position = self:GetPosition()
         local numExplosions =  math.floor(table.getn(self.DestructionEffectBones) * Random(0.4, 1.0))
-        
+
         -- Create small explosions effects all over
         local ranBone = utilities.GetRandomInt(1, numExplosions)
         CreateDeathExplosion(self, 'Torso', 6)
@@ -846,7 +652,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         CreateDeathExplosion(self, 'Right_Arm_Pitch', 1.0)
         self:CreateDamageEffects('Right_Arm_Pitch', army)
         WaitSeconds(2)
-        
+
         local x, y, z = unpack(self:GetPosition())
         z = z + 3
         -- Knockdown force rings
@@ -857,7 +663,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         local FireballDomeYOffset = -7
         self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/effects/entities/GoliathNukeEffect01/GoliathNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         local PlumeEffectYOffset = 1
-        self:CreateProjectile('/effects/entities/UEFNukeEffect02/UEFNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1) 
+        self:CreateProjectile('/effects/entities/UEFNukeEffect02/UEFNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)
         DamageRing(self, position, 0.1, 18, 1, 'Force', true)
         WaitSeconds(0.8)
         DamageRing(self, position, 0.1, 18, 1, 'Force', true)
@@ -868,16 +674,16 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
                 break
             end
         end
-        
+
         for k, v in EffectTemplate.TNukeRings01 do
             CreateEmitterAtEntity(self, army, v )
         end
-        
+
         self:CreateInitialFireballSmokeRing()
         self:ForkThread(self.CreateOuterRingWaveSmokeRing)
         self:ForkThread(self.CreateHeadConvectionSpinners)
         self:ForkThread(self.CreateFlavorPlumes)
-        
+
         CreateLightParticle(self, -1, army, 200, 150, 'glow_03', 'ramp_nuke_04')
         WaitSeconds(1)
         WaitSeconds(0.1)
@@ -887,7 +693,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit) {
         WaitSeconds(0.5)
         WaitSeconds(0.5)
         self:CreateGroundPlumeConvectionEffects(army)
-        
+
         local army = self:GetArmy()
         CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_003_albedo', '', 'Albedo', 40, 40, 500, 0, army)
         self:CreateWreckage(0.1)

@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/lua/modules/BlackOpsweapons.lua
+-- File     :  /cdimage/lua/BlackOpsweapons.lua
 -- Author(s):  Lt_hawkeye
 -- Summary  :  
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.

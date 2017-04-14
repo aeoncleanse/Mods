@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     : /cdimage/lua/modules/BlackOpsProjectiles.lua
+-- File     : /cdimage/lua/BlackOpsProjectiles.lua
 -- Author(s): Lt_Hawkeye
 -- Summary  :
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
