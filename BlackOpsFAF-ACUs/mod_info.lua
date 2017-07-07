@@ -1,8 +1,8 @@
 name = "BlackOps FAF: ACUs"
-uid = "9e8ea941-c306-4751-b367-a00000012000"
-version = 12
+uid = "9e8ea941-c306-4751-b367-a00000013000"
+version = 13
 copyright = "2009 Exavier Macbeth, lt_hawkeye, orangeknight, IceDreamer"
-description = "The ultimate ACU upgrade pack, re-engineered for FAF 3660 or later"
+description = "The ultimate ACU upgrade pack, re-engineered for FAF 3680 or later"
 author = "Exavier Macbeth, lt_hawkeye, orangeknight - Revamped 2016 by IceDreamer"
 icon = "/mods/BlackOpsFAF-ACUs/icon.png"
 selectable = true
@@ -54,4 +54,5 @@ conflicts = {
   "9e8ea941-c306-4751-rrrr-a20000000503",
   "9e8ea941-m306-4751-rrrr-a11000000600",
   "9e8ea941-c306-4751-b367-a00000011000",
+  "9e8ea941-c306-4751-b367-a00000012000",
 }
