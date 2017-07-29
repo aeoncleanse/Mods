@@ -1,0 +1,30 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="uab1102",-- T1 aeon hydro
+    Categories = {
+        'SHOWQUEUE',
+    },
+    Display = {
+        Abilities = {
+            '<LOC ability_upgradable>Upgradeable',
+        },
+    },
+    Economy = {
+        BuildRate = 10,
+        BuildableCategory = {
+            'bab1202',
+        },
+        RebuildBonusIds = {
+            'uab1102',
+            'bab1202',
+            'bab1302',
+        },
+    },
+    General = {
+        UpgradesTo = 'bab1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
+    },
+}
+
