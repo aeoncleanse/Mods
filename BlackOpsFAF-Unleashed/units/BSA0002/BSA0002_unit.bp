@@ -261,6 +261,19 @@ UnitBlueprint {
         ClassGenericUpTo = 2,
         TransportClass = 2,
     },
+    Weapon = {
+        {
+            Damage = 2,
+            DamageFriendly = true,
+            DamageRadius = 0.375,
+            DamageType = 'Normal',
+            DisplayName = 'Air Crash',
+            DummyWeapon = true,
+            FiringTolerance = 2,
+            Label = 'DeathImpact',
+            WeaponCategory = 'Death',
+        },
+    },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
         EnergyMult = 0,
