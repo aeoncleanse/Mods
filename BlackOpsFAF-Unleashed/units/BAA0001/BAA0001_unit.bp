@@ -445,6 +445,17 @@ UnitBlueprint {
             Turreted = false,
             WeaponCategory = 'Anti Navy',
         },
+        {
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 0.3,
+            DamageType = 'Normal',
+            DisplayName = 'Air Crash',
+            DummyWeapon = true,
+            FiringTolerance = 2,
+            Label = 'DeathImpact',
+            WeaponCategory = 'Death',
+        },
     },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
