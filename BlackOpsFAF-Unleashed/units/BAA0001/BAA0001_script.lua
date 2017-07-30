@@ -47,6 +47,11 @@ BAA0001 = Class(AAirUnit) {
         self.AwayFromCarrier = false
     end,
     
+    OnDetachedFromTransport = function(self, transport, bone)
+        AAirUnit.OnDetachedFromTransport(self, transport, bone)
+        self:SetImmobile(false)
+    end,
+
     OnMotionVertEventChange = function(self, new, old)
         AAirUnit.OnMotionVertEventChange(self, new, old)
         -- Aborting a landing

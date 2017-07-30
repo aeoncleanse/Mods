@@ -11,6 +11,11 @@ BEA0005 = Class(TAirUnit) {
 
     Carrier = nil,
 
+    OnDetachedFromTransport = function(self, transport, bone)
+        TAirUnit.OnDetachedFromTransport(self, transport, bone)
+        self:SetImmobile(false)
+    end,
+
     OnKilled = function(self, instigator, damagetype, overkillRatio)
         -- Notify the carrier of our death
         self.Carrier:NotifyOfDroneDeath(self.Name)
