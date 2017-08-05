@@ -1,0 +1,8 @@
+Base Bone: FaithBreaker 
+Yaw Bone: Turret_01 
+Pitch Bone: Turret_Barrel_01 
+Muzzles; 
+Turret_Muzzle1 
+Turret_Muzzle2
+
+Spray_(1-7)

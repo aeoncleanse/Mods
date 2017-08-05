@@ -1,0 +1,754 @@
+UnitBlueprint {
+    AI = {
+        TargetBones = {
+            'EEL0401',
+        },
+    },
+    Audio = {
+        Close = Sound {
+            Bank = 'UEL',
+            Cue = 'UEL0401_Close',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Destroyed = Sound {
+            Bank = 'UELDestroy',
+            Cue = 'UEL0401_Destroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Open = Sound {
+            Bank = 'UEL',
+            Cue = 'UEL0401_Open',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'UEL',
+            Cue = 'UEL0401_Move_Start',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'UEL',
+            Cue = 'UEL0401_Move_Stop',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        TransitionLand = Sound {
+            Bank = 'UEL',
+            Cue = 'UEL0401_Water_Trans',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        TransitionWater = Sound {
+            Bank = 'UEL',
+            Cue = 'UEL0401_Water_Trans',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        UISelection = Sound {
+            Bank = 'Interface',
+            Cue = 'UEF_Select_Tank',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+    },
+    Buffs = {
+        Regen = {
+            Level1 = 15,
+            Level2 = 30,
+            Level3 = 45,
+            Level4 = 60,
+            Level5 = 75,
+        },
+    },
+    BuildIconSortPriority = 10,
+    Categories = {
+        'PRODUCTSC1',
+        'SELECTABLE',
+        'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER3ENGINEER',
+        'UEF',
+        'MOBILE',
+        'LAND',
+        'EXPERIMENTAL',
+        'DIRECTFIRE',
+        'ANTIAIR',
+		'NEEDMOBILEBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'DRAGBUILD',
+        'SHOWQUEUE',
+        'OVERLAYANTIAIR',
+        'OVERLAYDIRECTFIRE',
+    },
+    CollisionOffsetZ = 0,
+    Defense = {
+        AirThreatLevel = 16,
+        ArmorType = 'Experimental',
+        EconomyThreatLevel = 0,
+        Health = 10000,
+        MaxHealth = 10000,
+        RegenRate = 20,
+        Shield = {
+            ImpactEffects = 'UEFShieldHit01',
+            ImpactMesh = '/effects/entities/ShieldSection01/ShieldSection01_mesh',
+            Mesh = '/effects/entities/Shield01/Shield01_mesh',
+            MeshZ = '/effects/entities/Shield01/Shield01z_mesh',
+            RegenAssistMult = 60,
+            ShieldEnergyDrainRechargeTime = 2.5,
+            ShieldMaxHealth = 16000,
+            ShieldRechargeTime = 90,
+            ShieldRegenRate = 120,
+            ShieldRegenStartTime = 0.5,
+            ShieldSize = 6,
+            ShieldVerticalOffset = -1.5,
+        },
+        SubThreatLevel = 40,
+        SurfaceThreatLevel = 380,
+    },
+    Description = 'Experimental Harmonic Wave Generator',
+    Display = {
+        Abilities = {
+            '<LOC ability_amphibious>Amphibious',
+            '<LOC ability_aa>Anti-Air',
+            '<LOC ability_shielddome>Shield Dome',
+        },
+        AnimationDeath = {
+            {
+                Animation = '/mods/BlackOpsEXUnits/units/EEL0401/EEL0401_ALDeath.sca',
+                AnimationRateMax = 2.5,
+                AnimationRateMin = 0.75,
+                Weight = 100,
+            },
+            {
+                Animation = '/mods/BlackOpsEXUnits/units/EEL0401/EEL0401_ADeath01.sca',
+                AnimationRateMax = 2.5,
+                AnimationRateMin = 0.75,
+                Weight = 100,
+            },
+        },
+        LandAnimationDeath = {
+            {
+                Animation = '/mods/BlackOpsEXUnits/units/EEL0401/EEL0401_ALDeath.sca',
+                Weight = 100,
+            },
+        },
+        WaterAnimationDeath = {
+            {
+                Animation = '/mods/BlackOpsEXUnits/units/EEL0401/EEL0401_ADeath01.sca',
+                AnimationRateMax = 1.5,
+                AnimationRateMin = 0.5,
+                Weight = 100,
+            },
+        },
+		AnimationTransform = '/mods/BlackopsEXUnits/units/EEL0401/EEL0401_Amphib.sca',
+        IdleEffects = {
+            Water = {
+                Effects = {
+                    {
+                        Bones = {
+                            'Right_Hover_Dummy',
+                        },
+                        Offset = {
+                            0,
+                            -0.01,
+                            0,
+                        },
+                        Type = 'Hover01',
+                    },
+                    {
+                        Bones = {
+                            'Left_Hover_Dummy',
+                        },
+                        Offset = {
+                            0,
+                            -0.01,
+                            0,
+                        },
+                        Type = 'Hover01',
+                    },
+                    {
+                        Bones = {
+                            'EEL0401',
+                            'F_Left_Exhaust',
+                            'Front_right_Exhaust',
+                        },
+                        Scale = 2.7,
+                        Type = 'SeaIdle02',
+                    },
+                },
+            },
+        },
+        Mesh = {
+            IconFadeInZoom = 100,
+            LODs = {
+                {
+                    LODCutoff = 200,
+                    Scrolling = true,
+                    ShaderName = 'Unit',
+                },
+                {
+                    AlbedoName = 'EEL0401_albedo.dds',
+                    LODCutoff = 600,
+                    ShaderName = 'Unit',
+                    SpecularName = 'EEL0401_specteam.dds',
+                },
+            },
+        },
+        MovementEffects = {
+            Land = {
+                Effects = {
+                    {
+                        Bones = {
+                            'Front_right_Exhaust',
+                            'F_Left_Exhaust',
+                            'R_Right_Exhaust',
+                            'R_Left_Exhuast',
+                        },
+						Scale = 0.5,
+                        Type = 'GroundKickup02',
+                    },
+                    {
+                        Bones = {
+                            'Front_Track_Right',
+                            'Front_Track_Left',
+                            'Rear_Track',
+                        },
+						Scale = 0.5,
+                        Type = 'GroundKickup04',
+                    },
+                    {
+                        Bones = {
+                            'EEL0401',
+                        },
+						Scale = 0.5,
+                        Type = 'Shoreline01',
+                    },
+                },
+                Treads = {
+                    ScrollTreads = true,
+                    TreadMarks = {
+                        {
+                            TreadMarks = 'tank_treads06_albedo',
+                            TreadMarksInterval = 0.1,
+                            TreadMarksSizeX = 2,
+                            TreadMarksSizeZ = 2,
+                            TreadOffset = {
+                                0,
+                                0,
+                                0,
+                            },
+                        },
+                        {
+                            TreadMarks = 'tank_treads03_albedo',
+                            TreadMarksInterval = 0.1,
+                            TreadMarksSizeX = 1,
+                            TreadMarksSizeZ = 2,
+                            TreadOffset = {
+                                0,
+                                0,
+                                -2,
+                            },
+                        },
+                    },
+                },
+            },
+            Water = {
+                Effects = {
+                    {
+                        Bones = {
+                            'Right_Hover_Dummy',
+                        },
+                        Offset = {
+                            0,
+                            -0.01,
+                            0,
+                        },
+                        Type = 'Hover01',
+                    },
+                    {
+                        Bones = {
+                            'Left_Hover_Dummy',
+                        },
+                        Offset = {
+                            0,
+                            -0.01,
+                            0,
+                        },
+                        Type = 'Hover01',
+                    },
+                    {
+                        Bones = {
+                            'F_Left_Exhaust',
+                        },
+                        Scale = 1.2,
+                        Type = 'LeftFrontWake',
+                    },
+                    {
+                        Bones = {
+                            'Front_right_Exhaust',
+                        },
+                        Scale = 1.2,
+                        Type = 'RightFrontWake',
+                    },
+                    {
+                        Bones = {
+                            'Rear_Track',
+                        },
+                        Scale = 1,
+                        Type = 'BackWake',
+                    },
+                },
+                Treads = {
+                    ScrollTreads = true,
+                    },
+            },
+        },
+        PlaceholderMeshName = 'UXB0000',
+        SpawnRandomRotation = false,
+        UniformScale = 0.11,
+    },
+    Economy = {
+        BuildCostEnergy = 130000,
+        BuildCostMass = 15000,
+        BuildTime = 16200,
+        MaintenanceConsumptionPerSecondEnergy = 300,
+    },
+    General = {
+        Category = 'Experimental',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = false,
+            RULEUCC_Capture = false,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Nuke = false,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = false,
+            RULEUCC_Repair = false,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+            RULEUCC_Transport = false,
+        },
+        ConstructionBar = true,
+        FactionName = 'UEF',
+        Icon = 'amph',
+        OrderOverrides = {
+            RULEUTC_ShieldToggle = {
+                bitmapId = 'shield-dome',
+                helpText = 'toggle_shield_dome',
+            },
+        },
+        TechLevel = 'RULEUTL_Experimental',
+        ToggleCaps = {
+            RULEUTC_ShieldToggle = true,
+        },
+        UnitName = 'Disruptor',
+        UnitWeight = 1,
+    },
+    Intel = {
+        VisionRadius = 32,
+        WaterVisionRadius = 32,
+    },
+    Interface = {
+        HelpText = 'Experimental Harmonic Wave Generator',
+    },
+    LifeBarHeight = 0.075,
+    LifeBarOffset = 2.175,
+    LifeBarSize = 2.875,
+    Physics = {
+		AltMotionType = 'RULEUMT_Water',
+        BackUpDistance = 2,
+        BankingSlope = 0,
+        BuildOnLayerCaps = {
+            LAYER_Air = false,
+            LAYER_Land = true,
+            LAYER_Orbit = false,
+            LAYER_Seabed = false,
+            LAYER_Sub = false,
+            LAYER_Water = true,
+        },
+        CatchUpAcc = 0.1,
+        DragCoefficient = 0.2,
+        LandSpeedMultiplier = 0.5,
+        LayerChangeOffsetHeight = -1,
+        LayerTransitionDuration = 2,
+        MaxAcceleration = 1.75,
+        MaxBrake = 2.5,
+        MaxSpeed = 2.5,
+        MaxSpeedReverse = 1.75,
+        MaxSteerForce = 1000,
+        MeshExtentsX = 4,
+        MeshExtentsY = 1,
+        MeshExtentsZ = 5.25,
+        MinSpeedPercent = 0,
+        MotionType = 'RULEUMT_AmphibiousFloating',
+        RotateBodyWhileMoving = true,
+        RotateOnSpot = false,
+        RotateOnSpotThreshold = 0.5,
+        SkirtOffsetX = -0.5,
+        SkirtOffsetZ = -0.5,
+        SkirtSizeX = 4,
+        SkirtSizeZ = 4,
+        TurnRadius = 0,
+        TurnRate = 30,
+    },
+    SelectionCenterOffsetX = 0,
+    SelectionCenterOffsetZ = 0,
+    SelectionSizeX = 1.8,
+    SelectionSizeZ = 2.5,
+    SelectionThickness = 0.34,
+    SizeX = 2.625,
+    SizeY = 0.75,
+    SizeZ = 4,
+    StrategicIconName = 'icon_experimental_generic',
+    StrategicIconSortPriority = 45,
+    Veteran = {
+        Level1 = 25,
+        Level2 = 50,
+        Level3 = 75,
+        Level4 = 100,
+        Level5 = 125,
+    },
+    Weapon = {
+        {
+            AboveWaterTargetsOnly = true,
+            AimsStraightOnDisable = true,
+            Audio = {
+                BeamLoop = Sound {
+                    Bank = 'UALWeapon',
+                    Cue = 'UAL0401_Phason_Laser_Loop',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+                BeamStart = Sound {
+                    Bank = 'UALWeapon',
+                    Cue = 'UAL0401_Phason_Laser_Fire',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+                BeamStop = Sound {
+                    Bank = 'UALWeapon',
+                    Cue = 'UAL0401_Phason_Laser_Stop',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+                Unpack = Sound {
+                    Bank = 'UALWeapon',
+                    Cue = 'UAL0401_Phason_Laser_Charge',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            AutoInitiateAttackCommand = false,
+            BallisticArc = 'RULEUBA_None',
+            BeamCollisionDelay = 0.1,
+            BeamLifetime = 6.5,
+            CollideFriendly = false,
+			ContinuousBeam = false,
+            Damage = 36,
+            DamageRadius = 2,
+            DamageType = 'Normal',
+            DisplayName = 'Sonic Disruptor Wave',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water',
+                Water = 'Land|Water',
+            },
+            FiringTolerance = 2,
+            Label = 'EXDisruptorWave',
+            MaxRadius = 50,
+			MinRadius = 5,
+            MuzzleChargeDelay = 0,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            NeedPrep = false,
+			NotExclusive = true,
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_01',
+                    },
+                    RackBone = 'Wave_Muzzle_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_25',
+                    },
+                    RackBone = 'Wave_Muzzle_25',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_24',
+                    },
+                    RackBone = 'Wave_Muzzle_24',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_23',
+                    },
+                    RackBone = 'Wave_Muzzle_23',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_22',
+                    },
+                    RackBone = 'Wave_Muzzle_22',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_21',
+                    },
+                    RackBone = 'Wave_Muzzle_21',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_20',
+                    },
+                    RackBone = 'Wave_Muzzle_20',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_19',
+                    },
+                    RackBone = 'Wave_Muzzle_19',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_18',
+                    },
+                    RackBone = 'Wave_Muzzle_18',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_17',
+                    },
+                    RackBone = 'Wave_Muzzle_17',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_16',
+                    },
+                    RackBone = 'Wave_Muzzle_16',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_15',
+                    },
+                    RackBone = 'Wave_Muzzle_15',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_14',
+                    },
+                    RackBone = 'Wave_Muzzle_14',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_13',
+                    },
+                    RackBone = 'Wave_Muzzle_13',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_12',
+                    },
+                    RackBone = 'Wave_Muzzle_12',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_11',
+                    },
+                    RackBone = 'Wave_Muzzle_11',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_10',
+                    },
+                    RackBone = 'Wave_Muzzle_10',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_09',
+                    },
+                    RackBone = 'Wave_Muzzle_09',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_08',
+                    },
+                    RackBone = 'Wave_Muzzle_08',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_07',
+                    },
+                    RackBone = 'Wave_Muzzle_07',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_06',
+                    },
+                    RackBone = 'Wave_Muzzle_06',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_05',
+                    },
+                    RackBone = 'Wave_Muzzle_05',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_04',
+                    },
+                    RackBone = 'Wave_Muzzle_04',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_03',
+                    },
+                    RackBone = 'Wave_Muzzle_03',
+                },
+                {
+                    MuzzleBones = {
+                        'Wave_Muzzle_02',
+                    },
+                    RackBone = 'Wave_Muzzle_02',
+                },
+            },
+            RackFireTogether = true,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 1.5,
+			RackSalvoFiresAfterCharge = true,
+            RackSalvoReloadTime = 6.5,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RangeCategory = 'UWRC_DirectFire',
+            RateOfFire = 0.1,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'SPECIALHIGHPRI',
+                'TECH3 MOBILE',
+                'TECH2 MOBILE',
+                'TECH1 MOBILE',
+                'STRUCTURE DEFENSE',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TrackingRadius = 1.125,
+            TurretBoneMuzzle = 'Wave_Muzzle_01',
+            TurretBonePitch = 'Wave_Barrel',
+            TurretBoneYaw = 'Wave_Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 20,
+            TurretPitchSpeed = 30,
+            TurretYaw = 0,
+            TurretYawRange = 140,
+            TurretYawSpeed = 90,
+            Turreted = true,
+            WeaponCategory = 'Direct Fire Experimental',
+            WeaponRepackTimeout = 0,
+            WeaponUnpackAnimation = '/mods/BlackopsEXUnits/units/EEL0401/EEL0401_Deploy.sca',
+            WeaponUnpackAnimationRate = 0.5,
+            WeaponUnpackLocksMotion = false,
+            WeaponUnpacks = true,
+        },
+        {
+            AlwaysRecheckTarget = true,
+            Audio = {
+                Fire = Sound {
+                    Bank = 'UELWeapon',
+                    Cue = 'UEB2304_Missile_Flayer',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            CannotAttackGround = true,
+            Damage = 1600,
+            DamageType = 'Normal',
+            DisplayName = 'Hyper Velocity Missile Launcher',
+            EffectiveRadius = 0,
+            FireTargetLayerCapsTable = {
+                Air = 'Air',
+                Land = 'Air',
+                Water = 'Air',
+            },
+            FiringTolerance = 10,
+            Label = 'HVMTurret',
+            MaxRadius = 60,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 75,
+			NotExclusive = true,
+            ProjectileId = '/mods/BlackopsEXUnits/projectiles/UEFHVM01/UEFHVM01_proj.bp',
+            ProjectileLifetime = 6,
+            ProjectilesPerOnFire = 1,
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'AA_Muzzle_01',
+                    },
+                    RackBone = 'AA_Muzzle_01',
+                },
+                {
+                    MuzzleBones = {
+                        'AA_Muzzle_02',
+                    },
+                    RackBone = 'AA_Muzzle_02',
+                },
+                {
+                    MuzzleBones = {
+                        'AA_Muzzle_03',
+                    },
+                    RackBone = 'AA_Muzzle_03',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 1,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RangeCategory = 'UWRC_AntiAir',
+            RateOfFire = 0.25,
+            TargetCheckInterval = 0.16,
+            TargetPriorities = {
+                'SPECIALHIGHPRI',
+                'AIR MOBILE HIGHPRIAIR',
+                'AIR MOBILE TECH3 BOMBER',
+                'AIR MOBILE BOMBER',
+                'AIR MOBILE GROUNDATTACK',
+                'AIR MOBILE TRANSPORTATION',
+                'AIR MOBILE',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TrackingRadius = 1.15,
+            TurretBoneMuzzle = 'AA_Muzzle_01',
+            TurretBonePitch = 'AA_Barrel',
+            TurretBoneYaw = 'AA_Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 45,
+            TurretPitchRange = 40,
+            TurretPitchSpeed = 180,
+            TurretYaw = 0,
+            TurretYawRange = 180,
+            TurretYawSpeed = 180,
+            Turreted = true,
+            WeaponCategory = 'Anti Air',
+            WeaponRepackTimeout = 0,
+            WeaponUnpacks = false,
+        },
+    },
+    Wreckage = {
+        Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
+        EnergyMult = 0,
+        HealthMult = 0.9,
+        MassMult = 0.9,
+        ReclaimTimeMultiplier = 1,
+        WreckageLayers = {
+            Air = false,
+            Land = true,
+            Seabed = true,
+            Sub = false,
+            Water = false,
+        },
+    },
+}
