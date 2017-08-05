@@ -8,9 +8,8 @@
 #**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-TableCat = import('/lua/utilities.lua').TableCat
 EmtBpPath = '/effects/emitters/'
-EmtBpPath2 = '/mods/BlackOpsACUs/effects/emitters/'
+EmtBpPath2 = '/mods/BlackOpsFAF-ACUs/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 
 EMETNukeRings01 = {

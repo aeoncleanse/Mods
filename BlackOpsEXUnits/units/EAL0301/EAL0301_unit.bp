@@ -75,6 +75,9 @@ UnitBlueprint {
     },
     Description = 'Teleport Harassment Bot',
     Display = {
+        Abilities = {
+            '<LOC ability_stealthfield>Stealth Field',
+        },
         AnimationDeath = {
             {
                 Animation = '/mods/Blackopsexunits/units/EAL0301/EAL0301_Adeath01.sca',

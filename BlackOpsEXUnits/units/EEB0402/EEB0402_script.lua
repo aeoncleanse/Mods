@@ -10,12 +10,13 @@
 
 local TEnergyCreationUnit = import('/lua/terranunits.lua').TEnergyCreationUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')
-local TIFCommanderDeathWeapon = TerranWeaponFile.TIFCommanderDeathWeapon
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+
 
 EEB0402 = Class(TEnergyCreationUnit) {
 
     Weapons = {
-        DeathWeapon = Class(TIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(DeathNukeWeapon) {},
     },
 
     OnStopBeingBuilt = function(self,builder,layer)
@@ -40,7 +41,7 @@ EEB0402 = Class(TEnergyCreationUnit) {
 		self.UnitComplete = true
 		self:ForkThread(self.InitialSpawnDelay)
     end,
-		
+
 	NotifyOfDroneDeath = function(self)
 		### Only respawns the drones if the parent unit is not dead
 		if not self:IsDead() then
@@ -60,7 +61,7 @@ EEB0402 = Class(TEnergyCreationUnit) {
 			self:ForkThread(self.CoreMonitor)
 		end   
 	end, 
-
+		
     InitialSpawnDelay = function(self)
 		WaitSeconds(2)
 		self:ForkThread(self.CoreSpawn)
@@ -84,14 +85,14 @@ EEB0402 = Class(TEnergyCreationUnit) {
     end,
 
     CoreSpawn = function(self)
-			local platOrient = self:GetOrientation()
-			local location = self:GetPosition('star')
-			local StellarCore = CreateUnit('eeb0001', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land')
-			table.insert (self.StellarCoreTable, StellarCore)
-			StellarCore:AttachTo(self, 'star')
-			StellarCore:SetParent(self, 'eeb0402')
-            StellarCore:SetCreator(self)
-			self.Trash:Add(StellarCore)	
+		local platOrient = self:GetOrientation()
+		local location = self:GetPosition('star')
+		local StellarCore = CreateUnit('eeb0001', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land')
+		table.insert (self.StellarCoreTable, StellarCore)
+		StellarCore:AttachTo(self, 'star')
+		StellarCore:SetParent(self, 'eeb0402')
+		StellarCore:SetCreator(self)
+		self.Trash:Add(StellarCore)	
     end,
 
 }

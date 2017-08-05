@@ -35,11 +35,11 @@ EAL0301 = Class(AWalkingLandUnit) {
         self.Trash:Add( self.TeleAnimManip )
     end,
 
-    PlayTeleportChargeEffects = function(self)
+    PlayTeleportChargeEffects = function(self, location)
         self.TeleAnimManip:PlayAnim( '/mods/Blackopsexunits/units/EAL0301/EAL0301_TeleAnim.sca' )
 		self.TeleAnimManip:SetRate(0.25)
         self.Trash:Add( self.TeleAnimManip )
-		AWalkingLandUnit.PlayTeleportChargeEffects(self)
+		AWalkingLandUnit.PlayTeleportChargeEffects(self, location)
     end,
 	
     PlayTeleportInEffects = function( self )

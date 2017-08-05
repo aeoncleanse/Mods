@@ -101,9 +101,10 @@ UnitBlueprint {
     Description = 'Advanced Tactical Submarine',
     Display = {
         Abilities = {
-            '<LOC ability_manuallaunch>Manual Launch',
             '<LOC ability_sonar>Sonar',
             '<LOC ability_submersible>Submersible',
+            '<LOC ability_manuallaunch>Manual Launch',
+            '<LOC ability_aa>Anti-Air',
         },
         AnimationDeath = {
             {
