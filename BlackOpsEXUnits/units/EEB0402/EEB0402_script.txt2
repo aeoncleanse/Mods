@@ -1,0 +1,20 @@
+#****************************************************************************
+#**
+#**  File     :  
+#**  Author(s):  Tpapp & Exavier Macbeth
+#**
+#**  Summary  :  UEF T4 Stellar Generator Script
+#**
+#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+#****************************************************************************
+
+local TEnergyCreationUnit = import('/lua/modules/terranunits.lua').TEnergyCreationUnit
+
+UEB1301 = Class(TEnergyCreationUnit) {
+
+    OnStopBeingBuilt = function(self,builder,layer)
+        TEnergyCreationUnit.OnStopBeingBuilt(self,builder,layer)
+    end,
+}
+
+TypeClass = UEB1301
