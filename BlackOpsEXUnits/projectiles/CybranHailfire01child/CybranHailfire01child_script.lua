@@ -1,7 +1,7 @@
 #
 # UEF Small Yield Nuclear Bomb
 #
-local TIFSmallYieldNuclearBombProjectile = import('/mods/BlackOpsACUs/lua/EXBlackopsprojectiles.lua').UEFACUClusterMIssileProjectile02
+local TIFSmallYieldNuclearBombProjectile = import('/mods/BlackOpsFAF-ACUs/lua/EXBlackopsprojectiles.lua').UEFACUClusterMIssileProjectile02
 local TMissileCruiseProjectile = import('/lua/terranprojectiles.lua').TMissileCruiseProjectile02
 local CybranHailfire01Projectile = import('/mods/BlackOpsEXUnits/lua/EXBlackOpsprojectiles.lua').CybranHailfire01ChildProjectile
 

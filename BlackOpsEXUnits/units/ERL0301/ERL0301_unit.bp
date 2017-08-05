@@ -63,7 +63,7 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_cloak>Cloaking',
-            '<LOC ability_stealth>Personal Stealth',
+            '<LOC ability_personalstealth>Personal Stealth',
         },
         AnimationDeath = {
             {
@@ -150,7 +150,7 @@ UnitBlueprint {
         },
         FactionName = 'Cybran',
         Icon = 'land',
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC ERL0301_name>Shadow Splitter',
         UnitWeight = 1,
     },

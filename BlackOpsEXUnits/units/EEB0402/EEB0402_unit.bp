@@ -31,6 +31,7 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'UEF',
         'STRUCTURE',
         'ECONOMIC',
@@ -65,14 +66,20 @@ UnitBlueprint {
     },
     Description = '<LOC EEB0402_desc>Stellar Generator',
     Display = {
+        Abilities = {
+            '<LOC ability_aa>Anti-Air',
+            '<LOC ability_shielddome>Shield Dome',
+            '<LOC ability_aquatic>Aquatic',
+            '<LOC ability_deathaoe>Volatile',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    AlbedoName = 'EEB0402_albedo.dds',
+                    AlbedoName = 'EEB0402_Albedo.dds',
                     LODCutoff = 300,
                     ShaderName = 'Unit',
-                    SpecularName = 'EEB0402_specteam.dds',
+                    SpecularName = 'EEB0402_SpecTeam.dds',
                 },
             },
         },
@@ -127,8 +134,11 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'UEF',
-        TechLevel = 'RULEUTL_Secret',
+        Icon = 'amph',
+        SelectionPriority = 5,
+        TechLevel = 'RULEUTL_Experimental',
         UnitWeight = 1,
+        UnitName = 'Philadelphia',
         ToggleCaps = {
             RULEUTC_ShieldToggle = true,
         },

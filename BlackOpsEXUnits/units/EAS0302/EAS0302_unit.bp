@@ -80,12 +80,13 @@ UnitBlueprint {
     Description = '<LOC EAS0302_desc>Escort Frigate',
     Display = {
         Abilities = {
-            '<LOC ability_radar>Radar',
-            '<LOC ability_sonar>Sonar',
             '<LOC ability_omni>Omni Sensor',
-            '<LOC ability_tacmissiledef>Tactical Missile Defense',
             '<LOC ability_torpedo>Torpedoes',
             '<LOC ability_torpedodef>Torpedo Defense',
+            '<LOC ability_sonar>Sonar',
+            '<LOC ability_radar>Radar',
+            '<LOC ability_tacmissiledef>Tactical Missile Defense',
+            '<LOC ability_aa>Anti-Air',
         },
         AnimationDeath = {
             {
@@ -181,7 +182,7 @@ UnitBlueprint {
         },
         FactionName = 'Aeon',
         Icon = 'sea',
-        TechLevel = 'RULEUTL_Basic',
+        TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC EAS0302_name>Messiah Class',
         UnitWeight = 1,
     },

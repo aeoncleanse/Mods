@@ -3,7 +3,7 @@
 #
 
 local CybranHailfire02Projectile = import('/mods/BlackOpsEXUnits/lua/EXBlackOpsprojectiles.lua').CybranHailfire02Projectile
-local TMissileCruiseProjectile = import('/mods/BlackopsACUs/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
+local TMissileCruiseProjectile = import('/mods/BlackOpsFAF-ACUs/lua/EXBlackOpsprojectiles.lua').UEFACUClusterMIssileProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

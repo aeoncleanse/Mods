@@ -1,0 +1,51 @@
+*************************************************************************************************************************************
+V14 (05.Aug.2017)
+
+Removed icon support requirements from mod.lua
+
+Unit erl0301 (Cloaked Bot) Changed General.TechLevel from "RULEUTL_Basic" to "RULEUTL_Secret"
+Unit ers0302 (Attack Frigate) Changed General.TechLevel from "RULEUTL_Advanced" to "RULEUTL_Secret"
+Unit ees0302 (Escort Frigate) Changed General.TechLevel from "RULEUTL_Advanced" to "RULEUTL_Secret"
+Unit eeb0402 (Stellar Generator) Changed General.TechLevel from "RULEUTL_Secret" to "RULEUTL_Experimental"
+Unit eas0302 (Escort Frigate) Changed General.TechLevel from "RULEUTL_Basic" to "RULEUTL_Secret"
+Unit eeb0402 (Stellar Generator) Changed icon to  (General.Icon = 'amph',)
+Unit eeb0402 (Stellar Generator) Changed General.SelectionPriority from "1" to 5
+
+Unit erl0301 (Cloaked Bot) Fixed Display.Abilities.
+Unit ees0301 (Advanced Tactical Submarine) Fixed Display.Abilities.
+Unit eal0301 (Teleport Harassment Bot) Fixed Display.Abilities.
+Unit eeb0402 (Stellar Generator) Fixed Display.Abilities.
+Unit eas0302 (Escort Frigate) Fixed Display.Abilities.
+
+Unit eel0401 (Experimental Harmonic Wave Generator) Changed Display.Mesh.IconFadeInZoom = 100 to 130
+
+Unit eeb0402 (Stellar Generator) Fixed SeraLambdaFieldDestroyer (SeraLambdaFieldRedirector)
+
+Deleted unused Icon "eea0001_icon.dds"
+Deleted unused Icon "eeb0401_icon.dds"
+Deleted unused Icon "eeb0201_icon.dds"
+Deleted unused Icon "eea0201_icon.dds"
+
+fixed several filepaths.
+
+*************************************************************************************************************************************
+V4-3652-04 (08.Feb.2016)
+
+Unit EAL0301 Aeon Teleport Harassment Bot
+fixed teleporting
+
+Unit EEB0402 UEF Stellar Generator
+fixed mesh and animation errors
+
+Reworked Sorian AI Support
+
+*************************************************************************************************************************************
+V4-3652-03
+Unit EEB0402 - Stellar Generator
+fixed AlbedoName and SpecularName
+
+Unit EEB0001 - Lambda Emitter Object
+fixed AlbedoName and SpecularName
+fixed WARNING: GetResource: Invalid name ""
+
+Added Sorian Ai Support to all Units.

@@ -60,6 +60,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
         'BUILTBYTIER3ENGINEER',
         'UEF',
         'MOBILE',
@@ -174,7 +175,7 @@ UnitBlueprint {
             },
         },
         Mesh = {
-            IconFadeInZoom = 100,
+            IconFadeInZoom = 130,
             LODs = {
                 {
                     LODCutoff = 200,
