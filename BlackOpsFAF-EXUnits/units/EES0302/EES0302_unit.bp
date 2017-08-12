@@ -280,7 +280,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 4,
             MuzzleVelocity = 10,
 			NotExclusive = true,
-            ProjectileId = '/mods/BlackopsEXUnits/projectiles/UEFCruiseMissile01/UEFCruiseMissile01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-EXUnits/projectiles/UEFCruiseMissile01/UEFCruiseMissile01_proj.bp',
             ProjectileLifetime = 50,
             RackBones = {
                 {
@@ -334,7 +334,7 @@ UnitBlueprint {
             Turreted = false,
             WeaponCategory = 'Missile',
             WeaponRepackTimeout = 0,
-            WeaponUnpackAnimation = '/mods/BlackopsEXUnits/units/EES0302/EES0302_MissileDeploy.sca',
+            WeaponUnpackAnimation = '/mods/BlackOpsFAF-EXUnits/units/EES0302/EES0302_MissileDeploy.sca',
             WeaponUnpackAnimationRate = 0.5,
             WeaponUnpackLocksMotion = false,
             WeaponUnpacks = true,
@@ -367,7 +367,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 75,
 			NotExclusive = true,
-            ProjectileId = '/mods/BlackopsEXUnits/projectiles/UEFHVM01/UEFHVM01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-EXUnits/projectiles/UEFHVM01/UEFHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
             RackBones = {

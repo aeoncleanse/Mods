@@ -116,7 +116,7 @@ UnitBlueprint {
         AnimationTransform = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_transform.sca',
         AnimationWalk = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_awalk.sca',
         AnimationWalkRate = 1.8,
-		AnimationHailfireDeploy = '/mods/BlackopsEXUnits/units/ERS0302/ERS0302_AHailfireDeploy.sca',
+		AnimationHailfireDeploy = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_AHailfireDeploy.sca',
         IdleEffects = {
             Water = {
                 Effects = {

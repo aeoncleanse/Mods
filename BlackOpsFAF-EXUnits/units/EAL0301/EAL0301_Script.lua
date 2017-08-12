@@ -29,14 +29,14 @@ EAL0301 = Class(AWalkingLandUnit) {
 	
     OnFailedTeleport = function(self)
 		AWalkingLandUnit.OnFailedTeleport(self)
-		self.TeleAnimManip:PlayAnim( '/mods/Blackopsexunits/units/EAL0301/EAL0301_TeleAnim.sca' )
+		self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
 		self.TeleAnimManip:SetAnimationFraction(1)
 		self.TeleAnimManip:SetRate(-0.25)
         self.Trash:Add( self.TeleAnimManip )
     end,
 
     PlayTeleportChargeEffects = function(self, location)
-        self.TeleAnimManip:PlayAnim( '/mods/Blackopsexunits/units/EAL0301/EAL0301_TeleAnim.sca' )
+        self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
 		self.TeleAnimManip:SetRate(0.25)
         self.Trash:Add( self.TeleAnimManip )
 		AWalkingLandUnit.PlayTeleportChargeEffects(self, location)
@@ -44,7 +44,7 @@ EAL0301 = Class(AWalkingLandUnit) {
 	
     PlayTeleportInEffects = function( self )
 		AWalkingLandUnit.PlayTeleportInEffects(self)
-		self.TeleAnimManip:PlayAnim( '/mods/Blackopsexunits/units/EAL0301/EAL0301_TeleAnim.sca' )
+		self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
 		self.TeleAnimManip:SetAnimationFraction(1)
 		self.TeleAnimManip:SetRate(-0.25)
         self.Trash:Add( self.TeleAnimManip )

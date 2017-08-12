@@ -1,4 +1,4 @@
-local UEFClusterCruise01Projectile = import('/mods/BlackopsEXUnits/lua/EXBlackOpsprojectiles.lua').UEFClusterCruise01Projectile
+local UEFClusterCruise01Projectile = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsprojectiles.lua').UEFClusterCruise01Projectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SingleBeamProjectile = import('/lua/sim/defaultprojectiles.lua').SingleBeamProjectile
 

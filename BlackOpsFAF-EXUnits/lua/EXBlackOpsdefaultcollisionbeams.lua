@@ -14,7 +14,7 @@ local Util = import('/lua/utilities.lua')
 local EffectTemplate2 = import('/mods/BlackOpsFAF-EXUnits/lua/EXEffectTemplates.lua')
 local EXEffectTemplate = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsEffectTemplates.lua')
 
-local EXCollisionBeam = import('/mods/BlackopsEXUnits/lua/EXCollisionBeam.lua').CollisionBeam
+local EXCollisionBeam = import('/mods/BlackOpsFAF-EXUnits/lua/EXCollisionBeam.lua').CollisionBeam
 
 #-----------------------------
 #   Base class that defines supreme commander specific defaults

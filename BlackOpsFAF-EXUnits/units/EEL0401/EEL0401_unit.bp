@@ -136,7 +136,7 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-		AnimationTransform = '/mods/BlackopsEXUnits/units/EEL0401/EEL0401_Amphib.sca',
+		AnimationTransform = '/mods/BlackOpsFAF-EXUnits/units/EEL0401/EEL0401_Amphib.sca',
         IdleEffects = {
             Water = {
                 Effects = {
@@ -643,7 +643,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire Experimental',
             WeaponRepackTimeout = 0,
-            WeaponUnpackAnimation = '/mods/BlackopsEXUnits/units/EEL0401/EEL0401_Deploy.sca',
+            WeaponUnpackAnimation = '/mods/BlackOpsFAF-EXUnits/units/EEL0401/EEL0401_Deploy.sca',
             WeaponUnpackAnimationRate = 0.5,
             WeaponUnpackLocksMotion = false,
             WeaponUnpacks = true,
@@ -676,7 +676,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 75,
 			NotExclusive = true,
-            ProjectileId = '/mods/BlackopsEXUnits/projectiles/UEFHVM01/UEFHVM01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-EXUnits/projectiles/UEFHVM01/UEFHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,
             RackBones = {

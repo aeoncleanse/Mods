@@ -96,7 +96,7 @@ EXNovaBombEffectController01 = Class(NullShell) {
         CreateLightParticle(self, -1, army, 35, 4, 'glow_02', 'ramp_red_02')
         WaitSeconds(0.2)
         CreateLightParticle(self, -1, army, 40, 20, 'glow_03', 'ramp_fire_06')
-		CreateEmitterAtEntity(self, army, '/mods/Blackopsexunits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.5)
+		CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.5)
         self:ForkThread(self.CreateHeadConvectionSpinners)
 		WaitSeconds(0.5)
         self:ForkThread(self.CreateOuterRingWaveSmokeRing1)

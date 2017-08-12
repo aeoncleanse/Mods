@@ -80,13 +80,13 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/mods/Blackopsexunits/units/EAL0301/EAL0301_Adeath01.sca',
+                Animation = '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_Adeath01.sca',
                 AnimationRateMax = 2.5,
                 AnimationRateMin = 1,
                 Weight = 1,
             },
         },
-        AnimationWalk = '/mods/Blackopsexunits/units/EAL0301/EAL0301_awalk.sca',
+        AnimationWalk = '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_awalk.sca',
         AnimationWalkRate = 2,
         Mesh = {
             IconFadeInZoom = 130,
@@ -125,13 +125,13 @@ UnitBlueprint {
         SpawnRandomRotation = true,
         TransportAnimation = {
             {
-                Animation = '/mods/Blackopsexunits/units/EAL0301/EAL0301_ALoad.sca',
+                Animation = '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_ALoad.sca',
                 Weight = 100,
             },
         },
         TransportDropAnimation = {
             {
-                Animation = '/mods/Blackopsexunits/units/EAL0301/EAL0301_AUnload.sca',
+                Animation = '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_AUnload.sca',
                 Weight = 100,
             },
         },

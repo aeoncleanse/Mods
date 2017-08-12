@@ -19,7 +19,7 @@ UEFConcussionTorpedo01 = Class(TTorpedoSubProjectile) {
 		local mypos = self:GetPosition()
 		local distance = VDist3(mypos, targetpos)
 		if distance < 2 then
-			nukeProjectile = self:CreateProjectile('/mods/Blackopsexunits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
 		else
 			WaitTicks(1)
@@ -29,7 +29,7 @@ UEFConcussionTorpedo01 = Class(TTorpedoSubProjectile) {
 
     OnImpact = function(self, TargetType, TargetEntity)
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
-			nukeProjectile = self:CreateProjectile('/mods/Blackopsexunits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
 			
         end
