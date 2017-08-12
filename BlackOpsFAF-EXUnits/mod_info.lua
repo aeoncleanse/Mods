@@ -1,5 +1,5 @@
 name = "BlackOps Special Weapons"
-uid = "9e8ee941-c306-4751-b367-e10000000104"
+uid = "9e8ee941-c306-4751-b367-e10000014000"
 version = 14
 copyright = "2009 Exavier Macbeth"
 description = "Version 1.4. Blackops Unit Addon Pack. Redesigned units from Exavier Macbeth's old vanilla modpack."
@@ -12,6 +12,8 @@ exclusive = false
 ui_only = false
 requires = { }
 requiresNames = { }
-conflicts = { }
+conflicts = {
+    "9e8ee941-c306-4751-b367-e10000000104",
+}
 before = { }
 after = { }
