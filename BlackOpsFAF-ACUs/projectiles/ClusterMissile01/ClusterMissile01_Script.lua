@@ -56,7 +56,7 @@ ClusterMissle01 = Class(TMissileCruiseProjectile) {
             WaitSeconds(0.1)    
 
             local FxFragEffect = EffectTemplate.SThunderStormCannonProjectileSplitFx 
-            local ChildProjectileBP = '/mods/BlackOpsFAF-ACUs/projectiles/EXSmallYieldNuclearBomb01/EXSmallYieldNuclearBomb01_proj.bp'  
+            local ChildProjectileBP = '/mods/BlackOpsFAF-ACUs/projectiles/SmallYieldNuclearBomb01/SmallYieldNuclearBomb01_proj.bp'  
               
             -- Split effects
             for k, v in FxFragEffect do
