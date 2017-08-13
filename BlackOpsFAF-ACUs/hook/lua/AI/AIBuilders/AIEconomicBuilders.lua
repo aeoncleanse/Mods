@@ -24,7 +24,6 @@ local SBC = '/lua/editor/SorianBuildConditions.lua'
 local BOUC = '/mods/BlackOpsFAF-ACUs/lua/ACUsUpgradeConditions.lua'
 
 do
--- Overwriting Duncanes's To Prevent Issues
 BuilderGroup {
     BuilderGroupName = 'ACUUpgrades - Gun improvements',
     BuildersType = 'EngineerBuilder',
