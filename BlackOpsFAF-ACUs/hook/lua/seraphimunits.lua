@@ -10,7 +10,7 @@ LambdaUnit = Class(SStructureUnit) {
         SStructureUnit.OnCreate(self, builder, layer)
         self.ShieldEffectsBag = {}
 
-        for k, v in self.ShieldEffects do
+        for _, v in self.ShieldEffects do
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625))
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, -0.5, 0))
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, 0.5, 0))
@@ -31,7 +31,7 @@ LambdaUnit = Class(SStructureUnit) {
         self.Parent = parent
         self.Drone = droneName
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,
@@ -40,7 +40,7 @@ LambdaUnit = Class(SStructureUnit) {
         SStructureUnit.OnKilled(self, instigator, type, overkillRatio)
 
         if self.ShieldEffectsBag then
-            for k, v in self.ShieldEffectsBag or {} do
+            for _, v in self.ShieldEffectsBag or {} do
                 v:Destroy()
             end
         end

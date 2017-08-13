@@ -2,9 +2,10 @@ function CreateArmyUnit(strArmy,strUnit)
     local tblUnit = FindUnit(strUnit,Scenario.Armies[strArmy].Units)
     local brain = GetArmyBrain(strArmy)
     local IDs = {'ual0001', 'uel0001', 'url0001', 'xsl0001'}
+    local armyIndex = brain:GetArmyIndex()
 
     if not brain.IgnoreArmyCaps then
-        SetIgnoreArmyUnitCap(brain:GetArmyIndex(), true)
+        SetIgnoreArmyUnitCap(armyIndex, true)
     end
 
     if nil ~= tblUnit then
@@ -39,20 +40,22 @@ function CreateArmyUnit(strArmy,strUnit)
                 i = i + 1
             end
         end
-        local armyIndex = brain:GetArmyIndex()
+
         if ScenarioInfo.UnitNames[armyIndex] then
             ScenarioInfo.UnitNames[armyIndex][strUnit] = unit
         end
         unit.UnitName = strUnit
+
         if not brain.IgnoreArmyCaps then
-            SetIgnoreArmyUnitCap(brain:GetArmyIndex(), false)
+            SetIgnoreArmyUnitCap(armyIndex, false)
         end
+
         return unit, platoon, tblUnit.platoon
     end
-    
+
     if not brain.IgnoreArmyCaps then
-        SetIgnoreArmyUnitCap(brain:GetArmyIndex(), false)
+        SetIgnoreArmyUnitCap(armyIndex, false)
     end
-    
+
     return nil
 end

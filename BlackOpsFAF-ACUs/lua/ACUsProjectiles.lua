@@ -21,10 +21,10 @@ local util = import('/lua/utilities.lua')
 local ACUsEffectTemplate = import('/mods/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua')
 
 -- Null Shell
-EXNullShell = Class(Projectile) {}
+NullShell = Class(Projectile) {}
 
 -- PROJECTILE WITH ATTACHED EFFECT EMITTERS
-EXEmitterProjectile = Class(Projectile) {
+EmitterProjectile = Class(Projectile) {
     FxTrails = {'/effects/emitters/missile_munition_trail_01_emit.bp',},
     FxTrailScale = 1,
     FxTrailOffset = 0,
@@ -39,7 +39,7 @@ EXEmitterProjectile = Class(Projectile) {
 }
 
 -- BEAM PROJECTILES
-EXSingleBeamProjectile = Class(EXEmitterProjectile) {
+SingleBeamProjectile = Class(EmitterProjectile) {
     BeamName = '/effects/emitters/default_beam_01_emit.bp',
     FxTrails = {},
 
@@ -51,7 +51,7 @@ EXSingleBeamProjectile = Class(EXEmitterProjectile) {
     end,
 }
 
-EXMultiBeamProjectile = Class(EXEmitterProjectile) {
+MultiBeamProjectile = Class(EmitterProjectile) {
     Beams = {'/effects/emitters/default_beam_01_emit.bp',},
     FxTrails = {},
 
@@ -59,14 +59,14 @@ EXMultiBeamProjectile = Class(EXEmitterProjectile) {
         EmitterProjectile.OnCreate(self)
         local beam = nil
         local army = self:GetArmy()
-        for k, v in self.Beams do
+        for _, v in self.Beams do
             CreateBeamEmitterOnEntity(self, -1, army, v)
         end
     end,
 }
 
 -- POLY-TRAIL PROJECTILES
-EXSinglePolyTrailProjectile = Class(EXEmitterProjectile) {
+SinglePolyTrailProjectile = Class(EmitterProjectile) {
     PolyTrail = '/effects/emitters/test_missile_trail_emit.bp',
     PolyTrailOffset = 0,
     FxTrails = {},
@@ -79,7 +79,7 @@ EXSinglePolyTrailProjectile = Class(EXEmitterProjectile) {
     end,
 }
 
-EXMultiPolyTrailProjectile = Class(EXEmitterProjectile) {
+MultiPolyTrailProjectile = Class(EmitterProjectile) {
     PolyTrailOffset = {0},
     FxTrails = {},
     RandomPolyTrails = 0, -- Count of how many are selected randomly for PolyTrail table
@@ -106,10 +106,10 @@ EXMultiPolyTrailProjectile = Class(EXEmitterProjectile) {
 }
 
 -- COMPOSITE EMITTER PROJECTILES - MULTIPURPOSE PROJECTILES
--- - THAT COMBINES BEAMS, POLYTRAILS, AND NORMAL EMITTERS
+-- THAT COMBINES BEAMS, POLYTRAILS, AND NORMAL EMITTERS
 
 -- LIGHTWEIGHT VERSION THAT LIMITS USE TO 1 BEAM, 1 POLYTRAIL, AND STANDARD EMITTERS
-EXSingleCompositeEmitterProjectile = Class(EXSinglePolyTrailProjectile) {
+SingleCompositeEmitterProjectile = Class(SinglePolyTrailProjectile) {
     BeamName = '/effects/emitters/default_beam_01_emit.bp',
     FxTrails = {},
 
@@ -122,7 +122,7 @@ EXSingleCompositeEmitterProjectile = Class(EXSinglePolyTrailProjectile) {
 }
 
 -- HEAVYWEIGHT VERSION, ALLOWS FOR MULTIPLE BEAMS, POLYTRAILS, AND STANDARD EMITTERS
-EXMultiCompositeEmitterProjectile = Class(EXMultiPolyTrailProjectile) {
+MultiCompositeEmitterProjectile = Class(MultiPolyTrailProjectile) {
     Beams = {'/effects/emitters/default_beam_01_emit.bp',},
     PolyTrailOffset = {0},
     RandomPolyTrails = 0, -- Count of how many are selected randomly for PolyTrail table
@@ -132,7 +132,7 @@ EXMultiCompositeEmitterProjectile = Class(EXMultiPolyTrailProjectile) {
         MultiPolyTrailProjectile.OnCreate(self)
         local beam = nil
         local army = self:GetArmy()
-        for k, v in self.Beams do
+        for _, v in self.Beams do
             CreateBeamEmitterOnEntity(self, -1, army, v)
         end
     end,
@@ -160,10 +160,10 @@ FlameThrowerProjectile01 = Class(EmitterProjectile) {
 }
 
 --  UEF ACU Antimatter Cannon
-UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
+UEFACUAntiMatterProjectile01 = Class(MultiCompositeEmitterProjectile) {
     FxTrails = ACUsEffectTemplate.ACUAntiMatterFx,
     PolyTrail = ACUsEffectTemplate.ACUAntiMatterPoly,
-    
+
     -- Hit Effects
     FxImpactUnit = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactProp = ACUsEffectTemplate.ACUAntiMatter01,
@@ -185,6 +185,7 @@ UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
             CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_001_normals', '', 'Alpha Normals', self.FxSplatScale, self.FxSplatScale, 150, 30, army)
             CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
         end
+        
         local pos = self:GetPosition()
         DamageArea(self, pos, self.DamageData.DamageRadius, 1, 'Force', true)
         DamageArea(self, pos, self.DamageData.DamageRadius, 1, 'Force', true)
@@ -192,10 +193,10 @@ UEFACUAntiMatterProjectile01 = Class(EXMultiCompositeEmitterProjectile) {
     end,
 }
 
-UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
+UEFACUAntiMatterProjectile02 = Class(MultiCompositeEmitterProjectile) {
     FxTrails = ACUsEffectTemplate.ACUAntiMatterFx,
     PolyTrail = ACUsEffectTemplate.ACUAntiMatterPoly,
-    
+
     -- Hit Effects
     FxImpactUnit = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactProp = ACUsEffectTemplate.ACUAntiMatter01,
@@ -204,7 +205,7 @@ UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
     FxImpactShield = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactUnderWater = {},
     FxSplatScale = 5.5,
-    
+
     FxLandHitScale = 0.7,
     FxPropHitScale = 0.7,
     FxUnitHitScale = 0.7,
@@ -218,6 +219,7 @@ UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
             CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
             self:ShakeCamera(20, 1, 0, 1)
         end
+        
         local pos = self:GetPosition()
         DamageArea(self, pos, self.DamageData.DamageRadius, 1, 'Force', true)
         DamageArea(self, pos, self.DamageData.DamageRadius, 1, 'Force', true)
@@ -225,10 +227,10 @@ UEFACUAntiMatterProjectile02 = Class(EXMultiCompositeEmitterProjectile) {
     end,
 }
 
-UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile) {
+UEFACUAntiMatterProjectile03 = Class(MultiCompositeEmitterProjectile) {
     FxTrails = ACUsEffectTemplate.ACUAntiMatterFx,
     PolyTrail = ACUsEffectTemplate.ACUAntiMatterPoly,
-    
+
     -- Hit Effects
     FxImpactUnit = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactProp = ACUsEffectTemplate.ACUAntiMatter01,
@@ -237,7 +239,7 @@ UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile) {
     FxImpactShield = ACUsEffectTemplate.ACUAntiMatter01,
     FxImpactUnderWater = {},
     FxSplatScale = 8,
-    
+
     FxLandHitScale = 1,
     FxPropHitScale = 1,
     FxUnitHitScale = 1,
@@ -251,12 +253,14 @@ UEFACUAntiMatterProjectile03 = Class(EXMultiCompositeEmitterProjectile) {
             CreateDecal(self:GetPosition(), util.GetRandomFloat(0.0,6.28), 'nuke_scorch_002_albedo', '', 'Albedo', self.FxSplatScale * 2, self.FxSplatScale * 2, 150, 30, army)
             self:ShakeCamera(20, 1, 0, 1)
         end
+        
         local pos = self:GetPosition()
         DamageArea(self, pos, self.DamageData.DamageRadius, 1, 'Force', true)
         DamageArea(self, pos, self.DamageData.DamageRadius, 1, 'Force', true)
         EmitterProjectile.OnImpact(self, targetType, targetEntity)
     end,
 }
+
 --  UEF ACU Cluster Missle Pack
 UEFACUClusterMIssileProjectile = Class(SinglePolyTrailProjectile) {
     DestroyOnImpact = false,
@@ -271,7 +275,7 @@ UEFACUClusterMIssileProjectile = Class(SinglePolyTrailProjectile) {
     FxImpactUnderWater = {},
 }
 
-UEFACUClusterMIssileProjectile02 = Class(EXEmitterProjectile) {
+UEFACUClusterMIssileProjectile02 = Class(EmitterProjectile) {
     DestroyOnImpact = false,
     FxTrails = {'/effects/emitters/mortar_munition_01_emit.bp',},
     FxTrailOffset = 0,
@@ -308,7 +312,7 @@ SeraACUQuantumStormProjectile02 = Class(EmitterProjectile) {
     FxImpactLand = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
     FxImpactWater = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
     FxImpactShield = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    
+
     FxLandHitScale = 0.7,
     FxPropHitScale = 0.7,
     FxUnitHitScale = 0.7,
@@ -324,7 +328,7 @@ SeraACUQuantumStormProjectile03 = Class(EmitterProjectile) {
     FxImpactLand = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
     FxImpactWater = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
     FxImpactShield = ACUsEffectTemplate.SeraACUQuantumStormProjectileHit01,
-    
+
     FxLandHitScale = 0.7,
     FxPropHitScale = 0.7,
     FxUnitHitScale = 0.7,
@@ -341,7 +345,7 @@ SeraRapidCannon01Projectile = Class(MultiPolyTrailProjectile) {
     FxImpactWater= EffectTemplate.SDFAireauWeaponHit01,
     FxImpactShield = EffectTemplate.SDFAireauWeaponHit01,
     RandomPolyTrails = 1,
-    
+
     PolyTrails = ACUsEffectTemplate.SeraACURapidCannonPoly,
     PolyTrailOffset = {0,0,0},
 
@@ -361,7 +365,7 @@ SeraRapidCannon01Projectile02 = Class(MultiPolyTrailProjectile) {
     FxImpactWater= EffectTemplate.SDFAireauWeaponHit01,
     FxImpactShield = EffectTemplate.SDFAireauWeaponHit01,
     RandomPolyTrails = 1,
-    
+
     PolyTrails = ACUsEffectTemplate.SeraACURapidCannonPoly02,
     PolyTrailOffset = {0,0,0},
 
@@ -381,7 +385,7 @@ SeraRapidCannon01Projectile03 = Class(MultiPolyTrailProjectile) {
     FxImpactWater= EffectTemplate.SDFAireauWeaponHit01,
     FxImpactShield = EffectTemplate.SDFAireauWeaponHit01,
     RandomPolyTrails = 1,
-    
+
     PolyTrails = ACUsEffectTemplate.SeraACURapidCannonPoly03,
     PolyTrailOffset = {0,0,0},
 
@@ -393,8 +397,7 @@ SeraRapidCannon01Projectile03 = Class(MultiPolyTrailProjectile) {
 }
 
 --  Cybran EMP Array Detonation
-EXInvisoProectilechild01 = Class(EXMultiCompositeEmitterProjectile) {
-    -- Hit Effects
+InvisoProjectilechild01 = Class(MultiCompositeEmitterProjectile) {
     FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit02,
@@ -410,9 +413,7 @@ EXInvisoProectilechild01 = Class(EXMultiCompositeEmitterProjectile) {
     FxShieldHitScale = 0.25,
 }
 
-EXInvisoProectile01 = Class(EXInvisoProectilechild01) {
-    
-    -- Hit Effects
+InvisoProjectile01 = Class(InvisoProjectilechild01) {
     FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit01,
@@ -420,35 +421,33 @@ EXInvisoProectile01 = Class(EXInvisoProectilechild01) {
     FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactUnderWater = {},
     FxSplatScale = 4,
-    
+
     FxLandHitScale = 0.5,
     FxPropHitScale = 0.5,
     FxUnitHitScale = 0.5,
     FxWaterHitScale = 0.5,
     FxShieldHitScale = 0.5,
 
-
     OnImpact = function(self, targetType, targetEntity)
-        local army = self:GetArmy()      
-        
+        local army = self:GetArmy()
+
         local blanketSides = 6
-        local blanketAngle = (2*math.pi) / blanketSides
+        local blanketAngle = (2 * math.pi) / blanketSides
         local blanketStrength = 0.75
         local blanketVelocity = 6.25
 
-        for i = 0, (blanketSides-1) do
-            local blanketX = math.sin(i*blanketAngle)
-            local blanketZ = math.cos(i*blanketAngle)
+        for i = 0, blanketSides - 1 do
+            local blanketX = math.sin(i * blanketAngle)
+            local blanketZ = math.cos(i * blanketAngle)
             self:CreateProjectile('/effects/entities/EffectProtonAmbient01/EffectProtonAmbient01_proj.bp', blanketX, 0.25, blanketZ, blanketX, 0, blanketZ)
                 :SetVelocity(blanketVelocity):SetAcceleration(-0.3)
         end
 
-        EXMultiCompositeEmitterProjectile.OnImpact(self, targetType, targetEntity)
+        MultiCompositeEmitterProjectile.OnImpact(self, targetType, targetEntity)
     end,
 }
 
-EXInvisoProectilechild02 = Class(EXMultiCompositeEmitterProjectile) {
-    -- Hit Effects
+InvisoProjectilechild02 = Class(MultiCompositeEmitterProjectile) {
     FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit02,
@@ -464,8 +463,7 @@ EXInvisoProectilechild02 = Class(EXMultiCompositeEmitterProjectile) {
     FxShieldHitScale = 0.5,
 }
 
-EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
-    -- Hit Effects
+InvisoProjectile02 = Class(InvisoProjectilechild02) {
     FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit01,
@@ -473,7 +471,7 @@ EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
     FxImpactShield = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactUnderWater = {},
     FxSplatScale = 6,
-    
+
     FxLandHitScale = 0.75,
     FxPropHitScale = 0.75,
     FxUnitHitScale = 0.75,
@@ -481,26 +479,25 @@ EXInvisoProectile02 = Class(EXInvisoProectilechild02) {
     FxShieldHitScale = 0.75,
 
     OnImpact = function(self, targetType, targetEntity)
-        local army = self:GetArmy()       
-        
+        local army = self:GetArmy()
+
         local blanketSides = 9
-        local blanketAngle = (2*math.pi) / blanketSides
+        local blanketAngle = (2 * math.pi) / blanketSides
         local blanketStrength = 0.75
         local blanketVelocity = 6.25
 
-        for i = 0, (blanketSides-1) do
-            local blanketX = math.sin(i*blanketAngle)
-            local blanketZ = math.cos(i*blanketAngle)
+        for i = 0, blanketSides - 1 do
+            local blanketX = math.sin(i * blanketAngle)
+            local blanketZ = math.cos(i * blanketAngle)
             self:CreateProjectile('/effects/entities/EffectProtonAmbient01/EffectProtonAmbient01_proj.bp', blanketX, 0.25, blanketZ, blanketX, 0, blanketZ)
                 :SetVelocity(blanketVelocity):SetAcceleration(-0.3)
         end
 
-        EXMultiCompositeEmitterProjectile.OnImpact(self, targetType, targetEntity)
+        MultiCompositeEmitterProjectile.OnImpact(self, targetType, targetEntity)
     end,
 }
 
-EXInvisoProectilechild03 = Class(EXMultiCompositeEmitterProjectile) {
-    -- Hit Effects
+InvisoProjectilechild03 = Class(MultiCompositeEmitterProjectile) {
     FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit02,
     FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit02,
@@ -514,11 +511,9 @@ EXInvisoProectilechild03 = Class(EXMultiCompositeEmitterProjectile) {
     FxUnitHitScale = 0.75,
     FxWaterHitScale = 0.75,
     FxShieldHitScale = 0.75,
-
 }
 
-EXInvisoProectile03 = Class(EXInvisoProectilechild03) {
-    -- Hit Effects
+InvisoProjectile03 = Class(InvisoProjectilechild03) {
     FxImpactUnit = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactProp = ACUsEffectTemplate.CybranACUEMPArrayHit01,
     FxImpactLand = ACUsEffectTemplate.CybranACUEMPArrayHit01,
@@ -528,21 +523,21 @@ EXInvisoProectile03 = Class(EXInvisoProectilechild03) {
     FxSplatScale = 8,
 
     OnImpact = function(self, targetType, targetEntity)
-        local army = self:GetArmy()       
-        
+        local army = self:GetArmy()
+
         local blanketSides = 12
-        local blanketAngle = (2*math.pi) / blanketSides
+        local blanketAngle = (2 * math.pi) / blanketSides
         local blanketStrength = 0.75
         local blanketVelocity = 6.25
 
-        for i = 0, (blanketSides-1) do
-            local blanketX = math.sin(i*blanketAngle)
-            local blanketZ = math.cos(i*blanketAngle)
+        for i = 0, blanketSides - 1 do
+            local blanketX = math.sin(i * blanketAngle)
+            local blanketZ = math.cos(i * blanketAngle)
             self:CreateProjectile('/effects/entities/EffectProtonAmbient01/EffectProtonAmbient01_proj.bp', blanketX, 0.5, blanketZ, blanketX, 0, blanketZ)
                 :SetVelocity(blanketVelocity):SetAcceleration(-0.3)
         end
 
-        EXMultiCompositeEmitterProjectile.OnImpact(self, targetType, targetEntity)
+        MultiCompositeEmitterProjectile.OnImpact(self, targetType, targetEntity)
     end,
 }
 
@@ -551,7 +546,7 @@ SOmegaCannonOverCharge = Class(MultiPolyTrailProjectile) {
     FxImpactTrajectoryAligned = false,
     FxImpactLand = ACUsEffectTemplate.OmegaOverChargeLandHit,
     FxImpactNone = ACUsEffectTemplate.OmegaOverChargeLandHit,
-    FxImpactProp = ACUsEffectTemplate.OmegaOverChargeLandHit,    
+    FxImpactProp = ACUsEffectTemplate.OmegaOverChargeLandHit,
     FxImpactUnit = ACUsEffectTemplate.OmegaOverChargeUnitHit,
     FxImpactShield = ACUsEffectTemplate.OmegaOverChargeLandHit,
     FxLandHitScale = 4,

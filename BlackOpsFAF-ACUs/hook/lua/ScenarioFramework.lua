@@ -3,7 +3,7 @@ function FakeGateInUnit(unit, callbackFunction)
     local bp = unit:GetBlueprint()
 
     if EntityCategoryContains(categories.COMMAND, unit) then
-        for k,v in bp.Categories do
+        for _, v in bp.Categories do
             if v == 'UEF' then
                 faction = 1
                 break
@@ -122,7 +122,7 @@ function FakeGateInUnit(unit, callbackFunction)
 
         local totalBones = unit:GetBoneCount() - 1
         local army = unit:GetArmy()
-        for k, v in import('/lua/EffectTemplates.lua').UnitTeleportSteam01 do
+        for _, v in import('/lua/EffectTemplates.lua').UnitTeleportSteam01 do
             for bone = 1, totalBones do
                 CreateAttachedEmitter(unit,bone,army, v)
             end
@@ -131,7 +131,7 @@ function FakeGateInUnit(unit, callbackFunction)
         WaitSeconds(2)
         unit:SetMesh(unit:GetBlueprint().Display.MeshBlueprint, true)
     else
-        LOG ('debug:non commander')
+        LOG('debug:non commander')
         unit:PlayTeleportChargeEffects(unit:GetPosition(), unit:GetOrientation())
         unit:PlayUnitSound('GateCharge')
         WaitSeconds(2)

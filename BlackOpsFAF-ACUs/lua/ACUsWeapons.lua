@@ -1,7 +1,7 @@
 -----------------------------------------------------------------
 -- File     :  /cdimage/lua/BlackOpsweapons.lua
 -- Author(s):  Lt_hawkeye
--- Summary  :  
+-- Summary  :
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
@@ -17,7 +17,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGeneratorCollisionBeam
 local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
 local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01
-local EXCollisionBeamFile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua')
+local CollisionBeamFile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua')
 local CWeapons = import('/lua/cybranweapons.lua')
 local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
@@ -27,7 +27,7 @@ local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
 
 SeraACUMissile = Class(SIFLaanseTacticalMissileLauncher) {
     CurrentRack = 1,
-        
+
     PlayFxMuzzleSequence = function(self, muzzle)
         local bp = self:GetBlueprint()
         self.MissileRotator = CreateRotator(self.unit, bp.RackBones[self.CurrentRack].RackBone, 'x', nil, 0, 0, 0)
@@ -37,7 +37,7 @@ SeraACUMissile = Class(SIFLaanseTacticalMissileLauncher) {
         WaitFor(self.MissileRotator)
         WaitTicks(1)
     end,
-        
+
     CreateProjectileAtMuzzle = function(self, muzzle)
         muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
         if self.CurrentRack >= 2 then
@@ -47,7 +47,7 @@ SeraACUMissile = Class(SIFLaanseTacticalMissileLauncher) {
         end
         SIFLaanseTacticalMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
     end,
-        
+
     PlayFxRackReloadSequence = function(self)
         WaitTicks(1)
         self.MissileRotator:SetGoal(0):SetSpeed(10)
@@ -78,17 +78,16 @@ UEFACUAntiMatterWeapon = Class(DefaultProjectileWeapon) {
 }
 
 PDLaserGrid = Class(DefaultBeamWeapon) {
-    BeamType = EXCollisionBeamFile.PDLaserCollisionBeam,
+    BeamType = CollisionBeamFile.PDLaserCollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
-
-    FxUpackingChargeEffects = {}, -- '/effects/emitters/quantum_generator_charge_01_emit.bp'},
+    FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
 
     PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
-        for k, v in self.FxUpackingChargeEffects do
+        for _, v in self.FxUpackingChargeEffects do
             for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
                 CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale):ScaleEmitter(0.05)
             end
@@ -98,13 +97,13 @@ PDLaserGrid = Class(DefaultBeamWeapon) {
 }
 
 CEMPArrayBeam01 = Class(DefaultBeamWeapon) {
-    BeamType = EXCollisionBeamFile.EXCEMPArrayBeam01CollisionBeam,
+    BeamType = CollisionBeamFile.CEMPArrayBeam01CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
 }
 
 CEMPArrayBeam02 = Class(DefaultBeamWeapon) {
-    BeamType = EXCollisionBeamFile.EXCEMPArrayBeam02CollisionBeam,
+    BeamType = CollisionBeamFile.CEMPArrayBeam02CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
 }
@@ -115,14 +114,14 @@ EMPWeapon = Class(CCannonMolecularWeapon) {
         self.targetaquired = self:GetCurrentTargetPos()
         if self.targetaquired then
             if self.unit.EMPArrayEffects01 then
-                for k, v in self.unit.EMPArrayEffects01 do
+                for _, v in self.unit.EMPArrayEffects01 do
                     v:Destroy()
                 end
                 self.unit.EMPArrayEffects01 = {}
             end
-            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/excemparraybeam02_emit.bp'))
-            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/excemparraybeam02_emit.bp'))
-            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/excemparraybeam02_emit.bp'))
+            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_01', self.unit, 'EMP_Array_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/cemparraybeam02_emit.bp'))
+            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_02', self.unit, 'EMP_Array_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/cemparraybeam02_emit.bp'))
+            table.insert(self.unit.EMPArrayEffects01, AttachBeamEntityToEntity(self.unit, 'EMP_Array_Beam_03', self.unit, 'EMP_Array_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/cemparraybeam02_emit.bp'))
             table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
             table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_01', self.unit:GetArmy(), '/effects/emitters/microwave_laser_muzzle_01_emit.bp'):ScaleEmitter(0.05))
             table.insert(self.unit.EMPArrayEffects01, CreateAttachedEmitter(self.unit, 'EMP_Array_Beam_02', self.unit:GetArmy(), '/effects/emitters/microwave_laser_flash_01_emit.bp'):ScaleEmitter(0.05))
@@ -136,7 +135,7 @@ EMPWeapon = Class(CCannonMolecularWeapon) {
     ArrayEffectsCleanup = function(self)
         WaitTicks(20)
         if self.unit.EMPArrayEffects01 then
-            for k, v in self.unit.EMPArrayEffects01 do
+            for _, v in self.unit.EMPArrayEffects01 do
                 v:Destroy()
             end
             self.unit.EMPArrayEffects01 = {}
@@ -145,7 +144,7 @@ EMPWeapon = Class(CCannonMolecularWeapon) {
 }
 
 PDLaserGrid2 = Class(DefaultBeamWeapon) {
-    BeamType = EXCollisionBeamFile.PDLaser2CollisionBeam,
+    BeamType = CollisionBeamFile.PDLaser2CollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
     FxUpackingChargeEffects = {},
@@ -155,7 +154,7 @@ PDLaserGrid2 = Class(DefaultBeamWeapon) {
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
-            for k, v in self.FxUpackingChargeEffects do
+            for _, v in self.FxUpackingChargeEffects do
                 for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
                     CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
                 end
@@ -171,7 +170,7 @@ UEFACUHeavyPlasmaGatlingCannonWeapon = Class(DefaultProjectileWeapon) {
 }
 
 AeonACUPhasonLaser = Class(DefaultBeamWeapon) {
-    BeamType = EXCollisionBeamFile.AeonACUPhasonLaserCollisionBeam,
+    BeamType = CollisionBeamFile.AeonACUPhasonLaserCollisionBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
@@ -181,7 +180,7 @@ AeonACUPhasonLaser = Class(DefaultBeamWeapon) {
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
-            for k, v in self.FxUpackingChargeEffects do
+            for _, v in self.FxUpackingChargeEffects do
                 for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
                     CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
                 end
@@ -201,10 +200,10 @@ SeraACUBigBallWeapon = Class(DefaultProjectileWeapon) {
     FxChargeMuzzleFlash = EffectTemplate.SDFSinnutheWeaponChargeMuzzleFlash,
     FxChargeMuzzleFlashScale = 0.33,
     FxMuzzleFlashScale = 0.33,
-    
+
     PlayFxMuzzleChargeSequence = function(self, muzzle)
         -- CreateRotator(unit, bone, axis, [goal], [speed], [accel], [goalspeed])
-        if not self.ClawTopRotator then 
+        if not self.ClawTopRotator then
             self.ClawTopRotator = CreateRotator(self.unit, 'Pincer_Upper', 'x')
             self.ClawBottomRotator = CreateRotator(self.unit, 'Pincer_Lower', 'x')
 

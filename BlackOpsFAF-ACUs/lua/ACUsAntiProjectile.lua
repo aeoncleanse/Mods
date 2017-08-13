@@ -35,19 +35,20 @@ SeraLambdaFieldDestroyer = Class(Entity) {
             end
 
             if not IsEnemy(self:GetArmy(), other:GetArmy()) then return false end -- Don't affect non-enemies
+
             if other.LambdaDetect[self] then return false end
 
             local rand = math.random(0, 100)
             if rand >= 0 and rand <= self.Probability then
                 -- Create Lambda FX
-                for k, v in self.LambdaEffects do
+                for _, v in self.LambdaEffects do
                     table.insert(self.LambdaEffectsBag, CreateEmitterOnEntity(other, self:GetArmy(), v):ScaleEmitter(0.2))
                 end
 
                 other:Destroy()
 
                 -- Clean up FX
-                for k, v in self.LambdaEffectsBag do
+                for _, v in self.LambdaEffectsBag do
                     v:Destroy()
                 end
                 self.LambdaEffectsBag = {}

@@ -1,8 +1,8 @@
 --
 -- Cybran Molecular Cannon
 --
-local EXInvisoProectile01 = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').EXInvisoProectile01
+local InvisoProjectile01 = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').InvisoProjectile01
 
-EXInvisoProectile01 = Class(EXInvisoProectile01) {}
-TypeClass = EXInvisoProectile01
+InvisoProjectile01 = Class(InvisoProjectile01) {}
+TypeClass = InvisoProjectile01
 

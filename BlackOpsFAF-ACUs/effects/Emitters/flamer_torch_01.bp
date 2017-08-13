@@ -1,5 +1,5 @@
 EmitterBlueprint {
-    BlueprintId = 'ex_flamer_torch',
+    BlueprintId = 'flamer_torch',
     Lifetime = -1.00,
     Repeattime = 40.00,
     TextureFramecount = 1.00,

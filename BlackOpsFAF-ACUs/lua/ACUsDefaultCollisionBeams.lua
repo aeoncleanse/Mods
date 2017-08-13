@@ -1,8 +1,6 @@
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 
--- Section including code for the ACUs Expansion Mod
-
 -- Base class that defines supreme commander specific defaults
 HawkCollisionBeam = Class(CollisionBeam) {
     FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
@@ -11,7 +9,7 @@ HawkCollisionBeam = Class(CollisionBeam) {
     FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
     FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
     FxImpactProp = {},
-    FxImpactShield = {},    
+    FxImpactShield = {},
     FxImpactNone = {},
 }
 
@@ -22,23 +20,23 @@ PDLaserCollisionBeam = Class(HawkCollisionBeam) {
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
     },
-    
+
     FxBeamStartPoint = {
         '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },
-    
+
     FxBeamStartPointScale = 0.05,
     FxBeamEndPointScale = 0.05,
-    
+
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.5,
 
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -53,35 +51,35 @@ PDLaserCollisionBeam = Class(HawkCollisionBeam) {
             self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
-    
+
     OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
-    end,    
+    end,
 }
 
-EXCEMPArrayBeam01CollisionBeam = Class(HawkCollisionBeam) {
-    FxBeam = {'/mods/BlackOpsFAF-ACUs/effects/emitters/excemparraybeam01_emit.bp'},
+CEMPArrayBeam01CollisionBeam = Class(HawkCollisionBeam) {
+    FxBeam = {'/mods/BlackOpsFAF-ACUs/effects/emitters/cemparraybeam01_emit.bp'},
     FxBeamEndPoint = {},
     FxBeamStartPoint = {},
     FxBeamStartPointScale = 0.05,
     FxBeamEndPointScale = 0.05,
-    
+
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.5,
 }
 
-EXCEMPArrayBeam02CollisionBeam = Class(HawkCollisionBeam) {
-    FxBeam = {'/mods/BlackOpsFAF-ACUs/effects/emitters/excemparraybeam02_emit.bp'},
+CEMPArrayBeam02CollisionBeam = Class(HawkCollisionBeam) {
+    FxBeam = {'/mods/BlackOpsFAF-ACUs/effects/emitters/cemparraybeam02_emit.bp'},
     FxBeamEndPoint = EffectTemplate.CMicrowaveLaserEndPoint01,
     FxBeamStartPoint = EffectTemplate.CMicrowaveLaserMuzzle01,
     FxBeamStartPointScale = 0.05,
     FxBeamEndPointScale = 0.05,
-    
+
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.5,
 }
@@ -98,7 +96,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -106,11 +104,11 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
         end
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
-    
+
     OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
@@ -119,7 +117,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
 
 AeonACUPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     FxBeamStartPoint = EffectTemplate.APhasonLaserMuzzle01,
-    FxBeam = {'/mods/BlackOpsFAF-ACUs/effects/emitters/exphason_beam_01_emit.bp'},
+    FxBeam = {'/mods/BlackOpsFAF-ACUs/effects/emitters/phason_beam_01_emit.bp'},
     FxBeamEndPoint = EffectTemplate.APhasonLaserImpact01,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
@@ -129,7 +127,7 @@ AeonACUPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -137,11 +135,11 @@ AeonACUPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
         end
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
-    
+
     OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)

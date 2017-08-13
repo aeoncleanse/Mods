@@ -1370,11 +1370,11 @@ EEL0001 = Class(ACUUnit) {
     },
 
     ShieldEffects2 = {
-        '/mods/BlackOpsFAF-ACUs/effects/emitters/ex_uef_shieldgen_01_emit.bp',
+        '/mods/BlackOpsFAF-ACUs/effects/emitters/uef_shieldgen_01_emit.bp',
     },
 
     FlamerEffects = {
-        '/mods/BlackOpsFAF-ACUs/effects/emitters/ex_flamer_torch_01.bp',
+        '/mods/BlackOpsFAF-ACUs/effects/emitters/flamer_torch_01.bp',
     },
 }
 
