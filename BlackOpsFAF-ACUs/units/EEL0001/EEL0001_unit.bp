@@ -2501,7 +2501,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 6,
             MuzzleVelocity = 10,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/EXClusterMissile01/EXClusterMissile01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/ClusterMissile01/ClusterMissile01_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {

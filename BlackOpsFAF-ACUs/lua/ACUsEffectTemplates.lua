@@ -119,7 +119,7 @@ ACUAntiMatter01 = {
     EmtBpPathAlt .. 'examc_shoackwave_01_emit.bp',
 }
 
--- UEF ACU Gattling Cannon
+-- UEF ACU Gatling Cannon
 UEFACUHeavyPlasmaGatlingCannonMuzzleFlash = {
     EmtBpPath .. 'heavy_plasma_gatling_cannon_laser_muzzle_flash_01_emit.bp',
     EmtBpPath .. 'heavy_plasma_gatling_cannon_laser_muzzle_flash_02_emit.bp',

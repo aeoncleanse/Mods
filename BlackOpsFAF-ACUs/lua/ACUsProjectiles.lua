@@ -577,7 +577,7 @@ UEFHeavyPlasmaGatlingCannon03 = Class(SinglePolyTrailProjectile) {
     PolyTrail = ACUsEffectTemplate.UEFHeavyPlasmaGatlingCannon03PolyTrail,
 }
 
---  UEF Gattling Projectile V2
+--  UEF Gatling Projectile V2
 UEFHeavyPlasmaGatlingCannon01 = Class(SinglePolyTrailProjectile) {
     FxImpactTrajectoryAligned = false,
     FxImpactUnit = EffectTemplate.THeavyPlasmaGatlingCannonHit,

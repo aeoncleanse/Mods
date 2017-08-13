@@ -6,7 +6,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
-EXClusterMissle01 = Class(TMissileCruiseProjectile) {
+ClusterMissle01 = Class(TMissileCruiseProjectile) {
 
     OnCreate = function(self)
         TMissileCruiseProjectile.OnCreate(self)
@@ -108,4 +108,4 @@ EXClusterMissle01 = Class(TMissileCruiseProjectile) {
     end,
 }
 
-TypeClass = EXClusterMissle01
+TypeClass = ClusterMissle01
