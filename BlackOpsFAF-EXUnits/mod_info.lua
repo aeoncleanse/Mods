@@ -1,11 +1,10 @@
-name = "BlackOps Special Weapons"
+name = "BlackOpsFAF: EXUnits"
 uid = "9e8ee941-c306-4751-b367-e10000014000"
 version = 14
 copyright = "2009 Exavier Macbeth"
-description = "Version 1.4. Blackops Unit Addon Pack. Redesigned units from Exavier Macbeth's old vanilla modpack."
-author = "Exavier Macbeth"
-url = "http://forums.gaspowered.com/viewtopic.php?t=40574"
-icon = "/mods/BlackOpsFAF-EXUnits/stargenicon.png"
+description = "The ultimate unit pack, re-engineered for FAF 3680 or later"
+author = "Exavier Macbeth, lt_hawkeye, orangeknight - Revamped 2016 by IceDreamer and Uveso"
+icon = "/mods/BlackOpsFAF-EXUnits/icon.png"
 selectable = true
 enabled = true
 exclusive = false
