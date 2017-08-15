@@ -6,20 +6,11 @@
 -----------------------------------------------------------------
 
 local WeaponFile = import('/lua/sim/defaultweapons.lua')
-local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
-local CollisionBeamFile = import('/lua/defaultcollisionbeams.lua')
-local KamikazeWeapon = WeaponFile.KamikazeWeapon
-local BareBonesWeapon = WeaponFile.BareBonesWeapon
 local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
 local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
-local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local QuantumBeamGeneratorCollisionBeam = CollisionBeamFile.QuantumBeamGeneratorCollisionBeam
-local PhasonLaserCollisionBeam = CollisionBeamFile.PhasonLaserCollisionBeam
-local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionBeam01
 local CollisionBeamFile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua')
-local CWeapons = import('/lua/cybranweapons.lua')
-local CCannonMolecularWeapon = CWeapons.CCannonMolecularWeapon
+local CCannonMolecularWeapon = import('/lua/cybranweapons.lua').CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local SWeapons = import('/lua/seraphimweapons.lua')
 local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
@@ -63,10 +54,6 @@ QuantumMaelstromWeapon = Class(Weapon) {
         DamageArea(self.unit, self.unit:GetPosition(), self.CurrentDamageRadius,
             self.CurrentDamage, blueprint.DamageType, blueprint.DamageFriendly)
     end,
-}
-
-HawkNapalmWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = EffectTemplate.TGaussCannonFlash,
 }
 
 HawkGaussCannonWeapon = Class(DefaultProjectileWeapon) {

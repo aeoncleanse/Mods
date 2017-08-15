@@ -5,6 +5,7 @@
 --            Build conditions always return true or false
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
+
 local AIUtils = import('/lua/ai/aiutilities.lua')
 
 function CanUpgrade(aiBrain, upgrade)
