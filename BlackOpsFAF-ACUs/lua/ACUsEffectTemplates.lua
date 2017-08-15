@@ -6,7 +6,6 @@
 ----------------------------------------------------------------------
 
 EmtBpPath = '/effects/emitters/'
-EmitterTempEmtBpPath = '/effects/emitters/temp/'
 EmtBpPathAlt = '/mods/BlackOpsFAF-ACUs/effects/emitters/'
 
 OmegaOverChargeLandHit = {
@@ -17,7 +16,7 @@ OmegaOverChargeLandHit = {
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_04_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_05_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_06_emit.bp',
-    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',                  
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_02_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_03_emit.bp',
 }
@@ -28,7 +27,7 @@ OmegaOverChargeUnitHit = {
     EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_04_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_05_emit.bp',
     EmtBpPath .. 'destruction_unit_hit_shrapnel_01_emit.bp',
-    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',                  
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_02_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_03_emit.bp',
 }
@@ -67,7 +66,7 @@ FlameThrowerHitWater01 = {
     EmtBpPathAlt .. 'flamer_oilslick_emit.bp',
     EmtBpPathAlt .. 'flamer_lines_emit.bp',
     EmtBpPathAlt .. 'flamer_water_ripples_emit.bp',
-    EmtBpPathAlt .. 'flamer_water_dots_emit.bp',    
+    EmtBpPathAlt .. 'flamer_water_dots_emit.bp',
 }
 
 -- Lambda Effects
