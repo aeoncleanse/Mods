@@ -1,0 +1,30 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="urb1102",-- T1 cybran hydro
+    Categories = {
+        'SHOWQUEUE',
+    },
+    Display = {
+        Abilities = {
+            '<LOC ability_upgradable>Upgradeable',
+        },
+    },
+    Economy = {
+        BuildRate = 10,
+        BuildableCategory = {
+            'brb1202',
+        },
+        RebuildBonusIds = {
+            'urb1102',
+            'brb1202',
+            'brb1302',
+        },
+    },
+    General = {
+        UpgradesTo = 'brb1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
+    },
+}
+

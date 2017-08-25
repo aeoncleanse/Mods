@@ -1,0 +1,217 @@
+UnitBlueprint {
+    Audio = {
+        ActiveLoop = Sound {
+            Bank = 'XSB',
+            Cue = 'XSC1901_Active_Loop',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        DeathExplosion = Sound {
+            Bank = 'XSL_Destroy',
+            Cue = 'XSB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Destroyed = Sound {
+            Bank = 'XSL_Destroy',
+            Cue = 'XSB_Destroy_Huge',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        UISelection = Sound {
+            Bank = 'SeraphimSelect',
+            Cue = 'Seraphim_Select_Structure',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+    },
+    BuildIconSortPriority = 50,
+    Categories = {
+        'PRODUCTFA',
+        'SELECTABLE',
+        'BUILTBYTIER3ENGINEER',
+        'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER4COMMANDER',
+        'SERAPHIM',
+        'STRUCTURE',
+        'STRATEGIC',
+        'LAND',
+        'CONSTRUCTION',
+        'FACTORY',
+        'RALLYPOINT',
+        'EXPERIMENTAL',
+        'DRAGBUILD',
+        'SIZE12',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'SHOWQUEUE',
+        'SORTCONSTRUCTION',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 75000,
+        MaxHealth = 75000,
+        RegenRate = 20,
+    },
+    Description = '<LOC bss2402_desc>Seraphim Quantum Rift Archway',
+    Display = {
+        AnimationDeath = {
+            {
+                Animation = '/mods/BlackOpsFAF-Unleashed/units/BSB2402/BSB2402_adeath.sca',
+                AnimationRateMax = 1,
+                AnimationRateMin = 1,
+                Weight = 100,
+            },
+        },
+        BuildAttachBone = 'Attachpoint',
+        DamageEffects = {
+            {
+                Bone = 0,
+                OffsetX = 1,
+                OffsetY = 2.5,
+                OffsetZ = 0.25,
+            },
+            {
+                Bone = 0,
+                OffsetX = -1,
+                OffsetY = 2.5,
+                OffsetZ = 0.25,
+            },
+        },
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 300,
+                    LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+                    Scrolling = true,
+                    ShaderName = 'Seraphim',
+                },
+            },
+        },
+        PlaceholderMeshName = 'UEC1101',
+        SpawnRandomRotation = false,
+        UniformScale = 0.03,
+    },
+    Economy = {
+        BuildCostEnergy = 5850000,
+        BuildCostMass = 180000,
+        BuildTime = 90000,
+        BuildRate = 300,
+        BuildableCategory = {
+            'dslk004', -- Seraphim T3 AA Lightning Tank
+            'xsa0202', -- Seraphim Fighter Bomber
+            'xsa0203', -- Seraphim Gunship
+            'xsa0204', -- Seraphim Torpedo Bomber
+            'xsl0111', -- Seraphim T2 Mobile Missile Launcher
+            'xsl0202', -- Seraphim T2 Assault Bot
+            'xsl0205', -- Seraphim T2 Hover Flak
+            'xsl0303', -- Seraphim T3 Siege Tank
+            'xsl0304', -- Seraphim T3 Mobile Heavy Artillery
+            'xsl0305', -- Seraphim T3 Sniper Bot
+            'xsl0307', -- Seraphim T3 Mobile Shield Generator
+        },
+        RebuildBonusIds = {
+            'bsb2402',
+        },
+    },
+    Footprint = {
+        SizeX = 24,
+        SizeZ = 10,
+    },
+    General = {
+        BuildBones = {
+            BuildAttachBone = 'Attachpoint',
+            BuildEffectBones = {
+                'FX_01',
+                'FX_02',
+                'FX_03',
+                'FX_04',
+                'FX_05',
+                'FX_06',
+                'FX_07',
+                'FX_08',
+                'FX_09',
+                'FX_10',
+                'FX_11',
+                'FX_12',
+                'FX_13',
+                'FX_14',
+            },
+        },
+        Category = 'Factory',
+        Classification = 'RULEUC_Factory',
+        CommandCaps = {
+            RULEUCC_Attack = false,
+            RULEUCC_CallTransport = false,
+            RULEUCC_Capture = false,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Nuke = false,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = false,
+            RULEUCC_Repair = false,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+            RULEUCC_Transport = false,
+        },
+        ConstructionBar = true,
+        FactionName = 'Seraphim',
+        Icon = 'land',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = '<LOC bsb5202_name>Haasioz-Iya',
+        UnitWeight = 1,
+    },
+    Intel = {
+        VisionRadius = 20,
+    },
+    Interface = {
+        HelpText = '<LOC BSB2402_help>Seraphim Quantum Rift Archway',
+    },
+    LifeBarHeight = 0.075,
+    LifeBarOffset = 1.3,
+    LifeBarSize = 10,
+    Physics = {
+        BankingSlope = 0,
+        BuildOnLayerCaps = {
+            LAYER_Air = false,
+            LAYER_Land = true,
+            LAYER_Orbit = false,
+            LAYER_Seabed = false,
+            LAYER_Sub = false,
+            LAYER_Water = false,
+        },
+        DragCoefficient = 0.2,
+        FlattenSkirt = true,
+        MaxSteerForce = 0,
+        MeshExtentsX = 3.2,
+        MeshExtentsY = 2.2,
+        MeshExtentsZ = 3.2,
+        MinSpeedPercent = 0,
+        MotionType = 'RULEUMT_None',
+        SkirtOffsetX = -0.5,
+        SkirtOffsetZ = -0.5,
+        SkirtSizeX = 26,
+        SkirtSizeZ = 11,
+        TurnRate = 0,
+    },
+    SelectionSizeX = 13,
+    SelectionSizeZ = 4,
+    SelectionThickness = 0.1,
+    SizeX = 18,
+    SizeY = 10,
+    SizeZ = 4,
+    StrategicIconName = 'icon_experimental_generic',
+    StrategicIconSortPriority = 207,
+    Wreckage = {
+        Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
+        EnergyMult = 0,
+        HealthMult = 0.9,
+        MassMult = 0.9,
+        ReclaimTimeMultiplier = 1,
+        WreckageLayers = {
+            Air = false,
+            Land = true,
+            Seabed = false,
+            Sub = false,
+            Water = true,
+        },
+    },
+}

@@ -1,0 +1,30 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="ueb1102",-- T1 uef hydro
+    Categories = {
+        'SHOWQUEUE',
+    },
+    Display = {
+        Abilities = {
+            '<LOC ability_upgradable>Upgradeable',
+        },
+    },
+    Economy = {
+        BuildRate = 10,
+        BuildableCategory = {
+            'beb1202',
+        },
+        RebuildBonusIds = {
+            'ueb1102',
+            'beb1202',
+            'beb1302',
+        },
+    },
+    General = {
+        UpgradesTo = 'beb1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
+    },
+}
+

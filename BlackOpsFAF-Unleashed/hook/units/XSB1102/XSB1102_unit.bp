@@ -1,0 +1,30 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId="xsb1102",-- T1 seraphim hydro
+    Categories = {
+        'SHOWQUEUE',
+    },
+    Display = {
+        Abilities = {
+            '<LOC ability_upgradable>Upgradeable',
+        },
+    },
+    Economy = {
+        BuildRate = 10,
+        BuildableCategory = {
+            'bsb1202',
+        },
+        RebuildBonusIds = {
+            'xsb1102',
+            'bsb1202',
+            'bsb1302',
+        },
+    },
+    General = {
+        UpgradesTo = 'bsb1202',
+        CommandCaps = {
+            RULEUCC_Pause = true,
+        },
+    },
+}
+

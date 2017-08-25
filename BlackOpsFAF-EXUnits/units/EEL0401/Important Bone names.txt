@@ -1,0 +1,44 @@
+Base: EEL0401
+
+SAM Turret
+Yaw: AA_Turret
+Pitch: AA_Barrel
+Muzzles;
+AA_Muzzle_01
+AA_Muzzle_02
+AA_Muzzle_03
+
+Array
+
+Yaw: Wave_Turret
+Pitch: Wave_Barrel
+Muzzles;
+Wave_Muzzle 01 <-Use this as the aim bone, its the one in the center
+Wave_Muzzle 02
+Wave_Muzzle 03
+Wave_Muzzle 04
+Wave_Muzzle 05
+Wave_Muzzle 06
+Wave_Muzzle 07
+Wave_Muzzle 08
+Wave_Muzzle 09
+Wave_Muzzle 10
+Wave_Muzzle 11
+Wave_Muzzle 12
+Wave_Muzzle 13
+Wave_Muzzle 14
+Wave_Muzzle 15
+Wave_Muzzle 16
+Wave_Muzzle 17
+Wave_Muzzle 18
+Wave_Muzzle 19
+Wave_Muzzle 20
+Wave_Muzzle 21
+Wave_Muzzle 22
+Wave_Muzzle 23
+Wave_Muzzle 24
+Wave_Muzzle 25
+
+The Rest you can figure out.
+
+Mike
