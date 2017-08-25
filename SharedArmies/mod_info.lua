@@ -1,6 +1,6 @@
 name = "SharedArmies"
-uid = "bea51941-c306-aaaf-b367-u00000014000"
-version = 1
+uid = "bea51941-c306-aaaf-b367-u00000002000"
+version = 2
 copyright = "2017 Eximius, Sheeo, IceDreamer, MrNukalizer"
 description = "Allows joint control of a single army"
 author = "Eximius, Sheeo, IceDreamer, MrNukalizer"
