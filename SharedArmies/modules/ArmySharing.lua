@@ -22,14 +22,13 @@ for _, army in ScenarioInfo.ArmySetup do
     NameLookup[army.PlayerName] = army.ArmyIndex
 end
 
-local nonHumans = 0
+local humans = 1
 for index, isHuman in armies do
     if isHuman then
         ControlMap.ByArmy[index] = {[index] = true}
         ControlMap.ByPlayer[index] = {[index] = true}
-        CommandSources[index] = index - nonHumans
-    else
-        nonHumans = nonHumans + 1
+        CommandSources[index] = humans
+        humans = humans + 1
     end
 end
 
