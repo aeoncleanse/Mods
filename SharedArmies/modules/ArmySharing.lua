@@ -96,7 +96,7 @@ function ChangePlayerFocus(player, army, exclusive)
         ForkThread(function()
             while GetFocusArmy() ~= army do -- The engine ignores attempts to change focus until the change in command sources propagates through lag.
                 WaitTicks(1)
-                LOG("Changing focus to"..army)
+                LOG("Changing focus to "..army)
                 SimConExecute('SetFocusArmy ' .. army - 1)
             end
         end)
@@ -104,7 +104,7 @@ function ChangePlayerFocus(player, army, exclusive)
     return true
 end
 
--- Transfer all of a player's units and resources to another army then set the player's exclusive focus to the new army
+-- Set a player's exclusive focus to a new army then transfer all units and resources from their old army
 function MovePlayerToArmy(player, army)
     LOG("MovePlayerToArmy("..repr(player)..", "..repr(army)..")")
     player, army = CheckArguments(player, army)
@@ -118,6 +118,11 @@ function MovePlayerToArmy(player, army)
     for index in ControlMap.ByPlayer[player] do
         oldArmy = index
         break
+    end
+
+     -- We don't want to go transferring everything from the old army if other players control it
+    if table.getsize(ControlMap.ByArmy[oldArmy]) ~= 1 then
+        return false
     end
 
     if not ChangePlayerFocus(player, army, true) then
