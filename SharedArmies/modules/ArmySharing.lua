@@ -12,6 +12,7 @@ InitialFocusArmy = GetFocusArmy()
 ControlMap = {ByArmy = {}, ByPlayer = {}}
 local CommandSources = {}
 local NameLookup = {}
+local FocusChangeThreads = {}
 
 --=============[ Initialization ]=============--
 
@@ -70,6 +71,11 @@ function ToggleArmyControl(player, army, allowControl)
             .. ') threw an error. Are you sure this is the patched exe?')
     end
 
+    if not allowControl and FocusChangeThreads[player] and FocusChangeThreads[player][army] then
+        KillThread(FocusChangeThreads[player][army])
+        FocusChangeThreads[player][army] = nil
+    end
+
     ControlMap.ByArmy[army][player] = allowControl
     ControlMap.ByPlayer[player][army] = allowControl
     return true
@@ -93,12 +99,22 @@ function ChangePlayerFocus(player, army, exclusive)
 
     LOG("ChangePlayerFocus(), InitialFocusArmy: "..InitialFocusArmy..", player: "..player)
     if InitialFocusArmy == player then
-        ForkThread(function()
+        if not FocusChangeThreads[player] then
+            FocusChangeThreads[player] = {}
+        else
+            for key, thread in FocusChangeThreads[player] do
+                KillThread(thread)
+                FocusChangeThreads[player][key] = nil
+            end
+        end
+
+        FocusChangeThreads[player][army] = ForkThread(function()
             while GetFocusArmy() ~= army do -- The engine ignores attempts to change focus until the change in command sources propagates through lag.
                 WaitTicks(1)
                 LOG("Changing focus to "..army)
                 SimConExecute('SetFocusArmy ' .. army - 1)
             end
+            FocusChangeThreads[player][army] = nil
         end)
     end
     return true
