@@ -58,6 +58,15 @@ EEL0401 = Class(TMobileFactoryUnit) {
                 end
                 SonicDisruptorWave.PlayFxRackSalvoChargeSequence(self)
             end,
+            PlayFxWeaponPackSequence = function(self)
+                if self.Chargeupeffects then
+                    for k, v in self.Chargeupeffects do
+                        v:Destroy()
+                    end
+                    self.Chargeupeffects = {}
+                end
+                SonicDisruptorWave.PlayFxWeaponPackSequence(self)
+            end,
         },
         HVMTurret = Class(TSAMLauncher) {},
     },
