@@ -1276,7 +1276,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        SpySatellite = {
+        SpySat = {
             BuildCostEnergy = 270000,
             BuildCostMass = 2250,
             BuildTime = 8100,
@@ -1298,7 +1298,7 @@ UnitBlueprint {
                 'UEL0001',
             },
         },
-        SpySatelliteRemove = {
+        SpySatRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1309,11 +1309,11 @@ UnitBlueprint {
             },
             Icon = 'exbint2',
             Name = 'Remove Spysat Control Systems',
-            Prerequisite = 'SpySatellite',
+            Prerequisite = 'SpySat',
             RemoveEnhancements = {
                 'ElectronicsEnhancment',
-                'SpySatellite',
-                'SpySatelliteRemove',
+                'SpySat',
+                'SpySatRemove',
             },
             Slot = 'Back',
         },
@@ -1323,7 +1323,7 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbint3',
             Name = 'Modified Recall Device (T4)',
-            Prerequisite = 'SpySatellite',
+            Prerequisite = 'SpySat',
             NewHealth = 18500,
             MaintenanceConsumptionPerSecondEnergy = 1000,
             ShowBones = {
@@ -1353,7 +1353,7 @@ UnitBlueprint {
             Prerequisite = 'Teleporter',
             RemoveEnhancements = {
                 'ElectronicsEnhancment',
-                'SpySatellite',
+                'SpySat',
                 'Teleporter',
                 'TeleporterRemove',
             },
