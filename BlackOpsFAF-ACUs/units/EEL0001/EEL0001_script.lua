@@ -335,11 +335,6 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
 
-    OnTransportDetach = function(self, attachBone, unit)
-        ACUUnit.OnTransportDetach(self, attachBone, unit)
-        self:StopSiloBuild()
-    end,
-
     -- New function to set up production numbers
     SetProduction = function(self, bp)
         local energy = bp.ProductionPerSecondEnergy or 0
@@ -417,7 +412,6 @@ EEL0001 = Class(ACUUnit) {
         
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
-        
         if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
@@ -985,12 +979,14 @@ EEL0001 = Class(ACUUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
+            self:SetWeaponEnabledByLabel('EnergyLance01', true)
             self:OnScriptBitSet(0)
         elseif enh == 'ImprovedShieldBatteryRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'ActiveShieldingRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
+            self:SetWeaponEnabledByLabel('EnergyLance01', false)
             self:OnScriptBitClear(0)
         elseif enh == 'AdvancedShieldBattery' then
             self:DestroyShield()
@@ -1000,12 +996,14 @@ EEL0001 = Class(ACUUnit) {
             end)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
+            self:SetWeaponEnabledByLabel('EnergyLance01', true)
             self:OnScriptBitSet(0)
         elseif enh == 'AdvancedShieldBatteryRemove' then
             self:DestroyShield()
             RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
+            self:SetWeaponEnabledByLabel('EnergyLance01', false)
             self:OnScriptBitClear(0)
         elseif enh == 'ExpandedShieldBubble' then
             self:DestroyShield()
@@ -1082,6 +1080,7 @@ EEL0001 = Class(ACUUnit) {
             self.SpysatEnabled = true
             self:ForkThread(self.SatSpawn)
             
+            self:SetWeaponEnabledByLabel('EnergyLance01', true)
             self:SetWeaponEnabledByLabel('EnergyLance02', true)
         elseif enh == 'SpySatelliteRemove' then
             if Buff.HasBuff(self, 'UEFIntelHealth2') then
@@ -1094,6 +1093,7 @@ EEL0001 = Class(ACUUnit) {
             self.SpysatEnabled = false
             self.Satellite = nil
             
+            self:SetWeaponEnabledByLabel('EnergyLance01', false)
             self:SetWeaponEnabledByLabel('EnergyLance02', false)
         elseif enh == 'Teleporter' then
             if not Buffs['UEFIntelHealth3'] then
@@ -1113,12 +1113,16 @@ EEL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'UEFIntelHealth3')
             
+            self:SetWeaponEnabledByLabel('EnergyLance01', true)
+            self:SetWeaponEnabledByLabel('EnergyLance02', true)
             self:AddCommandCap('RULEUCC_Teleport')
         elseif enh == 'TeleporterRemove' then
             if Buff.HasBuff(self, 'UEFIntelHealth3') then
                 Buff.RemoveBuff(self, 'UEFIntelHealth3')
             end
             
+            self:SetWeaponEnabledByLabel('EnergyLance01', false)
+            self:SetWeaponEnabledByLabel('EnergyLance02', false)
             self:RemoveCommandCap('RULEUCC_Teleport')
             
         -- Missile System
