@@ -1,6 +1,6 @@
 UnitBlueprint {
     Abilities = {
-        ScryTarget = {
+        TargetLocation = {
             bitmapId = 'skry-target',
             helpTt = 'ScryTarget',
         },
