@@ -246,6 +246,7 @@ EEL0001 = Class(ACUUnit) {
                 self:ForkThread(self.SatSpawn, true)
             end
         else
+            LOG('CreateEnhancement '..pod..'Remove')
             self:CreateEnhancement(pod..'Remove')
         end
     end,
@@ -1059,7 +1060,7 @@ EEL0001 = Class(ACUUnit) {
             self.RadarDish1:SetTargetSpeed(0)
 
             self:SetWeaponEnabledByLabel('EnergyLance01', false)
-        elseif enh == 'SpySatellite' then
+        elseif enh == 'SpySat' then
             if not Buffs['UEFIntelHealth2'] then
                 BuffBlueprint {
                     Name = 'UEFIntelHealth2',
@@ -1082,7 +1083,7 @@ EEL0001 = Class(ACUUnit) {
             
             self:SetWeaponEnabledByLabel('EnergyLance01', true)
             self:SetWeaponEnabledByLabel('EnergyLance02', true)
-        elseif enh == 'SpySatelliteRemove' then
+        elseif enh == 'SpySatRemove' then
             if Buff.HasBuff(self, 'UEFIntelHealth2') then
                 Buff.RemoveBuff(self, 'UEFIntelHealth2')
             end
