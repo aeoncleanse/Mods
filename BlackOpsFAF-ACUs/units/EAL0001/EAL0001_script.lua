@@ -87,7 +87,7 @@ EAL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('AntiMissile', false)
         
         self.Sync.Abilities = self:GetBlueprint().Abilities
-        self.Sync.Abilities.ScryTarget.Active = false
+        self.Sync.Abilities.TargetLocation.Active = false
         self:ForkThread(self.GiveInitialResources)
     end,
 
@@ -101,14 +101,14 @@ EAL0001 = Class(ACUUnit) {
 
     DisableRemoteViewingButtons = function(self)
         self.Sync.Abilities = self:GetBlueprint().Abilities
-        self.Sync.Abilities.ScryTarget.Active = false
+        self.Sync.Abilities.TargetLocation.Active = false
         self:AddToggleCap('RULEUTC_IntelToggle')
         self:RemoveToggleCap('RULEUTC_IntelToggle')
     end,
 
     EnableRemoteViewingButtons = function(self)
         self.Sync.Abilities = self:GetBlueprint().Abilities
-        self.Sync.Abilities.ScryTarget.Active = true
+        self.Sync.Abilities.TargetLocation.Active = true
         self:AddToggleCap('RULEUTC_IntelToggle')
         self:RemoveToggleCap('RULEUTC_IntelToggle')
     end,
