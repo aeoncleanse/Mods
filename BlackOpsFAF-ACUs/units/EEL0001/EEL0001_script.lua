@@ -246,7 +246,6 @@ EEL0001 = Class(ACUUnit) {
                 self:ForkThread(self.SatSpawn, true)
             end
         else
-            LOG('CreateEnhancement '..pod..'Remove')
             self:CreateEnhancement(pod..'Remove')
         end
     end,
