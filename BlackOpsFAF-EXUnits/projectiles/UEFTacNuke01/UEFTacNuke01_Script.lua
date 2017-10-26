@@ -15,7 +15,7 @@ UEFTacNuke01 = Class(TIFMissileNuke) {
     
     OnCreate = function(self)
         TIFMissileNuke.OnCreate(self)
-        self.effectEntityPath = '/effects/Entities/UEFNukeEffectController01/UEFNukeEffectController01_proj.bp'
+        self.effectEntityPath = '/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffectController01/EXETacNukeEffectController01_proj.bp'
         self:LauncherCallbacks()
     end,
     
