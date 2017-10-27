@@ -27,7 +27,7 @@ EmitterProjectile = Class(Projectile) {
 
         local army = self:GetArmy()
         for _, i in self.FxTrails do
-            CreateEmitterOnEntity(self, army, self.FxTrails[i]):ScaleEmitter(self.FxTrailScale):OffsetEmitter(0, 0, self.FxTrailOffset)
+            CreateEmitterOnEntity(self, army, i):ScaleEmitter(self.FxTrailScale):OffsetEmitter(0, 0, self.FxTrailOffset)
         end
     end,
 }
