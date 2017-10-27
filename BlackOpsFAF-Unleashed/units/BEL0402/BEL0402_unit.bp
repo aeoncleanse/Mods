@@ -669,6 +669,9 @@ UnitBlueprint {
             DamageRadius = 15,
             DamageType = 'Normal',
             DisplayName = 'Death Nuke',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+            },
             FireOnDeath = false,
             FiringTolerance = 2,
             Label = 'GoliathDeathNuke',
