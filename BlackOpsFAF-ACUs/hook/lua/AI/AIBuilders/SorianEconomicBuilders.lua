@@ -502,7 +502,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR ClusterMisslePack',
+        BuilderName = 'Sorian UEF CDR ClusterMissilePack',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1600,
         BuilderConditions = {
@@ -516,7 +516,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'ClusterMisslePack'},
+            Enhancement = {'ClusterMissilePack'},
         },
     },
     Builder {
@@ -524,7 +524,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1600,
         BuilderConditions = {
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
@@ -538,7 +538,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR ClusterMisslePack v2',
+        BuilderName = 'Sorian UEF CDR ClusterMissilePack v2',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1600,
         BuilderConditions = {
@@ -552,7 +552,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'ClusterMisslePack'},
+            Enhancement = {'ClusterMissilePack'},
         },
     },
     Builder {
@@ -560,7 +560,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1600,
         BuilderConditions = {
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
@@ -700,7 +700,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedShieldBattery', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', true}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', true}},
                 {BOUC, 'CanUpgrade', {'ActiveShielding'}},
                 {MIBC, 'FactionIndex', {1, 1}},
             },
@@ -715,7 +715,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1200,
         BuilderConditions = {
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
@@ -738,7 +738,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedShieldBattery', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', true}},
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', true}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', true}},
                 {BOUC, 'CanUpgrade', {'ActiveShielding'}},
                 {MIBC, 'FactionIndex', {1, 1}},
             },
@@ -753,7 +753,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1200,
         BuilderConditions = {
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', true}},
@@ -917,7 +917,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 900,
         BuilderConditions = {
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', true}},
@@ -955,7 +955,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 900,
         BuilderConditions = {
-                {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
