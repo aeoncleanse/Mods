@@ -47,10 +47,10 @@ BSS0306 = Class(SSeaUnit) {
         end
     end,
     
-    OnKilled = function(self, inst, type, okr)
+    OnKilled = function(self, instigator, damagetype, overkillRatio)
         self.Trash:Destroy()
         self.Trash = TrashBag()
-    SSeaUnit.OnKilled(self, inst, type, okr)
+    SSeaUnit.OnKilled(self, instigator, damagetype, overkillRatio)
     end,
 }
 TypeClass = BSS0306

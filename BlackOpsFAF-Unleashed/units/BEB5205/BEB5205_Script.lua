@@ -197,7 +197,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
         end
     end,
     
-    OnKilled = function(self)
+    OnKilled = function(self, instigator, damagetype, overkillRatio)
         self:HideBone('Station_01', false)
         self:HideBone('Station_02', false)
         self:HideBone('Station_03', false)
@@ -208,7 +208,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
                 IssueKillSelf({self.DroneTable[k]})
             end
         end
-        TAirStagingPlatformUnit.OnKilled(self)
+        TAirStagingPlatformUnit.OnKilled(self, instigator, damagetype, overkillRatio)
     end,
 }
 
