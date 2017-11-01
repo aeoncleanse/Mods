@@ -52,10 +52,10 @@ BRS0304 = Class(CSeaUnit) {
         end
     end,
     
-    OnKilled = function(self, inst, type, okr)
+    OnKilled = function(self, instigator, damagetype, overkillRatio)
         self.Trash:Destroy()
         self.Trash = TrashBag()
-        CSeaUnit.OnKilled(self, inst, type, okr)
+        CSeaUnit.OnKilled(self, instigator, damagetype, overkillRatio)
     end,
 }
 
