@@ -468,7 +468,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH2'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'MASSEXTRACTION'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'ENERGYPRODUCTION'}},
@@ -653,7 +653,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -854,7 +854,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH3'}},
@@ -870,7 +870,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'UEF CDR ApocolypticEngineering',
+        BuilderName = 'UEF CDR ApocalypticEngineering',
         PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
@@ -888,7 +888,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'ApocolypticEngineering'},
+            Enhancement = {'ApocalypticEngineering'},
         },
     },
        Builder {
@@ -937,7 +937,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ShieldBattery', false}},
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedShieldBattery', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedShieldBattery'}},
                 {MIBC, 'FactionIndex', {1, 1}},
@@ -956,7 +956,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedShieldBattery'}},
                 {MIBC, 'FactionIndex', {1, 1}},
@@ -1015,7 +1015,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'GatlingEnergyCannon', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', false}},
                 {SBC, 'CmdrHasUpgrade', {'EnergyShellHardener', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedContainmentBottle', true}},
                 {BOUC, 'CanUpgrade', {'PowerBooster'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -1035,7 +1035,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'AntiMatterCannon', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedContainmentBottle', false}},
                 {SBC, 'CmdrHasUpgrade', {'PowerBooster', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', true}},
                 {BOUC, 'CanUpgrade', {'PowerBooster'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -1057,7 +1057,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH2'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'MASSEXTRACTION'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'ENERGYPRODUCTION'}},
@@ -1242,7 +1242,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1444,7 +1444,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH3'}},
@@ -1460,7 +1460,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Aeon CDR ApocolypticEngineering',
+        BuilderName = 'Aeon CDR ApocalypticEngineering',
         PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
@@ -1478,7 +1478,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'ApocolypticEngineering'},
+            Enhancement = {'ApocalypticEngineering'},
         },
     },
        Builder {
@@ -1527,7 +1527,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ShieldBattery', false}},
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedShieldBattery', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'FieldExpander', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedShieldBattery'}},
                 {MIBC, 'FactionIndex', {2, 2}},
@@ -1546,7 +1546,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'MaelstromQuantum', false}},
                 {SBC, 'CmdrHasUpgrade', {'FieldExpander', false}},
                 {SBC, 'CmdrHasUpgrade', {'QuantumInstability', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedShieldBattery'}},
                 {MIBC, 'FactionIndex', {2, 2}},
@@ -1605,7 +1605,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'BeamPhason', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', false}},
                 {SBC, 'CmdrHasUpgrade', {'PowerBooster', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedShells', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedReloader'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -1625,7 +1625,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ArtilleryMiasma', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedShells', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedReloader', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedReloader'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -1647,7 +1647,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH2'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'MASSEXTRACTION'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'ENERGYPRODUCTION'}},
@@ -1832,7 +1832,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -2034,7 +2034,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH3'}},
@@ -2050,7 +2050,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Cybran CDR ApocolypticEngineering',
+        BuilderName = 'Cybran CDR ApocalypticEngineering',
         PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
@@ -2068,7 +2068,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'ApocolypticEngineering'},
+            Enhancement = {'ApocalypticEngineering'},
         },
     },
        Builder {
@@ -2117,7 +2117,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ArmorPlating', false}},
                 {SBC, 'CmdrHasUpgrade', {'StructuralIntegrity', false}},
                 {SBC, 'CmdrHasUpgrade', {'CompositeMaterials', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ElectronicCountermeasures', true}},
                 {BOUC, 'CanUpgrade', {'CompositeMaterials'}},
                 {MIBC, 'FactionIndex', {3, 3}},
@@ -2136,7 +2136,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ElectronicsEnhancment', false}},
                 {SBC, 'CmdrHasUpgrade', {'ElectronicCountermeasures', false}},
                 {SBC, 'CmdrHasUpgrade', {'CloakingSubsystems', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'StructuralIntegrity', true}},
                 {BOUC, 'CanUpgrade', {'CompositeMaterials'}},
                 {MIBC, 'FactionIndex', {3, 3}},
@@ -2195,7 +2195,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'Mazer', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEmitterArray', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCapacitors', true}},
                 {BOUC, 'CanUpgrade', {'AdvancedEmitterArray'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -2215,7 +2215,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'EMPArray', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCapacitors', false}},
                 {SBC, 'CmdrHasUpgrade', {'PowerBooster', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', true}},
                 {BOUC, 'CanUpgrade', {'AdvancedEmitterArray'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -2237,7 +2237,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH2'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'MASSEXTRACTION'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {3, 'ENERGYPRODUCTION'}},
@@ -2422,7 +2422,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -2624,7 +2624,7 @@ BuilderGroup {
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', false}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH3'}},
@@ -2640,7 +2640,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Seraphim CDR ApocolypticEngineering',
+        BuilderName = 'Seraphim CDR ApocalypticEngineering',
         PlatoonTemplate = 'CommanderEnhance',
         Priority = 1100,
         BuilderConditions = {
@@ -2658,7 +2658,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'ApocolypticEngineering'},
+            Enhancement = {'ApocalypticEngineering'},
         },
     },
        Builder {
@@ -2707,7 +2707,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'L1Lambda', false}},
                 {SBC, 'CmdrHasUpgrade', {'L2Lambda', false}},
                 {SBC, 'CmdrHasUpgrade', {'L3Lambda', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', true}},
                 {BOUC, 'CanUpgrade', {'L3Lambda'}},
                 {MIBC, 'FactionIndex', {4, 4}},
@@ -2726,7 +2726,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'L2Lambda', true}},
                 {BOUC, 'CanUpgrade', {'L3Lambda'}},
                 {MIBC, 'FactionIndex', {4, 4}},
@@ -2785,7 +2785,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'CannonRapid', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', false}},
                 {SBC, 'CmdrHasUpgrade', {'EnergyShellHardener', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedContainmentBottle', true}},
                 {BOUC, 'CanUpgrade', {'PowerBooster'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},
@@ -2805,7 +2805,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'CannonBigBall', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedContainmentBottle', false}},
                 {SBC, 'CmdrHasUpgrade', {'PowerBooster', false}},
-                {SBC, 'CmdrHasUpgrade', {'ApocolypticEngineering', true}},
+                {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedCoolingSystem', true}},
                 {BOUC, 'CanUpgrade', {'PowerBooster'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {10, 'TECH3'}},

@@ -589,7 +589,7 @@ ESL0001 = Class(ACUUnit) {
                 end
                 self.RegenFieldFXBag = {}
             end
-        elseif enh == 'ApocolypticEngineering' then
+        elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
         
@@ -618,7 +618,7 @@ ESL0001 = Class(ACUUnit) {
             end
         
             Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildCombat')
-        elseif enh == 'ApocolypticEngineeringRemove' then
+        elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildCombat')
             end
