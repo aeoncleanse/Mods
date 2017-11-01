@@ -165,7 +165,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         end
     end,
 
-    OnKilled = function(self)
+    OnKilled = function(self, instigator, damagetype, overkillRatio)
         self:HideBone('xrb01', false)
         self:HideBone('xrb02', false)
         self:HideBone('xrb03', false)
@@ -176,7 +176,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
                 IssueKillSelf({self.DroneTable[k]})
             end
         end
-        CAirStagingPlatformUnit.OnKilled(self)
+        CAirStagingPlatformUnit.OnKilled(self, instigator, damagetype, overkillRatio)
     end,
 }
 
