@@ -25,7 +25,7 @@ UnitBlueprint {
         LambdaField = {
             AttachBone = 'XSB0001',
             Radius = 21,
-            Probability = 20,
+            Probability = 60,
         },
         ArmorType = 'Structure',
         EconomyThreatLevel = 0,
