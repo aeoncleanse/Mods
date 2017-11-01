@@ -534,7 +534,7 @@ UnitBlueprint {
             },
             Slot = 'LCH',
         },
-        ApocolypticEngineering = {
+        ApocalypticEngineering = {
             BuildCostEnergy = 240000,
             BuildCostMass = 3600,
             BuildTime = 21600,
@@ -553,18 +553,18 @@ UnitBlueprint {
             },
             NewRegenRate = 200,
         },
-        ApocolypticEngineeringRemove = {
+        ApocalypticEngineeringRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'exlce3',
             Name = 'Remove Engineering Suites',
-            Prerequisite = 'ApocolypticEngineering',
+            Prerequisite = 'ApocalypticEngineering',
             RemoveEnhancements = {
                 'CombatEngineering',
                 'AssaultEngineering',
-                'ApocolypticEngineering',
-                'ApocolypticEngineeringRemove',
+                'ApocalypticEngineering',
+                'ApocalypticEngineeringRemove',
             },
             Slot = 'LCH',
         },

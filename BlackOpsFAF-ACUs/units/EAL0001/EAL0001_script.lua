@@ -482,7 +482,7 @@ EAL0001 = Class(ACUUnit) {
             
             local wep = self:GetWeaponByLabel('ChronoDampener2')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-        elseif enh == 'ApocolypticEngineering' then
+        elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
 
@@ -510,7 +510,7 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AEONACUT4BuildCombat')
-        elseif enh == 'ApocolypticEngineeringRemove' then
+        elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
             end
