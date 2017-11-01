@@ -266,7 +266,7 @@ ESL0001 = Class(ACUUnit) {
             end
 
             self.HiddenACU = false
-            self:SetFireState(0)
+            self:SetFireState(2)
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
             self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
