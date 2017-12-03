@@ -169,15 +169,16 @@ function TransferEverything(toArmy, fromArmy)
     -- ACUs can't be transferred normally so we have to do things manually
     local commandUnits = fromBrain:GetListOfUnits(categories.COMMAND, false)
     for _, unit in commandUnits do
-        ForceTransferUnit(unit, toArmy)
+        unit:Destroy()
+        --ForceTransferUnit(unit, toArmy)
     end
 
     SetArmyUnitCap(fromArmy, 0)
 
     -- Give toArmy the resources now that they have all of fromArmy's storage
-    LOG("Transferring "..massTaken.." mass and "..energyTaken.." energy.")
-    toBrain:GiveResource('Mass', massTaken)
-    toBrain:GiveResource('Energy', energyTaken)
+    --LOG("Transferring "..massTaken.." mass and "..energyTaken.." energy.")
+    --toBrain:GiveResource('Mass', massTaken)
+    --toBrain:GiveResource('Energy', energyTaken)
 
     return true
 end
