@@ -135,7 +135,7 @@ function TransferEverything(toArmy, fromArmy)
     local oldUnits = fromBrain:GetListOfUnits(categories.ALLUNITS - categories.COMMAND, false)
     LOG("Transferring "..table.getn(oldUnits).." units.")
     local newUnits = TransferUnitsOwnership(oldUnits, toArmy)
-    LOG("Successfully transferred "..table.getn(newUnits).." units.")
+    LOG("Successfully transferred "..table.getn(newUnits or {}).." units.")
     if newUnits then
         for _, unit in newUnits do
             if unit.oldowner == fromArmy then
