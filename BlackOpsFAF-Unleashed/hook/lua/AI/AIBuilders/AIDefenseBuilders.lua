@@ -1,6 +1,7 @@
+
+-- T3GroundDefense 
 -- Changed PlatoonTemplate = 'UEFT3EngineerBuilder' to 'T3EngineerBuilder'
 -- so, all races can build T3 base Defenses like UEF
-
 BuilderGroup {
     BuilderGroupName = 'T3BaseDefenses',
     BuildersType = 'EngineerBuilder',
@@ -35,7 +36,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T3 Base D Engineer PD',
         PlatoonTemplate = 'T3EngineerBuilder',
-        Priority = 900, #DUNCAN - was 875
+        Priority = 900,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'DEFENSE TECH3 DIRECTFIRE'}},
@@ -79,7 +80,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'T3DefensivePoints',
     BuildersType = 'EngineerBuilder',
@@ -117,7 +117,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'T3DefensivePoints High Pri',
     BuildersType = 'EngineerBuilder',
@@ -155,7 +154,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'T3LightDefenses',
     BuildersType = 'EngineerBuilder',
@@ -204,3 +202,71 @@ BuilderGroup {
         }
     },
 }
+
+-- T3ShieldDefense
+-- Removed FactionIndex 1,2,4 
+-- so, all races can build T3 Shields directly
+BuilderGroup {
+    BuilderGroupName = 'T3Shields',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'T3 Shield D Engineer Factory Adj',
+        PlatoonTemplate = 'T3EngineerBuilder',
+        Priority = 950,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENGINEER * categories.TECH3}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.SHIELD * categories.STRUCTURE}},
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }}, 
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                AdjacencyCategory = 'ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, FACTORY TECH3, FACTORY TECH2, ENERGYPRODUCTION TECH2, FACTORY',
+                AdjacencyDistance = 60,
+                BuildClose = false,
+                AvoidCategory = 'SHIELD',
+                maxUnits = 1,
+                maxRadius = 10,
+                BuildStructures = {
+                    'T3ShieldDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+}
+BuilderGroup {
+    BuilderGroupName = 'T3ACUShields',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'T3 Shield D Engineer Near ACU',
+        PlatoonTemplate = 'T3EngineerBuilder',
+        Priority = 890,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7, categories.ENGINEER * categories.TECH3}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, categories.SHIELD * categories.STRUCTURE}},
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                AvoidCategory = 'SHIELD',
+                maxUnits = 1,
+                maxRadius = 10,
+                NearUnitCategory = 'COMMAND',
+                NearUnitRadius = 32000,
+                BuildClose = false,
+                BuildStructures = {
+                    'T3ShieldDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+}
+
+

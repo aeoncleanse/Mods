@@ -1,6 +1,7 @@
+
+-- T3GroundDefense 
 -- Changed PlatoonTemplate = 'UEFT3EngineerBuilderSorian' to 'T3EngineerBuilderSorian'
 -- so, all races can build T3 base Defenses like UEF
-
 BuilderGroup {
     BuilderGroupName = 'SorianT3BaseDefenses',
     BuildersType = 'EngineerBuilder',
@@ -154,7 +155,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'SorianT3BaseDefenses - Emerg',
     BuildersType = 'EngineerBuilder',
@@ -258,7 +258,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'SorianT3LightDefenses',
     BuildersType = 'EngineerBuilder',
@@ -310,7 +309,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'SorianT3DefensivePoints Turtle',
     BuildersType = 'EngineerBuilder',
@@ -450,7 +448,6 @@ BuilderGroup {
         }
     },
 }
-
 BuilderGroup {
     BuilderGroupName = 'SorianT3DefensivePoints',
     BuildersType = 'EngineerBuilder',
@@ -580,6 +577,102 @@ BuilderGroup {
                     'T2Artillery',
                     'T2ShieldDefense',
                 }
+            }
+        }
+    },
+}
+
+-- T3ShieldDefense
+-- Removed FactionIndex 1,2,4 
+-- so, all races can build T3 Shields directly
+BuilderGroup {
+    BuilderGroupName = 'SorianT3Shields',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'Sorian T3 Shield D Engineer Factory Adj',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 950,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.SHIELD * categories.TECH3 * categories.STRUCTURE} },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE TECH3' } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'UnitCapCheckLess', { .8 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                AdjacencyCategory = 'FACTORY, STRUCTURE EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
+                AdjacencyDistance = 100,
+                BuildClose = false,
+                BuildStructures = {
+                    'T3ShieldDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+}
+BuilderGroup {
+    BuilderGroupName = 'SorianT3ACUShields',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'Sorian T3 Shield D Engineer Near ACU',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 890,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENGINEER * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.SHIELD * categories.STRUCTURE} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                NearUnitCategory = 'COMMAND',
+                NearUnitRadius = 32000,
+                BuildClose = false,
+                BuildStructures = {
+                    'T3ShieldDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+}
+BuilderGroup {
+    BuilderGroupName = 'SorianT3ShieldsExpansion',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'Sorian T3 Shield D Engineer Near Factory Expansion',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 940,
+        BuilderConditions = {
+            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SHIELD * categories.TECH2 * categories.STRUCTURE}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.SHIELD * categories.TECH3 * categories.STRUCTURE }},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2 } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE TECH2' } },
+            { UCBC, 'UnitCapCheckLess', { .8 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
+                AdjacencyDistance = 100,
+                BuildClose = false,
+                BuildStructures = {
+                    'T3ShieldDefense',
+                },
+                Location = 'LocationType',
             }
         }
     },
