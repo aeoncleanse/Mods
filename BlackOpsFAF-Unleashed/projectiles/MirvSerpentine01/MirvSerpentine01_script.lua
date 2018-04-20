@@ -64,19 +64,19 @@ AIFMissileSerpentine01 = Class(AMissileSerpentineProjectile) {
         local army = self:GetArmy()
         local launcher = self:GetLauncher()
         self:TrackTarget(false)
-        WaitSeconds(0.8) -- Height
+        WaitTicks(8) -- Height
         self:SetCollision(true)
-        WaitSeconds(2)
+        WaitTicks(20)
         self:TrackTarget(true) -- Turn ~90 degrees towards target
         self:SetDestroyOnWater(true)        
         self:SetTurnRate(47.36)
-        WaitSeconds(2) -- Now set turn rate to zero so nuke flies straight
+        WaitTicks(20) -- Now set turn rate to zero so nuke flies straight
         self:SetTurnRate(0)
         self:SetAcceleration(0.001)
-        self.WaitTime = 0.5
+        self.WaitTime = 5
         while not self:BeenDestroyed() do
             self:SetTurnRateByDist()
-            WaitSeconds(self.WaitTime)
+            WaitTicks(self.WaitTime)
         end
     end,
 
@@ -87,9 +87,9 @@ AIFMissileSerpentine01 = Class(AMissileSerpentineProjectile) {
             -- Freeze the turn rate as to prevent steep angles at long distance targets
             self:SetTurnRate(0)
         elseif dist > 75 and dist <= 150 then
-            self.WaitTime = 0.3
+            self.WaitTime = 3
         elseif dist > 32 and dist <= 75 then
-            self.WaitTime = 0.1
+            self.WaitTime = 1
         elseif dist < 15 then
             self:SetTurnRate(95)
         end
