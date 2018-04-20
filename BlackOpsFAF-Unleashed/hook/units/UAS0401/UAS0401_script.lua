@@ -33,14 +33,26 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             self:AddBuildRestriction(categories.ALLUNITS)
             self:RequestRefreshUI()
         end
-        ChangeState(self, self.IdleState)
+        ChangeState(self, self.DroneMaintenanceState)
         AirDroneCarrier.InitDrones(self)
+    end,
+
+    OnStartBuild = function(self, unitBuilding, order)
+        ASeaUnit.OnStartBuild(self, unitBuilding, order)
+        self.UnitBeingBuilt = unitBuilding
+        ChangeState(self, self.BuildingState)
+    end,
+
+    OnStopBuild = function(self, unitBeingBuilt)
+        ASeaUnit.OnStopBuild(self, unitBeingBuilt)
+        ChangeState(self, self.FinishedBuildingState)
     end,
 
     OnFailedToBuild = function(self)
         ASeaUnit.OnFailedToBuild(self)
-        ChangeState(self, self.IdleState)
+        ChangeState(self, self.DroneMaintenanceState)
     end,
+
 
     OnMotionVertEventChange = function(self, new, old)
         ASeaUnit.OnMotionVertEventChange(self, new, old)
@@ -59,19 +71,6 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             self.DroneAssist = false
         end
     end,
-
-    IdleState = State {
-        Main = function(self)
-            self:DetachAll(self.BuildAttachBone)
-            self:SetBusy(false)
-        end,
-
-        OnStartBuild = function(self, unitBuilding, order)
-            ASeaUnit.OnStartBuild(self, unitBuilding, order)
-            self.UnitBeingBuilt = unitBuilding
-            ChangeState(self, self.BuildingState)
-        end,
-    },
 
     BuildingState = State {
         Main = function(self)
@@ -93,10 +92,6 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             self.UnitDoneBeingBuilt = false
         end,
 
-        OnStopBuild = function(self, unitBeingBuilt)
-            ASeaUnit.OnStopBuild(self, unitBeingBuilt)
-            ChangeState(self, self.FinishedBuildingState)
-        end,
     },
 
     FinishedBuildingState = State {
@@ -106,7 +101,7 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             self:DetachAll(self.BuildAttachBone)
             local worldPos = self:CalculateWorldPositionFromRelative({0, 0, -20})
             IssueMoveOffFactory({unitBuilding}, worldPos)
-            ChangeState(self, self.IdleState)
+            ChangeState(self, self.DroneMaintenanceState)
         end,
     },
     
