@@ -1810,6 +1810,18 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
+            Overcharge = {
+                energyMult = 0.9,       -- for old game version. 
+                commandDamage = 400,    -- for old game version. 
+                structureDamage = 800,  -- for old game version. 
+                maxDamage = 15000,      -- for old game version. 
+                minDamage = 1500,       -- for old game version. 
+                BaseDamage = 1000,
+                BaseEnergy = 500,
+                DamagePerCharge = 1000,
+                EnergyPerCharge = 500,
+                MaxCharges = 11,
+            },
             OverChargeWeapon = true,
             ProjectileId = '/projectiles/TDFOverCharge01/TDFOverCharge01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
@@ -1887,6 +1899,18 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
+            Overcharge = {
+                energyMult = 0.9,       -- for old game version. 
+                commandDamage = 400,    -- for old game version. 
+                structureDamage = 800,  -- for old game version. 
+                maxDamage = 15000,      -- for old game version. 
+                minDamage = 1500,       -- for old game version. 
+                BaseDamage = 1000,
+                BaseEnergy = 500,
+                DamagePerCharge = 1000,
+                EnergyPerCharge = 500,
+                MaxCharges = 11,
+            },
             ProjectileId = '/projectiles/TDFOverCharge01/TDFOverCharge01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
