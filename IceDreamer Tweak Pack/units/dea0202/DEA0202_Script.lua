@@ -52,7 +52,7 @@ DEA0202 = Class(TAirUnit) {
                 TIFCarpetBombWeapon.OnLostTarget(self)
             end,        
         },
-		RightBeam = Class(TAirToAirLinkedRailgun) {},
+        RightBeam = Class(TAirToAirLinkedRailgun) {},
         LeftBeam = Class(TAirToAirLinkedRailgun) {},
     },
     

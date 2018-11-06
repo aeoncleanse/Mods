@@ -199,11 +199,11 @@ Shield = Class(moho.shield_methods,Entity) {
             end
         end
         
-		----Apply Damage, but only if the owner of that Damage is not also the owner of the Shield
-		if self.Owner != instigator then
-			self:AdjustHealth(instigator, -absorbed) 
-			self:UpdateShieldRatio(-1)			
-		end
+        ----Apply Damage, but only if the owner of that Damage is not also the owner of the Shield
+        if self.Owner != instigator then
+            self:AdjustHealth(instigator, -absorbed) 
+            self:UpdateShieldRatio(-1)            
+        end
 
         --LOG('Shield Health: ' .. self:GetHealth())
         if self.RegenThread then

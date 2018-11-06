@@ -1519,8 +1519,8 @@ Unit_Description_0444="Lightly armoured support Robot armed with Long-Range Rock
 Unit_Description_0447="Tech 3 Amphibious Construction, Repair, Capture and Reclamation unit."
 Unit_Description_0448="Extremely Heavy Amphibious Assault Robot equipped with Direct Fire blasters, weak Torpedoes and Anti-Torpedo Flares. Designed to engage enemy Experimental units, Heavy units, and Defence structures."
 Unit_Description_0449="Mobile Anti-Air with a low-speed Area-Of-Effect munition, excellent against enemy Gunships."
-Unit_Description_0450="Slow-moving Heavy Artillery. Must be stationary to fire."	
-	
+Unit_Description_0450="Slow-moving Heavy Artillery. Must be stationary to fire."    
+    
 ----Air
 Unit_Description_0138="Fast aerial reconnaissance vehicle."
 Unit_Description_0139="Quick, manoeuvrable Anti-Air Fighter."

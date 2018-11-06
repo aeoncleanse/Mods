@@ -84,7 +84,7 @@ UnitBlueprint {
         'RECLAIMABLE',
         'SHOWATTACKRETICLE',
         'NUKESUB',
-		'SONAR',
+        'SONAR',
         'OVERLAYSONAR',
         'OVERLAYINDIRECTFIRE',
         'OVERLAYANTINAVY',

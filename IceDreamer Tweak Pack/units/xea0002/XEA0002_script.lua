@@ -57,7 +57,7 @@ XEA0002 = Class(TAirUnit) {
     
     --Make this unit invulnerable - Not any more!
     OnDamage = function(self, instigator, amount, vector, damageType)
-			self:Kill()
+            self:Kill()
     end,
 }
 TypeClass = XEA0002
