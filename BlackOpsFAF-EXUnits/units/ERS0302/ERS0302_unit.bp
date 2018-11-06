@@ -55,7 +55,7 @@ UnitBlueprint {
         'INTELLIGENCE',
         'RADAR',
         'SONAR',
-		'FAVORSWATER',
+        'FAVORSWATER',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYRADAR',
@@ -97,15 +97,15 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-		LandAnimationDeath = {
+        LandAnimationDeath = {
             {
                 Animation = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_adeath01.sca',
-				AnimationRateMax = 0.8,
+                AnimationRateMax = 0.8,
                 AnimationRateMin = 0.5,
                 Weight = 100,
             },
         },
-		WaterAnimationDeath = {
+        WaterAnimationDeath = {
             {
                 Animation = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_asink01.sca',
                 AnimationRateMax = 1.5,
@@ -116,7 +116,7 @@ UnitBlueprint {
         AnimationTransform = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_transform.sca',
         AnimationWalk = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_awalk.sca',
         AnimationWalkRate = 1.8,
-		AnimationHailfireDeploy = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_AHailfireDeploy.sca',
+        AnimationHailfireDeploy = '/mods/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_AHailfireDeploy.sca',
         IdleEffects = {
             Water = {
                 Effects = {
@@ -144,7 +144,7 @@ UnitBlueprint {
                 },
             },
         },
-		LayerChangeEffects = {
+        LayerChangeEffects = {
             WaterLand = {
                 Effects = {
                     {
@@ -189,14 +189,14 @@ UnitBlueprint {
                         Bones = {
                             'WakeFront_L',
                         },
-						Scale = 0.75,
+                        Scale = 0.75,
                         Type = 'LeftFrontWake',
                     },
                     {
                         Bones = {
                             'WakeFront_R',
                         },
-						Scale = 0.75,
+                        Scale = 0.75,
                         Type = 'RightFrontWake',
                     },
                     {
@@ -252,7 +252,7 @@ UnitBlueprint {
         OrderOverrides = {
             RULEUTC_WeaponToggle = {
                 bitmapId = 'toggle-weapon-air',
-				helpText = 'exweapon_toggle2',
+                helpText = 'exweapon_toggle2',
             },
         },
         FactionName = 'Cybran',
@@ -275,7 +275,7 @@ UnitBlueprint {
     LifeBarOffset = 1.4,
     LifeBarSize = 1.7,
     Physics = {
-	    AltMotionType = 'RULEUMT_Water',
+        AltMotionType = 'RULEUMT_Water',
         BackUpDistance = 0,
         BankingSlope = 0,
         BuildOnLayerCaps = {
@@ -319,7 +319,7 @@ UnitBlueprint {
     Weapon = {
         {
             AimsStraightOnDisable = true,
-			AutoInitiateAttackCommand = false,
+            AutoInitiateAttackCommand = false,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'URLWeapon',
@@ -391,7 +391,7 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 0.25,
-			SlavedToBody = true,
+            SlavedToBody = true,
             SlavedToBodyArcRange = 135,
             TargetCheckInterval = 0.3,
             TargetPriorities = {
@@ -436,10 +436,10 @@ UnitBlueprint {
                 Water = 'Air',
             },
             FiringTolerance = 5,
-			HeadingArcCenter = 0,
-			HeadingArcRange = 135,
+            HeadingArcCenter = 0,
+            HeadingArcRange = 135,
             Label = 'Zapper01',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 50,
             MaximumBeamLength = 60,
             MuzzleSalvoDelay = 0,
@@ -501,10 +501,10 @@ UnitBlueprint {
                 Water = 'Air',
             },
             FiringTolerance = 5,
-			HeadingArcCenter = 180,
-			HeadingArcRange = 135,
+            HeadingArcCenter = 180,
+            HeadingArcRange = 135,
             Label = 'Zapper02',
-			LeadTarget = false,
+            LeadTarget = false,
             MaxRadius = 50,
             MaximumBeamLength = 60,
             MuzzleSalvoDelay = 0,
@@ -564,8 +564,8 @@ UnitBlueprint {
                 Water = 'Seabed|Sub|Water',
             },
             FiringTolerance = 2,
-			HeadingArcCenter = -90,
-			HeadingArcRange = 135,
+            HeadingArcCenter = -90,
+            HeadingArcRange = 135,
             Label = 'TorpedoR',
             MaxRadius = 50,
             MuzzleSalvoDelay = 0.8,
@@ -625,8 +625,8 @@ UnitBlueprint {
                 Water = 'Seabed|Sub|Water',
             },
             FiringTolerance = 2,
-			HeadingArcCenter = 90,
-			HeadingArcRange = 135,
+            HeadingArcCenter = 90,
+            HeadingArcRange = 135,
             Label = 'TorpedoL',
             MaxRadius = 50,
             MuzzleSalvoDelay = 0.8,
@@ -693,7 +693,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 5,
             MuzzleVelocity = 20,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/projectiles/CAANanoDart03/CAANanoDart03_proj.bp',
             ProjectileLifetime = 5.5,
             ProjectilesPerOnFire = 5,
@@ -758,8 +758,8 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-			AimsStraightOnDisable = true,
-			AutoInitiateAttackCommand = false,
+            AimsStraightOnDisable = true,
+            AutoInitiateAttackCommand = false,
             Audio = {
                 Fire = Sound {
                     Bank = 'URSWeapon',
@@ -770,7 +770,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_LowArc',
             CollideFriendly = false,
             Damage = 200,
-			DamageRadius = 8,
+            DamageRadius = 8,
             DamageType = 'Normal',
             DisplayName = 'Nanodart Launcher',
             FireTargetLayerCapsTable = {
@@ -786,7 +786,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 10,
             MuzzleVelocity = 25,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/mods/BlackOpsFAF-EXUnits/projectiles/CybranHailfire01/CybranHailfire01_proj.bp',
             ProjectileLifetime = 5.5,
             ProjectilesPerOnFire = 6,

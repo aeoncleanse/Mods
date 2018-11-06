@@ -71,7 +71,7 @@ UnitBlueprint {
         RegenRate = 0,
         SubThreatLevel = 0,
         SurfaceThreatLevel = 18,
-		MaxTeleRange = 200,
+        MaxTeleRange = 200,
     },
     Description = 'Teleport Harassment Bot',
     Display = {
@@ -144,8 +144,8 @@ UnitBlueprint {
         TeleportEnergyMod = 0.3,
         TeleportMassMod = 2,
         TeleportTimeMod = 0.0025,
-		TeleportBurstEnergyCost = 1000,
-		MaintenanceConsumptionPerSecondEnergy = 25,
+        TeleportBurstEnergyCost = 1000,
+        MaintenanceConsumptionPerSecondEnergy = 25,
     },
     General = {
         Category = 'Direct Fire',
@@ -162,7 +162,7 @@ UnitBlueprint {
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
-			RULEUCC_Teleport = true,
+            RULEUCC_Teleport = true,
             RULEUCC_Transport = false,
         },
         FactionName = 'Aeon',
@@ -172,10 +172,10 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-		RadarStealth = true,
+        RadarStealth = true,
         RadarStealthField = true,
         RadarStealthFieldRadius = 200,
-		VisionRadius = 27,
+        VisionRadius = 27,
     },
     Interface = {
         HelpText = 'Teleport Harassment Bot',

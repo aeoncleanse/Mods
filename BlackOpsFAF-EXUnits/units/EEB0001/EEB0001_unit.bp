@@ -11,7 +11,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'UNSELECTABLE',
-		'UNTARGETABLE',
+        'UNTARGETABLE',
         'DRONE',
         'SERAPHIM',
         'DEFENSE',
@@ -54,7 +54,7 @@ UnitBlueprint {
         BuildTime = 60,
     },
     General = {
-    	CapCost = 0,
+        CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_Weapon',
         CommandCaps = {
@@ -104,7 +104,7 @@ UnitBlueprint {
     SizeY = 0.1,
     SizeZ = 0.1,
     StrategicIconSortPriority = 210,
-	    Weapon = {
+        Weapon = {
         {
             CollideFriendly = false,
             Damage = 0,

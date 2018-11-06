@@ -94,8 +94,8 @@ EXCTorpEffectController01 = Class(NullShell) {
         local army = self:GetArmy()
         local position = self:GetPosition()
 
-		CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.05)
-		
+        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.05)
+        
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp' ):ScaleEmitter(2.5)--:OffsetEmitter(0, 2, 0)
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp' ):ScaleEmitter(1.5)--:OffsetEmitter(0, 2, 0)
 
@@ -108,7 +108,7 @@ EXCTorpEffectController01 = Class(NullShell) {
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, -0.25)
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, 0.25)
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, -0.25)
-		
+        
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_sinking_ripples_01_emit.bp' ):ScaleEmitter(0.6)--:OffsetEmitter(0, 2, 0)
 
         CreateLightParticle(self, -1, army, 3, 10, 'glow_02', 'ramp_nuke_02')-- Exavier Modified 4th 5th Value

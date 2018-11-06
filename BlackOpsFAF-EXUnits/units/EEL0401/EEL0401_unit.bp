@@ -68,7 +68,7 @@ UnitBlueprint {
         'EXPERIMENTAL',
         'DIRECTFIRE',
         'ANTIAIR',
-		'NEEDMOBILEBUILD',
+        'NEEDMOBILEBUILD',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'DRAGBUILD',
@@ -136,7 +136,7 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-		AnimationTransform = '/mods/BlackOpsFAF-EXUnits/units/EEL0401/EEL0401_Amphib.sca',
+        AnimationTransform = '/mods/BlackOpsFAF-EXUnits/units/EEL0401/EEL0401_Amphib.sca',
         IdleEffects = {
             Water = {
                 Effects = {
@@ -200,7 +200,7 @@ UnitBlueprint {
                             'R_Right_Exhaust',
                             'R_Left_Exhuast',
                         },
-						Scale = 0.5,
+                        Scale = 0.5,
                         Type = 'GroundKickup02',
                     },
                     {
@@ -209,14 +209,14 @@ UnitBlueprint {
                             'Front_Track_Left',
                             'Rear_Track',
                         },
-						Scale = 0.5,
+                        Scale = 0.5,
                         Type = 'GroundKickup04',
                     },
                     {
                         Bones = {
                             'EEL0401',
                         },
-						Scale = 0.5,
+                        Scale = 0.5,
                         Type = 'Shoreline01',
                     },
                 },
@@ -354,7 +354,7 @@ UnitBlueprint {
     LifeBarOffset = 2.175,
     LifeBarSize = 2.875,
     Physics = {
-		AltMotionType = 'RULEUMT_Water',
+        AltMotionType = 'RULEUMT_Water',
         BackUpDistance = 2,
         BankingSlope = 0,
         BuildOnLayerCaps = {
@@ -438,7 +438,7 @@ UnitBlueprint {
             BeamCollisionDelay = 0.1,
             BeamLifetime = 6.5,
             CollideFriendly = false,
-			ContinuousBeam = false,
+            ContinuousBeam = false,
             Damage = 36,
             DamageRadius = 2,
             DamageType = 'Normal',
@@ -450,12 +450,12 @@ UnitBlueprint {
             FiringTolerance = 2,
             Label = 'EXDisruptorWave',
             MaxRadius = 50,
-			MinRadius = 5,
+            MinRadius = 5,
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             NeedPrep = false,
-			NotExclusive = true,
+            NotExclusive = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -612,7 +612,7 @@ UnitBlueprint {
             RackRecoilDistance = 0,
             RackReloadTimeout = 0,
             RackSalvoChargeTime = 1.5,
-			RackSalvoFiresAfterCharge = true,
+            RackSalvoFiresAfterCharge = true,
             RackSalvoReloadTime = 6.5,
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
@@ -675,7 +675,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 75,
-			NotExclusive = true,
+            NotExclusive = true,
             ProjectileId = '/mods/BlackOpsFAF-EXUnits/projectiles/UEFHVM01/UEFHVM01_proj.bp',
             ProjectileLifetime = 6,
             ProjectilesPerOnFire = 1,

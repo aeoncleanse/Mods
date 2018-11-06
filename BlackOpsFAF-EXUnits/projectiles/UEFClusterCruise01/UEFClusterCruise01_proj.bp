@@ -28,7 +28,7 @@ ProjectileBlueprint {
         Health = 1,
         MaxHealth = 1,
     },
-	DesiredShooterCap = 2,
+    DesiredShooterCap = 2,
     Display = {
         CameraFollowTimeout = 2,
         CameraFollowsProjectile = false,

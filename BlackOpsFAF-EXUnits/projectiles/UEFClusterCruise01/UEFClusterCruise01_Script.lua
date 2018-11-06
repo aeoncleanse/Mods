@@ -3,7 +3,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SingleBeamProjectile = import('/lua/sim/defaultprojectiles.lua').SingleBeamProjectile
 
 UEFClusterCruise01 = Class(UEFClusterCruise01Projectile) {
-	
+    
     FxImpactUnit = EffectTemplate.TMissileHit01,
     FxImpactLand = EffectTemplate.TMissileHit01,
     FxImpactProp = EffectTemplate.TMissileHit01,
