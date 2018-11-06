@@ -23,8 +23,8 @@ EXCTorpEffectController01 = Class(NullShell) {
     NukeInnerRingRadius = 0,
     NukeInnerRingTicks = 0,
     NukeInnerRingTotalTime = 0,
-   
-    
+
+
     -- NOTE: This script has been modified to REQUIRE that data is passed in!  The nuke won't explode until this happens!
     --OnCreate = function(self)
 
@@ -37,20 +37,20 @@ EXCTorpEffectController01 = Class(NullShell) {
         if Data.NukeInnerRingRadius then self.NukeInnerRingRadius = Data.NukeInnerRingRadius end
         if Data.NukeInnerRingTicks then self.NukeInnerRingTicks = Data.NukeInnerRingTicks end
         if Data.NukeInnerRingTotalTime then self.NukeInnerRingTotalTime = Data.NukeInnerRingTotalTime end
-  
+
         self:CreateNuclearExplosion()
     end,
 
     CreateNuclearExplosion = function(self)
         local myBlueprint = self:GetBlueprint()
-    
+
     -- Create Damage Threads
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
 
     -- Create thread that spawns and controls effects
         self:ForkThread(self.EffectThread)
-    end,    
+    end,
 
     OuterRingDamage = function(self)
         local myPos = self:GetPosition()
@@ -95,7 +95,7 @@ EXCTorpEffectController01 = Class(NullShell) {
         local position = self:GetPosition()
 
         CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.05)
-        
+
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp' ):ScaleEmitter(2.5)--:OffsetEmitter(0, 2, 0)
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp' ):ScaleEmitter(1.5)--:OffsetEmitter(0, 2, 0)
 
@@ -108,12 +108,12 @@ EXCTorpEffectController01 = Class(NullShell) {
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, -0.25)
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, 0.25)
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, -0.25)
-        
+
         CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_sinking_ripples_01_emit.bp' ):ScaleEmitter(0.6)--:OffsetEmitter(0, 2, 0)
 
         CreateLightParticle(self, -1, army, 3, 10, 'glow_02', 'ramp_nuke_02')-- Exavier Modified 4th 5th Value
-    end,  
-    
+    end,
+
 }
 
 TypeClass = EXCTorpEffectController01

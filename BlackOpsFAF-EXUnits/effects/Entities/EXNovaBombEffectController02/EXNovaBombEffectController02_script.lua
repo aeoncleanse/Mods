@@ -23,8 +23,8 @@ EXNovaBombEffectController02 = Class(NullShell) {
     NukeInnerRingRadius = 0,
     NukeInnerRingTicks = 0,
     NukeInnerRingTotalTime = 0,
-   
-    
+
+
     -- NOTE: This script has been modified to REQUIRE that data is passed in!  The nuke won't explode until this happens!
     --OnCreate = function(self)
 
@@ -37,20 +37,20 @@ EXNovaBombEffectController02 = Class(NullShell) {
         if Data.NukeInnerRingRadius then self.NukeInnerRingRadius = Data.NukeInnerRingRadius end
         if Data.NukeInnerRingTicks then self.NukeInnerRingTicks = Data.NukeInnerRingTicks end
         if Data.NukeInnerRingTotalTime then self.NukeInnerRingTotalTime = Data.NukeInnerRingTotalTime end
-  
+
         self:CreateNuclearExplosion()
     end,
 
     CreateNuclearExplosion = function(self)
         local myBlueprint = self:GetBlueprint()
-    
+
     -- Create Damage Threads
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
 
     -- Create thread that spawns and controls effects
         self:ForkThread(self.EffectThread)
-    end,    
+    end,
 
     OuterRingDamage = function(self)
         local myPos = self:GetPosition()
@@ -99,7 +99,7 @@ EXNovaBombEffectController02 = Class(NullShell) {
         CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.35)
         CreateLightParticle(self, -1, army, 15, 20, 'glow_02', 'ramp_nuke_02')
 
-    end,  
+    end,
 
 }
 

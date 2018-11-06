@@ -14,11 +14,11 @@ EXBlackopsBpPath = '/mods/BlackOpsFAF-EXUnits/effects/emitters/'
 -------------------------------
 --   UEF Sonic Disruptor Wave
 -------------------------------
-SonicDisruptorWaveMuzzle = 
+SonicDisruptorWaveMuzzle =
 {
-    EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_01_emit.bp', 
-    EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_02_emit.bp', 
-    EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_03_emit.bp', 
+    EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_01_emit.bp',
+    EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_02_emit.bp',
+    EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_03_emit.bp',
     EXBlackopsBpPath .. 'exsonicdisruptor_muzzle_04_emit.bp',
 }
 
@@ -75,7 +75,7 @@ CybranHailfire01Hit01 = {
     EmtBpPath .. 'neutron_cluster_bomb_hit_02_emit.bp',
     EmtBpPath .. 'cybran_empgrenade_hit_01_emit.bp',
     EmtBpPath .. 'cybran_empgrenade_hit_02_emit.bp',
-    EmtBpPath .. 'cybran_empgrenade_hit_03_emit.bp',    
+    EmtBpPath .. 'cybran_empgrenade_hit_03_emit.bp',
 }
 CybranHailfire01FXTrails = {
     --EmtBpPath .. 'missile_sam_munition_trail_01_emit.bp',

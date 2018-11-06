@@ -19,7 +19,7 @@ UnitList = {
             --Tech 4 Buildings    *********************************************
 
             T3SeaBattleship = {
-                UEF = {'ees0302', 50}, -- Name: <LOC EES0302_name>Knox Class (<LOC EES0302_desc>Escort Frigate) 
+                UEF = {'ees0302', 50}, -- Name: <LOC EES0302_name>Knox Class (<LOC EES0302_desc>Escort Frigate)
             },
 
 }

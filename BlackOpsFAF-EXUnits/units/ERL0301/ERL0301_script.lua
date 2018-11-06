@@ -20,15 +20,15 @@ ERL0301 = Class(CWalkingLandUnit) {
                     self:ForkThread(self.DecloakForTimeout)
                 end
             end,
-            
+
             DecloakForTimeout = function(self)
                 self.unit:DisableUnitIntel('Cloak')
                 WaitSeconds(self.unit:GetBlueprint().Intel.RecloakAfterFiringDelay or 10)
                 self.unit:EnableUnitIntel('Cloak')
-            end, 
+            end,
         },
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
         --self:SetConsumptionPerSecondEnergy(0)
@@ -74,19 +74,19 @@ ERL0301 = Class(CWalkingLandUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
 
     OnIntelEnabled = function(self)
         CWalkingLandUnit.OnIntelEnabled(self)
-        if self:IsIntelEnabled('Cloak') then 
+        if self:IsIntelEnabled('Cloak') then
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
-            end            
-        end        
+            end
+        end
     end,
 
     OnIntelDisabled = function(self)
@@ -97,7 +97,7 @@ ERL0301 = Class(CWalkingLandUnit) {
         end
         if not self:IsIntelEnabled('Cloak') then
             self:SetMaintenanceConsumptionInactive()
-        end         
+        end
     end,
 
 }

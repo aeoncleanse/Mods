@@ -246,7 +246,7 @@ UnitBlueprint {
             DamageType = 'Normal',
             DisplayName = 'Heavy Microwave Laser',
             DoNotCollideList = {
-                'MISSILE',   
+                'MISSILE',
             },
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',

@@ -44,17 +44,17 @@ ERS0302 = Class(CSeaUnit) {
         --self.Trash:Add(CreateRotator(self, 'Back_Radar', 'y', nil, -360, 0, 0))
         --self.Trash:Add(CreateRotator(self, 'Front_Radar', 'y', nil, -180, 0, 0))
     end,
-    
+
     OnScriptBitSet = function(self, bit)
         CSeaUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:ForkThread(self.EXOnScriptBitSet)
         end
     end,
 
     OnScriptBitClear = function(self, bit)
         CSeaUnit.OnScriptBitClear(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:ForkThread(self.EXOnScriptBitClear)
         end
     end,
@@ -164,7 +164,7 @@ ERS0302 = Class(CSeaUnit) {
             --self:SetWeaponEnabledByLabel('Zapper02', true)
         end
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         self.Trash:Destroy()
         self.Trash = TrashBag()
@@ -175,7 +175,7 @@ ERS0302 = Class(CSeaUnit) {
         end
         CSeaUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     DeathThread = function(self, overkillRatio)
         if (self:GetCurrentLayer() != 'Water') then
             self:PlayUnitSound('Destroyed')
@@ -200,11 +200,11 @@ ERS0302 = Class(CSeaUnit) {
             WaitSeconds(2)
             if self.PlayDestructionEffects then
                 self:CreateDestructionEffects( self, overkillRatio )
-            end 
+            end
             WaitSeconds(1)
             if self.PlayDestructionEffects then
                 self:CreateDestructionEffects( self, overkillRatio )
-            end                                    
+            end
             self:CreateWreckage(0.1)
             self:Destroy()
         else

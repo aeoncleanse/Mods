@@ -23,8 +23,8 @@ EXETacNukeEffectController01 = Class(NullShell) {
     NukeInnerRingRadius = 0,
     NukeInnerRingTicks = 0,
     NukeInnerRingTotalTime = 0,
-   
-    
+
+
     -- NOTE: This script has been modified to REQUIRE that data is passed in!  The nuke won't explode until this happens!
     --OnCreate = function(self)
 
@@ -37,25 +37,25 @@ EXETacNukeEffectController01 = Class(NullShell) {
         if Data.NukeInnerRingRadius then self.NukeInnerRingRadius = Data.NukeInnerRingRadius end
         if Data.NukeInnerRingTicks then self.NukeInnerRingTicks = Data.NukeInnerRingTicks end
         if Data.NukeInnerRingTotalTime then self.NukeInnerRingTotalTime = Data.NukeInnerRingTotalTime end
-  
+
         self:CreateNuclearExplosion()
     end,
 
     CreateNuclearExplosion = function(self)
         local myBlueprint = self:GetBlueprint()
-            
+
         -- Play the "NukeExplosion" sound
         if myBlueprint.Audio.NukeExplosion then
             self:PlaySound(myBlueprint.Audio.NukeExplosion)
         end
-    
+
     -- Create Damage Threads
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
 
     -- Create thread that spawns and controls effects
         self:ForkThread(self.EffectThread)
-    end,    
+    end,
 
     OuterRingDamage = function(self)
         local myPos = self:GetPosition()
@@ -106,46 +106,46 @@ EXETacNukeEffectController01 = Class(NullShell) {
         -- Create initial fireball dome effect
         local FireballDomeYOffset = -0.5-- Exavier Modified Offset
         self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect01/EXETacNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
-        
+
         -- Create projectile that controls plume effects
         local PlumeEffectYOffset = -0.25
-        self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect02/EXETacNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)        
-        
-        
+        self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect02/EXETacNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)
+
+
         for k, v in EffectTemplate.TNukeRings01 do
             CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.125)-- Exavier Modified Scale
         end
-        
+
         self:CreateInitialFireballSmokeRing()
         self:ForkThread(self.CreateOuterRingWaveSmokeRing)
         self:ForkThread(self.CreateHeadConvectionSpinners)
-        
+
         WaitSeconds( 0.2 )
-        
+
         -- Create ground decals
         local orientation = RandomFloat(0,2*math.pi)
         CreateDecal(position, orientation, 'Crater01_albedo', '', 'Albedo', 8, 8, 1200, 0, army)-- Exavier Modified 6th 7th Value
-        CreateDecal(position, orientation, 'Crater01_normals', '', 'Normals', 8, 8, 1200, 0, army)-- Exavier Modified 6th 7th Value       
-        CreateDecal(position, orientation, 'nuke_scorch_003_albedo', '', 'Albedo', 12, 12, 1200, 0, army)-- Exavier Modified 6th 7th Value    
+        CreateDecal(position, orientation, 'Crater01_normals', '', 'Normals', 8, 8, 1200, 0, army)-- Exavier Modified 6th 7th Value
+        CreateDecal(position, orientation, 'nuke_scorch_003_albedo', '', 'Albedo', 12, 12, 1200, 0, army)-- Exavier Modified 6th 7th Value
 
         self:CreateGroundPlumeConvectionEffects(army)
-        
+
     end,
-        
+
     CreateInitialFireballSmokeRing = function(self)
         local sides = 12
         local angle = (2*math.pi) / sides
         local velocity = 1-- Exavier Modified Velocity
-        local OffsetMod = 0.25-- Exavier Modified Offset       
+        local OffsetMod = 0.25-- Exavier Modified Offset
 
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
             self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave01/EXETacNukeShockwave01_proj.bp', X * OffsetMod , 0.25, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity):SetAcceleration(-0.25)-- Exavier Modified Acceleration
-        end   
-    end,  
-    
+        end
+    end,
+
     CreateOuterRingWaveSmokeRing = function(self)
         local sides = 32
         local angle = (2*math.pi) / sides
@@ -159,23 +159,23 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local proj =  self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave02/EXETacNukeShockwave02_proj.bp', X * OffsetMod , 0.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
             table.insert( projectiles, proj )
-        end  
-        
+        end
+
         WaitSeconds( 1 )
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
             v:SetAcceleration(-0.1)-- Exavier Moddified Acceleration
-        end         
-    end,      
-    
+        end
+    end,
+
     CreateHeadConvectionSpinners = function(self)
         local sides = 10
         local angle = (2*math.pi) / sides
         local HeightOffset = -0.5-- Exavier Modified Offset
         local velocity = 8.75-- Exavier Modified Velocity
         local OffsetMod = 0.5-- Exavier Modified Offset
-        local projectiles = {}        
+        local projectiles = {}
 
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
@@ -183,8 +183,8 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local proj = self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect03/EXETacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
-        end   
-    
+        end
+
         WaitSeconds(0.2)
         for i = 0, (sides-1) do
             local x = math.sin(i*angle)
@@ -192,27 +192,27 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local proj = projectiles[i+1]
             proj:SetVelocityAlign(false)
             proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
-            proj:SetVelocity(0,0.75,0)-- Exavier Modified Velocity 
-            proj:SetBallisticAcceleration(-0.04)-- Exavier Modified Acceleration            
-        end   
+            proj:SetVelocity(0,0.75,0)-- Exavier Modified Velocity
+            proj:SetBallisticAcceleration(-0.04)-- Exavier Modified Acceleration
+        end
     end,
-    
+
     CreateGroundPlumeConvectionEffects = function(self,army)
         for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-            CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.25)-- Exavier Modified Scale 
+            CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.25)-- Exavier Modified Scale
         end
-    
+
         local sides = 10
         local angle = (2*math.pi) / sides
         local inner_lower_limit = 0.5-- Exavier Modified
         local outer_lower_limit = 0.5-- Exavier Modified
         local outer_upper_limit = 0.75-- Exavier Modified
-    
+
         local inner_lower_height = 0-- Exavier Modified
         local inner_upper_height = 1-- Exavier Modified
         local outer_lower_height = 0-- Exavier Modified
         local outer_upper_height = 1-- Exavier Modified
-      
+
         sides = 8
         angle = (2*math.pi) / sides
         for i = 0, (sides-1)
@@ -223,7 +223,7 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local velocity = RandomFloat( 1, 3 ) * 0.5-- Exavier Modified Last Number
             self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect05/EXETacNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
                 :SetVelocity(x * velocity, 0, z * velocity)
-        end 
+        end
     end,
 }
 

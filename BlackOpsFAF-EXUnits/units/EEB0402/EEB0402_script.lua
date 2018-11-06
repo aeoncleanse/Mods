@@ -1,6 +1,6 @@
 --****************************************************************************
 --**
---**  File     :  
+--**  File     :
 --**  Author(s):  Tpapp & Exavier Macbeth
 --**
 --**  Summary  :  UEF T4 Stellar Generator Script
@@ -59,9 +59,9 @@ EEB0402 = Class(TEnergyCreationUnit) {
             --    self:ForkThread(self.EconomyWait)
             --end
             self:ForkThread(self.CoreMonitor)
-        end   
-    end, 
-        
+        end
+    end,
+
     InitialSpawnDelay = function(self)
         WaitSeconds(2)
         self:ForkThread(self.CoreSpawn)
@@ -77,7 +77,7 @@ EEB0402 = Class(TEnergyCreationUnit) {
         self.RotorRings01:SetTargetSpeed(202)
         self.RotorRings02:SetTargetSpeed(-270)
         self.RotorRings03A:SetTargetSpeed(405)
-        self.RotorRings03B:SetTargetSpeed(67)        
+        self.RotorRings03B:SetTargetSpeed(67)
         WaitSeconds(1)
         self:ForkThread(self.CoreSpawn)
         WaitSeconds(2)
@@ -92,7 +92,7 @@ EEB0402 = Class(TEnergyCreationUnit) {
         StellarCore:AttachTo(self, 'star')
         StellarCore:SetParent(self, 'eeb0402')
         StellarCore:SetCreator(self)
-        self.Trash:Add(StellarCore)    
+        self.Trash:Add(StellarCore)
     end,
 
 }

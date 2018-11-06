@@ -41,10 +41,10 @@ EAS0302 = Class(ASeaUnit) {
         self:SetWeaponEnabledByLabel('MassTorpedo01', false)
         self:SetWeaponEnabledByLabel('MassTorpedo02', false)
     end,
-    
+
     OnScriptBitSet = function(self, bit)
         ASeaUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:SetWeaponEnabledByLabel('MassTorpedo01', true)
             self:SetWeaponEnabledByLabel('AntiTorpedo01', false)
             --self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch() )
@@ -56,7 +56,7 @@ EAS0302 = Class(ASeaUnit) {
 
     OnScriptBitClear = function(self, bit)
         ASeaUnit.OnScriptBitClear(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:SetWeaponEnabledByLabel('MassTorpedo01', false)
             self:SetWeaponEnabledByLabel('AntiTorpedo01', true)
             --self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch() )
