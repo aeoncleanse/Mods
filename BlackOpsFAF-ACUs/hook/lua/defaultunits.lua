@@ -10,7 +10,7 @@ ACUUnit = Class(oldACUUnit) {
         end
 
         self:AddBuildRestriction(categories.SUPPORTFACTORY)
-        
+
         local upgradeNames = {
             'ImprovedEngineering',
             'CombatEngineering',

@@ -41,7 +41,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'HeavyAntiMatterCannon'},
         },
-        
+
     },
     -- Aeon
     Builder {
@@ -73,12 +73,12 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'CoolingUpgrade'},
         },
-       
+
     },
     -- Seraphim
     Builder {
         BuilderName = 'Seraphim CDR Upgrade RateOfFire',
-        PlatoonTemplate = 'CommanderEnhance', 
+        PlatoonTemplate = 'CommanderEnhance',
         Priority = 1000,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'RateOfFire', true}},
@@ -89,7 +89,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'RateOfFire'},
         },
-        
+
     },
 }
 
@@ -126,7 +126,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'CrysalisBeamRemove', 'AdvancedEngineering'},
         },
-        
+
     },
     Builder {
         BuilderName = 'Aeon CDR Upgrade Adv Engi',
@@ -142,7 +142,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'AdvancedEngineering'},
         },
-        
+
     },
     -- Cybran
     Builder {
@@ -159,7 +159,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'CoolingUpgradeRemove','AdvancedEngineering'},
         },
-        
+
     },
      Builder {
         BuilderName = 'Cybran CDR Upgrade Adv Engi',
@@ -175,7 +175,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'AdvancedEngineering'},
         },
-        
+
     },
     -- Seraphim
     Builder {
@@ -191,7 +191,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'AdvancedEngineering'},
         },
-        
+
     },
 }
 
@@ -243,7 +243,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'Shield'},
         },
-        
+
     },
     -- Cybran
     Builder {
@@ -259,7 +259,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'StealthGenerator', 'CloakingGenerator', 'MicrowaveLaserGenerator'},
         },
-        
+
     },
     -- Seraphim
     Builder {
@@ -275,7 +275,7 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'RegenAura', 'AdvancedRegenAura'},
         },
-        
+
     },
     Builder {
         BuilderName = 'Seraphim CDR Upgrade AdvancedRegenAura, replace rate of fire',
@@ -378,7 +378,7 @@ BuilderGroup {
             Enhancement = {'Shield', 'HeatSink'},
         },
     },
-    
+
     -- Cybran
     Builder {
         BuilderName = 'Sorian Cybran CDR Upgrade AdvEng - Laser Gen',
@@ -418,7 +418,7 @@ BuilderGroup {
             Enhancement = {'MicrowaveLaserGenerator'},
         },
     },
-    
+
     -- Seraphim
     Builder {
         BuilderName = 'Sorian Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
@@ -458,7 +458,7 @@ BuilderGroup {
             Enhancement = {'AdvancedRegenAura'},
         },
     },
-   
+
 -- Exaviers UEF ACUs
 -- Tier One
    Builder {
@@ -655,7 +655,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -677,7 +677,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -1246,7 +1246,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -1268,7 +1268,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -1838,7 +1838,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -1860,7 +1860,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -2233,7 +2233,7 @@ BuilderGroup {
             Enhancement = {'AdvancedEmitterArray'},
         },
     },
-    
+
 
 -- Exaviers Seraphim ACUs
 -- Tier One
@@ -2431,7 +2431,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
@@ -2453,7 +2453,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', false}},
-                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}}, 
+                {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
                 {UCBC, 'HaveGreaterThanUnitsWithCategory', {1, 'TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 {SIBC, 'HaveGreaterThanUnitsWithCategory', {2, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},

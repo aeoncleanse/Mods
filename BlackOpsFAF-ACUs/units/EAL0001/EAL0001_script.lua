@@ -17,7 +17,7 @@ local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
 local BOWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
-local AeonACUPhasonLaser = BOWeapons.AeonACUPhasonLaser 
+local AeonACUPhasonLaser = BOWeapons.AeonACUPhasonLaser
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
 local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
 local QuantumMaelstromWeapon = BOWeapons.QuantumMaelstromWeapon
@@ -85,7 +85,7 @@ EAL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
         self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         self:SetWeaponEnabledByLabel('AntiMissile', false)
-        
+
         self.Sync.Abilities = self:GetBlueprint().Abilities
         self.Sync.Abilities.TargetLocation.Active = false
         self:ForkThread(self.GiveInitialResources)
@@ -149,7 +149,7 @@ EAL0001 = Class(ACUUnit) {
         if not self.RemoteViewingData.VisibleLocation then
             return
         end
-        
+
         if self.RemoteViewingData.VisibleLocation and self.RemoteViewingData.DisableCounter == 0 and self.RemoteViewingData.IntelButton then
             local bp = self:GetBlueprint()
             -- Create new visible area
@@ -186,12 +186,12 @@ EAL0001 = Class(ACUUnit) {
             self.RemoteViewingData.Satellite:DisableIntel('Vision')
         end
     end,
-    
+
     OnStartBuild = function(self, unitBeingBuilt, order)
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
-        self.UnitBuildOrder = order  
+        self.UnitBuildOrder = order
     end,
-    
+
     CreateBuildEffects = function(self, unitBeingBuilt, order)
         EffectUtil.CreateAeonCommanderBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
@@ -214,7 +214,7 @@ EAL0001 = Class(ACUUnit) {
             self:PlayUnitAmbientSound('ActiveLoop')
         end
     end,
-    
+
     -- New function to set up production numbers
     SetProduction = function(self, bp)
         local energy = bp.ProductionPerSecondEnergy or 0
@@ -243,7 +243,7 @@ EAL0001 = Class(ACUUnit) {
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
         aoc:ChangeMaxRadius(aocRadius)
-        
+
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:SetPainterRange('DisruptorAmplifier', radius, false)
@@ -251,7 +251,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetPainterRange('DisruptorAmplifierRemove', radius, true)
         end
     end,
-    
+
     -- Target painter. 0 damage as primary weapon, controls targeting
     -- for the variety of changing ranges on the ACU with upgrades.
     SetPainterRange = function(self, enh, newRange, delete)
@@ -259,17 +259,17 @@ EAL0001 = Class(ACUUnit) {
             self.PainterRange[string.sub(enh, 0, -7)] = nil
         elseif not delete and not self.PainterRange[enh] then
             self.PainterRange[enh] = newRange
-        end 
-        
+        end
+
         local range = 22
         for upgrade, radius in self.PainterRange do
             if radius > range then range = radius end
         end
-        
+
         local wep = self:GetWeaponByLabel('TargetPainter')
         wep:ChangeMaxRadius(range)
     end,
-    
+
     SpecialBones = function(self)
         if self:HasEnhancement('ShieldBattery') and self:HasEnhancement('DualMiasmaArtillery') then
             self:ShowBone('ShieldPack_Arty_LArm', true)
@@ -287,15 +287,15 @@ EAL0001 = Class(ACUUnit) {
 
     CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
-        
+
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
-        
+
         if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
-            
+
             if not Buffs['AEONACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT2BuildRate',
@@ -330,7 +330,7 @@ EAL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
-            
+
             if not Buffs['AEONACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'AEONACUT3BuildRate',
@@ -399,7 +399,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
-            
+
             if not Buffs['AEONACUT2BuildCombat'] then
                 BuffBlueprint {
                     Name = 'AEONACUT2BuildCombat',
@@ -435,7 +435,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetWeaponEnabledByLabel('ChronoDampener', false)
-            
+
             local wep = self:GetWeaponByLabel('ChronoDampener')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh == 'AssaultEngineering' then
@@ -466,10 +466,10 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AEONACUT3BuildCombat')
-            
+
             self:SetWeaponEnabledByLabel('ChronoDampener', false)
             self:SetWeaponEnabledByLabel('ChronoDampener2', true)
-            
+
             local wep = self:GetWeaponByLabel('ChronoDampener2')
             wep:ChangeMaxRadius(bp.NewChronoRadius)
         elseif enh == 'AssaultEngineeringRemove' then
@@ -477,9 +477,9 @@ EAL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))   
+            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetWeaponEnabledByLabel('ChronoDampener2', false)
-            
+
             local wep = self:GetWeaponByLabel('ChronoDampener2')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh == 'ApocalypticEngineering' then
@@ -518,7 +518,7 @@ EAL0001 = Class(ACUUnit) {
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
 
         -- Disruptor Amplifier
-            
+
         elseif enh == 'JuryRiggedDisruptor' then
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'JuryRiggedDisruptorRemove' then
@@ -527,9 +527,9 @@ EAL0001 = Class(ACUUnit) {
             self:TogglePrimaryGun(0, bp.NewRadius)
         elseif enh == 'DisruptorAmplifierRemove' then
             self:TogglePrimaryGun(0)
-            
+
         -- Torpedoes
-            
+
         elseif enh == 'TorpedoLauncher' then
             if not Buffs['AeonTorpHealth1'] then
                 BuffBlueprint {
@@ -547,14 +547,14 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonTorpHealth1')
-            
+
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
             local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', true)
         elseif enh == 'TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth1') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth1')
             end
-            
+
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         elseif enh == 'ImprovedTorpLoader' then
@@ -574,21 +574,21 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonTorpHealth2')
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
             torp:ChangeRateOfFire(bp.TorpRoF)
-            
+
             self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'ImprovedTorpLoaderRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth2') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth2')
             end
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
-            
+
             self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'AdvancedWarheads' then
             if not Buffs['AeonTorpHealth3'] then
@@ -607,20 +607,20 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonTorpHealth3')
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
-            
+
             local gun = self:GetWeaponByLabel('RightDisruptor')
             gun:AddDamageMod(bp.GunDamage)
         elseif enh == 'AdvancedWarheadsRemove' then
             if Buff.HasBuff(self, 'AeonTorpHealth3') then
                 Buff.RemoveBuff(self, 'AeonTorpHealth3')
             end
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
-            
+
             local gun = self:GetWeaponByLabel('RightDisruptor')
             gun:AddDamageMod(bp.GunDamage)
 
@@ -683,19 +683,19 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonArtilleryHealth2')
-            
+
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
-            
+
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'AdvancedWarheadCompressionRemove' then
             if Buff.HasBuff(self, 'AeonArtilleryHealth2') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
             end
-            
+
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
-            
+
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'ImprovedAutoLoader' then
             if not Buffs['AeonArtilleryHealth3'] then
@@ -718,7 +718,7 @@ EAL0001 = Class(ACUUnit) {
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
             arty:ChangeRateOfFire(bp.ArtilleryRoF)
-        elseif enh == 'ImprovedAutoLoaderRemove' then    
+        elseif enh == 'ImprovedAutoLoaderRemove' then
             if Buff.HasBuff(self, 'AeonArtilleryHealth3') then
                 Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
             end
@@ -828,23 +828,23 @@ EAL0001 = Class(ACUUnit) {
             local beam = self:GetWeaponByLabel('PhasonBeam03')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
             self:SetPainterRange(enh, 0, true)
-            
+
         -- Shielding
-            
+
         elseif enh == 'ShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
             self:CreateShield(bp)
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self:OnScriptBitSet(0)
-            
+
             self:SpecialBones()
         elseif enh == 'ShieldBatteryRemove' then
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
-            
+
             self:SpecialBones()
         elseif enh == 'ImprovedShieldBattery' then
             self:DestroyShield()
@@ -878,7 +878,7 @@ EAL0001 = Class(ACUUnit) {
             self:OnScriptBitClear(0)
 
         -- Intel
-            
+
         elseif enh == 'ElectronicsEnhancment' then
             if not Buffs['AeonIntelHealth1'] then
                 BuffBlueprint {
@@ -896,22 +896,22 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonIntelHealth1')
-            
+
             self:SetIntelRadius('Vision', bp.NewVisionRadius)
             self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
             self:SetIntelRadius('Omni', bp.NewOmniRadius)
-            
+
             self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
             if Buff.HasBuff(self, 'AeonIntelHealth1') then
                 Buff.RemoveBuff(self, 'AeonIntelHealth1')
             end
-            
+
             local bpIntel = self:GetBlueprint().Intel
             self:SetIntelRadius('Vision', bpIntel.VisionRadius)
             self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius)
-            
+
             self:SetWeaponEnabledByLabel('AntiMissile', false)
         elseif enh == 'FarsightOptics' then
             if not Buffs['AeonIntelHealth2'] then
@@ -955,7 +955,7 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonIntelHealth3')
-            
+
             self:AddCommandCap('RULEUCC_Teleport')
         elseif enh == 'TeleporterRemove' then
             if Buff.HasBuff(self, 'AeonIntelHealth3') then
@@ -963,9 +963,9 @@ EAL0001 = Class(ACUUnit) {
             end
 
             self:RemoveCommandCap('RULEUCC_Teleport')
-            
+
         -- Maelstrom
-            
+
         elseif enh == 'MaelstromQuantum' then
             if self.MaelstromEffects01 then
                 for k, v in self.MaelstromEffects01 do
@@ -993,7 +993,7 @@ EAL0001 = Class(ACUUnit) {
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            
+
             if not Buffs['AeonMaelstromHealth1'] then
                 BuffBlueprint {
                     Name = 'AeonMaelstromHealth1',
@@ -1010,11 +1010,11 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
-            
+
             self:SetWeaponEnabledByLabel('QuantumMaelstrom', true)
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:ChangeMaxRadius(bp.MaelstromRadius)
-            
+
             -- Can't use normal methods here due to how the weapon script works
             wep.CurrentDamage = wep:GetBlueprint().Damage
             wep.CurrentDamageRadius = wep:GetBlueprint().DamageRadius
@@ -1022,16 +1022,16 @@ EAL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
                 Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
             end
-            
+
             if self.MaelstromEffects01 then
                 for k, v in self.MaelstromEffects01 do
                     v:Destroy()
                 end
                 self.MaelstromEffects01 = {}
             end
-            
+
             self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
-            
+
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh == 'DistortionAmplifier' then
@@ -1055,12 +1055,12 @@ EAL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'AeonMaelstromHealth2')
-            
+
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
 
             -- Can't use normal methods here due to how the weapon script works
             wep.CurrentDamage = bp.MaelstromDamage
-            
+
             self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'DistortionAmplifierRemove' then
             if Buff.HasBuff(self, 'AeonMaelstromHealth2') then
@@ -1075,7 +1075,7 @@ EAL0001 = Class(ACUUnit) {
             end
 
             self:SetWeaponEnabledByLabel('AntiMissile', false)
-            
+
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep.CurrentDamage = wep:GetBlueprint().Damage
         elseif enh == 'QuantumInstability' then
@@ -1123,7 +1123,7 @@ EAL0001 = Class(ACUUnit) {
         -- Remove prerequisites
         if not removal then
             if bp.RemoveEnhancements then
-                for k, v in bp.RemoveEnhancements do                
+                for k, v in bp.RemoveEnhancements do
                     if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
                         self:CreateEnhancement(v .. 'Remove', true)
                     end
@@ -1163,8 +1163,8 @@ EAL0001 = Class(ACUUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
 }
 

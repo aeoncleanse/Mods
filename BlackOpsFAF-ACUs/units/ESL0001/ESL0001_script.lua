@@ -23,7 +23,7 @@ local SeraACUMissile = BOWeapons.SeraACUMissile
 ESL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
-    
+
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
         TargetPainter = Class(CEMPArrayBeam01) {},
@@ -41,7 +41,7 @@ ESL0001 = Class(ACUUnit) {
     __init = function(self)
         ACUUnit.__init(self, 'ChronotronCannon')
     end,
-    
+
     -- Storage for upgrade weapons status
     WeaponEnabled = {},
 
@@ -61,7 +61,7 @@ ESL0001 = Class(ACUUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         ACUUnit.OnStopBeingBuilt(self,builder,layer)
-        
+
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         self:SetWeaponEnabledByLabel('BigBallCannon', false)
         self:SetWeaponEnabledByLabel('RapidCannon', false)
@@ -78,7 +78,7 @@ ESL0001 = Class(ACUUnit) {
         self.lambdaEmitterTable = {}
         self:StartRotators()
     end,
-    
+
     StartRotators = function(self)
         if not self.RotatorManipulator1 then
             self.RotatorManipulator1 = CreateRotator(self, 'S_Spinner_B01', 'y')
@@ -96,7 +96,7 @@ ESL0001 = Class(ACUUnit) {
 
     OnStartBuild = function(self, unitBeingBuilt, order)
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
-        self.UnitBuildOrder = order  
+        self.UnitBuildOrder = order
     end,
 
     CreateBuildEffects = function(self, unitBeingBuilt, order)
@@ -143,7 +143,7 @@ ESL0001 = Class(ACUUnit) {
             WaitSeconds(5)
         end
     end,
-    
+
     -- New function to set up production numbers
     SetProduction = function(self, bp)
         local energy = bp.ProductionPerSecondEnergy or 0
@@ -172,7 +172,7 @@ ESL0001 = Class(ACUUnit) {
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
         aoc:ChangeMaxRadius(aocRadius)
-        
+
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:SetPainterRange('JuryRiggedChronotron', radius, false)
@@ -180,7 +180,7 @@ ESL0001 = Class(ACUUnit) {
             self:SetPainterRange('JuryRiggedChronotronRemove', radius, true)
         end
     end,
-    
+
     -- Target painter. 0 damage as primary weapon, controls targeting
     -- for the variety of changing ranges on the ACU with upgrades.
     SetPainterRange = function(self, enh, newRange, delete)
@@ -188,13 +188,13 @@ ESL0001 = Class(ACUUnit) {
             self.PainterRange[string.sub(enh, 0, -7)] = nil
         elseif not delete and not self.PainterRange[enh] then
             self.PainterRange[enh] = newRange
-        end 
-        
+        end
+
         local range = 22
         for upgrade, radius in self.PainterRange do
             if radius > range then range = radius end
         end
-        
+
         local wep = self:GetWeaponByLabel('TargetPainter')
         wep:ChangeMaxRadius(range)
     end,
@@ -202,7 +202,7 @@ ESL0001 = Class(ACUUnit) {
     -- Size is 'L' or 'S', bone is 1 through 4, unit is the unit ID ending
     CreateLambdaUnit = function(self, size, bone, unit, removal)
         local boneLabel = size .. '_Lambda_B0' .. bone
-        
+
         -- If this is a removal, take the quick way out
         if removal and self.lambdaEmitterTable[boneLabel] then
             IssueClearCommands({self.lambdaEmitterTable[boneLabel]})
@@ -318,7 +318,7 @@ ESL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
-            
+
             if not Buffs['SERAPHIMACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT2BuildRate',
@@ -342,7 +342,7 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')            
+            Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
@@ -354,7 +354,7 @@ ESL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
-            
+
             if not Buffs['SERAPHIMACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT3BuildRate',
@@ -441,7 +441,7 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            
+
             if not Buffs['SERAPHIMACUT2BuildCombat'] then -- Self Buff
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT2BuildCombat',
@@ -465,7 +465,7 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-            
+
             -- Remove existing threads, then re-apply
             if self.RegenFieldFXBag then
                 for k, v in self.RegenFieldFXBag do
@@ -505,7 +505,7 @@ ESL0001 = Class(ACUUnit) {
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
-        
+
             -- Build buff tables
             if not Buffs['SeraphimACUAdvancedRegenAura'] then
                 BuffBlueprint {
@@ -528,7 +528,7 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-        
+
             if not Buffs['SERAPHIMACUT3BuildCombat'] then -- Self Buff
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT3BuildCombat',
@@ -552,7 +552,7 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-        
+
             -- Remove existing threads, then re-apply
             if self.RegenFieldFXBag then
                 for k, v in self.RegenFieldFXBag do
@@ -560,7 +560,7 @@ ESL0001 = Class(ACUUnit) {
                 end
                 self.RegenFieldFXBag = {}
             end
-            
+
             if self.RegenThreadHandler then
                 KillThread(self.RegenThreadHandler)
                 self.RegenThreadHandler = nil
@@ -575,7 +575,7 @@ ESL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER)) 
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
 
             -- Kill regen aura
             if self.RegenThreadHandler then
@@ -592,7 +592,7 @@ ESL0001 = Class(ACUUnit) {
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
-        
+
             if not Buffs['SERAPHIMACUT4BuildCombat'] then
                 BuffBlueprint {
                     Name = 'SERAPHIMACUT4BuildCombat',
@@ -616,17 +616,17 @@ ESL0001 = Class(ACUUnit) {
                     },
                 }
             end
-        
+
             Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildCombat')
             end
-        
+
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
 
         -- Chronoton Booster
-        
+
         elseif enh == 'JuryRiggedChronotron' then
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'JuryRiggedChronotronRemove' then
@@ -648,13 +648,13 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'SeraphimTorpHealth1')
-            
+
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'SeraphimTorpHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimTorpHealth1')
             end
-            
+
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'ImprovedReloader' then
             if not Buffs['SeraphimTorpHealth2'] then
@@ -687,7 +687,7 @@ ESL0001 = Class(ACUUnit) {
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.NewTorpDamage)
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
-            
+
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'AdvancedWarheads' then
             if not Buffs['SeraphimTorpHealth3'] then
@@ -824,7 +824,7 @@ ESL0001 = Class(ACUUnit) {
             cannon:ChangeMaxRadius(bp.StormRange)
 
             self:SetPainterRange(enh, bp.StormRange, false)
-        elseif enh == 'AdvancedDistortionAlgorithmsRemove' then    
+        elseif enh == 'AdvancedDistortionAlgorithmsRemove' then
             if Buff.HasBuff(self, 'SeraphimBallHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth3')
             end
@@ -992,7 +992,7 @@ ESL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth2')
 
-            
+
             self:CreateLambdaUnit('S', '2', '3')
             self:CreateLambdaUnit('L', '2', '1')
         elseif enh == 'EnhancedLambdaEmittersRemove' then
@@ -1029,7 +1029,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:CreateLambdaUnit('S', '3', '4', true)
             self:CreateLambdaUnit('L', '3', '4', true)
-            
+
         -- Intel Systems
 
         elseif enh == 'ElectronicsEnhancment' then
@@ -1258,7 +1258,7 @@ ESL0001 = Class(ACUUnit) {
         -- Remove prerequisites
         if not removal then
             if bp.RemoveEnhancements then
-                for k, v in bp.RemoveEnhancements do                
+                for k, v in bp.RemoveEnhancements do
                     if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
                         self:CreateEnhancement(v .. 'Remove', true)
                     end
@@ -1298,8 +1298,8 @@ ESL0001 = Class(ACUUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
 }
 

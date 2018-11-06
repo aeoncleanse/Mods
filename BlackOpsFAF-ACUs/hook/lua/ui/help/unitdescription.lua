@@ -1,4 +1,4 @@
--- UEF ACU Upgrades  
+-- UEF ACU Upgrades
 Description['eel0001'] = "<LOC Unit_Description_0303> Houses Commander. Combination barracks and command center. Contains all the blueprints necessary to build a basic army from scratch."
 Description['eel0001-exrzb1'] = "Jury Rigged Zephyr\nBy running additional power feeds and rapidly upgrading capacitors upgrading the command chassis with a slightly enhanced main weapon can be useful when in a pinch.\n\n+100 Zephyr Damage\n+8 Zephyr Range\n+8 Overcharge Range"
 Description['eel0001-exrzb2'] = "Empty"
