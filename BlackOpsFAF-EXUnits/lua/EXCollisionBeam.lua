@@ -22,7 +22,7 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
     FxBeamEndPointScale = 1,
 
     FxImpactProp = {},
-    FxImpactShield = {},    
+    FxImpactShield = {},
     FxImpactNone = {},
 
     FxUnitHitScale = 1,
@@ -110,12 +110,12 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
         if table.getn(self.FxBeam) != 0 then
             local exfxBeam = CreateBeamEmitter(self.FxBeam[Random(1, table.getn(self.FxBeam))], army)
             AttachBeamToEntity(exfxBeam, self, 0, army)
-            
+
             -- collide on start if it's a continuous beam
             local weaponBlueprint = self.Weapon:GetBlueprint()
             local bCollideOnStart = weaponBlueprint.BeamLifetime <= 0
             self:SetBeamFx(exfxBeam, bCollideOnStart)
-            
+
             table.insert( self.BeamEffectsBag, exfxBeam )
             self.Trash:Add(exfxBeam)
         else
@@ -241,7 +241,7 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
             ImpactEffectScale = self.FxPropHitScale
         elseif impactType == 'Shield' then
             ImpactEffects = self.FxImpactShield
-            ImpactEffectScale = self.FxShieldHitScale            
+            ImpactEffectScale = self.FxShieldHitScale
         else
             LOG('*ERROR: CollisionBeam:OnImpact(): UNKNOWN TARGET TYPE ', repr(impactType))
         end
@@ -272,9 +272,9 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
         local data = self.DamageTable
         if data.Buffs then
             for k, v in data.Buffs do
-                if v.Add.OnImpact == true and not EntityCategoryContains((ParseEntityCategory(v.TargetDisallow) or ''), target) 
+                if v.Add.OnImpact == true and not EntityCategoryContains((ParseEntityCategory(v.TargetDisallow) or ''), target)
                     and EntityCategoryContains((ParseEntityCategory(v.TargetAllow) or categories.ALLUNITS), target) then
-                    
+
                     target:AddBuff(v)
                 end
             end

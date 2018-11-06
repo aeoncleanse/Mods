@@ -218,7 +218,7 @@ UEFHVM01Projectile = Class(EmitterProjectile) {
     FxPropHitScale = 0.4,
     FxImpactUnit = EffectTemplate.TMissileHit02,
     FxImpactAirUnit = EffectTemplate.TMissileHit02,
-    FxImpactProp = EffectTemplate.TMissileHit02,    
+    FxImpactProp = EffectTemplate.TMissileHit02,
     FxImpactLand = EffectTemplate.TMissileHit02,
     FxImpactUnderWater = {},
 }
@@ -281,7 +281,7 @@ CybranHailfire01ChildProjectile = Class(SinglePolyTrailProjectile) {
 
     -- Hit Effects
     FxImpactUnit = EXEffectTemplate.CybranHailfire01HitUnit01,
-    FxImpactProp = EXEffectTemplate.CybranHailfire01HitUnit01,    
+    FxImpactProp = EXEffectTemplate.CybranHailfire01HitUnit01,
     FxImpactLand = EXEffectTemplate.CybranHailfire01HitLand01,
     FxImpactWater = EXEffectTemplate.CybranHailfire01HitWater01,
     FxImpactShield = EXEffectTemplate.CybranHailfire01HitWater01,
@@ -307,7 +307,7 @@ CybranHailfire02Projectile = Class(SinglePolyTrailProjectile) {
     PolyTrail = EffectTemplate.CNanoDartPolyTrail01,
 
     -- Hit Effects
-    FxImpactProp = EffectTemplate.CNanoDartUnitHit01,    
+    FxImpactProp = EffectTemplate.CNanoDartUnitHit01,
     FxImpactWater = EffectTemplate.CNanoDartUnitHit01,
     FxImpactUnit = EffectTemplate.CNanoDartUnitHit01,
     FxImpactLand = EffectTemplate.CNanoDartLandHit01,

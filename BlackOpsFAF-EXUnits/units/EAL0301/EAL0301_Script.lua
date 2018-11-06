@@ -13,11 +13,11 @@ local ADFReactonCannon = import('/lua/aeonweapons.lua').ADFReactonCannon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
-EAL0301 = Class(AWalkingLandUnit) {    
+EAL0301 = Class(AWalkingLandUnit) {
     Weapons = {
         FrontTurret01 = Class(ADFReactonCannon) {}
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         AWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
         self:DisableUnitIntel('RadarStealth')
@@ -26,7 +26,7 @@ EAL0301 = Class(AWalkingLandUnit) {
             self.TeleAnimManip = CreateAnimator(self)
         end
     end,
-    
+
     OnFailedTeleport = function(self)
         AWalkingLandUnit.OnFailedTeleport(self)
         self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
@@ -41,7 +41,7 @@ EAL0301 = Class(AWalkingLandUnit) {
         self.Trash:Add( self.TeleAnimManip )
         AWalkingLandUnit.PlayTeleportChargeEffects(self, location)
     end,
-    
+
     PlayTeleportInEffects = function( self )
         AWalkingLandUnit.PlayTeleportInEffects(self)
         self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
@@ -49,7 +49,7 @@ EAL0301 = Class(AWalkingLandUnit) {
         self.TeleAnimManip:SetRate(-0.25)
         self.Trash:Add( self.TeleAnimManip )
     end,
-    
+
 }
 
 TypeClass = EAL0301

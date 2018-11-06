@@ -35,7 +35,7 @@ EES0302 = Class(TSeaUnit) {
 
     OnScriptBitSet = function(self, bit)
         TSeaUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:SetWeaponEnabledByLabel('AAFlakFore', true)
             self:SetWeaponEnabledByLabel('TMDFore', false)
             self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch() )
@@ -47,7 +47,7 @@ EES0302 = Class(TSeaUnit) {
 
     OnScriptBitClear = function(self, bit)
         TSeaUnit.OnScriptBitClear(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:SetWeaponEnabledByLabel('AAFlakFore', false)
             self:SetWeaponEnabledByLabel('TMDFore', true)
             self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch() )

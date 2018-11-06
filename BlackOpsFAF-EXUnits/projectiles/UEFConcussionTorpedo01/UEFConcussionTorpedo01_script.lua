@@ -12,7 +12,7 @@ UEFConcussionTorpedo01 = Class(TTorpedoSubProjectile) {
             self:ForkThread(self.MyTargetRangeCheck)
         end
     end,
-    
+
     MyTargetRangeCheck = function(self, TargetType, TargetEntity)
         local mytarget = self:GetTrackingTarget()
         local targetpos = mytarget:GetPosition()
@@ -31,10 +31,10 @@ UEFConcussionTorpedo01 = Class(TTorpedoSubProjectile) {
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
             nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
-            
+
         end
         TTorpedoSubProjectile.OnImpact(self, TargetType, TargetEntity)
-    end,    
-    
+    end,
+
 }
 TypeClass = UEFConcussionTorpedo01

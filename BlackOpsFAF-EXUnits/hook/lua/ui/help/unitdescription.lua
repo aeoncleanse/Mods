@@ -4,7 +4,7 @@
 --**
 --**
 --****************************************************************************
- 
+
 ----Exavier's Units
 
 Description['eal0301'] = "Hidden from prying eyes a small faction of the Aeon have developed a minature personal teleporter capable of being mounted on a standerd combat bot. While weaker than the average unit of this size the ability to move about the abttlefield quickly has made this a harassment unit of choice."

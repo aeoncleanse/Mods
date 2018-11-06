@@ -25,7 +25,7 @@ EES0301 = Class(TSubUnit) {
         CruiseMissiles = Class(TIFCruiseMissileLauncherSub) {},
         AdvancedTorpedos = Class(TANTorpedoAngler) {},
         SAMLauncher = Class(TSAMLauncher) {},
-        GatlingCannon = Class(TDFHeavyPlasmaCannonWeapon) {       
+        GatlingCannon = Class(TDFHeavyPlasmaCannonWeapon) {
             PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
@@ -34,11 +34,11 @@ EES0301 = Class(TSubUnit) {
                 TDFHeavyPlasmaCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
             PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip then 
+                if not self.SpinManip then
                     self.SpinManip = CreateRotator(self.unit, 'Gat_Barrel', 'z', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip)
                 end
-                
+
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(500)
                 end
@@ -50,7 +50,7 @@ EES0301 = Class(TSubUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Turret', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 TDFHeavyPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,    
+            end,
         },
         TacticalNuke = Class(TIFCruiseMissileLauncher) {},
     },
