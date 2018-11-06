@@ -24,7 +24,7 @@ EXETacNukeEffect02 = Class(NullShell) {
 
         WaitSeconds(4)
         for k, v in EffectTemplate.TNukeHeadEffects01 do
-            CreateEmitterOnEntity(self, army, v ):ScaleEmitter(0.25)-- Exavier Modified Scale
+            CreateEmitterOnEntity(self, army, v):ScaleEmitter(0.25)-- Exavier Modified Scale
         end
 
         self:SetVelocity(0,0.35,0)-- Exavier Modified Velocity

@@ -41,7 +41,7 @@ ERL0301 = Class(CWalkingLandUnit) {
 
     OnScriptBitSet = function(self, bit)
         if bit == 8 then -- cloak toggle
-            self:StopUnitAmbientSound( 'ActiveLoop' )
+            self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('Cloak')
             self:DisableUnitIntel('RadarStealth')
@@ -50,7 +50,7 @@ ERL0301 = Class(CWalkingLandUnit) {
 
     OnScriptBitClear = function(self, bit)
         if bit == 8 then -- cloak toggle
-            self:PlayUnitAmbientSound( 'ActiveLoop' )
+            self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('Cloak')
             self:EnableUnitIntel('RadarStealth')
@@ -84,7 +84,7 @@ ERL0301 = Class(CWalkingLandUnit) {
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end
         end
     end,

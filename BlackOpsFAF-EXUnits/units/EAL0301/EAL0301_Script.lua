@@ -22,32 +22,32 @@ EAL0301 = Class(AWalkingLandUnit) {
         AWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
         self:DisableUnitIntel('RadarStealth')
         self:DisableUnitIntel('RadarStealthField')
-        if( not self.TeleAnimManip ) then
+        if(not self.TeleAnimManip) then
             self.TeleAnimManip = CreateAnimator(self)
         end
     end,
 
     OnFailedTeleport = function(self)
         AWalkingLandUnit.OnFailedTeleport(self)
-        self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
+        self.TeleAnimManip:PlayAnim('/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca')
         self.TeleAnimManip:SetAnimationFraction(1)
         self.TeleAnimManip:SetRate(-0.25)
-        self.Trash:Add( self.TeleAnimManip )
+        self.Trash:Add(self.TeleAnimManip)
     end,
 
     PlayTeleportChargeEffects = function(self, location)
-        self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
+        self.TeleAnimManip:PlayAnim('/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca')
         self.TeleAnimManip:SetRate(0.25)
-        self.Trash:Add( self.TeleAnimManip )
+        self.Trash:Add(self.TeleAnimManip)
         AWalkingLandUnit.PlayTeleportChargeEffects(self, location)
     end,
 
-    PlayTeleportInEffects = function( self )
+    PlayTeleportInEffects = function(self)
         AWalkingLandUnit.PlayTeleportInEffects(self)
-        self.TeleAnimManip:PlayAnim( '/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca' )
+        self.TeleAnimManip:PlayAnim('/mods/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_TeleAnim.sca')
         self.TeleAnimManip:SetAnimationFraction(1)
         self.TeleAnimManip:SetRate(-0.25)
-        self.Trash:Add( self.TeleAnimManip )
+        self.Trash:Add(self.TeleAnimManip)
     end,
 
 }

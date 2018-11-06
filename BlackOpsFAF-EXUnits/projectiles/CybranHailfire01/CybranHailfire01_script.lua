@@ -14,7 +14,7 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
    OnCreate = function(self)
         CybranHailfire02Projectile.OnCreate(self)
         for k, v in self.FxTrails do
-            CreateEmitterOnEntity(self,self:GetArmy(),v )
+            CreateEmitterOnEntity(self,self:GetArmy(),v)
         end
         self.MoveThread = self:ForkThread(self.MovementThread)
    end,
@@ -46,7 +46,7 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
 
             ------ Split effects
             for k, v in FxFragEffect do
-                CreateEmitterAtEntity( self, self:GetArmy(), v )
+                CreateEmitterAtEntity(self, self:GetArmy(), v)
             end
 
             local vx, vy, vz = self:GetVelocity()
@@ -59,7 +59,7 @@ CAANanoDart02 = Class(CybranHailfire02Projectile) {
             local numProjectiles = 2
 
             local angle = (2*math.pi) / numProjectiles
-            local angleInitial = RandomFloat( 0, angle )
+            local angleInitial = RandomFloat(0, angle)
 
             -- Randomization of the spread
             local angleVariation = angle * 3 -- Adjusts angle variance spread

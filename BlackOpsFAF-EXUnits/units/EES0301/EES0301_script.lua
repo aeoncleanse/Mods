@@ -30,7 +30,7 @@ EES0301 = Class(TSubUnit) {
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Turret', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Turret', self.unit:GetArmy(), Effects.WeaponSteam01)
                 TDFHeavyPlasmaCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
             PlayFxRackSalvoChargeSequence = function(self)
@@ -48,7 +48,7 @@ EES0301 = Class(TSubUnit) {
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(200)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Turret', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Turret', self.unit:GetArmy(), Effects.WeaponSteam01)
                 TDFHeavyPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
@@ -68,7 +68,7 @@ EES0301 = Class(TSubUnit) {
         end
     end,
 
-    OnLayerChange = function( self, new, old )
+    OnLayerChange = function(self, new, old)
         TSubUnit.OnLayerChange(self, new, old)
         if new == 'Water' then
             self:SetWeaponEnabledByLabel('GatlingCannon', true)

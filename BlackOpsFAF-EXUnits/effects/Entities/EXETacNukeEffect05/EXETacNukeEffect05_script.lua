@@ -22,7 +22,7 @@ EXETacNukeEffect05 = Class(NullShell) {
         local army = self:GetArmy()
 
         for k, v in EffectTemplate.TNukeBaseEffects02 do
-            CreateEmitterOnEntity(self, army, v ):ScaleEmitter(0.125)-- Exavier Modified Scale
+            CreateEmitterOnEntity(self, army, v):ScaleEmitter(0.125)-- Exavier Modified Scale
         end
     end,
 }
