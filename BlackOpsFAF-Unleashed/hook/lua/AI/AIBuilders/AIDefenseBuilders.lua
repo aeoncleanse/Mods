@@ -13,13 +13,13 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'DEFENSE TECH3 ANTIAIR STRUCTURE'}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }}, #DUNCAN - was 0.9, 1.2
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }}, --DUNCAN - was 0.9, 1.2
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'DEFENSE TECH3 ANTIAIR STRUCTURE' } },
             { UCBC, 'UnitCapCheckLess', { .9 } },
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 0, #DUNCAN - was 2
+            NumAssistees = 0, --DUNCAN - was 2
             Construction = {
                 BuildClose = true,
                 AvoidCategory = 'TECH3 ANTIAIR STRUCTURE',
@@ -65,7 +65,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.TACTICALMISSILEPLATFORM}},
             { EBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            #{ UCBC, 'CheckUnitRange', { 'LocationType', 'T2StrategicMissile', categories.STRUCTURE + (categories.LAND * (categories.TECH2 + categories.TECH3)) } },
+            --{ UCBC, 'CheckUnitRange', { 'LocationType', 'T2StrategicMissile', categories.STRUCTURE + (categories.LAND * (categories.TECH2 + categories.TECH3)) } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
         },
         BuilderType = 'Any',
