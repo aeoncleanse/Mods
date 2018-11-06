@@ -1,12 +1,12 @@
-#****************************************************************************
-#** 
-#**  File     :  /cdimage/units/XSB0001/XSB0001_script.lua 
-#**  Author(s):  John Comes, David Tomandl 
-#** 
-#**  Summary  :  UEF Wall Piece Script 
-#** 
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--** 
+--**  File     :  /cdimage/units/XSB0001/XSB0001_script.lua 
+--**  Author(s):  John Comes, David Tomandl 
+--** 
+--**  Summary  :  UEF Wall Piece Script 
+--** 
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
 local SeraLambdaField = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsdefaultantiprojectile.lua').SeraLambdaFieldDestroyer
 local TerranWeaponFile = import('/lua/terranweapons.lua')
@@ -41,14 +41,14 @@ EEB0001 = Class(SStructureUnit) {
 	end,
 	
     OnKilled = function(self, instigator, type, overkillRatio)
-        ### Notifies parent of drone death and clears the offending drone from the parents table
+        ------ Notifies parent of drone death and clears the offending drone from the parents table
         if not self.Parent:IsDead() then
             self.Parent:NotifyOfDroneDeath(self.Drone)
             table.removeByValue(self.Parent.StellarCoreTable, self)
             self.Parent = nil
         end
        
-        ### Final command to finish off the fighters death event
+        ------ Final command to finish off the fighters death event
         SStructureUnit.OnKilled(self, instigator, type, overkillRatio)
     end, 
 }

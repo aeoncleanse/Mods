@@ -1,6 +1,6 @@
-#
-# Terran CDR Nuke
-#
+--
+-- Terran CDR Nuke
+--
 local TIFMissileNuke = import('/lua/terranprojectiles.lua').TIFMissileNuke
 
 UEFTacNuke01 = Class(TIFMissileNuke) {

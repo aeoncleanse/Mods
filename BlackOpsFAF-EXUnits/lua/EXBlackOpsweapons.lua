@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/lua/modules/BlackOpsweapons.lua
-#**  Author(s):  Lt_hawkeye
-#**
-#**  Summary  :  
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/lua/modules/BlackOpsweapons.lua
+--**  Author(s):  Lt_hawkeye
+--**
+--**  Summary  :  
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local WeaponFile = import('/lua/sim/defaultweapons.lua')
 local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
@@ -23,9 +23,9 @@ local MicrowaveLaserCollisionBeam01 = CollisionBeamFile.MicrowaveLaserCollisionB
 local EXCollisionBeamFile = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsdefaultcollisionbeams.lua')
 local EXEffectTemplate = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsEffectTemplates.lua')
 
-#-----------------------------
-#   UEF Sonic Disruptor Wave
-#-----------------------------
+-------------------------------
+--   UEF Sonic Disruptor Wave
+-------------------------------
 SonicDisruptorWave = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.SonicDisruptorWaveCBeam,
     FxMuzzleFlash = {},
@@ -47,21 +47,21 @@ SonicDisruptorWave = Class(DefaultBeamWeapon) {
     end,
 }
 
-#-----------------------------
-#   UEF Sub Gatling Cannon
-#-----------------------------
+-------------------------------
+--   UEF Sub Gatling Cannon
+-------------------------------
 UEFACUHeavyPlasmaGatlingCannonWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EXEffectTemplate.UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
 	FxMuzzleFlashScale = 0.35,
 }
 
-#-----------------------------
-#   UEF Hyper Velocity Missile
-#-----------------------------
+-------------------------------
+--   UEF Hyper Velocity Missile
+-------------------------------
 
-#-----------------------------
-#   Cybran ShadowSplitter Beam
-#-----------------------------
+-------------------------------
+--   Cybran ShadowSplitter Beam
+-------------------------------
 CybranShadowSplitterBeam = Class(DefaultBeamWeapon) {
     BeamType = EXCollisionBeamFile.CybranSSBeam,
     FxMuzzleFlash = {},
@@ -102,9 +102,9 @@ CybranAriesBeam = Class(DefaultBeamWeapon) {
     end,
 }
 
-#-----------------------------
-#   Cybran Hailfire
-#-----------------------------
+-------------------------------
+--   Cybran Hailfire
+-------------------------------
 HailfireLauncherWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EXEffectTemplate.HailfireLauncherExhaust,
 	

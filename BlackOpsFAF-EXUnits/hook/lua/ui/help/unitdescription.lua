@@ -1,11 +1,11 @@
-##****************************************************************************
-#**  File     :  lua/ui/help/unitdescriptions.lua
-#**  Author(s):  Exavier Macbeth
-#**
-#**
-#****************************************************************************
+----****************************************************************************
+--**  File     :  lua/ui/help/unitdescriptions.lua
+--**  Author(s):  Exavier Macbeth
+--**
+--**
+--****************************************************************************
  
-##Exavier's Units
+----Exavier's Units
 
 Description['eal0301'] = "Hidden from prying eyes a small faction of the Aeon have developed a minature personal teleporter capable of being mounted on a standerd combat bot. While weaker than the average unit of this size the ability to move about the abttlefield quickly has made this a harassment unit of choice."
 Description['eeb0402'] = "With recent improvments on matter compression and containment it is now possible to harness the energies of the stars themselves. When powered up this facility creates and maintains a minature sun which can then be harvested for energy and mass resorces. However the facility is still a prototype and may not react well to incomming fire."

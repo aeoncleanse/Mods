@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/DRL0204/DRL0204_script.lua
-#**  Author(s):  Dru Staltman, Eric Williamson, Gordon Duclos
-#**
-#**  Summary  :  Cybran Rocket Bot Script
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/DRL0204/DRL0204_script.lua
+--**  Author(s):  Dru Staltman, Eric Williamson, Gordon Duclos
+--**
+--**  Summary  :  Cybran Rocket Bot Script
+--**
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsweapons.lua')
 local CybranShadowSplitterBeam = CybranWeaponsFile.CybranShadowSplitterBeam
@@ -40,7 +40,7 @@ ERL0301 = Class(CWalkingLandUnit) {
     end,
 
     OnScriptBitSet = function(self, bit)
-        if bit == 8 then # cloak toggle
+        if bit == 8 then -- cloak toggle
             self:StopUnitAmbientSound( 'ActiveLoop' )
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('Cloak')
@@ -49,7 +49,7 @@ ERL0301 = Class(CWalkingLandUnit) {
     end,
 
     OnScriptBitClear = function(self, bit)
-        if bit == 8 then # cloak toggle
+        if bit == 8 then -- cloak toggle
             self:PlayUnitAmbientSound( 'ActiveLoop' )
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('Cloak')
