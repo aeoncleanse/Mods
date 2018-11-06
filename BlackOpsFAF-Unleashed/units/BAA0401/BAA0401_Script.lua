@@ -258,11 +258,11 @@ BAA0401 = Class(AAirUnit) {
 
     CreateDamageEffects = function(self, bone, army)
         for k, v in BlackOpsEffectTemplate.ArtemisDamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(6)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(6)
         end
     end,
 
-    CreateExplosionDebris = function( self, bone, army )
+    CreateExplosionDebris = function(self, bone, army)
         for k, v in EffectTemplate.ExplosionDebrisLrg01 do
             CreateAttachedEmitter(self, bone, army, v)
         end
@@ -286,39 +286,39 @@ BAA0401 = Class(AAirUnit) {
         self:CreateExplosionDebris('DamageBone01', army)
 
         -- Create damage effects on turret bone
-        CreateDeathExplosion( self, 'DamageBone01', 1.5)
+        CreateDeathExplosion(self, 'DamageBone01', 1.5)
 
-        self:CreateDamageEffects( 'DamageBone01', army )
-        self:CreateDamageEffects( 'DamageBone02', army )
-        self:CreateDamageEffects( 'DamageBone03', army )
-        self:CreateDamageEffects( 'DamageBone04', army )
+        self:CreateDamageEffects('DamageBone01', army)
+        self:CreateDamageEffects('DamageBone02', army)
+        self:CreateDamageEffects('DamageBone03', army)
+        self:CreateDamageEffects('DamageBone04', army)
         WaitSeconds(0.8)
-        self:CreateDamageEffects( 'DamageBone05', army )
-        self:CreateDamageEffects( 'DamageBone06', army )
-        self:CreateDamageEffects( 'DamageBone07', army )
-        self:CreateDamageEffects( 'DamageBone08', army )
+        self:CreateDamageEffects('DamageBone05', army)
+        self:CreateDamageEffects('DamageBone06', army)
+        self:CreateDamageEffects('DamageBone07', army)
+        self:CreateDamageEffects('DamageBone08', army)
         WaitSeconds(0.8)
-        self:CreateDamageEffects( 'DamageBone09', army )
-        self:CreateDamageEffects( 'DamageBone10', army )
-        self:CreateDamageEffects( 'DamageBone11', army )
-        self:CreateDamageEffects( 'DamageBone12', army )
+        self:CreateDamageEffects('DamageBone09', army)
+        self:CreateDamageEffects('DamageBone10', army)
+        self:CreateDamageEffects('DamageBone11', army)
+        self:CreateDamageEffects('DamageBone12', army)
 
-        CreateDeathExplosion( self, 'DamageBone01', 1)
+        CreateDeathExplosion(self, 'DamageBone01', 1)
 
-        CreateDeathExplosion( self, 'DamageBone08', 1)
+        CreateDeathExplosion(self, 'DamageBone08', 1)
         WaitSeconds(0.8)
-        CreateDeathExplosion( self, 'DamageBone05', 1)
+        CreateDeathExplosion(self, 'DamageBone05', 1)
         WaitSeconds(0.5)
-        CreateDeathExplosion( self, 'DamageBone11', 1)
+        CreateDeathExplosion(self, 'DamageBone11', 1)
         WaitSeconds(0.4)
-        CreateDeathExplosion( self, 'DamageBone03', 1)
-        CreateDeathExplosion( self, 'DamageBone02', 2)
-        CreateDeathExplosion( self, 'DamageBone12', 1)
+        CreateDeathExplosion(self, 'DamageBone03', 1)
+        CreateDeathExplosion(self, 'DamageBone02', 2)
+        CreateDeathExplosion(self, 'DamageBone12', 1)
 
         WaitSeconds(0.5)
     end,
 
-    CreateSCUEffects = function(self, bone, army )
+    CreateSCUEffects = function(self, bone, army)
         local sides = 1
         local angle = (1*math.pi) / sides
         local velocity = 2
@@ -342,9 +342,9 @@ BAA0401 = Class(AAirUnit) {
         WaitSeconds(0.4)
         CreateDeathExplosion(self, 'DamageBone02', 2)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'DamageBone08', 1)
+        CreateDeathExplosion(self, 'DamageBone08', 1)
         WaitSeconds(0.2)
-        CreateDeathExplosion( self, 'DamageBone05', 1)
+        CreateDeathExplosion(self, 'DamageBone05', 1)
         LOG('waiting 0.5 seconds')
         WaitSeconds(0.5)
 

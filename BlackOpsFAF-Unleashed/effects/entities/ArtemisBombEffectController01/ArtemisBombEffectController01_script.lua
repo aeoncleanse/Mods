@@ -192,7 +192,7 @@ ArtemisBombEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(ArtemisBombEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(10, 25 ))
+            proj:SetVelocity(RandomFloat(10, 25))
             proj:SetBallisticAcceleration(-9.8)
         end
     end,

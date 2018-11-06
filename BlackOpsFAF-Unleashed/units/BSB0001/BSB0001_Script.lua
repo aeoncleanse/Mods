@@ -54,7 +54,7 @@ BSB0001 = Class(SShieldLandUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.ShieldEffctsBag then
-            for k,v in self.ShieldEffectsBag do
+            for k, v in self.ShieldEffectsBag do
                 v:Destroy()
             end
         end

@@ -1,6 +1,6 @@
 -- overwrite the original function. Destructive hook !
-local LetterArray = { ["Aeon"] = "ua", ["UEF"] = "ue", ["Cybran"] = "ur", ["Seraphim"] = "xs" }
-local BOLetterArray = { ["Aeon"] = "ba", ["UEF"] = "be", ["Cybran"] = "br", ["Seraphim"] = "bs" }
+local LetterArray = {["Aeon"] = "ua", ["UEF"] = "ue", ["Cybran"] = "ur", ["Seraphim"] = "xs"}
+local BOLetterArray = {["Aeon"] = "ba", ["UEF"] = "be", ["Cybran"] = "br", ["Seraphim"] = "bs"}
 
 Callbacks.CapMex = function(data, units)
     local units = EntityCategoryFilterDown(categories.ENGINEER, SecureUnits(units))

@@ -136,7 +136,7 @@ SDFExperimentalPhasonProjHit02 = {
     EmtBpPath .. 'seraphim_experimental_phasonproj_hitunit_08_emit.bp',
 }
 
-SDFExperimentalPhasonProjHitUnit = table.concatenate( SDFExperimentalPhasonProjHit01, SDFExperimentalPhasonProjHit02, UnitHitShrapnel01 )
+SDFExperimentalPhasonProjHitUnit = table.concatenate(SDFExperimentalPhasonProjHit01, SDFExperimentalPhasonProjHit02, UnitHitShrapnel01)
 
 ShadowCannonPolyTrail = {
     EmtBpPath .. 'electron_bolter_trail_01_emit.bp',

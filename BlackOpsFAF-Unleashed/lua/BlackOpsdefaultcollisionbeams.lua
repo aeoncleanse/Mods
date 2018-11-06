@@ -140,7 +140,7 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -149,14 +149,14 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function( self )
+    OnEnable = function(self)
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread( self.ScorchThread )
+            self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -169,15 +169,15 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -211,7 +211,7 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -220,14 +220,14 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function( self )
+    OnEnable = function(self)
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread( self.ScorchThread )
+            self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -240,15 +240,15 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 250, 250, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -269,7 +269,7 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -278,14 +278,14 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function( self )
+    OnEnable = function(self)
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread( self.ScorchThread )
+            self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -298,15 +298,15 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -327,7 +327,7 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -336,14 +336,14 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnEnable = function( self )
+    OnEnable = function(self)
         CollisionBeam.OnEnable(self)
         if self.Scorching == nil then
-            self.Scorching = self:ForkThread( self.ScorchThread )
+            self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -356,15 +356,15 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -410,7 +410,7 @@ RailLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
 
-    OnImpactDestroy = function( self, targetType, targetEntity )
+    OnImpactDestroy = function(self, targetType, targetEntity)
        if targetEntity and not IsUnit(targetEntity) then
           RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
           return
@@ -490,7 +490,7 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -499,7 +499,7 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -512,15 +512,15 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
         end
@@ -564,7 +564,7 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -573,7 +573,7 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -586,15 +586,15 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 4.0 + (Random() * 1.0)
             CurrentPosition = self:GetPosition(1)
         end
@@ -615,7 +615,7 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -624,7 +624,7 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
 
-    OnDisable = function( self )
+    OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil
@@ -637,15 +637,15 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
         while true do
-            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
-                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+            if Util.GetDistanceBetweenTwoVectors(CurrentPosition, LastPosition) > 0.25 or skipCount > 100 then
+                CreateSplat(CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army)
                 LastPosition = CurrentPosition
                 skipCount = 1
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
 
-            WaitSeconds( self.ScorchSplatDropTime )
+            WaitSeconds(self.ScorchSplatDropTime)
             size = 4.0 + (Random() * 1.0)
             CurrentPosition = self:GetPosition(1)
         end

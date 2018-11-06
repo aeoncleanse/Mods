@@ -16,7 +16,7 @@ GoldAA = Class(GoldAAProjectile) {
     end,
 
     SplitThread = function(self)
-        for k,v in EffectTemplate.AMercyGuidedMissileSplit do
+        for k, v in EffectTemplate.AMercyGuidedMissileSplit do
             CreateEmitterOnEntity(self,self:GetArmy(),v)
         end
 

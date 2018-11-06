@@ -9,8 +9,8 @@ local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
 local BOHellstormGun = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsWeapons.lua').BOHellstormGun
 
 -- Weapon bones for recoil effects
-local muzzleBones = { 'Muzzle01', 'Muzzle02', 'Muzzle03' }
-local recoilgroup1 = { 'Recoil_01', 'Recoil_02', 'Recoil_03' }
+local muzzleBones = {'Muzzle01', 'Muzzle02', 'Muzzle03'}
+local recoilgroup1 = {'Recoil_01', 'Recoil_02', 'Recoil_03'}
 
 BEB2303 = Class(TStructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)

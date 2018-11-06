@@ -95,7 +95,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         end
 
         for k, v in self.ShieldEffects do
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 0, self:GetArmy(), v ) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v) )
         end
     end,
 
@@ -484,7 +484,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         self:SetWeaponEnabledByLabel('AjelluTorpedoDefense01', false)
         self:SetWeaponEnabledByLabel('AjelluTorpedoDefense02', false)
         if self.ShieldEffctsBag then
-            for k,v in self.ShieldEffectsBag do
+            for k, v in self.ShieldEffectsBag do
                 v:Destroy()
             end
         end

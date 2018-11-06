@@ -30,7 +30,7 @@ BRA0409 = Class(AirTransport) {
         MainGun = Class(CIFMissileStrategicWeapon) {},
     },
 
-    AirDestructionEffectBones = { 'Engine_01', 'Engine_02', 'Engine_03', 'Engine_04', 'Engine_05', 'Main_Gun_Turret', 'L_Barrel_01', 'R_Barrel_01',
+    AirDestructionEffectBones = {'Engine_01', 'Engine_02', 'Engine_03', 'Engine_04', 'Engine_05', 'Main_Gun_Turret', 'L_Barrel_01', 'R_Barrel_01',
                                   'L_Back_Barrel_01', 'R_Back_Turret_01', 'Main_Gun_Muzzle','R_Turret_01', 'R_U_Muzzle_01',
                                   'Door_Right', 'Door_Left', 'Right_wing','Left_wing',
                                   'R_Pivot01', 'L_pivot_01', 'L_Back_Turret_01','R_B_AA_Muzzle_01',

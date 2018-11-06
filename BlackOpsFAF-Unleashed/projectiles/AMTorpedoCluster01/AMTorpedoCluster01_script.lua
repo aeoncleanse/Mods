@@ -10,7 +10,7 @@ local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
 AANTorpedoCluster01 = Class(AMTorpedoCluster) {
-    FxEnterWater= { '/effects/emitters/water_splash_ripples_ring_01_emit.bp',
+    FxEnterWater= {'/effects/emitters/water_splash_ripples_ring_01_emit.bp',
                     '/effects/emitters/water_splash_plume_01_emit.bp',
                 },
 

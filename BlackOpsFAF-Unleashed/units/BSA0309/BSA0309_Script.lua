@@ -14,7 +14,7 @@ local SDFHeavyPhasicAutoGunWeapon = SeraphimWeapons.SDFHeavyPhasicAutoGunWeapon
 local SeraLambdaFieldDestroyer = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsDefaultAntiProjectile.lua').SeraLambdaFieldDestroyer
 
 BSA0309 = Class(AirTransport) {
-    AirDestructionEffectBones = { 'XSA0309','Left_Attachpoint08','Right_Attachpoint02'},
+    AirDestructionEffectBones = {'XSA0309','Left_Attachpoint08','Right_Attachpoint02'},
 
     Weapons = {
         AutoGun = Class(SDFHeavyPhasicAutoGunWeapon) {},

@@ -30,7 +30,7 @@ BEB0003 = Class(SStructureUnit) {
             self.ShieldEffectsBag = {}
         end
         for k, v in self.ShieldEffects do
-            table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.5) )
+            table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.5))
         end
     end,
 
@@ -40,7 +40,7 @@ BEB0003 = Class(SStructureUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.ShieldEffctsBag then
-            for k,v in self.ShieldEffectsBag do
+            for k, v in self.ShieldEffectsBag do
                 v:Destroy()
             end
         end

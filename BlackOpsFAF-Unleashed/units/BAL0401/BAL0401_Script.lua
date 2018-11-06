@@ -130,7 +130,7 @@ BAL0401 = Class(AWalkingLandUnit) {
         AWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
-    DeathThread = function( self, overkillRatio , instigator)
+    DeathThread = function(self, overkillRatio , instigator)
         explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner_Ball', 5.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         WaitSeconds(2)
@@ -162,17 +162,17 @@ BAL0401 = Class(AWalkingLandUnit) {
         end
 
         self:DestroyAllDamageEffects()
-        self:CreateWreckage( overkillRatio )
+        self:CreateWreckage(overkillRatio)
 
         -- CURRENTLY DISABLED UNTIL DESTRUCTION
         -- Create destruction debris out of the mesh, currently these projectiles look like crap,
         -- since projectile rotation and terrain collision doesn't work that great. These are left in
         -- hopes that this will look better in the future.. =)
-        if( self.ShowUnitDestructionDebris and overkillRatio ) then
+        if(self.ShowUnitDestructionDebris and overkillRatio) then
             if overkillRatio <= 1 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 2 then
-                self.CreateUnitDestructionDebris( self, true, true, false )
+                self.CreateUnitDestructionDebris(self, true, true, false)
             elseif overkillRatio <= 3 then
                 self.CreateUnitDestructionDebris(self, true, true, true)
             else

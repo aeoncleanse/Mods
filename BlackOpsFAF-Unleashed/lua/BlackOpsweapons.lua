@@ -42,7 +42,7 @@ MiniQuantumBeamGenerator = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 0.2,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -60,7 +60,7 @@ SuperQuantumBeamGenerator = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -79,7 +79,7 @@ MiniPhasonLaser = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 0.002,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -130,7 +130,7 @@ MiniHeavyMicrowaveLaserGenerator = Class(DefaultBeamWeapon) {
         DefaultBeamWeapon.CreateProjectileAtMuzzle(self, muzzle)
     end,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -275,7 +275,7 @@ JuggLaserweapon = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 0.2,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
         for k, v in self.FxUpackingChargeEffects do
@@ -369,7 +369,7 @@ ZCannonWeapon = Class(DefaultProjectileWeapon) {
                 fxname = 'AMC' .. self.Cannon .. 'Steam' .. i
             end
             for k, v in self.unit.SteamEffects do
-                table.insert(self.unit.SteamEffectsBag, CreateAttachedEmitter(self.unit, fxname, self.unit:GetArmy(), v ))
+                table.insert(self.unit.SteamEffectsBag, CreateAttachedEmitter(self.unit, fxname, self.unit:GetArmy(), v))
             end
         end
         ZCannonWeapon.PlayFxRackSalvoChargeSequence(self)
@@ -395,7 +395,7 @@ ScorpDisintegratorWeapon = Class(DefaultProjectileWeapon) {
 }
 
 HawkMissileTacticalSerpentineWeapon = Class(DefaultProjectileWeapon) {
-    FxMuzzleFlash = { '/effects/emitters/aeon_missile_launch_02_emit.bp', },
+    FxMuzzleFlash = {'/effects/emitters/aeon_missile_launch_02_emit.bp',},
 }
 
 LambdaWeapon = Class(DefaultProjectileWeapon) {
@@ -417,7 +417,7 @@ TDFGoliathShoulderBeam = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -598,7 +598,7 @@ YenzothaExperimentalLaser = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.SDFExperimentalPhasonProjChargeMuzzleFlash,
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -617,7 +617,7 @@ YenzothaExperimentalLaser02 = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.SDFExperimentalPhasonProjChargeMuzzleFlash,
     FxUpackingChargeEffectScale = 0.2,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -649,7 +649,7 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
                 local aiBrain = self.unit:GetAIBrain()
 
                 if self:GetCurrentTarget() then
-                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.LAND + (categories.STRUCTURE) , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
+                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint(categories.LAND + (categories.STRUCTURE) , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
                     self.TargetTable = nil
                 end
 
@@ -752,7 +752,7 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
                     local aiBrain = self.unit:GetAIBrain()
 
                     if self:GetCurrentTarget() then
-                        PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
+                        PossibleTargetTable = aiBrain:GetUnitsAroundPoint(categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
                         self.TargetTable = nil
                     end
 
@@ -866,7 +866,7 @@ CitadelHVMWeapon = Class(DefaultProjectileWeapon) {
                 local aiBrain = self.unit:GetAIBrain()
 
                 if self:GetCurrentTarget() then
-                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
+                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint(categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
                     self.TargetTable = nil
                 end
 
