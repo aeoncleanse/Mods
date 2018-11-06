@@ -17,7 +17,7 @@ URB0102 = Class(CAirFactoryUnit) {
     UpgradeRevealArm2 = 'Arm04',
     UpgradeBuilderArm1 = 'Arm01_B02',
     UpgradeBuilderArm2 = 'Arm02_B02',
-	
+    
     FinishBuildThread = function(self, unitBeingBuilt, order )
         self:SetBusy(true)
         self:SetBlockCommandQueue(true)
@@ -40,8 +40,8 @@ URB0102 = Class(CAirFactoryUnit) {
             self:SetBusy(false)
             self:SetBlockCommandQueue(false)
         end
-    end,	
-	
+    end,    
+    
     PlayFxRollOffEnd = function(self)
         if self.RollOffAnim then        
             self.RollOffAnim:SetRate(-4)
@@ -49,7 +49,7 @@ URB0102 = Class(CAirFactoryUnit) {
             self.RollOffAnim:Destroy()
             self.RollOffAnim = nil
         end
-    end,	
+    end,    
 }
 
 TypeClass = URB0102

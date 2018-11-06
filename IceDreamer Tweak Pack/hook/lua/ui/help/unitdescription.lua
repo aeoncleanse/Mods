@@ -9,8 +9,8 @@
 Description = {
 ----UEF
 
-	----Armoured Command Unit 
-	['uel0001'] = "<LOC Unit_Description_0303>Houses Commander. Combination of Barracks and Command Center. Contains all the blueprints necessary to build a basic army from scratch.",
+    ----Armoured Command Unit 
+    ['uel0001'] = "<LOC Unit_Description_0303>Houses Commander. Combination of Barracks and Command Center. Contains all the blueprints necessary to build a basic army from scratch.",
     ['uel0001-tm'] = "<LOC Unit_Description_0004>Mounts a Tactical Cruise Missile Launcher onto the back of the ACU.",
     ['uel0001-aes'] = "<LOC Unit_Description_0005>Grants Tech 2 schematic access and increases the ACU's Build Speed and maximum Health.",
     ['uel0001-dsu'] = "<LOC Unit_Description_0006>Increases the speed at which the ACU repairs itself.",
@@ -25,14 +25,14 @@ Description = {
     ['uel0001-red'] = "<LOC Unit_Description_0015>Adds a second Engineering Drone.", 
      
     ----Support Commanders 
-	['uel0301'] = "<LOC Unit_Description_0016>A highly versatile Combat and Engineering unit useful on late-stage battlefields.",
+    ['uel0301'] = "<LOC Unit_Description_0016>A highly versatile Combat and Engineering unit useful on late-stage battlefields.",
     ['uel0301-ed'] = "<LOC Unit_Description_0017>Creates an Engineering Drone which act as a flying T1 Engineer. Assists the SACU by default, but can be given its own orders.",
     ['uel0301-psg'] = "<LOC Unit_Description_0018>Creates a protective Personal Shield around the SACU. Requires Energy to run.",
     ['uel0301-sgf'] = "<LOC Unit_Description_0019>Replaces the SACU's Personal Shield with a Bubble Shield which protects friendly units inside it. Requires additional Energy to run. Shields transfer residual Damage to intersecting Bubbles.",
     ['uel0301-rj'] = "<LOC Unit_Description_0020>Adds a Radar Jammer which creates false Radar images. Countered by Omni sensors.",
     ['uel0301-isb'] = "<LOC Unit_Description_0021>Increases ACU's resource generation to 10 Mass per second and 1000 Energy per second.",
     ['uel0301-sre'] = "<LOC Unit_Description_0022>Greatly expands the range of the standard on-board SACU sensor systems.",
-	['uel0301-acu'] = "<LOC Unit_Description_0023>Increases Rate-Of-Fire to 250%.",
+    ['uel0301-acu'] = "<LOC Unit_Description_0023>Increases Rate-Of-Fire to 250%.",
     ['uel0301-heo'] = "<LOC Unit_Description_0024>Equips the standard SACU Cannon with Area-Of-Effect Damage and much higher Range.",
     
     ----Land
@@ -51,7 +51,7 @@ Description = {
     ['uel0401'] = "<LOC Unit_Description_0037>Experimental Amphibious Mobile Artillery platform. Equipped with Battleship-level weaponry, Bubble Shield, close-fire support, Air Staging and Factory Facilities.",
     ['xel0305'] = "<LOC Unit_Description_0307>Extremely Heavy Amphibious Assault Robot. Designed to engage enemy Experimental units, Heavy units, and Defence structures.",
     ['xel0306'] = "<LOC Unit_Description_0308>Heavy Mobile Missile Launcher designed to overwhelm enemy Shields and Tactical Missile Defences with large salvos.",
-    ['del0204'] = "<LOC Unit_Description_0441>Long Range support Robot armed with Gatling Cannon and Fragmentation Grenade Launcher.",	
+    ['del0204'] = "<LOC Unit_Description_0441>Long Range support Robot armed with Gatling Cannon and Fragmentation Grenade Launcher.",    
    
     ----Air  
     ['uea0101'] = "<LOC Unit_Description_0038>Fast aerial reconnaissance vehicle.",
@@ -67,7 +67,7 @@ Description = {
     ['uea0305'] = "<LOC Unit_Description_0048>Heavily armoured Gunship armed with weak Anti-Air weapon.", 
     ['xea0306'] = "<LOC Unit_Description_0309>Heavily armoured, Shielded Air Transport. Armed with light Direct Fire and very powerful Anti-Air weaponry. Can carry 28 T1 units, 12 T2 units (Plus 4 T1), or 6 T3 units (Plus 4 T1).",
     ['dea0202'] = "<LOC Unit_Description_0417>Fast Assault Fighter armed with Anti-Air cannons and powerful Napalm Damage-Over-Time Bombs.",     
-	 
+     
     ----Navy 
     ['ues0103'] = "<LOC Unit_Description_0049>Naval support unit. Equipped with Direct Fire and Anti-Air weapons, Radar, Sonar and a Radar Jammer.",
     ['ues0203'] = "<LOC Unit_Description_0050>Basic Attack Submarine. Can surface to enable a weak Direct Fire cannon for additional power.",
@@ -90,31 +90,31 @@ Description = {
     ['ueb2205'] = "<LOC Unit_Description_0064>Armoured Torpedo turret.",
     ['ueb2304'] = "<LOC Unit_Description_0066>Anti-Air turret armed with Area-Of-Effect SAMs, effective against fast Aircraft.",
     ['ueb2303'] = "<LOC Unit_Description_0069>Stationary Artillery designed to engage slow-moving units and fixed structures. Rate Of Fire increased when adjacent to Energy Production Buildings.",
-    ['ueb2108'] = "<LOC Unit_Description_0070>Tactical Missile Launcher. Toggleable Missile construction for 6 Mass per second and 120 Energy per second. Defaults to Auto-Construction.",	
-    ['ueb2302'] = "<LOC Unit_Description_0072>Stationary Heavy Artillery with excellent Range and Damage, but poor Accuracy. Rate Of Fire increased when adjacent to Energy Production Buildings.",	
-    ['ueb2305'] = "<LOC Unit_Description_0073>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",	
+    ['ueb2108'] = "<LOC Unit_Description_0070>Tactical Missile Launcher. Toggleable Missile construction for 6 Mass per second and 120 Energy per second. Defaults to Auto-Construction.",    
+    ['ueb2302'] = "<LOC Unit_Description_0072>Stationary Heavy Artillery with excellent Range and Damage, but poor Accuracy. Rate Of Fire increased when adjacent to Energy Production Buildings.",    
+    ['ueb2305'] = "<LOC Unit_Description_0073>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",    
     ['ueb2401'] = "<LOC Unit_Description_0075>Strategic Assassination Artillery. Can hit any target on the map regardless of motion, range, or protection. Rate Of Fire increased when adjacent to Energy Production Buildings.",
-	['xeb2306'] = "<LOC Unit_Description_0313>Heavy surface defence turret.",	
-    ['xeb2402'] = "<LOC Unit_Description_0314>Orbital Laser Bombardment Satellite. The Satellite is untargetable by any weapon, but can be impacted. If the Base Station dies, so does the Satellite.",		
-	
-	----Defensive Buildings
-    ['ueb5101'] = "<LOC Unit_Description_0060>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",	
-    ['ueb4201'] = "<LOC Unit_Description_0063>Tactical Missile Defence turret.",	
+    ['xeb2306'] = "<LOC Unit_Description_0313>Heavy surface defence turret.",    
+    ['xeb2402'] = "<LOC Unit_Description_0314>Orbital Laser Bombardment Satellite. The Satellite is untargetable by any weapon, but can be impacted. If the Base Station dies, so does the Satellite.",        
+    
+    ----Defensive Buildings
+    ['ueb5101'] = "<LOC Unit_Description_0060>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",    
+    ['ueb4201'] = "<LOC Unit_Description_0063>Tactical Missile Defence turret.",    
     ['ueb4202'] = "<LOC Unit_Description_0065>Generates a protective Shield around Units and Structures within its radius. Can be upgraded to Tech 3. Shields transfer residual Damage to intersecting Bubbles.",
     ['ueb4302'] = "<LOC Unit_Description_0067>Strategic Missile Defence Silo.",
     ['ueb4301'] = "<LOC Unit_Description_0068>Generates a Heavy Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",
     ['ueb5202'] = "<LOC Unit_Description_0071>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",
-	
-	----Sensor Buildings
+    
+    ----Sensor Buildings
     ['ueb3101'] = "<LOC Unit_Description_0099>Short Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
     ['ueb3102'] = "<LOC Unit_Description_0100>Short Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
     ['ueb3201'] = "<LOC Unit_Description_0101>Medium Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
     ['ueb3202'] = "<LOC Unit_Description_0102>Medium Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
     ['ueb4203'] = "<LOC Unit_Description_0103>Stealth Field Generator which hides units and structures in range from enemy Radar. Countered by Optics and Omni Sensors.",
     ['ues0305'] = "<LOC Unit_Description_0104>Long Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units. Armed with a weak Torpedo Launcher.",
-    ['ueb3104'] = "<LOC Unit_Description_0105>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.",	
-	
-	----Economy Buildings
+    ['ueb3104'] = "<LOC Unit_Description_0105>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.",    
+    
+    ----Economy Buildings
     ['ueb1101'] = "<LOC Unit_Description_0088>Generates 20 Energy per second. Construct next to other structures for adjacency bonus.",
     ['ueb1102'] = "<LOC Unit_Description_0089>Generates 100 Energy per second. Must be constructed on hydrocarbon deposits. Construct structures next to Hydrocarbon Power Plant for adjacency bonus.",
     ['ueb1105'] = "<LOC Unit_Description_0090>Provides 5000 Energy Storage. Construct next to Power Generators for adjacency bonus.",
@@ -145,16 +145,16 @@ Description = {
     ['ueb0301'] = "<LOC Unit_Description_0085>Constructs Tech 3 Land units.",
     ['ueb0302'] = "<LOC Unit_Description_0086>Constructs Tech 3 Air units.",
     ['ueb0303'] = "<LOC Unit_Description_0087>Constructs Tech 3 Naval units.",
-    ['ueb0304'] = "<LOC Unit_Description_0074>Allows you to construct Support Command Units, either in their basic forms, or in a number of pre-enhanced versions.",	
+    ['ueb0304'] = "<LOC Unit_Description_0074>Allows you to construct Support Command Units, either in their basic forms, or in a number of pre-enhanced versions.",    
    
 ----Cybran
    
     ----Armoured Command Unit 
     ['url0001'] = "<LOC Unit_Description_0304>Houses Commander. Combination of Barracks and Command Center. Contains all the blueprints necessary to build a basic army from scratch. Lightly armoured, but with high Regeneration rate.",   
-	['url0001-ras'] = "<LOC Unit_Description_0106>Increases ACU's resource generation to 12 Mass per second and 3500 Energy per second.",
-	['url0001-pcg'] = "<LOC Unit_Description_0107>Personal Cloaking further hiding the ACU from Optical sensors and massively boosts HP. Countered by Omni sensors. Costs Energy to run.",
-	['url0001-psg'] = "<LOC Unit_Description_0108>Personal Stealth hiding the ACU from Radar. Countered by Omni sensors. Costs Energy to run.",
-	['url0001-pqt'] = "<LOC Unit_Description_0109>Adds Teleportation capability. Requires considerable Energy to activate.",
+    ['url0001-ras'] = "<LOC Unit_Description_0106>Increases ACU's resource generation to 12 Mass per second and 3500 Energy per second.",
+    ['url0001-pcg'] = "<LOC Unit_Description_0107>Personal Cloaking further hiding the ACU from Optical sensors and massively boosts HP. Countered by Omni sensors. Costs Energy to run.",
+    ['url0001-psg'] = "<LOC Unit_Description_0108>Personal Stealth hiding the ACU from Radar. Countered by Omni sensors. Costs Energy to run.",
+    ['url0001-pqt'] = "<LOC Unit_Description_0109>Adds Teleportation capability. Requires considerable Energy to activate.",
     ['url0001-aes'] = "<LOC Unit_Description_0110>Grants Tech 2 schematic access and increases the ACU's Build Speed and maximum Health.",
     ['url0001-ees'] = "<LOC Unit_Description_0111>Replaces the Tech 2 Engineering Suite. Grants Tech 3 and Experimental schematic access and further increases the ACU's Build Speed and maximum Health.",
     ['url0001-acu'] = "<LOC Unit_Description_0112>Doubles the Main Cannon Rate Of Fire, and increases the Range of all the ACU's weaponry.",
@@ -191,7 +191,7 @@ Description = {
     ['xrl0305'] = "<LOC Unit_Description_0318>Extremely Heavy Amphibious Assault Robot equipped with Direct Fire blasters, weak Torpedoes and Anti-Torpedo Flares. Designed to engage enemy Experimental units, Heavy units, and Defence structures.",
     ['xrl0403'] = "<LOC Unit_Description_0319>Experimental Amphibious Megabot armed with Proton cannons, Torpedoes and weak Anti-Air. Equipped with Anti-Torpedo Flares and an Egg-based Engineering system allowing it to actually shit Bricks.",
     ['drl0204'] = "<LOC Unit_Description_0444>Lightly armoured support Robot armed with Long-Range Rocket Launcher.",
-	
+    
     ----Crab Egg Units
     ['xrl0002'] = "<LOC Unit_Description_0447>Tech 3 Amphibious Construction, Repair, Capture and Reclamation unit.",
     ['xrl0003'] = "<LOC Unit_Description_0448>Extremely Heavy Amphibious Assault Robot equipped with Direct Fire blasters, weak Torpedoes and Anti-Torpedo Flares. Designed to engage enemy Experimental units, Heavy units, and Defence structures.",
@@ -212,7 +212,7 @@ Description = {
     ['ura0401'] = "<LOC Unit_Description_0148>Experimental Gunship armed with devastating Area-Of-Effect Direct Fire weaponry and effective Anti-Air.",
     ['xra0105'] = "<LOC Unit_Description_0320>Light Gunship armed with a standard blaster.",
     ['xra0305'] = "<LOC Unit_Description_0321>Heavily armoured Gunship armed with weak Anti-Air weapon. Equipped with Radar Jamming.",
-    ['dra0202'] = "<LOC Unit_Description_0418>Fast Assault Fighter armed with Anti-Air cannons and powerful long-range Missiles.",	
+    ['dra0202'] = "<LOC Unit_Description_0418>Fast Assault Fighter armed with Anti-Air cannons and powerful long-range Missiles.",    
    
     ----Navy
     ['urs0103'] = "<LOC Unit_Description_0149>Naval support unit. Equipped with Direct Fire and Anti-Air weapons, Radar, and Sonar.",
@@ -225,7 +225,7 @@ Description = {
     ['xrs0204'] = "<LOC Unit_Description_0322>Dedicated submersible killer armed with a Torpedo tube and fantastic Torpedo Defence. Equipped with a Personal Stealth Generator.", 
     ['xrs0205'] = "<LOC Unit_Description_0323>Stealth Field and sensor boat defended only by fantastic Anti-Torpedo Flares. Extremely useful in any sized Navy.",
 
-    ----Offensive Buildings	
+    ----Offensive Buildings    
     ['urb2101'] = "<LOC Unit_Description_0176>Basic surface defence turret.",
     ['urb2104'] = "<LOC Unit_Description_0177>Basic Anti-Air turret.",
     ['urb2109'] = "<LOC Unit_Description_0178>Basic Torpedo turret.",
@@ -236,29 +236,29 @@ Description = {
     ['urb2303'] = "<LOC Unit_Description_0187>Stationary Artillery designed to engage slow-moving units and fixed structures. Rate Of Fire increased when adjacent to Energy Production Buildings.",
     ['urb2108'] = "<LOC Unit_Description_0188>Tactical Missile Launcher. Toggleable Missile construction for 6 Mass per second and 120 Energy per second. Armed with Missiles which split against Tactical Missile Defence systems.",
     ['urb2302'] = "<LOC Unit_Description_0190>Stationary Heavy Artillery with excellent Range and Damage, but poor Accuracy. Rate Of Fire increased when adjacent to Energy Production Buildings.",
-    ['urb2305'] = "<LOC Unit_Description_0191>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",	
-    ['xrb2308'] = "<LOC Unit_Description_0325>Submerged Heavy Torpedo turret.",	
+    ['urb2305'] = "<LOC Unit_Description_0191>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",    
+    ['xrb2308'] = "<LOC Unit_Description_0325>Submerged Heavy Torpedo turret.",    
    
-    ----Defensive Buildings	
-    ['urb5101'] = "<LOC Unit_Description_0179>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",	
-    ['urb4201'] = "<LOC Unit_Description_0182>Tactical Missile Defence turret.",	
+    ----Defensive Buildings    
+    ['urb5101'] = "<LOC Unit_Description_0179>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",    
+    ['urb4201'] = "<LOC Unit_Description_0182>Tactical Missile Defence turret.",    
     ['urb4202'] = "<LOC Unit_Description_0184>Generates a protective Shield around Units and Structures within its radius. Can be upgraded four times. Shields transfer residual Damage to intersecting Bubbles.",
-    ['urb4302'] = "<LOC Unit_Description_0186>Strategic Missile Defence Silo.",	
-    ['urb5202'] = "<LOC Unit_Description_0189>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",	
-    ['urb4202-ch'] = "<LOC Unit_Description_0306>Upgrade increases Shield's size, strength and operating costs.",		
-	
-    ----Sensor Buildings	
+    ['urb4302'] = "<LOC Unit_Description_0186>Strategic Missile Defence Silo.",    
+    ['urb5202'] = "<LOC Unit_Description_0189>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",    
+    ['urb4202-ch'] = "<LOC Unit_Description_0306>Upgrade increases Shield's size, strength and operating costs.",        
+    
+    ----Sensor Buildings    
     ['urb3101'] = "<LOC Unit_Description_0216>Short Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
     ['urb3102'] = "<LOC Unit_Description_0217>Short Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
     ['urb3201'] = "<LOC Unit_Description_0218>Medium Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
     ['urb3202'] = "<LOC Unit_Description_0219>Medium Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
     ['urb4203'] = "<LOC Unit_Description_0220>Stealth Field Generator which hides units and structures in range from enemy Radar. Countered by Optics and Omni Sensors.",
     ['urs0305'] = "<LOC Unit_Description_0221>Long Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units. Equipped with a powerful Stealth Field Generator.",
-    ['urb3104'] = "<LOC Unit_Description_0222>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.",	
-    ['xrb3301'] = "<LOC Unit_Description_0326>Unique Optical sensor which reveals an enormous area with full Optical vision. Requires a large amount of Energy per second to run.",		
-	
-    ----Economy Buildings		
-	
+    ['urb3104'] = "<LOC Unit_Description_0222>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.",    
+    ['xrb3301'] = "<LOC Unit_Description_0326>Unique Optical sensor which reveals an enormous area with full Optical vision. Requires a large amount of Energy per second to run.",        
+    
+    ----Economy Buildings        
+    
     ['urb1101'] = "<LOC Unit_Description_0205>Generates 20 Energy per second. Construct next to other structures for adjacency bonus.",
     ['urb1102'] = "<LOC Unit_Description_0206>Generates 100 Energy per second. Must be constructed on hydrocarbon deposits. Construct structures next to Hydrocarbon Power Plant for adjacency bonus.",
     ['urb1103'] = "<LOC Unit_Description_0207>Extracts 2 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass Extractor for adjacency bonus. Can be Upgraded.",
@@ -277,7 +277,7 @@ Description = {
     ['url0309'] = "<LOC Unit_Description_0195>Tech 3 Amphibious Construction, Repair, Capture and Reclamation unit.",
     ['xrb0104'] = "<LOC Unit_Description_0451>Automatically Assists or Repairs any unit within its operational radius. Can be upgraded twice.",
     ['xrb0204'] = "<LOC Unit_Description_0324>Automatically Assists or Repairs any unit within its operational radius. Can be upgraded once.",
-    ['xrb0304'] = "<LOC Unit_Description_0452>Automatically Assists or Repairs any unit within its operational radius.",	
+    ['xrb0304'] = "<LOC Unit_Description_0452>Automatically Assists or Repairs any unit within its operational radius.",    
    
     ----Factories
     ['urb0101'] = "<LOC Unit_Description_0196>Constructs Tech 1 Land units. Upgradeable.",
@@ -289,7 +289,7 @@ Description = {
     ['urb0301'] = "<LOC Unit_Description_0202>Constructs Tech 3 Land units.",
     ['urb0302'] = "<LOC Unit_Description_0203>Constructs Tech 3 Air units.",
     ['urb0303'] = "<LOC Unit_Description_0204>Constructs Tech 3 Naval units.",
-	['urb0304'] = "<LOC Unit_Description_0192>Allows you to construct Support Command Units, either in their basic forms, or in a number of pre-enhanced versions.",
+    ['urb0304'] = "<LOC Unit_Description_0192>Allows you to construct Support Command Units, either in their basic forms, or in a number of pre-enhanced versions.",
 
 ----Aeon
    
@@ -333,8 +333,8 @@ Description = {
     ['ual0401'] = "<LOC Unit_Description_0234>Experimental Sacred Assault Robot. Amphibious, armed with a Laser and Magnetic Grapple Claws which instantly kill enemy Units and equipped with an Omni sensor.",
     ['xal0203'] = "<LOC Unit_Description_0327>Fast-moving Hovering Amphibious Tank. Provides direct-fire support against enemy Hovering or Naval units.",
     ['xal0305'] = "<LOC Unit_Description_0328>Sniper Robot with paper-thin armour designed to apply extreme Damage at long Range. Inaccurate while in motion.",  
-    ['dal0310'] = "<LOC Unit_Description_0442>Extremely Long Range support Tank armed with weaponry which is largely ineffective against Armour, but annihilates Shields.",	
-	
+    ['dal0310'] = "<LOC Unit_Description_0442>Extremely Long Range support Tank armed with weaponry which is largely ineffective against Armour, but annihilates Shields.",    
+    
     ----Air
     ['uaa0101'] = "<LOC Unit_Description_0235>Fast aerial reconnaissance vehicle.",
     ['uaa0102'] = "<LOC Unit_Description_0236>Quick, manoeuvrable Anti-Air Fighter.",
@@ -350,8 +350,8 @@ Description = {
     ['xaa0202'] = "<LOC Unit_Description_0329>Quick, manoeuvrable Anti-Air Fighter with more Armour and Firepower than the Interceptor.",
     ['xaa0305'] = "<LOC Unit_Description_0330>Versatile Assault Gunship. Armed with Direct Fire cannon and extremely powerful Anti-Air Rockets.",
     ['xaa0306'] = "<LOC Unit_Description_0331>High-power Torpedo Bomber designed to engage heavily armoured Naval units.",     
-    ['daa0206'] = "<LOC Unit_Description_0419>Suicide Bomber with short operational range and practically non-existent armour, but which inflicts enormous Damage to regions with no Anti-Air presence.",	
-	
+    ['daa0206'] = "<LOC Unit_Description_0419>Suicide Bomber with short operational range and practically non-existent armour, but which inflicts enormous Damage to regions with no Anti-Air presence.",    
+    
     ----Navy
     ['uas0103'] = "<LOC Unit_Description_0246>Naval support unit. Equipped with Direct Fire weapons, Radar, Sonar and Torpedo Defences.",
     ['uas0203'] = "<LOC Unit_Description_0247>Basic Attack Submarine.",
@@ -364,7 +364,7 @@ Description = {
     ['uas0401'] = "<LOC Unit_Description_0254>Experimental Submersible Factory Battleship. Armed with long range Bombardment Cannon, Depth Charges which ignore Torpedo Defences. Equipped with Torpedo Defence, Naval Factory, and full sensor suite.",
     ['xas0204'] = "<LOC Unit_Description_0332>Dedicated submersible killer armed with a Torpedo tube and fantastic Torpedo Defence.",
     ['xas0306'] = "<LOC Unit_Description_0333>Missile Bombardment Ship. Fires extremely long Range barrages of Tactical Missiles designed to obliterate Shields and overwhelm Tactical Missile Defences. Equipped with brilliant Torpedo Defences.",
-    	
+        
     ----Offensive Buildings
     ['uab2101'] = "<LOC Unit_Description_0255>Basic surface defence turret.",
     ['uab2104'] = "<LOC Unit_Description_0256>Basic Anti-Air turret.",
@@ -376,18 +376,18 @@ Description = {
     ['uab2303'] = "<LOC Unit_Description_0267>Stationary Artillery designed to engage slow-moving units and fixed structures. Rate Of Fire increased when adjacent to Energy Production Buildings.",
     ['uab2108'] = "<LOC Unit_Description_0268>Tactical Missile Launcher. Toggleable Missile construction for 6 Mass per second and 120 Energy per second.",
     ['uab2302'] = "<LOC Unit_Description_0270>Stationary Heavy Artillery with excellent Range, Damage and Accuracy, but poor Rate Of Fire. Rate Of Fire increased when adjacent to Energy Production Buildings.",
-    ['uab2305'] = "<LOC Unit_Description_0271>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",	
-    ['xab2307'] = "<LOC Unit_Description_0334>Rapid-Fire Obliteration Artillery. Fires a splitting cluster shell designed to overwhelm Shields and inflict massive Damage to the enemy Base.",	   	
-	
-	----Defensive Buildings
+    ['uab2305'] = "<LOC Unit_Description_0271>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",    
+    ['xab2307'] = "<LOC Unit_Description_0334>Rapid-Fire Obliteration Artillery. Fires a splitting cluster shell designed to overwhelm Shields and inflict massive Damage to the enemy Base.",           
+    
+    ----Defensive Buildings
     ['uab5101'] = "<LOC Unit_Description_0258>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",
-    ['uab4201'] = "<LOC Unit_Description_0261>Tactical Missile Defence turret. Fires Flares which confuse any nearby Tactical Missiles, but suffers poor Rate Of Fire.",	
-    ['uab4202'] = "<LOC Unit_Description_0263>Generates a protective Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",	
+    ['uab4201'] = "<LOC Unit_Description_0261>Tactical Missile Defence turret. Fires Flares which confuse any nearby Tactical Missiles, but suffers poor Rate Of Fire.",    
+    ['uab4202'] = "<LOC Unit_Description_0263>Generates a protective Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",    
     ['uab4302'] = "<LOC Unit_Description_0265>Strategic Missile Defence Silo.",
-    ['uab4301'] = "<LOC Unit_Description_0266>Generates a heavy protective Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",	
-    ['uab5202'] = "<LOC Unit_Description_0269>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",	
-	
-	----Sensor Buildings
+    ['uab4301'] = "<LOC Unit_Description_0266>Generates a heavy protective Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",    
+    ['uab5202'] = "<LOC Unit_Description_0269>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",    
+    
+    ----Sensor Buildings
     ['uab3101'] = "<LOC Unit_Description_0296>Short Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
     ['uab3102'] = "<LOC Unit_Description_0297>Short Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.", 
     ['uab3201'] = "<LOC Unit_Description_0298>Medium Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
@@ -395,9 +395,9 @@ Description = {
     ['uab4203'] = "<LOC Unit_Description_0300>Stealth Field Generator which hides units and structures in range from enemy Radar. Countered by Optics and Omni Sensors.",
     ['uas0305'] = "<LOC Unit_Description_0301>Long Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units. Equipped with Torpedo Defences.",
     ['uab3104'] = "<LOC Unit_Description_0302>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.", 
-    ['xab3301'] = "<LOC Unit_Description_0335>For a fixed Energy cost, grants a small window of Line Of Sight to any location on the Battlefield.", 	
-	
-	----Economy Buildings
+    ['xab3301'] = "<LOC Unit_Description_0335>For a fixed Energy cost, grants a small window of Line Of Sight to any location on the Battlefield.",     
+    
+    ----Economy Buildings
     ['uab1101'] = "<LOC Unit_Description_0285>Generates 20 Energy per second. Construct next to other structures for adjacency bonus.",
     ['uab1102'] = "<LOC Unit_Description_0286>Generates 100 Energy per second. Must be constructed on hydrocarbon deposits. Construct structures next to Hydrocarbon Power Plant for adjacency bonus.",
     ['uab1105'] = "<LOC Unit_Description_0287>Provides 5000 Energy Storage. Construct next to Power Generators for adjacency bonus.",
@@ -410,7 +410,7 @@ Description = {
     ['uab1302'] = "<LOC Unit_Description_0294>Generates 18 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass extractor for adjacency bonus.",
     ['uab1303'] = "<LOC Unit_Description_0295>Creates 12 Mass per second using 3500 Energy per second. Construct next to other structures for adjacency bonus.",
     ['xab1401'] = "<LOC Unit_Description_0336>Generates an Adaptive Economy of up to 10000 Mass per second and 1000000 Energy per second. When killed the reactor core destabilises in a fully-fledged Nuclear explosion.",
-	
+    
     ----Engineers
     ['ual0105'] = "<LOC Unit_Description_0273>Tech 1 Amphibious Construction, Repair, Capture and Reclamation unit.",
     ['ual0208'] = "<LOC Unit_Description_0274>Tech 2 Amphibious Construction, Repair, Capture and Reclamation unit.",
@@ -430,128 +430,128 @@ Description = {
 
 ----Seraphim Units
 
-	----Armoured Command Unit
-	['xsl0001'] = "<LOC Unit_Description_0420>Houses Commander. Combination of Barracks and Command Center. Contains all the blueprints necessary to build a basic army from scratch.",
-	['xsl0001-pqt'] = "<LOC Unit_Description_0421>Adds Teleportation capability. Requires considerable Energy to activate.",
+    ----Armoured Command Unit
+    ['xsl0001'] = "<LOC Unit_Description_0420>Houses Commander. Combination of Barracks and Command Center. Contains all the blueprints necessary to build a basic army from scratch.",
+    ['xsl0001-pqt'] = "<LOC Unit_Description_0421>Adds Teleportation capability. Requires considerable Energy to activate.",
     ['xsl0001-dss'] = "<LOC Unit_Description_0422>Massively increases the rate at which the ACU repairs its armour as well as providing a large HP boost.",
-	['xsl0001-ras'] = "<LOC Unit_Description_0424>Increases ACU's resource generation to 16 Mass per second and 3000 Energy per second.",
-	['xsl0001-eras'] = "<LOC Unit_Description_0425>Increases ACU's resource generation to 32 Mass per second and 6000 Energy per second.",
-	['xsl0001-aes'] = "<LOC Unit_Description_0426>Grants Tech 2 schematic access and increases the ACU's Build Speed and maximum Health.",
-	['xsl0001-ees'] = "<LOC Unit_Description_0427>Replaces the Tech 2 Engineering Suite. Grants Tech 3 and Experimental schematic access and further increases the ACU's Build Speed and maximum Health.",
-	['xsl0001-cba'] = "<LOC Unit_Description_0428>Increases main Cannon Damage to 500% and grants Area Of Effect Damage radius.",
-	['xsl0001-nrf'] = "<LOC Unit_Description_0429>Emits a field which Repairs nearby allies units.",
+    ['xsl0001-ras'] = "<LOC Unit_Description_0424>Increases ACU's resource generation to 16 Mass per second and 3000 Energy per second.",
+    ['xsl0001-eras'] = "<LOC Unit_Description_0425>Increases ACU's resource generation to 32 Mass per second and 6000 Energy per second.",
+    ['xsl0001-aes'] = "<LOC Unit_Description_0426>Grants Tech 2 schematic access and increases the ACU's Build Speed and maximum Health.",
+    ['xsl0001-ees'] = "<LOC Unit_Description_0427>Replaces the Tech 2 Engineering Suite. Grants Tech 3 and Experimental schematic access and further increases the ACU's Build Speed and maximum Health.",
+    ['xsl0001-cba'] = "<LOC Unit_Description_0428>Increases main Cannon Damage to 500% and grants Area Of Effect Damage radius.",
+    ['xsl0001-nrf'] = "<LOC Unit_Description_0429>Emits a field which Repairs nearby allies units.",
     ['xsl0001-anrf'] = "<LOC Unit_Description_0430>Enhances the Repair field to grand faster restoration in a larger area, as well as providing a boost to the Maximum HP of those units.",
-	['xsl0001-hsa'] = "<LOC Unit_Description_0431>Doubles the ACU's main weapon Rate Of Fire, and increases its Range and that of Overcharge.",
-	['xsl0001-tml'] = "<LOC Unit_Description_0432>Mounts a Tactical Cruise Missile Launcher onto the back of the ACU.",
-    ['xsl0001-adss'] = "<LOC Unit_Description_0454>Further increases the rate at which the ACU repairs its armour as well as providing a large HP boost.",	
-	
-	----Support Commander
-	['xsl0301'] = "<LOC Unit_Description_0433>A highly versatile Combat and Engineering unit useful on late-stage battlefields.",
+    ['xsl0001-hsa'] = "<LOC Unit_Description_0431>Doubles the ACU's main weapon Rate Of Fire, and increases its Range and that of Overcharge.",
+    ['xsl0001-tml'] = "<LOC Unit_Description_0432>Mounts a Tactical Cruise Missile Launcher onto the back of the ACU.",
+    ['xsl0001-adss'] = "<LOC Unit_Description_0454>Further increases the rate at which the ACU repairs its armour as well as providing a large HP boost.",    
+    
+    ----Support Commander
+    ['xsl0301'] = "<LOC Unit_Description_0433>A highly versatile Combat and Engineering unit useful on late-stage battlefields.",
     ['xsl0301-tmu'] = "<LOC Unit_Description_0434>Mounts a Tactical Cruise Missile Launcher onto the back of the SACU.",
     ['xsl0301-dss'] = "<LOC Unit_Description_0435>Massively increases the rate at which the SACU repairs its armour as well as providing a large HP boost.",
-	['xsl0301-sre'] = "<LOC Unit_Description_0436>Greatly increases the Range of the SACU's Weapons and Sensors.",
-	['xsl0301-efm'] = "<LOC Unit_Description_0437>Massively increases SACU Buildpower.",
-	['xsl0301-sp'] = "<LOC Unit_Description_0438>Creates a protective Personal Shield around the SACU. Requires Energy to run.",
+    ['xsl0301-sre'] = "<LOC Unit_Description_0436>Greatly increases the Range of the SACU's Weapons and Sensors.",
+    ['xsl0301-efm'] = "<LOC Unit_Description_0437>Massively increases SACU Buildpower.",
+    ['xsl0301-sp'] = "<LOC Unit_Description_0438>Creates a protective Personal Shield around the SACU. Requires Energy to run.",
     ['xsl0301-pqt'] = "<LOC Unit_Description_0439>Adds Teleportation capability. Requires considerable Energy to activate.",
-	['xsl0301-oc'] = "<LOC Unit_Description_0440>Expands the SACU's Weaponry with an Overcharge function identical to that of the standard ACU.",
+    ['xsl0301-oc'] = "<LOC Unit_Description_0440>Expands the SACU's Weaponry with an Overcharge function identical to that of the standard ACU.",
 
-	----Land Units
-	['xsl0101'] = "<LOC Unit_Description_0337>Fast, lightly armoured reconnaissance vehicle. Armed with a machine gun and a basic sensor suite. Stealthed and Cloaked when not moving or firing, making the unit practically invisible. Can obstruct Mass Points when hidden.",
-	['xsl0201'] = "<LOC Unit_Description_0338>Lightly armoured Main Battle Tank armed with a single cannon.",
-	['xsl0103'] = "<LOC Unit_Description_0339>Amphibious Mobile Artillery unit. Designed to engage enemy units at long range and inflict massive Damage to Buildings.",
-	['xsl0104'] = "<LOC Unit_Description_0340>Mobile Anti-Air effective against low-end enemy Air units.",
-	['xsl0202'] = "<LOC Unit_Description_0341>Heavy Assault Robot designed to take large armies and fortified bases head-on.",
-	['xsl0203'] = "<LOC Unit_Description_0342>Fast-moving Hovering Amphibious Tank. Provides direct-fire support against enemy Hovering or Naval units.",
-	['xsl0111'] = "<LOC Unit_Description_0343>Lightly armoured Mobile Missile Launcher designed to attack Buildings at long range.",
-	['xsl0205'] = "<LOC Unit_Description_0344>Amphibious Mobile Anti-Air with a low-speed Area-Of-Effect munition, excellent against enemy Gunships.",
-	['xsl0303'] = "<LOC Unit_Description_0345>Amphibious Heavy Siege Tank armed with Direct Fire weaponry and weak Torpedoes.",
-	['xsl0305'] = "<LOC Unit_Description_0346>Sniper Robot with paper-thin armour designed to apply extreme Damage at long Range. Can switch between Rapid-Fire and Assassination modes. Inaccurate while in motion.",
-	['xsl0304'] = "<LOC Unit_Description_0347>Slow-moving Heavy Artillery. Must be stationary to fire.",
-	['xsl0307'] = "<LOC Unit_Description_0348>Amphibious Heavy Shield Generator which provides limited protection to units beneath the Shield. Shields transfer residual Damage to intersecting Bubbles.",
-	['xsl0401'] = "<LOC Unit_Description_0349>Experimental Assault Robot. Armed with Direct Fire cannons, a central Plasma Ball Launcher, and powerful Anti-Air Flack. On death an invincible Energy Being appears and wrecks everything around it, fading after a few moments.",
-		
-	----Air Units
-	['xsa0101'] = "<LOC Unit_Description_0350>Fast aerial reconnaissance vehicle.",
-	['xsa0102'] = "<LOC Unit_Description_0351>Quick, manoeuvrable Anti-Air Fighter.",
-	['xsa0103'] = "<LOC Unit_Description_0352>Lightly armoured Bomber armed with powerful Bombs.",
-	['xsa0107'] = "<LOC Unit_Description_0353>Air Transport which can carry 8 T1 units, 4 T2 units, or a single T3 unit (Plus 2 T2). Cannot transport the ACU.",
-	['xsa0202'] = "<LOC Unit_Description_0354>Fast Assault Fighter armed with Anti-Air cannons and powerful Bombs.",
-	['xsa0203'] = "<LOC Unit_Description_0355>Gunship armed with simple Direct Fire Cannons.",
-	['xsa0204'] = "<LOC Unit_Description_0356>Torpedo Bomber capable of attacking Ships and Submarines.",
-	['xsa0104'] = "<LOC Unit_Description_0357>Lightly armed Air Transport equipped with Anti-Air and Direct Fire weapons. Can carry 16 T1 units, 8 T2 units, or 4 T3 units.",
-	['xsa0302'] = "<LOC Unit_Description_0358>Extremely fast Spy Plane with large Visual radius, good Radar, and a small Omni sensor.",
-	['xsa0303'] = "<LOC Unit_Description_0359>Air Superiority Fighter designed to take and keep control of all Airspace on the Map.",
-	['xsa0304'] = "<LOC Unit_Description_0360>Strategic Bomber designed to surgically destroy key targets. Armed with light Anti-Air weaponry.",
-	['xsa0402'] = "<LOC Unit_Description_0361>Experimental Strategic Bomber armed with powerful Anti-Air and devastating Othe Quantum Bombs.",
-		
-	----Naval Units
-	['xss0103'] = "<LOC Unit_Description_0362>Naval support unit. Equipped with Direct Fire and Anti-Air weapons, Radar, and Sonar.",
-	['xss0203'] = "<LOC Unit_Description_0363>Basic Attack Submarine. Can surface to enable a weak Direct Fire cannon for additional power. Equipped with Torpedo Defences.",
-	['xss0202'] = "<LOC Unit_Description_0364>Anti-Aircraft Naval vessel. Armed with an Anti-Air weaponry and a Tactical Missile Launcher. Equipped with Tactical Missile Defence and a full sensor suite.",
-	['xss0201'] = "<LOC Unit_Description_0365>Primary Submersible surface combatant with powerful Direct Fire lasers, Torpedoes, basic Anti-Air weapons, Torpedo Defence, and a full sensor suite.",
-	['xss0302'] = "<LOC Unit_Description_0366>Surface bombardment ship. Armed with Direct Fire cannons and weak Anti-Air. Equipped with Tactical Missile Defence and a full sensor suite. Can build and launch full-strength Strategic Nuclear Weapons.",
-	['xss0304'] = "<LOC Unit_Description_0367>Heavy Assault Submarine armed with extremely powerful Torpedoes and effective Torpedo Defences. Can surface to engage with strong Anti-Air cannons.",
-	['xss0303'] = "<LOC Unit_Description_0368>Aircraft Carrier. Armed with powerful Anti-Air weaponry and Tactical Missile launcher. Equipped with Air Staging, Factory, and a full sensor suite.",
-		
-	----Offensive Buildings
-	['xsb2101'] = "<LOC Unit_Description_0369>Basic surface defence turret.",
-	['xsb2104'] = "<LOC Unit_Description_0370>Basic Anti-Air turret.",
-	['xsb2109'] = "<LOC Unit_Description_0371>Basic Torpedo turret.",	
-	['xsb2301'] = "<LOC Unit_Description_0373>Armoured surface defence turret.",
-	['xsb2204'] = "<LOC Unit_Description_0374>Anti-Air Flack turret, armed with high-speed Area-Of-Effect munition, excellent against enemy Gunships.",	
-	['xsb2205'] = "<LOC Unit_Description_0377>Armoured Torpedo turret equipped with Torpedo Defences.",
-	['xsb2304'] = "<LOC Unit_Description_0378>Anti-Air turret armed with Area-Of-Effect Blaster, effective against fast Aircraft.",	
-	['xsb2303'] = "<LOC Unit_Description_0381>Stationary Artillery designed to engage slow-moving units and fixed structures. Rate Of Fire increased when adjacent to Energy Production Buildings.",
-	['xsb2108'] = "<LOC Unit_Description_0382>Tactical Missile Launcher. Toggleable Missile construction for 6 Mass per second and 120 Energy per second.",	
-	['xsb2302'] = "<LOC Unit_Description_0384>Stationary Heavy Artillery with excellent Range and Damage, but poor Accuracy. Rate Of Fire increased when adjacent to Energy Production Buildings.",
-	['xsb2305'] = "<LOC Unit_Description_0385>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",
-	['xsb2401'] = "<LOC Unit_Description_0386>Experimental Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. Each Missile can only be blocked by two countermeasures. If this weapon impacts, it obliterates an enormous region.",	
-	
-	----Defensive Buildings
-	['xsb5101'] = "<LOC Unit_Description_0372>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",
-	['xsb4201'] = "<LOC Unit_Description_0375>Tactical Missile Defence turret.",
-	['xsb4202'] = "<LOC Unit_Description_0376>Generates a protective Shield around Units and Structures within its radius. Can be upgraded to Tech 3. Shields transfer residual Damage to intersecting Bubbles.",
-	['xsb4302'] = "<LOC Unit_Description_0379>Strategic Missile Defence Silo.",
-	['xsb4301'] = "<LOC Unit_Description_0380>Generates a Heavy Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",
-	['xsb5202'] = "<LOC Unit_Description_0383>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",
-		
-	----Sensor Buildings
-	['xsb3101'] = "<LOC Unit_Description_0411>Short Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
-	['xsb3102'] = "<LOC Unit_Description_0412>Short Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
-	['xsb3202'] = "<LOC Unit_Description_0413>Medium Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
-	['xsb3201'] = "<LOC Unit_Description_0414>Medium Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
-	['xsb4203'] = "<LOC Unit_Description_0415>Stealth Field Generator which hides units and structures in range from enemy Radar. Countered by Optics and Omni Sensors.",
-	['xsb3104'] = "<LOC Unit_Description_0416>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.",
-     		
-	----Economy Buildings
-	['xsb1101'] = "<LOC Unit_Description_0400>Generates 20 Energy per second. Construct next to other structures for adjacency bonus.",
-	['xsb1102'] = "<LOC Unit_Description_0401>Generates 100 Energy per second. Must be constructed on hydrocarbon deposits. Construct structures next to Hydrocarbon Power Plant for adjacency bonus.",
-	['xsb1105'] = "<LOC Unit_Description_0402>Provides 5000 Energy Storage. Construct next to Power Generators for adjacency bonus.",
-	['xsb1103'] = "<LOC Unit_Description_0403>Extracts 2 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass Extractor for adjacency bonus. Can be Upgraded.",
-	['xsb1104'] = "<LOC Unit_Description_0404>Creates 1 Mass per second using 150 Energy per second. Construct next to other structures for adjacency bonus.",
-	['xsb1106'] = "<LOC Unit_Description_0405>Provides 500 Mass Storage. Construct next to Extractors or Fabricators for adjacency bonus.",
-	['xsb1201'] = "<LOC Unit_Description_0406>Generates 500 Energy per second. Construct next to other structures for adjacency bonus.",
-	['xsb1202'] = "<LOC Unit_Description_0407>Extracts 6 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass Extractor for adjacency bonus. Can be Upgraded.",
-	['xsb1301'] = "<LOC Unit_Description_0408>Generates 2500 Energy per second. Construct next to other structures for adjacency bonus.",
-	['xsb1302'] = "<LOC Unit_Description_0409>Generates 18 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass extractor for adjacency bonus.",
-	['xsb1303'] = "<LOC Unit_Description_0410>Creates 12 Mass per second using 3500 Energy per second. Construct next to other structures for adjacency bonus.",
-	
-  	----Engineers
-	['xsl0105'] = "<LOC Unit_Description_0387>Tech 1 Amphibious Construction, Repair, Capture and Reclamation unit.",
-	['xsl0208'] = "<LOC Unit_Description_0388>Tech 2 Amphibious Construction, Repair, Capture and Reclamation unit.",
-	['xsl0309'] = "<LOC Unit_Description_0389>Tech 3 Amphibious Construction, Repair, Capture and Reclamation unit.",
-	
-	----Factories
-	['xsb0101'] = "<LOC Unit_Description_0390>Constructs Tech 1 Land units. Upgradeable.",
-	['xsb0102'] = "<LOC Unit_Description_0391>Constructs Tech 1 Air units. Upgradeable.",
-	['xsb0103'] = "<LOC Unit_Description_0392>Constructs Tech 1 Naval units. Upgradeable.",
-	['xsb0201'] = "<LOC Unit_Description_0393>Constructs Tech 2 Land units. Upgradeable.",
-	['xsb0202'] = "<LOC Unit_Description_0394>Constructs Tech 2 Air units. Upgradeable.",
-	['xsb0203'] = "<LOC Unit_Description_0395>Constructs Tech 2 Naval units. Upgradeable.",
-	['xsb0301'] = "<LOC Unit_Description_0396>Constructs Tech 3 Land units.",
-	['xsb0302'] = "<LOC Unit_Description_0397>Constructs Tech 3 Air units.",
-	['xsb0303'] = "<LOC Unit_Description_0398>Constructs Tech 3 Naval units.",
-	['xsb0304'] = "<LOC Unit_Description_0399>Allows you to construct Support Command Units, either in their basic forms, or in a number of pre-enhanced versions.",		   
+    ----Land Units
+    ['xsl0101'] = "<LOC Unit_Description_0337>Fast, lightly armoured reconnaissance vehicle. Armed with a machine gun and a basic sensor suite. Stealthed and Cloaked when not moving or firing, making the unit practically invisible. Can obstruct Mass Points when hidden.",
+    ['xsl0201'] = "<LOC Unit_Description_0338>Lightly armoured Main Battle Tank armed with a single cannon.",
+    ['xsl0103'] = "<LOC Unit_Description_0339>Amphibious Mobile Artillery unit. Designed to engage enemy units at long range and inflict massive Damage to Buildings.",
+    ['xsl0104'] = "<LOC Unit_Description_0340>Mobile Anti-Air effective against low-end enemy Air units.",
+    ['xsl0202'] = "<LOC Unit_Description_0341>Heavy Assault Robot designed to take large armies and fortified bases head-on.",
+    ['xsl0203'] = "<LOC Unit_Description_0342>Fast-moving Hovering Amphibious Tank. Provides direct-fire support against enemy Hovering or Naval units.",
+    ['xsl0111'] = "<LOC Unit_Description_0343>Lightly armoured Mobile Missile Launcher designed to attack Buildings at long range.",
+    ['xsl0205'] = "<LOC Unit_Description_0344>Amphibious Mobile Anti-Air with a low-speed Area-Of-Effect munition, excellent against enemy Gunships.",
+    ['xsl0303'] = "<LOC Unit_Description_0345>Amphibious Heavy Siege Tank armed with Direct Fire weaponry and weak Torpedoes.",
+    ['xsl0305'] = "<LOC Unit_Description_0346>Sniper Robot with paper-thin armour designed to apply extreme Damage at long Range. Can switch between Rapid-Fire and Assassination modes. Inaccurate while in motion.",
+    ['xsl0304'] = "<LOC Unit_Description_0347>Slow-moving Heavy Artillery. Must be stationary to fire.",
+    ['xsl0307'] = "<LOC Unit_Description_0348>Amphibious Heavy Shield Generator which provides limited protection to units beneath the Shield. Shields transfer residual Damage to intersecting Bubbles.",
+    ['xsl0401'] = "<LOC Unit_Description_0349>Experimental Assault Robot. Armed with Direct Fire cannons, a central Plasma Ball Launcher, and powerful Anti-Air Flack. On death an invincible Energy Being appears and wrecks everything around it, fading after a few moments.",
+        
+    ----Air Units
+    ['xsa0101'] = "<LOC Unit_Description_0350>Fast aerial reconnaissance vehicle.",
+    ['xsa0102'] = "<LOC Unit_Description_0351>Quick, manoeuvrable Anti-Air Fighter.",
+    ['xsa0103'] = "<LOC Unit_Description_0352>Lightly armoured Bomber armed with powerful Bombs.",
+    ['xsa0107'] = "<LOC Unit_Description_0353>Air Transport which can carry 8 T1 units, 4 T2 units, or a single T3 unit (Plus 2 T2). Cannot transport the ACU.",
+    ['xsa0202'] = "<LOC Unit_Description_0354>Fast Assault Fighter armed with Anti-Air cannons and powerful Bombs.",
+    ['xsa0203'] = "<LOC Unit_Description_0355>Gunship armed with simple Direct Fire Cannons.",
+    ['xsa0204'] = "<LOC Unit_Description_0356>Torpedo Bomber capable of attacking Ships and Submarines.",
+    ['xsa0104'] = "<LOC Unit_Description_0357>Lightly armed Air Transport equipped with Anti-Air and Direct Fire weapons. Can carry 16 T1 units, 8 T2 units, or 4 T3 units.",
+    ['xsa0302'] = "<LOC Unit_Description_0358>Extremely fast Spy Plane with large Visual radius, good Radar, and a small Omni sensor.",
+    ['xsa0303'] = "<LOC Unit_Description_0359>Air Superiority Fighter designed to take and keep control of all Airspace on the Map.",
+    ['xsa0304'] = "<LOC Unit_Description_0360>Strategic Bomber designed to surgically destroy key targets. Armed with light Anti-Air weaponry.",
+    ['xsa0402'] = "<LOC Unit_Description_0361>Experimental Strategic Bomber armed with powerful Anti-Air and devastating Othe Quantum Bombs.",
+        
+    ----Naval Units
+    ['xss0103'] = "<LOC Unit_Description_0362>Naval support unit. Equipped with Direct Fire and Anti-Air weapons, Radar, and Sonar.",
+    ['xss0203'] = "<LOC Unit_Description_0363>Basic Attack Submarine. Can surface to enable a weak Direct Fire cannon for additional power. Equipped with Torpedo Defences.",
+    ['xss0202'] = "<LOC Unit_Description_0364>Anti-Aircraft Naval vessel. Armed with an Anti-Air weaponry and a Tactical Missile Launcher. Equipped with Tactical Missile Defence and a full sensor suite.",
+    ['xss0201'] = "<LOC Unit_Description_0365>Primary Submersible surface combatant with powerful Direct Fire lasers, Torpedoes, basic Anti-Air weapons, Torpedo Defence, and a full sensor suite.",
+    ['xss0302'] = "<LOC Unit_Description_0366>Surface bombardment ship. Armed with Direct Fire cannons and weak Anti-Air. Equipped with Tactical Missile Defence and a full sensor suite. Can build and launch full-strength Strategic Nuclear Weapons.",
+    ['xss0304'] = "<LOC Unit_Description_0367>Heavy Assault Submarine armed with extremely powerful Torpedoes and effective Torpedo Defences. Can surface to engage with strong Anti-Air cannons.",
+    ['xss0303'] = "<LOC Unit_Description_0368>Aircraft Carrier. Armed with powerful Anti-Air weaponry and Tactical Missile launcher. Equipped with Air Staging, Factory, and a full sensor suite.",
+        
+    ----Offensive Buildings
+    ['xsb2101'] = "<LOC Unit_Description_0369>Basic surface defence turret.",
+    ['xsb2104'] = "<LOC Unit_Description_0370>Basic Anti-Air turret.",
+    ['xsb2109'] = "<LOC Unit_Description_0371>Basic Torpedo turret.",    
+    ['xsb2301'] = "<LOC Unit_Description_0373>Armoured surface defence turret.",
+    ['xsb2204'] = "<LOC Unit_Description_0374>Anti-Air Flack turret, armed with high-speed Area-Of-Effect munition, excellent against enemy Gunships.",    
+    ['xsb2205'] = "<LOC Unit_Description_0377>Armoured Torpedo turret equipped with Torpedo Defences.",
+    ['xsb2304'] = "<LOC Unit_Description_0378>Anti-Air turret armed with Area-Of-Effect Blaster, effective against fast Aircraft.",    
+    ['xsb2303'] = "<LOC Unit_Description_0381>Stationary Artillery designed to engage slow-moving units and fixed structures. Rate Of Fire increased when adjacent to Energy Production Buildings.",
+    ['xsb2108'] = "<LOC Unit_Description_0382>Tactical Missile Launcher. Toggleable Missile construction for 6 Mass per second and 120 Energy per second.",    
+    ['xsb2302'] = "<LOC Unit_Description_0384>Stationary Heavy Artillery with excellent Range and Damage, but poor Accuracy. Rate Of Fire increased when adjacent to Energy Production Buildings.",
+    ['xsb2305'] = "<LOC Unit_Description_0385>Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. These Missiles are expensive.",
+    ['xsb2401'] = "<LOC Unit_Description_0386>Experimental Strategic Missile Launcher. Must be ordered to construct and launch Missiles manually. Each Missile can only be blocked by two countermeasures. If this weapon impacts, it obliterates an enormous region.",    
+    
+    ----Defensive Buildings
+    ['xsb5101'] = "<LOC Unit_Description_0372>Restricts the movement of enemy units and offers substantial protection from low Direct Fire attacks.",
+    ['xsb4201'] = "<LOC Unit_Description_0375>Tactical Missile Defence turret.",
+    ['xsb4202'] = "<LOC Unit_Description_0376>Generates a protective Shield around Units and Structures within its radius. Can be upgraded to Tech 3. Shields transfer residual Damage to intersecting Bubbles.",
+    ['xsb4302'] = "<LOC Unit_Description_0379>Strategic Missile Defence Silo.",
+    ['xsb4301'] = "<LOC Unit_Description_0380>Generates a Heavy Shield around Units and Structures within its radius. Shields transfer residual Damage to intersecting Bubbles.",
+    ['xsb5202'] = "<LOC Unit_Description_0383>Refuels and Repairs Aircraft. Air patrols will automatically use this facility.",
+        
+    ----Sensor Buildings
+    ['xsb3101'] = "<LOC Unit_Description_0411>Short Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
+    ['xsb3102'] = "<LOC Unit_Description_0412>Short Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
+    ['xsb3202'] = "<LOC Unit_Description_0413>Medium Range Sonar system which detects Submerged and Surface units. Cannot detect Hovering or Stealthed units.",
+    ['xsb3201'] = "<LOC Unit_Description_0414>Medium Range Radar system. Cannot detect Submerged or Stealthed units, and confused by Radar Jamming.",
+    ['xsb4203'] = "<LOC Unit_Description_0415>Stealth Field Generator which hides units and structures in range from enemy Radar. Countered by Optics and Omni Sensors.",
+    ['xsb3104'] = "<LOC Unit_Description_0416>Long Range Radar System with shorter range Omni Sensor. Radar cannot detect Submerged or Stealthed units, and confused by Radar Jamming. Omni counters Stealth, Cloaking or Jamming and acts as Sonar.",
+             
+    ----Economy Buildings
+    ['xsb1101'] = "<LOC Unit_Description_0400>Generates 20 Energy per second. Construct next to other structures for adjacency bonus.",
+    ['xsb1102'] = "<LOC Unit_Description_0401>Generates 100 Energy per second. Must be constructed on hydrocarbon deposits. Construct structures next to Hydrocarbon Power Plant for adjacency bonus.",
+    ['xsb1105'] = "<LOC Unit_Description_0402>Provides 5000 Energy Storage. Construct next to Power Generators for adjacency bonus.",
+    ['xsb1103'] = "<LOC Unit_Description_0403>Extracts 2 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass Extractor for adjacency bonus. Can be Upgraded.",
+    ['xsb1104'] = "<LOC Unit_Description_0404>Creates 1 Mass per second using 150 Energy per second. Construct next to other structures for adjacency bonus.",
+    ['xsb1106'] = "<LOC Unit_Description_0405>Provides 500 Mass Storage. Construct next to Extractors or Fabricators for adjacency bonus.",
+    ['xsb1201'] = "<LOC Unit_Description_0406>Generates 500 Energy per second. Construct next to other structures for adjacency bonus.",
+    ['xsb1202'] = "<LOC Unit_Description_0407>Extracts 6 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass Extractor for adjacency bonus. Can be Upgraded.",
+    ['xsb1301'] = "<LOC Unit_Description_0408>Generates 2500 Energy per second. Construct next to other structures for adjacency bonus.",
+    ['xsb1302'] = "<LOC Unit_Description_0409>Generates 18 Mass per second. Must be constructed on Mass deposits. Construct structures next to Mass extractor for adjacency bonus.",
+    ['xsb1303'] = "<LOC Unit_Description_0410>Creates 12 Mass per second using 3500 Energy per second. Construct next to other structures for adjacency bonus.",
+    
+      ----Engineers
+    ['xsl0105'] = "<LOC Unit_Description_0387>Tech 1 Amphibious Construction, Repair, Capture and Reclamation unit.",
+    ['xsl0208'] = "<LOC Unit_Description_0388>Tech 2 Amphibious Construction, Repair, Capture and Reclamation unit.",
+    ['xsl0309'] = "<LOC Unit_Description_0389>Tech 3 Amphibious Construction, Repair, Capture and Reclamation unit.",
+    
+    ----Factories
+    ['xsb0101'] = "<LOC Unit_Description_0390>Constructs Tech 1 Land units. Upgradeable.",
+    ['xsb0102'] = "<LOC Unit_Description_0391>Constructs Tech 1 Air units. Upgradeable.",
+    ['xsb0103'] = "<LOC Unit_Description_0392>Constructs Tech 1 Naval units. Upgradeable.",
+    ['xsb0201'] = "<LOC Unit_Description_0393>Constructs Tech 2 Land units. Upgradeable.",
+    ['xsb0202'] = "<LOC Unit_Description_0394>Constructs Tech 2 Air units. Upgradeable.",
+    ['xsb0203'] = "<LOC Unit_Description_0395>Constructs Tech 2 Naval units. Upgradeable.",
+    ['xsb0301'] = "<LOC Unit_Description_0396>Constructs Tech 3 Land units.",
+    ['xsb0302'] = "<LOC Unit_Description_0397>Constructs Tech 3 Air units.",
+    ['xsb0303'] = "<LOC Unit_Description_0398>Constructs Tech 3 Naval units.",
+    ['xsb0304'] = "<LOC Unit_Description_0399>Allows you to construct Support Command Units, either in their basic forms, or in a number of pre-enhanced versions.",           
 
     ----Patch Units
     ['dab2102'] = "<LOC Unit_Description_0443> Gatling-style mortar launcher that fires high-explosive ordinance with a good degree of accuracy.",

@@ -11,7 +11,7 @@ UnitBlueprint {
         KTurn = 1,
         KTurnDamping = 10,
         LiftFactor = 10,
-        MaxAirspeed = 8,						--6
+        MaxAirspeed = 8,                        --6
         StartTurnDistance = 50,
     },
     Audio = {
@@ -69,15 +69,15 @@ UnitBlueprint {
         'VISIBLETORECON',
         'RECLAIMABLE',
         'UNTARGETABLE',
-		'OVERLAYRADAR',
+        'OVERLAYRADAR',
     },
     CollisionOffsetY = -0.65,
     Defense = {
         AirThreatLevel = 0,
         ArmorType = 'Normal',
         EconomyThreatLevel = 0,
-        Health = 20000,							--100
-        MaxHealth = 20000,						--100
+        Health = 20000,                            --100
+        MaxHealth = 20000,                        --100
         RegenRate = 0,
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
@@ -105,7 +105,7 @@ UnitBlueprint {
         BuildCostEnergy = 8000,
         BuildCostMass = 800,
         BuildTime = 400,
-	MaintenanceConsumptionPerSecondEnergy = 1000,
+    MaintenanceConsumptionPerSecondEnergy = 1000,
     },
     Footprint = {
         MaxSlope = 0.25,
@@ -136,8 +136,8 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        RadarRadius = 100,						--70
-        VisionRadius = 70,						--40
+        RadarRadius = 100,                        --70
+        VisionRadius = 70,                        --40
     },
     Interface = {
         HelpText = '<LOC xea0002_help>Defense Satellite',
@@ -200,12 +200,12 @@ UnitBlueprint {
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
-            BeamCollisionDelay = 0,				--0.1
+            BeamCollisionDelay = 0,                --0.1
             BeamLifetime = 8,
             CollideFriendly = false,
-            Damage = 50,						--100
+            Damage = 50,                        --100
             DamageFriendly = true,
-            DamageRadius = 2,					--1
+            DamageRadius = 2,                    --1
             DamageType = 'Normal',
             DisplayName = 'Orbital Death Laser',
             FireTargetLayerCapsTable = {
@@ -213,7 +213,7 @@ UnitBlueprint {
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             },
-            FiringTolerance = 0,				--1.5
+            FiringTolerance = 0,                --1.5
             Label = 'OrbitalDeathLaserWeapon',
             MaxRadius = 32,
             MaximumBeamLength = 200,
@@ -240,7 +240,7 @@ UnitBlueprint {
             RateOfFire = 0.05,
             RenderFireClock = true,
             SlavedToBody = false,
-            TargetCheckInterval = 0.1,				--1
+            TargetCheckInterval = 0.1,                --1
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'TECH3 MOBILE',
@@ -251,7 +251,7 @@ UnitBlueprint {
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
-            TrackingRadius = 1.3,				--1.1 - Satellite wobbles in orbit. This gives it a bit more lockon range for when it's circling
+            TrackingRadius = 1.3,                --1.1 - Satellite wobbles in orbit. This gives it a bit more lockon range for when it's circling
             TurretBoneMuzzle = 'Turret_Barrel_Muzzle',
             TurretBonePitch = 'Turret_Barrel01',
             TurretBoneYaw = 'Turret_Barrel01',
@@ -263,7 +263,7 @@ UnitBlueprint {
             TurretYawRange = 180,
             TurretYawSpeed = 360,
             Turreted = true,
-			UseFiringSolutionInsteadOfAimBone = true,		--Added
+            UseFiringSolutionInsteadOfAimBone = true,        --Added
             WeaponCategory = 'Direct Fire',
             WeaponRepackTimeout = 10,
             WeaponUnpacks = false,
