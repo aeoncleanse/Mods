@@ -57,8 +57,8 @@ EXNovaBombEffectController01 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -76,8 +76,8 @@ EXNovaBombEffectController01 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -96,7 +96,7 @@ EXNovaBombEffectController01 = Class(NullShell) {
         CreateLightParticle(self, -1, army, 35, 4, 'glow_02', 'ramp_red_02')
         WaitSeconds(0.2)
         CreateLightParticle(self, -1, army, 40, 20, 'glow_03', 'ramp_fire_06')
-        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.5)
+        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp'):ScaleEmitter(0.5)
         self:ForkThread(self.CreateHeadConvectionSpinners)
         WaitSeconds(0.5)
         self:ForkThread(self.CreateOuterRingWaveSmokeRing1)
@@ -131,7 +131,7 @@ EXNovaBombEffectController01 = Class(NullShell) {
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
       proj:SetVelocityAlign(false)
-      proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+      proj:SetOrientation(OrientFromDir(Util.Cross(Vector(x,0,z), Vector(0,1,0))),true)
       proj:SetVelocity(0,0.5,0)
           proj:SetBallisticAcceleration(-0.05)
         end
@@ -149,10 +149,10 @@ EXNovaBombEffectController01 = Class(NullShell) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/entities/UEFNukeShockwave02/UEFNukeShockwave02_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end
 
-        WaitSeconds( 1 )
+        WaitSeconds(1)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -172,10 +172,10 @@ EXNovaBombEffectController01 = Class(NullShell) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/entities/UEFNukeShockwave02/UEFNukeShockwave02_proj.bp', X * OffsetMod , 4.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end
 
-        WaitSeconds( 1 )
+        WaitSeconds(1)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -195,10 +195,10 @@ EXNovaBombEffectController01 = Class(NullShell) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/entities/UEFNukeShockwave02/UEFNukeShockwave02_proj.bp', X * OffsetMod , 7.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end
 
-        WaitSeconds( 1 )
+        WaitSeconds(1)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -218,10 +218,10 @@ EXNovaBombEffectController01 = Class(NullShell) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/effects/entities/UEFNukeShockwave02/UEFNukeShockwave02_proj.bp', X * OffsetMod , 9, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end
 
-        WaitSeconds( 1 )
+        WaitSeconds(1)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do

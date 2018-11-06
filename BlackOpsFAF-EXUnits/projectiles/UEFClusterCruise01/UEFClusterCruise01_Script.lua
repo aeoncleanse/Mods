@@ -35,7 +35,7 @@ UEFClusterCruise01 = Class(UEFClusterCruise01Projectile) {
 
     --OnImpact = function(self, targetType, targetEntity)
     --    local army = self:GetArmy()
-     --   CreateLightParticle( self, -1, army, 3, 4, 'glow_03', 'ramp_fire_01' )
+     --   CreateLightParticle(self, -1, army, 3, 4, 'glow_03', 'ramp_fire_01')
      --   SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
     --end,
 

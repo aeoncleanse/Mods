@@ -33,7 +33,7 @@ SonicDisruptorWave = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -69,7 +69,7 @@ CybranShadowSplitterBeam = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self:EconomySupportsBeam() then return end
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
@@ -89,7 +89,7 @@ CybranAriesBeam = Class(DefaultBeamWeapon) {
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 1,
 
-    PlayFxWeaponUnpackSequence = function( self )
+    PlayFxWeaponUnpackSequence = function(self)
         if not self:EconomySupportsBeam() then return end
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()

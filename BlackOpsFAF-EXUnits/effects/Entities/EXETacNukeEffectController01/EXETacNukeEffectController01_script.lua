@@ -62,8 +62,8 @@ EXETacNukeEffectController01 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -81,8 +81,8 @@ EXETacNukeEffectController01 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -113,14 +113,14 @@ EXETacNukeEffectController01 = Class(NullShell) {
 
 
         for k, v in EffectTemplate.TNukeRings01 do
-            CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.125)-- Exavier Modified Scale
+            CreateEmitterAtEntity(self, army, v):ScaleEmitter(0.125)-- Exavier Modified Scale
         end
 
         self:CreateInitialFireballSmokeRing()
         self:ForkThread(self.CreateOuterRingWaveSmokeRing)
         self:ForkThread(self.CreateHeadConvectionSpinners)
 
-        WaitSeconds( 0.2 )
+        WaitSeconds(0.2)
 
         -- Create ground decals
         local orientation = RandomFloat(0,2*math.pi)
@@ -158,10 +158,10 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local Z = math.cos(i*angle)
             local proj =  self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave02/EXETacNukeShockwave02_proj.bp', X * OffsetMod , 0.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
-            table.insert( projectiles, proj )
+            table.insert(projectiles, proj)
         end
 
-        WaitSeconds( 1 )
+        WaitSeconds(1)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -191,7 +191,7 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
             proj:SetVelocityAlign(false)
-            proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+            proj:SetOrientation(OrientFromDir(Util.Cross(Vector(x,0,z), Vector(0,1,0))),true)
             proj:SetVelocity(0,0.75,0)-- Exavier Modified Velocity
             proj:SetBallisticAcceleration(-0.04)-- Exavier Modified Acceleration
         end
@@ -199,7 +199,7 @@ EXETacNukeEffectController01 = Class(NullShell) {
 
     CreateGroundPlumeConvectionEffects = function(self,army)
         for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-            CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.25)-- Exavier Modified Scale
+            CreateEmitterAtEntity(self, army, v):ScaleEmitter(0.25)-- Exavier Modified Scale
         end
 
         local sides = 10
@@ -220,7 +220,7 @@ EXETacNukeEffectController01 = Class(NullShell) {
             local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
             local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
             local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-            local velocity = RandomFloat( 1, 3 ) * 0.5-- Exavier Modified Last Number
+            local velocity = RandomFloat(1, 3) * 0.5-- Exavier Modified Last Number
             self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect05/EXETacNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
                 :SetVelocity(x * velocity, 0, z * velocity)
         end

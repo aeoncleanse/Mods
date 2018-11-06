@@ -57,8 +57,8 @@ EXNovaBombEffectController02 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -76,8 +76,8 @@ EXNovaBombEffectController02 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -96,7 +96,7 @@ EXNovaBombEffectController02 = Class(NullShell) {
         CreateLightParticle(self, -1, army, 20, 2, 'glow_02', 'ramp_red_02')
         WaitSeconds(0.2)
         CreateLightParticle(self, -1, army, 20, 10, 'glow_03', 'ramp_fire_06')
-        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.35)
+        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp'):ScaleEmitter(0.35)
         CreateLightParticle(self, -1, army, 15, 20, 'glow_02', 'ramp_nuke_02')
 
     end,

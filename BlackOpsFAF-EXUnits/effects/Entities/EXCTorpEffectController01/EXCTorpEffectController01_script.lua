@@ -57,8 +57,8 @@ EXCTorpEffectController01 = Class(NullShell) {
         if self.NukeOuterRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeOuterRingRadius, self.NukeOuterRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeOuterRingRadius / self.NukeOuterRingTicks )
-            local tickLength = ( self.NukeOuterRingTotalTime / self.NukeOuterRingTicks )
+            local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
+            local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -76,8 +76,8 @@ EXCTorpEffectController01 = Class(NullShell) {
         if self.NukeInnerRingTotalTime == 0 then
             DamageArea(self:GetLauncher(), myPos, self.NukeInnerRingRadius, self.NukeInnerRingDamage, 'Normal', true, true)
         else
-            local ringWidth = ( self.NukeInnerRingRadius / self.NukeInnerRingTicks )
-            local tickLength = ( self.NukeInnerRingTotalTime / self.NukeInnerRingTicks )
+            local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
+            local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -94,22 +94,22 @@ EXCTorpEffectController01 = Class(NullShell) {
         local army = self:GetArmy()
         local position = self:GetPosition()
 
-        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp' ):ScaleEmitter(0.05)
+        CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-EXUnits/effects/emitters/exconcussiontorp_shockwave_01_emit.bp'):ScaleEmitter(0.05)
 
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp' ):ScaleEmitter(2.5)--:OffsetEmitter(0, 2, 0)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp' ):ScaleEmitter(1.5)--:OffsetEmitter(0, 2, 0)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp'):ScaleEmitter(2.5)--:OffsetEmitter(0, 2, 0)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp'):ScaleEmitter(1.5)--:OffsetEmitter(0, 2, 0)
 
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.75)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, 0)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, 0)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0, 0, 0.25)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0, 0, -0.25)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, 0.25)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, -0.25)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, 0.25)
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp' ):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, -0.25)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.75)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, 0)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, 0)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(0, 0, 0.25)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(0, 0, -0.25)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, 0.25)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, -0.25)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(-0.25, 0, 0.25)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_splash_plume_01_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(0.25, 0, -0.25)
 
-        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_sinking_ripples_01_emit.bp' ):ScaleEmitter(0.6)--:OffsetEmitter(0, 2, 0)
+        CreateEmitterAtEntity(self, army, '/effects/emitters/destruction_water_sinking_ripples_01_emit.bp'):ScaleEmitter(0.6)--:OffsetEmitter(0, 2, 0)
 
         CreateLightParticle(self, -1, army, 3, 10, 'glow_02', 'ramp_nuke_02')-- Exavier Modified 4th 5th Value
     end,

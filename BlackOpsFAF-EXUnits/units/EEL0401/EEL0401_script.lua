@@ -25,27 +25,27 @@ EEL0401 = Class(TMobileFactoryUnit) {
                     end
                     self.Chargeupeffects = {}
                 end
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Emitter_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_01_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Emitter_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_01_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Emitter_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_04_emit.bp' ):ScaleEmitter(0.25) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Emitter_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_04_emit.bp' ):ScaleEmitter(0.25) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Emitter_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_hit_01_emit.bp' ):ScaleEmitter(0.25) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Emitter_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_hit_01_emit.bp' ):ScaleEmitter(0.25) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_04', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_05', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_06', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_07', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_08', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_09', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_10', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_11', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_12', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_13', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_14', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
-                table.insert( self.Chargeupeffects, CreateAttachedEmitter( self.unit, 'Wave_Muzzle_15', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp' ):ScaleEmitter(0.5) )
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Emitter_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_01_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Emitter_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_01_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Emitter_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_04_emit.bp'):ScaleEmitter(0.25))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Emitter_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_04_emit.bp'):ScaleEmitter(0.25))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Emitter_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_hit_01_emit.bp'):ScaleEmitter(0.25))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Emitter_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_hit_01_emit.bp'):ScaleEmitter(0.25))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_01', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_02', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_03', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_04', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_05', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_06', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_07', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_08', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_09', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_10', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_11', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_12', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_13', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_14', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
+                table.insert(self.Chargeupeffects, CreateAttachedEmitter(self.unit, 'Wave_Muzzle_15', self.unit:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_muzzle_03_emit.bp'):ScaleEmitter(0.5))
 
                 SonicDisruptorWave.PlayFxRackSalvoChargeSequence(self)
             end,
@@ -82,16 +82,16 @@ EEL0401 = Class(TMobileFactoryUnit) {
     OnMotionHorzEventChange = function(self, new, old)
         TMobileFactoryUnit.OnMotionHorzEventChange(self, new, old)
         if self:IsDead() then return end
-        if( not self.IsWaiting ) then
-            if( self.Walking ) then
-                if( old == 'Stopped' ) then
-                    if( self.SwitchAnims ) then
+        if(not self.IsWaiting) then
+            if(self.Walking) then
+                if(old == 'Stopped') then
+                    if(self.SwitchAnims) then
                         self.SwitchAnims = false
                         self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationWalk, true):SetRate(self:GetBlueprint().Display.AnimationWalkRate or 1.1)
                     else
                         self.AnimManip:SetRate(2.8)
                     end
-                elseif( new == 'Stopped' ) then
+                elseif(new == 'Stopped') then
                     self.AnimManip:SetRate(0)
                 end
             end
@@ -100,28 +100,28 @@ EEL0401 = Class(TMobileFactoryUnit) {
 
     OnLayerChange = function(self, new, old)
         TMobileFactoryUnit.OnLayerChange(self, new, old)
-        if( old ~= 'None' ) then
-            if( self.AT1 ) then
+        if(old ~= 'None') then
+            if(self.AT1) then
                 self.AT1:Destroy()
                 self.AT1 = nil
             end
             local myBlueprint = self:GetBlueprint()
-            if( new == 'Water' ) then
+            if(new == 'Water') then
                 self.AT1 = self:ForkThread(self.TransformThread, true)
-            elseif( new == 'Land' ) then
+            elseif(new == 'Land') then
                 self.AT1 = self:ForkThread(self.TransformThread, false)
             end
         end
     end,
 
     TransformThread = function(self, Water)
-        if( not self.AnimManip ) then
+        if(not self.AnimManip) then
             self.AnimManip = CreateAnimator(self)
         end
         local bp = self:GetBlueprint()
         local scale = bp.Display.UniformScale or 1
 
-        if( Water ) then
+        if(Water) then
             -- Change movement speed to the multiplier in blueprint
             --self:SetSpeedMult(bp.Physics.LandSpeedMultiplier)
             self:SetImmobile(true)
@@ -129,7 +129,7 @@ EEL0401 = Class(TMobileFactoryUnit) {
             self.AnimManip:SetRate(0.5)
             self.IsWaiting = true
             WaitFor(self.AnimManip)
-            --self:SetCollisionShape( 'Box', bp.CollisionOffsetX or 0,(bp.CollisionOffsetY + (bp.SizeY*1.0)) or 0,bp.CollisionOffsetZ or 0, bp.SizeX * scale, bp.SizeY * scale, bp.SizeZ * scale )
+            --self:SetCollisionShape('Box', bp.CollisionOffsetX or 0,(bp.CollisionOffsetY + (bp.SizeY*1.0)) or 0,bp.CollisionOffsetZ or 0, bp.SizeX * scale, bp.SizeY * scale, bp.SizeZ * scale)
             self.IsWaiting = false
             self:SetImmobile(false)
             self.SwitchAnims = true
@@ -144,7 +144,7 @@ EEL0401 = Class(TMobileFactoryUnit) {
             self.AnimManip:SetRate(-0.5)
             self.IsWaiting = true
             WaitFor(self.AnimManip)
-            --self:SetCollisionShape( 'Box', bp.CollisionOffsetX or 0,(bp.CollisionOffsetY + (bp.SizeY * 0.5)) or 0,bp.CollisionOffsetZ or 0, bp.SizeX * scale, bp.SizeY * scale, bp.SizeZ * scale )
+            --self:SetCollisionShape('Box', bp.CollisionOffsetX or 0,(bp.CollisionOffsetY + (bp.SizeY * 0.5)) or 0,bp.CollisionOffsetZ or 0, bp.SizeX * scale, bp.SizeY * scale, bp.SizeZ * scale)
             self.IsWaiting = false
             self.AnimManip:Destroy()
             self.AnimManip = nil

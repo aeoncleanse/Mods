@@ -38,10 +38,10 @@ EES0302 = Class(TSeaUnit) {
         if bit == 1 then
             self:SetWeaponEnabledByLabel('AAFlakFore', true)
             self:SetWeaponEnabledByLabel('TMDFore', false)
-            self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch())
             self:SetWeaponEnabledByLabel('AAFlakAft', true)
             self:SetWeaponEnabledByLabel('TMDAft', false)
-            self:GetWeaponManipulatorByLabel('AAFlakAft'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('TMDAft'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('AAFlakAft'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('TMDAft'):GetHeadingPitch())
         end
     end,
 
@@ -50,10 +50,10 @@ EES0302 = Class(TSeaUnit) {
         if bit == 1 then
             self:SetWeaponEnabledByLabel('AAFlakFore', false)
             self:SetWeaponEnabledByLabel('TMDFore', true)
-            self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch())
             self:SetWeaponEnabledByLabel('AAFlakAft', false)
             self:SetWeaponEnabledByLabel('TMDAft', true)
-            self:GetWeaponManipulatorByLabel('TMDAft'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAFlakAft'):GetHeadingPitch() )
+            self:GetWeaponManipulatorByLabel('TMDAft'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAFlakAft'):GetHeadingPitch())
         end
     end,
 }

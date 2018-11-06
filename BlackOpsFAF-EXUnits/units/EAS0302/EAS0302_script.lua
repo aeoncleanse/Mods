@@ -47,10 +47,10 @@ EAS0302 = Class(ASeaUnit) {
         if bit == 1 then
             self:SetWeaponEnabledByLabel('MassTorpedo01', true)
             self:SetWeaponEnabledByLabel('AntiTorpedo01', false)
-            --self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch() )
+            --self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch())
             self:SetWeaponEnabledByLabel('MassTorpedo02', true)
             self:SetWeaponEnabledByLabel('AntiTorpedo02', false)
-            --self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch() )
+            --self:GetWeaponManipulatorByLabel('AAFlakFore'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('TMDFore'):GetHeadingPitch())
          end
     end,
 
@@ -59,10 +59,10 @@ EAS0302 = Class(ASeaUnit) {
         if bit == 1 then
             self:SetWeaponEnabledByLabel('MassTorpedo01', false)
             self:SetWeaponEnabledByLabel('AntiTorpedo01', true)
-            --self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch() )
+            --self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch())
             self:SetWeaponEnabledByLabel('MassTorpedo02', false)
             self:SetWeaponEnabledByLabel('AntiTorpedo02', true)
-            --self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch() )
+            --self:GetWeaponManipulatorByLabel('TMDFore'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAFlakFore'):GetHeadingPitch())
         end
     end,
 
