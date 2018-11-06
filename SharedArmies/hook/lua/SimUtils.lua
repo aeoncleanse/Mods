@@ -31,7 +31,7 @@ function ForceTransferUnit(unit, ToArmyIndex) -- This is a rough copy of Transfe
     end
     local posblEnh = bp.Enhancements
     if posblEnh then
-        for k,v in posblEnh do
+        for k, v in posblEnh do
             if unit:HasEnhancement(k) then
                table.insert(enh, k)
             end
