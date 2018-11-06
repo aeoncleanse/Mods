@@ -156,7 +156,7 @@ UnitBlueprint {
                 Weight = 100,
             },
         },
-        
+
         IdleEffects = {
             Sub = {
                 Effects = {
@@ -603,7 +603,7 @@ UnitBlueprint {
                 Air = 'Air',
                 Land = 'Air',
                 Water = 'Air',
-                Sub = 'Air',                
+                Sub = 'Air',
             },
             FiringTolerance = 100,
             Label = 'MissileRack02',
@@ -674,7 +674,7 @@ UnitBlueprint {
                 Air = 'Air',
                 Land = 'Air',
                 Water = 'Air',
-                Sub = 'Air',                
+                Sub = 'Air',
             },
             FiringTolerance = 100,
             Label = 'MissileRack03',
@@ -745,7 +745,7 @@ UnitBlueprint {
                 Air = 'Air',
                 Land = 'Air',
                 Water = 'Air',
-                Sub = 'Air',                
+                Sub = 'Air',
             },
             FiringTolerance = 100,
             Label = 'MissileRack03',

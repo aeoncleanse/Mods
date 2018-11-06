@@ -55,7 +55,7 @@ Shield = Class(moho.shield_methods,Entity) {
         self:SetShieldRegenStartTime(spec.ShieldRegenStartTime)
 
         self.OffHealth = -1
-        
+
         self.PassOverkillDamage = spec.PassOverkillDamage
 
         ChangeState(self, self.OnState)
@@ -91,7 +91,7 @@ Shield = Class(moho.shield_methods,Entity) {
         self.DmgThresholdToSpillOver = math.max(threshold, 0)
     end,
 
-    UpdateShieldRatio = function(self, value)        
+    UpdateShieldRatio = function(self, value)
         if value >= 0 then
             self.Owner:SetShieldRatio(value)
         else
@@ -102,7 +102,7 @@ Shield = Class(moho.shield_methods,Entity) {
     GetCachePosition = function(self)
         return self:GetPosition()
     end,
-    
+
     -- Note, this is called by native code to calculate spillover damage. The
     -- damage logic will subtract this value from any damage it does to units
     -- under the shield. The default is to always absorb as much as possible
@@ -110,7 +110,7 @@ Shield = Class(moho.shield_methods,Entity) {
     -- like shields that only absorb partial damage (like armor).
     OnGetDamageAbsorption = function(self,instigator,amount,type)
         --LOG('absorb: ', math.min( self:GetHealth(), amount ))
-        
+
         -- Like armor damage, first multiply by armor reduction, then apply handicap
         -- See SimDamage.cpp (DealDamage function) for how this should work
         amount = amount * (self.Owner:GetArmorMult(type))
@@ -133,14 +133,14 @@ Shield = Class(moho.shield_methods,Entity) {
                     return false
                 end
             end
-        end   
-        
+        end
+
         return true
     end,
-    
+
     GetOverkill = function(self,instigator,amount,type)
         --LOG('absorb: ', math.min( self:GetHealth(), amount ))
-        
+
         -- Like armor damage, first multiply by armor reduction, then apply handicap
         -- See SimDamage.cpp (DealDamage function) for how this should work
         amount = amount * (self.Owner:GetArmorMult(type))
@@ -150,15 +150,15 @@ Shield = Class(moho.shield_methods,Entity) {
             finalVal = 0
         end
         return finalVal
-    end,    
-    
+    end,
+
     OnDamage = function(self, instigator, amount, vector, type)
         --LOG('*DEBUG: OnDamage amount = '..repr(amount)..' type = '..repr(type) )
 
-        local absorbed = self:OnGetDamageAbsorption(instigator, amount, type) 
-        
+        local absorbed = self:OnGetDamageAbsorption(instigator, amount, type)
+
         if self.PassOverkillDamage then
-            local overkill = self:GetOverkill(instigator,amount,type)     
+            local overkill = self:GetOverkill(instigator,amount,type)
             if self.Owner and IsUnit(self.Owner) and overkill > 0 then
                 self.Owner:DoTakeDamage(instigator, overkill, vector, type)
             end
@@ -198,11 +198,11 @@ Shield = Class(moho.shield_methods,Entity) {
                 --end
             end
         end
-        
+
         ----Apply Damage, but only if the owner of that Damage is not also the owner of the Shield
         if self.Owner != instigator then
-            self:AdjustHealth(instigator, -absorbed) 
-            self:UpdateShieldRatio(-1)            
+            self:AdjustHealth(instigator, -absorbed)
+            self:UpdateShieldRatio(-1)
         end
 
         --LOG('Shield Health: ' .. self:GetHealth())
@@ -317,7 +317,7 @@ Shield = Class(moho.shield_methods,Entity) {
     RegenStartThread = function(self)
         WaitSeconds(self.RegenStartTime)
         while self:GetHealth() < self:GetMaxHealth() do
-        
+
             self:AdjustHealth(self.Owner, self.RegenRate)
 
             self:UpdateShieldRatio(-1)
@@ -330,8 +330,8 @@ Shield = Class(moho.shield_methods,Entity) {
         local army = self:GetArmy()
         local OffsetLength = Util.GetVectorLength(vector)
         local ImpactMesh = Entity { Owner = self.Owner }
-        Warp( ImpactMesh, self:GetPosition())        
-        
+        Warp( ImpactMesh, self:GetPosition())
+
         if self.ImpactMeshBp != '' then
             ImpactMesh:SetMesh(self.ImpactMeshBp)
             ImpactMesh:SetDrawScale(self.Size)
@@ -363,7 +363,7 @@ Shield = Class(moho.shield_methods,Entity) {
         end
 
         -- allow strategic nuke missile to penetrate shields
-        if EntityCategoryContains( categories.STRATEGIC, other ) and 
+        if EntityCategoryContains( categories.STRATEGIC, other ) and
            EntityCategoryContains( categories.MISSILE, other ) then
             return false
         end
@@ -421,13 +421,13 @@ Shield = Class(moho.shield_methods,Entity) {
 
     -- Basically run a timer, but with visual bar movement
     ChargingUp = function(self, curProgress, time)
-        local owner = self.Owner 
+        local owner = self.Owner
         local position = owner:GetPosition()
         local shieldbp = self.Owner:GetBlueprint().Defense.Shield
         local shieldRadius = shieldbp.ShieldSize
         local aiBrain = owner:GetAIBrain()
         local otherShields = aiBrain:GetUnitsAroundPoint(( categories.SHIELD * categories.DEFENSE), position, shieldRadius, 'Ally' )
-        local rechargeTime = time + ((table.getn(otherShields) - 1) * .2 * time) 
+        local rechargeTime = time + ((table.getn(otherShields) - 1) * .2 * time)
         if rechargeTime > (time * 3) then
             rechargeTime = time
         else
@@ -436,12 +436,12 @@ Shield = Class(moho.shield_methods,Entity) {
             local fraction = self.Owner:GetResourceConsumed()
             curProgress = curProgress + ( fraction / 10 )
             curProgress = math.min( curProgress, rechargeTime )
-            
+
             local workProgress = curProgress / rechargeTime
-            
+
             self:UpdateShieldRatio( workProgress )
             WaitTicks(1)
-        end    
+        end
     end,
 
     OnState = State {
@@ -451,14 +451,14 @@ Shield = Class(moho.shield_methods,Entity) {
             if self.OffHealth >= 0 then
                 self.Owner:SetMaintenanceConsumptionActive()
                 self:ChargingUp(0, self.ShieldEnergyDrainRechargeTime)
-                
+
                 -- If the shield has less than full health, allow the shield to begin regening
                 if self:GetHealth() < self:GetMaxHealth() and self.RegenRate > 0 then
                     self.RegenThread = ForkThread(self.RegenStartThread, self)
                     self.Owner.Trash:Add(self.RegenThread)
                 end
             end
-            
+
             -- We are no longer turned off
             self.OffHealth = -1
 
@@ -466,20 +466,20 @@ Shield = Class(moho.shield_methods,Entity) {
 
             self.Owner:OnShieldEnabled()
             self:CreateShieldMesh()
-            
+
             local aiBrain = self.Owner:GetAIBrain()
 
             WaitSeconds(1.0)
             local fraction = self.Owner:GetResourceConsumed()
             local on = true
             local test = false
-            
+
             -- Test in here if we have run out of power; if the fraction is ever not 1 we don't have full power
             while on do
                 WaitTicks(1)
 
                 self:UpdateShieldRatio(-1)
-                
+
                 fraction = self.Owner:GetResourceConsumed()
                 if fraction != 1 and aiBrain:GetEconomyStored('ENERGY') <= 0 then
                     if test then
@@ -492,7 +492,7 @@ Shield = Class(moho.shield_methods,Entity) {
                     test = false
                 end
             end
-            
+
             -- Record the amount of health on the shield here so when the unit tries to turn its shield
             -- back on and off it has the amount of health from before.
             --self.OffHealth = self:GetHealth()
@@ -523,7 +523,7 @@ Shield = Class(moho.shield_methods,Entity) {
             self:RemoveShield()
             self.Owner:OnShieldDisabled()
 
-            WaitSeconds(1)            
+            WaitSeconds(1)
         end,
 
         IsOn = function(self)
@@ -535,13 +535,13 @@ Shield = Class(moho.shield_methods,Entity) {
     DamageRechargeState = State {
         Main = function(self)
             self:RemoveShield()
-            
+
             -- We must make the unit charge up before gettings its shield back
             self:ChargingUp(0, self.ShieldRechargeTime)
-            
+
             -- Fully charged, get full health
             self:SetHealth(self, self:GetMaxHealth())
-            
+
             ChangeState(self, self.OnState)
         end,
 
@@ -554,9 +554,9 @@ Shield = Class(moho.shield_methods,Entity) {
     EnergyDrainRechargeState = State {
         Main = function(self)
             self:RemoveShield()
-            
+
             self:ChargingUp(0, self.ShieldEnergyDrainRechargeTime)
-            
+
             -- If the unit is attached to a transport, make sure the shield goes to the off state
             -- so the shield isn't turned on while on a transport
             if not self.Owner:IsUnitState('Attached') then
@@ -586,7 +586,7 @@ UnitShield = Class(Shield){
     OnCreate = function(self,spec)
         self.Trash = TrashBag()
         self.Owner = spec.Owner
-        self.ImpactEffects = EffectTemplate[spec.ImpactEffects]        
+        self.ImpactEffects = EffectTemplate[spec.ImpactEffects]
         self.CollisionSizeX = spec.CollisionSizeX or 1
         self.CollisionSizeY = spec.CollisionSizeY or 1
         self.CollisionSizeZ = spec.CollisionSizeZ or 1
@@ -603,7 +603,7 @@ UnitShield = Class(Shield){
 
         -- Show our 'lifebar'
         self:UpdateShieldRatio(1.0)
-        
+
         self:SetRechargeTime(spec.ShieldRechargeTime or 5, spec.ShieldEnergyDrainRechargeTime or 5)
         self:SetVerticalOffset(spec.ShieldVerticalOffset)
 
@@ -618,7 +618,7 @@ UnitShield = Class(Shield){
         self:SetShieldRegenStartTime(spec.ShieldRegenStartTime)
 
         self.PassOverkillDamage = spec.PassOverkillDamage
-        
+
         ChangeState(self, self.OnState)
     end,
 
@@ -655,7 +655,7 @@ UnitShield = Class(Shield){
         self:UpdateShieldRatio(0)
         ChangeState(self, self.DeadState)
     end,
-       
+
 }
 
 AntiArtilleryShield = Class(Shield) {
@@ -679,7 +679,7 @@ AntiArtilleryShield = Class(Shield) {
                     return false
                 end
             end
-        end           
+        end
         if bp.ArtilleryShieldBlocks then
             return true
         end
@@ -695,7 +695,7 @@ AntiArtilleryShield = Class(Shield) {
         if other:GetBlueprint().Physics.CollideFriendlyShield and other.DamageData.ArtilleryShieldBlocks then
             return true
         end
-        
+
         if other.DamageData.ArtilleryShieldBlocks and IsEnemy(self:GetArmy(),other:GetArmy()) then
             return true
         end

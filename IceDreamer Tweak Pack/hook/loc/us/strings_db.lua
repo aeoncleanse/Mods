@@ -1372,7 +1372,7 @@ Unit_Description_0033="Mobile Anti-Air with a low-speed Area-Of-Effect munition,
 Unit_Description_0034="Mobile Shield Generator which provides limited protection to units beneath the Shield. Shields transfer residual Damage to intersecting Bubbles."
 Unit_Description_0035="Extremely fast Heavy Raiding Bot. Equipped with Personal Shielding to shrug of light engagements."
 Unit_Description_0036="Slow-moving Heavy Artillery. Must be stationary to fire."
-Unit_Description_0037="Experimental Amphibious Mobile Artillery platform. Equipped with Battleship-level weaponry, Bubble Shield, close-fire support, Air Staging and Factory Facilities."   
+Unit_Description_0037="Experimental Amphibious Mobile Artillery platform. Equipped with Battleship-level weaponry, Bubble Shield, close-fire support, Air Staging and Factory Facilities."
 Unit_Description_0307="Extremely Heavy Amphibious Assault Robot. Designed to engage enemy Experimental units, Heavy units, and Defence structures."
 Unit_Description_0308="Heavy Mobile Missile Launcher designed to overwhelm enemy Shields and Tactical Missile Defences with large salvos."
 Unit_Description_0441="Long Range support Robot armed with Gatling Cannon and Fragmentation Grenade Launcher."
@@ -1388,7 +1388,7 @@ Unit_Description_0044="Extremely fast Spy Plane with large Visual radius, good R
 Unit_Description_0045="Lightly armed Air Transport equipped with Anti-Air and Direct Fire weapons. Can carry 14 T1 units, 6 T2 units (Plus 2 T1), or 3 T3 units (Plus 2 T1)."
 Unit_Description_0046="Air Superiority Fighter designed to take and keep control of all Airspace on the Map."
 Unit_Description_0047="Strategic Bomber designed to surgically destroy key targets. Armed with light Anti-Air weaponry."
-Unit_Description_0048="Heavily armoured Gunship armed with weak Anti-Air weapon." 
+Unit_Description_0048="Heavily armoured Gunship armed with weak Anti-Air weapon."
 Unit_Description_0309="Heavily armoured, Shielded Air Transport. Armed with light Direct Fire and very powerful Anti-Air weaponry. Can carry 28 T1 units, 12 T2 units (Plus 4 T1), or 6 T3 units (Plus 4 T1)."
 Unit_Description_0417="Fast Assault Fighter armed with Anti-Air cannons and powerful Napalm Damage-Over-Time Bombs."
 
@@ -1402,7 +1402,7 @@ Unit_Description_0054="Strategic Missile Submarine. Armed with long-range Tactic
 Unit_Description_0055="Experimental Submersible Aircraft Carrier. Armed with powerful Torpedoes and, while surfaced, Anti-Air SAMs. Equipped with Air Staging, Factory, and a full sensor suite."
 Unit_Description_0310="Lightly armoured dedicated submersible killing boat armed with a Torpedo tube and fantastic Torpedo Defence. Vulnerable to Direct Fire."
 Unit_Description_0311="Naval Shield Generator. Provides protection for all nearby vessels. Shields transfer residual Damage to intersecting Bubbles."
-Unit_Description_0312="Direct Fire Anti-Navy assault ship with Lasers, weak Anti-Air and Torpedoes, Tactical Missile and Torpedo defences, and full sensor suite."   
+Unit_Description_0312="Direct Fire Anti-Navy assault ship with Lasers, weak Anti-Air and Torpedoes, Tactical Missile and Torpedo defences, and full sensor suite."
 
 ----Offensive Buildings
 Unit_Description_0057="Basic surface defence turret."
@@ -1519,8 +1519,8 @@ Unit_Description_0444="Lightly armoured support Robot armed with Long-Range Rock
 Unit_Description_0447="Tech 3 Amphibious Construction, Repair, Capture and Reclamation unit."
 Unit_Description_0448="Extremely Heavy Amphibious Assault Robot equipped with Direct Fire blasters, weak Torpedoes and Anti-Torpedo Flares. Designed to engage enemy Experimental units, Heavy units, and Defence structures."
 Unit_Description_0449="Mobile Anti-Air with a low-speed Area-Of-Effect munition, excellent against enemy Gunships."
-Unit_Description_0450="Slow-moving Heavy Artillery. Must be stationary to fire."    
-    
+Unit_Description_0450="Slow-moving Heavy Artillery. Must be stationary to fire."
+
 ----Air
 Unit_Description_0138="Fast aerial reconnaissance vehicle."
 Unit_Description_0139="Quick, manoeuvrable Anti-Air Fighter."
@@ -1534,7 +1534,7 @@ Unit_Description_0146="Air Superiority Fighter designed to take and keep control
 Unit_Description_0147="Strategic Bomber designed to surgically destroy key targets. Armed with light Anti-Air weaponry. Equipped with a Personal Stealth Generator. Costs Energy to run."
 Unit_Description_0148="Experimental Gunship armed with devastating Area-Of-Effect Direct Fire weaponry and effective Anti-Air."
 Unit_Description_0320="Light Gunship armed with a standard blaster."
-Unit_Description_0321="Heavily armoured Gunship armed with weak Anti-Air weapon. Equipped with Radar Jamming." 
+Unit_Description_0321="Heavily armoured Gunship armed with weak Anti-Air weapon. Equipped with Radar Jamming."
 Unit_Description_0418="Fast Assault Fighter armed with Anti-Air cannons and powerful long-range Missiles."
 
 ----Navy
