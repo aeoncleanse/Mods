@@ -26,7 +26,7 @@ BRA0309 = Class(AirTransport) {
 
     BeamExhaustIdle = '/effects/emitters/missile_exhaust_fire_beam_05_emit.bp',
     BeamExhaustCruise = '/effects/emitters/missile_exhaust_fire_beam_04_emit.bp',
-    
+
     OnCreate = function(self)
         AirTransport.OnCreate(self)
         if not self.OpenAnim then
@@ -54,7 +54,7 @@ BRA0309 = Class(AirTransport) {
     OnAttachedKilled = function(self, attached)
         attached:DetachFrom()
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         self:TransportDetachAllUnits(true)
         AirTransport.OnKilled(self, instigator, type, overkillRatio)

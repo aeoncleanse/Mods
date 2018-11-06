@@ -12,13 +12,13 @@ RailGun01 = Class(RailGun01Projectile) {
         self:ShakeCamera(15, 0.25, 0, 0.2)
         RailGun01Projectile.OnImpact (self, TargetType, TargetEntity)
     end,
-    
+
     OnImpactDestroy = function(self, targetType, targetEntity)
         if targetEntity and not IsUnit(targetEntity) then
             RailGun01Projectile.OnImpactDestroy(self, targetType, targetEntity)
         return
     end
-   
+
     if self.counter then
         if self.counter >= 1 then
             RailGun01Projectile.OnImpactDestroy(self, targetType, targetEntity)
@@ -29,7 +29,7 @@ RailGun01 = Class(RailGun01Projectile) {
         else
             self.counter = 1
         end
-        
+
         if targetEntity then
             self.lastimpact = targetEntity:GetEntityId()
         end

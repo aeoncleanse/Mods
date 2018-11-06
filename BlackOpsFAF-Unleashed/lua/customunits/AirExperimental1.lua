@@ -5,7 +5,7 @@
 -----------------------------------------------------------------
 UnitList = {
     T4AirExperimental1 = {
-        UEF = {'bea0402', 70}, -- Citadel MKII (Experimental Aerial Fortress) 
-        Cybran = {'bra0409', 40}, -- Gargantuan (Experimental Assault Transport) 
+        UEF = {'bea0402', 70}, -- Citadel MKII (Experimental Aerial Fortress)
+        Cybran = {'bra0409', 40}, -- Gargantuan (Experimental Assault Transport)
     },
 }

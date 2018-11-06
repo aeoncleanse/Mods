@@ -6,7 +6,7 @@ CitadelHVM01 = Class(CitadelHVM01Projectile) {
         if EntityCategoryContains(categories.EXPERIMENTAL, TargetEntity) then
             self.DamageData.DamageAmount = self:GetLauncher():GetBlueprint().ExperimentalDamage.DamageAmount
         end
-        CitadelHVM01Projectile.OnImpact(self, TargetType, TargetEntity) 
+        CitadelHVM01Projectile.OnImpact(self, TargetType, TargetEntity)
     end,
 }
 

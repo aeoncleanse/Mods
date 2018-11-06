@@ -135,8 +135,8 @@ MiniHeavyMicrowaveLaserGenerator = Class(DefaultBeamWeapon) {
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
             for k, v in self.FxUpackingChargeEffects do
-                for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do 
-                    CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale):ScaleEmitter(0.2)  
+                for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
+                    CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale):ScaleEmitter(0.2)
                 end
             end
             DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
@@ -305,7 +305,7 @@ ShadowCannonWeapon01 = Class(DefaultProjectileWeapon) {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_muzzle_charge_05_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_muzzle_charge_04_emit.bp',
     },
-    
+
     FxMuzzleFlash = {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_cannon_muzzle_01_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_cannon_muzzle_02_emit.bp',
@@ -318,7 +318,7 @@ ShadowCannonWeapon01 = Class(DefaultProjectileWeapon) {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_muzzle_flash_02_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_muzzle_flash_03_emit.bp',
     },
-    
+
     FxMuzzleFlashScale = 0.5,
     FxChargeMuzzleFlashScale = 1,
 }
@@ -330,7 +330,7 @@ BassieCannonWeapon01 = Class(DefaultProjectileWeapon) {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_muzzle_charge_05_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/shadow_muzzle_charge_04_emit.bp',
     },
-    
+
     FxMuzzleFlash = {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/bassie_cannon_muzzle_01_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/bassie_cannon_muzzle_02_emit.bp',
@@ -359,7 +359,7 @@ ZCannonWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = BlackOpsEffectTemplate.ZCannonMuzzleFlash,
     FxMuzzleFlashScale = 2.5,
     Version = 1,
-    
+
     PlayFxRackSalvoReloadSequence = function(self)
         for i = 1, 40 do
         local fxname
@@ -449,15 +449,15 @@ UEFNavyMineWeapon = Class(KamikazeWeapon){
 
 UEFNavyMineDeathWeapon = Class(BareBonesWeapon) {
     FxDeath = BlackOpsEffectTemplate.NavalMineHit01,
-    
+
     OnCreate = function(self)
         BareBonesWeapon.OnCreate(self)
-        self:SetWeaponEnabled(false)   
+        self:SetWeaponEnabled(false)
     end,
 
     OnFire = function(self)
     end,
-    
+
     Fire = function(self)
         local army = self.unit:GetArmy()
         for k, v in self.FxDeath do
@@ -465,7 +465,7 @@ UEFNavyMineDeathWeapon = Class(BareBonesWeapon) {
         end
         local myBlueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
-    end,    
+    end,
 }
 
 AeonMineDeathWeapon = Class(DefaultProjectileWeapon) {
@@ -493,38 +493,16 @@ SeraNavyMineWeapon = Class(KamikazeWeapon){
 
 SeraNavyMineDeathWeapon = Class(BareBonesWeapon) {
     FxDeath = BlackOpsEffectTemplate.MineExplosion01,
-    
+
     OnCreate = function(self)
         BareBonesWeapon.OnCreate(self)
-        self:SetWeaponEnabled(false)   
+        self:SetWeaponEnabled(false)
     end,
-    
+
 
     OnFire = function(self)
     end,
-    
-    Fire = function(self)
-        local army = self.unit:GetArmy()
-        for k, v in self.FxDeath do
-            CreateEmitterAtBone(self.unit,-2,army,v)
-        end 
-        local myBlueprint = self:GetBlueprint()
-        DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
-    end,
-}
 
-SeraMineDeathExplosion = Class(BareBonesWeapon) {
-    FxDeath = BlackOpsEffectTemplate.MineExplosion01,
-    
-    OnCreate = function(self)
-        BareBonesWeapon.OnCreate(self)
-        self:SetWeaponEnabled(false)   
-    end,
-    
-
-    OnFire = function(self)
-    end,
-    
     Fire = function(self)
         local army = self.unit:GetArmy()
         for k, v in self.FxDeath do
@@ -532,7 +510,29 @@ SeraMineDeathExplosion = Class(BareBonesWeapon) {
         end
         local myBlueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
-    end,    
+    end,
+}
+
+SeraMineDeathExplosion = Class(BareBonesWeapon) {
+    FxDeath = BlackOpsEffectTemplate.MineExplosion01,
+
+    OnCreate = function(self)
+        BareBonesWeapon.OnCreate(self)
+        self:SetWeaponEnabled(false)
+    end,
+
+
+    OnFire = function(self)
+    end,
+
+    Fire = function(self)
+        local army = self.unit:GetArmy()
+        for k, v in self.FxDeath do
+            CreateEmitterAtBone(self.unit,-2,army,v)
+        end
+        local myBlueprint = self:GetBlueprint()
+        DamageArea(self.unit, self.unit:GetPosition(), myBlueprint.DamageRadius, myBlueprint.Damage, myBlueprint.DamageType or 'Normal', myBlueprint.DamageFriendly or false)
+    end,
 }
 
 SeraMineExplosion = Class(KamikazeWeapon){
@@ -647,17 +647,17 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
             if self:GetCurrentTarget() then
                 local PossibleTargetTable
                 local aiBrain = self.unit:GetAIBrain()
-                
+
                 if self:GetCurrentTarget() then
-                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.LAND + (categories.STRUCTURE) , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
+                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.LAND + (categories.STRUCTURE) , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
                     self.TargetTable = nil
                 end
-                
+
                 if not self.TargetTable then self.TargetTable = {} end
-                
+
                 local targetcount = table.getn(PossibleTargetTable)
                 local tablecounter = 0
-                
+
                 if targetcount >= f_count then
                     local max_targets = table.getn(PossibleTargetTable)
                     local ran_values = {}
@@ -666,15 +666,15 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
                         repeat
                             if table.find(ran_values, ra) then ra = Random(1, max_targets) end
                         until not table.find(ran_values, ra)
-                        
+
                         table.insert(ran_values, ra)
                     until table.getn(ran_values) >= f_count
-                    
+
                     for k, v in ran_values do
                         table.insert(self.TargetTable, PossibleTargetTable[v])
                         tablecounter = tablecounter + 1
                         if tablecounter >= f_count then
-                            break 
+                            break
                         end
                     end
                 else
@@ -682,7 +682,7 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
                         table.insert(self.TargetTable, v)
                         tablecounter = tablecounter + 1
                         if tablecounter >= targetcount then
-                        break 
+                        break
                         end
                     end
                 end
@@ -693,20 +693,20 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
         local TableSize = table.getn(self.TargetTable)
         local n = self.FireCounter
         if self.TargetTable then
-            if TableSize >= 1 then    
-                if TableSize == f_count then    
+            if TableSize >= 1 then
+                if TableSize == f_count then
                     local tar = self.TargetTable[n]
                     if not tar:BeenDestroyed() and not tar:IsDead() then
                         self:SetTargetEntity(tar)
-                        CreateAttachedEmitter(tar, 0, tar:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/targeted_effect_01_emit.bp'):OffsetEmitter(0, 0.5,0) 
+                        CreateAttachedEmitter(tar, 0, tar:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/targeted_effect_01_emit.bp'):OffsetEmitter(0, 0.5,0)
                     end
-                else 
+                else
                     local ran = Random(1, TableSize)
                     local tar = self.TargetTable[ran]
                     if not tar:BeenDestroyed() and not tar:IsDead() then
                         self:SetTargetEntity(tar)
                         if tar.Pointed ~= true then
-                            CreateAttachedEmitter(tar, 0, tar:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/targeted_effect_01_emit.bp'):OffsetEmitter(0, 0.5,0) 
+                            CreateAttachedEmitter(tar, 0, tar:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/targeted_effect_01_emit.bp'):OffsetEmitter(0, 0.5,0)
                             tar.Pointed = true
                             tar:ForkThread(self.PointedThread, self)
                         end
@@ -721,7 +721,7 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
         self.FireCounter = 0
         GoliathRocket02.OnWeaponFired(self)
     end,
-    
+
     PointedThread = function(tar, self)
         WaitSeconds(5)
         tar.Pointed = false
@@ -740,27 +740,27 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
         '/effects/emitters/cannon_muzzle_flash_04_emit.bp',
         '/effects/emitters/cannon_muzzle_smoke_11_emit.bp',
     },
-    
+
     CreateProjectileForWeapon = function(self, bone)
             local f_count = table.getn(self:GetBlueprint().RackBones[1].MuzzleBones)
             if not self.FireCounter or self.FireCounter == f_count then self.FireCounter = 0 end
             if not self.TargetTable then self.TargetTable = {} end
-            
+
             if self.FireCounter == 0 then
                 if self:GetCurrentTarget() then
                     local PossibleTargetTable
                     local aiBrain = self.unit:GetAIBrain()
-                    
+
                     if self:GetCurrentTarget() then
-                        PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
+                        PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
                         self.TargetTable = nil
                     end
-                    
+
                     if not self.TargetTable then self.TargetTable = {} end
-                    
+
                     local targetcount = table.getn(PossibleTargetTable)
                     local tablecounter = 0
-                    
+
                     if targetcount >= f_count then
                         local max_targets = table.getn(PossibleTargetTable)
                         local ran_values = {}
@@ -769,24 +769,24 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
                             repeat
                                 if table.find(ran_values, ra) then ra = Random(1, max_targets) end
                             until not table.find(ran_values, ra)
-                            
+
                             table.insert(ran_values, ra)
                         until table.getn(ran_values) >= f_count
-                        
+
                         for k, v in ran_values do
                             table.insert(self.TargetTable, PossibleTargetTable[v])
                             tablecounter = tablecounter + 1
-                            if tablecounter >= f_count then 
-                                break 
+                            if tablecounter >= f_count then
+                                break
                             end
                         end
-                        
+
                     else
                         for k, v in PossibleTargetTable do
                             table.insert(self.TargetTable, v)
                             tablecounter = tablecounter + 1
-                            if tablecounter >= targetcount then 
-                                break 
+                            if tablecounter >= targetcount then
+                                break
                             end
                         end
                     end
@@ -797,13 +797,13 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
             local TableSize = table.getn(self.TargetTable)
             local n = self.FireCounter
             if self.TargetTable then
-                if TableSize >= 1 then    
-                    if TableSize == f_count then    
+                if TableSize >= 1 then
+                    if TableSize == f_count then
                         local tar = self.TargetTable[n]
                         if not tar:BeenDestroyed() and not tar:IsDead() then
                             self:SetTargetEntity(tar)
                         end
-                    else 
+                    else
                         local ran = Random(1, TableSize)
                         local tar = self.TargetTable[ran]
                         if not tar:BeenDestroyed() and not tar:IsDead() then
@@ -823,7 +823,7 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
         self.FireCounter = 0
         BasiliskAAMissile02.OnWeaponFired(self)
     end,
-    
+
     PointedThread = function(tar, self)
         WaitSeconds(5)
         tar.Pointed = false
@@ -854,27 +854,27 @@ CitadelHVMWeapon02 = Class(DefaultProjectileWeapon) {
 
 CitadelHVMWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EffectTemplate.TAAMissileLaunch,
-    
+
     CreateProjectileForWeapon = function(self, bone)
         local f_count = table.getn(self:GetBlueprint().RackBones[1].MuzzleBones)
         if not self.FireCounter or self.FireCounter == f_count then self.FireCounter = 0 end
         if not self.TargetTable then self.TargetTable = {} end
-        
+
         if self.FireCounter == 0 then
             if self:GetCurrentTarget() then
                 local PossibleTargetTable
                 local aiBrain = self.unit:GetAIBrain()
-                
+
                 if self:GetCurrentTarget() then
-                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY') 
+                    PossibleTargetTable = aiBrain:GetUnitsAroundPoint( categories.AIR , self.unit:GetPosition(), self:GetBlueprint().MaxRadius ,'ENEMY')
                     self.TargetTable = nil
                 end
-                
+
                 if not self.TargetTable then self.TargetTable = {} end
-                
+
                 local targetcount = table.getn(PossibleTargetTable)
                 local tablecounter = 0
-                
+
                 if targetcount >= f_count then
                     local max_targets = table.getn(PossibleTargetTable)
                     local ran_values = {}
@@ -883,24 +883,24 @@ CitadelHVMWeapon = Class(DefaultProjectileWeapon) {
                         repeat
                             if table.find(ran_values, ra) then ra = Random(1, max_targets) end
                         until not table.find(ran_values, ra)
-                        
+
                         table.insert(ran_values, ra)
                     until table.getn(ran_values) >= f_count
-                    
+
                     for k, v in ran_values do
                         table.insert(self.TargetTable, PossibleTargetTable[v])
                         tablecounter = tablecounter + 1
                         if tablecounter >= f_count then
-                            break 
+                            break
                         end
                     end
-                    
+
                 else
                     for k, v in PossibleTargetTable do
                         table.insert(self.TargetTable, v)
                         tablecounter = tablecounter + 1
                         if tablecounter >= targetcount then
-                            break 
+                            break
                         end
                     end
                 end
@@ -911,13 +911,13 @@ CitadelHVMWeapon = Class(DefaultProjectileWeapon) {
         local TableSize = table.getn(self.TargetTable)
         local n = self.FireCounter
         if self.TargetTable then
-            if TableSize >= 1 then    
-                if TableSize == f_count then    
+            if TableSize >= 1 then
+                if TableSize == f_count then
                     local tar = self.TargetTable[n]
                     if not tar:BeenDestroyed() and not tar:IsDead() then
                         self:SetTargetEntity(tar)
                     end
-                else 
+                else
                     local ran = Random(1, TableSize)
                     local tar = self.TargetTable[ran]
                     if not tar:BeenDestroyed() and not tar:IsDead() then

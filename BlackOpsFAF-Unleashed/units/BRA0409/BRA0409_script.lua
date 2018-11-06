@@ -43,13 +43,13 @@ BRA0409 = Class(AirTransport) {
 
     BeamExhaustIdle = '/effects/emitters/missile_exhaust_fire_beam_05_emit.bp',
     BeamExhaustCruise = '/effects/emitters/missile_exhaust_fire_beam_04_emit.bp',
-   
+
     MovementAmbientExhaustBones = {
         'Engine_01',
         'Engine_02',
         'Engine_03',
     },
-    
+
     MovementAmbientExhaustBones2 = {
         'Engine_04',
         'Engine_05',
@@ -64,7 +64,7 @@ BRA0409 = Class(AirTransport) {
         self:TransportDetachAllUnits(true)
         AirTransport.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     OnTransportAttach = function(self, attachBone, unit)
         AirTransport.OnTransportAttach(self, attachBone, unit)
         unit:SetCanTakeDamage(false)
@@ -87,7 +87,7 @@ BRA0409 = Class(AirTransport) {
             WaitSeconds(util.GetRandomFloat(0.5, 1.9))
         end
     end,
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         AirTransport.OnStopBeingBuilt(self,builder,layer)
 
@@ -97,10 +97,10 @@ BRA0409 = Class(AirTransport) {
         self:SetMaintenanceConsumptionInactive()
         self:SetScriptBit('RULEUTC_IntelToggle', true)
     end,
-    
+
     OnMotionHorzEventChange = function(self, new, old)
         AirTransport.OnMotionHorzEventChange(self, new, old)
-        if self.ThrustExhaustTT1 == nil then 
+        if self.ThrustExhaustTT1 == nil then
             if self.MovementAmbientExhaustEffectsBag then
                 fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')
             else
@@ -108,13 +108,13 @@ BRA0409 = Class(AirTransport) {
             end
             self.ThrustExhaustTT1 = self:ForkThread(self.MovementAmbientExhaustThread)
         end
-        
+
         -- We've changed flight speed too soon to open
         if self.OpenThread then
             KillThread(self.OpenThread)
             self.OpenThread = nil
         end
-        
+
         if new == 'TopSpeed' then
             -- Only open after 2 seconds of top-speed flight
             self.OpenThread = self:ForkThread(self.OpenAnimation)
@@ -127,31 +127,31 @@ BRA0409 = Class(AirTransport) {
             KillThread(self.ThrustExhaustTT1)
             fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')
             self.ThrustExhaustTT1 = nil
-        end         
+        end
     end,
-    
+
     OpenAnimation = function(self)
         WaitSeconds(1.5)
         self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(2)
         self.open = true
     end,
-    
+
     CloseAnimation = function(self)
         WaitSeconds(1.5)
         self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationClose, false):SetRate(2)
         self.open = false
     end,
-    
+
     MovementAmbientExhaustThread = function(self)
         while not self:IsDead() do
             local ExhaustEffects = {
                 '/effects/emitters/dirty_exhaust_smoke_01_emit.bp',
-                '/effects/emitters/dirty_exhaust_sparks_01_emit.bp',            
+                '/effects/emitters/dirty_exhaust_sparks_01_emit.bp',
             }
             local ExhaustBeamLarge = '/mods/BlackOpsFAF-Unleashed/effects/emitters/missile_exhaust_fire_beam_10_emit.bp'
             local ExhaustBeamSmall = '/effects/emitters/missile_exhaust_fire_beam_03_emit.bp'
-            local army = self:GetArmy()            
-            
+            local army = self:GetArmy()
+
             for kE, vE in ExhaustEffects do
                 for kB, vB in self.MovementAmbientExhaustBones do
                     table.insert(self.MovementAmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE):ScaleEmitter(2))
@@ -162,10 +162,10 @@ BRA0409 = Class(AirTransport) {
                     table.insert(self.MovementAmbientExhaustEffectsBag, CreateBeamEmitterOnEntity(self, vB, army, ExhaustBeamSmall))
                 end
             end
-            
+
             WaitSeconds(5)
             fxutil.CleanupEffectBag(self,'MovementAmbientExhaustEffectsBag')
-        end    
+        end
     end,
 }
 

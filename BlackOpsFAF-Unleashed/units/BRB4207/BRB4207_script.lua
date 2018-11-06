@@ -9,14 +9,14 @@ local CShieldStructureUnit = import('/lua/cybranunits.lua').CShieldStructureUnit
 local Shield = import('/lua/shield.lua').Shield
 
 BRB4207 = Class(CShieldStructureUnit) {
-    
+
     ShieldEffects = {
                     '/effects/emitters/cybran_shield_05_generator_01_emit.bp',
                     '/effects/emitters/cybran_shield_05_generator_02_emit.bp',
                     '/effects/emitters/cybran_shield_05_generator_03_emit.bp',
                     '/effects/emitters/cybran_shield_05_generator_04_emit.bp',
     },
-    
+
     OnStopBeingBuilt = function(self)
         if not self:IsDead() then
 

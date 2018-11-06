@@ -2,14 +2,14 @@
 
 local SeaDragonShell = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsProjectiles.lua').SeaDragonShell
 SeaDragonShell01 = Class(SeaDragonShell) {
-    
+
     OnImpact = function(self, targetType, targetEntity)
         local army = self:GetArmy()
         CreateLightParticle(self, -1, army, 24, 5, 'glow_03', 'ramp_red_10')
-        CreateLightParticle(self, -1, army, 8, 16, 'glow_03', 'ramp_antimatter_02')   
-        SeaDragonShell.OnImpact(self, targetType, targetEntity)  
+        CreateLightParticle(self, -1, army, 8, 16, 'glow_03', 'ramp_antimatter_02')
+        SeaDragonShell.OnImpact(self, targetType, targetEntity)
     end,
-    
+
     CreateImpactEffects = function(self, army, EffectTable, EffectScale)
         local emit = nil
         for k, v in EffectTable do

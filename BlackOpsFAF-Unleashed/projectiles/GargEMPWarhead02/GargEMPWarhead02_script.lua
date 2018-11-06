@@ -12,13 +12,13 @@ GargEMPWarhead02 = Class(NullShell) {
 
     NukeMeshScale = 8.5725,
     PlumeVelocityScale = 0.1,
-    
+
     -- Effects attached to moving nuke projectile plume
     PlumeEffects = {'/effects/emitters/empfluxwarhead_concussion_ring_02_emit.bp',},
 
     -- Effects not attached but created at the position of CIFEMPFluxWarhead02
     NormalEffects = {'/effects/emitters/empfluxwarhead_fallout_01_emit.bp'},
-    
+
     EffectThread = function(self)
         -- Mesh effects
         self.Plumeproj = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/effects/GargEMPWarHead/GargEMPWarHeadEffect01_proj.bp')

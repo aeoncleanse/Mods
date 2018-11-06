@@ -27,7 +27,7 @@ BSB4205 = Class(SStructureUnit) {
             WaitSeconds(5)
         end
     end,
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         SStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetMaintenanceConsumptionActive()
@@ -42,7 +42,7 @@ BSB4205 = Class(SStructureUnit) {
                 CreateAttachedEmitter(self, 'XSB4205', army, v):ScaleEmitter(1.2)
             end
         end
-               
+
         local bp = self:GetBlueprint().RegenAura
 
         if not Buffs['SeraphimRegenFieldMoo'] then
@@ -57,7 +57,7 @@ BSB4205 = Class(SStructureUnit) {
                         Add = 0,
                         Mult = bp.RegenPerSecond or 0.1,
                         Ceil = bp.RegenCeiling,
-                    },                      
+                    },
                 },
             }
         end

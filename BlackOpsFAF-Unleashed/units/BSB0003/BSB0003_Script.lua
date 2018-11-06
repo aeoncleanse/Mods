@@ -11,15 +11,15 @@ BSB0003 = Class(SShieldLandUnit) {
     ShieldEffects = {
        '/effects/emitters/op_seraphim_quantum_jammer_tower_emit.bp',
     },
-    
+
     OnCreate = function(self, builder, layer)
         SShieldLandUnit.OnCreate(self, builder, layer)
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,
-    
+
     DeathThread = function(self)
         self:Destroy()
     end,

@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3SeaCarrier = {
-        Cybran = {'brs0304', 70}, -- Reaper Class (Escort Ship) 
+        Cybran = {'brs0304', 70}, -- Reaper Class (Escort Ship)
     },
 }

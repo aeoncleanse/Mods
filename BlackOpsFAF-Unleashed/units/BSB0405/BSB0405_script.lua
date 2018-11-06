@@ -19,18 +19,18 @@ BSB0405 = Class(SShieldStructureUnit) {
         '/effects/emitters/seraphim_othuy_spawn_03_emit.bp',
         '/effects/emitters/seraphim_othuy_spawn_04_emit.bp',
     },
-    
+
     LambdaEffects = {
         '/effects/emitters/seraphim_t3power_ambient_01_emit.bp',
         '/effects/emitters/seraphim_t3power_ambient_02_emit.bp',
         '/effects/emitters/seraphim_t3power_ambient_04_emit.bp',
     },
-    
+
     Weapons = {
         Eye01 = Class(LambdaWeapon) {},
         Eye02 = Class(LambdaWeapon) {},
     },
-    
+
     OnStopBeingBuilt = function(self, builder, layer)
         for k, v in SSeraphimSubCommanderGateway01 do
             CreateAttachedEmitter(self, 'Spinner', self:GetArmy(), v)
@@ -38,13 +38,13 @@ BSB0405 = Class(SShieldStructureUnit) {
             CreateAttachedEmitter(self, 'Light05', self:GetArmy(), v)
             CreateAttachedEmitter(self, 'Light06', self:GetArmy(), v)
         end
-        
+
         for k, v in SSeraphimSubCommanderGateway02 do
             CreateAttachedEmitter(self, 'Light01', self:GetArmy(), v)
             CreateAttachedEmitter(self, 'Light02', self:GetArmy(), v)
             CreateAttachedEmitter(self, 'Light03', self:GetArmy(), v)
         end
-        
+
         SShieldStructureUnit.OnStopBeingBuilt(self, builder, layer)
         self.Rotator1 = CreateRotator(self, 'Spinner', 'y', nil, 10, 5, 0)
         self.Trash:Add(self.Rotator1)
@@ -53,19 +53,19 @@ BSB0405 = Class(SShieldStructureUnit) {
         self:SetScriptBit('RULEUTC_ShieldToggle', true)
         self:ForkThread(self.ResourceThread)
     end,
-    
+
     OnScriptBitSet = function(self, bit)
         SShieldStructureUnit.OnScriptBitSet(self, bit)
         local army =  self:GetArmy()
-        if bit == 0 then 
+        if bit == 0 then
         self:SetMaintenanceConsumptionActive()
         self:ForkThread(self.LambdaEmitter)
         end
-        
+
         if self.Rotator1 then
             self.Rotator1:SetTargetSpeed(40)
         end
-        
+
         if self.LambdaEffectsBag then
             for k, v in self.LambdaEffectsBag do
                 v:Destroy()
@@ -76,10 +76,10 @@ BSB0405 = Class(SShieldStructureUnit) {
             table.insert(self.LambdaEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(1.5))
         end
     end,
-    
+
     OnScriptBitClear = function(self, bit)
         SShieldStructureUnit.OnScriptBitClear(self, bit)
-        if bit == 0 then 
+        if bit == 0 then
         self.Rotator1:SetTargetSpeed(0)
         self:ForkThread(self.KillLambdaEmitter)
         self:SetMaintenanceConsumptionInactive()
@@ -91,7 +91,7 @@ BSB0405 = Class(SShieldStructureUnit) {
             self.LambdaEffectsBag = {}
         end
     end,
-    
+
     LambdaEmitter = function(self)
         if not self:IsDead() then
             WaitSeconds(0.5)
@@ -100,12 +100,12 @@ BSB0405 = Class(SShieldStructureUnit) {
 
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
-                
+
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('Spinner')
 
                 -- Creates our lambdaEmitter over the platform with a ranomly generated Orientation
-                local lambdaEmitter = CreateUnit('bsb0001', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
+                local lambdaEmitter = CreateUnit('bsb0001', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land')
 
                 -- Adds the newly created lambdaEmitter to the parent platforms lambdaEmitter table
                 table.insert (self.lambdaEmitterTable, lambdaEmitter)
@@ -115,9 +115,9 @@ BSB0405 = Class(SShieldStructureUnit) {
                 lambdaEmitter:SetCreator(self)
                 self.Trash:Add(lambdaEmitter)
             end
-        end 
+        end
     end,
-    
+
     DeathThread = function(self, overkillRatio , instigator)
         if self.Rotator1 then
             self.Rotator1:SetTargetSpeed(40)
@@ -128,18 +128,18 @@ BSB0405 = Class(SShieldStructureUnit) {
                                 'Light02', 'Light03',
                                 'Light04', 'Light05', 'Light06',
         }
-        
+
         explosion.CreateDefaultHitExplosionAtBone(self, bigExplosionBones[Random(1,3)], 4.0)
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
+        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         WaitSeconds(2)
-        
+
         local RandBoneIter = RandomIter(explosionBones)
         for i=1,Random(4,6) do
             local bone = RandBoneIter()
             explosion.CreateDefaultHitExplosionAtBone(self, bone, 1.0)
             WaitTicks(Random(1,3))
         end
-        
+
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'CollossusDeath') then
@@ -148,12 +148,12 @@ BSB0405 = Class(SShieldStructureUnit) {
             end
         end
         WaitSeconds(3.5)
-        explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner', 5.0)        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner', 5.0)
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
         end
-    
+
         self:DestroyAllDamageEffects()
         self:CreateWreckage(overkillRatio)
 
@@ -176,22 +176,22 @@ BSB0405 = Class(SShieldStructureUnit) {
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
-    
-    OnDamage = function(self, instigator, amount, vector, damagetype) 
+
+    OnDamage = function(self, instigator, amount, vector, damagetype)
         if self:IsDead() == false then
             -- Base script for this script function was developed by Gilbot_x
             -- sets the damage resistance of the rebuilder bot to 30%
             local lambdaEmitter_DLS = 0.3
             amount = math.ceil(amount*lambdaEmitter_DLS)
         end
-        SShieldStructureUnit.OnDamage(self, instigator, amount, vector, damagetype) 
+        SShieldStructureUnit.OnDamage(self, instigator, amount, vector, damagetype)
     end,
-    
+
     KillLambdaEmitter = function(self, instigator, type, overkillRatio)
         -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
         if table.getn({self.lambdaEmitterTable}) > 0 then
-            for k, v in self.lambdaEmitterTable do 
-                IssueClearCommands({self.lambdaEmitterTable[k]}) 
+            for k, v in self.lambdaEmitterTable do
+                IssueClearCommands({self.lambdaEmitterTable[k]})
                 IssueKillSelf({self.lambdaEmitterTable[k]})
             end
         end
@@ -209,7 +209,7 @@ BSB0405 = Class(SShieldStructureUnit) {
                 -- If the above conditions are not met we check again
                 self:ForkThread(self.EconomyWaitUnit)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit = function(self)
@@ -220,7 +220,7 @@ BSB0405 = Class(SShieldStructureUnit) {
             end
         end
     end,
-    
+
     ResourceThread2 = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
@@ -233,7 +233,7 @@ BSB0405 = Class(SShieldStructureUnit) {
                 -- If the above conditions are not met we kill this unit
                 self:ForkThread(self.EconomyWaitUnit2)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit2 = function(self)

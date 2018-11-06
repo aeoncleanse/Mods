@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3ShieldDefense = {
-        Cybran = {'brb4207', 100}, -- ED5 (Shield Generator) 
+        Cybran = {'brb4207', 100}, -- ED5 (Shield Generator)
     },
 }

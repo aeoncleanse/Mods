@@ -13,18 +13,18 @@ BasiliskNukeEffect03 = Class(NullShell) {
         NullShell.OnCreate(self)
         self:ForkThread(self.EffectThread)
     end,
-    
+
     EffectThread = function(self)
         local army = self:GetArmy()
         for k, v in EffectTemplate.TNukeHeadEffects03 do
-            CreateAttachedEmitter(self, -1, army, v) 
-        end            
-    
+            CreateAttachedEmitter(self, -1, army, v)
+        end
+
         WaitSeconds(6)
         for k, v in EffectTemplate.TNukeHeadEffects02 do
-            CreateAttachedEmitter(self, -1, army, v) 
-        end    
-    end,      
+            CreateAttachedEmitter(self, -1, army, v)
+        end
+    end,
 }
 
 TypeClass = BasiliskNukeEffect03

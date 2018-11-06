@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T2SeaCruiser = {
-        Seraphim = {'bss0206', 70}, -- Zthuzene (Bombardment Ship) 
+        Seraphim = {'bss0206', 70}, -- Zthuzene (Bombardment Ship)
     },
 }

@@ -87,7 +87,7 @@ UnitBlueprint {
             Level4 = 160,
             Level5 = 200,
         },
-    }, 
+    },
     Categories = {
         'UNSELECTABLE',
         'SERAPHIM',
@@ -201,7 +201,7 @@ UnitBlueprint {
         Level3 = 15,
         Level4 = 20,
         Level5 = 25,
-    }, 
+    },
     Weapon = {
         {
             Audio = {
@@ -232,7 +232,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             RackBones = {
                 {

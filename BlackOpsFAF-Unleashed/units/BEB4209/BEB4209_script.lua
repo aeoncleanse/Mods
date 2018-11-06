@@ -24,7 +24,7 @@ BEB4209 = Class(TStructureUnit) {
 
     OnScriptBitSet = function(self, bit)
         TStructureUnit.OnScriptBitSet(self, bit)
-        if bit == 0 then 
+        if bit == 0 then
         self:ForkThread(self.antiteleportEmitter)
         self:SetMaintenanceConsumptionActive()
 
@@ -64,10 +64,10 @@ BEB4209 = Class(TStructureUnit) {
 
     OnScriptBitClear = function(self, bit)
         TStructureUnit.OnScriptBitClear(self, bit)
-        if bit == 0 then 
+        if bit == 0 then
         self:ForkThread(self.KillantiteleportEmitter)
         self:SetMaintenanceConsumptionInactive()
-            
+
             if not self.Rotator2 then
                 self.Rotator2 = CreateRotator(self, 'Spinner_middle', 'y')
                 self.Trash:Add(self.Rotator2)
@@ -83,12 +83,12 @@ BEB4209 = Class(TStructureUnit) {
             if not self:IsDead() then
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
-            
+
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('BEB4209')
 
                 -- Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
-                local antiteleportEmitter = CreateUnit('beb0004', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
+                local antiteleportEmitter = CreateUnit('beb0004', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land')
 
                 -- Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
                 table.insert (self.antiteleportEmitterTable, antiteleportEmitter)
@@ -98,14 +98,14 @@ BEB4209 = Class(TStructureUnit) {
                 antiteleportEmitter:SetCreator(self)
                 self.Trash:Add(antiteleportEmitter)
             end
-        end 
+        end
     end,
 
     KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
         -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
         if table.getn({self.antiteleportEmitterTable}) > 0 then
-            for k, v in self.antiteleportEmitterTable do 
-                IssueClearCommands({self.antiteleportEmitterTable[k]}) 
+            for k, v in self.antiteleportEmitterTable do
+                IssueClearCommands({self.antiteleportEmitterTable[k]})
                 IssueKillSelf({self.antiteleportEmitterTable[k]})
             end
         end
@@ -122,7 +122,7 @@ BEB4209 = Class(TStructureUnit) {
             else
                 self:ForkThread(self.EconomyWaitUnit)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit = function(self)
@@ -143,7 +143,7 @@ BEB4209 = Class(TStructureUnit) {
             else
                 self:ForkThread(self.EconomyWaitUnit2)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit2 = function(self)

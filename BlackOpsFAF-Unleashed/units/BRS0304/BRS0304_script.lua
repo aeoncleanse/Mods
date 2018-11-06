@@ -28,15 +28,15 @@ BRS0304 = Class(CSeaUnit) {
         Torpedo = Class(CANNaniteTorpedoWeapon) {},
         AntiTorpedo = Class(CIFSmartCharge) {},
     },
-    
+
     OnCreate = function(self)
         CSeaUnit.OnCreate(self)
         self:SetWeaponEnabledByLabel('GroundGun', false)
     end,
-    
+
     OnScriptBitSet = function(self, bit)
         CSeaUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:SetWeaponEnabledByLabel('GroundGun', true)
             self:SetWeaponEnabledByLabel('AAGun', false)
             self:GetWeaponManipulatorByLabel('GroundGun'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('AAGun'):GetHeadingPitch())
@@ -45,13 +45,13 @@ BRS0304 = Class(CSeaUnit) {
 
     OnScriptBitClear = function(self, bit)
         CSeaUnit.OnScriptBitClear(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             self:SetWeaponEnabledByLabel('GroundGun', false)
             self:SetWeaponEnabledByLabel('AAGun', true)
             self:GetWeaponManipulatorByLabel('AAGun'):SetHeadingPitch(self:GetWeaponManipulatorByLabel('GroundGun'):GetHeadingPitch())
         end
     end,
-    
+
     OnKilled = function(self, instigator, damagetype, overkillRatio)
         self.Trash:Destroy()
         self.Trash = TrashBag()

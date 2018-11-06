@@ -12,11 +12,11 @@ BAB2404 = Class(ALandFactoryUnit) {
     BuildingEffect01 = {
         '/effects/emitters/light_blue_blinking_01_emit.bp',
     },
-    
+
     BuildingEffect02 = {
         '/effects/emitters/light_red_03_emit.bp',
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         ALandFactoryUnit.OnStopBeingBuilt(self,builder,layer)
         self.BuildingEffect01Bag = {}
@@ -37,13 +37,13 @@ BAB2404 = Class(ALandFactoryUnit) {
             self.Trash:Add(fx)
         end
     end,
-    
+
     OnStartBuild = function(self, unitBeingBuilt, order)
         ALandFactoryUnit.OnStartBuild(self, unitBeingBuilt, order)
         local drone = unitBeingBuilt
         self.PetDrone = drone
         self.PetDrone.Parent = self
-       
+
         -- Drone clean up scripts
         if self.BuildingEffect01Bag then
             for k, v in self.BuildingEffect01Bag do
@@ -78,7 +78,7 @@ BAB2404 = Class(ALandFactoryUnit) {
             table.insert(self.BuildingEffect02Bag, CreateAttachedEmitter(self, 'BlinkyLight16', self:GetArmy(), v):OffsetEmitter(0, 0, 0.01):ScaleEmitter(1.00))
         end
     end,
-    
+
     OnStopBuild = function(self, unitBeingBuilt, order)
         ALandFactoryUnit.OnStopBuild(self, unitBeingBuilt, order)
         if self.BuildingEffect01Bag then
@@ -94,14 +94,14 @@ BAB2404 = Class(ALandFactoryUnit) {
             self.BuildingEffect02Bag = {}
         end
     end,
-    
+
     FinishBuildThread = function(self, unitBeingBuilt, order)
         ALandFactoryUnit.FinishBuildThread(self, unitBeingBuilt, order)
         self:PlayUnitSound('LaunchSat')
         self:AddBuildRestriction(categories.BUILTBYARTEMIS)
     end,
-    
-    
+
+
     NotifyOfDroneDeath = function(self)
         -- Remove build restriction if sat has been lost
         self.PetDrone = nil
@@ -109,7 +109,7 @@ BAB2404 = Class(ALandFactoryUnit) {
             self:RemoveBuildRestriction(categories.BUILTBYARTEMIS)
         end
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.PetDrone then
             self.PetDrone:Kill(self, 'Normal', 0)

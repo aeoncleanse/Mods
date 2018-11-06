@@ -4,7 +4,7 @@ ProjectileBlueprint {
             Bank = 'XSL_Weapon',
             Cue = 'XSL0402_Attack_Zap',
             LodCutoff = 'Weapon_LodCutoff',
-        }, 
+        },
         Impact = Sound {
             Bank = 'Impacts',
             Cue = 'X_Impact_Land_Gen_Seraphim',

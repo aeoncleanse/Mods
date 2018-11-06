@@ -22,7 +22,7 @@ BEB0005 = Class(TPodTowerUnit) {
         self.Parent = parent
         self.Drone = droneName
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,

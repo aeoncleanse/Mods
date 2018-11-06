@@ -15,8 +15,8 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
         self:SetMaxSpeed(1)
         WaitSeconds(0.1)
         local Velx, Vely, Velz = self:GetVelocity()
-        local NumberOfChildProjectiles = 2        
-        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'  
+        local NumberOfChildProjectiles = 2
+        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'
         local angleRange = math.pi * 0.25
         local angleInitial = -angleRange / 2
         local angleIncrement = angleRange / NumberOfChildProjectiles
@@ -31,23 +31,23 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-        end   
+        end
         self:Destroy()
     end,
-    
-    Takeoff = function(self) 
-    
+
+    Takeoff = function(self)
+
     WaitSeconds(1)
 
         local Velx, Vely, Velz = self:GetVelocity()
-        local NumberOfChildProjectiles = 1        
-        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'  
+        local NumberOfChildProjectiles = 1
+        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/MGQAIRocketChild01/MGQAIRocketChild01_proj.bp'
         local angleRange = math.pi * 0.25
         local angleInitial = -angleRange / 2
         local angleIncrement = angleRange / NumberOfChildProjectiles
         local angleVariation = angleIncrement * 0.4
         local angle, ca, sa, x, z, proj, mul
-        
+
         self:StayUnderwater(true)
         for i = 0, NumberOfChildProjectiles  do
             angle = angleInitial + (i*angleIncrement) + RandomFloat(-angleVariation, angleVariation)
@@ -58,8 +58,8 @@ MGQAIRocket01 = Class(CLOATacticalMissileProjectile) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-        end            
-        
+        end
+
         local pos = self:GetPosition()
         local spec = {
             X = pos[1],

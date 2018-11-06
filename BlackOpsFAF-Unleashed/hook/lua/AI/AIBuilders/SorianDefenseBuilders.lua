@@ -1,5 +1,5 @@
 
--- T3GroundDefense 
+-- T3GroundDefense
 -- Changed PlatoonTemplate = 'UEFT3EngineerBuilderSorian' to 'T3EngineerBuilderSorian'
 -- so, all races can build T3 base Defenses like UEF
 BuilderGroup {
@@ -583,7 +583,7 @@ BuilderGroup {
 }
 
 -- T3ShieldDefense
--- Removed FactionIndex 1,2,4 
+-- Removed FactionIndex 1,2,4
 -- so, all races can build T3 Shields directly
 BuilderGroup {
     BuilderGroupName = 'SorianT3Shields',

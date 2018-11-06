@@ -17,7 +17,7 @@ AWMissileCruise01 = Class(MiniRocket03PRojectile) {
     FxUnitHitScale = 1,
     FxWaterHitScale = 1,
     FxOnKilledScale = 1,
-    
+
     OnCreate = function(self)
         MiniRocket03PRojectile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 1.2)

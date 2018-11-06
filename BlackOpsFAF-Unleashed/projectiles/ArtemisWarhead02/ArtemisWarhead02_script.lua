@@ -54,7 +54,7 @@ ArtemisWarhead02 = Class(NullShell) {
         self:ForkThread(self.OuterRingDamage)
         self:ForkThread(self.ForceThread)
     end,
-    
+
     OuterRingDamage = function(self)
         local myPos = self:GetPosition()
         if self.NukeOuterRingTotalTime == 0 then
@@ -62,7 +62,7 @@ ArtemisWarhead02 = Class(NullShell) {
         else
             local ringWidth = (self.NukeOuterRingRadius / self.NukeOuterRingTicks)
             local tickLength = (self.NukeOuterRingTotalTime / self.NukeOuterRingTicks)
-            
+
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeOuterRingDamage, 'Normal', true, true)
@@ -81,7 +81,7 @@ ArtemisWarhead02 = Class(NullShell) {
         else
             local ringWidth = (self.NukeInnerRingRadius / self.NukeInnerRingTicks)
             local tickLength = (self.NukeInnerRingTotalTime / self.NukeInnerRingTicks)
-            
+
             -- Since we're not allowed to have an inner radius of 0 in the DamageRing function,
             -- I'm manually executing the first tick of damage with a DamageArea function.
             DamageArea(self:GetLauncher(), myPos, ringWidth, self.NukeInnerRingDamage, 'Normal', true, true)
@@ -129,7 +129,7 @@ ArtemisWarhead02 = Class(NullShell) {
         for i = 0, (numFlares - 1) do
             x = math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
             y = 0.5
-            z = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation)) 
+            z = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
 
             for k, v in self.ArtemisCloudFlareEffects do
                 emit = CreateEmitterAtEntity(self, army, v)
@@ -138,10 +138,10 @@ ArtemisWarhead02 = Class(NullShell) {
                 emit:SetEmitterCurveParam('YDIR_CURVE', y * DirectionMul, 0.01)
                 emit:SetEmitterCurveParam('ZDIR_CURVE', z * DirectionMul, 0.01)
             end
-            
+
             WaitSeconds(RandomFloat(0.05, 0.15))
         end
-        
+
         CreateLightParticle(self, -1, army, 13, 3, 'beam_white_01', 'ramp_quantum_warhead_flash_01')
         CreateEmitterAtEntity(self, army, '/mods/BlackOpsFAF-Unleashed/effects/emitters/artemis_warhead_ring_01_emit.bp')
     end,

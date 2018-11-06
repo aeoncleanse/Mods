@@ -8,7 +8,7 @@ BaaMissile01 = Class(CAANanoDartProjectile) {
         self:ForkThread(self.UpdateThread)
     end,
     FxBeam = {'/mods/BlackOpsFAF-Unleashed/effects/emitters/mini_microwave_laser_beam_01_emit.bp'},
-    
+
     UpdateThread = function(self)
         WaitSeconds(0.35)
         self:SetMaxSpeed(8)
@@ -27,11 +27,11 @@ BaaMissile01 = Class(CAANanoDartProjectile) {
         WaitSeconds(0.3)
         self:SetTurnRate(360)
     end,
-    
+
     WaitThread = function(self)
         while(true) do
             local currentTarget = self:GetTrackingTarget()
-            
+
             if not currentTarget then
                 return
             end
@@ -42,26 +42,26 @@ BaaMissile01 = Class(CAANanoDartProjectile) {
 
             if VDist3(currentTarget:GetPosition(), self:GetPosition()) < 10 then
                 self.Lasering = true
-                
+
                 if self.hasOKC then
                     self.OKCData.dontOKCheck = true
                 end
-                
-                self:PlaySound(self:GetBlueprint().Audio['Arc'])           
+
+                self:PlaySound(self:GetBlueprint().Audio['Arc'])
                 -- Just in case there's lots of stuff in FxBeam, we'll loop through it.
                 for id, fx in self.FxBeam do
                     local effectEnt = AttachBeamEntityToEntity(currentTarget, -1, self, -1, self:GetArmy(), fx)    --    the -2 is worrying.
 
                     self.Trash:Add(effectEnt)
                 end
-                
+
                 self:DoDamage(self:GetLauncher(), self.DamageData, currentTarget)
                 WaitSeconds(self.DamageData.DoTTime)
                 self:Destroy()
             end
             WaitTicks(1)
         end
-    
+
     end,
 }
 

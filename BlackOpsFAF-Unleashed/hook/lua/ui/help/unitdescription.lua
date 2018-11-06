@@ -3,7 +3,7 @@
 -- Author(s):  Lt_Hawkeye
 -- Descriptions for new units in BlackOps
 -----------------------------------------------
- 
+
 -- Cybran
 Description['brl0205'] = "<LOC Unit_Description_20001> Ambush Assault unit.The Scorpion is equipped with a personal stealth field, and becomes cloaked when standing still; allowing for ambushes against enemy forces."
 Description['brl0307'] = "<LOC Unit_Description_20002> Medium Range Artillery Unit. The Hailfire fires a slavo of rockets at the target which detonate in a Low Yield EMP Blast stunning enemy units."

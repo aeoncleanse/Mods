@@ -20,22 +20,22 @@ BAB2303 = Class(AStructureUnit) {
                 end
                 AIFArtilleryMiasmaShellWeapon.PlayFxWeaponPackSequence(self)
             end,
-        
+
             PlayFxWeaponUnpackSequence = function(self)
-                if not self.SpinManip then 
+                if not self.SpinManip then
                     self.SpinManip = CreateRotator(self.unit, 'Rotator1', 'y', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip)
                 end
-                
+
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(400)
                 end
-                
-                if not self.SpinManip2 then 
+
+                if not self.SpinManip2 then
                     self.SpinManip2 = CreateRotator(self.unit, 'Rotator2', 'y', nil, -270, -180, -60)
                     self.unit.Trash:Add(self.SpinManip2)
                 end
-                
+
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-400)
                 end

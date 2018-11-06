@@ -13,7 +13,7 @@ URB4302 = Class(CStructureUnit) {
     Weapons = {
         MissileRack = Class(CAMEMPMissileWeapon) {
             FxMuzzleFlash = EffectTemplate.CAntiNukeLaunch01,
-            
+
             IdleState = State(CAMEMPMissileWeapon.IdleState) {
                 OnGotTarget = function(self)
                     local bp = self:GetBlueprint()
@@ -31,7 +31,7 @@ URB4302 = Class(CStructureUnit) {
                         CAMEMPMissileWeapon.IdleState.OnFire(self)
                     end
                     nukeFiredOnGotTarget = false
-                    
+
                     self:ForkThread(function()
                         self.unit:SetBusy(true)
                         WaitSeconds(1/self.unit:GetBlueprint().Weapon[1].RateOfFire + .2)

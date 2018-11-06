@@ -137,7 +137,7 @@ function CalculateNewLod(uBP)
         Categories[cat] = true
     end
     -- If we use only higrestextures we move LODCutoff from LOD-2 to LOD-1 and delete the 2nd LOD entry
-    -- do we have LODCutoff in 2nd LOD array ? 
+    -- do we have LODCutoff in 2nd LOD array ?
     if uBP.Display.Mesh.LODs[2].LODCutoff then
         -- copy LODCutoff from lowres to highres LOD
         uBP.Display.Mesh.LODs[1].LODCutoff = uBP.Display.Mesh.LODs[2].LODCutoff

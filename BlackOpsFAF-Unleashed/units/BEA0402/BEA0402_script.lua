@@ -37,19 +37,19 @@ BEA0402 = Class(TAirUnit) {
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_2', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 CitadelPlasmaGatlingCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
-        
+
             PlayFxWeaponUnpackSequence = function(self)
-                if not self.SpinManip then 
+                if not self.SpinManip then
                     self.SpinManip = CreateRotator(self.unit, 'Gat_Rotator_2', 'z', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip)
                 end
-                
+
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(500)
                 end
                 CitadelPlasmaGatlingCannonWeapon.PlayFxWeaponUnpackSequence(self)
             end,
-            
+
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(200)
@@ -59,9 +59,9 @@ BEA0402 = Class(TAirUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_2', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 CitadelPlasmaGatlingCannonWeapon.PlayFxRackSalvoReloadSequence(self)
-            end,    
+            end,
         },
-        
+
         GattlerTurret02 = Class(CitadelPlasmaGatlingCannonWeapon) {
             PlayFxWeaponPackSequence = function(self)
                 if self.SpinManip then
@@ -75,11 +75,11 @@ BEA0402 = Class(TAirUnit) {
             end,
 
             PlayFxWeaponUnpackSequence = function(self)
-                if not self.SpinManip then 
+                if not self.SpinManip then
                     self.SpinManip = CreateRotator(self.unit, 'Gat_Rotator_1', 'z', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip)
                 end
-                
+
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(500)
                 end
@@ -95,17 +95,17 @@ BEA0402 = Class(TAirUnit) {
                 end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_1', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 CitadelPlasmaGatlingCannonWeapon.PlayFxRackSalvoReloadSequence(self)
-            end,    
+            end,
         },
     },
-    
+
     DestroyNoFallRandomChance = 1.1,
     FxDamageScale = 2.5,
-    
+
     OnStopBeingBuilt = function(self, builder, layer)
         self.AirPadTable = {}
         TAirUnit.OnStopBeingBuilt(self, builder, layer)
-    end,    
+    end,
 }
 
 TypeClass = BEA0402

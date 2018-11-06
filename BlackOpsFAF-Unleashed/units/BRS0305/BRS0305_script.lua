@@ -14,7 +14,7 @@ local TorpRedirectField = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsDefaul
 
 BRS0305 = Class(CSubUnit) {
     DeathThreadDestructionWaitTime = 0,
-    
+
     Weapons = {
         FrontGun = Class(CDFElectronBolterWeapon) {},
         BackGun = Class(CDFElectronBolterWeapon) {},
@@ -38,7 +38,7 @@ BRS0305 = Class(CSubUnit) {
         self.Trash:Add(TorpRedirectField01)
         self.UnitComplete = true
     end,
-    
+
     OnLayerChange = function(self, new, old)
         CSubUnit.OnLayerChange(self, new, old)
         if new == 'Water' then
@@ -47,7 +47,7 @@ BRS0305 = Class(CSubUnit) {
             ChangeState(self, self.ClosedState)
         end
     end,
-    
+
     OpenState = State() {
         Main = function(self)
             if not self.CannonAnim then
@@ -62,7 +62,7 @@ BRS0305 = Class(CSubUnit) {
             self:SetWeaponEnabledByLabel('BackGun', true)
         end,
     },
-    
+
     ClosedState = State() {
         Main = function(self)
             self:SetWeaponEnabledByLabel('FrontGun', false)

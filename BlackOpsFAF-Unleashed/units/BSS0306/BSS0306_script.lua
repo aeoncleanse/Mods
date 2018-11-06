@@ -26,14 +26,14 @@ BSS0306 = Class(SSeaUnit) {
         PhasonBeam1 = Class(SDFUnstablePhasonBeam) {
         FxMuzzleFlash = {'/mods/BlackOpsFAF-Unleashed/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_01_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_02_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_03_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_04_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_05_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_06_emit.bp','/Effects/Emitters/seraphim_electricity_emit.bp'},
         },
-        
+
         PhasonBeam2 = Class(SDFUnstablePhasonBeam) {
         FxMuzzleFlash = {'/mods/BlackOpsFAF-Unleashed/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_01_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_02_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_03_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_04_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_05_emit.bp','/Effects/Emitters/seraphim_experimental_phasonproj_muzzle_flash_06_emit.bp','/Effects/Emitters/seraphim_electricity_emit.bp'},
         },
     },
-    
+
     AmbientEffects = 'OrbGlowEffect',
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         SSeaUnit.OnStopBeingBuilt(self,builder,layer)
         IssueDive({self})
@@ -46,7 +46,7 @@ BSS0306 = Class(SSeaUnit) {
             end
         end
     end,
-    
+
     OnKilled = function(self, instigator, damagetype, overkillRatio)
         self.Trash:Destroy()
         self.Trash = TrashBag()

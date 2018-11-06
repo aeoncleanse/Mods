@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3StrategicMissileDefense = {
-        Aeon = {'bab4307', 20}, -- Purger (Tactical Missile Defense) 
+        Aeon = {'bab4307', 20}, -- Purger (Tactical Missile Defense)
     },
 }

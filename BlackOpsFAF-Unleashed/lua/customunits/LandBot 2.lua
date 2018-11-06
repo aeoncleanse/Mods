@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3LandBot = {
-        Seraphim = {'bsl0310', 80}, -- Ilthysathuum (Lambda Equipped Assault Bot) 
+        Seraphim = {'bsl0310', 80}, -- Ilthysathuum (Lambda Equipped Assault Bot)
     },
 }

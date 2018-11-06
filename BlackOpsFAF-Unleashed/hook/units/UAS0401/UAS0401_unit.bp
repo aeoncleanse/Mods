@@ -9,7 +9,7 @@ UnitBlueprint {
         AssistHeartbeatInterval = 1, -- def. 1, time in seconds between drone and carrier management heartbeats
         DroneControlRange = 180, -- def. 70,  maximum distance the drone can stray from the carrier before being recalled (70 is the goliath's radar range)
         DroneReturnRange = 90, -- def. control range / 2, radius at which returning drones will have command input and weapons re-enabled
-        AirMonitorRange = 50, -- def. (control range + 10) / 2, radius that the drone heartbeat will check for hostile gunships 
+        AirMonitorRange = 50, -- def. (control range + 10) / 2, radius that the drone heartbeat will check for hostile gunships
     },
     Audio = {
         AmbientMove = Sound {
@@ -280,7 +280,7 @@ UnitBlueprint {
             Attachpoint = 'AttachSpecial06',
             UnitID = 'BAA0001',
         },
-    }, 
+    },
     Economy = {
         BuildCostEnergy = 360000,
         BuildCostMass = 31500,
@@ -331,7 +331,7 @@ UnitBlueprint {
                 bitmapId = 'area-assist',
                 helpText = 'drone_assist',
             },
-        }, 
+        },
     },
     Intel = {
         RadarRadius = 180,

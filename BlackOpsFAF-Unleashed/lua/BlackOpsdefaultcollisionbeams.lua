@@ -18,7 +18,7 @@ HawkCollisionBeam = Class(CollisionBeam) {
     FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
     FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
     FxImpactProp = {},
-    FxImpactShield = {},    
+    FxImpactShield = {},
     FxImpactNone = {},
 }
 
@@ -30,23 +30,23 @@ PDLaserCollisionBeam = Class(HawkCollisionBeam) {
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
     },
-    
+
     FxBeamStartPoint = {
         '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
     },
-    
+
     FxBeamStartPointScale = 0.05,
     FxBeamEndPointScale = 0.05,
-    
+
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.5,
 
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -61,15 +61,15 @@ PDLaserCollisionBeam = Class(HawkCollisionBeam) {
             self.Scorching = self:ForkThread(self.ScorchThread)
         end
     end,
-    
+
     OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
-    end,    
+    end,
 }
 
 PDLaser2CollisionBeam = Class(CollisionBeam) {
@@ -84,7 +84,7 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread(self.ScorchThread)   
+                self.Scorching = self:ForkThread(self.ScorchThread)
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -92,11 +92,11 @@ PDLaser2CollisionBeam = Class(CollisionBeam) {
         end
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
-    
+
     OnDisable = function(self)
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
@@ -119,19 +119,19 @@ MartyrMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
 MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 0.2,
-        
+
     FxBeam = {'/mods/BlackOpsFAF-Unleashed/effects/emitters/mini_quantum_generator_beam_01_emit.bp'},
     FxBeamEndPoint = {
         '/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-    },   
+    },
     FxBeamEndPointScale = 0.2,
     FxBeamStartPoint = {
         '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
-    },   
+    },
     FxBeamStartPointScale = 0.2,
 
     SplatTexture = 'czar_mark01_albedo',
@@ -140,7 +140,7 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -155,16 +155,16 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
             self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 3.5 + (Random() * 3.5) 
+        local size = 3.5 + (Random() * 3.5)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -176,19 +176,19 @@ MiniQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
-        end 
-    end,  
+        end
+    end,
 }
 
 -- Super QUANTUM BEAM GENERATOR COLLISION BEAM
 SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 1,
-        
+
     FxBeam = {'/mods/BlackOpsFAF-Unleashed/effects/emitters/super_quantum_generator_beam_01_emit.bp'},
     FxBeamEndPoint = {
         '/effects/emitters/quantum_generator_end_01_emit.bp',
@@ -196,13 +196,13 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
         '/effects/emitters/quantum_generator_end_04_emit.bp',
         '/effects/emitters/quantum_generator_end_05_emit.bp',
         '/effects/emitters/quantum_generator_end_06_emit.bp',
-    },   
+    },
     FxBeamEndPointScale = 0.6,
     FxBeamStartPoint = {
         '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
-    },   
+    },
     FxBeamStartPointScale = 0.6,
 
     SplatTexture = 'czar_mark01_albedo',
@@ -211,7 +211,7 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -226,16 +226,16 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
             self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 3.5 + (Random() * 3.5) 
+        local size = 3.5 + (Random() * 3.5)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -247,12 +247,12 @@ SuperQuantumBeamGeneratorCollisionBeam = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 3.2 + (Random() * 3.5)
             CurrentPosition = self:GetPosition(1)
         end
-    end,  
+    end,
 }
 
 MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
@@ -269,7 +269,7 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -284,16 +284,16 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
             self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 1.5 + (Random() * 1.5) 
+        local size = 1.5 + (Random() * 1.5)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -305,7 +305,7 @@ MiniPhasonLaserCollisionBeam = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
@@ -327,7 +327,7 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -342,16 +342,16 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
             self.Scorching = self:ForkThread( self.ScorchThread )
         end
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 1.5 + (Random() * 1.5) 
+        local size = 1.5 + (Random() * 1.5)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -363,7 +363,7 @@ MiniMicrowaveLaserCollisionBeam01 = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
@@ -382,19 +382,19 @@ HawkTractorClawCollisionBeam = Class(HawkCollisionBeam) {
 JuggLaserCollisionBeam = Class(HawkCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 0.02,
-        
+
     FxBeam = {'/mods/BlackOpsFAF-Unleashed/effects/emitters/jugg_laser_beam_01_emit.bp'},
     FxBeamEndPoint = {
         '/effects/emitters/quantum_generator_end_01_emit.bp',
         '/effects/emitters/quantum_generator_end_03_emit.bp',
         '/effects/emitters/quantum_generator_end_04_emit.bp',
-    },   
+    },
     FxBeamEndPointScale = 0.02,
     FxBeamStartPoint = {
         '/effects/emitters/quantum_generator_01_emit.bp',
         '/effects/emitters/quantum_generator_02_emit.bp',
         '/effects/emitters/quantum_generator_04_emit.bp',
-    },   
+    },
     FxBeamStartPointScale = 0.02,
 }
 
@@ -409,13 +409,13 @@ RailLaserCollisionBeam01 = Class(HawkCollisionBeam) {
     FxBeamEndPointScale = 0.2,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
-    
+
     OnImpactDestroy = function( self, targetType, targetEntity )
        if targetEntity and not IsUnit(targetEntity) then
           RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
           return
        end
-   
+
        if self.counter then
           if self.counter >= 3 then
              RailLaserCollisionBeam01.OnImpactDestroy(self, targetType, targetEntity)
@@ -443,9 +443,9 @@ EMCHPRFDisruptorBeam = Class(HawkCollisionBeam) {
     FxBeamEndPointScale = 0.3,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
-    
+
     OnImpact = function(self, impactType, targetEntity)
-        if targetEntity then 
+        if targetEntity then
             if EntityCategoryContains(categories.TECH1, targetEntity) then
                 targetEntity:SetStunned(0.2)
             elseif EntityCategoryContains(categories.TECH2, targetEntity) then
@@ -456,7 +456,7 @@ EMCHPRFDisruptorBeam = Class(HawkCollisionBeam) {
         end
 
         HawkCollisionBeam.OnImpact(self, impactType, targetEntity)
-    end, 
+    end,
 }
 
 -- HIRO LASER COLLISION BEAM
@@ -490,7 +490,7 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -498,16 +498,16 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
         end
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 0.75 + (Random() * 0.75) 
+        local size = 0.75 + (Random() * 0.75)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -519,7 +519,7 @@ TDFGoliathCollisionBeam = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 1.2 + (Random() * 1.5)
             CurrentPosition = self:GetPosition(1)
@@ -564,7 +564,7 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -572,16 +572,16 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
         end
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 4.0 + (Random() * 1.0) 
+        local size = 4.0 + (Random() * 1.0)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -593,7 +593,7 @@ YenaothaExperimentalLaserCollisionBeam = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 4.0 + (Random() * 1.0)
             CurrentPosition = self:GetPosition(1)
@@ -615,7 +615,7 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
     OnImpact = function(self, impactType, targetEntity)
         if impactType == 'Terrain' then
             if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
+                self.Scorching = self:ForkThread( self.ScorchThread )
             end
         elseif not impactType == 'Unit' then
             KillThread(self.Scorching)
@@ -623,16 +623,16 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
         end
         CollisionBeam.OnImpact(self, impactType, targetEntity)
     end,
-    
+
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
-        self.Scorching = nil   
+        self.Scorching = nil
     end,
 
     ScorchThread = function(self)
         local army = self:GetArmy()
-        local size = 4.0 + (Random() * 1.0) 
+        local size = 4.0 + (Random() * 1.0)
         local CurrentPosition = self:GetPosition(1)
         local LastPosition = Vector(0,0,0)
         local skipCount = 1
@@ -644,7 +644,7 @@ YenaothaExperimentalLaser02CollisionBeam = Class(HawkCollisionBeam) {
             else
                 skipCount = skipCount + self.ScorchSplatDropTime
             end
-                
+
             WaitSeconds( self.ScorchSplatDropTime )
             size = 4.0 + (Random() * 1.0)
             CurrentPosition = self:GetPosition(1)

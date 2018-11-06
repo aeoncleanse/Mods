@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/units/XSB0003/XSB0003_script.lua 
+-- File     :  /cdimage/units/XSB0003/XSB0003_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  UEF Wall Piece Script
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
@@ -27,7 +27,7 @@ BRB0003 = Class(SStructureUnit) {
        '/effects/emitters/cybran_shield_04_generator_02_emit.bp',
        '/effects/emitters/cybran_shield_04_generator_03_emit.bp',
     },
-    
+
     OnCreate = function(self, builder, layer)
         SStructureUnit.OnCreate(self, builder, layer)
         self.ShieldEffectsBag = {}
@@ -41,11 +41,11 @@ BRB0003 = Class(SStructureUnit) {
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'Effect01', self:GetArmy(), v):ScaleEmitter(0.4))
         end
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.ShieldEffctsBag then
             for k,v in self.ShieldEffectsBag do
@@ -54,7 +54,7 @@ BRB0003 = Class(SStructureUnit) {
         end
         SStructureUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     DeathThread = function(self)
         self:Destroy()
     end,

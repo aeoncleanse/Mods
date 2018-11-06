@@ -21,7 +21,7 @@ BRB4401 = Class(CRadarJammerUnit) {
             Type = 'Jammer01',
         },
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         CRadarJammerUnit.OnStopBeingBuilt(self,builder,layer)
         self.AnimManip = CreateAnimator(self)
@@ -40,7 +40,7 @@ BRB4401 = Class(CRadarJammerUnit) {
         KillThread(self.DelayedCloakThread)
         self.DelayedCloakThread = nil
     end,
-    
+
 }
 
 TypeClass = BRB4401

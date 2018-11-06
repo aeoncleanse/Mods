@@ -11,7 +11,7 @@ BSB4309 = Class(SStructureUnit) {
     AntiTeleport = {
        '/effects/emitters/op_seraphim_quantum_jammer_tower_emit.bp',
     },
-    
+
     AntiTeleportOrbs = {
        '/effects/emitters/seraphim_gate_04_emit.bp',
        '/effects/emitters/seraphim_gate_05_emit.bp',
@@ -26,7 +26,7 @@ BSB4309 = Class(SStructureUnit) {
         self.AntiTeleportOrbsBag = {}
         self:ForkThread(self.ResourceThread)
     end,
-    
+
     OnScriptBitSet = function(self, bit)
         SStructureUnit.OnScriptBitSet(self, bit)
         if bit == 0 then
@@ -45,7 +45,7 @@ BSB4309 = Class(SStructureUnit) {
             end
             self.Rotator2:SetTargetSpeed(400)
             self.Rotator2:SetAccel(100)
-        
+
             if(not self.Rotator3) then
                 self.Rotator3 = CreateRotator(self, 'Array01', 'y')
                 self.Trash:Add(self.Rotator3)
@@ -54,7 +54,7 @@ BSB4309 = Class(SStructureUnit) {
             self.Rotator3:SetAccel(30)
         end
     end,
-    
+
     AntiteleportEffects = function(self)
         if self.AntiTeleportBag then
             for k, v in self.AntiTeleportBag do
@@ -92,10 +92,10 @@ BSB4309 = Class(SStructureUnit) {
             table.insert( self.AntiTeleportOrbsBag, CreateAttachedEmitter( self, 'Orb05', self:GetArmy(), v ):ScaleEmitter(0.2):OffsetEmitter(0, 0.2, 0) )
         end
     end,
-    
+
     OnScriptBitClear = function(self, bit)
         SStructureUnit.OnScriptBitClear(self, bit)
-        if bit == 0 then 
+        if bit == 0 then
         self.FieldActive = false
         self:ForkThread(self.KillantiteleportEmitter)
         self:SetMaintenanceConsumptionInactive()
@@ -105,21 +105,21 @@ BSB4309 = Class(SStructureUnit) {
             end
             self.Rotator1:SetTargetSpeed(0)
             self.Rotator1:SetAccel(100)
-            
+
             if(not self.Rotator2) then
                 self.Rotator2 = CreateRotator(self, 'Spinner02', 'y')
                 self.Trash:Add(self.Rotator2)
             end
             self.Rotator2:SetTargetSpeed(0)
             self.Rotator2:SetAccel(100)
-        
+
             if(not self.Rotator3) then
                 self.Rotator3 = CreateRotator(self, 'Array01', 'y')
                 self.Trash:Add(self.Rotator3)
             end
             self.Rotator3:SetTargetSpeed(0)
             self.Rotator3:SetAccel(30)
-            
+
             if self.AntiTeleportBag then
                 for k, v in self.AntiTeleportBag do
                     v:Destroy()
@@ -141,12 +141,12 @@ BSB4309 = Class(SStructureUnit) {
             if not self:IsDead() then
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
-            
+
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('XSB4309')
 
                 -- Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
-                local antiteleportEmitter = CreateUnit('bsb0003', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
+                local antiteleportEmitter = CreateUnit('bsb0003', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land')
 
                 -- Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
                 table.insert (self.antiteleportEmitterTable, antiteleportEmitter)
@@ -156,20 +156,20 @@ BSB4309 = Class(SStructureUnit) {
                 antiteleportEmitter:SetCreator(self)
                 self.Trash:Add(antiteleportEmitter)
             end
-        end 
+        end
     end,
 
 
     KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
         -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
         if table.getn({self.antiteleportEmitterTable}) > 0 then
-            for k, v in self.antiteleportEmitterTable do 
-                IssueClearCommands({self.antiteleportEmitterTable[k]}) 
+            for k, v in self.antiteleportEmitterTable do
+                IssueClearCommands({self.antiteleportEmitterTable[k]})
                 IssueKillSelf({self.antiteleportEmitterTable[k]})
             end
         end
     end,
-    
+
     ResourceThread = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
@@ -180,7 +180,7 @@ BSB4309 = Class(SStructureUnit) {
             else
                 self:ForkThread(self.EconomyWaitUnit)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit = function(self)
@@ -191,7 +191,7 @@ BSB4309 = Class(SStructureUnit) {
             end
         end
     end,
-    
+
     ResourceThread2 = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
@@ -203,7 +203,7 @@ BSB4309 = Class(SStructureUnit) {
             else
                 self:ForkThread(self.EconomyWaitUnit2)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit2 = function(self)
@@ -213,7 +213,7 @@ BSB4309 = Class(SStructureUnit) {
                 self:ForkThread(self.ResourceThread2)
             end
         end
-    end,    
+    end,
 }
 
 TypeClass = BSB4309

@@ -16,59 +16,59 @@ BRB4209 = Class(CStructureUnit) {
         self.antiteleportEmitterTable = {}
         self:ForkThread(self.ResourceThread)
     end,
-    
+
     OnScriptBitSet = function(self, bit)
            CStructureUnit.OnScriptBitSet(self, bit)
-           if bit == 0 then 
+           if bit == 0 then
                self:ForkThread(self.antiteleportEmitter)
             self:SetMaintenanceConsumptionActive()
         end
     end,
-    
+
     OnScriptBitClear = function(self, bit)
         CStructureUnit.OnScriptBitClear(self, bit)
-        if bit == 0 then 
+        if bit == 0 then
             self:ForkThread(self.KillantiteleportEmitter)
             self:SetMaintenanceConsumptionInactive()
         end
     end,
-    
+
     antiteleportEmitter = function(self)
         if not self:IsDead() then
             WaitSeconds(0.5)
             if not self:IsDead() then
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
-            
+
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('Shaft')
 
                 -- Creates our antiteleportEmitter over the platform with a ranomly generated Orientation
-                local antiteleportEmitter = CreateUnit('brb0007', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land') 
+                local antiteleportEmitter = CreateUnit('brb0007', self:GetArmy(), location[1], location[2], location[3], platOrient[1], platOrient[2], platOrient[3], platOrient[4], 'Land')
 
                 -- Adds the newly created antiteleportEmitter to the parent platforms antiteleportEmitter table
                 table.insert (self.antiteleportEmitterTable, antiteleportEmitter)
-            
-                antiteleportEmitter:AttachTo(self, 'Shaft') 
+
+                antiteleportEmitter:AttachTo(self, 'Shaft')
 
                 -- Sets the platform unit as the antiteleportEmitter parent
                 antiteleportEmitter:SetParent(self, 'brb4209')
                 antiteleportEmitter:SetCreator(self)
                 self.Trash:Add(antiteleportEmitter)
             end
-        end 
+        end
     end,
 
     KillantiteleportEmitter = function(self, instigator, type, overkillRatio)
         -- Small bit of table manipulation to sort thru all of the avalible rebulder bots and remove them after the platform is dead
         if table.getn({self.antiteleportEmitterTable}) > 0 then
-            for k, v in self.antiteleportEmitterTable do 
-                IssueClearCommands({self.antiteleportEmitterTable[k]}) 
+            for k, v in self.antiteleportEmitterTable do
+                IssueClearCommands({self.antiteleportEmitterTable[k]})
                 IssueKillSelf({self.antiteleportEmitterTable[k]})
             end
         end
     end,
-    
+
     ResourceThread = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
@@ -80,7 +80,7 @@ BRB4209 = Class(CStructureUnit) {
             else
                 self:ForkThread(self.EconomyWaitUnit)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit = function(self)
@@ -91,7 +91,7 @@ BRB4209 = Class(CStructureUnit) {
             end
         end
     end,
-    
+
     ResourceThread2 = function(self)
         if not self:IsDead() then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
@@ -103,7 +103,7 @@ BRB4209 = Class(CStructureUnit) {
             else
                 self:ForkThread(self.EconomyWaitUnit2)
             end
-        end    
+        end
     end,
 
     EconomyWaitUnit2 = function(self)

@@ -20,15 +20,15 @@ BES0402 = Class(TSeaUnit) {
         FrontAMCCannon01 = Class(ZCannonWeapon) {
             Cannon = 1,
         },
-        
+
         FrontAMCCannon02 = Class(ZCannonWeapon) {
             Cannon = 2,
         },
-        
+
         BackAMCCannon = Class(ZCannonWeapon) {
             Cannon = 3,
         },
-        
+
         AAGunLeft01 = Class(TAALinkedRailgun) {},
         AAGunLeft02 = Class(TAALinkedRailgun) {},
         AAGunLeft03 = Class(TAALinkedRailgun) {},

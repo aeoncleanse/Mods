@@ -32,7 +32,7 @@ BEL0109 = Class(TLandUnit) {
         end
         TLandUnit.OnScriptBitSet(self, bit)
     end,
-    
+
     OnScriptBitClear = function(self, bit)
         if bit == 7 then
             self:AddCommandCap('RULEUCC_Move')

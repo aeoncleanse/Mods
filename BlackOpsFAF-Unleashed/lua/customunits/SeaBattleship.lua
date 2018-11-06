@@ -5,7 +5,7 @@
 -----------------------------------------------------------------
 UnitList = {
     T3SeaBattleship = {
-        Cybran = {'brs0305', 70}, -- Leviathan (Assault Submarine) 
-        Seraphim = {'bss0306', 70}, -- Ithaluthe-Esel (Heavy Cruiser) 
+        Cybran = {'brs0305', 70}, -- Leviathan (Assault Submarine)
+        Seraphim = {'bss0306', 70}, -- Ithaluthe-Esel (Heavy Cruiser)
     },
 }

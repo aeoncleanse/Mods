@@ -17,7 +17,7 @@ BAA0309 = Class(AirTransport) {
         'Right_AttachPoint01', 'Right_AttachPoint02', 'Right_AttachPoint03', 'Right_AttachPoint04',
         'Left_AttachPoint01', 'Left_AttachPoint02', 'Left_AttachPoint03', 'Left_AttachPoint04',
     },
-    
+
     Weapons = {
         SonicPulseBattery1 = Class(AAASonicPulseBatteryWeapon) {},
         SonicPulseBattery2 = Class(AAASonicPulseBatteryWeapon) {},
@@ -37,7 +37,7 @@ BAA0309 = Class(AirTransport) {
             WaitSeconds( util.GetRandomFloat( 0.2, 0.9 ))
         end
     end,
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         AirTransport.OnStopBeingBuilt(self,builder,layer)
         self:DisableUnitIntel('unitScript', 'CloakField') -- It's only used to denote the Tele range

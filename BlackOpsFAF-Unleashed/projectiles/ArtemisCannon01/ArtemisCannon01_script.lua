@@ -15,7 +15,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
-           
+
             nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/effects/entities/ArtemisBombEffectController01/ArtemisBombEffectController01_proj.bp', 0, 0, 0, 0, 0, 0):SetCollision(false)
             local pos = self:GetPosition()
             pos[2] = pos[2] + 10
@@ -32,7 +32,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
-           
+
             nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/projectiles/ArtemisWarhead02/ArtemisWarhead02_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end

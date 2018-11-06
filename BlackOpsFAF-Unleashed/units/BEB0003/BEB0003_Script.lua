@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/units/XSB0003/XSB0003_script.lua 
+-- File     :  /cdimage/units/XSB0003/XSB0003_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  UEF Wall Piece Script
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
@@ -20,7 +20,7 @@ BEB0003 = Class(SStructureUnit) {
        '/effects/emitters/terran_shield_generator_t2_01_emit.bp',
         '/effects/emitters/terran_shield_generator_t2_02_emit.bp',
     },
-    
+
     OnCreate = function(self, builder, layer)
         SStructureUnit.OnCreate(self, builder, layer)
         self.ShieldEffectsBag = {}
@@ -34,11 +34,11 @@ BEB0003 = Class(SStructureUnit) {
             table.insert( self.ShieldEffectsBag, CreateAttachedEmitter( self, 'Effect01', self:GetArmy(), v ):ScaleEmitter(0.5) )
         end
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.ShieldEffctsBag then
             for k,v in self.ShieldEffectsBag do

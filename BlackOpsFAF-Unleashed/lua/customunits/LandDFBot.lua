@@ -5,7 +5,7 @@
 -----------------------------------------------------------------
 UnitList = {
     T1LandDFBot = {
-        Cybran = {'brl0110', 80}, -- Hydra (Multi-Weapon Assault Bot) 
-        Aeon = {'bal0110', 80}, -- Requiem (Light Sniper Bot) 
+        Cybran = {'brl0110', 80}, -- Hydra (Multi-Weapon Assault Bot)
+        Aeon = {'bal0110', 80}, -- Requiem (Light Sniper Bot)
     },
 }
