@@ -201,7 +201,10 @@ UEFCruiseMissile01Trails = {
 }
 
 -- Sat Death
-SatDeathSmoke = {EmtBpPathAlt .. 'sat_death_smoke_emit.bp',}
+SatDeathSmoke = {
+    EmtBpPathAlt .. 'sat_death_smoke_emit.bp'
+}
+
 SatDamageFire01 = {
     EmtBpPath .. 'destruction_damaged_fire_01_emit.bp',
     EmtBpPath .. 'destruction_damaged_fire_distort_01_emit.bp',
