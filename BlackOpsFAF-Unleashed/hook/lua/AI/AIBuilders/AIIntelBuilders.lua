@@ -38,7 +38,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T1 Land Scout Form',
         BuilderConditions = {
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND - categories.TECH1 }},
+            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND - categories.TECH1 }},
         },
         PlatoonTemplate = 'T1LandScoutForm',
         Priority = 725,

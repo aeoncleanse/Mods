@@ -37,12 +37,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'Sorian T1 Land Scout Form init',
         BuilderConditions = {
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND - categories.TECH1 }},
+            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND - categories.TECH1 }},
             { SBC, 'LessThanGameTime', { 300 } },
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonTemplate = 'T1LandScoutFormSorian',
-        Priority = 10000, #725,
+        Priority = 10000, --725,
         InstanceCount = 30,
         BuilderData = {
             UseCloak = false,
@@ -58,7 +58,7 @@ BuilderGroup {
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonTemplate = 'T1LandScoutFormSorian',
-        Priority = 10000, #725,
+        Priority = 10000, --725,
         InstanceCount = 30,
         BuilderData = {
             UseCloak = true,
