@@ -101,7 +101,7 @@ UnitBlueprint {
         ShieldGeneratorField = {
             ShieldSpillOverDamageMod = 0.15,
         },
-    },    
+    },
 }
 
 UnitBlueprint {
