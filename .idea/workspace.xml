@@ -2,57 +2,135 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e500d21-042a-4990-918a-ac41683a5ce6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpShockwave01/EXCTorpShockwave01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpShockwave01/EXCTorpShockwave01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpShockwave02/EXCTorpShockwave02_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpShockwave02/EXCTorpShockwave02_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect01/EXETacNukeEffect01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect01/EXETacNukeEffect01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect02/EXETacNukeEffect02_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect02/EXETacNukeEffect02_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect03/EXETacNukeEffect03_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect03/EXETacNukeEffect03_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect04/EXETacNukeEffect04_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect04/EXETacNukeEffect04_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect05/EXETacNukeEffect05_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect05/EXETacNukeEffect05_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffectController01/EXETacNukeEffectController01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffectController01/EXETacNukeEffectController01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeFlavorPlume01/EXETacNukeFlavorPlume01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeFlavorPlume01/EXETacNukeFlavorPlume01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave01/EXETacNukeShockwave01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave01/EXETacNukeShockwave01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave02/EXETacNukeShockwave02_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeShockwave02/EXETacNukeShockwave02_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXNovaBombEffectController01/EXNovaBombEffectController01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXNovaBombEffectController01/EXNovaBombEffectController01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXNovaBombEffectController02/EXNovaBombEffectController02_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/Entities/EXNovaBombEffectController02/EXNovaBombEffectController02_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/emitters/exaries_beam_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/emitters/exaries_beam_01_emit.bp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_beam_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/emitters/exsonicdisruptor_beam_01_emit.bp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/emitters/exss_beam_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/effects/emitters/exss_beam_01_emit.bp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/hook/lua/ui/help/tooltips.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/hook/lua/ui/help/tooltips.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/hook/lua/ui/help/unitdescription.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/hook/lua/ui/help/unitdescription.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsEffectTemplates.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsEffectTemplates.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsdefaultcollisionbeams.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsdefaultcollisionbeams.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsprojectiles.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsprojectiles.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsweapons.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXBlackOpsweapons.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXCollisionBeam.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXCollisionBeam.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXeffecttemplates.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/EXeffecttemplates.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/OldEffectTemplateBackup.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/lua/OldEffectTemplateBackup.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/CybranHailfire01/CybranHailfire01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/CybranHailfire01/CybranHailfire01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/CybranHailfire01child/CybranHailfire01child_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/CybranHailfire01child/CybranHailfire01child_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/CybranHailfire02child/CybranHailfire02child_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/CybranHailfire02child/CybranHailfire02child_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/RaiderCannon01/RaiderCannon01_proj.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/RaiderCannon01/RaiderCannon01_proj.bp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/RaiderCannon01/RaiderCannon01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/RaiderCannon01/RaiderCannon01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFClusterCruise01/UEFClusterCruise01_Script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFClusterCruise01/UEFClusterCruise01_Script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFClusterCruise01/UEFClusterCruise01_proj.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFClusterCruise01/UEFClusterCruise01_proj.bp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFConcussionTorpedo01/UEFConcussionTorpedo01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFConcussionTorpedo01/UEFConcussionTorpedo01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFCruiseMissile01/UEFCruiseMissile01_Script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFCruiseMissile01/UEFCruiseMissile01_Script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFCruiseMissile01/UEFCruiseMissile01_proj.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFCruiseMissile01/UEFCruiseMissile01_proj.bp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFHVM01/UEFHVM01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFHVM01/UEFHVM01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFSubGatling01/UEFSubGatling01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFSubGatling01/UEFSubGatling01_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFTacNuke01/UEFTacNuke01_Script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/projectiles/UEFTacNuke01/UEFTacNuke01_Script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_Script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EAL0301/EAL0301_Script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EAS0302/EAS0302_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EAS0302/EAS0302_script.lua" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_04_emit.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_05_emit.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/gc_l1upgrade_polytrail_01_emit.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/gc_l2upgrade_polytrail_01_emit.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_redirect_bright_01.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_redirect_bright_02.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_redirect_bright_03.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon01/UEFHeavyPlasmaGatlingCannon01_proj.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon01/UEFHeavyPlasmaGatlingCannon01_script.lua" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon02/UEFHeavyPlasmaGatlingCannon02_proj.bp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon02/UEFHeavyPlasmaGatlingCannon02_script.lua" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon03/UEFHeavyPlasmaGatlingCannon03_proj.bp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmDistort.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmDistort.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmTrailFX.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmTrailFX.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmTrailFX02.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmTrailFX02.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_flash_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_flash_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_05_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_fxtrail_05_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_05_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_05_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_07_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_07_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_08_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_hit_08_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_05_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_05_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_06_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_06_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_07_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_muzzle_flash_07_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_ring_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_flash_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_05_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_05_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_06_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_hit_06_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_implosion_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_implosion_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_implosion_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_implosion_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_06_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_06_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_07_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/emp_shockwave_07_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_flash_07_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_flash_07_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_flash_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_flash_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_lines_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_lines_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_oilslick_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_oilslick_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_thick_smoke_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_thick_smoke_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_thin_smoke_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_thin_smoke_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_torch_01.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_torch_01.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_water_dots_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_water_dots_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_water_ripples_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_water_ripples_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_water_smoke_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_water_smoke_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_waterflash_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/flamer_waterflash_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_bright_01.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_bright_01.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_01.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_01.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_02.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_02.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_03a.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_03a.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_03b.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_03b.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_04.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_destroy_dark_04.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_distortion_01.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_distortion_01.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/maelstrom_aura_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/maelstrom_aura_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/maelstrom_aura_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/maelstrom_aura_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/sat_death_smoke_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/sat_death_smoke_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_03_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_03_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_04_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_04_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_05_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_05_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_06_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_06_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_07_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_07_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_08_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_08_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_09_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_09_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_10_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_10_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/uef_shieldgen_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/uef_shieldgen_01_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/uef_shieldgen_02_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/uef_shieldgen_02_emit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect01/Cluster01Effect01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect01/Cluster01Effect01_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect02/Cluster01Effect02_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect02/Cluster01Effect02_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect03/Cluster01Effect03_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect03/Cluster01Effect03_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect04/Cluster01Effect04_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect04/Cluster01Effect04_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01EffectController01/Cluster01EffectController01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01EffectController01/Cluster01EffectController01_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/AIEconomicBuilders.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/AIEconomicBuilders.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/SorianEconomicBuilders.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/SorianEconomicBuilders.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ScenarioFramework.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ScenarioFramework.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/defaultunits.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/defaultunits.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/seraphimunits.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/seraphimunits.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/game/buildmodedata.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/game/buildmodedata.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/help/tooltips.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/help/tooltips.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsScryTarget.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsScryTarget.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/OmegaOverCharge01/OmegaOverCharge01_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/OmegaOverCharge01/OmegaOverCharge01_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EAL0001/EAL0001_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EAL0001/EAL0001_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEA0002/EEA0002_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEA0002/EEA0002_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_unit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_unit.bp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ERL0001/ERL0001_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ERL0001/ERL0001_script.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ESL0001/ESL0001_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ESL0001/ESL0001_script.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EEB0001/EEB0001_Script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EEB0001/EEB0001_Script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EEB0402/EEB0402_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EEB0402/EEB0402_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EES0301/EES0301_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EES0301/EES0301_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EES0302/EES0302_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/EES0302/EES0302_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/ERL0301/ERL0301_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/ERL0301/ERL0301_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-EXUnits/units/ERS0302/ERS0302_script.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIDefenseBuilders.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIDefenseBuilders.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIIntelBuilders.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIIntelBuilders.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/SorianDefenseBuilders.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/SorianDefenseBuilders.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/SorianIntelBuilders.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/SorianIntelBuilders.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/lua/BlackOpsdefaultantiprojectile.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/lua/BlackOpsdefaultantiprojectile.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/units/BSB0001/BSB0001_Script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-Unleashed/units/BSB0001/BSB0001_Script.lua" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_shoackwave_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/amc_shockwave_01_emit.bp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/gc_l3upgrade_polytrail_01_emit.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/gc_upgrade_polytrail_emit.bp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon01/UEFHeavyPlasmaGatlingCannon01_proj.bp" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon/UEFHeavyPlasmaGatlingCannon_proj.bp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon03/UEFHeavyPlasmaGatlingCannon03_script.lua" afterPath="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon/UEFHeavyPlasmaGatlingCannon_script.lua" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,11 +141,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AIDefenseBuilders.lua" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIDefenseBuilders.lua">
+      <file leaf-file-name="ACUsEffectTemplates.lua" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="221" column="10" lean-forward="true" selection-start-line="221" selection-start-column="10" selection-end-line="221" selection-end-column="10" />
+            <state relative-caret-position="844">
+              <caret line="176" column="27" lean-forward="false" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ACUsProjectiles.lua" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ACUsWeapons.lua" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -77,12 +175,45 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>#</find>
-      <find>PlatoonTemplate</find>
+      <find>SeraACURapidCannonPoly</find>
+      <find>SeraACURapidCannonPoly02</find>
+      <find>SeraACURapidCannonPoly03</find>
+      <find>CybranACUEMPArrayHit01</find>
+      <find>CybranACUEMPArrayHit02</find>
+      <find>emp_shockwave_04_emit</find>
+      <find>UEFHeavyPlasmaGatlingCannon03PolyTrail</find>
+      <find>UEFHeavyPlasmaGatlingCannon02PolyTrail</find>
+      <find>UEFCruiseMissile01Trails</find>
+      <find>SatDeathSmoke</find>
+      <find>SatDamageFire01</find>
+      <find>SatDeathEffectsPackage</find>
+      <find>emp_shockwave_05_emit</find>
+      <find>ACUsSinglePolyTrailProjectile</find>
+      <find>Projectile</find>
+      <find>SinglePolyTrailProjectile</find>
+      <find>MultiPolyTrailProjectile</find>
+      <find>EffectTemplate</find>
+      <find>util</find>
+      <find>InvisoProjectile01</find>
+      <find>InvisoProjectile02</find>
+      <find>InvisoProjectile03</find>
+      <find>SOmegaCannonOverCharge</find>
+      <find>OmegaOverCharge01</find>
+      <find>UEFHeavyPlasmaGatlingCannon01PolyTrail</find>
+      <find>UEFHeavyPlasmaGatlingCannon01</find>
+      <find>UEFHeavyPlasmaGatlingCannon02</find>
+      <find>UEFHeavyPlasmaGatlingCannon03</find>
+      <find>gatling</find>
+      <find>UEFHeavyPlasmaGatlingCannon</find>
     </findStrings>
     <replaceStrings>
       <replace>--</replace>
+      <replace>Exavier's</replace>
+      <replace>Commander</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>D:\GITHUB\Mods\BlackOpsFAF-ACUs</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,13 +221,63 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIDefenseBuilders.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_distortion_01.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_redirect_bright_01.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_redirect_bright_03.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/lambda_redirect_bright_02.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/maelstrom_aura_01_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/maelstrom_aura_02_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmTrailFX.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmDistort.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/NapalmTrailFX02.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_01_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_02_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/omega_overcharge_projectile_fxtrail_03_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/sat_death_smoke_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_01_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_02_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_03_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_04_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_05_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_06_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_08_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_07_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_09_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/seraphim_experimental_phasonproj_hit_10_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/uef_shieldgen_01_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Emitters/uef_shieldgen_02_emit.bp" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect02/Cluster01Effect02_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect03/Cluster01Effect03_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect04/Cluster01Effect04_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect01/Cluster01Effect01_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01EffectController01/Cluster01EffectController01_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/SorianEconomicBuilders.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/AIEconomicBuilders.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/game/buildmodedata.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/help/tooltips.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/defaultunits.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ESL0001/ESL0001_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ERL0001/ERL0001_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EAL0001/EAL0001_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ScenarioFramework.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-Unleashed/lua/BlackOpsdefaultantiprojectile.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/seraphimunits.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEA0002/EEA0002_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/OmegaOverCharge01/OmegaOverCharge01_script.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsScryTarget.lua" />
+        <option value="$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="1734" />
+    <option name="width" value="1866" />
     <option name="height" value="1407" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -107,16 +288,22 @@
             <id />
           </State>
           <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
             <id>Lua</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>Data Flow IssuesLua</id>
+            <id>LossyEncoding</id>
           </State>
         </selected-state>
       </profile-state>
     </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -144,37 +331,13 @@
             <path>
               <item name="Mods" type="b2602c69:ProjectViewProjectNode" />
               <item name="Mods" type="462c0819:PsiDirectoryNode" />
-              <item name="BlackOpsFAF-Unleashed" type="462c0819:PsiDirectoryNode" />
+              <item name="BlackOpsFAF-ACUs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Mods" type="b2602c69:ProjectViewProjectNode" />
               <item name="Mods" type="462c0819:PsiDirectoryNode" />
-              <item name="BlackOpsFAF-Unleashed" type="462c0819:PsiDirectoryNode" />
-              <item name="hook" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mods" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mods" type="462c0819:PsiDirectoryNode" />
-              <item name="BlackOpsFAF-Unleashed" type="462c0819:PsiDirectoryNode" />
-              <item name="hook" type="462c0819:PsiDirectoryNode" />
+              <item name="BlackOpsFAF-ACUs" type="462c0819:PsiDirectoryNode" />
               <item name="lua" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mods" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mods" type="462c0819:PsiDirectoryNode" />
-              <item name="BlackOpsFAF-Unleashed" type="462c0819:PsiDirectoryNode" />
-              <item name="hook" type="462c0819:PsiDirectoryNode" />
-              <item name="lua" type="462c0819:PsiDirectoryNode" />
-              <item name="AI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mods" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mods" type="462c0819:PsiDirectoryNode" />
-              <item name="BlackOpsFAF-Unleashed" type="462c0819:PsiDirectoryNode" />
-              <item name="hook" type="462c0819:PsiDirectoryNode" />
-              <item name="lua" type="462c0819:PsiDirectoryNode" />
-              <item name="AI" type="462c0819:PsiDirectoryNode" />
-              <item name="AIBuilders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -184,8 +347,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Lua" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/BlackOpsFAF-Unleashed" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BlackOpsFAF-ACUs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -213,7 +376,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1734" height="1407" extended-state="0" />
+    <frame x="-7" y="0" width="1866" height="1407" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -222,9 +385,9 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22409779" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20810811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -245,7 +408,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIDefenseBuilders.lua">
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect03/Cluster01Effect03_proj.bp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -253,10 +416,402 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-Unleashed/hook/lua/AI/AIBuilders/AIDefenseBuilders.lua">
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect01/Cluster01Effect01_proj.bp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="221" column="10" lean-forward="true" selection-start-line="221" selection-start-column="10" selection-end-line="221" selection-end-column="10" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect01/Cluster01Effect01_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect02/Cluster01Effect02_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect03/Cluster01Effect03_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="79" lean-forward="true" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect04/Cluster01Effect04_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect04/Cluster01Effect04_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01EffectController01/Cluster01EffectController01_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01FlavorPlume01/Cluster01FlavorPlume01_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01EffectController01/Cluster01EffectController01_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1650">
+          <caret line="12" column="48" lean-forward="true" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="79" lean-forward="true" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01FlavorPlume01/Cluster01FlavorPlume01_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Shockwave01/Cluster01Shockwave01_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Shockwave01/Cluster01Shockwave01_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Shockwave02/Cluster01Shockwave02_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/effects/Entities/Cluster01Shockwave02/Cluster01Shockwave02_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/AIEconomicBuilders.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="2783" column="28" lean-forward="true" selection-start-line="2783" selection-start-column="28" selection-end-line="2783" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/AI/AIBuilders/SorianEconomicBuilders.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2301">
+          <caret line="2628" column="4" lean-forward="false" selection-start-line="2628" selection-start-column="4" selection-end-line="2628" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/sim/ScenarioUtilities.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/game/buildmodedata.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/help/unitdescription.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="199" lean-forward="false" selection-start-line="7" selection-start-column="199" selection-end-line="7" selection-end-column="199" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ui/help/tooltips.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/abilitydefinition.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/factions.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EAL0001/EAL0001_unit.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4029">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EAL0001/EAL0001_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="61" column="35" lean-forward="true" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ERL0001/ERL0001_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="65" column="36" lean-forward="false" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ESL0001/ESL0001_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/ScenarioFramework.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="50" lean-forward="true" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/projectiles/LaserBotTerran01/LaserBotTerran01_proj.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/textures/ui/common/game/aeon-enhancements/aeon-enhancements_layout.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-448">
+          <caret line="15" column="71" lean-forward="true" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/textures/ui/common/game/cybran-enhancements/cybran-enhancements_layout.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-703">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/textures/ui/common/game/serephim-enhancements/serephim-enhancements_layout.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/textures/ui/common/game/uef-enhancements/uef-enhancements_layout.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-Unleashed/lua/BlackOpsdefaultantiprojectile.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/defaultunits.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="11" lean-forward="true" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/ESB0001/ESB0001_Script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/hook/lua/seraphimunits.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEA0002/EEA0002_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="86" column="8" lean-forward="true" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/OmegaOverCharge01/OmegaOverCharge01_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon01/UEFHeavyPlasmaGatlingCannon01_script.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/units/EEL0001/EEL0001_unit.bp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="318" column="24" lean-forward="false" selection-start-line="318" selection-start-column="17" selection-end-line="318" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="844">
+          <caret line="176" column="27" lean-forward="false" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsUpgradeConditions.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsScryTarget.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding />
         </state>
       </provider>
