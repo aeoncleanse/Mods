@@ -1,4 +1,4 @@
 abilities['ScryTarget'] = {
     preferredSlot = 7,
-    script = 'TargetLocation',
+    script = 'TargetLocation'
 }

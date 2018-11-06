@@ -1,6 +1,6 @@
 local oldACUUnit = ACUUnit
 
-ACUUnit = Class(oldACUUnit) {    
+ACUUnit = Class(oldACUUnit) {
     updateBuildRestrictions = function(self)
         local aiBrain = self:GetAIBrain()
 
