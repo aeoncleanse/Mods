@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  
-#**  Author(s):  Tpapp & Exavier Macbeth
-#**
-#**  Summary  :  UEF T4 Stellar Generator Script
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  
+--**  Author(s):  Tpapp & Exavier Macbeth
+--**
+--**  Summary  :  UEF T4 Stellar Generator Script
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local TEnergyCreationUnit = import('/lua/terranunits.lua').TEnergyCreationUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')
@@ -43,19 +43,19 @@ EEB0402 = Class(TEnergyCreationUnit) {
     end,
 
 	NotifyOfDroneDeath = function(self)
-		### Only respawns the drones if the parent unit is not dead
+		------ Only respawns the drones if the parent unit is not dead
 		if not self:IsDead() then
 			--local mass = self:GetAIBrain():GetEconomyStored('Mass')
 			--local energy = self:GetAIBrain():GetEconomyStored('Energy')
-			### Check to see if the player has enough mass / energy
-			### And that the production is enabled.
+			------ Check to see if the player has enough mass / energy
+			------ And that the production is enabled.
 			--if self:GetScriptBit('RULEUTC_ProductionToggle') == false and mass >= 100 and energy >= 1000 then
-			--	###Remove the resources and spawn a single drone
+			--	------Remove the resources and spawn a single drone
 			--	self:GetAIBrain():TakeResource('Mass',100)
 			--	self:GetAIBrain():TakeResource('Energy',1000)
 			--	self:ForkThread(self.SpawnDrone)
 			--else
-			--	### If the above conditions are not met the carrier will wait a short time and try again
+			--	------ If the above conditions are not met the carrier will wait a short time and try again
 			--	self:ForkThread(self.EconomyWait)
 			--end
 			self:ForkThread(self.CoreMonitor)

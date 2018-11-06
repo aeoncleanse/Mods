@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /cdimage/units/URS0103/URS0103_script.lua
-#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
-#**
-#**  Summary  :  Cybran Frigate Script
-#**
-#**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /cdimage/units/URS0103/URS0103_script.lua
+--**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+--**
+--**  Summary  :  Cybran Frigate Script
+--**
+--**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local CSeaUnit = import('/lua/cybranunits.lua').CSeaUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
@@ -126,7 +126,7 @@ ERS0302 = Class(CSeaUnit) {
         local scale = bp.Display.UniformScale or 1
 
         if( land ) then
-            # Change movement speed to the multiplier in blueprint
+            -- Change movement speed to the multiplier in blueprint
             self:SetSpeedMult(bp.Physics.LandSpeedMultiplier)
             self:SetImmobile(true)
 		    self:SetWeaponEnabledByLabel('TorpedoR', false)
@@ -145,7 +145,7 @@ ERS0302 = Class(CSeaUnit) {
             self.Trash:Add(self.AnimManip)
         else
             self:SetImmobile(true)
-            # Revert speed to maximum speed
+            -- Revert speed to maximum speed
             self:SetSpeedMult(1)
             self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationTransform)
             self.AnimManip:SetAnimationFraction(1)
@@ -184,7 +184,7 @@ ERS0302 = Class(CSeaUnit) {
                 self:CreateDestructionEffects( self, overkillRatio )
             end
 
-            # Create Initial explosion effects
+            -- Create Initial explosion effects
             if( self.ShowUnitDestructionDebris and overkillRatio ) then
                 if overkillRatio <= 1 then
                     self.CreateUnitDestructionDebris( self, true, true, false )
@@ -192,7 +192,7 @@ ERS0302 = Class(CSeaUnit) {
                     self.CreateUnitDestructionDebris( self, true, true, false )
                 elseif overkillRatio <= 3 then
                     self.CreateUnitDestructionDebris( self, true, true, true )
-                else #VAPORIZED
+                else --VAPORIZED
                     self.CreateUnitDestructionDebris( self, true, true, true )
                 end
             end

@@ -1,16 +1,16 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/sim/collisionbeam.lua
-#**  Author(s):
-#**
-#**  Summary  :
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
-#
-# CollisionBeam is the simulation (gameplay-relevant) portion of a beam. It wraps a special effect
-# that may or may not exist depending on how the simulation is executing.
-#
+--****************************************************************************
+--**
+--**  File     :  /lua/sim/collisionbeam.lua
+--**  Author(s):
+--**
+--**  Summary  :
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
+--
+-- CollisionBeam is the simulation (gameplay-relevant) portion of a beam. It wraps a special effect
+-- that may or may not exist depending on how the simulation is executing.
+--
 local DefaultDamage = import('/lua/sim/defaultdamage.lua')
 
 CollisionBeam = Class(moho.CollisionBeamEntity) {
@@ -111,7 +111,7 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
             local exfxBeam = CreateBeamEmitter(self.FxBeam[Random(1, table.getn(self.FxBeam))], army)
             AttachBeamToEntity(exfxBeam, self, 0, army)
             
-            # collide on start if it's a continuous beam
+            -- collide on start if it's a continuous beam
             local weaponBlueprint = self.Weapon:GetBlueprint()
             local bCollideOnStart = weaponBlueprint.BeamLifetime <= 0
             self:SetBeamFx(exfxBeam, bCollideOnStart)
@@ -179,25 +179,25 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
         end
     end,
 
-    # This is called when the collision beam hits something new. Because the beam
-    # is continuously detecting collisions it only executes this function when the
-    # thing it is touching changes. Expect Impacts with non-physical things like
-    # 'Air' (hitting nothing) and 'Underwater' (hitting nothing underwater).
+    -- This is called when the collision beam hits something new. Because the beam
+    -- is continuously detecting collisions it only executes this function when the
+    -- thing it is touching changes. Expect Impacts with non-physical things like
+    -- 'Air' (hitting nothing) and 'Underwater' (hitting nothing underwater).
     OnImpact = function(self, impactType, targetEntity)
-        #LOG('*DEBUG: COLLISION BEAM ONIMPACT ', repr(self))
-        #LOG('*DEBUG: COLLISION BEAM ONIMPACT, WEAPON =  ', repr(self.Weapon), 'Type = ', impactType)
-        #LOG('CollisionBeam impacted with: ' .. impactType )
-        # Possible 'type' values are:
-        #  'Unit'
-        #  'Terrain'
-        #  'Water'
-        #  'Air'
-        #  'UnitAir'
-        #  'Underwater'
-        #  'UnitUnderwater'
-        #  'Projectile'
-        #  'Prop'
-        #  'Shield'
+        --LOG('*DEBUG: COLLISION BEAM ONIMPACT ', repr(self))
+        --LOG('*DEBUG: COLLISION BEAM ONIMPACT, WEAPON =  ', repr(self.Weapon), 'Type = ', impactType)
+        --LOG('CollisionBeam impacted with: ' .. impactType )
+        -- Possible 'type' values are:
+        --  'Unit'
+        --  'Terrain'
+        --  'Water'
+        --  'Air'
+        --  'UnitAir'
+        --  'Underwater'
+        --  'UnitUnderwater'
+        --  'Projectile'
+        --  'Prop'
+        --  'Shield'
 
         local instigator = self:GetLauncher()
         if not self.DamageTable then
@@ -206,12 +206,12 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
 
         local damageData = self.DamageTable
 
-        # Buffs (Stun, etc)
+        -- Buffs (Stun, etc)
         if targetEntity and IsUnit(targetEntity) then
             self:DoUnitImpactBuffs(targetEntity)
         end
 
-        # Do Damage
+        -- Do Damage
         self:DoDamage( instigator, damageData, targetEntity)
 
         local ImpactEffects = {}
@@ -267,7 +267,7 @@ CollisionBeam = Class(moho.CollisionBeamEntity) {
         self.DamageTable.Buffs = weaponBlueprint.Buffs
     end,
 
-    #When this beam impacts with the target, do any buffs that have been passed to it.
+    --When this beam impacts with the target, do any buffs that have been passed to it.
     DoUnitImpactBuffs = function(self, target)
         local data = self.DamageTable
         if data.Buffs then

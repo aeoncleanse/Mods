@@ -1,6 +1,6 @@
-#
-# Terran Torpedo Bomb
-#
+--
+-- Terran Torpedo Bomb
+--
 local TTorpedoSubProjectile = import('/lua/terranprojectiles.lua').TTorpedoSubProjectile
 
 UEFConcussionTorpedo01 = Class(TTorpedoSubProjectile) {

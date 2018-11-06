@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/defaultcollisionbeams.lua
-#**  Author(s):  Gordon Duclos
-#**
-#**  Summary  :  Default definitions collision beams
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /lua/defaultcollisionbeams.lua
+--**  Author(s):  Gordon Duclos
+--**
+--**  Summary  :  Default definitions collision beams
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -16,12 +16,12 @@ local EXEffectTemplate = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsEffectT
 
 local EXCollisionBeam = import('/mods/BlackOpsFAF-EXUnits/lua/EXCollisionBeam.lua').CollisionBeam
 
-#-----------------------------
-#   Base class that defines supreme commander specific defaults
-#-----------------------------
+-------------------------------
+--   Base class that defines supreme commander specific defaults
+-------------------------------
 SCCollisionBeam = Class(CollisionBeam) {
     FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
-    FxImpactLand = {},#EffectTemplate.DefaultProjectileLandImpact,
+    FxImpactLand = {},--EffectTemplate.DefaultProjectileLandImpact,
     FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
     FxImpactUnderWater = EffectTemplate.DefaultProjectileUnderWaterImpact,
     FxImpactAirUnit = EffectTemplate.DefaultProjectileAirUnitImpact,
@@ -30,9 +30,9 @@ SCCollisionBeam = Class(CollisionBeam) {
     FxImpactNone = {},
 }
 
-#-----------------------------
-#   UEF Sonic Disruptor Wave
-#-----------------------------
+-------------------------------
+--   UEF Sonic Disruptor Wave
+-------------------------------
 SonicDisruptorWaveCBeam = Class(EXCollisionBeam) {
 	FxBeam = {},
 

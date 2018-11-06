@@ -33,11 +33,11 @@ UEFClusterCruise01 = Class(UEFClusterCruise01Projectile) {
         self:SetTurnRate(360)
     end,
     
-    #OnImpact = function(self, targetType, targetEntity)
-    #    local army = self:GetArmy()
-     #   CreateLightParticle( self, -1, army, 3, 4, 'glow_03', 'ramp_fire_01' ) 
-     #   SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
-    #end,
+    --OnImpact = function(self, targetType, targetEntity)
+    --    local army = self:GetArmy()
+     --   CreateLightParticle( self, -1, army, 3, 4, 'glow_03', 'ramp_fire_01' ) 
+     --   SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
+    --end,
 
     OnExitWater = function(self)
         UEFClusterCruise01Projectile.OnExitWater(self)
