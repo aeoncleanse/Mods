@@ -33,21 +33,21 @@ BRL0110 = Class(CWalkingLandUnit) {
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Exhaust', self.unit:GetArmy(), Effects.WeaponSteam01)
                 CDFLaserHeavyWeapon.PlayFxWeaponPackSequence(self)
             end,
-        
+
             PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip then 
+                if not self.SpinManip then
                     self.SpinManip = CreateRotator(self.unit, 'Gat_Spinner', 'z', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip)
                 end
-                
+
                 if self.SpinManip then
                     self.SpinManip:SetTargetSpeed(-700)
                 end
                 CDFLaserHeavyWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
-        },        
+        },
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         self:ForkThread(self.WeaponSetup)
         self:SetWeaponEnabledByLabel('FlameGun', false)
@@ -58,25 +58,25 @@ BRL0110 = Class(CWalkingLandUnit) {
 
         CWalkingLandUnit.OnStopBeingBuilt(self, builder, layer)
     end,
-    
+
     WeaponCheckThread = function(self)
         for k, v in self.WeaponList do
             self:SetWeaponEnabledByLabel(self.WeaponList[k], k == self.WeaponCheck)
         end
     end,
-    
+
     OnTransportDetach = function(self, attachBone, unit)
         CWalkingLandUnit.OnTransportDetach(self, attachBone, unit)
         self:ForkThread(self.WeaponCheckThread)
     end,
-    
+
     WeaponSetup = function(self)
         if not self:IsDead() then
             self.WeaponCheck = Random(1, 4)
             self:ShowBone('XRL0110', true)
             local dummywep = self:GetWeaponByLabel('DummyWeapon')
             local maxradius, minradius
-            
+
             local check = self.WeaponCheck
             if check == 1 then
                 self:HideBone('RPG_Barrel01', true)

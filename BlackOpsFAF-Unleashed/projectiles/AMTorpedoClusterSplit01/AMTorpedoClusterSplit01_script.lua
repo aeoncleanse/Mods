@@ -38,7 +38,7 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
         end
         self:ForkThread(self.EnterWaterMovementThread)
     end,
-    
+
     OnExitWater = function(self)
         AMTorpedoCluster.OnExitWater(self)
         local army = self:GetArmy()
@@ -46,7 +46,7 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
             CreateEmitterAtEntity(self,army,self.FxExitWater[i])
         end
     end,
-    
+
     EnterWaterMovementThread = function(self)
         self:SetAcceleration(2.5)
         self:TrackTarget(true)

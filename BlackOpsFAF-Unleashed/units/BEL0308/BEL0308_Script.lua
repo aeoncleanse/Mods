@@ -9,7 +9,7 @@ local TWalkingLandUnit = import('/lua/terranunits.lua').TWalkingLandUnit
 local TIFArtilleryWeapon = import('/lua/terranweapons.lua').TIFArtilleryWeapon
 local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
 
-BEL0308 = Class(TWalkingLandUnit) 
+BEL0308 = Class(TWalkingLandUnit)
 {
     Weapons = {
         MainGun = Class(TIFArtilleryWeapon) {},

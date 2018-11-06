@@ -16,14 +16,14 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
         '/effects/emitters/seraphim_othuy_spawn_03_emit.bp',
         '/effects/emitters/seraphim_othuy_spawn_04_emit.bp',
     },
-    
+
     ChargeEffects01 = {
         '/effects/emitters/seraphim_expirimental_laser_muzzle_01_emit.bp',
         '/effects/emitters/seraphim_expirimental_laser_muzzle_02_emit.bp',
         '/effects/emitters/seraphim_expirimental_laser_muzzle_03_emit.bp',
         '/effects/emitters/seraphim_expirimental_laser_muzzle_04_emit.bp',
     },
-    
+
     Weapons = {
         EyeWeapon01 = Class(YenzothaExperimentalLaser) {
             OnWeaponFired = function(self)
@@ -54,7 +54,7 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
                     table.insert(self.unit.ChargeEffects01Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus01', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
             end,
-            
+
             PlayFxWeaponPackSequence = function(self)
                 if self.unit.BeamChargeEffects1 then
                     for k, v in self.unit.BeamChargeEffects1 do
@@ -71,11 +71,11 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
                 YenzothaExperimentalLaser.PlayFxWeaponPackSequence(self)
             end,
         },
-        
+
         EyeWeapon02 = Class(YenzothaExperimentalLaser) {
             OnWeaponFired = function(self)
                 YenzothaExperimentalLaser.OnWeaponFired(self)
-                if self.unit.ChargeEffects02Bag then        
+                if self.unit.ChargeEffects02Bag then
                     for k, v in self.unit.ChargeEffects02Bag do
                         v:Destroy()
                     end
@@ -101,7 +101,7 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
                     table.insert(self.unit.ChargeEffects02Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus02', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
             end,
-            
+
             PlayFxWeaponPackSequence = function(self)
                 if self.unit.BeamChargeEffects2 then
                     for k, v in self.unit.BeamChargeEffects2 do
@@ -118,11 +118,11 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
                 YenzothaExperimentalLaser.PlayFxWeaponPackSequence(self)
             end,
         },
-        
+
         EyeWeapon03 = Class(YenzothaExperimentalLaser) {
             OnWeaponFired = function(self)
                 YenzothaExperimentalLaser.OnWeaponFired(self)
-                if self.unit.ChargeEffects03Bag then        
+                if self.unit.ChargeEffects03Bag then
                     for k, v in self.unit.ChargeEffects03Bag do
                         v:Destroy()
                     end
@@ -148,7 +148,7 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
                     table.insert(self.unit.ChargeEffects03Bag, CreateAttachedEmitter(self.unit, 'Beam_Point_Focus03', self.unit:GetArmy(), v):ScaleEmitter(0.5))
                 end
             end,
-            
+
             PlayFxWeaponPackSequence = function(self)
                 if self.unit.BeamChargeEffects3 then
                     for k, v in self.unit.BeamChargeEffects3 do
@@ -168,14 +168,14 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
         LeftAA = Class(SAAOlarisCannonWeapon) {},
         RightAA = Class(SAAOlarisCannonWeapon) {},
     },
-    
+
     StartBeingBuiltEffects = function(self, builder, layer)
         SHoverLandUnit.StartBeingBuiltEffects(self, builder, layer)
         self:ForkThread(EffectUtil.CreateSeraphimExperimentalBuildBaseThread, builder, self.OnBeingBuiltEffectsBag)
     end,
-        
+
     OnStopBeingBuilt = function(self,builder,layer)
-        SHoverLandUnit.OnStopBeingBuilt(self,builder,layer)        
+        SHoverLandUnit.OnStopBeingBuilt(self,builder,layer)
         self.BeamChargeEffects1 = {}
         self.ChargeEffects01Bag = {}
         self.BeamChargeEffects2 = {}
@@ -184,13 +184,13 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
         self.ChargeEffects03Bag = {}
         AirDroneCarrier.InitDrones(self)
     end,
-    
+
     -- Places the Goliath's first drone-targetable attacker into a global
     OnDamage = function(self, instigator, amount, vector, damagetype)
         SHoverLandUnit.OnDamage(self, instigator, amount, vector, damagetype)
         AirDroneCarrier.SetAttacker(self, instigator)
     end,
-    
+
     -- Drone control buttons
     OnScriptBitSet = function(self, bit)
         -- Drone assist toggle, on
@@ -204,7 +204,7 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
         else
             SHoverLandUnit.OnScriptBitSet(self, bit)
         end
-    end,    
+    end,
     OnScriptBitClear = function(self, bit)
         -- Drone assist toggle, off
         if bit == 1 then
@@ -216,14 +216,14 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
             SHoverLandUnit.OnScriptBitClear(self, bit)
         end
     end,
-    
+
     -- Handles drone docking
     OnTransportAttach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = attachBone
         unit:SetDoNotTarget(true)
         BaseTransport.OnTransportAttach(self, attachBone, unit)
     end,
-    
+
     -- Handles drone undocking, also called when docked drones die
     OnTransportDetach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = false
@@ -244,37 +244,37 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
         self:KillAllDrones()
         SHoverLandUnit.OnKilled(self, instigator, damageType, overkillRatio)
     end,
-    
+
     -- Set on unit death, ends production and consumption immediately
     DeadState = State {
         Main = function(self)
             if self.gettingBuilt == false then
                 self:CleanupDroneMaintenance(nil, true)
             end
-        end,        
+        end,
     },
 
-            
-    
-    
 
-    
+
+
+
+
     DeathThread = function(self, overkillRatio , instigator)
         local bigExplosionBones = {'BSL0401', 'Beam_Muzzle01'}
         local explosionBones = {'Focus_Beam02_Emitter03', 'Left_AA_Barrel',
                                 'Focus_Beam01_Emitter01', 'Right_AA_Turret', 'Beam_Point_Focus03'}
-                                        
+
         explosion.CreateDefaultHitExplosionAtBone(self, bigExplosionBones[Random(1,3)], 4.0)
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
+        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         WaitSeconds(0.2)
-        
+
         local RandBoneIter = RandomIter(explosionBones)
         for i=1,Random(4,6) do
             local bone = RandBoneIter()
             explosion.CreateDefaultHitExplosionAtBone(self, bone, 1.0)
             WaitTicks(Random(0.1,1))
         end
-        
+
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'CollossusDeath') then
@@ -283,13 +283,13 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
             end
         end
         WaitSeconds(0.5)
-        explosion.CreateDefaultHitExplosionAtBone(self, 'BSL0401', 5.0)        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'BSL0401', 5.0)
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
         end
 
-    
+
         self:DestroyAllDamageEffects()
         self:CreateWreckage(overkillRatio)
 
@@ -308,17 +308,17 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
                 self.CreateUnitDestructionDebris(self, true, true, true)
             end
         end
-        
+
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
-    
+
     OnDestroy = function(self)
         SHoverLandUnit.OnDestroy(self)
 
         -- Don't make the energy being if not built
         if self:GetFractionComplete() ~= 1 then return end
-        
+
         -- Spawn the Energy Being
         local position = self:GetPosition()
         local spiritUnit = CreateUnitHPR('XSL0402', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)

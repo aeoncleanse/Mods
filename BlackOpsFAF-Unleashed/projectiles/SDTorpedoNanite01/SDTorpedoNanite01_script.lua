@@ -13,7 +13,7 @@ CANTorpedoNanite01 = Class(CTorpedoSubProjectile) {
             self:SetTurnRate(0)
         end
     end,
-    
+
     OnEnterWater = function(self)
         CTorpedoSubProjectile.OnEnterWater(self)
         self:SetBallisticAcceleration(0)

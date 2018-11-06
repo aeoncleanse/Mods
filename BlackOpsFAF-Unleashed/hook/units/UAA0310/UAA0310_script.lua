@@ -69,7 +69,7 @@ UAA0310 = Class(AAirUnit) {
         self:SetWeaponEnabledByLabel('SuperQuantumBeamGeneratorWeapon', false)
         self:ForkThread(self.CheckAIThread)
     end,
-    
+
     CheckAIThread = function(self)
         if not self.AnimationManipulator then
             self.AnimationManipulator = CreateAnimator(self)
@@ -136,10 +136,10 @@ UAA0310 = Class(AAirUnit) {
             ChangeState(self, self.IdleState)
         end,
     },
-    
+
     OnScriptBitSet = function(self, bit)
         AAirUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             if not self.Animator then
                 self.Animator = CreateAnimator(self)
                 self.Trash:Add(self.Animator)
@@ -147,7 +147,7 @@ UAA0310 = Class(AAirUnit) {
             end
             self.Animator:SetRate(0.2)
             self:SetSpeedMult(0.25)
-            
+
             self:ForkThread(function()
                 self:AddBuildRestriction( categories.BUILTBYTIER3FACTORY )
                 self:RemoveToggleCap('RULEUTC_WeaponToggle')
@@ -158,13 +158,13 @@ UAA0310 = Class(AAirUnit) {
                 self:SetWeaponEnabledByLabel('QuantumBeamGeneratorWeapon', true)
                 self:AddToggleCap('RULEUTC_WeaponToggle')
             end)
-            
+
         end
     end,
 
     OnScriptBitClear = function(self, bit)
         AAirUnit.OnScriptBitClear(self, bit)
-        if bit == 1 then 
+        if bit == 1 then
             if self.Animator then
                 self.Animator:SetRate(-0.2)
             end
@@ -180,7 +180,7 @@ UAA0310 = Class(AAirUnit) {
             end)
         end
     end,
-    
+
 }
 
 TypeClass = UAA0310

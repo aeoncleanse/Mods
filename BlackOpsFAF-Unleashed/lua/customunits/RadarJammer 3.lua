@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T2RadarJammer = {
-        Cybran = {'brb4209', 70}, -- Mist (Anti-Teleport Tower) 
+        Cybran = {'brb4209', 70}, -- Mist (Anti-Teleport Tower)
     },
 }

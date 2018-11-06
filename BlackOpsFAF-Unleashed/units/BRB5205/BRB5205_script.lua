@@ -21,7 +21,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         FlakGun03 = Class(CAABurstCloudFlakArtilleryWeapon) {},
         FlakGun04 = Class(CAABurstCloudFlakArtilleryWeapon) {},
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         CAirStagingPlatformUnit.OnStopBeingBuilt(self,builder,layer)
         local layer = self:GetCurrentLayer()
@@ -43,7 +43,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
             self:SetWeaponEnabledByLabel('TorpedoTurret03', true)
             self:SetWeaponEnabledByLabel('TorpedoTurret04', true)
         end
-        
+
         CAirStagingPlatformUnit.OnStopBeingBuilt(self)
         self.DelayedCloakThread = self:ForkThread(self.CloakDelayed)
     end,
@@ -59,7 +59,7 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
         KillThread(self.DelayedCloakThread)
         self.DelayedCloakThread = nil
     end,
-    
+
     InitialDroneSpawn = function(self)
         local numcreate = 4
 
@@ -75,8 +75,8 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
             WaitSeconds(2)
         end
     end,
-    
-    SpawnDrone = function(self)        
+
+    SpawnDrone = function(self)
         -- Sets up local Variables used and spawns a drone at the parents location
         local myOrientation = self:GetOrientation()
         if self.Side == 1 then
@@ -106,10 +106,10 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
             -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
             local drone = CreateUnitHPR('brb0004', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
             drone:AttachTo(self, 'xrb02')
-            
+
             -- Adds the newly created drone to the parent carriers drone table
             table.insert (self.DroneTable, drone)
-        
+
             -- Sets the Carrier unit as the drones parent
             drone:SetParent(self, 'brb5205')
             drone:SetCreator(self)
@@ -117,17 +117,17 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
             -- Flips from the right to the left self.Side after a drone has been spawned
             self.Side = 3
             self:HideBone('xrb02', true)
-            
+
             -- Drone clean up scripts
             self.Trash:Add(drone)
         elseif self.Side == 3 then
             -- Gets the current position of the carrier launch bay in the game world
             local position = self:GetPosition('xrb03')
-        
+
             -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
             local drone = CreateUnitHPR('brb0004', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
             drone:AttachTo(self, 'xrb03')
-            
+
             -- Adds the newly created drone to the parent carriers drone table
             table.insert (self.DroneTable, drone)
 
@@ -138,17 +138,17 @@ BRB5205 = Class(CAirStagingPlatformUnit) {
             -- Flips to the next spawn point
             self.Side = 4
             self:HideBone('xrb03', true)
-            
+
             -- Drone clean up scripts
             self.Trash:Add(drone)
         elseif self.Side == 4 then
             -- Gets the current position of the carrier launch bay in the game world
             local position = self:GetPosition('xrb04')
-    
+
             -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
             local drone = CreateUnitHPR('brb0004', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
             drone:AttachTo(self, 'xrb04')
-            
+
             -- Adds the newly created drone to the parent carriers drone table
             table.insert (self.DroneTable, drone)
 

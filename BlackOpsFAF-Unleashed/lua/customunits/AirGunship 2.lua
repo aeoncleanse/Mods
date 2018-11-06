@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3AirGunship = {
-        Seraphim = {'bsa0310', 50}, -- Vulthatha-Ioz (Missile Gunship) 
+        Seraphim = {'bsa0310', 50}, -- Vulthatha-Ioz (Missile Gunship)
     },
 }

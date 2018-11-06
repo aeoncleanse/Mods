@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/units/XSC9002/XSC9002_script.lua 
+-- File     :  /cdimage/units/XSC9002/XSC9002_script.lua
 -- Author   :  Greg Kohne
 -- Summary  :  Jamming Crystal
 --

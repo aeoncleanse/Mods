@@ -9,7 +9,7 @@ local TAirStagingPlatformUnit = import('/lua/terranunits.lua').TAirStagingPlatfo
 local TANTorpedoLandWeapon = import('/lua/terranweapons.lua').TANTorpedoLandWeapon
 local TAAFlakArtilleryCannon = import('/lua/terranweapons.lua').TAAFlakArtilleryCannon
 
-BEB5205 = Class(TAirStagingPlatformUnit) {    
+BEB5205 = Class(TAirStagingPlatformUnit) {
     Weapons = {
         FlakGun01 = Class(TAAFlakArtilleryCannon) {},
         FlakGun02 = Class(TAAFlakArtilleryCannon) {},
@@ -25,7 +25,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
         '/effects/emitters/terran_shield_generator_t2_01_emit.bp',
         '/effects/emitters/terran_shield_generator_t2_02_emit.bp',
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         TAirStagingPlatformUnit.OnStopBeingBuilt(self,builder,layer)
         -- Drone Globals
@@ -58,7 +58,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
         end
         self.OpenAnim:PlayAnim(self:GetBlueprint().Display.AnimationOpen, false):SetRate(0.4)
     end,
-    
+
     InitialDroneSpawn = function(self)
         local numcreate = 4
 
@@ -105,10 +105,10 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
             -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
             local drone = CreateUnitHPR('beb0005', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
             drone:AttachTo(self, 'Station_02')
-            
+
             -- Adds the newly created drone to the parent carriers drone table
             table.insert (self.DroneTable, drone)
-        
+
             -- Sets the Carrier unit as the drones parent
             drone:SetParent(self, 'beb5205')
             drone:SetCreator(self)
@@ -116,17 +116,17 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
             -- Flips from the right to the left self.Side after a drone has been spawned
             self.Side = 3
             self:HideBone('Station_02', true)
-            
+
             -- Drone clean up scripts
             self.Trash:Add(drone)
         elseif self.Side == 3 then
             -- Gets the current position of the carrier launch bay in the game world
             local position = self:GetPosition('Station_03')
-        
+
             -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
             local drone = CreateUnitHPR('beb0005', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
             drone:AttachTo(self, 'Station_03')
-            
+
             -- Adds the newly created drone to the parent carriers drone table
             table.insert (self.DroneTable, drone)
 
@@ -137,17 +137,17 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
             -- Flips to the next spawn point
             self.Side = 4
             self:HideBone('Station_03', true)
-            
+
             -- Drone clean up scripts
             self.Trash:Add(drone)
         elseif self.Side == 4 then
             -- Gets the current position of the carrier launch bay in the game world
             local position = self:GetPosition('Station_04')
-    
+
             -- Creates our drone in the right launch bay and directs the unit to face the same direction as its parent unit
             local drone = CreateUnitHPR('beb0005', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
             drone:AttachTo(self, 'Station_04')
-            
+
             -- Adds the newly created drone to the parent carriers drone table
             table.insert (self.DroneTable, drone)
 
@@ -163,7 +163,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
             self.Trash:Add(drone)
         end
     end,
-    
+
      OnShieldEnabled = function(self)
         TAirStagingPlatformUnit.OnShieldEnabled(self)
         if self.Rotator1 then
@@ -172,7 +172,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
         if self.Rotator2 then
             self.Rotator2:SetTargetSpeed(-10)
         end
-        
+
         if self.ShieldEffectsBag then
             for k, v in self.ShieldEffectsBag do
                 v:Destroy()
@@ -188,7 +188,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
         TAirStagingPlatformUnit.OnShieldDisabled(self)
         self.Rotator1:SetTargetSpeed(0)
         self.Rotator2:SetTargetSpeed(0)
-        
+
         if self.ShieldEffectsBag then
             for k, v in self.ShieldEffectsBag do
                 v:Destroy()
@@ -196,7 +196,7 @@ BEB5205 = Class(TAirStagingPlatformUnit) {
             self.ShieldEffectsBag = {}
         end
     end,
-    
+
     OnKilled = function(self, instigator, damagetype, overkillRatio)
         self:HideBone('Station_01', false)
         self:HideBone('Station_02', false)

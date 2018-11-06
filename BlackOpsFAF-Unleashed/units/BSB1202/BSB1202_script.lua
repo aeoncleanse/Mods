@@ -33,14 +33,14 @@ BSB1202 = Class(SEnergyCreationUnit) {
                 self.Trash:Add(CreateAttachedEmitter(self, valuesbones, self:GetArmy(), values):ScaleEmitter(scale):OffsetEmitter(0,-0.2,1))
             end
         end
-            
+
         local bp = self:GetBlueprint().Display
         self.LoopAnimation = CreateAnimator(self)
         self.LoopAnimation:PlayAnim(bp.LoopingAnimation, true)
         self.LoopAnimation:SetRate(0.5)
         self.Trash:Add(self.LoopAnimation)
     end,
-        
+
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.LoopAnimation then
             self.LoopAnimation:SetRate(0.0)

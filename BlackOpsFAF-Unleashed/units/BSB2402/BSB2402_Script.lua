@@ -83,8 +83,8 @@ BSB2402 = Class(SLandFactoryUnit) {
             local rightDroneLocation = self:GetPosition('Factory02')
 
             -- Creates our drone in the left launch bay and directs the unit to face the same direction as its parent unit
-            self.leftDrone = CreateUnit('bsb0002', self:GetArmy(), leftDroneLocation[1], leftDroneLocation[2], leftDroneLocation[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land') 
-            self.rightDrone = CreateUnit('bsb0002', self:GetArmy(), rightDroneLocation[1], rightDroneLocation[2], rightDroneLocation[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land') 
+            self.leftDrone = CreateUnit('bsb0002', self:GetArmy(), leftDroneLocation[1], leftDroneLocation[2], leftDroneLocation[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
+            self.rightDrone = CreateUnit('bsb0002', self:GetArmy(), rightDroneLocation[1], rightDroneLocation[2], rightDroneLocation[3], myOrientation[1], myOrientation[2], myOrientation[3], myOrientation[4], 'Land')
 
             self.leftDrone.Parent = self
             self.rightDrone.Parent = self
@@ -119,7 +119,7 @@ BSB2402 = Class(SLandFactoryUnit) {
             self.rightDrone:Kill()
         end
 
-        SLandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)        
+        SLandFactoryUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 }
 

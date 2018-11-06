@@ -1,5 +1,5 @@
 
--- T3GroundDefense 
+-- T3GroundDefense
 -- Changed PlatoonTemplate = 'UEFT3EngineerBuilder' to 'T3EngineerBuilder'
 -- so, all races can build T3 base Defenses like UEF
 BuilderGroup {
@@ -204,7 +204,7 @@ BuilderGroup {
 }
 
 -- T3ShieldDefense
--- Removed FactionIndex 1,2,4 
+-- Removed FactionIndex 1,2,4
 -- so, all races can build T3 Shields directly
 BuilderGroup {
     BuilderGroupName = 'T3Shields',
@@ -216,7 +216,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENGINEER * categories.TECH3}},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.SHIELD * categories.STRUCTURE}},
-            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }}, 
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',

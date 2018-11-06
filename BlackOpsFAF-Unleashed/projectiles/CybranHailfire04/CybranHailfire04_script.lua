@@ -9,7 +9,7 @@ CAANanoDart02 = Class(CybranHailfire04Projectile) {
             CreateEmitterOnEntity(self,self:GetArmy(),v)
         end
    end,
-   
+
 }
 
 TypeClass = CAANanoDart02

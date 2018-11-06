@@ -16,7 +16,7 @@ STauCannon = Class(ShieldTauCannonProjectile) {
             else
                 Damage(self, {0,0,0}, TargetEntity, self.Data, 'Normal')
             end
-        end                
+        end
     end,
 }
 

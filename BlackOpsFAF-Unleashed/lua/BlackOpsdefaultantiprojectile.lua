@@ -101,7 +101,7 @@ TorpRedirectField = Class(Entity) {
     -- Return true to process this collision, false to ignore it.
     WaitingState = State{
         OnCollisionCheck = function(self, other)
-            if EntityCategoryContains(categories.TORPEDO, other) and not EntityCategoryContains(categories.STRATEGIC, other) 
+            if EntityCategoryContains(categories.TORPEDO, other) and not EntityCategoryContains(categories.STRATEGIC, other)
                     and other ~= self.EnemyProj and IsEnemy( self:GetArmy(), other:GetArmy() ) then
                 self.Enemy = other:GetLauncher()
                 self.EnemyProj = other
@@ -125,21 +125,21 @@ TorpRedirectField = Class(Entity) {
 
     RedirectingState = State{
         Main = function(self)
-            if not self or self:BeenDestroyed() 
-            or not self.EnemyProj or self.EnemyProj:BeenDestroyed() 
+            if not self or self:BeenDestroyed()
+            or not self.EnemyProj or self.EnemyProj:BeenDestroyed()
             or not self.Owner or self.Owner:IsDead() then
                 return
             end
-            
+
             local beams = {}
-            for k, v in self.RedirectBeams do               
+            for k, v in self.RedirectBeams do
                 table.insert(beams, AttachBeamEntityToEntity(self.EnemyProj, -1, self.Owner, self.AttachBone, self:GetArmy(), v))
             end
             if self.Enemy then
-                -- Set collision to friends active so that when the missile reaches its source it can deal damage. 
-                self.EnemyProj.DamageData.CollideFriendly = true         
-                self.EnemyProj.DamageData.DamageFriendly = true 
-                self.EnemyProj.DamageData.DamageSelf = true 
+                -- Set collision to friends active so that when the missile reaches its source it can deal damage.
+                self.EnemyProj.DamageData.CollideFriendly = true
+                self.EnemyProj.DamageData.DamageFriendly = true
+                self.EnemyProj.DamageData.DamageSelf = true
             end
             if self.Enemy and not self.Enemy:BeenDestroyed() then
                 WaitTicks(self.RedirectRateOfFire)

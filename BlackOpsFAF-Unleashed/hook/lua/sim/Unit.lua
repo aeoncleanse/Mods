@@ -6,12 +6,12 @@ Unit = Class(oldUnit) {
     -----------------------------------------------------------
     -- First, all the functions which are hooking the originals
     -----------------------------------------------------------
-    
+
     OnCreate = function(self)
         oldUnit.OnCreate(self)
         self.StunEffectsBag = {}
     end,
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         oldUnit.OnStopBeingBuilt(self,builder,layer)
         self.EXPhaseShieldPercentage = 0
@@ -24,10 +24,10 @@ Unit = Class(oldUnit) {
         self.TeleportCostPaid = false
         oldUnit.CleanupTeleportChargeEffects(self)
     end,
-    
+
     OnTeleportUnit = function(self, teleporter, location, orientation)
         local id = self:GetEntityId()
-        
+
         -- Teleport Cooldown Charge
         -- Range Check to location
         local maxRange = self:GetBlueprint().Defense.MaxTeleRange
@@ -76,35 +76,35 @@ Unit = Class(oldUnit) {
             end
         end
 
-        oldUnit.OnTeleportUnit(self, teleporter, location, orientation) 
+        oldUnit.OnTeleportUnit(self, teleporter, location, orientation)
     end,
 
     PlayTeleportChargeEffects = function(self, location)
-        oldUnit.PlayTeleportChargeEffects(self, location) 
+        oldUnit.PlayTeleportChargeEffects(self, location)
         if not self.Dead and self.EXPhaseEnabled == false then
             self.EXTeleportChargeEffects(self)
         end
     end,
 
     OnFailedTeleport = function(self)
-        oldUnit.OnFailedTeleport(self) 
-        if not self.Dead and self.EXPhaseEnabled == true then   
+        oldUnit.OnFailedTeleport(self)
+        if not self.Dead and self.EXPhaseEnabled == true then
             self.EXPhaseEnabled = false
             self.EXPhaseCharge = 0
             self.EXPhaseShieldPercentage = 0
-            
+
             local bpDisplay = self:GetBlueprint().Display
             self:SetMesh(bpDisplay.MeshBlueprint, true)
         end
     end,
 
     PlayTeleportInEffects = function(self)
-        oldUnit.PlayTeleportInEffects(self) 
+        oldUnit.PlayTeleportInEffects(self)
         if not self.Dead and self.EXPhaseEnabled == true then
             self.EXTeleportCooldownEffects(self)
         end
     end,
-    
+
     OnCollisionCheck = function(self, other, firingWeapon)
         if self.DisallowCollisions then
             return false
@@ -115,45 +115,45 @@ Unit = Class(oldUnit) {
                 return false
             end
         end
-        
+
         if other.lastimpact and other.lastimpact == self:GetEntityId() then
             return false
         end
-        
+
         if not self.Dead and self.EXPhaseEnabled == true then
-            if EntityCategoryContains(categories.PROJECTILE, other) then 
+            if EntityCategoryContains(categories.PROJECTILE, other) then
                 local random = Random(1,100)
                 -- Allows % of projectiles to pass
-                if random <= self.EXPhaseShieldPercentage then   
+                if random <= self.EXPhaseShieldPercentage then
                     -- Returning false allows the projectile to pass thru
-                    return false       
+                    return false
                 else
                     -- Projectile impacts normally
-                    return true 
+                    return true
                 end
             end
         end
-        
-        return oldUnit.OnCollisionCheck(self, other, firingWeapon) 
-    end,  
+
+        return oldUnit.OnCollisionCheck(self, other, firingWeapon)
+    end,
 
     OnCollisionCheckWeapon = function(self, firingWeapon)
         if self.DisallowCollisions then
             return false
         end
-        
+
         -- Run a modified CollideFriendly check first that allows for allied phasing
         if not self:GetShouldCollide(firingWeapon:GetBlueprint().CollideFriendly, self:GetArmy(), firingWeapon.unit:GetArmy()) then
             return false
         end
-        
+
         return oldUnit.OnCollisionCheckWeapon(self, firingWeapon)
     end,
-    
+
     -------------------------------------------------------
     -- The rest of the functions are added anew by BlackOps
     -------------------------------------------------------
-    
+
     EXTeleportChargeEffects = function(self)
         if not self:IsDead() then
             local bpe = self:GetBlueprint().Economy
@@ -230,5 +230,5 @@ Unit = Class(oldUnit) {
             end
         end
         return true
-    end, 
+    end,
 }

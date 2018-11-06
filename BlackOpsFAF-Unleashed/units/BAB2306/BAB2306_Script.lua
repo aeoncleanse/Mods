@@ -15,11 +15,11 @@ BAB2306 = Class(AStructureUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         AStructureUnit.OnStopBeingBuilt(self,builder,layer)
-        if not self.SpinManip then 
+        if not self.SpinManip then
             self.SpinManip = CreateRotator(self, 'Rotator', 'y', nil, 50, 50, 50)
             self.Trash:Add(self.SpinManip)
         end
-                
+
         if self.SpinManip then
             self.SpinManip:SetTargetSpeed(500)
         end

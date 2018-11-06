@@ -14,11 +14,11 @@ BSB5104 = Class(SAirStagingPlatformUnit) {
         for k, v in SeraphimAirStagePlat02 do
             CreateAttachedEmitter(self, 'XSB5104', self:GetArmy(), v)
         end
-        
+
         for k, v in SeraphimAirStagePlat01 do
             CreateAttachedEmitter(self, 'Pod01', self:GetArmy(), v)
             CreateAttachedEmitter(self, 'Pod02', self:GetArmy(), v)
-        end        
+        end
 
         SAirStagingPlatformUnit.OnStopBeingBuilt(self, builder, layer)
     end,

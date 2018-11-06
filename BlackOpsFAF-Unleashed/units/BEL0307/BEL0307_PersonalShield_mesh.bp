@@ -7,8 +7,8 @@ MeshBlueprint {
             NormalsName = '/units/BEL0307/BEL0307_normalsTS.dds',
             SpecularName = '/units/BEL0307/BEL0307_specteam.dds',
             LookupName = '/effects/entities/ClearShield/ClearShieldLookup.dds',
-            
-            
+
+
             ShaderName = 'PhaseShield',
             Scrolling = true,
             LODCutoff = 195,

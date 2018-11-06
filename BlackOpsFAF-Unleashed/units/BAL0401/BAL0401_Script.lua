@@ -18,16 +18,16 @@ BAL0401 = Class(AWalkingLandUnit) {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/g_laser_flash_01_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/g_laser_muzzle_01_emit.bp',
     },
-    
+
     ChargeEffects02 = {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/g_laser_charge_01_emit.bp',
     },
-    
+
     ChargeEffects03 = {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/g_laser_flash_01_emit.bp',
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/g_laser_muzzle_01_emit.bp',
     },
-    
+
     Weapons = {
         BoomWeapon = Class(CDFLaserHeavyWeapon){
             PlayFxWeaponPackSequence = function(self)
@@ -35,11 +35,11 @@ BAL0401 = Class(AWalkingLandUnit) {
                 if self.SpinManip1 then
                     self.SpinManip1:SetTargetSpeed(0)
                 end
-                
+
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(0)
                 end
-                
+
                 if self.SpinManip3 then
                     self.SpinManip3:SetTargetSpeed(0)
                 end
@@ -48,23 +48,23 @@ BAL0401 = Class(AWalkingLandUnit) {
 
             PlayFxWeaponUnpackSequence = function(self)
                 self.unit:SetWeaponEnabledByLabel('DefenseGun01', true)
-                if not self.SpinManip1 then 
+                if not self.SpinManip1 then
                     self.SpinManip1 = CreateRotator(self.unit, 'Spinner_1', 'y', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip1)
                 end
                 if self.SpinManip1 then
                     self.SpinManip1:SetTargetSpeed(200)
                 end
-                
-                if not self.SpinManip2 then 
+
+                if not self.SpinManip2 then
                     self.SpinManip2 = CreateRotator(self.unit, 'Spinner_2', 'y', nil, -270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip2)
                 end
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-200)
                 end
-                
-                if not self.SpinManip3 then 
+
+                if not self.SpinManip3 then
                     self.SpinManip3 = CreateRotator(self.unit, 'Spinner_3', 'y', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip3)
                 end
@@ -73,7 +73,7 @@ BAL0401 = Class(AWalkingLandUnit) {
                 end
                 CDFLaserHeavyWeapon.PlayFxWeaponUnpackSequence(self)
             end,
-            
+
             CreateProjectileForWeapon = function(self, bone)
                 local bp = self:GetBlueprint()
                 local numProjectiles = 8
@@ -97,7 +97,7 @@ BAL0401 = Class(AWalkingLandUnit) {
         },
          DefenseGun01 = Class(GoldenLaserGenerator) {},
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         AWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
         self.Trash:Add(CreateRotator(self, 'Spinner_Ball', 'x', nil, 0, 100, 200))
@@ -114,7 +114,7 @@ BAL0401 = Class(AWalkingLandUnit) {
         table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/inqu_glow_effect01.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
         table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Spinner_Rack', self:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/inqu_glow_effect02.bp'):ScaleEmitter(3):OffsetEmitter(0, 0, 0))
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         local wep = self:GetWeaponByLabel('DefenseGun01')
         local bp = wep:GetBlueprint()
@@ -126,13 +126,13 @@ BAL0401 = Class(AWalkingLandUnit) {
         end
         for k, v in wep.Beams do
             v.Beam:Disable()
-        end     
+        end
         AWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     DeathThread = function( self, overkillRatio , instigator)
         explosion.CreateDefaultHitExplosionAtBone(self, 'Spinner_Ball', 5.0)
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
+        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         WaitSeconds(2)
         explosion.CreateDefaultHitExplosionAtBone(self, 'Leg_A_3', 1.0)
         WaitSeconds(0.1)
@@ -145,14 +145,14 @@ BAL0401 = Class(AWalkingLandUnit) {
         explosion.CreateDefaultHitExplosionAtBone(self, 'Leg_B_2', 1.0)
 
         WaitSeconds(1.5)
-        explosion.CreateDefaultHitExplosionAtBone(self, 'Body', 5.0)        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'Body', 5.0)
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
         end
-                
+
         self:CreateProjectileAtBone('/mods/BlackOpsFAF-Unleashed/effects/entities/InqDeathEffectController01/InqDeathEffectController01_proj.bp', 'Body'):SetCollision(false)
-       
+
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'CollossusDeath') then

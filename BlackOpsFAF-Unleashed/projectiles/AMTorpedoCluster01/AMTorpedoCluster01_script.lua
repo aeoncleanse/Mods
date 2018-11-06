@@ -20,16 +20,16 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
         CreateTrail(self, -1, self:GetArmy(), import('/lua/EffectTemplates.lua').ATorpedoPolyTrails01)
     end,
 
-    OnEnterWater = function(self) 
+    OnEnterWater = function(self)
         local Velx, Vely, Velz = self:GetVelocity()
-        local NumberOfChildProjectiles = 1        
-        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/AMTorpedoClusterSplit01/AMTorpedoClusterSplit01_proj.bp'  
+        local NumberOfChildProjectiles = 1
+        local ChildProjectileBP = '/mods/BlackOpsFAF-Unleashed/projectiles/AMTorpedoClusterSplit01/AMTorpedoClusterSplit01_proj.bp'
         local angleRange = math.pi * 0.25
         local angleInitial = -angleRange / 2
         local angleIncrement = angleRange / NumberOfChildProjectiles
         local angleVariation = angleIncrement * 0.4
         local angle, ca, sa, x, z, proj, mul
-        
+
         self:StayUnderwater(true)
         for i = 0, NumberOfChildProjectiles  do
             angle = angleInitial + (i*angleIncrement) + RandomFloat(-angleVariation, angleVariation)
@@ -40,8 +40,8 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
             proj = self:CreateChildProjectile(ChildProjectileBP)
             proj:PassDamageData(self.DamageData)
             mul = RandomFloat(1,3)
-        end            
-        
+        end
+
         local pos = self:GetPosition()
         local spec = {
             X = pos[1],
@@ -56,14 +56,14 @@ AANTorpedoCluster01 = Class(AMTorpedoCluster) {
         AMTorpedoCluster.OnEnterWater(self)
         self:Destroy()
     end,
-    
+
     OnImpact = function(self, TargetType, TargetEntity)
         if (TargetEntity == nil) and (TargetType == "Air") then
             return
         end
         AMTorpedoCluster.OnImpact(self, TargetType, TargetEntity)
     end,
-    
+
     OnLostTarget = function(self)
         self:Destroy()
     end,

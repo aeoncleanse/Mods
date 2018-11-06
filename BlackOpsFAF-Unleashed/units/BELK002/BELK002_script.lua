@@ -18,32 +18,32 @@ BALK002 = Class(TLandUnit) {
                 end
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(0)
-                end                
+                end
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Left_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Right_Muzzle', self.unit:GetArmy(), Effects.WeaponSteam01 )
                 TAAPhalanxWeapon.PlayFxWeaponPackSequence(self)
             end,
-        
+
             PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip1 then 
+                if not self.SpinManip1 then
                     self.SpinManip1 = CreateRotator(self.unit, 'Right_Barrel', 'z', nil, 360, 180, 60)
                     self.unit.Trash:Add(self.SpinManip1)
                 end
-                
+
                 if self.SpinManip1 then
                     self.SpinManip1:SetTargetSpeed(500)
                 end
-                if not self.SpinManip2 then 
+                if not self.SpinManip2 then
                     self.SpinManip2 = CreateRotator(self.unit, 'Left_Barrel', 'z', nil, 360, 180, 60)
                     self.unit.Trash:Add(self.SpinManip2)
                 end
-                
+
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(500)
                 end
                 TAAPhalanxWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
-            
+            end,
+
             PlayFxRackSalvoReloadSequence = function(self)
                 if self.SpinManip1 then
                     self.SpinManip1:SetTargetSpeed(200)
@@ -56,7 +56,7 @@ BALK002 = Class(TLandUnit) {
                 TAAPhalanxWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
-    }, 
+    },
 }
 
 TypeClass = BALK002

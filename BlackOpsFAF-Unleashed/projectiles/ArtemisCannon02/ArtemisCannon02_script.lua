@@ -15,7 +15,7 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
-           
+
             nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
@@ -29,7 +29,7 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
-           
+
             nukeProjectile = self:CreateProjectile('/mods/BlackOpsFAF-Unleashed/projectiles/ArtemisWarhead03/ArtemisWarhead03_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
@@ -48,7 +48,7 @@ ADFReactonCannon01 = Class(DummyArtemisCannonProjectile) {
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
         self.KillThread = self:ForkThread(self.KillSelfThread)
     end,
-    
+
     KillSelfThread = function(self)
         WaitSeconds(2)
         self:Destroy()

@@ -32,11 +32,11 @@ XCannonFXTrail01 = {EmtBpPathAlt .. 'xcannon_fxtrail_01_emit.bp'}
 
 XCannonHitUnit = {
     EmtBpPathAlt .. 'xcannon_hitunit_01_emit.bp',
-    EmtBpPathAlt .. 'xcannon_hit_02_emit.bp', 
-    EmtBpPathAlt .. 'xcannon_hit_03_emit.bp',  
+    EmtBpPathAlt .. 'xcannon_hit_02_emit.bp',
+    EmtBpPathAlt .. 'xcannon_hit_03_emit.bp',
     EmtBpPathAlt .. 'xcannon_hitunit_04_emit.bp', -- shock effect
     EmtBpPathAlt .. 'xcannon_hitunit_05_emit.bp', -- shock effect
-    EmtBpPathAlt .. 'xcannon_hitunit_06_emit.bp', 
+    EmtBpPathAlt .. 'xcannon_hitunit_06_emit.bp',
     EmtBpPathAlt .. 'xcannon_hitunit_07_emit.bp',
     EmtBpPathAlt .. 'xcannon_hit_08_emit.bp',
     EmtBpPathAlt .. 'xcannon_hit_09_emit.bp',
@@ -54,7 +54,7 @@ ZCannonFxtrail01 = {
      EmtBpPathAlt .. 'ZCannon_projectile_fxtrail_02_emit.bp',
 }
 
-ZCannonPolytrail02 = { 
+ZCannonPolytrail02 = {
     EmtBpPathAlt .. 'ZCannon_polytrail_01_emit.bp',
     EmtBpPathAlt .. 'ZCannon_polytrail_02_emit.bp',
     EmtBpPath .. 'default_polytrail_01_emit.bp',
@@ -72,8 +72,8 @@ ZCannonMuzzleFlash = {
     EmtBpPath .. 'cannon_muzzle_smoke_07_emit.bp',
     EmtBpPath .. 'cannon_muzzle_smoke_10_emit.bp',
     EmtBpPath .. 'cannon_muzzle_flash_03_emit.bp',
-    EmtBpPath .. 'cannon_muzzle_flash_06_emit.bp',    
-    EmtBpPath .. 'cannon_muzzle_flash_07_emit.bp', 
+    EmtBpPath .. 'cannon_muzzle_flash_06_emit.bp',
+    EmtBpPath .. 'cannon_muzzle_flash_07_emit.bp',
 }
 
 ZCannonHit02 = {
@@ -87,27 +87,27 @@ ZCannonHit02 = {
 }
 
 ZCannonHit03 = {
-    EmtBpPathAlt .. 'ZCannon_hit_01_emit.bp', -- glow    
-    EmtBpPathAlt .. 'ZCannon_hit_02_emit.bp', -- flash         
+    EmtBpPathAlt .. 'ZCannon_hit_01_emit.bp', -- glow
+    EmtBpPathAlt .. 'ZCannon_hit_02_emit.bp', -- flash
     EmtBpPathAlt .. 'ZCannon_hit_03_emit.bp', -- sparks
     EmtBpPathAlt .. 'ZCannon_hit_04_emit.bp', -- plume fire
-    EmtBpPathAlt .. 'ZCannon_hit_05_emit.bp', -- plume dark 
+    EmtBpPathAlt .. 'ZCannon_hit_05_emit.bp', -- plume dark
     EmtBpPathAlt .. 'ZCannon_hit_06_emit.bp', -- base fire
-    EmtBpPathAlt .. 'ZCannon_hit_07_emit.bp', -- base dark 
+    EmtBpPathAlt .. 'ZCannon_hit_07_emit.bp', -- base dark
     EmtBpPathAlt .. 'ZCannon_hit_08_emit.bp', -- plume smoke
     EmtBpPathAlt .. 'ZCannon_hit_09_emit.bp', -- base smoke
     EmtBpPathAlt .. 'ZCannon_hit_10_emit.bp', -- plume highlights
     EmtBpPathAlt .. 'ZCannon_hit_11_emit.bp', -- base highlights
     EmtBpPathAlt .. 'ZCannon_ring_01_emit.bp', -- ring14
-    EmtBpPathAlt .. 'ZCannon_ring_02_emit.bp', -- ring11         
+    EmtBpPathAlt .. 'ZCannon_ring_02_emit.bp', -- ring11
 }
 
-ZCannonHit01 = table.concatenate(ZCannonHit02, ZCannonHit03) 
+ZCannonHit01 = table.concatenate(ZCannonHit02, ZCannonHit03)
 
-ZCannonChargeMuzzleFlash = { 
+ZCannonChargeMuzzleFlash = {
     EmtBpPathAlt .. 'ZCannon_flash_01_emit.bp',
-    EmtBpPathAlt .. 'ZCannon_flash_02_emit.bp', 
-    EmtBpPathAlt .. 'ZCannon_flash_03_emit.bp', 
+    EmtBpPathAlt .. 'ZCannon_flash_02_emit.bp',
+    EmtBpPathAlt .. 'ZCannon_flash_03_emit.bp',
     EmtBpPathAlt .. 'ZCannon_flash_04_emit.bp',
     EmtBpPathAlt .. 'ZCannon_flash_05_emit.bp',
 }
@@ -138,7 +138,7 @@ SDFExperimentalPhasonProjHit02 = {
 
 SDFExperimentalPhasonProjHitUnit = table.concatenate( SDFExperimentalPhasonProjHit01, SDFExperimentalPhasonProjHit02, UnitHitShrapnel01 )
 
-ShadowCannonPolyTrail = { 
+ShadowCannonPolyTrail = {
     EmtBpPath .. 'electron_bolter_trail_01_emit.bp',
     EmtBpPathAlt .. 'shadowcannon_polytrail_01_emit.bp'
 }
@@ -146,12 +146,12 @@ ShadowCannonPolyTrail = {
 ShadowCannonFXTrail01 = {
      EmtBpPathAlt .. 'shadowcannon_fxtrail_01_emit.bp',
      EmtBpPathAlt .. 'shadow_bolter_munition_01_emit.bp',
-     
+
     EmtBpPathAlt .. 'mgqai_cannon_fxtrails_01_emit.bp',
     EmtBpPathAlt .. 'mgqai_cannon_fxtrails_02_emit.bp',
     EmtBpPathAlt .. 'mgqai_cannon_fxtrail_03_emit.bp',
 }
-    
+
 ShadowCannonFXTrail02 = {
      EmtBpPathAlt .. 'shadow_bolter_munition_01_emit.bp',
 }
@@ -184,10 +184,10 @@ BassieCannonHitLand = table.concatenate(BassieCannonHit01, BassieCannonHit02)
 BassieCannonHitUnit01 = {
     EmtBpPath .. 'hvyproton_cannon_hitunit_01_emit.bp',
     EmtBpPathAlt .. 'bassie_cannon_hit_02_emit.bp',
-    EmtBpPath .. 'hvyproton_cannon_hit_03_emit.bp',  
-    EmtBpPath .. 'hvyproton_cannon_hitunit_04_emit.bp', 
-    EmtBpPathAlt .. 'bassie_cannon_hitunit_05_emit.bp',  
-    EmtBpPath .. 'hvyproton_cannon_hitunit_06_emit.bp', 
+    EmtBpPath .. 'hvyproton_cannon_hit_03_emit.bp',
+    EmtBpPath .. 'hvyproton_cannon_hitunit_04_emit.bp',
+    EmtBpPathAlt .. 'bassie_cannon_hitunit_05_emit.bp',
+    EmtBpPath .. 'hvyproton_cannon_hitunit_06_emit.bp',
     EmtBpPath .. 'hvyproton_cannon_hitunit_07_emit.bp',
     EmtBpPath .. 'hvyproton_cannon_hit_08_emit.bp',
     EmtBpPath .. 'hvyproton_cannon_hit_09_emit.bp',
@@ -204,7 +204,7 @@ ACUShadowCannonHit01 = {
 
 WraithPolytrail01 = EmtBpPath .. 'aeon_quantic_cluster_polytrail_01_emit.bp'
 
-WraithMunition01 = { 
+WraithMunition01 = {
     EmtBpPath .. 'disruptor_cannon_munition_01_emit.bp',
     EmtBpPath .. 'disruptor_cannon_munition_02_emit.bp',
     EmtBpPath .. 'disruptor_cannon_munition_03_emit.bp',
@@ -224,7 +224,7 @@ WraithCannonHit01 = {
 
 HGaussCannonPolyTrail =  {
     EmtBpPath .. 'gauss_cannon_polytrail_01_emit.bp',
-    EmtBpPath .. 'gauss_cannon_polytrail_02_emit.bp',    
+    EmtBpPath .. 'gauss_cannon_polytrail_02_emit.bp',
 }
 
 ArtemisMuzzleFlash = {
@@ -272,7 +272,7 @@ ArtemisBombPlumeFxTrails03 = {
 
 ArtemisBombPlumeFxTrails05 = {
     EmtBpPathAlt .. 'artemis_plume_fxtrails_07_emit.bp',
-    EmtBpPathAlt .. 'artemis_plume_fxtrails_08_emit.bp',  
+    EmtBpPathAlt .. 'artemis_plume_fxtrails_08_emit.bp',
 }
 
 ArtemisBombPlumeFxTrails06 = {
@@ -349,7 +349,7 @@ OmegaOverChargeLandHit = {
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_04_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_05_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_06_emit.bp',
-    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',                  
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_02_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_03_emit.bp',
 }
@@ -360,7 +360,7 @@ OmegaOverChargeUnitHit = {
     EmtBpPath .. 'seraphim_chronotron_cannon_overcharge_projectile_hit_04_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_projectile_hit_05_emit.bp',
     EmtBpPath .. 'destruction_unit_hit_shrapnel_01_emit.bp',
-    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',                  
+    EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_01_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_02_emit.bp',
     EmtBpPath .. 'seraphim_chronotron_cannon_blast_projectile_hit_03_emit.bp',
 }
@@ -464,7 +464,7 @@ FlameThrowerHitWater01 = {
     EmtBpPathAlt .. 'exflamer_oilslick_emit.bp',
     EmtBpPathAlt .. 'exflamer_lines_emit.bp',
     EmtBpPathAlt .. 'exflamer_water_ripples_emit.bp',
-    EmtBpPathAlt .. 'exflamer_water_dots_emit.bp',    
+    EmtBpPathAlt .. 'exflamer_water_dots_emit.bp',
 }
 
 ADisk01 = {
@@ -511,14 +511,14 @@ ACUAntiMatter01 = {
     EmtBpPathAlt .. 'examc_ring_04_emit.bp',
     EmtBpPathAlt .. 'examc_shoackwave_01_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_01_emit.bp',
-    EmtBpPathAlt .. 'ZCannon_hit_02_emit.bp',      
+    EmtBpPathAlt .. 'ZCannon_hit_02_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_03_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_06_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_07_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_09_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_11_emit.bp',
     EmtBpPathAlt .. 'ZCannon_ring_01_emit.bp',
-    EmtBpPathAlt .. 'ZCannon_ring_02_emit.bp',    
+    EmtBpPathAlt .. 'ZCannon_ring_02_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_12_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_13_emit.bp',
     EmtBpPathAlt .. 'ZCannon_hit_14_emit.bp',
@@ -543,7 +543,7 @@ YCannonMuzzleChargeFlash =  {
     EmtBpPathAlt .. 'ycannon_charge_14_emit.bp',
 }
 
-GLaserMuzzle01 = { 
+GLaserMuzzle01 = {
     EmtBpPathAlt .. 'g_laser_flash_01_emit.bp',
     EmtBpPathAlt .. 'g_laser_muzzle_01_emit.bp',
 }
@@ -578,7 +578,7 @@ NovaCannonHitUnit = {
 -- SERAPHIM OHWALLI BOMB EMITTERS
 GoldLaserBombDetonate01 = {
     EmtBpPathAlt .. 'gold_laser_bomb_explode_01_emit.bp',
-    EmtBpPathAlt .. 'gold_laser_bomb_explode_02_emit.bp',  
+    EmtBpPathAlt .. 'gold_laser_bomb_explode_02_emit.bp',
     EmtBpPathAlt .. 'gold_laser_bomb_explode_03_emit.bp',
     EmtBpPathAlt .. 'gold_laser_bomb_explode_04_emit.bp',
     EmtBpPathAlt .. 'gold_laser_bomb_explode_05_emit.bp',
@@ -599,8 +599,8 @@ GoldLaserBombHitRingProjectileFxTrails03 = {
 GoldLaserBombHitRingProjectileFxTrails04 = {
     EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_02_emit.bp',
     EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_02a_emit.bp',
-    EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_02b_emit.bp',  
-    EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_02c_emit.bp', 
+    EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_02b_emit.bp',
+    EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_02c_emit.bp',
 }
 
 GoldLaserBombHitRingProjectileFxTrails05 = {
@@ -611,14 +611,14 @@ GoldLaserBombHitRingProjectileFxTrails05 = {
 }
 
 GoldLaserBombHitRingProjectileFxTrails06 = {
-    EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_04_emit.bp',   
+    EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_04_emit.bp',
     EmtBpPathAlt .. 'gold_laser_bomb_ring_fxtrails_06_emit.bp',
 }
 
 GoldLaserBombPlumeFxTrails01 = {
     EmtBpPathAlt .. 'gold_laser_bomb_plume_fxtrails_01_emit.bp',
     EmtBpPathAlt .. 'gold_laser_bomb_plume_fxtrails_02_emit.bp',
-    EmtBpPathAlt .. 'gold_laser_bomb_plume_fxtrails_03_emit.bp',    
+    EmtBpPathAlt .. 'gold_laser_bomb_plume_fxtrails_03_emit.bp',
 }
 
 -- Lambda Effects
@@ -671,7 +671,7 @@ GargWarheadHitUnit = {
 -- EMP effects
 EMPEffect = {
     EmtBpPathAlt .. 'emp_effect_01_emit.bp',
-    EmtBpPathAlt .. 'emp_effect_02_emit.bp',    
+    EmtBpPathAlt .. 'emp_effect_02_emit.bp',
 }
 
 -- Cybran Hailfire Projectiles
@@ -680,7 +680,7 @@ CybranHailfire01Hit01 = {
     EmtBpPath .. 'neutron_cluster_bomb_hit_02_emit.bp',
     EmtBpPath .. 'cybran_empgrenade_hit_01_emit.bp',
     EmtBpPath .. 'cybran_empgrenade_hit_02_emit.bp',
-    EmtBpPath .. 'cybran_empgrenade_hit_03_emit.bp',    
+    EmtBpPath .. 'cybran_empgrenade_hit_03_emit.bp',
 }
 
 CybranHailfire01FXTrails = {
@@ -726,10 +726,10 @@ ArchAngelMissileHit = {
 }
 
 SerMineRiftIn_Small = {
-    EmtBpPath .. 'seraphim_rift_in_small_01_emit.bp', 
-    EmtBpPath .. 'seraphim_rift_in_small_02_emit.bp', 
-    EmtBpPath .. 'seraphim_rift_in_small_03_emit.bp', 
-    EmtBpPath .. 'seraphim_rift_in_small_04_emit.bp', 
+    EmtBpPath .. 'seraphim_rift_in_small_01_emit.bp',
+    EmtBpPath .. 'seraphim_rift_in_small_02_emit.bp',
+    EmtBpPath .. 'seraphim_rift_in_small_03_emit.bp',
+    EmtBpPath .. 'seraphim_rift_in_small_04_emit.bp',
 }
 
 SExperimentalChargePhasonLaserBeam = {
@@ -759,10 +759,10 @@ JuggPlasmaGatlingCannonShells = {
 -- BASILISK NUKE EFFECTS
 BasiliskNukePlumeFxTrails01 = {
     EmtBpPathAlt .. 'basilisk_nuke_plume_fxtrails_07_emit.bp',
-    EmtBpPathAlt .. 'basilisk_nuke_plume_fxtrails_08_emit.bp', 
+    EmtBpPathAlt .. 'basilisk_nuke_plume_fxtrails_08_emit.bp',
 }
 
-BasiliskNukeHeadEffects02 = { 
+BasiliskNukeHeadEffects02 = {
     EmtBpPathAlt .. 'basilisk_nuke_head_smoke_03_emit.bp',
     EmtBpPathAlt .. 'basilisk_nuke_head_smoke_04_emit.bp',
 }

@@ -23,13 +23,13 @@ SeraHeavyLightningCannonChild01 = Class(SeraHeavyLightningCannonChildProjectile)
         SeraHeavyLightningCannonChildProjectile.OnCreate(self)
         self:ForkThread(self.BFG)
     end,
-    
+
     BFG = function(self)
         -- Setup the FX bag
         local arcFXBag = {}
         local radius = 0.5
-        local army = self:GetArmy()       
-        -- Small delay before BFG effect become active  
+        local army = self:GetArmy()
+        -- Small delay before BFG effect become active
         -- While projectile active and has available damage perform BFG area damage and effects
         while not self:BeenDestroyed() do
             local instigator = self:GetLauncher()
@@ -47,52 +47,52 @@ SeraHeavyLightningCannonChild01 = Class(SeraHeavyLightningCannonChildProjectile)
             local availableTargets = brain:GetUnitsAroundPoint(categories.ALLUNITS, self:GetPosition(), dist * 0.15, 'Enemy')
             if dist > 5 and availableTargets then
                 if table.getn(availableTargets) > 4 then
-                    for i = 0, (4 -1) do      
+                    for i = 0, (4 -1) do
                         local ranTarget =Random(1,table.getn(availableTargets))
-                        local target = availableTargets[ranTarget]   
+                        local target = availableTargets[ranTarget]
                         -- Set the beam damage equal to a fraction of the projectiles avalible DMG pool
-                        local beamDmgAmt = self.DamageData.DamageAmount * 0.025            
-                        -- Reduce the projectiles DamageAmount by what the beam amount did                  
-                        self:PlaySound(self:GetBlueprint().Audio['Arc'])                                   
-                        for k, v in availableTargets do            
-                            Damage(self:GetLauncher(), target:GetPosition(), target, beamDmgAmt, 'Normal') 
+                        local beamDmgAmt = self.DamageData.DamageAmount * 0.025
+                        -- Reduce the projectiles DamageAmount by what the beam amount did
+                        self:PlaySound(self:GetBlueprint().Audio['Arc'])
+                        for k, v in availableTargets do
+                            Damage(self:GetLauncher(), target:GetPosition(), target, beamDmgAmt, 'Normal')
                             -- Attach beam to the target
                             for k, a in self.FxBeam do
                             local beam = AttachBeamEntityToEntity(self, -1, target, -1, self:GetArmy(), a)
                                 table.insert(arcFXBag, beam)
                                 self.Trash:Add(beam)
                             end
-                        end 
+                        end
                     end
                 elseif table.getn(availableTargets) <= 4 then
-                    for i = 0, (4 -1) do      
+                    for i = 0, (4 -1) do
                         local ranTarget =Random(1,table.getn(availableTargets))
-                        local target = availableTargets[ranTarget]   
+                        local target = availableTargets[ranTarget]
                         -- Set the beam damage equal to a fraction of the projectiles avalible DMG pool
-                        local beamDmgAmt = self.DamageData.DamageAmount * 0.025            
-                        -- Reduce the projectiles DamageAmount by what the beam amount did                 
-                        self:PlaySound(self:GetBlueprint().Audio['Arc'])                                   
-                        for k, v in availableTargets do             
-                            Damage(self:GetLauncher(), target:GetPosition(), target, beamDmgAmt, 'Normal') 
+                        local beamDmgAmt = self.DamageData.DamageAmount * 0.025
+                        -- Reduce the projectiles DamageAmount by what the beam amount did
+                        self:PlaySound(self:GetBlueprint().Audio['Arc'])
+                        for k, v in availableTargets do
+                            Damage(self:GetLauncher(), target:GetPosition(), target, beamDmgAmt, 'Normal')
                             -- Attach beam to the target
                             for k, a in self.FxBeam do
                             local beam = AttachBeamEntityToEntity(self, -1, target, -1, self:GetArmy(), a)
                                 table.insert(arcFXBag, beam)
                                 self.Trash:Add(beam)
                             end
-                        end 
+                        end
                     end
-                end                                                                     
-            end            
+                end
+            end
             -- Small delay so that the beam and FX are visable
-            WaitTicks(2)            
+            WaitTicks(2)
             -- Remove all FX
             for k, v in arcFXBag do
                 v:Destroy()
-            end            
-            arcFXBag = {}              
+            end
+            arcFXBag = {}
             -- Small delay to show the FX removal
-            WaitTicks(Random(2,5))          
+            WaitTicks(Random(2,5))
         end
     end,
 }

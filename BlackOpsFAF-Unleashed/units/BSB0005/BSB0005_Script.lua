@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/units/XSB0005/XSB0005_script.lua 
+-- File     :  /cdimage/units/XSB0005/XSB0005_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  UEF Wall Piece Script
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.

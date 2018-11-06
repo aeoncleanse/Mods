@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/units/XSB0003/XSB0003_script.lua 
+-- File     :  /cdimage/units/XSB0003/XSB0003_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  UEF Wall Piece Script
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
@@ -15,15 +15,15 @@ BSB0003 = Class(SShieldLandUnit) {
         self.Parent = parent
         self.Drone = droneName
     end,
-    
+
     ShieldEffects = {
        '/effects/emitters/op_seraphim_quantum_jammer_tower_emit.bp',
     },
-    
+
     OnCreate = function(self, builder, layer)
         SShieldLandUnit.OnCreate(self, builder, layer)
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,

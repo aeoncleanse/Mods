@@ -137,7 +137,7 @@ UnitBlueprint {
             LeadTarget = false,
             DoNotCollideList = {
                 'TORPEDO',
-                'MISSILE',    
+                'MISSILE',
             },
             MaxRadius = 80,
             MuzzleSalvoDelay = 0,

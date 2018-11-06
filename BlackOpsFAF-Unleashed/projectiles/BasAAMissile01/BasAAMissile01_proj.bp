@@ -4,7 +4,7 @@ ProjectileBlueprint {
             Bank = 'URLWeapon',
             Cue = 'URL0402_Beam_Start',
             LodCutoff = 'Weapon_LodCutoff',
-        }, 
+        },
         Impact = Sound {
             Bank = 'Impacts',
             Cue = 'CYB_Expl_Med_Impact',

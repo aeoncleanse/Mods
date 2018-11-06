@@ -29,14 +29,14 @@ BAL0402 = Class(AHoverLandUnit) {
         MissileRack = Class(AIFMissileTacticalSerpentineWeapon) {
             OnWeaponFired = function(self)
                 self.unit.weaponCounter = self.unit.weaponCounter + 1
-                local wepCount = self.unit.weaponCounter  
+                local wepCount = self.unit.weaponCounter
                 if wepCount == 3 then
                     ForkThread(self.ReloadThread, self)
-                    self.unit.weaponCounter = 0            
+                    self.unit.weaponCounter = 0
                 end
                 AIFMissileTacticalSerpentineWeapon.OnWeaponFired(self)
             end,
-            
+
             ReloadThread = function(self)
                 self.unit:SetWeaponEnabledByLabel('MissileRack', false)
                 WaitSeconds(12.5)
@@ -45,29 +45,29 @@ BAL0402 = Class(AHoverLandUnit) {
                 end
             end,
         },
-        
+
         MainGun = Class(ADFDisruptorWeapon) {},
-        
+
         LeftTurret = Class(AeonWep.ADFCannonOblivionWeapon) {
             FxMuzzleFlash = {
                 '/effects/emitters/oblivion_cannon_flash_04_emit.bp',
-                '/effects/emitters/oblivion_cannon_flash_05_emit.bp',                
+                '/effects/emitters/oblivion_cannon_flash_05_emit.bp',
                 '/effects/emitters/oblivion_cannon_flash_06_emit.bp',
-            },        
+            },
         },
-        
+
         RightTurret = Class(AeonWep.ADFCannonOblivionWeapon) {
             FxMuzzleFlash = {
                 '/effects/emitters/oblivion_cannon_flash_04_emit.bp',
-                '/effects/emitters/oblivion_cannon_flash_05_emit.bp',                
+                '/effects/emitters/oblivion_cannon_flash_05_emit.bp',
                 '/effects/emitters/oblivion_cannon_flash_06_emit.bp',
-            },        
+            },
         },
-        
+
         AntiMissile1 = Class(AAMWillOWisp) {},
         GenesisMaelstrom01 = Class(GenesisMaelstromWeapon) {},
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         self.MaelstromEffects01 = {}
         self.weaponCounter = 0
@@ -93,10 +93,10 @@ BAL0402 = Class(AHoverLandUnit) {
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Effect04', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
         AHoverLandUnit.OnStopBeingBuilt(self, builder, layer)
     end,
-    
+
     DeathThread = function(self, overkillRatio, instigator)
         explosion.CreateDefaultHitExplosionAtBone(self, 'BAL0402', 4.0)
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})           
+        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         WaitSeconds(0.8)
         explosion.CreateDefaultHitExplosionAtBone(self, 'TMD_Muzzle', 3.0)
         explosion.CreateDefaultHitExplosionAtBone(self, 'Right_Barrel', 1.0)
@@ -110,12 +110,12 @@ BAL0402 = Class(AHoverLandUnit) {
         explosion.CreateDefaultHitExplosionAtBone(self, 'Left_Barrel', 5.0)
 
         WaitSeconds(0.5)
-        explosion.CreateDefaultHitExplosionAtBone(self, 'BAL0402', 5.0)        
+        explosion.CreateDefaultHitExplosionAtBone(self, 'BAL0402', 5.0)
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
         end
-    
+
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'CollossusDeath') then

@@ -18,14 +18,14 @@ BSB0004 = Class(SSeaFactoryUnit) {
         self.Rotator3 = CreateRotator(self, 'Pod03', 'y', nil, 8, 0, 0)
         self.Trash:Add(self.Rotator3)
     end,
-    
+
     OnKilled = function(self, instigator, type, overkillRatio)
         self.Rotator1:SetSpeed(0)
         self.Rotator2:SetSpeed(0)
         self.Rotator3:SetSpeed(0)
         SSeaFactoryUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-    
+
     -- Make this unit invulnerable
     OnDamage = function()
     end,

@@ -104,7 +104,7 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             ChangeState(self, self.DroneMaintenanceState)
         end,
     },
-    
+
     --Places the Goliath's first drone-targetable attacker into a global
     OnDamage = function(self, instigator, amount, vector, damagetype)
         ASeaUnit.OnDamage(self, instigator, amount, vector, damagetype)
@@ -123,7 +123,7 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
         else
             ASeaUnit.OnScriptBitSet(self, bit)
         end
-    end,    
+    end,
     OnScriptBitClear = function(self, bit)
         --Drone assist toggle, off
         if bit == 1 then
@@ -135,14 +135,14 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             ASeaUnit.OnScriptBitClear(self, bit)
         end
     end,
-    
+
     --Handles drone docking
     OnTransportAttach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = attachBone
         unit:SetDoNotTarget(true)
         BaseTransport.OnTransportAttach(self, attachBone, unit)
     end,
-    
+
     --Handles drone undocking, also called when docked drones die
     OnTransportDetach = function(self, attachBone, unit)
         self.DroneData[unit.Name].Docked = false
@@ -172,7 +172,7 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             self:CreateWreckage(overkillRatio, instigator)
             self:Destroy()
         end)
-         
+
         local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
@@ -182,20 +182,20 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
         ASeaUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
-    
+
     -- Set on unit death, ends production and consumption immediately
     DeadState = State {
         Main = function(self)
             if self.gettingBuilt == false then
                 self:CleanupDroneMaintenance(nil, true)
             end
-        end,        
+        end,
     },
-    
 
 
 
-            
+
+
 
 }
 

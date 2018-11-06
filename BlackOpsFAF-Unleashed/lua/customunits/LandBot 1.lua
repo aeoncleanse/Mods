@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3LandBot = {
-        UEF = {'bel0308', 80}, -- Rapier (Artillery Support Bot) 
+        UEF = {'bel0308', 80}, -- Rapier (Artillery Support Bot)
     },
 }

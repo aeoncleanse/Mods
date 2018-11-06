@@ -8,16 +8,16 @@
 local SLaanseTacticalMissile = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsProjectiles.lua').SLaanseTacticalMissile
 
 SIFLaanseTacticalMissile01 = Class(SLaanseTacticalMissile) {
-    
+
     OnCreate = function(self)
         SLaanseTacticalMissile.OnCreate(self)
     end,
 
-    MovementThread = function(self)        
+    MovementThread = function(self)
         self.WaitTime = 0.1
         self.Distance = self:GetDistanceToTarget()
         self:SetTurnRate(8)
-        WaitSeconds(0.3)        
+        WaitSeconds(0.3)
         while not self:BeenDestroyed() do
             self:SetTurnRateByDist()
             WaitSeconds(self.WaitTime)
@@ -43,11 +43,11 @@ SIFLaanseTacticalMissile01 = Class(SLaanseTacticalMissile) {
         elseif dist > 10 and dist <= 25 then
             WaitSeconds(0.3)
             self:SetTurnRate(50)
-        elseif dist > 0 and dist <= 10 then           
-            self:SetTurnRate(100)   
-            KillThread(self.MoveThread)         
+        elseif dist > 0 and dist <= 10 then
+            self:SetTurnRate(100)
+            KillThread(self.MoveThread)
         end
-    end,        
+    end,
 
     GetDistanceToTarget = function(self)
         local tpos = self:GetCurrentTargetPosition()

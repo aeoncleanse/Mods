@@ -1,5 +1,5 @@
 -----------------------------------------------------------------
--- File     :  /cdimage/units/XSB2210/XSB2210_script.lua 
+-- File     :  /cdimage/units/XSB2210/XSB2210_script.lua
 -- Author(s):  John Comes, David Tomandl
 -- Summary  :  UEF Wall Piece Script
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
@@ -12,14 +12,14 @@ local SeraMineDeathExplosion = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsW
 BSB2211 = Class(TStructureUnit) {
     Weapons = {
         DeathWeapon = Class(SeraMineDeathExplosion) {},
-        Suicide = Class(SeraMineExplosion) {        
+        Suicide = Class(SeraMineExplosion) {
             OnFire = function(self)
                 self.unit:SetDeathWeaponEnabled(false)
                 SeraMineExplosion.OnFire(self)
             end,
         },
     },
-    
+
     OnStopBeingBuilt = function(self,builder,layer)
         TStructureUnit.OnStopBeingBuilt(self,builder,layer)
         self.DelayedCloakThread = self:ForkThread(self.CloakDelayed)
@@ -42,7 +42,7 @@ BSB2211 = Class(TStructureUnit) {
         self:SetMaintenanceConsumptionActive()
         self:ForkThread(self.LifeThread)
     end,
-    
+
     LifeThread = function(self)
         WaitSeconds(300)
         self:Destroy()

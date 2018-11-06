@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T3LandArtillery = {
-        Cybran = {'brl0307', 80}, -- Hailfire (Mobile Rocket Artillery) 
+        Cybran = {'brl0307', 80}, -- Hailfire (Mobile Rocket Artillery)
     },
 }

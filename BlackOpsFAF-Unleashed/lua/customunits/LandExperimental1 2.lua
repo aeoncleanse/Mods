@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T4LandExperimental1 = {
-        Aeon = {'bal0402', 20}, -- Genesis (Experimental Assault Tank) 
+        Aeon = {'bal0402', 20}, -- Genesis (Experimental Assault Tank)
     },
 }

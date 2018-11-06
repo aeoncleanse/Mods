@@ -15,7 +15,7 @@ BSL0403 = Class(SEnergyBallUnit) {
     Weapons = {
         PhasonBeam = Class(SDFUnstablePhasonBeam) {},
     },
-    
+
     OnCreate = function(self)
         SEnergyBallUnit.OnCreate(self)
         for k, v in EffectTemplate.OthuyAmbientEmanation do

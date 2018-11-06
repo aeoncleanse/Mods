@@ -1,4 +1,4 @@
-﻿newStructure = {   
+﻿newStructure = {
     -- Armor Type Name
     'Structure',
 

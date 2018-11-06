@@ -10,14 +10,14 @@ local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 local StunZapperWeapon = import('/mods/BlackOpsFAF-Unleashed/lua/BlackOpsWeapons.lua').StunZapperWeapon
 
-BRB2306 = Class(CRadarUnit) { 
+BRB2306 = Class(CRadarUnit) {
     ChargeEffects01 = {
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/manticore_charge_laser_flash_01_emit.bp',  --glow
         '/mods/BlackOpsFAF-Unleashed/effects/emitters/manticore_charge_laser_muzzle_01_emit.bp',  -- sparks
     },
 
     Weapons = {
-        Turret01 = Class(StunZapperWeapon) {            
+        Turret01 = Class(StunZapperWeapon) {
             OnWeaponFired = function(self)
                 StunZapperWeapon.OnWeaponFired(self)
                 local wep = self.unit:GetWeaponByLabel('StunWeapon')
@@ -29,10 +29,10 @@ BRB2306 = Class(CRadarUnit) {
                     wep:OnFire()
                 end
             end,
-            
+
 
             PlayFxRackSalvoChargeSequence = function(self, muzzle)
-            StunZapperWeapon.PlayFxRackSalvoChargeSequence(self, muzzle) 
+            StunZapperWeapon.PlayFxRackSalvoChargeSequence(self, muzzle)
                 local wep = self.unit:GetWeaponByLabel('Turret01')
                 local bp = wep:GetBlueprint()
                 if bp.Audio.RackSalvoCharge then
@@ -60,7 +60,7 @@ BRB2306 = Class(CRadarUnit) {
                     table.insert(self.unit.BeamChargeEffects, AttachBeamEntityToEntity(self.unit, 'FocusBeam02_start', self.unit, 'FocusBeam02_end', self.unit:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/manticore_charge_beam_01_emit.bp'))
                 self:ForkThread(self.ArrayEffectsCleanup)
             end,
-            
+
             ArrayEffectsCleanup = function(self)
                 WaitTicks(30)
                 if self.unit.BeamChargeEffects then
@@ -77,15 +77,15 @@ BRB2306 = Class(CRadarUnit) {
                 end
             end,
         },
-        
+
         StunWeapon = Class(CDFLaserHeavyWeapon){
             OnWeaponFired = function(self)
                 CDFLaserHeavyWeapon.OnWeaponFired(self)
                 self:SetWeaponEnabled(false)
             end,
         },
-    }, 
-    
+    },
+
     OnStopBeingBuilt = function(self,builder,layer)
         CRadarUnit.OnStopBeingBuilt(self,builder,layer)
         self.BeamChargeEffects = {}

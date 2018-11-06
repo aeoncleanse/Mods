@@ -22,7 +22,7 @@ BSA0310 = Class(SAirUnit) {
                 end
             end,
         },
-        
+
         RightTurret = Class(SDFThauCannon) {
             CreateProjectileAtMuzzle = function(self, muzzle)
                 local proj = SDFThauCannon.CreateProjectileAtMuzzle(self, muzzle)
@@ -32,7 +32,7 @@ BSA0310 = Class(SAirUnit) {
                 end
             end,
         },
-        
+
         CenterTurret = Class(SAALosaareAutoCannonWeapon) {},
     },
 }

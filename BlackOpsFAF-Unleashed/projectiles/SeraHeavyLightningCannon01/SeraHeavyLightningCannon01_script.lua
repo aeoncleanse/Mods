@@ -17,11 +17,11 @@ SDFHeavyQuarnonCannon01 = Class(SHeavyQuarnonCannon) {
         pos[2] = pos[2] + 4
         Warp(nukeProjectile, pos)
         nukeProjectile:PassDamageData(self.DamageData)
-        
+
         for k, v in FxFragEffect do
             CreateEmitterAtEntity(self, self:GetArmy(), v)
         end
-        
+
         self:Destroy()
     end,
 }

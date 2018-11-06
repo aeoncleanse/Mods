@@ -5,8 +5,8 @@
 -----------------------------------------------------------------
 UnitList = {
     T3AirTransport = {
-        Cybran = {'bra0309', 20}, -- Vanisher (T3 Air Transport) 
-        Aeon = {'baa0309', 20}, -- Illuminate (T3 Air Transport) 
-        Seraphim = {'bsa0309', 20}, -- Vishathal-Atah (Tech3 Air Transport) 
+        Cybran = {'bra0309', 20}, -- Vanisher (T3 Air Transport)
+        Aeon = {'baa0309', 20}, -- Illuminate (T3 Air Transport)
+        Seraphim = {'bsa0309', 20}, -- Vishathal-Atah (Tech3 Air Transport)
     },
 }

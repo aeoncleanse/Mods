@@ -5,6 +5,6 @@
 -----------------------------------------------------------------
 UnitList = {
     T2Artillery = {
-        Seraphim = {'bsb2303', 70}, -- HethIor-Azsa (Land Mine Dispenser) 
+        Seraphim = {'bsb2303', 70}, -- HethIor-Azsa (Land Mine Dispenser)
     },
 }

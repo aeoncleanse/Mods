@@ -12,7 +12,7 @@ XSB4302 = Class(SStructureUnit) {
 
     Weapons = {
         MissileRack = Class(SIFHuAntiNukeWeapon) {
-        
+
             IdleState = State(SIFHuAntiNukeWeapon.IdleState) {
                 OnGotTarget = function(self)
                     local bp = self:GetBlueprint()
@@ -30,14 +30,14 @@ XSB4302 = Class(SStructureUnit) {
                         SIFHuAntiNukeWeapon.IdleState.OnFire(self)
                     end
                     nukeFiredOnGotTarget = false
-                    
+
                     self:ForkThread(function()
                         self.unit:SetBusy(true)
                         WaitSeconds(1/self.unit:GetBlueprint().Weapon[1].RateOfFire + .2)
                         self.unit:SetBusy(false)
                     end)
                 end,
-            },        
+            },
         },
          MissileRack2 = Class(SIFHuAntiNukeWeapon) {},
     },

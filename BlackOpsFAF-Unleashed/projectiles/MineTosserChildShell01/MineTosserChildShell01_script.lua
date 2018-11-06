@@ -13,13 +13,13 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
     FxImpactAirUnit = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactProp = BlackOpsEffectTemplate.MGHeadshotHit01,
     FxImpactLand = BlackOpsEffectTemplate.MGHeadshotHit01,
-    
+
     OnCreate = function(self)
         SLaanseTacticalMissile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
         self:ForkThread(self.MovementThread)
     end,
-    
+
     OnImpact = function(self, targetType, targetEntity)
         SLaanseTacticalMissile.OnImpact(self, targetType, targetEntity)
         local position = self:GetPosition()
@@ -28,7 +28,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         local spiritUnit3 = CreateUnitHPR('BSB2211', self:GetArmy(), position[1]-1, position[2], position[3]+1, 0, 0, 0)
         local spiritUnit4 = CreateUnitHPR('BSB2211', self:GetArmy(), position[1]+1, position[2], position[3]-1, 0, 0, 0)
         local spiritUnit5 = CreateUnitHPR('BSB2211', self:GetArmy(), position[1]-1, position[2], position[3]-1, 0, 0, 0)
-        
+
         -- Create effects for spawning of energy being
         for k, v in BlackOpsEffectTemplate.SerMineRiftIn_Small do
             CreateAttachedEmitter(spiritUnit1, -1, self:GetArmy(), v):ScaleEmitter(1)
@@ -36,13 +36,13 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
             CreateAttachedEmitter(spiritUnit3, -1, self:GetArmy(), v):ScaleEmitter(1)
             CreateAttachedEmitter(spiritUnit4, -1, self:GetArmy(), v):ScaleEmitter(1)
             CreateAttachedEmitter(spiritUnit5, -1, self:GetArmy(), v):ScaleEmitter(1)
-        end    
+        end
     end,
 
-    MovementThread = function(self)        
+    MovementThread = function(self)
         self.WaitTime = 0.1
         self:SetTurnRate(8)
-        WaitSeconds(0.3)        
+        WaitSeconds(0.3)
         while not self:BeenDestroyed() do
             self:SetTurnRateByDist()
             WaitSeconds(self.WaitTime)
@@ -52,7 +52,7 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
     SetTurnRateByDist = function(self)
         local dist = self:GetDistanceToTarget()
         -- Get the nuke as close to 90 deg as possible
-        if dist > 50 then        
+        if dist > 50 then
             -- Freeze the turn rate as to prevent steep angles at long distance targets
             WaitSeconds(2)
             self:SetTurnRate(20)
@@ -63,9 +63,9 @@ SIFLaanseTacticalMissile04 = Class(SLaanseTacticalMissile) {
         elseif dist > 43 and dist <= 107 then
             WaitSeconds(0.3)
             self:SetTurnRate(50)
-        elseif dist > 0 and dist <= 43 then     
-            self:SetTurnRate(100)   
-            KillThread(self.MoveThread)         
+        elseif dist > 0 and dist <= 43 then
+            self:SetTurnRate(100)
+            KillThread(self.MoveThread)
         end
     end,
 

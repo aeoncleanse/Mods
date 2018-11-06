@@ -12,7 +12,7 @@ BSA0001 = Class(SAirUnit) {
         AutoCannon1 = Class(SAALosaareAutoCannonWeapon) {},
         Bomb = Class(SANHeavyCavitationTorpedo) {},
     },
-    
+
     -- Setsup parent call backs between drone and parent
     Parent = nil,
 

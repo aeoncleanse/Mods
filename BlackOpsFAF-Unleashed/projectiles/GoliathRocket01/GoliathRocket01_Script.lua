@@ -11,7 +11,7 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
     ThrustEffects = {'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
                      '/effects/emitters/nuke_munition_launch_trail_06_emit.bp',
     },
-    
+
     FxTrails = EffectTemplate.TMissileExhaust01,
     FxImpactUnit = EffectTemplate.TAntiMatterShellHit01,
     FxImpactLand = EffectTemplate.TAntiMatterShellHit01,
@@ -28,23 +28,23 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
     FxUnitHitScale = 0.6,
     FxWaterHitScale = 0.6,
     FxOnKilledScale = 0.6,
-    
+
     OnCreate = function(self)
         MiniRocket04PRojectile.OnCreate(self)
-        self:SetCollisionShape('Sphere', 0, 0, 0, 2)        
+        self:SetCollisionShape('Sphere', 0, 0, 0, 2)
         self.MoveThread = self:ForkThread(self.MovementThread)
     end,
 
-    MovementThread = function(self)        
+    MovementThread = function(self)
         self.WaitTime = 0.1
         self:SetTurnRate(8)
-        WaitSeconds(0.1)        
+        WaitSeconds(0.1)
         while not self:BeenDestroyed() do
             self:SetTurnRateByDist()
             WaitSeconds(self.WaitTime)
         end
     end,
-    
+
     CreateEffects = function(self, EffectTable, army, scale)
         for k, v in EffectTable do
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
@@ -54,7 +54,7 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
     SetTurnRateByDist = function(self)
         local army = self:GetArmy()
         local dist = VDist3(self:GetPosition(), self:GetCurrentTargetPosition())
-        if dist > 50 then        
+        if dist > 50 then
             -- Freeze the turn rate as to prevent steep angles at long distance targets
             self:SetTurnRate(15)
             WaitSeconds(1)
@@ -79,10 +79,10 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
             WaitSeconds(0.1)
             self:SetTurnRate(360)
         elseif dist > 0 and dist <= 8 then
-            -- Further increase check intervals            
-            self:SetTurnRate(720)   
+            -- Further increase check intervals
+            self:SetTurnRate(720)
         end
-    end,        
+    end,
 
     GetDistanceToTarget = function(self)
         local tpos = self:GetCurrentTargetPosition()
@@ -90,7 +90,7 @@ AWMissileCruise01 = Class(MiniRocket04PRojectile) {
         local dist = VDist2(mpos[1], mpos[3], tpos[1], tpos[3])
         return dist
     end,
-    
+
     OnEnterWater = function(self)
         MiniRocket04PRojectile.OnEnterWater(self)
         self:SetDestroyOnWater(true)

@@ -5,7 +5,7 @@
 -----------------------------------------------------------------
 UnitList = {
     T3ArmoredAssault = {
-        UEF = {'bel0307', 70}, -- Juggernaut (Battle Station) 
-        Aeon = {'bal0310', 70}, -- Wraith (Heavy Hover Tank) 
+        UEF = {'bel0307', 70}, -- Juggernaut (Battle Station)
+        Aeon = {'bal0310', 70}, -- Wraith (Heavy Hover Tank)
     },
 }

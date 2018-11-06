@@ -100,7 +100,7 @@ UnitBlueprint {
             Level4 = 160,
             Level5 = 200,
         },
-    }, 
+    },
     Categories = {
         'UNSELECTABLE',
         'UEF',
@@ -252,7 +252,7 @@ UnitBlueprint {
         Level3 = 15,
         Level4 = 20,
         Level5 = 25,
-    }, 
+    },
     Weapon = {
         {
             AboveWaterFireOnly = true,
@@ -274,7 +274,7 @@ UnitBlueprint {
             FireTargetLayerCapsTable = {
                 Air = 'Air',
                 Land = 'Air',
-            }, 
+            },
             FiringTolerance = 2,
             Label = 'Cannon01',
             MaxRadius = 50,
@@ -318,8 +318,8 @@ UnitBlueprint {
                 'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
-            }, 
-           TargetRestrictDisallow = 'UNTARGETABLE', 
+            },
+           TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 1.125,
             TurretBoneMuzzle = 'AA_Muzzle_1',
             TurretBonePitch = 'AA_Muzzle_1',
@@ -357,7 +357,7 @@ UnitBlueprint {
             FireTargetLayerCapsTable = {
                 Air = 'Land|Water',
                 Land = 'Land|Water',
-            }, 
+            },
             FiringTolerance = 2,
             Label = 'Cannon02',
             MaxRadius = 50,
@@ -401,8 +401,8 @@ UnitBlueprint {
                 'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
-            }, 
-           TargetRestrictDisallow = 'UNTARGETABLE', 
+            },
+           TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 1.125,
             TurretBoneMuzzle = 'AA_Muzzle_1',
             TurretBonePitch = 'AA_Muzzle_1',
