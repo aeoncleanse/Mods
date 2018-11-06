@@ -16,7 +16,7 @@ function ForceTransferUnit(unit, ToArmyIndex) -- This is a rough copy of Transfe
     local hasFuel = false
     local fuelRatio = 0
     local enh = {} -- enhancements
-    
+
     local position = unit:GetPosition()
     local orientation = unit:GetOrientation()
     local name = "Name transfer doesn't work."
@@ -43,7 +43,7 @@ function ForceTransferUnit(unit, ToArmyIndex) -- This is a rough copy of Transfe
     -- changing owner
     local oldUnit = unit
     unit:Destroy()
-    
+
     unit = CreateUnit(unitId, ToArmyIndex, position[1], position[2], position[3], orientation[1], orientation[2], orientation[3], orientation[4])
     if not unit then
         return nil
@@ -53,7 +53,7 @@ function ForceTransferUnit(unit, ToArmyIndex) -- This is a rough copy of Transfe
     if name then
         unit:SetCustomName(name)
     end
-    
+
     if xp and xp > 0 then
         unit:AddXP(xp)
     end
