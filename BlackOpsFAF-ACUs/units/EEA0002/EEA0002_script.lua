@@ -57,7 +57,7 @@ EEA0002 = Class(TAirUnit) {
 
             self.OpenAnim:PlayAnim('/mods/BlackOpsFAF-ACUs/units/EEA0002/eea0002_aopen02.sca')
 
-            for k,v in self.HideBones do
+            for k, v in self.HideBones do
                 self:HideBone(v, true)
             end
         end,
