@@ -21,7 +21,7 @@ UnitBlueprint {
     },
     
     DesiredShooterCap = 1,
-    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh
     
 	Weapon = {
 		{
@@ -49,7 +49,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="uaa0204",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 --> Aeon T3 Strat Bomber, Shocker
@@ -57,7 +57,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="uaa0304",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 --> Aeon T3 Torpedo Bomber, Solace
@@ -69,7 +69,7 @@ UnitBlueprint {
     	'BOMBER',
     },
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 ------------------------------------------------------------------------------------------ 
@@ -88,7 +88,7 @@ UnitBlueprint {
     },
     
     DesiredShooterCap = 1,
-    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh
     
 	Weapon = {
 		{
@@ -117,14 +117,14 @@ UnitBlueprint {
 	BlueprintId="dra0202",
     
 	Physics = {
-		Elevation = 16,							#18
+		Elevation = 16,							--18
 	},	
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       	
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       	
 	Weapon = {
 		{
 		},
 		{
-			MuzzleVelocity = 30,				#35
+			MuzzleVelocity = 30,				--35
 		},
 	}, 	
 }
@@ -134,7 +134,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="ura0204",
 
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh    
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh    
 }
 
 --> Cybran T3 Strat Bomber, Revenat
@@ -142,7 +142,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="ura0304",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 ------------------------------------------------------------------------------------------ 
@@ -161,7 +161,7 @@ UnitBlueprint {
     },
     
     DesiredShooterCap = 1,
-    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh
     
 	Weapon = {
 		{
@@ -193,7 +193,7 @@ UnitBlueprint {
     	'BOMBER',
     }, 
     
-    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+    SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 --> Seraphim T2 Torpedo Bomber, Uosioz
@@ -201,7 +201,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="xsa0204",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 --> Seraphim T3 Strat Bomber, Sinntha
@@ -209,7 +209,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="xsa0304",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 --> Seraphim Experimental Bomber, Ahwassa
@@ -238,7 +238,7 @@ UnitBlueprint {
     },
     
     DesiredShooterCap = 1,
-    SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh
+    SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh
 	Weapon = {
 		{
 			BombDropThreshold = 3.0,
@@ -265,7 +265,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="uea0204",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }
 
 --> UEF T3 Strat Bomber, Ambassador
@@ -273,5 +273,5 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="uea0304",
     
-	SizeSphere = 1.0, # 1.6, Decreased hitbox to fit the units mesh       		
+	SizeSphere = 1.0, -- 1.6, Decreased hitbox to fit the units mesh       		
 }

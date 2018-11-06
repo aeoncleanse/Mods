@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/shield.lua
-#**  Author(s):  John Comes, Gordon Duclos
-#**
-#**  Summary  : Shield lua module
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /lua/shield.lua
+--**  Author(s):  John Comes, Gordon Duclos
+--**
+--**  Summary  : Shield lua module
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local Entity = import('/lua/sim/Entity.lua').Entity
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -38,7 +38,7 @@ Shield = Class(moho.shield_methods,Entity) {
         self:SetType('Bubble')
         self:SetSpillOverParams(spec.SpillOverDamageMod or 0.15, spec.DamageThresholdToSpillOver or 0)
 
-        # Show our 'lifebar'
+        -- Show our 'lifebar'
         self:UpdateShieldRatio(1.0)
 
         self:SetRechargeTime(spec.ShieldRechargeTime or 5, spec.ShieldEnergyDrainRechargeTime or 5)
@@ -103,16 +103,16 @@ Shield = Class(moho.shield_methods,Entity) {
         return self:GetPosition()
     end,
     
-    # Note, this is called by native code to calculate spillover damage. The
-    # damage logic will subtract this value from any damage it does to units
-    # under the shield. The default is to always absorb as much as possible
-    # but the reason this function exists is to allow flexible implementations
-    # like shields that only absorb partial damage (like armor).
+    -- Note, this is called by native code to calculate spillover damage. The
+    -- damage logic will subtract this value from any damage it does to units
+    -- under the shield. The default is to always absorb as much as possible
+    -- but the reason this function exists is to allow flexible implementations
+    -- like shields that only absorb partial damage (like armor).
     OnGetDamageAbsorption = function(self,instigator,amount,type)
-        #LOG('absorb: ', math.min( self:GetHealth(), amount ))
+        --LOG('absorb: ', math.min( self:GetHealth(), amount ))
         
-        # Like armor damage, first multiply by armor reduction, then apply handicap
-        # See SimDamage.cpp (DealDamage function) for how this should work
+        -- Like armor damage, first multiply by armor reduction, then apply handicap
+        -- See SimDamage.cpp (DealDamage function) for how this should work
         amount = amount * (self.Owner:GetArmorMult(type))
         amount = amount * ( 1.0 - ArmyGetHandicap(self:GetArmy()) )
         return math.min( self:GetHealth(), amount )
@@ -126,7 +126,7 @@ Shield = Class(moho.shield_methods,Entity) {
                 return false
             end
         end
-        #Check DNC list
+        --Check DNC list
         if weaponBP.DoNotCollideList then
             for k, v in pairs(weaponBP.DoNotCollideList) do
                 if EntityCategoryContains(ParseEntityCategory(v), self) then
@@ -139,10 +139,10 @@ Shield = Class(moho.shield_methods,Entity) {
     end,
     
     GetOverkill = function(self,instigator,amount,type)
-        #LOG('absorb: ', math.min( self:GetHealth(), amount ))
+        --LOG('absorb: ', math.min( self:GetHealth(), amount ))
         
-        # Like armor damage, first multiply by armor reduction, then apply handicap
-        # See SimDamage.cpp (DealDamage function) for how this should work
+        -- Like armor damage, first multiply by armor reduction, then apply handicap
+        -- See SimDamage.cpp (DealDamage function) for how this should work
         amount = amount * (self.Owner:GetArmorMult(type))
         amount = amount * ( 1.0 - ArmyGetHandicap(self:GetArmy()) )
         local finalVal =  amount - self:GetHealth()
@@ -153,7 +153,7 @@ Shield = Class(moho.shield_methods,Entity) {
     end,    
     
     OnDamage = function(self, instigator, amount, vector, type)
-        #LOG('*DEBUG: OnDamage amount = '..repr(amount)..' type = '..repr(type) )
+        --LOG('*DEBUG: OnDamage amount = '..repr(amount)..' type = '..repr(type) )
 
         local absorbed = self:OnGetDamageAbsorption(instigator, amount, type) 
         
@@ -164,48 +164,48 @@ Shield = Class(moho.shield_methods,Entity) {
             end
         end
 
-        ###### This code is to pass damage over overlapping shields.
+        ------------ This code is to pass damage over overlapping shields.
         if type != 'ShieldSpillOver' and self.Size and self.Size > 0 and self:IsOn() and absorbed >= self.DmgThresholdToSpillOver then
 
-            self:SpillOverDmgDBRegister(instigator, absorbed, type) # remember this damage to prevent additional overspill damage
+            self:SpillOverDmgDBRegister(instigator, absorbed, type) -- remember this damage to prevent additional overspill damage
 
             local brain = self.Owner:GetAIBrain()
 
-            # The idea is to find all units within X units away from us. We can't use our shield radius for X because some units could have
-            # bigger shields than us and we would not find them. Instead, use the size of the biggest shield as value for X. The biggest
-            # shield in the game is the UEF shield boat. This value must be adapted if there is a bigger one
+            -- The idea is to find all units within X units away from us. We can't use our shield radius for X because some units could have
+            -- bigger shields than us and we would not find them. Instead, use the size of the biggest shield as value for X. The biggest
+            -- shield in the game is the UEF shield boat. This value must be adapted if there is a bigger one
             local BiggestShieldSize = 120
             local units = brain:GetUnitsAroundPoint( (categories.SHIELD * categories.DEFENSE) + categories.BUBBLESHIELDSPILLOVERCHECK, self.Owner:GetPosition(), (BiggestShieldSize / 2), 'Ally' )
 
             local pos = self:GetCachePosition()
-            local OverlapRadius = 0.98 * (self.Size / 2)  # size is diameter, dividing by 2 to get radius
+            local OverlapRadius = 0.98 * (self.Size / 2)  -- size is diameter, dividing by 2 to get radius
             local obp, oOverlapRadius, vpos, OverlapDist
 
             for k, v in units do
                 if v and IsUnit(v) and not v:IsDead() and v.MyShield and v.MyShield:IsOn() and v.MyShield.Size and v.MyShield.Size > 0 and self.Owner != v and v != instigator then
                     vspos = v.MyShield:GetCachePosition()
-                    oOverlapRadius = 0.98 * (v.MyShield.Size / 2)  # size is diameter, dividing by 2 to get radius
+                    oOverlapRadius = 0.98 * (v.MyShield.Size / 2)  -- size is diameter, dividing by 2 to get radius
 
-                    OverlapDist = OverlapRadius + oOverlapRadius # If "self" and "v" are more than this far apart then the shields don't overlap, otherwise they do
+                    OverlapDist = OverlapRadius + oOverlapRadius -- If "self" and "v" are more than this far apart then the shields don't overlap, otherwise they do
 
                     if VDist3(pos, vspos) <= OverlapDist then
                         v:OnAdjacentBubbleShieldDamageSpillOver( instigator, self.Owner, absorbed, type )
                     end
                 end
-                # DEBUG only, to see a flash on all units we're checking
-                #if v then
-                #    CreateEmitterAtEntity(v, self.Owner:GetArmy(), '/effects/Emitters/generic_teleportin_04_emit.bp')
-                #end
+                -- DEBUG only, to see a flash on all units we're checking
+                --if v then
+                --    CreateEmitterAtEntity(v, self.Owner:GetArmy(), '/effects/Emitters/generic_teleportin_04_emit.bp')
+                --end
             end
         end
         
-		##Apply Damage, but only if the owner of that Damage is not also the owner of the Shield
+		----Apply Damage, but only if the owner of that Damage is not also the owner of the Shield
 		if self.Owner != instigator then
 			self:AdjustHealth(instigator, -absorbed) 
 			self:UpdateShieldRatio(-1)			
 		end
 
-        #LOG('Shield Health: ' .. self:GetHealth())
+        --LOG('Shield Health: ' .. self:GetHealth())
         if self.RegenThread then
            KillThread(self.RegenThread)
            self.RegenThread = nil
@@ -224,7 +224,7 @@ Shield = Class(moho.shield_methods,Entity) {
     end,
 
     SpillOverDmgDBRegister = function(self, instigator, amount, type)
-        #LOG('*DEBUG: SpillOverDmgDBRegister')
+        --LOG('*DEBUG: SpillOverDmgDBRegister')
         if not self.SpillOverDmgDB then
             self.SpillOverDmgDB = {}
         end
@@ -232,7 +232,7 @@ Shield = Class(moho.shield_methods,Entity) {
             self:SpillOverDmgDBcleanUp()
             local entry = { amount = amount, instigator = instigator:GetEntityId(), tick = GetGameTick(), type = type, }
             table.insert( self.SpillOverDmgDB, entry )
-            #LOG('*DEBUG: db = '..repr(self.SpillOverDmgDB))
+            --LOG('*DEBUG: db = '..repr(self.SpillOverDmgDB))
         end
     end,
 
@@ -247,7 +247,7 @@ Shield = Class(moho.shield_methods,Entity) {
         self:SpillOverDmgDBcleanUp()
 
         if self.SpillOverDmgDB and instigator and not instigator:BeenDestroyed() then
-            local tick = GetGameTick() - 2                                               #### max spill damage delay is 1 ticks (1/3)
+            local tick = GetGameTick() - 2                                               -------- max spill damage delay is 1 ticks (1/3)
             local entId = instigator:GetEntityId()
 
             for k, v in self.SpillOverDmgDB do
@@ -256,19 +256,19 @@ Shield = Class(moho.shield_methods,Entity) {
                 end
             end
 
-            #LOG('*DEBUG: SpillOverDmgDBFind dmg = '..repr(amount)..' type = '..repr(type)..' instigator = '..repr(entId))
+            --LOG('*DEBUG: SpillOverDmgDBFind dmg = '..repr(amount)..' type = '..repr(type)..' instigator = '..repr(entId))
         end
 
-        #LOG('*DEBUG: SpillOverDmgDBFind found key = '..repr(r))
+        --LOG('*DEBUG: SpillOverDmgDBFind found key = '..repr(r))
         return r
     end,
 
     SpillOverDmgDBcleanUp = function(self)
-        # remove old entries in DB
-        #LOG('*DEBUG: SpillOverDmgDBcleanUp')
+        -- remove old entries in DB
+        --LOG('*DEBUG: SpillOverDmgDBcleanUp')
         if self.SpillOverDmgDB then
             local delete = {}
-            local tick = GetGameTick() - 2                                               #### max spill damage delay is 1 ticks (2/3)
+            local tick = GetGameTick() - 2                                               -------- max spill damage delay is 1 ticks (2/3)
             for k, v in self.SpillOverDmgDB do
                 if v.tick < tick then
                     table.insert(delete, k)
@@ -281,18 +281,18 @@ Shield = Class(moho.shield_methods,Entity) {
     end,
 
     AdjacentBubbleShieldDamageSpillOverThread = function(self, instigator, spillingUnit, dmg, type)
-        WaitTicks(1)                                                                     #### max spill damage delay is 1 ticks (3/3)
+        WaitTicks(1)                                                                     -------- max spill damage delay is 1 ticks (3/3)
         if self and self.Owner and not self.Owner:IsDead() and self:IsOn() then
 
-            # find out whether we've been hit by the cause of the spill over damage aswell. If yes, ignore spill over damage (we already took damage)
+            -- find out whether we've been hit by the cause of the spill over damage aswell. If yes, ignore spill over damage (we already took damage)
             local DBkey = self:SpillOverDmgDBFind(instigator, dmg, type)
             if DBkey then
-                #LOG('*DEBUG: AdjacentBubbleShieldDamageSpillOverThread no spill damage')
-                # disabled because there may be more shields spilling damage from the same origin, we have to check for that too otherwise
-                # only the first overspill is prevented, not the spill from a second or third shield.
-                #self:SpillOverDmgDBUnregister(DBkey)
+                --LOG('*DEBUG: AdjacentBubbleShieldDamageSpillOverThread no spill damage')
+                -- disabled because there may be more shields spilling damage from the same origin, we have to check for that too otherwise
+                -- only the first overspill is prevented, not the spill from a second or third shield.
+                --self:SpillOverDmgDBUnregister(DBkey)
 
-            # do overspill damage
+            -- do overspill damage
             elseif self.SpillOverDmgMod > 0 then
                 local vect = Vector(0,0,0)
 
@@ -302,14 +302,14 @@ Shield = Class(moho.shield_methods,Entity) {
                     vect = Util.GetDirectionVector( spillingUnit:GetPosition(), self:GetCachePosition() )
                 end
 
-                #LOG('*DEBUG: AdjacentBubbleShieldDamageSpillOverThread dealing damage: '..repr(dmg * dmgMod))
+                --LOG('*DEBUG: AdjacentBubbleShieldDamageSpillOverThread dealing damage: '..repr(dmg * dmgMod))
                 self:OnDamage(instigator, dmg * self.SpillOverDmgMod, vect, 'ShieldSpillOver' )
             end
         end
     end,
 
     OnAdjacentBubbleShieldDamageSpillOver = function(self, instigator, spillingUnit, dmg, type)
-        #LOG('*DEBUG: OnAdjacentBubbleShieldDamageSpillOver dmg = '..repr(dmg))
+        --LOG('*DEBUG: OnAdjacentBubbleShieldDamageSpillOver dmg = '..repr(dmg))
         local thread = ForkThread( self.AdjacentBubbleShieldDamageSpillOverThread, self, instigator, spillingUnit, dmg, type )
         self.Owner.Trash:Add(thread)
     end,
@@ -356,13 +356,13 @@ Shield = Class(moho.shield_methods,Entity) {
         ChangeState(self, self.DeadState)
     end,
 
-    # Return true to process this collision, false to ignore it.
+    -- Return true to process this collision, false to ignore it.
     OnCollisionCheck = function(self,other)
         if other:GetArmy() == -1 then
             return false
         end
 
-        # allow strategic nuke missile to penetrate shields
+        -- allow strategic nuke missile to penetrate shields
         if EntityCategoryContains( categories.STRATEGIC, other ) and 
            EntityCategoryContains( categories.MISSILE, other ) then
             return false
@@ -419,7 +419,7 @@ Shield = Class(moho.shield_methods,Entity) {
         end
     end,
 
-    # Basically run a timer, but with visual bar movement
+    -- Basically run a timer, but with visual bar movement
     ChargingUp = function(self, curProgress, time)
         local owner = self.Owner 
         local position = owner:GetPosition()
@@ -447,19 +447,19 @@ Shield = Class(moho.shield_methods,Entity) {
     OnState = State {
         Main = function(self)
 
-            # If the shield was turned off; use the recharge time before turning back on
+            -- If the shield was turned off; use the recharge time before turning back on
             if self.OffHealth >= 0 then
                 self.Owner:SetMaintenanceConsumptionActive()
                 self:ChargingUp(0, self.ShieldEnergyDrainRechargeTime)
                 
-                # If the shield has less than full health, allow the shield to begin regening
+                -- If the shield has less than full health, allow the shield to begin regening
                 if self:GetHealth() < self:GetMaxHealth() and self.RegenRate > 0 then
                     self.RegenThread = ForkThread(self.RegenStartThread, self)
                     self.Owner.Trash:Add(self.RegenThread)
                 end
             end
             
-            # We are no longer turned off
+            -- We are no longer turned off
             self.OffHealth = -1
 
             self:UpdateShieldRatio(-1)
@@ -474,7 +474,7 @@ Shield = Class(moho.shield_methods,Entity) {
             local on = true
             local test = false
             
-            # Test in here if we have run out of power; if the fraction is ever not 1 we don't have full power
+            -- Test in here if we have run out of power; if the fraction is ever not 1 we don't have full power
             while on do
                 WaitTicks(1)
 
@@ -493,9 +493,9 @@ Shield = Class(moho.shield_methods,Entity) {
                 end
             end
             
-            # Record the amount of health on the shield here so when the unit tries to turn its shield
-            # back on and off it has the amount of health from before.
-            #self.OffHealth = self:GetHealth()
+            -- Record the amount of health on the shield here so when the unit tries to turn its shield
+            -- back on and off it has the amount of health from before.
+            --self.OffHealth = self:GetHealth()
             ChangeState(self, self.EnergyDrainRechargeState)
         end,
 
@@ -504,20 +504,20 @@ Shield = Class(moho.shield_methods,Entity) {
         end,
     },
 
-    # When manually turned off
+    -- When manually turned off
     OffState = State {
         Main = function(self)
 
-            # No regen during off state
+            -- No regen during off state
             if self.RegenThread then
                 KillThread(self.RegenThread)
                 self.RegenThread = nil
             end
 
-            # Set the offhealth - this is used basically to let the unit know the unit was manually turned off
+            -- Set the offhealth - this is used basically to let the unit know the unit was manually turned off
               self.OffHealth = self:GetHealth()
 
-            # Get rid of teh shield bar
+            -- Get rid of teh shield bar
             self:UpdateShieldRatio(0)
 
             self:RemoveShield()
@@ -531,15 +531,15 @@ Shield = Class(moho.shield_methods,Entity) {
         end,
     },
 
-    # This state happens when the shield has been depleted due to damage
+    -- This state happens when the shield has been depleted due to damage
     DamageRechargeState = State {
         Main = function(self)
             self:RemoveShield()
             
-            # We must make the unit charge up before gettings its shield back
+            -- We must make the unit charge up before gettings its shield back
             self:ChargingUp(0, self.ShieldRechargeTime)
             
-            # Fully charged, get full health
+            -- Fully charged, get full health
             self:SetHealth(self, self:GetMaxHealth())
             
             ChangeState(self, self.OnState)
@@ -550,15 +550,15 @@ Shield = Class(moho.shield_methods,Entity) {
         end,
     },
 
-    # This state happens only when the army has run out of power
+    -- This state happens only when the army has run out of power
     EnergyDrainRechargeState = State {
         Main = function(self)
             self:RemoveShield()
             
             self:ChargingUp(0, self.ShieldEnergyDrainRechargeTime)
             
-            # If the unit is attached to a transport, make sure the shield goes to the off state
-            # so the shield isn't turned on while on a transport
+            -- If the unit is attached to a transport, make sure the shield goes to the off state
+            -- so the shield isn't turned on while on a transport
             if not self.Owner:IsUnitState('Attached') then
                 ChangeState(self, self.OnState)
             else
@@ -601,7 +601,7 @@ UnitShield = Class(Shield){
         self:SetMaxHealth(spec.ShieldMaxHealth)
         self:SetHealth(self,spec.ShieldMaxHealth)
 
-        # Show our 'lifebar'
+        -- Show our 'lifebar'
         self:UpdateShieldRatio(1.0)
         
         self:SetRechargeTime(spec.ShieldRechargeTime or 5, spec.ShieldEnergyDrainRechargeTime or 5)
@@ -672,7 +672,7 @@ AntiArtilleryShield = Class(Shield) {
                 return false
             end
         end
-        # Check DNC list
+        -- Check DNC list
         if bp.DoNotCollideList then
             for k, v in pairs(bp.DoNotCollideList) do
                 if EntityCategoryContains(ParseEntityCategory(v), self) then
@@ -686,7 +686,7 @@ AntiArtilleryShield = Class(Shield) {
         return false
     end,
 
-    # Return true to process this collision, false to ignore it.
+    -- Return true to process this collision, false to ignore it.
     OnCollisionCheck = function(self,other)
         if other:GetArmy() == -1 then
             return false

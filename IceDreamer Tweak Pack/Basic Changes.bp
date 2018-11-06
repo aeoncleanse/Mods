@@ -1,42 +1,42 @@
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "ual0201",					#Aurora
+	BlueprintId = "ual0201",					--Aurora
 	Physics = {
-		MaxAcceleration = 3.0,					#2.9
-		MaxSpeed = 3.0,							#2.9
-		MaxSpeedReverse = 3.0,					#2.9
-		MaxSteerForce = 3.0,					#2.9
+		MaxAcceleration = 3.0,					--2.9
+		MaxSpeed = 3.0,							--2.9
+		MaxSpeedReverse = 3.0,					--2.9
+		MaxSteerForce = 3.0,					--2.9
 	},
 	Weapon = {
 		{
-			FiringRandomnessWhileMoving = 0.4	#0.1
+			FiringRandomnessWhileMoving = 0.4	--0.1
 		},
 	},
 }
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "uel0103",					#Lobo
+	BlueprintId = "uel0103",					--Lobo
 	Weapon = {
 		{
-			CameraLifetime = 20,				#5
-			CameraVisionRadius = 6,				#5
-			DamageRadius = 1.2,					#1
+			CameraLifetime = 20,				--5
+			CameraVisionRadius = 6,				--5
+			DamageRadius = 1.2,					--1
 		},
 	},
 }
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "url0103",					#Medusa
+	BlueprintId = "url0103",					--Medusa
 	Weapon = {
 		{
 			Buffs = {
 				{
-					Duration = 2.5,				#3
+					Duration = 2.5,				--3
 				},
 				{
-					Duration = 1.5,				#2
+					Duration = 1.5,				--2
 				},
 			},
 		},
@@ -45,58 +45,58 @@ UnitBlueprint {
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "del0204",					#Mongoose
+	BlueprintId = "del0204",					--Mongoose
 	Weapon = {
 		{
-			MuzzleVelocity = 30,				#25
+			MuzzleVelocity = 30,				--25
 		},
 	},
 }
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "xal0203",					#Blaze
+	BlueprintId = "xal0203",					--Blaze
 	Physics = {
-		MaxBrake = 15,							#4.3
-		MaxSpeedReverse = 4.3,					#0
-		MaxSteerForce = 4.3,					#20
-		TurnRadius = 1.2,						#0
-		TurnRate = 200,							#90
+		MaxBrake = 15,							--4.3
+		MaxSpeedReverse = 4.3,					--0
+		MaxSteerForce = 4.3,					--20
+		TurnRadius = 1.2,						--0
+		TurnRate = 200,							--90
 	},
 	Weapon = {
 		{
-			Damage = 18,						#15
+			Damage = 18,						--15
 		},
 	},
 }
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "uel0203",					#Riptide
+	BlueprintId = "uel0203",					--Riptide
 	Physics = {
-		MaxBrake = 15,							#3.7
-		MaxSpeedReverse = 3.7,					#1
-		MaxSteerForce = 3.7,					#10
-		TurnRadius = 2,							#5
-		TurnRate = 200,							#90
+		MaxBrake = 15,							--3.7
+		MaxSpeedReverse = 3.7,					--1
+		MaxSteerForce = 3.7,					--10
+		TurnRadius = 2,							--5
+		TurnRate = 200,							--90
 	},
 }
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "xsl0203",					#Yenzyne
+	BlueprintId = "xsl0203",					--Yenzyne
 	Physics = {
-		MaxBrake = 15,							#4.3
-		MaxSpeedReverse = 4.3,					#1
-		MaxSteerForce = 4.3,					#10
-		TurnRadius = 2,							#0
-		TurnRate = 200,							#90
+		MaxBrake = 15,							--4.3
+		MaxSpeedReverse = 4.3,					--1
+		MaxSteerForce = 4.3,					--10
+		TurnRadius = 2,							--0
+		TurnRate = 200,							--90
 	},
 }
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "uel0301",					#UEF sACU
+	BlueprintId = "uel0301",					--UEF sACU
 	Enhancements = {
 		ShieldGeneratorField = {
 			ShieldSpillOverDamageMod = 0.15,
@@ -106,21 +106,21 @@ UnitBlueprint {
 
 UnitBlueprint {
 	Merge = true,
-	BlueprintId = "ueb2401",					#Mavor
+	BlueprintId = "ueb2401",					--Mavor
 	Economy = {
-		BuildCostEnergy = 7000000,				#5994000
-		BuildCostMass = 250000,					#224775
-		BuildTime = 100000,						#99900
+		BuildCostEnergy = 7000000,				--5994000
+		BuildCostMass = 250000,					--224775
+		BuildTime = 100000,						--99900
 	},
 	Weapon = {
 		{
-			Damage = 18000,						#12000
-			DamageRadius = 9,					#7
-			EnergyDrainPerSecond = 20000,		#7500
-			EnergyRequired = 80000,				#30000
-			FiringRandomness = 0.1,				#0.22
-			FiringTolerance = 0.1,				#0.5
-			MuzzleVelocityRandom = 0.1,			#0.7
+			Damage = 18000,						--12000
+			DamageRadius = 9,					--7
+			EnergyDrainPerSecond = 20000,		--7500
+			EnergyRequired = 80000,				--30000
+			FiringRandomness = 0.1,				--0.22
+			FiringTolerance = 0.1,				--0.5
+			MuzzleVelocityRandom = 0.1,			--0.7
 		},
 	},
 }
