@@ -18,7 +18,7 @@ URB0102 = Class(CAirFactoryUnit) {
     UpgradeBuilderArm1 = 'Arm01_B02',
     UpgradeBuilderArm2 = 'Arm02_B02',
 
-    FinishBuildThread = function(self, unitBeingBuilt, order )
+    FinishBuildThread = function(self, unitBeingBuilt, order)
         self:SetBusy(true)
         self:SetBlockCommandQueue(true)
         local bp = self:GetBlueprint()

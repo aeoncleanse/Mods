@@ -109,20 +109,20 @@ Shield = Class(moho.shield_methods,Entity) {
     -- but the reason this function exists is to allow flexible implementations
     -- like shields that only absorb partial damage (like armor).
     OnGetDamageAbsorption = function(self,instigator,amount,type)
-        --LOG('absorb: ', math.min( self:GetHealth(), amount ))
+        --LOG('absorb: ', math.min(self:GetHealth(), amount))
 
         -- Like armor damage, first multiply by armor reduction, then apply handicap
         -- See SimDamage.cpp (DealDamage function) for how this should work
         amount = amount * (self.Owner:GetArmorMult(type))
-        amount = amount * ( 1.0 - ArmyGetHandicap(self:GetArmy()) )
-        return math.min( self:GetHealth(), amount )
+        amount = amount * (1.0 - ArmyGetHandicap(self:GetArmy()))
+        return math.min(self:GetHealth(), amount)
     end,
 
     OnCollisionCheckWeapon = function(self, firingWeapon)
         local weaponBP = firingWeapon:GetBlueprint()
         local collide = weaponBP.CollideFriendly
         if collide == false then
-            if not ( IsEnemy(self:GetArmy(),firingWeapon.unit:GetArmy()) ) then
+            if not (IsEnemy(self:GetArmy(),firingWeapon.unit:GetArmy())) then
                 return false
             end
         end
@@ -139,12 +139,12 @@ Shield = Class(moho.shield_methods,Entity) {
     end,
 
     GetOverkill = function(self,instigator,amount,type)
-        --LOG('absorb: ', math.min( self:GetHealth(), amount ))
+        --LOG('absorb: ', math.min(self:GetHealth(), amount))
 
         -- Like armor damage, first multiply by armor reduction, then apply handicap
         -- See SimDamage.cpp (DealDamage function) for how this should work
         amount = amount * (self.Owner:GetArmorMult(type))
-        amount = amount * ( 1.0 - ArmyGetHandicap(self:GetArmy()) )
+        amount = amount * (1.0 - ArmyGetHandicap(self:GetArmy()))
         local finalVal =  amount - self:GetHealth()
         if finalVal < 0 then
             finalVal = 0
@@ -153,7 +153,7 @@ Shield = Class(moho.shield_methods,Entity) {
     end,
 
     OnDamage = function(self, instigator, amount, vector, type)
-        --LOG('*DEBUG: OnDamage amount = '..repr(amount)..' type = '..repr(type) )
+        --LOG('*DEBUG: OnDamage amount = '..repr(amount)..' type = '..repr(type))
 
         local absorbed = self:OnGetDamageAbsorption(instigator, amount, type)
 
@@ -175,7 +175,7 @@ Shield = Class(moho.shield_methods,Entity) {
             -- bigger shields than us and we would not find them. Instead, use the size of the biggest shield as value for X. The biggest
             -- shield in the game is the UEF shield boat. This value must be adapted if there is a bigger one
             local BiggestShieldSize = 120
-            local units = brain:GetUnitsAroundPoint( (categories.SHIELD * categories.DEFENSE) + categories.BUBBLESHIELDSPILLOVERCHECK, self.Owner:GetPosition(), (BiggestShieldSize / 2), 'Ally' )
+            local units = brain:GetUnitsAroundPoint((categories.SHIELD * categories.DEFENSE) + categories.BUBBLESHIELDSPILLOVERCHECK, self.Owner:GetPosition(), (BiggestShieldSize / 2), 'Ally')
 
             local pos = self:GetCachePosition()
             local OverlapRadius = 0.98 * (self.Size / 2)  -- size is diameter, dividing by 2 to get radius
@@ -189,7 +189,7 @@ Shield = Class(moho.shield_methods,Entity) {
                     OverlapDist = OverlapRadius + oOverlapRadius -- If "self" and "v" are more than this far apart then the shields don't overlap, otherwise they do
 
                     if VDist3(pos, vspos) <= OverlapDist then
-                        v:OnAdjacentBubbleShieldDamageSpillOver( instigator, self.Owner, absorbed, type )
+                        v:OnAdjacentBubbleShieldDamageSpillOver(instigator, self.Owner, absorbed, type)
                     end
                 end
                 -- DEBUG only, to see a flash on all units we're checking
@@ -230,15 +230,15 @@ Shield = Class(moho.shield_methods,Entity) {
         end
         if instigator and IsUnit(instigator) then
             self:SpillOverDmgDBcleanUp()
-            local entry = { amount = amount, instigator = instigator:GetEntityId(), tick = GetGameTick(), type = type, }
-            table.insert( self.SpillOverDmgDB, entry )
+            local entry = {amount = amount, instigator = instigator:GetEntityId(), tick = GetGameTick(), type = type,}
+            table.insert(self.SpillOverDmgDB, entry)
             --LOG('*DEBUG: db = '..repr(self.SpillOverDmgDB))
         end
     end,
 
     SpillOverDmgDBUnregister = function(self, key)
         if not self.SpillOverDmgDB then return end
-        table.remove( self.SpillOverDmgDB, key )
+        table.remove(self.SpillOverDmgDB, key)
     end,
 
     SpillOverDmgDBFind = function(self, instigator, amount, type)
@@ -297,20 +297,20 @@ Shield = Class(moho.shield_methods,Entity) {
                 local vect = Vector(0,0,0)
 
                 if instigator and instigator.GetPosition then
-                    vect = Util.GetDirectionVector( instigator:GetPosition(), self:GetCachePosition() )
+                    vect = Util.GetDirectionVector(instigator:GetPosition(), self:GetCachePosition())
                 elseif spillingUnit and spillingUnit.GetPosition then
-                    vect = Util.GetDirectionVector( spillingUnit:GetPosition(), self:GetCachePosition() )
+                    vect = Util.GetDirectionVector(spillingUnit:GetPosition(), self:GetCachePosition())
                 end
 
                 --LOG('*DEBUG: AdjacentBubbleShieldDamageSpillOverThread dealing damage: '..repr(dmg * dmgMod))
-                self:OnDamage(instigator, dmg * self.SpillOverDmgMod, vect, 'ShieldSpillOver' )
+                self:OnDamage(instigator, dmg * self.SpillOverDmgMod, vect, 'ShieldSpillOver')
             end
         end
     end,
 
     OnAdjacentBubbleShieldDamageSpillOver = function(self, instigator, spillingUnit, dmg, type)
         --LOG('*DEBUG: OnAdjacentBubbleShieldDamageSpillOver dmg = '..repr(dmg))
-        local thread = ForkThread( self.AdjacentBubbleShieldDamageSpillOverThread, self, instigator, spillingUnit, dmg, type )
+        local thread = ForkThread(self.AdjacentBubbleShieldDamageSpillOverThread, self, instigator, spillingUnit, dmg, type)
         self.Owner.Trash:Add(thread)
     end,
 
@@ -329,8 +329,8 @@ Shield = Class(moho.shield_methods,Entity) {
     CreateImpactEffect = function(self, vector)
         local army = self:GetArmy()
         local OffsetLength = Util.GetVectorLength(vector)
-        local ImpactMesh = Entity { Owner = self.Owner }
-        Warp( ImpactMesh, self:GetPosition())
+        local ImpactMesh = Entity {Owner = self.Owner}
+        Warp(ImpactMesh, self:GetPosition())
 
         if self.ImpactMeshBp != '' then
             ImpactMesh:SetMesh(self.ImpactMeshBp)
@@ -339,7 +339,7 @@ Shield = Class(moho.shield_methods,Entity) {
         end
 
         for k, v in self.ImpactEffects do
-            CreateEmitterAtBone( ImpactMesh, -1, army, v ):OffsetEmitter(0,0,OffsetLength)
+            CreateEmitterAtBone(ImpactMesh, -1, army, v):OffsetEmitter(0,0,OffsetLength)
         end
 
         WaitSeconds(5)
@@ -363,8 +363,8 @@ Shield = Class(moho.shield_methods,Entity) {
         end
 
         -- allow strategic nuke missile to penetrate shields
-        if EntityCategoryContains( categories.STRATEGIC, other ) and
-           EntityCategoryContains( categories.MISSILE, other ) then
+        if EntityCategoryContains(categories.STRATEGIC, other) and
+           EntityCategoryContains(categories.MISSILE, other) then
             return false
         end
 
@@ -398,16 +398,16 @@ Shield = Class(moho.shield_methods,Entity) {
     end,
 
     CreateShieldMesh = function(self)
-        self:SetCollisionShape( 'Sphere', 0, 0, 0, self.Size/2)
+        self:SetCollisionShape('Sphere', 0, 0, 0, self.Size/2)
 
         self:SetMesh(self.MeshBp)
         self:SetParentOffset(Vector(0,self.ShieldVerticalOffset,0))
         self:SetDrawScale(self.Size)
 
         if self.MeshZ == nil then
-            self.MeshZ = Entity { Owner = self.Owner }
+            self.MeshZ = Entity {Owner = self.Owner}
             self.MeshZ:SetMesh(self.MeshZBp)
-            Warp( self.MeshZ, self.Owner:GetPosition() )
+            Warp(self.MeshZ, self.Owner:GetPosition())
             self.MeshZ:SetDrawScale(self.Size)
             self.MeshZ:AttachBoneTo(-1,self.Owner,-1)
             self.MeshZ:SetParentOffset(Vector(0,self.ShieldVerticalOffset,0))
@@ -426,7 +426,7 @@ Shield = Class(moho.shield_methods,Entity) {
         local shieldbp = self.Owner:GetBlueprint().Defense.Shield
         local shieldRadius = shieldbp.ShieldSize
         local aiBrain = owner:GetAIBrain()
-        local otherShields = aiBrain:GetUnitsAroundPoint(( categories.SHIELD * categories.DEFENSE), position, shieldRadius, 'Ally' )
+        local otherShields = aiBrain:GetUnitsAroundPoint((categories.SHIELD * categories.DEFENSE), position, shieldRadius, 'Ally')
         local rechargeTime = time + ((table.getn(otherShields) - 1) * .2 * time)
         if rechargeTime > (time * 3) then
             rechargeTime = time
@@ -434,12 +434,12 @@ Shield = Class(moho.shield_methods,Entity) {
         end
         while curProgress < rechargeTime do
             local fraction = self.Owner:GetResourceConsumed()
-            curProgress = curProgress + ( fraction / 10 )
-            curProgress = math.min( curProgress, rechargeTime )
+            curProgress = curProgress + (fraction / 10)
+            curProgress = math.min(curProgress, rechargeTime)
 
             local workProgress = curProgress / rechargeTime
 
-            self:UpdateShieldRatio( workProgress )
+            self:UpdateShieldRatio(workProgress)
             WaitTicks(1)
         end
     end,
@@ -625,13 +625,13 @@ UnitShield = Class(Shield){
     CreateImpactEffect = function(self, vector)
         local army = self:GetArmy()
         local OffsetLength = Util.GetVectorLength(vector)
-        local ImpactEnt = Entity { Owner = self.Owner }
+        local ImpactEnt = Entity {Owner = self.Owner}
 
-        Warp( ImpactEnt, self:GetPosition())
+        Warp(ImpactEnt, self:GetPosition())
         ImpactEnt:SetOrientation(OrientFromDir(Vector(-vector.x,-vector.y,-vector.z)),true)
 
         for k, v in self.ImpactEffects do
-            CreateEmitterAtBone( ImpactEnt, -1, army, v ):OffsetEmitter(0,0,OffsetLength)
+            CreateEmitterAtBone(ImpactEnt, -1, army, v):OffsetEmitter(0,0,OffsetLength)
         end
         WaitSeconds(1)
 
@@ -639,7 +639,7 @@ UnitShield = Class(Shield){
     end,
 
     CreateShieldMesh = function(self)
-        self:SetCollisionShape( 'Box', self.CollisionCenterX, self.CollisionCenterY, self.CollisionCenterZ, self.CollisionSizeX, self.CollisionSizeY, self.CollisionSizeZ)
+        self:SetCollisionShape('Box', self.CollisionCenterX, self.CollisionCenterY, self.CollisionCenterZ, self.CollisionSizeX, self.CollisionSizeY, self.CollisionSizeZ)
         self.Owner:SetMesh(self.OwnerShieldMesh,true)
     end,
 

@@ -56,7 +56,7 @@ UES0401 = Class(TSeaUnit) {
         self:SetMesh(self:GetBlueprint().Display.BuildMeshBlueprint, true)
         if self:GetBlueprint().General.UpgradesFrom != builder:GetUnitId() then
             self:HideBone(0, true)
-            self.OnBeingBuiltEffectsBag:Add( self:ForkThread( CreateBuildCubeThread, builder, self.OnBeingBuiltEffectsBag ))
+            self.OnBeingBuiltEffectsBag:Add(self:ForkThread(CreateBuildCubeThread, builder, self.OnBeingBuiltEffectsBag))
         end
     end,
 
@@ -70,7 +70,7 @@ UES0401 = Class(TSeaUnit) {
         end
     end,
 
-    OnMotionVertEventChange = function( self, new, old )
+    OnMotionVertEventChange = function(self, new, old)
         TSeaUnit.OnMotionVertEventChange(self, new, old)
         if new == 'Down' then
             self:PlayAllOpenAnims(false)
