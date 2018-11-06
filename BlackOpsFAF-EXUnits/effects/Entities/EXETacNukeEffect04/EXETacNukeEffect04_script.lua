@@ -14,18 +14,18 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 EXETacNukeEffect04 = Class(NullShell) {
     
     OnCreate = function(self)
-		NullShell.OnCreate(self)
-		self:ForkThread(self.EffectThread)
+        NullShell.OnCreate(self)
+        self:ForkThread(self.EffectThread)
     end,
     
     EffectThread = function(self)
-		local army = self:GetArmy()
-		
-		
-		WaitSeconds(4)
-		for k, v in EffectTemplate.TNukeBaseEffects01 do
-			CreateEmitterOnEntity(self, army, v ):ScaleEmitter(0.5)-- Exavier Modified Scale 
-		end	
+        local army = self:GetArmy()
+        
+        
+        WaitSeconds(4)
+        for k, v in EffectTemplate.TNukeBaseEffects01 do
+            CreateEmitterOnEntity(self, army, v ):ScaleEmitter(0.5)-- Exavier Modified Scale 
+        end    
     end,      
 }
 

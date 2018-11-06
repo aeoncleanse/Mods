@@ -18,28 +18,28 @@ EEB0001 = Class(SStructureUnit) {
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
     },
-	
+    
     Parent = nil,
 
     SetParent = function(self, parent, droneName)
         self.Parent = parent
         self.Drone = droneName
     end, 
-	
-	OnCreate = function(self, builder, layer)
+    
+    OnCreate = function(self, builder, layer)
         SStructureUnit.OnCreate(self, builder, layer)
-		self:ForkThread(self.CoreEffectsCreation)
-		self.UnitComplete = true
-	end,
+        self:ForkThread(self.CoreEffectsCreation)
+        self.UnitComplete = true
+    end,
 
-	CoreEffectsCreation = function(self)
+    CoreEffectsCreation = function(self)
         self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exstar_01_emit.bp')
         self.Effect1:ScaleEmitter(0.15)
-		WaitSeconds(2)
+        WaitSeconds(2)
         self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), '/mods/BlackOpsFAF-EXUnits/effects/emitters/exstar_02_emit.bp')
         self.Effect2:ScaleEmitter(3.6)
-	end,
-	
+    end,
+    
     OnKilled = function(self, instigator, type, overkillRatio)
         ------ Notifies parent of drone death and clears the offending drone from the parents table
         if not self.Parent:IsDead() then

@@ -20,23 +20,23 @@ ERL0301 = Class(CWalkingLandUnit) {
                     self:ForkThread(self.DecloakForTimeout)
                 end
             end,
-			
+            
             DecloakForTimeout = function(self)
                 self.unit:DisableUnitIntel('Cloak')
                 WaitSeconds(self.unit:GetBlueprint().Intel.RecloakAfterFiringDelay or 10)
                 self.unit:EnableUnitIntel('Cloak')
             end, 
-		},
+        },
     },
-	
-	OnStopBeingBuilt = function(self,builder,layer)
+    
+    OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
-		--self:SetConsumptionPerSecondEnergy(0)
+        --self:SetConsumptionPerSecondEnergy(0)
         --self:EnableUnitIntel('Cloak')
         --self:EnableUnitIntel('RadarStealth')
-		--self:SetMaintenanceConsumptionInactive()
-		self.IntelEffectsBag = {}
-		--self:ForkThread(self.OnScriptBitClear)
+        --self:SetMaintenanceConsumptionInactive()
+        self.IntelEffectsBag = {}
+        --self:ForkThread(self.OnScriptBitClear)
     end,
 
     OnScriptBitSet = function(self, bit)
@@ -58,24 +58,24 @@ ERL0301 = Class(CWalkingLandUnit) {
     end,
 
     IntelEffects = {
-		Cloak = {
-		    {
-			    Bones = {
-				    'ERL302',
-			    },
-			    Scale = 2.0,
-			    Type = 'Cloak01',
-		    },
-		},
-		Field = {
-		    {
-			    Bones = {
-				    'ERL302',
-			    },
-			    Scale = 1.6,
-			    Type = 'Cloak01',
-		    },	
-        },	
+        Cloak = {
+            {
+                Bones = {
+                    'ERL302',
+                },
+                Scale = 2.0,
+                Type = 'Cloak01',
+            },
+        },
+        Field = {
+            {
+                Bones = {
+                    'ERL302',
+                },
+                Scale = 1.6,
+                Type = 'Cloak01',
+            },    
+        },    
     },
 
     OnIntelEnabled = function(self)
@@ -83,10 +83,10 @@ ERL0301 = Class(CWalkingLandUnit) {
         if self:IsIntelEnabled('Cloak') then 
             self:SetMaintenanceConsumptionActive()
             if not self.IntelEffectsBag then
-			    self.IntelEffectsBag = {}
-			    self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
-			end            
-        end		
+                self.IntelEffectsBag = {}
+                self.CreateTerrainTypeEffects( self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag )
+            end            
+        end        
     end,
 
     OnIntelDisabled = function(self)

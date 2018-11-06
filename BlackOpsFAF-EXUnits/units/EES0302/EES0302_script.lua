@@ -18,7 +18,7 @@ local TAAFlakArtilleryCannon = import('/lua/terranweapons.lua').TAAFlakArtillery
 EES0302 = Class(TSeaUnit) {
 
     Weapons = {
-		CruiseMissiles = Class(TIFCruiseMissileLauncherSub) {},
+        CruiseMissiles = Class(TIFCruiseMissileLauncherSub) {},
         HVMTurret = Class(TSAMLauncher) {},
         AntiTorpedo = Class(TIFSmartCharge) {},
         TMDFore = Class(TAMPhalanxWeapon) {},

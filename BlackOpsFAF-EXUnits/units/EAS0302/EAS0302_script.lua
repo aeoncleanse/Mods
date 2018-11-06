@@ -38,10 +38,10 @@ EAS0302 = Class(ASeaUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         ASeaUnit.OnStopBeingBuilt(self,builder,layer)
-		self:SetWeaponEnabledByLabel('MassTorpedo01', false)
+        self:SetWeaponEnabledByLabel('MassTorpedo01', false)
         self:SetWeaponEnabledByLabel('MassTorpedo02', false)
     end,
-	
+    
     OnScriptBitSet = function(self, bit)
         ASeaUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 

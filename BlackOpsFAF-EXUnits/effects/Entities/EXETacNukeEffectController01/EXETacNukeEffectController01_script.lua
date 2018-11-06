@@ -113,7 +113,7 @@ EXETacNukeEffectController01 = Class(NullShell) {
         
         
         for k, v in EffectTemplate.TNukeRings01 do
-			CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.125)-- Exavier Modified Scale
+            CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.125)-- Exavier Modified Scale
         end
         
         self:CreateInitialFireballSmokeRing()
@@ -185,45 +185,45 @@ EXETacNukeEffectController01 = Class(NullShell) {
             table.insert(projectiles, proj)
         end   
     
-		WaitSeconds(0.2)
+        WaitSeconds(0.2)
         for i = 0, (sides-1) do
             local x = math.sin(i*angle)
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
-			proj:SetVelocityAlign(false)
-			proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
-			proj:SetVelocity(0,0.75,0)-- Exavier Modified Velocity 
-			proj:SetBallisticAcceleration(-0.04)-- Exavier Modified Acceleration            
+            proj:SetVelocityAlign(false)
+            proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+            proj:SetVelocity(0,0.75,0)-- Exavier Modified Velocity 
+            proj:SetBallisticAcceleration(-0.04)-- Exavier Modified Acceleration            
         end   
     end,
     
     CreateGroundPlumeConvectionEffects = function(self,army)
-		for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-			CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.25)-- Exavier Modified Scale 
-		end
+        for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
+            CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.25)-- Exavier Modified Scale 
+        end
     
-		local sides = 10
-		local angle = (2*math.pi) / sides
-		local inner_lower_limit = 0.5-- Exavier Modified
+        local sides = 10
+        local angle = (2*math.pi) / sides
+        local inner_lower_limit = 0.5-- Exavier Modified
         local outer_lower_limit = 0.5-- Exavier Modified
         local outer_upper_limit = 0.75-- Exavier Modified
     
-		local inner_lower_height = 0-- Exavier Modified
-		local inner_upper_height = 1-- Exavier Modified
-		local outer_lower_height = 0-- Exavier Modified
-		local outer_upper_height = 1-- Exavier Modified
+        local inner_lower_height = 0-- Exavier Modified
+        local inner_upper_height = 1-- Exavier Modified
+        local outer_lower_height = 0-- Exavier Modified
+        local outer_upper_height = 1-- Exavier Modified
       
-		sides = 8
-		angle = (2*math.pi) / sides
-		for i = 0, (sides-1)
-			do
-			local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
-			local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-			local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-			local velocity = RandomFloat( 1, 3 ) * 0.5-- Exavier Modified Last Number
-			self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect05/EXETacNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
-				:SetVelocity(x * velocity, 0, z * velocity)
-		end 
+        sides = 8
+        angle = (2*math.pi) / sides
+        for i = 0, (sides-1)
+            do
+            local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
+            local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
+            local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
+            local velocity = RandomFloat( 1, 3 ) * 0.5-- Exavier Modified Last Number
+            self:CreateProjectile('/mods/BlackOpsFAF-EXUnits/effects/Entities/EXETacNukeEffect05/EXETacNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
+                :SetVelocity(x * velocity, 0, z * velocity)
+        end 
     end,
 }
 

@@ -41,7 +41,7 @@ UnitBlueprint {
         'SIZE20',
         'VISIBLETORECON',
         'RECLAIMABLE',
-		'PODSTAGINGPLATFORM',
+        'PODSTAGINGPLATFORM',
     },
     CollisionOffsetY = 0,
     Defense = {
@@ -110,7 +110,7 @@ UnitBlueprint {
         BuildTime = 32400,
         ProductionPerSecondEnergy = 2501,
         ProductionPerSecondMass = 25,
-		MaintenanceConsumptionPerSecondEnergy = 1,
+        MaintenanceConsumptionPerSecondEnergy = 1,
     },
     Footprint = {
         SizeX = 7,

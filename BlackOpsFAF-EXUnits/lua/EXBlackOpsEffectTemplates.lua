@@ -27,7 +27,7 @@ SonicDisruptorWaveHit = {
 }
 
 SonicDisruptorWaveBeam01 = {
-	EXBlackopsBpPath .. 'exsonicdisruptor_beam_01_emit.bp',
+    EXBlackopsBpPath .. 'exsonicdisruptor_beam_01_emit.bp',
 }
 
 --------------------------------------------------------------------------

@@ -26,17 +26,17 @@ ERS0302 = Class(CSeaUnit) {
 
     Weapons = {
         MicrowaveCannon = Class(CybranAriesBeam) {},
-    	AAMissile = Class(CAANanoDartWeapon) {},
-    	HailfireRocket = Class(HailfireLauncherWeapon) {},
+        AAMissile = Class(CAANanoDartWeapon) {},
+        HailfireRocket = Class(HailfireLauncherWeapon) {},
         TorpedoR = Class(CANNaniteTorpedoWeapon) {},
         TorpedoL = Class(CANNaniteTorpedoWeapon) {},
-		Zapper01 = Class(CAMZapperWeapon02) {},
-		Zapper02 = Class(CAMZapperWeapon02) {},
+        Zapper01 = Class(CAMZapperWeapon02) {},
+        Zapper02 = Class(CAMZapperWeapon02) {},
     },
 
     OnStopBeingBuilt = function(self,builder,layer)
         CSeaUnit.OnStopBeingBuilt(self,builder,layer)
-		self:SetWeaponEnabledByLabel('HailfireRocket', false)
+        self:SetWeaponEnabledByLabel('HailfireRocket', false)
         if(self:GetCurrentLayer() == 'Land') then
             self.AT1 = self:ForkThread(self.TransformThread, true)
         end
@@ -44,11 +44,11 @@ ERS0302 = Class(CSeaUnit) {
         --self.Trash:Add(CreateRotator(self, 'Back_Radar', 'y', nil, -360, 0, 0))
         --self.Trash:Add(CreateRotator(self, 'Front_Radar', 'y', nil, -180, 0, 0))
     end,
-	
+    
     OnScriptBitSet = function(self, bit)
         CSeaUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
-			self:ForkThread(self.EXOnScriptBitSet)
+            self:ForkThread(self.EXOnScriptBitSet)
         end
     end,
 
@@ -60,9 +60,9 @@ ERS0302 = Class(CSeaUnit) {
     end,
 
     EXOnScriptBitSet = function(self)
-			if( not self.AnimManip2 ) then
-				self.AnimManip2 = CreateAnimator(self)
-			end
+            if( not self.AnimManip2 ) then
+                self.AnimManip2 = CreateAnimator(self)
+            end
             self:SetWeaponEnabledByLabel('AAMissile', false)
             self.AnimManip2:PlayAnim(self:GetBlueprint().Display.AnimationHailfireDeploy)
             self.AnimManip2:SetRate(0.5)
@@ -83,7 +83,7 @@ ERS0302 = Class(CSeaUnit) {
             --self.AnimManip2:Destroy()
     end,
 
-	OnMotionHorzEventChange = function(self, new, old)
+    OnMotionHorzEventChange = function(self, new, old)
         CSeaUnit.OnMotionHorzEventChange(self, new, old)
         if self:IsDead() then return end
         if( not self.IsWaiting ) then
@@ -129,10 +129,10 @@ ERS0302 = Class(CSeaUnit) {
             -- Change movement speed to the multiplier in blueprint
             self:SetSpeedMult(bp.Physics.LandSpeedMultiplier)
             self:SetImmobile(true)
-		    self:SetWeaponEnabledByLabel('TorpedoR', false)
-		    self:SetWeaponEnabledByLabel('TorpedoL', false)
-		    --self:SetWeaponEnabledByLabel('Zapper01', false)
-		    --self:SetWeaponEnabledByLabel('Zapper02', false)
+            self:SetWeaponEnabledByLabel('TorpedoR', false)
+            self:SetWeaponEnabledByLabel('TorpedoL', false)
+            --self:SetWeaponEnabledByLabel('Zapper01', false)
+            --self:SetWeaponEnabledByLabel('Zapper02', false)
             self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationTransform)
             self.AnimManip:SetRate(0.62)
             self.IsWaiting = true
@@ -158,14 +158,14 @@ ERS0302 = Class(CSeaUnit) {
             self.AnimManip = nil
             self:SetImmobile(false)
             self.Walking = false
-			self:SetWeaponEnabledByLabel('TorpedoR', true)
-			self:SetWeaponEnabledByLabel('TorpedoL', true)
-			--self:SetWeaponEnabledByLabel('Zapper01', true)
-			--self:SetWeaponEnabledByLabel('Zapper02', true)
+            self:SetWeaponEnabledByLabel('TorpedoR', true)
+            self:SetWeaponEnabledByLabel('TorpedoL', true)
+            --self:SetWeaponEnabledByLabel('Zapper01', true)
+            --self:SetWeaponEnabledByLabel('Zapper02', true)
         end
     end,
-	
-	OnKilled = function(self, instigator, type, overkillRatio)
+    
+    OnKilled = function(self, instigator, type, overkillRatio)
         self.Trash:Destroy()
         self.Trash = TrashBag()
         if(self:GetCurrentLayer() != 'Water') then
@@ -175,8 +175,8 @@ ERS0302 = Class(CSeaUnit) {
         end
         CSeaUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
-	
-	DeathThread = function(self, overkillRatio)
+    
+    DeathThread = function(self, overkillRatio)
         if (self:GetCurrentLayer() != 'Water') then
             self:PlayUnitSound('Destroyed')
             local army = self:GetArmy()

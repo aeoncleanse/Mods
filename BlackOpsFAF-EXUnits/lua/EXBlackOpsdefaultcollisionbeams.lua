@@ -34,18 +34,18 @@ SCCollisionBeam = Class(CollisionBeam) {
 --   UEF Sonic Disruptor Wave
 -------------------------------
 SonicDisruptorWaveCBeam = Class(EXCollisionBeam) {
-	FxBeam = {},
+    FxBeam = {},
 
     TerrainImpactType = 'LargeBeam02',
     
     FxBeamStartPoint = EXEffectTemplate.SonicDisruptorWaveMuzzle,
     FxBeam = EXEffectTemplate.SonicDisruptorWaveBeam01,
     FxBeamEndPoint = EXEffectTemplate.SonicDisruptorWaveHit,
-	
-	FxBeamStartPointScale = 0.5,
-	FxBeamEndPointScale = 0.5,
-	TerrainImpactScale = 0.2,
-	
+    
+    FxBeamStartPointScale = 0.5,
+    FxBeamEndPointScale = 0.5,
+    TerrainImpactScale = 0.2,
+    
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
 

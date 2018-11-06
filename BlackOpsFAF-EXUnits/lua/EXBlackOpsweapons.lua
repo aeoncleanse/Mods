@@ -52,7 +52,7 @@ SonicDisruptorWave = Class(DefaultBeamWeapon) {
 -------------------------------
 UEFACUHeavyPlasmaGatlingCannonWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EXEffectTemplate.UEFACUHeavyPlasmaGatlingCannonMuzzleFlash,
-	FxMuzzleFlashScale = 0.35,
+    FxMuzzleFlashScale = 0.35,
 }
 
 -------------------------------
@@ -107,7 +107,7 @@ CybranAriesBeam = Class(DefaultBeamWeapon) {
 -------------------------------
 HailfireLauncherWeapon = Class(DefaultProjectileWeapon) {
     FxMuzzleFlash = EXEffectTemplate.HailfireLauncherExhaust,
-	
+    
 
 }
 
