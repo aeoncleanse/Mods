@@ -28,128 +28,128 @@ EmitterBlueprint {
     XDirectionCurve = {
         XRange = 2.00,
         Keys = {
-            { x=0.880,y=0.000,z=0.000 },
+            {x = 0.880, y = 0.000, z = 0.000},
         },
     },
     YDirectionCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     ZDirectionCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     EmitRateCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.013,y=2.337,z=0.000 },
-            { x=1.029,y=8.721,z=1.000 },
+            {x = 1.013, y = 2.337, z = 0.000},
+            {x = 1.029, y = 8.721, z = 1.000},
         },
     },
     LifetimeCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=25.000,z=1.000 },
+            {x = 1.000, y = 25.000, z = 1.000},
         },
     },
     VelocityCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=1.000,z=0.110 },
+            {x = 1.000, y = 1.000, z = 0.110},
         },
     },
     XAccelCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     YAccelCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     ZAccelCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     ResistanceCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     SizeCurve = {
         XRange = 2.00,
         Keys = {
-            { x=0.042,y=0.000,z=0.500 },
+            {x = 0.042, y = 0.000, z = 0.500},
         },
     },
     XPosCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     YPosCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.020,y=-0.500,z=0.000 },
+            {x = 1.020, y = -0.500, z = 0.000},
         },
     },
     ZPosCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.020,y=0.000,z=0.000 },
+            {x = 1.020, y = 0.000, z = 0.000},
         },
     },
     StartSizeCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.018,y=1.875,z=0.250 },
+            {x = 1.018, y = 1.875, z = 0.250},
         },
     },
     EndSizeCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.040,y=0.430,z=0.250 },
+            {x = 1.040, y = 0.430, z = 0.250},
         },
     },
     InitialRotationCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=180.000,z=360.000 },
+            {x = 1.000, y = 180.000, z = 360.000},
         },
     },
     RotationRateCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     FrameRateCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=1.000,z=0.000 },
+            {x = 1.000, y = 1.000, z = 0.000},
         },
     },
     TextureSelectionCurve = {
         XRange = 2.00,
         Keys = {
-            { x=1.000,y=0.000,z=0.000 },
+            {x = 1.000, y = 0.000, z = 0.000},
         },
     },
     RampSelectionCurve = {
         XRange = 2.00,
         Keys = {
-            { x=0.000,y=0.000,z=0.000 },
+            {x = 0.000, y = 0.000, z = 0.000},
         },
     },
 }

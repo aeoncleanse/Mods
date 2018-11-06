@@ -34,7 +34,7 @@ BEA0402 = Class(TAirUnit) {
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_2', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_2', self.unit:GetArmy(), Effects.WeaponSteam01)
                 CitadelPlasmaGatlingCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
 
@@ -57,7 +57,7 @@ BEA0402 = Class(TAirUnit) {
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-200)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_2', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_2', self.unit:GetArmy(), Effects.WeaponSteam01)
                 CitadelPlasmaGatlingCannonWeapon.PlayFxRackSalvoReloadSequence(self)
             end,
         },
@@ -70,7 +70,7 @@ BEA0402 = Class(TAirUnit) {
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_1', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_1', self.unit:GetArmy(), Effects.WeaponSteam01)
                 CitadelPlasmaGatlingCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
 
@@ -93,7 +93,7 @@ BEA0402 = Class(TAirUnit) {
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-200)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_1', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_1', self.unit:GetArmy(), Effects.WeaponSteam01)
                 CitadelPlasmaGatlingCannonWeapon.PlayFxRackSalvoReloadSequence(self)
             end,
         },

@@ -44,7 +44,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
         local launcher = self:GetLauncher()
         if launcher and not launcher:IsDead() and launcher.EventCallbacks.ProjectileDamaged then
             self.ProjectileDamaged = {}
-            for k,v in launcher.EventCallbacks.ProjectileDamaged do
+            for k, v in launcher.EventCallbacks.ProjectileDamaged do
                 table.insert(self.ProjectileDamaged, v)
             end
         end

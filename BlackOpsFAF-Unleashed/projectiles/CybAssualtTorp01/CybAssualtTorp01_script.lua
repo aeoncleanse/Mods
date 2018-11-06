@@ -9,7 +9,7 @@ local AssaultTorpedoSubProjectile = import('/mods/BlackOpsFAF-Unleashed/lua/Blac
 
 CANKrilTorpedo01 = Class(AssaultTorpedoSubProjectile) {
 
-    FxEnterWater = { '/effects/emitters/water_splash_ripples_ring_01_emit.bp',
+    FxEnterWater = {'/effects/emitters/water_splash_ripples_ring_01_emit.bp',
                     '/effects/emitters/water_splash_plume_01_emit.bp',
                 },
     TrailDelay = 2,

@@ -134,7 +134,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(20, 30 ))
+            proj:SetVelocity(RandomFloat(20, 30))
             proj:SetBallisticAcceleration(-9.8)
         end
 

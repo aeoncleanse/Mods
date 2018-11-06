@@ -145,7 +145,7 @@ InqDeathBombEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(InqDeathBombEffect01, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(5, 15 ))
+            proj:SetVelocity(RandomFloat(5, 15))
             proj:SetBallisticAcceleration(-4.8)
         end
     end,

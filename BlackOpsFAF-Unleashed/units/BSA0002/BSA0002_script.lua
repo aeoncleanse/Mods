@@ -110,7 +110,7 @@ BSA0002 = Class(SConstructionUnit) {
             -- amount = math.ceil(amount*rebuilerBot_DLS)
         end
         if not self:IsDead() and instigator and IsUnit(instigator) and not instigator:IsDead() and not self.EvadeThread then
-            self.EvadeThread = self:ForkThread( function()
+            self.EvadeThread = self:ForkThread(function()
                 self:SetSpeedMult(2.0)
                 self:SetAccMult(2.0)
                 IssueClearCommands({self})
@@ -119,7 +119,7 @@ BSA0002 = Class(SConstructionUnit) {
                 self:SetSpeedMult(1.0)
                 self:SetAccMult(1.0)
                 self.EvadeThread = nil
-            end )
+            end)
         end
         SConstructionUnit.OnDamage(self, instigator, amount, vector, damagetype)
     end,

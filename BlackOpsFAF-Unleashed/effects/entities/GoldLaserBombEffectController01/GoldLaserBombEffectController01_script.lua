@@ -123,7 +123,7 @@ GoldLaserBombEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(GoldLaserBombEffect01, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(2, 10 ))
+            proj:SetVelocity(RandomFloat(2, 10))
             proj:SetBallisticAcceleration(-4.8)
         end
     end,

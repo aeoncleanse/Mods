@@ -151,17 +151,17 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
 
     CreateDamageEffects = function(self, bone, army)
         for k, v in EffectTemplate.DamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(3.0)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(3.0)
         end
     end,
 
-    CreateExplosionDebris = function( self, bone, Army )
+    CreateExplosionDebris = function(self, bone, Army)
         for k, v in EffectTemplate.ExplosionEffectsSml01 do
-            CreateAttachedEmitter( self, bone, Army, v ):ScaleEmitter(2.0)
+            CreateAttachedEmitter(self, bone, Army, v):ScaleEmitter(2.0)
         end
     end,
 
-    CreateDeathExplosionDustRing = function( self )
+    CreateDeathExplosionDustRing = function(self)
         local blanketSides = 18
         local blanketAngle = (2*math.pi) / blanketSides
         local blanketStrength = 1
@@ -209,7 +209,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
 
     CreateGroundPlumeConvectionEffects = function(self,army)
     for k, v in EffectTemplate.TNukeGroundConvectionEffects01 do
-          CreateEmitterAtEntity(self, army, v )
+          CreateEmitterAtEntity(self, army, v)
     end
 
     local sides = 10
@@ -230,7 +230,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
         local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
         local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
-        local velocity = RandomFloat( 1, 3 ) * 3
+        local velocity = RandomFloat(1, 3) * 3
         self:CreateProjectile('/effects/entities/UEFNukeEffect05/UEFNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
             :SetVelocity(x * velocity, 0, z * velocity)
     end
@@ -275,7 +275,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
     CreateFlavorPlumes = function(self)
         local numProjectiles = 8
         local angle = (2*math.pi) / numProjectiles
-        local angleInitial = RandomFloat( 0, angle )
+        local angleInitial = RandomFloat(0, angle)
         local angleVariation = angle * 0.75
         local projectiles = {}
 
@@ -291,10 +291,10 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
             yVec = RandomFloat(0.2, 1)
             zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))
             velocity = 3.4 + (yVec * RandomFloat(2,5))
-            table.insert(projectiles, self:CreateProjectile('/effects/entities/UEFNukeFlavorPlume01/UEFNukeFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity) )
+            table.insert(projectiles, self:CreateProjectile('/effects/entities/UEFNukeFlavorPlume01/UEFNukeFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity))
         end
 
-        WaitSeconds( 3 )
+        WaitSeconds(3)
 
         -- Slow projectiles down to normal speed
         for k, v in projectiles do
@@ -324,7 +324,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
             local z = math.cos(i*angle)
             local proj = projectiles[i+1]
         proj:SetVelocityAlign(false)
-        proj:SetOrientation(OrientFromDir(Util.Cross( Vector(x,0,z), Vector(0,1,0))),true)
+        proj:SetOrientation(OrientFromDir(Util.Cross(Vector(x,0,z), Vector(0,1,0))),true)
         proj:SetVelocity(0,3,0)
           proj:SetBallisticAcceleration(-0.05)
         end
@@ -418,7 +418,7 @@ BEL0402 = Class(BaseTransport, TWalkingLandUnit, AirDroneCarrier) {
         end
 
         for k, v in EffectTemplate.TNukeRings01 do
-            CreateEmitterAtEntity(self, army, v )
+            CreateEmitterAtEntity(self, army, v)
         end
 
         self:CreateInitialFireballSmokeRing()

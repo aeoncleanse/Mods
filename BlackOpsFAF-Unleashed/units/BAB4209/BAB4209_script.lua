@@ -49,7 +49,7 @@ BAB4209 = Class(AStructureUnit) {
             self.AmbientEffectsBag = {}
         end
         for k, v in self.AmbientEffects do
-            table.insert( self.AmbientEffectsBag, CreateAttachedEmitter( self, 'BAB4209', self:GetArmy(), v ):ScaleEmitter(0.4) )
+            table.insert(self.AmbientEffectsBag, CreateAttachedEmitter(self, 'BAB4209', self:GetArmy(), v):ScaleEmitter(0.4))
         end
     end,
 

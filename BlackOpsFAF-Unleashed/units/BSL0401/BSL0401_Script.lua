@@ -269,7 +269,7 @@ BSL0401 = Class(BaseTransport, SHoverLandUnit, AirDroneCarrier) {
         WaitSeconds(0.2)
 
         local RandBoneIter = RandomIter(explosionBones)
-        for i=1,Random(4,6) do
+        for i = 1, Random(4,6) do
             local bone = RandBoneIter()
             explosion.CreateDefaultHitExplosionAtBone(self, bone, 1.0)
             WaitTicks(Random(0.1,1))

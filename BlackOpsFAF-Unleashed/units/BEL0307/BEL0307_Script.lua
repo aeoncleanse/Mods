@@ -29,8 +29,8 @@ BEL0307 = Class(TLandUnit) {
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(0)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_01', self.unit:GetArmy(), Effects.WeaponSteam01 )
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_02', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_01', self.unit:GetArmy(), Effects.WeaponSteam01)
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_02', self.unit:GetArmy(), Effects.WeaponSteam01)
                 JuggPlasmaGatlingCannonWeapon.PlayFxWeaponPackSequence(self)
             end,
 
@@ -61,8 +61,8 @@ BEL0307 = Class(TLandUnit) {
                 if self.SpinManip2 then
                     self.SpinManip2:SetTargetSpeed(-200)
                 end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_01', self.unit:GetArmy(), Effects.WeaponSteam01 )
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'Gat_Muzzle_02', self.unit:GetArmy(), Effects.WeaponSteam01 )
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_01', self.unit:GetArmy(), Effects.WeaponSteam01)
+                self.ExhaustEffects = EffectUtils.CreateBoneEffects(self.unit, 'Gat_Muzzle_02', self.unit:GetArmy(), Effects.WeaponSteam01)
                 JuggPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         }
@@ -84,9 +84,9 @@ BEL0307 = Class(TLandUnit) {
     OnLayerChange = function(self, new, old)
         TLandUnit.OnLayerChange(self, new, old)
         if self.WeaponsEnabled then
-            if( new == 'Land' ) then
+            if(new == 'Land') then
                 self:CreateUnitAmbientEffect(new)
-            elseif ( new == 'Seabed' ) then
+            elseif (new == 'Seabed') then
                 self:CreateUnitAmbientEffect(new)
             end
         end
@@ -109,7 +109,7 @@ BEL0307 = Class(TLandUnit) {
     },
 
     CreateUnitAmbientEffect = function(self, layer)
-        if( self.AmbientEffectThread ~= nil ) then
+        if(self.AmbientEffectThread ~= nil) then
            self.AmbientEffectThread:Destroy()
         end
         if self.AmbientExhaustEffectsBag then
@@ -124,7 +124,7 @@ BEL0307 = Class(TLandUnit) {
             local army = self:GetArmy()
             for kE, vE in self.AmbientSeabedExhaustEffects do
                 for kB, vB in self.AmbientExhaustBones do
-                    table.insert( self.AmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE ):ScaleEmitter(1) )
+                    table.insert(self.AmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE):ScaleEmitter(1))
                 end
             end
         end
@@ -136,7 +136,7 @@ BEL0307 = Class(TLandUnit) {
 
             for kE, vE in self.AmbientLandExhaustEffects do
                 for kB, vB in self.AmbientExhaustBones do
-                    table.insert( self.AmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE ):ScaleEmitter(0.5) )
+                    table.insert(self.AmbientExhaustEffectsBag, CreateAttachedEmitter(self, vB, army, vE):ScaleEmitter(0.5))
                 end
             end
 
@@ -147,9 +147,9 @@ BEL0307 = Class(TLandUnit) {
         end
     end,
 
-    CreateDamageEffects = function(self, bone, army )
+    CreateDamageEffects = function(self, bone, army)
         for k, v in Effects.DamageFireSmoke01 do
-            CreateAttachedEmitter( self, bone, army, v ):ScaleEmitter(1.5)
+            CreateAttachedEmitter(self, bone, army, v):ScaleEmitter(1.5)
         end
     end,
 }

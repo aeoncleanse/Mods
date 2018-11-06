@@ -72,7 +72,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(10, 20 ))
+            proj:SetVelocity(RandomFloat(10, 20))
             proj:SetBallisticAcceleration(-9.8)
         end
 
@@ -95,7 +95,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(10, 20 ))
+            proj:SetVelocity(RandomFloat(10, 20))
             proj:SetBallisticAcceleration(-9.8)
         end
         WaitSeconds(.5)
@@ -117,7 +117,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(10, 20 ))
+            proj:SetVelocity(RandomFloat(10, 20))
             proj:SetBallisticAcceleration(-9.8)
         end
 
@@ -140,7 +140,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(10, 20 ))
+            proj:SetVelocity(RandomFloat(10, 20))
             proj:SetBallisticAcceleration(-9.8)
         end
 
@@ -163,7 +163,7 @@ BasiliskNukeEffectController01 = Class(NullShell) {
             pz = RandomFloat(0.5, 1.0) * zVec
 
             local proj = self:CreateProjectile(BasiliskNukeEffect04, px, py, pz, xVec, yVec, zVec)
-            proj:SetVelocity(RandomFloat(10, 20 ))
+            proj:SetVelocity(RandomFloat(10, 20))
             proj:SetBallisticAcceleration(-9.8)
         end
 
