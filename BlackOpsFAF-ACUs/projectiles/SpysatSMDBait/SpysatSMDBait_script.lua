@@ -9,7 +9,7 @@
 -----------------------------------------------------------------
 
 local DummyArtemisCannonProjectile = import('/lua/sim/defaultprojectiles.lua').NullShell
-local EffectUtil = import('/lua/EffectUtilities.lua') 
+local EffectUtil = import('/lua/EffectUtilities.lua')
 
 SpysatSMDBait = Class(DummyArtemisCannonProjectile) {
 
@@ -30,7 +30,7 @@ SpysatSMDBait = Class(DummyArtemisCannonProjectile) {
         self.KillThread = self:ForkThread(self.Verification)
         self.KillThread = self:ForkThread(self.KillSelfThread)
     end,
-    
+
     KillSelfThread = function(self)
         WaitSeconds(20)
         if not self.Parent:IsDead() then
@@ -38,18 +38,18 @@ SpysatSMDBait = Class(DummyArtemisCannonProjectile) {
         end
         self:Destroy()
     end,
-    
+
     Parent = nil,
     SetParent = function(self, parent, projName)
         self.Parent = parent
         self.Proj = projName
     end,
-   
+
     Verification = function(self)
         while not self:BeenDestroyed() and not self.Parent:IsDead() do
             local unitLoc = self.Parent:GetPosition('Turret_Barrel_Muzzle')
             local projmod = unitLoc[2] - 1
-            local destination = {unitLoc[1], projmod, unitLoc[3]} 
+            local destination = {unitLoc[1], projmod, unitLoc[3]}
             Warp(self, destination)
             WaitSeconds(1)
         end
@@ -57,12 +57,12 @@ SpysatSMDBait = Class(DummyArtemisCannonProjectile) {
 
     OnDestroyed = function(self)
         DummyArtemisCannonProjectile.OnDestroyed(self, instigator, type, overkillRatio)
-    end,  
+    end,
 
     OnLostTarget = function(self)
 
     end,
 
-    
+
 }
 TypeClass = SpysatSMDBait

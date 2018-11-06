@@ -43,7 +43,7 @@ ERL0001 = Class(ACUUnit) {
         OverCharge = Class(CDFOverchargeWeapon) {},
         AutoOverCharge = Class(CDFOverchargeWeapon) {},
     },
-    
+
     __init = function(self)
         ACUUnit.__init(self, 'RightRipper')
     end,
@@ -75,7 +75,7 @@ ERL0001 = Class(ACUUnit) {
         self:DisableUnitIntel('Enhancement', 'Sonar')
         self.EMPArrayEffects01 = {}
         self:ForkThread(self.GiveInitialResources)
-        
+
         -- Disable Upgrade Weapons
         self:SetWeaponEnabledByLabel('RocketPack', false)
         self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
@@ -91,7 +91,7 @@ ERL0001 = Class(ACUUnit) {
         self:SetWeaponEnabledByLabel('AA04', false)
     end,
 
-    OnStartBuild = function(self, unitBeingBuilt, order)    
+    OnStartBuild = function(self, unitBeingBuilt, order)
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
         self.UnitBuildOrder = order
     end,
@@ -100,31 +100,31 @@ ERL0001 = Class(ACUUnit) {
     SetProduction = function(self, bp)
         local energy = bp.ProductionPerSecondEnergy or 0
         local mass = bp.ProductionPerSecondMass or 0
-        
+
         local bpEcon = self:GetBlueprint().Economy
-        
+
         self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
         self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
     end,
-    
+
     -- Function to toggle the Ripper
     TogglePrimaryGun = function(self, RoF, radius)
         local wep = self:GetWeaponByLabel('RightRipper')
         local oc = self:GetWeaponByLabel('OverCharge')
         local aoc = self:GetWeaponByLabel('AutoOverCharge')
-    
+
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
         local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
         -- Change RoF
         wep:ChangeRateOfFire(RoF)
-        
+
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
         aoc:ChangeMaxRadius(aocRadius)
-        
+
         -- As radius is only passed when turning on, use the bool
         if radius then
             self:ShowBone('Right_Upgrade', true)
@@ -142,13 +142,13 @@ ERL0001 = Class(ACUUnit) {
             self.PainterRange[string.sub(enh, 0, -7)] = nil
         elseif not delete and not self.PainterRange[enh] then
             self.PainterRange[enh] = newRange
-        end 
-        
+        end
+
         local range = 22
         for upgrade, radius in self.PainterRange do
             if radius > range then range = radius end
         end
-        
+
         local wep = self:GetWeaponByLabel('TargetPainter')
         wep:ChangeMaxRadius(range)
     end,
@@ -205,7 +205,7 @@ ERL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.CYBRAN * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
-            
+
             if not Buffs['CYBRANACUT2BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT2BuildRate',
@@ -240,7 +240,7 @@ ERL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
-            
+
             if not Buffs['CYBRANACUT3BuildRate'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT3BuildRate',
@@ -309,7 +309,7 @@ ERL0001 = Class(ACUUnit) {
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
-            
+
             if not Buffs['CYBRANACUT2BuildCombat'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT2BuildCombat',
@@ -334,7 +334,7 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CYBRANACUT2BuildCombat')
-            
+
             self:SetWeaponEnabledByLabel('RocketPack', true)
         elseif enh == 'CombatEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT2BuildCombat') then
@@ -346,7 +346,7 @@ ERL0001 = Class(ACUUnit) {
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
-            
+
             if not Buffs['CYBRANACUT3BuildCombat'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT3BuildCombat',
@@ -371,28 +371,28 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CYBRANACUT3BuildCombat')
-            
+
             local gun = self:GetWeaponByLabel('RocketPack')
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(bp.RocketMaxRadius)
-            
+
             self:SetPainterRange(enh, bp.RocketMaxRadius, false)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildCombat')
             end
-            
+
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
 
             local gun = self:GetWeaponByLabel('RocketPack')
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
-            
+
             self:SetPainterRange(enh, 0, true)
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
-            
+
             if not Buffs['CYBRANACUT4BuildCombat'] then
                 BuffBlueprint {
                     Name = 'CYBRANACUT4BuildCombat',
@@ -421,18 +421,18 @@ ERL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildCombat')
             end
-            
+
             self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-        
+
         -- Jury Rigged Ripper
-        
+
         elseif enh == 'JuryRiggedRipper' then
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh == 'JuryRiggedRipperRemove' then
             self:TogglePrimaryGun(bp.NewRoF)
 
         -- Torpedoes
-            
+
         elseif enh == 'TorpedoLauncher' then
             if not Buffs['CybranTorpHealth1'] then
                 BuffBlueprint {
@@ -450,14 +450,14 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranTorpHealth1')
-            
+
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
             self:EnableUnitIntel('Enhancement', 'Sonar')
         elseif enh == 'TorpedoLauncherRemove' then
             if Buff.HasBuff(self, 'CybranTorpHealth1') then
                 Buff.RemoveBuff(self, 'CybranTorpHealth1')
             end
-            
+
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             self:DisableUnitIntel('Enhancement', 'Sonar')
         elseif enh == 'ImprovedReloader' then
@@ -477,22 +477,22 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranTorpHealth2')
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
             torp:ChangeRateOfFire(bp.NewTorpROF)
-            
+
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
         elseif enh == 'ImprovedReloaderRemove' then
             if Buff.HasBuff(self, 'CybranTorpHealth2') then
                 Buff.RemoveBuff(self, 'CybranTorpHealth2')
             end
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
             torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
-            
+
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'AdvancedWarheads' then
             if not Buffs['CybranTorpHealth3'] then
@@ -511,10 +511,10 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranTorpHealth3')
-            
+
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamageMod)
-            
+
             -- Improve Ripper
             local wep = self:GetWeaponByLabel('RightRipper')
             wep:AddDamageMod(bp.DamageMod)
@@ -528,7 +528,7 @@ ERL0001 = Class(ACUUnit) {
 
             local wep = self:GetWeaponByLabel('RightRipper')
             wep:AddDamageMod(bp.DamageMod)
-            
+
         -- EMP Array
 
         elseif enh == 'EMPArray' then
@@ -548,11 +548,11 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranEMPHealth1')
-            
+
             self:SetWeaponEnabledByLabel('EMPShot01', true)
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(bp.EMPRange)
-            
+
             self:SetPainterRange(enh, bp.EMPRange, false)
         elseif enh == 'EMPArrayRemove' then
             if Buff.HasBuff(self, 'CybranEMPHealth1') then
@@ -562,7 +562,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EMPShot01', false)
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            
+
             self:SetPainterRange(enh, 0, true)
         elseif enh == 'AdjustedCrystalMatrix' then
             if not Buffs['CybranEMPHealth2'] then
@@ -584,7 +584,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('EMPShot01', false)
             self:SetWeaponEnabledByLabel('EMPShot02', true)
-            
+
             local wep = self:GetWeaponByLabel('EMPShot02')
             wep:ChangeMaxRadius(bp.EMPRange)
 
@@ -592,17 +592,17 @@ ERL0001 = Class(ACUUnit) {
 
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
-        elseif enh == 'AdjustedCrystalMatrixRemove' then    
+        elseif enh == 'AdjustedCrystalMatrixRemove' then
             if Buff.HasBuff(self, 'CybranEMPHealth2') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth2')
             end
-            
+
             self:SetWeaponEnabledByLabel('EMPShot02', false)
             local wep = self:GetWeaponByLabel('EMPShot02')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
 
             self:SetPainterRange(enh, 0, true)
-            
+
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'EnhancedLaserEmitters' then
             if not Buffs['CybranEMPHealth3'] then
@@ -621,19 +621,19 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranEMPHealth3')
-            
+
             self:SetWeaponEnabledByLabel('EMPShot02', false)
             self:SetWeaponEnabledByLabel('EMPShot03', true)
-            
+
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(bp.EMPRange)
-            
+
             self:SetPainterRange(enh, bp.EMPRange, false)
-        elseif enh == 'EnhancedLaserEmittersRemove' then    
+        elseif enh == 'EnhancedLaserEmittersRemove' then
             if Buff.HasBuff(self, 'CybranEMPHealth3') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth3')
             end
-            
+
             self:SetWeaponEnabledByLabel('EMPShot03', false)
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
@@ -735,15 +735,15 @@ ERL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'CybranMazerHealth3') then
                 Buff.RemoveBuff(self, 'CybranMazerHealth3')
             end
-            
+
             self:SetWeaponEnabledByLabel('MLG03', false)
             local laser = self:GetWeaponByLabel('MLG03')
             laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
 
             self:SetPainterRange(enh, 0, true)
-            
+
         -- Armor System
-            
+
         elseif enh == 'ArmorPlating' then
             if not Buffs['CybranArmorHealth1'] then
                 BuffBlueprint {
@@ -765,14 +765,14 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranArmorHealth1')
-            
+
             self:SetWeaponEnabledByLabel('AA01', true)
             self:SetWeaponEnabledByLabel('AA02', true)
         elseif enh == 'ArmorPlatingRemove' then
             if Buff.HasBuff(self, 'CybranArmorHealth1') then
                 Buff.RemoveBuff(self, 'CybranArmorHealth1')
             end
-            
+
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'StructuralIntegrityFields' then
@@ -796,14 +796,14 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranArmorHealth2')
-            
+
             self:SetWeaponEnabledByLabel('AA03', true)
             self:SetWeaponEnabledByLabel('AA04', true)
         elseif enh == 'StructuralIntegrityFieldsRemove' then
             if Buff.HasBuff(self, 'CybranArmorHealth2') then
                 Buff.RemoveBuff(self, 'CybranArmorHealth2')
             end
-            
+
             self:SetWeaponEnabledByLabel('AA03', false)
             self:SetWeaponEnabledByLabel('AA04', false)
         elseif enh == 'CompositeMaterials' then
@@ -831,9 +831,9 @@ ERL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'CybranArmorHealth3') then
                 Buff.RemoveBuff(self, 'CybranArmorHealth3')
             end
-            
+
         -- Counter-Intel Systems
-        
+
         elseif enh == 'ElectronicsEnhancment' then
             if not Buffs['CybranIntelHealth1'] then
                 BuffBlueprint {
@@ -923,7 +923,7 @@ ERL0001 = Class(ACUUnit) {
                 }
             end
             Buff.ApplyBuff(self, 'CybranIntelHealth3')
-            
+
             self:RemoveToggleCap('RULEUTC_StealthToggle')
             self:AddToggleCap('RULEUTC_CloakToggle')
             self:EnableUnitIntel('Enhancement', 'Cloak')
@@ -934,9 +934,9 @@ ERL0001 = Class(ACUUnit) {
 
             self:RemoveToggleCap('RULEUTC_CloakToggle')
             self:DisableUnitIntel('Enhancement', 'Cloak')
-            
+
         -- Mobility Systems
-            
+
         elseif enh == 'ActuatorReplacement' then
             if not Buffs['CybranMobilityHealth1'] then
                 BuffBlueprint {
@@ -989,16 +989,16 @@ ERL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'CybranMobilityHealth2')
 
             self:AddCommandCap('RULEUCC_Teleport')
-            
+
             self:SetWeaponEnabledByLabel('AA01', true)
             self:SetWeaponEnabledByLabel('AA02', true)
         elseif enh == 'AntiAirSubsystemRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth2') then
                 Buff.RemoveBuff(self, 'CybranMobilityHealth2')
             end
-            
+
             self:RemoveCommandCap('RULEUCC_Teleport')
-            
+
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'NanoRegenerationSubsystem' then
@@ -1027,11 +1027,11 @@ ERL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'CybranMobilityHealth3')
             end
         end
-        
+
         -- Remove prerequisites
         if not removal then
             if bp.RemoveEnhancements then
-                for k, v in bp.RemoveEnhancements do                
+                for k, v in bp.RemoveEnhancements do
                     if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
                         self:CreateEnhancement(v .. 'Remove', true)
                     end
@@ -1073,8 +1073,8 @@ ERL0001 = Class(ACUUnit) {
                 },
                 Scale = 1.6,
                 Type = 'Cloak01',
-            },    
-        },    
+            },
+        },
     },
 
     OnIntelEnabled = function(self)
@@ -1085,11 +1085,11 @@ ERL0001 = Class(ACUUnit) {
             if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end            
+            end
         elseif self:HasEnhancement('ElectronicCountermeasures') and self:IsIntelEnabled('RadarStealth') and self:IsIntelEnabled('SonarStealth') then
             self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['ElectronicCountermeasures'].MaintenanceConsumptionPerSecondEnergy)
-            self:SetMaintenanceConsumptionActive()  
-            if not self.IntelEffectsBag then 
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
                 self.IntelEffectsBag = {}
                 self.CreateTerrainTypeEffects(self, self.IntelEffects.Field, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
             end
@@ -1109,5 +1109,5 @@ ERL0001 = Class(ACUUnit) {
         end
     end,
 }
-    
+
 TypeClass = ERL0001
