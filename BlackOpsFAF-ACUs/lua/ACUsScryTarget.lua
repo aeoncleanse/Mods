@@ -8,8 +8,8 @@ local TASKSTATUS = import('/lua/sim/ScriptTask.lua').TASKSTATUS
 local AIRESULT = import('/lua/sim/ScriptTask.lua').AIRESULT
 
 ACUsScryTarget = Class(ScriptTask) {
-    OnCreate = function(self,commandData)
-        ScriptTask.OnCreate(self,commandData)
+    OnCreate = function(self, commandData)
+        ScriptTask.OnCreate(self, commandData)
 
         local unit = self:GetUnit():OnACUsScryTarget(commandData.Location)
     end,

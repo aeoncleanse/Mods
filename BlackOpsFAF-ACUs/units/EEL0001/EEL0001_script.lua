@@ -14,89 +14,61 @@ local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
-local BOWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
-local UEFACUHeavyPlasmaGatlingCannonWeapon = BOWeapons.UEFACUHeavyPlasmaGatlingCannonWeapon
-local EXFlameCannonWeapon = BOWeapons.HawkGaussCannonWeapon
-local UEFACUAntiMatterWeapon = BOWeapons.UEFACUAntiMatterWeapon
-local PDLaserGrid = BOWeapons.PDLaserGrid2
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
+local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
+local HeavyPlasmaGatlingWeapon = ACUsWeapons.HeavyPlasmaGatlingWeapon
+local NapalmWeapon = ACUsWeapons.NapalmWeapon
+local AntiMatterWeapon = ACUsWeapons.AntiMatterWeapon
+local PDLaserGrid = ACUsWeapons.PDLaserGrid
+local CEMPArrayBeam01 = ACUsWeapons.CEMPArrayBeam01
 
 EEL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
+    rightGunLabel = 'RightZephyr',
+    RightGunUpgrade = 'JuryRiggedZephyr',
+    WeaponEnabled = {}, -- Storage for upgrade weapons status
+    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/eel0001/EEL0001_PhaseShield_mesh',
 
     Weapons = {
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
         TargetPainter = Class(CEMPArrayBeam01) {},
         DeathWeapon = Class(DeathNukeWeapon) {},
-        FlameCannon = Class(EXFlameCannonWeapon) {},
+        FlameCannon = Class(NapalmWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
-        AntiMatterCannon = Class(UEFACUAntiMatterWeapon) {},
-        GatlingEnergyCannon = Class(UEFACUHeavyPlasmaGatlingCannonWeapon) {
-            OnCreate = function(self)
-                UEFACUHeavyPlasmaGatlingCannonWeapon.OnCreate(self)
-                if not self.unit.SpinManip then
-                    self.unit.SpinManip = CreateRotator(self.unit, 'Gatling_Cannon_Barrel', 'z', nil, 270, 300, 60)
-                    self.unit.Trash:Add(self.unit.SpinManip)
-                end
-                self.unit.SpinManip:SetTargetSpeed(0)
-            end,
-
-            PlayFxRackSalvoChargeSequence = function(self)
-                if self.unit.SpinManip then
-                    self.unit.SpinManip:SetTargetSpeed(500)
-                end
-                UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
-
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.unit.SpinManip then
-                    self.unit.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtil.CreateBoneEffects(self.unit, 'Exhaust', self.unit:GetArmy(), EffectTemplate.WeaponSteam01)
-                UEFACUHeavyPlasmaGatlingCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
-
-            IdleState = State(UEFACUHeavyPlasmaGatlingCannonWeapon.IdleState) {
-                Main = function(self)
-                    if self.unit.SpinManip then
-                        self.unit.SpinManip:SetTargetSpeed(0)
-                    end
-                end,
-            },
-        },
+        AntiMatterCannon = Class(AntiMatterWeapon) {},
+        GatlingEnergyCannon = Class(HeavyPlasmaGatlingWeapon) {},
         ClusterMissiles = Class(TIFCruiseMissileLauncher) {},
-        EnergyLance01 = Class(PDLaserGrid) {
-            PlayOnlyOneSoundCue = true,
-        },
-        EnergyLance02 = Class(PDLaserGrid) {
-            PlayOnlyOneSoundCue = true,
-        },
+        EnergyLance01 = Class(PDLaserGrid) {},
+        EnergyLance02 = Class(PDLaserGrid) {},
         OverCharge = Class(TDFOverchargeWeapon) {},
         AutoOverCharge = Class(TDFOverchargeWeapon) {},
         TacMissile = Class(TIFCruiseMissileLauncher) {
-            CreateProjectileAtMuzzle = function(self)
+            CreateProjectileAtMuzzle = function(self, muzzle)
                 muzzle = self:GetBlueprint().RackBones[1].MuzzleBones[1]
                 self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
                 self.slider:SetGoal(0, 0, 0.22)
                 WaitFor(self.slider)
+
                 local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
                 self.slider:SetGoal(0, 0, 0)
                 WaitFor(self.slider)
+
                 self.slider:Destroy()
 
                 return proj
             end,
         },
         TacNukeMissile = Class(TIFCruiseMissileLauncher) {
-             CreateProjectileAtMuzzle = function(self)
+             CreateProjectileAtMuzzle = function(self, muzzle)
                 muzzle = self:GetBlueprint().RackBones[1].MuzzleBones[1]
                 self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
                 self.slider:SetGoal(0, 0, 0.22)
                 WaitFor(self.slider)
+
                 local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
                 self.slider:SetGoal(0, 0, 0)
                 WaitFor(self.slider)
+
                 self.slider:Destroy()
 
                 return proj
@@ -104,187 +76,58 @@ EEL0001 = Class(ACUUnit) {
         },
     },
 
-    __init = function(self)
-        ACUUnit.__init(self, 'RightZephyr')
-    end,
-
-    -- Storage for upgrade weapons status
-    WeaponEnabled = {},
-
+    -- Hooked Functions
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
 
-        local bp = self:GetBlueprint()
-        for _, v in bp.Display.WarpInEffect.HideBones do
-            self:HideBone(v, true)
-        end
-
-        self:SetupBuildBones()
         self.HasLeftPod = false
         self.HasRightPod = false
-        -- Restrict what enhancements will enable later
-        self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+        self.SpysatEnabled = false
+        self.ShieldEffectsBag2 = {}
+        self.FlamerEffectsBag = {}
     end,
 
-    OnStopBeingBuilt = function(self,builder,layer)
-        ACUUnit.OnStopBeingBuilt(self,builder,layer)
-        if self:BeenDestroyed() then return end
+    OnStopBeingBuilt = function(self, builder, layer)
+        ACUUnit.OnStopBeingBuilt(self, builder, layer)
+
         self.Animator = CreateAnimator(self)
         self.Animator:SetPrecedence(0)
         if self.IdleAnim then
             self.Animator:PlayAnim(self:GetBlueprint().Display.AnimationIdle, true)
-            for k, v in self.DisabledBones do
+            for _, v in self.DisabledBones do
                 self.Animator:SetBoneEnabled(v, false)
             end
         end
+
         self:BuildManipulatorSetEnabled(false)
         self.Rotator1 = CreateRotator(self, 'Back_ShieldPack_Spinner01', 'z', nil, 0, 20, 0)
         self.Rotator2 = CreateRotator(self, 'Back_ShieldPack_Spinner02', 'z', nil, 0, 40, 0)
-        self.RadarDish1 = CreateRotator(self, 'Back_IntelPack_Dish', 'y', nil, 0, 20, 0)
+        self.RadarDish = CreateRotator(self, 'Back_IntelPack_Dish', 'y', nil, 0, 20, 0)
         self.Trash:Add(self.Rotator1)
         self.Trash:Add(self.Rotator2)
-        self.Trash:Add(self.RadarDish1)
-        self.ShieldEffectsBag2 = {}
-        self.FlamerEffectsBag = {}
-        self:ForkThread(self.GiveInitialResources)
-        self.SpysatEnabled = false
-
-        -- Disable Upgrade Weapons
-        self:SetWeaponEnabledByLabel('RightZephyr', true)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('FlameCannon', false)
-        self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
-        self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
-        self:SetWeaponEnabledByLabel('ClusterMissiles', false)
-        self:SetWeaponEnabledByLabel('EnergyLance01', false)
-        self:SetWeaponEnabledByLabel('EnergyLance02', false)
-        self:SetWeaponEnabledByLabel('TacMissile', false)
-        self:SetWeaponEnabledByLabel('TacNukeMissile', false)
-        self:SetWeaponEnabledByLabel('DeathWeapon', false)
+        self.Trash:Add(self.RadarDish)
     end,
 
     OnStartBuild = function(self, unitBeingBuilt, order)
         ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
+
         if self.Animator then
             self.Animator:SetRate(0)
-        end
-        self.UnitBuildOrder = order
-    end,
-
-    CreateBuildEffects = function(self, unitBeingBuilt, order)
-        local UpgradesFrom = unitBeingBuilt:GetBlueprint().General.UpgradesFrom
-        -- If we are assisting an upgrading unit, or repairing a unit, play seperate effects
-        if (order == 'Repair' and not unitBeingBuilt:IsBeingBuilt()) or (UpgradesFrom and UpgradesFrom ~= 'none' and self:IsUnitState('Guarding'))then
-            EffectUtil.CreateDefaultBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
-        else
-            EffectUtil.CreateUEFCommanderBuildSliceBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
-        end
-    end,
-
-    OnStopBuild = function(self, unitBeingBuilt)
-        ACUUnit.OnStopBuild(self, unitBeingBuilt)
-        if self:BeenDestroyed() then return end
-        if self.IdleAnim and not self:IsDead() then
-            self.Animator:PlayAnim(self.IdleAnim, true)
-        end
-    end,
-
-    RebuildPod = function(self, PodNumber)
-        if PodNumber == 1 then
-            -- Force pod rebuilds to queue up
-            if self.RebuildingPod2 ~= nil then
-                WaitFor(self.RebuildingPod2)
-            end
-            if self.HasLeftPod == true then
-                self.RebuildingPod = CreateEconomyEvent(self, 1600, 160, 10, self.SetWorkProgress)
-                self:RequestRefreshUI()
-                WaitFor(self.RebuildingPod)
-                self:SetWorkProgress(0.0)
-                self.RebuildingPod = nil
-                local location = self:GetPosition('AttachSpecial02')
-                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-                pod:SetParent(self, 'LeftPod')
-                pod:SetCreator(self)
-                self.Trash:Add(pod)
-                self.LeftPod = pod
-            end
-        elseif PodNumber == 2 then
-            -- Force pod rebuilds to queue up
-            if self.RebuildingPod ~= nil then
-                WaitFor(self.RebuildingPod)
-            end
-            if self.HasRightPod == true then
-                self.RebuildingPod2 = CreateEconomyEvent(self, 1600, 160, 10, self.SetWorkProgress)
-                self:RequestRefreshUI()
-                WaitFor(self.RebuildingPod2)
-                self:SetWorkProgress(0.0)
-                self.RebuildingPod2 = nil
-                local location = self:GetPosition('AttachSpecial01')
-                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-                pod:SetParent(self, 'RightPod')
-                pod:SetCreator(self)
-                self.Trash:Add(pod)
-                self.RightPod = pod
-            end
-        end
-        self:RequestRefreshUI()
-    end,
-
-    NotifyOfPodDeath = function(self, pod, rebuildDrone)
-        if rebuildDrone == true then
-            if pod == 'LeftPod' then
-                if self.HasLeftPod == true then
-                    self.RebuildThread = self:ForkThread(self.RebuildPod, 1)
-                end
-            elseif pod == 'RightPod' then
-                if self.HasRightPod == true then
-                    self.RebuildThread2 = self:ForkThread(self.RebuildPod, 2)
-                end
-            elseif pod == 'SpySat' and self.SpysatEnabled then
-                self.Satellite = nil
-                self:ForkThread(self.SatSpawn, true)
-            end
-        else
-            self:CreateEnhancement(pod..'Remove')
-        end
-    end,
-
-    SatSpawn = function(self, respawn)
-        if respawn then
-            WaitSeconds(300)
-        end
-        if not self.Satellite and self.SpysatEnabled then
-            local location = self:GetPosition('Torso')
-            self.Satellite = CreateUnitHPR('EEA0002', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-            self.Satellite:AttachTo(self, 'Back_IntelPack')
-            self.Trash:Add(self.Satellite)
-            self.Satellite.Parent = self
-            self.Satellite:SetParent(self, 'SpySat')
-            self:PlayUnitSound('LaunchSat')
-            self.Satellite:DetachFrom()
-            self.Satellite:Open()
         end
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
+        if self.Satellite and not self.Satellite.Dead and not self.Satellite.IsDying then
+            self.Satellite:Kill()
             self.Satellite:Kill()
             self.Satellite = nil
         end
+
         ACUUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
-    OnDestroy = function(self)
-        if self.Satellite and not self.Satellite:IsDead() and not self.Satellite.IsDying then
-            self.Satellite:Destroy()
-            self.Satellite = nil
-        end
-        ACUUnit.OnDestroy(self)
-    end,
-
     OnScriptBitClear = function(self, bit)
-        if bit == 0 then -- shield toggle
+        if bit == 0 then -- Shield toggle
             self.Rotator1:SetTargetSpeed(0)
             self.Rotator2:SetTargetSpeed(0)
             if self.ShieldEffectsBag2 then
@@ -295,116 +138,69 @@ EEL0001 = Class(ACUUnit) {
             end
             self:DisableShield()
             self:StopUnitAmbientSound('ActiveLoop')
-        elseif bit == 8 then -- cloak toggle
+        elseif bit == 8 then -- Cloak toggle
             self:PlayUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionActive()
             self:EnableUnitIntel('Radar')
             self:EnableUnitIntel('Sonar')
-            self.RadarDish1:SetTargetSpeed(45)
+            self.RadarDish:SetTargetSpeed(45)
         end
     end,
 
     OnScriptBitSet = function(self, bit)
-        if bit == 0 then -- shield toggle
+        if bit == 0 then -- Shield toggle
             self.Rotator1:SetTargetSpeed(90)
             self.Rotator2:SetTargetSpeed(-180)
             if self.ShieldEffectsBag2 then
-                for k, v in self.ShieldEffectsBag2 do
+                for _, v in self.ShieldEffectsBag2 do
                     v:Destroy()
                 end
                 self.ShieldEffectsBag2 = {}
             end
-            for k, v in self.ShieldEffects2 do
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter01', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter02', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter03', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter04', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter05', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter06', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter07', self:GetArmy(), v))
-                table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter08', self:GetArmy(), v))
+            for _, v in self.ShieldEffects2 do
+                local army = self:GetArmy()
+                for i = 1, 9 do
+                    table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter0' .. i, army, v))
+                end
             end
             self:EnableShield()
             self:PlayUnitAmbientSound('ActiveLoop')
-        elseif bit == 8 then -- cloak toggle
+        elseif bit == 8 then -- Cloak toggle
             self:StopUnitAmbientSound('ActiveLoop')
             self:SetMaintenanceConsumptionInactive()
             self:DisableUnitIntel('Radar')
             self:DisableUnitIntel('Sonar')
-            self.RadarDish1:SetTargetSpeed(0)
+            self.RadarDish:SetTargetSpeed(0)
         end
     end,
 
-    -- New function to set up production numbers
-    SetProduction = function(self, bp)
-        local energy = bp.ProductionPerSecondEnergy or 0
-        local mass = bp.ProductionPerSecondMass or 0
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+        local UpgradesFrom = unitBeingBuilt:GetBlueprint().General.UpgradesFrom
 
-        local bpEcon = self:GetBlueprint().Economy
-
-        self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
-        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
-    end,
-
-    -- Function to toggle the Zephyr Booster
-    TogglePrimaryGun = function(self, damage, radius)
-        local wep = self:GetWeaponByLabel('RightZephyr')
-        local oc = self:GetWeaponByLabel('OverCharge')
-        local aoc = self:GetWeaponByLabel('AutoOverCharge')
-
-        local wepRadius = radius or wep:GetBlueprint().MaxRadius
-        local ocRadius = radius or oc:GetBlueprint().MaxRadius
-        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
-
-        -- Change Damage
-        wep:AddDamageMod(damage)
-
-        -- Change Radius
-        wep:ChangeMaxRadius(wepRadius)
-        oc:ChangeMaxRadius(ocRadius)
-        aoc:ChangeMaxRadius(aocRadius)
-
-        -- As radius is only passed when turning on, use the bool
-        if radius then
-            self:ShowBone('Zephyr_Amplifier', true)
-            self:SetPainterRange('JuryRiggedZephyr', radius, false)
+        -- If we are assisting an upgrading unit, or repairing a unit, play seperate effects
+        if (order == 'Repair' and not unitBeingBuilt:IsBeingBuilt()) or (UpgradesFrom and UpgradesFrom ~= 'none' and self:IsUnitState('Guarding')) then
+            EffectUtil.CreateDefaultBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
         else
-            self:HideBone('Zephyr_Amplifier', true)
-            self:SetPainterRange('JuryRiggedZephyrRemove', radius, true)
+            EffectUtil.CreateUEFCommanderBuildSliceBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
         end
     end,
 
-    SortFlameEffects = function(self, toggle)
-        -- Empty the bag
-        for k, v in self.FlamerEffectsBag do
-            v:Destroy()
-        end
-        self.FlamerEffectsBag = {}
+    OnStopBuild = function(self, unitBeingBuilt)
+        ACUUnit.OnStopBuild(self, unitBeingBuilt)
 
-        -- Fill it if we're turning on
-        if toggle then
-            for k, v in self.FlamerEffects do
-                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Flamer_Torch', self:GetArmy(), v):ScaleEmitter(0.0625))
-            end
+        if self:BeenDestroyed() then return end
+        if self.IdleAnim and not self:IsDead() then
+            self.Animator:PlayAnim(self.IdleAnim, true)
         end
     end,
 
-    -- Target painter. 0 damage as primary weapon, controls targeting
-    -- for the variety of changing ranges on the ACU with upgrades.
-    SetPainterRange = function(self, enh, newRange, delete)
-        if delete and self.PainterRange[string.sub(enh, 0, -7)] then
-            self.PainterRange[string.sub(enh, 0, -7)] = nil
-        elseif not delete and not self.PainterRange[enh] then
-            self.PainterRange[enh] = newRange
+    OnDestroy = function(self)
+        if self.Satellite and not self.Satellite.Dead and not self.Satellite.IsDying then
+            self.Satellite:Destroy()
+            self.Satellite = nil
         end
 
-        local range = 22
-        for upgrade, radius in self.PainterRange do
-            if radius > range then range = radius end
-        end
-
-        local wep = self:GetWeaponByLabel('TargetPainter')
-        wep:ChangeMaxRadius(range)
+        ACUUnit.OnDestroy(self)
     end,
 
     CreateEnhancement = function(self, enh, removal)
@@ -412,6 +208,7 @@ EEL0001 = Class(ACUUnit) {
 
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
+
         if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
@@ -589,7 +386,7 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.FlameDamageMod)
             gun:ChangeMaxRadius(bp.FlameMaxRadius)
 
-            self:SetPainterRange(enh, bp.FlameMaxRadius, false)
+            self:SetPainterRange(enh, bp.FlameMaxRadius)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
@@ -601,7 +398,7 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.FlameDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AssaultEngineering')
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -763,7 +560,7 @@ EEL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:ChangeMaxRadius(bp.NewMaxRadius)
 
-            self:SetPainterRange(enh, bp.NewMaxRadius, false)
+            self:SetPainterRange(enh, bp.NewMaxRadius)
         elseif enh == 'AntiMatterCannonRemove' then
             if Buff.HasBuff(self, 'UEFAntimatterHealth1') then
                 Buff.RemoveBuff(self, 'UEFAntimatterHealth1')
@@ -773,7 +570,7 @@ EEL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AntiMatterCannon')
         elseif enh == 'ImprovedParticleAccelerator' then
             if not Buffs['UEFAntimatterHealth2'] then
                 BuffBlueprint {
@@ -832,7 +629,7 @@ EEL0001 = Class(ACUUnit) {
             gun:ChangeDamageRadius(bp.NewDamageArea)
             gun:ChangeMaxRadius(bp.NewAntiMatterMaxRadius)
 
-            self:SetPainterRange(enh, bp.NewAntiMatterMaxRadius, false)
+            self:SetPainterRange(enh, bp.NewAntiMatterMaxRadius)
 
             -- Use toggle function to increase MaxRadius of Zephyr Cannon
             self:TogglePrimaryGun(0, bp.NewMaxRadius)
@@ -846,7 +643,7 @@ EEL0001 = Class(ACUUnit) {
             gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('EnhancedMagBottle')
 
             -- Remove Zephyr Jury Rigging
             self:TogglePrimaryGun(0)
@@ -875,7 +672,7 @@ EEL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
 
-            self:SetPainterRange(enh, bp.GatlingMaxRadius, false)
+            self:SetPainterRange(enh, bp.GatlingMaxRadius)
         elseif enh == 'GatlingEnergyCannonRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath1') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath1')
@@ -885,7 +682,7 @@ EEL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('GatlingEnergyCannon')
         elseif enh == 'AutomaticBarrelStabalizers' then
             if not Buffs['UEFGatlingHeath2'] then
                 BuffBlueprint {
@@ -908,7 +705,7 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
 
-            self:SetPainterRange(enh, bp.GatlingMaxRadius, false)
+            self:SetPainterRange(enh, bp.GatlingMaxRadius)
 
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh == 'AutomaticBarrelStabalizersRemove' then
@@ -920,7 +717,7 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AutomaticBarrelStabalizers')
 
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'EnhancedPowerSubsystems' then
@@ -945,7 +742,7 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(bp.GatlingMaxRadius)
 
-            self:SetPainterRange(enh, bp.GatlingMaxRadius, false)
+            self:SetPainterRange(enh, bp.GatlingMaxRadius)
         elseif enh == 'EnhancedPowerSubsystemsRemove' then
             if Buff.HasBuff(self, 'UEFGatlingHeath3') then
                 Buff.RemoveBuff(self, 'UEFGatlingHeath3')
@@ -955,7 +752,7 @@ EEL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().GatlingMaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('EnhancedPowerSubsystems')
 
         -- Shielding
 
@@ -1044,7 +841,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetIntelRadius('Vision', bp.NewVisionRadius)
             self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
             self:SetIntelRadius('Omni', bp.NewOmniRadius)
-            self.RadarDish1:SetTargetSpeed(45)
+            self.RadarDish:SetTargetSpeed(45)
 
             self:SetWeaponEnabledByLabel('EnergyLance01', true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
@@ -1056,7 +853,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetIntelRadius('Vision', bpIntel.VisionRadius)
             self:SetIntelRadius('WaterVision', bpIntel.WaterVisionRadius)
             self:SetIntelRadius('Omni', bpIntel.OmniRadius)
-            self.RadarDish1:SetTargetSpeed(0)
+            self.RadarDish:SetTargetSpeed(0)
 
             self:SetWeaponEnabledByLabel('EnergyLance01', false)
         elseif enh == 'SpySat' then
@@ -1149,7 +946,7 @@ EEL0001 = Class(ACUUnit) {
             local cluster = self:GetWeaponByLabel('ClusterMissiles')
             cluster:ChangeMaxRadius(bp.ClusterMaxRadius)
 
-            self:SetPainterRange(enh, bp.ClusterMaxRadius, false)
+            self:SetPainterRange(enh, bp.ClusterMaxRadius)
 
             -- Get rid of the range on the missiles to show this weapon's
             local wep = self:GetWeaponByLabel('TacMissile')
@@ -1165,7 +962,7 @@ EEL0001 = Class(ACUUnit) {
             local cluster = self:GetWeaponByLabel('ClusterMissiles')
             cluster:ChangeMaxRadius(cluster:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('ClusterMissilePack')
 
             local wep = self:GetWeaponByLabel('TacMissile')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
@@ -1380,6 +1177,112 @@ EEL0001 = Class(ACUUnit) {
     FlamerEffects = {
         '/mods/BlackOpsFAF-ACUs/effects/emitters/flamer_torch_01.bp',
     },
+
+    -- New Functions
+    TogglePrimaryGun = function(self, damage, radius)
+        ACUUnit.TogglePrimaryGun(self, damage, radius)
+
+        -- As radius is only passed when turning on, use the bool
+        if radius then
+            self:ShowBone('Zephyr_Amplifier', true)
+        else
+            self:HideBone('Zephyr_Amplifier', true)
+        end
+    end,
+
+    RebuildPod = function(self, PodNumber)
+        if PodNumber == 1 then
+            -- Force pod rebuilds to queue up
+            if self.RebuildingPod2 ~= nil then
+                WaitFor(self.RebuildingPod2)
+            end
+            if self.HasLeftPod == true then
+                self.RebuildingPod = CreateEconomyEvent(self, 1600, 160, 10, self.SetWorkProgress)
+                self:RequestRefreshUI()
+                WaitFor(self.RebuildingPod)
+
+                self:SetWorkProgress(0.0)
+                self.RebuildingPod = nil
+                local location = self:GetPosition('AttachSpecial02')
+                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+                pod:SetParent(self, 'LeftPod')
+                pod:SetCreator(self)
+                self.Trash:Add(pod)
+                self.LeftPod = pod
+            end
+        elseif PodNumber == 2 then
+            -- Force pod rebuilds to queue up
+            if self.RebuildingPod ~= nil then
+                WaitFor(self.RebuildingPod)
+            end
+            if self.HasRightPod == true then
+                self.RebuildingPod2 = CreateEconomyEvent(self, 1600, 160, 10, self.SetWorkProgress)
+                self:RequestRefreshUI()
+                WaitFor(self.RebuildingPod2)
+
+                self:SetWorkProgress(0.0)
+                self.RebuildingPod2 = nil
+                local location = self:GetPosition('AttachSpecial01')
+                local pod = CreateUnitHPR('UEA0001', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+                pod:SetParent(self, 'RightPod')
+                pod:SetCreator(self)
+                self.Trash:Add(pod)
+                self.RightPod = pod
+            end
+        end
+        self:RequestRefreshUI()
+    end,
+
+    NotifyOfPodDeath = function(self, pod, rebuildDrone)
+        if rebuildDrone == true then
+            if pod == 'LeftPod' then
+                if self.HasLeftPod == true then
+                    self.RebuildThread = self:ForkThread(self.RebuildPod, 1)
+                end
+            elseif pod == 'RightPod' then
+                if self.HasRightPod == true then
+                    self.RebuildThread2 = self:ForkThread(self.RebuildPod, 2)
+                end
+            elseif pod == 'SpySat' and self.SpysatEnabled then
+                self.Satellite = nil
+                self:ForkThread(self.SatSpawn, true)
+            end
+        else
+            self:CreateEnhancement(pod..'Remove')
+        end
+    end,
+
+    SatSpawn = function(self, respawn)
+        if respawn then
+            WaitSeconds(300)
+        end
+        if not self.Satellite and self.SpysatEnabled then
+            local location = self:GetPosition('Torso')
+            self.Satellite = CreateUnitHPR('EEA0002', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+            self.Satellite:AttachTo(self, 'Back_IntelPack')
+            self.Trash:Add(self.Satellite)
+            self.Satellite.Parent = self
+            self.Satellite:SetParent(self, 'SpySat')
+            self:PlayUnitSound('LaunchSat')
+            self.Satellite:DetachFrom()
+            self.Satellite:Open()
+        end
+    end,
+
+    SortFlameEffects = function(self, toggle)
+        -- Empty the bag
+        for _, v in self.FlamerEffectsBag do
+            v:Destroy()
+        end
+        self.FlamerEffectsBag = {}
+
+        -- Fill it if we're turning on
+        if toggle then
+            for _, v in self.FlamerEffects do
+                table.insert(self.FlamerEffectsBag, CreateAttachedEmitter(self, 'Flamer_Torch', self:GetArmy(), v):ScaleEmitter(0.0625))
+            end
+        end
+    end,
 }
 
 TypeClass = EEL0001

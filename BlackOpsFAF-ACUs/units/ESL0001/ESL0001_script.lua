@@ -13,248 +13,51 @@ local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local SANUallCavitationTorpedo = SWeapons.SANUallCavitationTorpedo
-local BOWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
-local SeraACURapidWeapon = BOWeapons.SeraACURapidWeapon
-local SeraACUBigBallWeapon = BOWeapons.SeraACUBigBallWeapon
+local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
+local RapidCannonWeapon = ACUsWeapons.RapidCannonWeapon
+local QuantumStormWeapon = ACUsWeapons.QuantumStormWeapon
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
-local SeraACUMissile = BOWeapons.SeraACUMissile
+local CEMPArrayBeam01 = ACUsWeapons.CEMPArrayBeam01
+local LaanseMissile = ACUsWeapons.LaanseMissile
 
 ESL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
+    rightGunLabel = 'ChronotronCannon',
+    RightGunUpgrade = 'JuryRiggedChronotron',
+    WeaponEnabled = {}, -- Storage for upgrade weapons status
+    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/esl0001/ESL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
         TargetPainter = Class(CEMPArrayBeam01) {},
         ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
         TorpedoLauncher = Class(SANUallCavitationTorpedo) {},
-        BigBallCannon = Class(SeraACUBigBallWeapon) {},
-        RapidCannon = Class(SeraACURapidWeapon) {},
+        BigBallCannon = Class(QuantumStormWeapon) {},
+        RapidCannon = Class(RapidCannonWeapon) {},
         AA01 = Class(SAAOlarisCannonWeapon) {},
         AA02 = Class(SAAOlarisCannonWeapon) {},
-        Missile = Class(SeraACUMissile) {},
+        Missile = Class(LaanseMissile) {},
         OverCharge = Class(SDFChronotronOverChargeCannonWeapon) {},
         AutoOverCharge = Class(SDFChronotronOverChargeCannonWeapon) {},
     },
 
-    __init = function(self)
-        ACUUnit.__init(self, 'ChronotronCannon')
-    end,
-
-    -- Storage for upgrade weapons status
-    WeaponEnabled = {},
-
+    -- Hooked Functions
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
 
-        local bp = self:GetBlueprint()
-        for _, v in bp.Display.WarpInEffect.HideBones do
-            self:HideBone(v, true)
-        end
-
-        -- Restrict what enhancements will enable later
-        self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-    end,
-
-    OnStopBeingBuilt = function(self,builder,layer)
-        ACUUnit.OnStopBeingBuilt(self,builder,layer)
-
-        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('BigBallCannon', false)
-        self:SetWeaponEnabledByLabel('RapidCannon', false)
-        self:SetWeaponEnabledByLabel('AA01', false)
-        self:SetWeaponEnabledByLabel('AA02', false)
-        self:SetWeaponEnabledByLabel('Missile', false)
-
-        self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
-        self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
-        self:DisableUnitIntel('ToggleBit8', 'Cloak')
-
-        self:ForkThread(self.GiveInitialResources)
         self.RegenFieldFXBag = {}
         self.lambdaEmitterTable = {}
         self:StartRotators()
     end,
 
-    StartRotators = function(self)
-        if not self.RotatorManipulator1 then
-            self.RotatorManipulator1 = CreateRotator(self, 'S_Spinner_B01', 'y')
-            self.Trash:Add(self.RotatorManipulator1)
-        end
-        self.RotatorManipulator1:SetAccel(30)
-        self.RotatorManipulator1:SetTargetSpeed(120)
-        if not self.RotatorManipulator2 then
-            self.RotatorManipulator2 = CreateRotator(self, 'L_Spinner_B01', 'y')
-            self.Trash:Add(self.RotatorManipulator2)
-        end
-        self.RotatorManipulator2:SetAccel(-15)
-        self.RotatorManipulator2:SetTargetSpeed(-60)
-    end,
+    OnStopBeingBuilt = function(self, builder, layer)
+        ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
-    OnStartBuild = function(self, unitBeingBuilt, order)
-        ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
-        self.UnitBuildOrder = order
-    end,
-
-    CreateBuildEffects = function(self, unitBeingBuilt, order)
-        EffectUtil.CreateSeraphimUnitEngineerBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
-    end,
-
-    OnTransportDetach = function(self, attachBone, unit)
-        ACUUnit.OnTransportDetach(self, attachBone, unit)
-        self:StopSiloBuild()
-
-    end,
-
-    GetUnitsToBuff = function(self, bp)
-        local unitCat = ParseEntityCategory(bp.UnitCategory or 'BUILTBYTIER3FACTORY + BUILTBYQUANTUMGATE + NEEDMOBILEBUILD')
-        local brain = self:GetAIBrain()
-        local all = brain:GetUnitsAroundPoint(unitCat, self:GetPosition(), bp.Radius, 'Ally')
-        local units = {}
-
-        for _, u in all do
-            if not u.Dead and not u:IsBeingBuilt() then
-                table.insert(units, u)
-            end
-        end
-
-        return units
-    end,
-
-    RegenBuffThread = function(self, enh)
-        local bp = self:GetBlueprint().Enhancements[enh]
-        local buff
-
-        if enh == 'CombatEngineering' then
-            buff = 'SeraphimACURegenAura'
-        elseif enh == 'AssaultEngineering' then
-            buff = 'SeraphimACUAdvancedRegenAura'
-        end
-
-        while not self.Dead do
-            local units = self:GetUnitsToBuff(bp)
-            for _,unit in units do
-                Buff.ApplyBuff(unit, buff)
-                unit:RequestRefreshUI()
-            end
-            WaitSeconds(5)
-        end
-    end,
-
-    -- New function to set up production numbers
-    SetProduction = function(self, bp)
-        local energy = bp.ProductionPerSecondEnergy or 0
-        local mass = bp.ProductionPerSecondMass or 0
-
-        local bpEcon = self:GetBlueprint().Economy
-
-        self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
-        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
-    end,
-
-    -- Function to toggle the Ripper
-    TogglePrimaryGun = function(self, damage, radius)
-        local wep = self:GetWeaponByLabel('ChronotronCannon')
-        local oc = self:GetWeaponByLabel('OverCharge')
-        local aoc = self:GetWeaponByLabel('AutoOverCharge')
-
-        local wepRadius = radius or wep:GetBlueprint().MaxRadius
-        local ocRadius = radius or oc:GetBlueprint().MaxRadius
-        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
-
-        -- Change Damage
-        wep:AddDamageMod(damage)
-
-        -- Change Radius
-        wep:ChangeMaxRadius(wepRadius)
-        oc:ChangeMaxRadius(ocRadius)
-        aoc:ChangeMaxRadius(aocRadius)
-
-        -- As radius is only passed when turning on, use the bool
-        if radius then
-            self:SetPainterRange('JuryRiggedChronotron', radius, false)
-        else
-            self:SetPainterRange('JuryRiggedChronotronRemove', radius, true)
-        end
-    end,
-
-    -- Target painter. 0 damage as primary weapon, controls targeting
-    -- for the variety of changing ranges on the ACU with upgrades.
-    SetPainterRange = function(self, enh, newRange, delete)
-        if delete and self.PainterRange[string.sub(enh, 0, -7)] then
-            self.PainterRange[string.sub(enh, 0, -7)] = nil
-        elseif not delete and not self.PainterRange[enh] then
-            self.PainterRange[enh] = newRange
-        end
-
-        local range = 22
-        for upgrade, radius in self.PainterRange do
-            if radius > range then range = radius end
-        end
-
-        local wep = self:GetWeaponByLabel('TargetPainter')
-        wep:ChangeMaxRadius(range)
-    end,
-
-    -- Size is 'L' or 'S', bone is 1 through 4, unit is the unit ID ending
-    CreateLambdaUnit = function(self, size, bone, unit, removal)
-        local boneLabel = size .. '_Lambda_B0' .. bone
-
-        -- If this is a removal, take the quick way out
-        if removal and self.lambdaEmitterTable[boneLabel] then
-            IssueClearCommands({self.lambdaEmitterTable[boneLabel]})
-            IssueKillSelf({self.lambdaEmitterTable[boneLabel]})
-            self.lambdaEmitterTable[boneLabel] = nil
-            return
-        end
-
-        local orientation = self:GetOrientation()
-        local boneLocation = self:GetPosition(boneLabel)
-        local unitID = 'esb000' .. unit
-
-        local lambdaUnit = CreateUnit(unitID, self:GetArmy(),
-                                      boneLocation[1], boneLocation[2], boneLocation[3],
-                                      orientation[1], orientation[2], orientation[3], orientation[4], 'Land')
-
-        self.lambdaEmitterTable[boneLabel] = lambdaUnit
-        lambdaUnit:AttachTo(self, boneLabel)
-        lambdaUnit:SetParent(self, 'esl0001')
-        lambdaUnit:SetCreator(self)
-        self.Trash:Add(lambdaUnit)
-    end,
-
-    OnMotionHorzEventChange = function(self, new, old)
-        if new ~= 'Stopped' and self.HiddenACU then
-            self:SetScriptBit('RULEUTC_CloakToggle', true) -- Disable counter-intel
-        end
-
-        ACUUnit.OnMotionHorzEventChange(self, new, old)
-    end,
-
-    OnIntelEnabled = function(self)
-        ACUUnit.OnIntelEnabled(self)
-        if self:HasEnhancement('CloakingSubsystems') and self.HiddenACU then
-            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy)
-            self:SetMaintenanceConsumptionActive()
-            if not self.IntelEffectsBag then
-                self.IntelEffectsBag = {}
-                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
-            end
-        end
-    end,
-
-    OnIntelDisabled = function(self)
-        ACUUnit.OnIntelDisabled(self)
-        if self.IntelEffectsBag then
-            EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
-            self.IntelEffectsBag = nil
-        end
-        if self:HasEnhancement('CloakingSubsystems') and not self.HiddenACU then
-            self:SetMaintenanceConsumptionInactive()
-        end
+        -- Shut off intel to be disabled later
+        self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
+        self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
+        self:DisableUnitIntel('ToggleBit8', 'Cloak')
     end,
 
     -- Set custom flag and add Stealth and Cloak toggles to the switch
@@ -284,7 +87,7 @@ ESL0001 = Class(ACUUnit) {
         if bit == 8 then
             if not self.CloakThread then
                 self.CloakThread = ForkThread(function()
-                    WaitSeconds(2)
+                    WaitTicks(20)
 
                     self.HiddenACU = true
                     self:SetFireState(1)
@@ -293,7 +96,7 @@ ESL0001 = Class(ACUUnit) {
                     self:EnableUnitIntel('ToggleBit5', 'SonarStealth')
                     self:EnableUnitIntel('ToggleBit8', 'Cloak')
 
-                    IssueStop({self}) -- This later stop stops people circumventing the no-motion clause
+                    IssueStop({self}) -- This later stop prevents people circumventing the no-motion clause
                     IssueClearCommands({self})
 
                     if self.MaintenanceConsumption then
@@ -310,10 +113,49 @@ ESL0001 = Class(ACUUnit) {
         end
     end,
 
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+        EffectUtil.CreateSeraphimUnitEngineerBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
+    end,
+
+    OnMotionHorzEventChange = function(self, new, old)
+        if new ~= 'Stopped' and self.HiddenACU then
+            self:SetScriptBit('RULEUTC_CloakToggle', true) -- Disable counter-intel
+        end
+
+        ACUUnit.OnMotionHorzEventChange(self, new, old)
+    end,
+
+    OnIntelEnabled = function(self)
+        ACUUnit.OnIntelEnabled(self)
+
+        if self:HasEnhancement('CloakingSubsystems') and self.HiddenACU then
+            self:SetEnergyMaintenanceConsumptionOverride(self:GetBlueprint().Enhancements['CloakingSubsystems'].MaintenanceConsumptionPerSecondEnergy)
+            self:SetMaintenanceConsumptionActive()
+            if not self.IntelEffectsBag then
+                self.IntelEffectsBag = {}
+                self.CreateTerrainTypeEffects(self, self.IntelEffects.Cloak, 'FXIdle',  self:GetCurrentLayer(), nil, self.IntelEffectsBag)
+            end
+        end
+    end,
+
+    OnIntelDisabled = function(self)
+        ACUUnit.OnIntelDisabled(self)
+
+        if self.IntelEffectsBag then
+            EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
+            self.IntelEffectsBag = nil
+        end
+        if self:HasEnhancement('CloakingSubsystems') and not self.HiddenACU then
+            self:SetMaintenanceConsumptionInactive()
+        end
+    end,
+
     CreateEnhancement = function(self, enh, removal)
         ACUUnit.CreateEnhancement(self, enh)
+
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
+
         if enh == 'ImprovedEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
@@ -748,7 +590,7 @@ ESL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('BigBallCannon')
             wep:ChangeMaxRadius(bp.CannonMaxRadius)
 
-            self:SetPainterRange(enh, bp.CannonMaxRadius, false)
+            self:SetPainterRange(enh, bp.CannonMaxRadius)
         elseif enh == 'QuantumStormCannonRemove' then
             if Buff.HasBuff(self, 'SeraphimBallHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth1')
@@ -759,7 +601,7 @@ ESL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('BigBallCannon')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('QuantumStormCannon')
         elseif enh == 'PowerConversionEnhancer' then
             if not Buffs['SeraphimBallHealth2'] then
                 BuffBlueprint {
@@ -783,7 +625,7 @@ ESL0001 = Class(ACUUnit) {
             cannon:ChangeMaxRadius(bp.StormRange)
             cannon:ChangeDamageRadius(bp.StormRadius)
 
-            self:SetPainterRange(enh, bp.StormRange, false)
+            self:SetPainterRange(enh, bp.StormRange)
 
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
@@ -797,7 +639,7 @@ ESL0001 = Class(ACUUnit) {
             cannon:ChangeMaxRadius(cannon:GetBlueprint().MaxRadius)
             cannon:ChangeDamageRadius(cannon:GetBlueprint().DamageRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('PowerConversionEnhancer')
 
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
@@ -823,7 +665,7 @@ ESL0001 = Class(ACUUnit) {
             cannon:AddDamageMod(bp.StormDamage)
             cannon:ChangeMaxRadius(bp.StormRange)
 
-            self:SetPainterRange(enh, bp.StormRange, false)
+            self:SetPainterRange(enh, bp.StormRange)
         elseif enh == 'AdvancedDistortionAlgorithmsRemove' then
             if Buff.HasBuff(self, 'SeraphimBallHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimBallHealth3')
@@ -833,7 +675,7 @@ ESL0001 = Class(ACUUnit) {
             cannon:AddDamageMod(bp.StormDamage)
             cannon:ChangeMaxRadius(cannon:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AdvancedDistortionAlgorithms')
 
         -- Gatling Cannon
 
@@ -860,7 +702,7 @@ ESL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('RapidCannon')
             wep:ChangeMaxRadius(bp.GatlingRange)
 
-            self:SetPainterRange(enh, bp.GatlingRange, false)
+            self:SetPainterRange(enh, bp.GatlingRange)
         elseif enh == 'PlasmaGatlingCannonRemove' then
             if Buff.HasBuff(self, 'SeraphimGatlingHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimGatlingHealth1')
@@ -868,7 +710,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('RapidCannon', false)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('PlasmaGatlingCannon')
         elseif enh == 'PhasedEnergyFields' then
             if not Buffs['SeraphimGatlingHealth2'] then
                 BuffBlueprint {
@@ -891,7 +733,7 @@ ESL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamage)
             gun:ChangeMaxRadius(bp.GatlingRange)
 
-            self:SetPainterRange(enh, bp.GatlingRange, false)
+            self:SetPainterRange(enh, bp.GatlingRange)
 
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
@@ -904,7 +746,7 @@ ESL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.GatlingDamage)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('PhasedEnergyFields')
 
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
@@ -1301,6 +1143,85 @@ ESL0001 = Class(ACUUnit) {
             },
         },
     },
+
+    -- New Functions
+    StartRotators = function(self)
+        if not self.RotatorManipulator1 then
+            self.RotatorManipulator1 = CreateRotator(self, 'S_Spinner_B01', 'y')
+            self.Trash:Add(self.RotatorManipulator1)
+        end
+        self.RotatorManipulator1:SetAccel(30)
+        self.RotatorManipulator1:SetTargetSpeed(120)
+
+        if not self.RotatorManipulator2 then
+            self.RotatorManipulator2 = CreateRotator(self, 'L_Spinner_B01', 'y')
+            self.Trash:Add(self.RotatorManipulator2)
+        end
+        self.RotatorManipulator2:SetAccel(-15)
+        self.RotatorManipulator2:SetTargetSpeed(-60)
+    end,
+
+    GetUnitsToBuff = function(self, bp)
+        local unitCat = ParseEntityCategory(bp.UnitCategory or 'BUILTBYTIER3FACTORY + BUILTBYQUANTUMGATE + NEEDMOBILEBUILD')
+        local brain = self:GetAIBrain()
+        local all = brain:GetUnitsAroundPoint(unitCat, self:GetPosition(), bp.Radius, 'Ally')
+        local units = {}
+
+        for _, u in all do
+            if not u.Dead and not u:IsBeingBuilt() then
+                table.insert(units, u)
+            end
+        end
+
+        return units
+    end,
+
+    RegenBuffThread = function(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        local buff
+
+        if enh == 'CombatEngineering' then
+            buff = 'SeraphimACURegenAura'
+        elseif enh == 'AssaultEngineering' then
+            buff = 'SeraphimACUAdvancedRegenAura'
+        end
+
+        while not self.Dead do
+            local units = self:GetUnitsToBuff(bp)
+            for _, unit in units do
+                Buff.ApplyBuff(unit, buff)
+                unit:RequestRefreshUI()
+            end
+            WaitSeconds(5)
+        end
+    end,
+
+    -- Size is 'L' or 'S', bone is 1 through 4, unit is the unit ID ending
+    CreateLambdaUnit = function(self, size, bone, unit, removal)
+        local boneLabel = size .. '_Lambda_B0' .. bone
+
+        -- If this is a removal, take the quick way out
+        if removal and self.lambdaEmitterTable[boneLabel] then
+            IssueClearCommands({self.lambdaEmitterTable[boneLabel]})
+            IssueKillSelf({self.lambdaEmitterTable[boneLabel]})
+            self.lambdaEmitterTable[boneLabel] = nil
+            return
+        end
+
+        local orientation = self:GetOrientation()
+        local boneLocation = self:GetPosition(boneLabel)
+        local unitID = 'esb000' .. unit
+
+        local lambdaUnit = CreateUnit(unitID, self:GetArmy(),
+                                      boneLocation[1], boneLocation[2], boneLocation[3],
+                                      orientation[1], orientation[2], orientation[3], orientation[4], 'Land')
+
+        self.lambdaEmitterTable[boneLabel] = lambdaUnit
+        lambdaUnit:AttachTo(self, boneLabel)
+        lambdaUnit:SetParent(self, 'esl0001')
+        lambdaUnit:SetCreator(self)
+        self.Trash:Add(lambdaUnit)
+    end,
 }
 
 TypeClass = ESL0001

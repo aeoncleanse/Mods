@@ -27,6 +27,7 @@ do
 BuilderGroup {
     BuilderGroupName = 'ACUUpgrades - Gun improvements',
     BuildersType = 'EngineerBuilder',
+
     -- UEF
     Builder {
         BuilderName = 'UEF CDR Upgrade HeavyAntiMatter',
@@ -41,8 +42,8 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'HeavyAntiMatterCannon'},
         },
-
     },
+
     -- Aeon
     Builder {
         BuilderName = 'Aeon CDR Upgrade Crysalis',
@@ -59,6 +60,7 @@ BuilderGroup {
             Enhancement = {'HeatSink', 'CrysalisBeam'},
         },
     },
+
     -- Cybran
     Builder {
         BuilderName = 'Cybran CDR Upgrade CoolingUpgrade',
@@ -73,8 +75,8 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'CoolingUpgrade'},
         },
-
     },
+
     -- Seraphim
     Builder {
         BuilderName = 'Seraphim CDR Upgrade RateOfFire',
@@ -89,13 +91,13 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'RateOfFire'},
         },
-
     },
 }
 
 BuilderGroup {
     BuilderGroupName = 'ACUUpgrades - Tech 2 Engineering',
     BuildersType = 'EngineerBuilder',
+
     -- UEF
     Builder {
         BuilderName = 'UEF CDR Upgrade Adv Engi',
@@ -111,6 +113,7 @@ BuilderGroup {
             Enhancement = {'LeftPod', 'RightPod', 'AdvancedEngineering'},
         },
     },
+
     -- Aeon
     Builder {
         BuilderName = 'Aeon CDR Upgrade Adv Engi, replacing Crysalis',
@@ -126,7 +129,6 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'CrysalisBeamRemove', 'AdvancedEngineering'},
         },
-
     },
     Builder {
         BuilderName = 'Aeon CDR Upgrade Adv Engi',
@@ -142,8 +144,8 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'AdvancedEngineering'},
         },
-
     },
+
     -- Cybran
     Builder {
         BuilderName = 'Cybran CDR Upgrade Adv Engi, replacing cooling',
@@ -175,8 +177,8 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'AdvancedEngineering'},
         },
-
     },
+
     -- Seraphim
     Builder {
         BuilderName = 'Seraphim CDR Upgrade Adv Engi',
@@ -191,13 +193,13 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'AdvancedEngineering'},
         },
-
     },
 }
 
 BuilderGroup {
     BuilderGroupName = 'ACUUpgrades - Shields',
     BuildersType = 'EngineerBuilder',
+
     -- UEF
     Builder {
         BuilderName = 'UEF CDR Upgrade Shield, replaceing right pod',
@@ -229,6 +231,7 @@ BuilderGroup {
             Enhancement = {'Shield'},
         },
     },
+
     -- Aeon
     Builder {
         BuilderName = 'Aeon CDR Upgrade Shield',
@@ -243,7 +246,6 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'Shield'},
         },
-
     },
     -- Cybran
     Builder {
@@ -259,8 +261,8 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'StealthGenerator', 'CloakingGenerator', 'MicrowaveLaserGenerator'},
         },
-
     },
+
     -- Seraphim
     Builder {
         BuilderName = 'Seraphim CDR Upgrade AdvancedRegenAura',
@@ -275,7 +277,6 @@ BuilderGroup {
         BuilderData = {
             Enhancement = {'RegenAura', 'AdvancedRegenAura'},
         },
-
     },
     Builder {
         BuilderName = 'Seraphim CDR Upgrade AdvancedRegenAura, replace rate of fire',
@@ -298,7 +299,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianACUUpgrades',
     BuildersType = 'EngineerBuilder',
 
--- Overwriting Sorian's To Prevent Issues
+    -- Overwriting Sorian's To Prevent Issues
     -- UEF
     Builder {
         BuilderName = 'Sorian UEF CDR Upgrade AdvEng - Pods',
@@ -459,9 +460,9 @@ BuilderGroup {
         },
     },
 
--- Exaviers UEF ACUs
--- Tier One
-   Builder {
+    -- Exavier's UEF ACUs
+    -- Tier One
+    Builder {
         BuilderName = 'Sorian UEF CDR ImprovedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -481,7 +482,7 @@ BuilderGroup {
             Enhancement = {'ImprovedEngineering'},
         },
     },
-   Builder {
+    Builder {
         BuilderName = 'Sorian UEF CDR CombatEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -646,7 +647,7 @@ BuilderGroup {
         },
     },
 
--- Tier Two
+    -- Tier Two
     Builder {
         BuilderName = 'Sorian UEF CDR AdvancedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -848,7 +849,7 @@ BuilderGroup {
         },
     },
 
--- Tier Three
+    -- Tier Three
     Builder {
         BuilderName = 'Sorian UEF CDR ExperimentalEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -1050,9 +1051,9 @@ BuilderGroup {
         },
     },
 
--- Exaviers Aeon ACUs
--- Tier One
-   Builder {
+    -- Exavier's Aeon ACUs
+    -- Tier One
+    Builder {
         BuilderName = 'Sorian Aeon CDR ImprovedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -1072,7 +1073,7 @@ BuilderGroup {
             Enhancement = {'ImprovedEngineering'},
         },
     },
-   Builder {
+    Builder {
         BuilderName = 'Sorian Aeon CDR CombatEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -1237,7 +1238,7 @@ BuilderGroup {
         },
     },
 
--- Tier Two
+    -- Tier Two
     Builder {
         BuilderName = 'Sorian Aeon CDR AdvancedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -1440,7 +1441,7 @@ BuilderGroup {
         },
     },
 
--- Tier Three
+    -- Tier Three
     Builder {
         BuilderName = 'Sorian Aeon CDR ExperimentalEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -1642,9 +1643,9 @@ BuilderGroup {
         },
     },
 
--- Exaviers Cybran ACUs
--- Tier One
-   Builder {
+    -- Exavier's Cybran ACUs
+    -- Tier One
+    Builder {
         BuilderName = 'Sorian Cybran CDR ImprovedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -1664,7 +1665,7 @@ BuilderGroup {
             Enhancement = {'ImprovedEngineering'},
         },
     },
-   Builder {
+    Builder {
         BuilderName = 'Sorian Cybran CDR CombatEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -1829,7 +1830,7 @@ BuilderGroup {
         },
     },
 
--- Tier Two
+    -- Tier Two
     Builder {
         BuilderName = 'Sorian Cybran CDR AdvancedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -2032,7 +2033,7 @@ BuilderGroup {
         },
     },
 
--- Tier Three
+    -- Tier Three
     Builder {
         BuilderName = 'Sorian Cybran CDR ExperimentalEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -2235,9 +2236,9 @@ BuilderGroup {
     },
 
 
--- Exaviers Seraphim ACUs
--- Tier One
-   Builder {
+    -- Exavier's Seraphim ACUs
+    -- Tier One
+    Builder {
         BuilderName = 'Sorian Seraphim CDR ImprovedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -2257,7 +2258,7 @@ BuilderGroup {
             Enhancement = {'ImprovedEngineering'},
         },
     },
-   Builder {
+    Builder {
         BuilderName = 'Sorian Seraphim CDR CombatEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 2000,
@@ -2422,7 +2423,7 @@ BuilderGroup {
         },
     },
 
--- Tier Two
+    -- Tier Two
     Builder {
         BuilderName = 'Sorian Seraphim CDR AdvancedEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',
@@ -2625,7 +2626,7 @@ BuilderGroup {
         },
     },
 
--- Tier Three
+    -- Tier Three
     Builder {
         BuilderName = 'Sorian Seraphim CDR ExperimentalEngineering',
         PlatoonTemplate = 'CommanderEnhanceSorian',

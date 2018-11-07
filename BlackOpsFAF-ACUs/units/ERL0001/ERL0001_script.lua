@@ -15,19 +15,23 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 local Buff = import('/lua/sim/Buff.lua')
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local BOWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
-local EMPWeapon = BOWeapons.EMPWeapon
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
-local CEMPArrayBeam02 = BOWeapons.CEMPArrayBeam02
+local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
+local EMPWeapon = ACUsWeapons.EMPWeapon
+local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam01
+local CEMPArrayBeam02 = ACUsWeapons.CEMPArrayBeam02
 
 ERL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
+    rightGunLabel = 'RightRipper',
+    RightGunUpgrade = 'JuryRiggedRipper',
+    WeaponEnabled = {}, -- Storage for upgrade weapons status
+    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/erl0001/ERL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
         RightRipper = Class(CCannonMolecularWeapon) {},
-        TargetPainter = Class(CEMPArrayBeam01) {},
+        TargetPainter = Class(CEMPArrayBeam) {},
         RocketPack = Class(RocketPack) {},
         TorpedoLauncher = Class(CANTorpedoLauncherWeapon) {},
         EMPShot01 = Class(EMPWeapon) {},
@@ -44,118 +48,21 @@ ERL0001 = Class(ACUUnit) {
         AutoOverCharge = Class(CDFOverchargeWeapon) {},
     },
 
-    __init = function(self)
-        ACUUnit.__init(self, 'RightRipper')
-    end,
-
-    -- Storage for upgrade weapons status
-    WeaponEnabled = {},
-
+    -- Hooked Functions
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
 
-        local bp = self:GetBlueprint()
-        for _, v in bp.Display.WarpInEffect.HideBones do
-            self:HideBone(v, true)
-        end
-
-        -- Restrict what enhancements will enable later
-        self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+        self.EMPArrayEffects01 = {}
     end,
 
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
-        self:SetWeaponEnabledByLabel('RightRipper', true)
-        self:SetMaintenanceConsumptionInactive()
+
+        -- Shut off intel to be enabled later
         self:DisableUnitIntel('Enhancement', 'RadarStealth')
         self:DisableUnitIntel('Enhancement', 'SonarStealth')
         self:DisableUnitIntel('Enhancement', 'Cloak')
         self:DisableUnitIntel('Enhancement', 'Sonar')
-        self.EMPArrayEffects01 = {}
-        self:ForkThread(self.GiveInitialResources)
-
-        -- Disable Upgrade Weapons
-        self:SetWeaponEnabledByLabel('RocketPack', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('EMPShot01', false)
-        self:SetWeaponEnabledByLabel('EMPShot02', false)
-        self:SetWeaponEnabledByLabel('EMPShot03', false)
-        self:SetWeaponEnabledByLabel('MLG01', false)
-        self:SetWeaponEnabledByLabel('MLG02', false)
-        self:SetWeaponEnabledByLabel('MLG03', false)
-        self:SetWeaponEnabledByLabel('AA01', false)
-        self:SetWeaponEnabledByLabel('AA02', false)
-        self:SetWeaponEnabledByLabel('AA03', false)
-        self:SetWeaponEnabledByLabel('AA04', false)
-    end,
-
-    OnStartBuild = function(self, unitBeingBuilt, order)
-        ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
-        self.UnitBuildOrder = order
-    end,
-
-    -- New function to set up production numbers
-    SetProduction = function(self, bp)
-        local energy = bp.ProductionPerSecondEnergy or 0
-        local mass = bp.ProductionPerSecondMass or 0
-
-        local bpEcon = self:GetBlueprint().Economy
-
-        self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
-        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
-    end,
-
-    -- Function to toggle the Ripper
-    TogglePrimaryGun = function(self, RoF, radius)
-        local wep = self:GetWeaponByLabel('RightRipper')
-        local oc = self:GetWeaponByLabel('OverCharge')
-        local aoc = self:GetWeaponByLabel('AutoOverCharge')
-
-        local wepRadius = radius or wep:GetBlueprint().MaxRadius
-        local ocRadius = radius or oc:GetBlueprint().MaxRadius
-        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
-
-        -- Change RoF
-        wep:ChangeRateOfFire(RoF)
-
-        -- Change Radius
-        wep:ChangeMaxRadius(wepRadius)
-        oc:ChangeMaxRadius(ocRadius)
-        aoc:ChangeMaxRadius(aocRadius)
-
-        -- As radius is only passed when turning on, use the bool
-        if radius then
-            self:ShowBone('Right_Upgrade', true)
-            self:SetPainterRange('JuryRiggedRipper', radius, false)
-        else
-            self:HideBone('Right_Upgrade', true)
-            self:SetPainterRange('JuryRiggedRipperRemove', radius, true)
-        end
-    end,
-
-    -- Target painter. 0 damage as primary weapon, controls targeting
-    -- for the variety of changing ranges on the ACU with upgrades.
-    SetPainterRange = function(self, enh, newRange, delete)
-        if delete and self.PainterRange[string.sub(enh, 0, -7)] then
-            self.PainterRange[string.sub(enh, 0, -7)] = nil
-        elseif not delete and not self.PainterRange[enh] then
-            self.PainterRange[enh] = newRange
-        end
-
-        local range = 22
-        for upgrade, radius in self.PainterRange do
-            if radius > range then range = radius end
-        end
-
-        local wep = self:GetWeaponByLabel('TargetPainter')
-        wep:ChangeMaxRadius(range)
-    end,
-
-    OnTransportDetach = function(self, attachBone, unit)
-        ACUUnit.OnTransportDetach(self, attachBone, unit)
-        self:StopSiloBuild()
     end,
 
     OnScriptBitClear = function(self, bit)
@@ -376,7 +283,7 @@ ERL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(bp.RocketMaxRadius)
 
-            self:SetPainterRange(enh, bp.RocketMaxRadius, false)
+            self:SetPainterRange(enh, bp.RocketMaxRadius)
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT3BuildCombat') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildCombat')
@@ -388,7 +295,7 @@ ERL0001 = Class(ACUUnit) {
             gun:AddDamageMod(bp.RocketDamageMod)
             gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AssaultEngineering')
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -553,7 +460,7 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(bp.EMPRange)
 
-            self:SetPainterRange(enh, bp.EMPRange, false)
+            self:SetPainterRange(enh, bp.EMPRange)
         elseif enh == 'EMPArrayRemove' then
             if Buff.HasBuff(self, 'CybranEMPHealth1') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth1')
@@ -563,7 +470,7 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot01')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('EMPArray')
         elseif enh == 'AdjustedCrystalMatrix' then
             if not Buffs['CybranEMPHealth2'] then
                 BuffBlueprint {
@@ -588,7 +495,7 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot02')
             wep:ChangeMaxRadius(bp.EMPRange)
 
-            self:SetPainterRange(enh, bp.EMPRange, false)
+            self:SetPainterRange(enh, bp.EMPRange)
 
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
@@ -601,7 +508,7 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot02')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AdjustedCrystalMatrix')
 
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'EnhancedLaserEmitters' then
@@ -628,7 +535,7 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(bp.EMPRange)
 
-            self:SetPainterRange(enh, bp.EMPRange, false)
+            self:SetPainterRange(enh, bp.EMPRange)
         elseif enh == 'EnhancedLaserEmittersRemove' then
             if Buff.HasBuff(self, 'CybranEMPHealth3') then
                 Buff.RemoveBuff(self, 'CybranEMPHealth3')
@@ -638,7 +545,7 @@ ERL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('EMPShot03')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('EnhancedLaserEmitters')
 
         -- Mazer
 
@@ -690,7 +597,7 @@ ERL0001 = Class(ACUUnit) {
             local laser = self:GetWeaponByLabel('MLG02')
             laser:ChangeMaxRadius(bp.LaserRange)
 
-            self:SetPainterRange(enh, bp.LaserRange, false)
+            self:SetPainterRange(enh, bp.LaserRange)
 
             -- Install Jury Rigged Ripper
             self:TogglePrimaryGun(bp.NewRoF, bp.NewMaxRadius)
@@ -703,7 +610,7 @@ ERL0001 = Class(ACUUnit) {
             local laser = self:GetWeaponByLabel('MLG02')
             laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('AlternatingLaserAssembly')
 
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'SuperconductivePowerConduits' then
@@ -729,7 +636,7 @@ ERL0001 = Class(ACUUnit) {
             local laser = self:GetWeaponByLabel('MLG03')
             laser:ChangeMaxRadius(bp.LaserRange)
 
-            self:SetPainterRange(enh, bp.LaserRange, false)
+            self:SetPainterRange(enh, bp.LaserRange)
         elseif enh == 'SuperconductivePowerConduitsRemove' then
 
             if Buff.HasBuff(self, 'CybranMazerHealth3') then
@@ -740,7 +647,7 @@ ERL0001 = Class(ACUUnit) {
             local laser = self:GetWeaponByLabel('MLG03')
             laser:ChangeMaxRadius(laser:GetBlueprint().MaxRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('SuperconductivePowerConduits')
 
         -- Armor System
 
@@ -1106,6 +1013,36 @@ ERL0001 = Class(ACUUnit) {
             self:SetMaintenanceConsumptionInactive()
         elseif self:HasEnhancement('ElectronicCountermeasures') and not self:IsIntelEnabled('RadarStealth') and not self:IsIntelEnabled('SonarStealth') then
             self:SetMaintenanceConsumptionInactive()
+        end
+    end,
+
+    -- New Functions
+
+    -- Overwrite, Cybran changes RateOfFire not Damage
+    TogglePrimaryGun = function(self, damage, radius)
+        local wep = self:GetWeaponByLabel(self.rightGunLabel)
+        local oc = self:GetWeaponByLabel('OverCharge')
+        local aoc = self:GetWeaponByLabel('AutoOverCharge')
+
+        local wepRadius = radius or wep:GetBlueprint().MaxRadius
+        local ocRadius = radius or oc:GetBlueprint().MaxRadius
+        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
+
+        -- Change Damage
+        wep:AddDamageMod(damage)
+
+        -- Change Radius
+        wep:ChangeMaxRadius(wepRadius)
+        oc:ChangeMaxRadius(ocRadius)
+        aoc:ChangeMaxRadius(aocRadius)
+
+        self:SetPainterRange(self.RightGunUpgrade, radius)
+
+        -- As radius is only passed when turning on, use the bool
+        if radius then
+            self:ShowBone('Right_Upgrade', true)
+        else
+            self:HideBone('Right_Upgrade', true)
         end
     end,
 }
