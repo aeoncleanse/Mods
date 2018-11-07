@@ -2052,7 +2052,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/InvisoProjectile01/InvisoProjectile01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/EMPProjectile/EMPProjectile_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2136,7 +2136,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/InvisoProjectile02/InvisoProjectile02_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/EMPProjectile02/EMPProjectile02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2220,7 +2220,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/InvisoProjectile03/InvisoProjectile03_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/EMPProjectile03/EMPProjectile03_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {

@@ -2033,7 +2033,7 @@ UnitBlueprint {
             MuzzleVelocity = 20,
             NoPause = true,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/NapalmProjectile01/Napalm01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/NapalmProjectile/NapalmProjectile_proj.bp',
             ProjectileLifetime = 4,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2164,7 +2164,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 35,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/UEFACUAntiMatter01/UEFACUAntiMatter01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/AntiMatterProjectile/AntiMatterProjectile_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2237,7 +2237,7 @@ UnitBlueprint {
             MuzzleVelocity = 32,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/UEFHeavyPlasmaGatlingCannon03/UEFHeavyPlasmaGatlingCannon03_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/HeavyPlasmaGatlingCannon/HeavyPlasmaGatlingCannon_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -2525,7 +2525,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 6,
             MuzzleVelocity = 10,
             PrefersPrimaryWeaponTarget = false,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/ClusterMissile01/ClusterMissile01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/ClusterMissileProjectile/ClusterMissileProjectile_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {
@@ -2609,7 +2609,7 @@ UnitBlueprint {
             NukeOuterRingTicks = 20,
             NukeOuterRingTotalTime = 0,
             NukeWeapon = true,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/UEFBilly/UEFBilly_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/Billy/Billy_proj.bp',
             ProjectileLifetime = 80,
             RackBones = {
                 {

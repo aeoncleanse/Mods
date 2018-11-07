@@ -1,4 +1,4 @@
-local SeraLambdaField = import('/mods/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua').SeraLambdaFieldDestroyer
+local LambdaField = import('/mods/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua').LambdaField
 
 LambdaUnit = Class(SStructureUnit) {
     ShieldEffects = {
@@ -8,8 +8,8 @@ LambdaUnit = Class(SStructureUnit) {
 
     OnCreate = function(self, builder, layer)
         SStructureUnit.OnCreate(self, builder, layer)
-        self.ShieldEffectsBag = {}
 
+        self.ShieldEffectsBag = {}
         for _, v in self.ShieldEffects do
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625))
             table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 0, self:GetArmy(), v):ScaleEmitter(0.0625):OffsetEmitter(0, -0.5, 0))
@@ -17,7 +17,7 @@ LambdaUnit = Class(SStructureUnit) {
         end
 
         local bp = self:GetBlueprint().Defense.LambdaField
-        local field = SeraLambdaField {
+        local field = LambdaField {
             Owner = self,
             Radius = bp.Radius,
             AttachBone = bp.AttachBone,

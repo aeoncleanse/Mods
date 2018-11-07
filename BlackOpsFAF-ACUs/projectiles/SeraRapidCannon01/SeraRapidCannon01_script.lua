@@ -1,13 +1,9 @@
------------------------------------------------------------------
+--------------------------
+-- Rapid Cannon Projectile
+--------------------------
 
--- File     :  /data/projectiles/SDFAireauWeapon01/SDFAireauWeapon01_script.lua
--- Author(s):  Matt Vainio
+local RapidCannonProjectile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').RapidCannonProjectile
 
--- Summary  :  Aire-Au Autocannon, XSL0401
+RapidCannonProjectile = Class(RapidCannonProjectile) {}
 
--- Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
------------------------------------------------------------------
-local SeraRapidCannon01Projectile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').SeraRapidCannon01Projectile
-SeraRapidCannon01 = Class(SeraRapidCannon01Projectile) {}
-TypeClass = SeraRapidCannon01
-
+TypeClass = RapidCannonProjectile
