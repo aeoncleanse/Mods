@@ -1423,7 +1423,7 @@ UnitBlueprint {
             Prerequisite = 'TacticalMisslePack',
             NewHealth = 15000,
             OverchargeDamageMod = 8000,
-            NewProjectileBlueprint = '/mods/BlackOpsFAF-ACUs/projectiles/OmegaOverCharge01/OmegaOverCharge01_proj.bp',
+            NewProjectileBlueprint = '/mods/BlackOpsFAF-ACUs/projectiles/OmegaOverchargeProjectile/OmegaOverchargeProjectile_proj.bp',
             ShowBones = {
                 'Missile_Launcher',
                 'L_Spinner_B01',
@@ -2022,7 +2022,7 @@ UnitBlueprint {
             MuzzleVelocity = 15,
             NotExclusive = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/SeraACUBigBall01/SeraACUBigBall01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/QuantumStormProjectile/QuantumStormProjectile_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {
@@ -2094,7 +2094,7 @@ UnitBlueprint {
             MuzzleVelocity = 35,
             NoPause = true,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/SeraRapidCannon01/SeraRapidCannon01_proj.bp',
+            ProjectileId = '/mods/BlackOpsFAF-ACUs/projectiles/RapidCannonProjectile/RapidCannonProjectile_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2,
             RackBones = {
                 {

@@ -1,16 +1,16 @@
 Tooltips["exstealth_toggle"] = {
     title = "Active Jammer Subsystem",
-    description = "Toggles on the combination blip generator and personal stealth system on or off",
+    description = "Toggles the combination blip generator and personal stealth system",
 }
 Tooltips["excloak_toggle"] = {
     title = "Stealth Subsystem",
-    description = "Toggle the advanced stealth suite on or off.",
+    description = "Toggles the advanced stealth suite.",
 }
 Tooltips["exjammer_toggle"] = {
     title = "Radar Jamming Subsystem",
-    description = "Toggle the radar blip generator on or off.",
+    description = "Toggles the radar blip generator.",
 }
 Tooltips['ACUsScryTarget'] = {
    title = "Scry Targetting",
-   description = "Target Area for Scrying",
+   description = "Target Area for scrying",
 }

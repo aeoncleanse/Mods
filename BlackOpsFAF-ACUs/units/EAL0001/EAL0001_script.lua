@@ -5,39 +5,44 @@
 -----------------------------------------------------------------
 
 local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
+local EffectUtil = import('/lua/EffectUtilities.lua')
+local Buff = import('/lua/sim/Buff.lua')
+local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
+
 local AWeapons = import('/lua/aeonweapons.lua')
 local ADFDisruptorCannonWeapon = AWeapons.ADFDisruptorCannonWeapon
 local ADFOverchargeWeapon = AWeapons.ADFOverchargeWeapon
 local ADFChronoDampener = AWeapons.ADFChronoDampener
 local AIFArtilleryMiasmaShellWeapon = AWeapons.AIFArtilleryMiasmaShellWeapon
 local AANChronoTorpedoWeapon = AWeapons.AANChronoTorpedoWeapon
-local ADFPhasonLaser = AWeapons.ADFPhasonLaser
 local AAMWillOWisp = AWeapons.AAMWillOWisp
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local EffectUtil = import('/lua/EffectUtilities.lua')
-local Buff = import('/lua/sim/Buff.lua')
-local BOWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
-local AeonACUPhasonLaser = BOWeapons.AeonACUPhasonLaser
+
+local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
+local PhasonLaser = ACUsWeapons.PhasonLaser
 local AIFQuasarAntiTorpedoWeapon = AWeapons.AIFQuasarAntiTorpedoWeapon
-local CEMPArrayBeam01 = BOWeapons.CEMPArrayBeam01
-local QuantumMaelstromWeapon = BOWeapons.QuantumMaelstromWeapon
-local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
+local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam
+local QuantumMaelstromWeapon = ACUsWeapons.QuantumMaelstromWeapon
 
 EAL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
+    rightGunLabel = 'RightDisruptor',
+    RightGunUpgrade = 'DisruptorAmplifier',
+    WeaponEnabled = {}, -- Storage for upgrade weapons status
+    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/eal0001/EAL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
-        TargetPainter = Class(CEMPArrayBeam01) {},
+        TargetPainter = Class(CEMPArrayBeam) {},
         RightDisruptor = Class(ADFDisruptorCannonWeapon) {},
         ChronoDampener = Class(ADFChronoDampener) {},
         ChronoDampener2 = Class(ADFChronoDampener) {},
         TorpedoLauncher = Class(AANChronoTorpedoWeapon) {},
         MiasmaArtillery = Class(AIFArtilleryMiasmaShellWeapon) {},
-        PhasonBeam01 = Class(AeonACUPhasonLaser) {},
-        PhasonBeam02 = Class(AeonACUPhasonLaser) {},
-        PhasonBeam03 = Class(AeonACUPhasonLaser) {},
+        PhasonBeam01 = Class(PhasonLaser) {},
+        PhasonBeam02 = Class(PhasonLaser) {},
+        PhasonBeam03 = Class(PhasonLaser) {},
         QuantumMaelstrom = Class(QuantumMaelstromWeapon) {},
         AntiTorpedo = Class(AIFQuasarAntiTorpedoWeapon) {},
         AntiMissile = Class(AAMWillOWisp) {},
@@ -45,25 +50,10 @@ EAL0001 = Class(ACUUnit) {
         AutoOverCharge = Class(ADFOverchargeWeapon) {},
     },
 
-    __init = function(self)
-        ACUUnit.__init(self, 'RightDisruptor')
-    end,
-
-    -- Storage for upgrade weapons status
-    WeaponEnabled = {},
-
+    -- Hooked Functions
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
-        self:SetCapturable(false)
-        self:SetupBuildBones()
 
-        local bp = self:GetBlueprint()
-        for _, v in bp.Display.WarpInEffect.HideBones do
-            self:HideBone(v, true)
-        end
-
-        -- Restrict what enhancements will enable later
-        self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
         self.RemoteViewingData = {}
         self.RemoteViewingData.RemoteViewingFunctions = {}
         self.RemoteViewingData.DisableCounter = 0
@@ -74,131 +64,17 @@ EAL0001 = Class(ACUUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
-        -- Disable Upgrade Weapons
-        self:SetWeaponEnabledByLabel('ChronoDampener', false)
-        self:SetWeaponEnabledByLabel('ChronoDampener2', false)
-        self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-        self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam01', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam02', false)
-        self:SetWeaponEnabledByLabel('PhasonBeam03', false)
-        self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
-        self:SetWeaponEnabledByLabel('AntiTorpedo', false)
-        self:SetWeaponEnabledByLabel('AntiMissile', false)
-
         self.Sync.Abilities = self:GetBlueprint().Abilities
         self.Sync.Abilities.TargetLocation.Active = false
-        self:ForkThread(self.GiveInitialResources)
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
         ACUUnit.OnKilled(self, instigator, type, overkillRatio)
+
         if self.RemoteViewingData.Satellite then
             self.RemoteViewingData.Satellite:DisableIntel('Vision')
             self.RemoteViewingData.Satellite:Destroy()
         end
-    end,
-
-    DisableRemoteViewingButtons = function(self)
-        self.Sync.Abilities = self:GetBlueprint().Abilities
-        self.Sync.Abilities.TargetLocation.Active = false
-        self:AddToggleCap('RULEUTC_IntelToggle')
-        self:RemoveToggleCap('RULEUTC_IntelToggle')
-    end,
-
-    EnableRemoteViewingButtons = function(self)
-        self.Sync.Abilities = self:GetBlueprint().Abilities
-        self.Sync.Abilities.TargetLocation.Active = true
-        self:AddToggleCap('RULEUTC_IntelToggle')
-        self:RemoveToggleCap('RULEUTC_IntelToggle')
-    end,
-
-    RemoteCheck = function(self)
-        if self:HasEnhancement('FarsightOptics') and self.ScryActive then
-            self:DisableRemoteViewingButtons()
-            WaitSeconds(10)
-            if self:HasEnhancement('FarsightOptics') then
-                self:EnableRemoteViewingButtons()
-            end
-        end
-    end,
-
-    OnTargetLocation = function(self, location)
-        -- Initial energy drain here - we drain resources instantly when an eye is relocated (including initial move)
-        local aiBrain = self:GetAIBrain()
-        local bp = self:GetBlueprint()
-        local have = aiBrain:GetEconomyStored('ENERGY')
-        local need = bp.Economy.InitialRemoteViewingEnergyDrain
-        if not (have > need) then
-            return
-        end
-        local selfpos = self:GetPosition()
-        local destRange = VDist2(location[1], location[3], selfpos[1], selfpos[3])
-        if destRange <= 300 then
-            aiBrain:TakeResource('ENERGY', bp.Economy.InitialRemoteViewingEnergyDrain)
-
-            self.RemoteViewingData.VisibleLocation = location
-            self:CreateVisibleEntity()
-            self.ScryActive = true
-            self:ForkThread(self.RemoteCheck)
-        end
-    end,
-
-    CreateVisibleEntity = function(self)
-        -- Only give a visible area if we have a location and intel button enabled
-        if not self.RemoteViewingData.VisibleLocation then
-            return
-        end
-
-        if self.RemoteViewingData.VisibleLocation and self.RemoteViewingData.DisableCounter == 0 and self.RemoteViewingData.IntelButton then
-            local bp = self:GetBlueprint()
-            -- Create new visible area
-            if not self.RemoteViewingData.Satellite then
-                local spec = {
-                    X = self.RemoteViewingData.VisibleLocation[1],
-                    Z = self.RemoteViewingData.VisibleLocation[3],
-                    Radius = bp.Intel.RemoteViewingRadius,
-                    LifeTime = -1,
-                    Omni = false,
-                    Radar = false,
-                    Vision = true,
-                    Army = self:GetAIBrain():GetArmyIndex(),
-                }
-                self.RemoteViewingData.Satellite = VizMarker(spec)
-                self.Trash:Add(self.RemoteViewingData.Satellite)
-            else
-                -- Move and reactivate old visible area
-                if not self.RemoteViewingData.Satellite:BeenDestroyed() then
-                    Warp(self.RemoteViewingData.Satellite, self.RemoteViewingData.VisibleLocation)
-                    self.RemoteViewingData.Satellite:EnableIntel('Vision')
-                end
-            end
-            self:ForkThread(self.DisableVisibleEntity)
-        end
-    end,
-
-    DisableVisibleEntity = function(self)
-        -- Visible entity already off
-        WaitSeconds(5)
-        if self.RemoteViewingData.DisableCounter > 1 then return end
-        -- Disable vis entity and monitor resources
-        if not self:IsDead() and self.RemoteViewingData.Satellite then
-            self.RemoteViewingData.Satellite:DisableIntel('Vision')
-        end
-    end,
-
-    OnStartBuild = function(self, unitBeingBuilt, order)
-        ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
-        self.UnitBuildOrder = order
-    end,
-
-    CreateBuildEffects = function(self, unitBeingBuilt, order)
-        EffectUtil.CreateAeonCommanderBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
-    end,
-
-    OnTransportDetach = function(self, attachBone, unit)
-        ACUUnit.OnTransportDetach(self, attachBone, unit)
-        self:StopSiloBuild()
     end,
 
     OnScriptBitClear = function(self, bit)
@@ -215,74 +91,8 @@ EAL0001 = Class(ACUUnit) {
         end
     end,
 
-    -- New function to set up production numbers
-    SetProduction = function(self, bp)
-        local energy = bp.ProductionPerSecondEnergy or 0
-        local mass = bp.ProductionPerSecondMass or 0
-
-        local bpEcon = self:GetBlueprint().Economy
-
-        self:SetProductionPerSecondEnergy(energy + bpEcon.ProductionPerSecondEnergy or 0)
-        self:SetProductionPerSecondMass(mass + bpEcon.ProductionPerSecondMass or 0)
-    end,
-
-    -- Function to toggle the Ripper
-    TogglePrimaryGun = function(self, damage, radius)
-        local wep = self:GetWeaponByLabel('RightDisruptor')
-        local oc = self:GetWeaponByLabel('OverCharge')
-        local aoc = self:GetWeaponByLabel('AutoOverCharge')
-
-        local wepRadius = radius or wep:GetBlueprint().MaxRadius
-        local ocRadius = radius or oc:GetBlueprint().MaxRadius
-        local aocRadius = radius or aoc:GetBlueprint().MaxRadius
-
-        -- Change Damage
-        wep:AddDamageMod(damage)
-
-        -- Change Radius
-        wep:ChangeMaxRadius(wepRadius)
-        oc:ChangeMaxRadius(ocRadius)
-        aoc:ChangeMaxRadius(aocRadius)
-
-        -- As radius is only passed when turning on, use the bool
-        if radius then
-            self:SetPainterRange('DisruptorAmplifier', radius, false)
-        else
-            self:SetPainterRange('DisruptorAmplifierRemove', radius, true)
-        end
-    end,
-
-    -- Target painter. 0 damage as primary weapon, controls targeting
-    -- for the variety of changing ranges on the ACU with upgrades.
-    SetPainterRange = function(self, enh, newRange, delete)
-        if delete and self.PainterRange[string.sub(enh, 0, -7)] then
-            self.PainterRange[string.sub(enh, 0, -7)] = nil
-        elseif not delete and not self.PainterRange[enh] then
-            self.PainterRange[enh] = newRange
-        end
-
-        local range = 22
-        for upgrade, radius in self.PainterRange do
-            if radius > range then range = radius end
-        end
-
-        local wep = self:GetWeaponByLabel('TargetPainter')
-        wep:ChangeMaxRadius(range)
-    end,
-
-    SpecialBones = function(self)
-        if self:HasEnhancement('ShieldBattery') and self:HasEnhancement('DualMiasmaArtillery') then
-            self:ShowBone('ShieldPack_Arty_LArm', true)
-            self:ShowBone('ShieldPack_Arty_RArm', true)
-            self:ShowBone('ShieldPack_Artillery', true)
-            self:HideBone('ShieldPack_Normal', true)
-            self:HideBone('Shoulder_Normal_L', true)
-            self:HideBone('Shoulder_Normal_R', true)
-        elseif self:HasEnhancement('ShieldBattery') or self:HasEnhancement('DualMiasmaArtillery') then
-            self:HideBone('ShieldPack_Arty_LArm', true)
-            self:HideBone('ShieldPack_Arty_RArm', true)
-            self:HideBone('ShieldPack_Artillery', true)
-        end
+    CreateBuildEffects = function(self, unitBeingBuilt, order)
+        EffectUtil.CreateAeonCommanderBuildingEffects(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
     end,
 
     CreateEnhancement = function(self, enh, removal)
@@ -650,7 +460,7 @@ EAL0001 = Class(ACUUnit) {
             wep:ChangeMaxRadius(bp.ArtyRadius)
             wep:ChangeMinRadius(bp.ArtyMinRadius)
 
-            self:SetPainterRange(enh, bp.ArtyRadius, false)
+            self:SetPainterRange(enh, bp.ArtyRadius)
 
             self:SpecialBones()
         elseif enh == 'DualMiasmaArtilleryRemove' then
@@ -663,7 +473,7 @@ EAL0001 = Class(ACUUnit) {
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
             wep:ChangeMinRadius(wep:GetBlueprint().MinRadius)
 
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('DualMiasmaArtillery')
 
             self:SpecialBones()
         elseif enh == 'AdvancedWarheadCompression' then
@@ -750,7 +560,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam01', true)
             local beam = self:GetWeaponByLabel('PhasonBeam01')
             beam:ChangeMaxRadius(bp.BeamRadius)
-            self:SetPainterRange(enh, bp.BeamRadius, false)
+            self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'PhasonBeamCannonRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth1') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth1')
@@ -759,7 +569,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam01', false)
             local beam = self:GetWeaponByLabel('PhasonBeam01')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('PhasonBeamCannon')
         elseif enh == 'DualChannelBooster' then
             if not Buffs['AeonBeamHealth2'] then
                 BuffBlueprint {
@@ -782,7 +592,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam02', true)
             local beam = self:GetWeaponByLabel('PhasonBeam02')
             beam:ChangeMaxRadius(bp.BeamRadius)
-            self:SetPainterRange(enh, bp.BeamRadius, false)
+            self:SetPainterRange(enh, bp.BeamRadius)
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'DualChannelBoosterRemove' then
@@ -793,7 +603,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam02', false)
             local beam = self:GetWeaponByLabel('PhasonBeam02')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('DualChannelBooster')
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'EnergizedMolecularInducer' then
@@ -818,7 +628,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam03', true)
             local beam = self:GetWeaponByLabel('PhasonBeam03')
             beam:ChangeMaxRadius(bp.BeamRadius)
-            self:SetPainterRange(enh, bp.BeamRadius, false)
+            self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'EnergizedMolecularInducerRemove' then
             if Buff.HasBuff(self, 'AeonBeamHealth3') then
                 Buff.RemoveBuff(self, 'AeonBeamHealth3')
@@ -827,7 +637,7 @@ EAL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('PhasonBeam03', false)
             local beam = self:GetWeaponByLabel('PhasonBeam03')
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
-            self:SetPainterRange(enh, 0, true)
+            self:SetPainterRange('EnergizedMolecularInducer')
 
         -- Shielding
 
@@ -1166,6 +976,111 @@ EAL0001 = Class(ACUUnit) {
             },
         },
     },
+
+    -- New Functions
+    DisableRemoteViewingButtons = function(self)
+        self.Sync.Abilities = self:GetBlueprint().Abilities
+        self.Sync.Abilities.TargetLocation.Active = false
+        self:AddToggleCap('RULEUTC_IntelToggle')
+        self:RemoveToggleCap('RULEUTC_IntelToggle')
+    end,
+
+    EnableRemoteViewingButtons = function(self)
+        self.Sync.Abilities = self:GetBlueprint().Abilities
+        self.Sync.Abilities.TargetLocation.Active = true
+        self:AddToggleCap('RULEUTC_IntelToggle')
+        self:RemoveToggleCap('RULEUTC_IntelToggle')
+    end,
+
+    RemoteCheck = function(self)
+        if self:HasEnhancement('FarsightOptics') and self.ScryActive then
+            self:DisableRemoteViewingButtons()
+            WaitSeconds(10)
+
+            if self:HasEnhancement('FarsightOptics') then
+                self:EnableRemoteViewingButtons()
+            end
+        end
+    end,
+
+    OnTargetLocation = function(self, location)
+        -- Initial energy drain here - we drain resources instantly when an eye is relocated (including initial move)
+        local aiBrain = self:GetAIBrain()
+        local bp = self:GetBlueprint()
+        local have = aiBrain:GetEconomyStored('ENERGY')
+        local need = bp.Economy.InitialRemoteViewingEnergyDrain
+
+        if have < need then return end
+
+        local selfpos = self:GetPosition()
+        local destRange = VDist2(location[1], location[3], selfpos[1], selfpos[3])
+        if destRange <= 300 then
+            aiBrain:TakeResource('ENERGY', bp.Economy.InitialRemoteViewingEnergyDrain)
+
+            self.RemoteViewingData.VisibleLocation = location
+            self:CreateVisibleEntity()
+            self.ScryActive = true
+            self:ForkThread(self.RemoteCheck)
+        end
+    end,
+
+    CreateVisibleEntity = function(self)
+        -- Only give a visible area if we have a location and intel button enabled
+        if not self.RemoteViewingData.VisibleLocation then return end
+
+        if self.RemoteViewingData.VisibleLocation and self.RemoteViewingData.DisableCounter == 0 and self.RemoteViewingData.IntelButton then
+            local bp = self:GetBlueprint()
+            -- Create new visible area
+            if not self.RemoteViewingData.Satellite then
+                local spec = {
+                    X = self.RemoteViewingData.VisibleLocation[1],
+                    Z = self.RemoteViewingData.VisibleLocation[3],
+                    Radius = bp.Intel.RemoteViewingRadius,
+                    LifeTime = -1,
+                    Omni = false,
+                    Radar = false,
+                    Vision = true,
+                    Army = self:GetAIBrain():GetArmyIndex(),
+                }
+                self.RemoteViewingData.Satellite = VizMarker(spec)
+                self.Trash:Add(self.RemoteViewingData.Satellite)
+            else
+                -- Move and reactivate old visible area
+                if not self.RemoteViewingData.Satellite:BeenDestroyed() then
+                    Warp(self.RemoteViewingData.Satellite, self.RemoteViewingData.VisibleLocation)
+                    self.RemoteViewingData.Satellite:EnableIntel('Vision')
+                end
+            end
+            self:ForkThread(self.DisableVisibleEntity)
+        end
+    end,
+
+    DisableVisibleEntity = function(self)
+        -- Visible entity already off
+        WaitSeconds(5)
+
+        if self.RemoteViewingData.DisableCounter > 1 then return end
+
+        -- Disable vis entity and monitor resources
+        if not self:IsDead() and self.RemoteViewingData.Satellite then
+            self.RemoteViewingData.Satellite:DisableIntel('Vision')
+        end
+    end,
+
+    SpecialBones = function(self)
+        if self:HasEnhancement('ShieldBattery') and self:HasEnhancement('DualMiasmaArtillery') then
+            self:ShowBone('ShieldPack_Arty_LArm', true)
+            self:ShowBone('ShieldPack_Arty_RArm', true)
+            self:ShowBone('ShieldPack_Artillery', true)
+            self:HideBone('ShieldPack_Normal', true)
+            self:HideBone('Shoulder_Normal_L', true)
+            self:HideBone('Shoulder_Normal_R', true)
+        elseif self:HasEnhancement('ShieldBattery') or self:HasEnhancement('DualMiasmaArtillery') then
+            self:HideBone('ShieldPack_Arty_LArm', true)
+            self:HideBone('ShieldPack_Arty_RArm', true)
+            self:HideBone('ShieldPack_Artillery', true)
+        end
+    end,
 }
 
 TypeClass = EAL0001

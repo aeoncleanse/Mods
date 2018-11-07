@@ -1,24 +1,27 @@
 local Entity = import('/lua/sim/Entity.lua').Entity
-local BlackOpsEffectTemplate = import('/mods/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua')
+local ACUsEffectTemplate = import('/mods/BlackOpsFAF-ACUs/lua/ACUsEffectTemplates.lua')
 
-SeraLambdaFieldDestroyer = Class(Entity) {
-    EndPointEffects = {'/effects/emitters/particle_cannon_end_01_emit.bp',},
-    LambdaEffects = BlackOpsEffectTemplate.LambdaDestroyer,
+LambdaField = Class(Entity) {
+    EndPointEffects = {'/effects/emitters/particle_cannon_end_01_emit.bp'},
+    LambdaEffects = ACUsEffectTemplate.LambdaDestroyer,
 
     OnCreate = function(self, spec)
         Entity.OnCreate(self, spec)
+
         self.Owner = spec.Owner
         self.Probability = spec.Probability
         self:SetCollisionShape('Sphere', 0, 0, 0, spec.Radius)
         self:SetDrawScale(spec.Radius)
         self.AttachBone = spec.AttachBone
         self:AttachTo(spec.Owner, spec.AttachBone)
-        ChangeState(self, self.WaitingState)
         self.LambdaEffectsBag = {}
+
+        ChangeState(self, self.WaitingState)
     end,
 
     OnDestroy = function(self)
         Entity.OnDestroy(self)
+
         ChangeState(self, self.DeadState)
     end,
 
@@ -36,7 +39,7 @@ SeraLambdaFieldDestroyer = Class(Entity) {
 
             if not IsEnemy(self:GetArmy(), other:GetArmy()) then return false end -- Don't affect non-enemies
 
-            if other.LambdaDetect[self] then return false end
+            if other.LambdaDetect then return false end
 
             local rand = math.random(0, 100)
             if rand >= 0 and rand <= self.Probability then
@@ -54,10 +57,7 @@ SeraLambdaFieldDestroyer = Class(Entity) {
                 self.LambdaEffectsBag = {}
             end
 
-            if not other.LambdaDetect then
-                other.LambdaDetect = {}
-            end
-            other.LambdaDetect[self] = true
+            other.LambdaDetect = true
 
             return false
         end,
