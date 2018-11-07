@@ -1,9 +1,9 @@
------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 -- File     :  /mods/BlackOpsFAF-ACUs/effects/Entities/Cluster01EffectController01/Cluster01EffectController01_script.lua
 -- Author(s):  Gordon Duclos
 -- Summary  :  Nuclear explosion script
 -- Copyright © 2005, 2006 Gas Powered Games, Inc.  All rights reserved.
------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -11,7 +11,7 @@ local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
 Cluster01EffectController01 = Class(NullShell) {
-    PassData = function(self, Data)
+    PassData = function(self)
         self:CreateNuclearExplosion()
     end,
 
@@ -28,7 +28,6 @@ Cluster01EffectController01 = Class(NullShell) {
 
     EffectThread = function(self)
         local army = self:GetArmy()
-        local position = self:GetPosition()
 
         -- Create full-screen glow flash
         WaitSeconds(0.015625)
@@ -84,7 +83,7 @@ Cluster01EffectController01 = Class(NullShell) {
         WaitSeconds(0.1875)
 
         -- Slow projectiles down to normal speed
-        for k, v in projectiles do
+        for _, v in projectiles do
             v:SetAcceleration(-0.0140625)
         end
     end,
@@ -96,10 +95,10 @@ Cluster01EffectController01 = Class(NullShell) {
         local angleVariation = angle * 0.75
         local projectiles = {}
 
-        local xVec = 0
-        local yVec = 0
-        local zVec = 0
-        local velocity = 0
+        local xVec
+        local yVec
+        local zVec
+        local velocity
 
         -- yVec -0.2, requires 2 initial velocity to start
         -- yVec 0.3, requires 3 initial velocity to start
@@ -156,24 +155,18 @@ Cluster01EffectController01 = Class(NullShell) {
             CreateEmitterAtEntity(self, army, v):ScaleEmitter(0.03125)
         end
 
-        local sides = 10
-        local angle = (2 * math.pi) / sides
-        local inner_lower_limit = 0.0625
         local outer_lower_limit = 0.0625
         local outer_upper_limit = 0.0625
-
-        local inner_lower_height = 0.03125
-        local inner_upper_height = 0.09375
         local outer_lower_height = 0.0625
         local outer_upper_height = 0.09375
 
-        sides = 8
-        angle = (2 * math.pi) / sides
+        local sides = 8
+        local angle = (2 * math.pi) / sides
         for i = 0, sides - 1 do
             local magnitude = RandomFloat(outer_lower_limit, outer_upper_limit)
             local x = math.sin(i * angle + RandomFloat(-angle / 2, angle / 4)) * magnitude
             local z = math.cos(i * angle + RandomFloat(-angle / 2, angle / 4)) * magnitude
-            local velocity = RandomFloat(1, 3) * 0.09375 Last Number
+            local velocity = RandomFloat(1, 3) * 0.09375
             self:CreateProjectile('/mods/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
                 :SetVelocity(x * velocity, 0, z * velocity)
         end

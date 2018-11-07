@@ -1,9 +1,9 @@
------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- File     :  /effects/Entities/Cluster01Effect03/Cluster01Effect03_script.lua
 -- Author(s):  Gordon Duclos
 -- Summary  :  Nuclear explosion script
 -- Copyright © 2005, 2006 Gas Powered Games, Inc.  All rights reserved.
------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local EffectTemplate = import('/lua/EffectTemplates.lua')
