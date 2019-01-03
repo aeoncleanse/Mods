@@ -1844,7 +1844,7 @@ UnitBlueprint {
             Damage = 0,
             DamageFriendly = true,
             DamageRadius = 0,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Death Nuke',
             FireOnDeath = true,
             FiringTolerance = 2,
