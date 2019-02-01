@@ -301,6 +301,7 @@ UnitBlueprint {
         Level4 = 300,
         Level5 = 375,
     },
+    VeteranMassMult = 0.5,
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
@@ -1228,7 +1229,7 @@ UnitBlueprint {
             Damage = 15000,
             DamageFriendly = true,
             DamageRadius = 15,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Death Nuke',
             FireOnDeath = false,
             FiringTolerance = 2,

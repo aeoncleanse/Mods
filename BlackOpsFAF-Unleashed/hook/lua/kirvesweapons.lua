@@ -5,14 +5,6 @@ TargetingLaserBO = Class(DefaultBeamWeapon) {
     FxBeamEndPointScale = 0.01,
 }
 
-SDFUnstablePhasonBeamBO = Class(DefaultBeamWeapon) {
-    BeamType = CollisionBeamFile.UnstablePhasonLaserCollisionBeam3,
-    FxMuzzleFlash = {},
-    FxChargeMuzzleFlash = {},
-    FxUpackingChargeEffects = OriginalEffectTemplate.CMicrowaveLaserCharge01,
-    FxUpackingChargeEffectScale = 0.2,
-}
-
 DummyBO = Class(DefaultBeamWeapon) {
     BeamType = CollisionBeamFile.TargetingCollisionBeamBO,
 

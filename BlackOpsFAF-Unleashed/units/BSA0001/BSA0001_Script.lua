@@ -35,7 +35,7 @@ BSA0001 = Class(SAirUnit) {
 
     OnCreate = function(self, builder, layer)
         SAirUnit. OnCreate(self,builder,layer)
-        if not self:IsDead() then
+        if not self.Dead then
             -- Disables weapons
             self:SetWeaponEnabledByLabel('AutoCannon1', false)
             self:SetWeaponEnabledByLabel('Bomb', false)
@@ -60,7 +60,7 @@ BSA0001 = Class(SAirUnit) {
 
     LaunchEffects = function(self)
         -- Are we dead?
-        if not self:IsDead() then
+        if not self.Dead then
             -- Set flag to true
             self.BurnerActive = true
 
@@ -77,7 +77,7 @@ BSA0001 = Class(SAirUnit) {
             -- Duration of launch
             WaitSeconds(self.Duration)
 
-            if not self:IsDead() and not self.Parent:IsDead() then
+            if not self.Dead and not self.Parent.Dead then
 
                 -- Tells the drone to guard the carrier
                 self:ForkThread(self.GuardCarrier)
@@ -103,7 +103,7 @@ BSA0001 = Class(SAirUnit) {
             'RULEUCC_RetaliateToggle',
             'RULEUCC_Stop',
         }
-        while self and not self:IsDead() do
+        while self and not self.Dead do
             -- Verify that we have fuel and get distance from parent carrier
             local dronePos = self:GetPosition()
             local parentPos = self.Parent:GetPosition()
@@ -185,7 +185,7 @@ BSA0001 = Class(SAirUnit) {
     end,
 
     GuardCarrier = function(self)
-        if not self:IsDead() and not self.Parent:IsDead() then
+        if not self.Dead and not self.Parent.Dead then
             -- Tells the drone to guard the carrier
             IssueClearCommands({self})
             IssueGuard({self}, self.Parent)
@@ -194,7 +194,7 @@ BSA0001 = Class(SAirUnit) {
 
     OnDamage = function(self, instigator, amount, vector, damagetype)
         SAirUnit.OnDamage(self, instigator, amount, vector, damagetype)
-        if self:IsDead() == false and instigator and IsUnit(instigator) then
+        if self.Dead == false and instigator and IsUnit(instigator) then
             if self.BurnerActive == false then
                 -- Set flags to true
                 self.BurnerActive = true
@@ -206,7 +206,7 @@ BSA0001 = Class(SAirUnit) {
     end,
 
     Afterburner = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             if self.BeamExhaustEffectsBag then
                 -- Engine effects clean up
                 EffectUtil.CleanupEffectBag(self,'BeamExhaustEffectsBag')
@@ -233,7 +233,7 @@ BSA0001 = Class(SAirUnit) {
 
 
             -- Fuel calculations and Afterburn effect clean up
-            if not self:IsDead() then
+            if not self.Dead then
 
                 if self.BeamExhaustEffectsBag then
                     -- Engine effects clean up
@@ -252,7 +252,7 @@ BSA0001 = Class(SAirUnit) {
                 WaitSeconds(self.Duration)
 
                 -- Resets Afterburn and Evade triggers
-                if not self:IsDead() then
+                if not self.Dead then
                     self.BurnerActive = false
                     self.Evade = false
                 end
@@ -272,7 +272,7 @@ BSA0001 = Class(SAirUnit) {
         EffectUtil.CleanupEffectBag(self,'BeamExhaustEffectsBag')
 
         -- Notifies parent of drone death and clears the offending drone from the parents table
-        if not self.Parent:IsDead() then
+        if not self.Parent.Dead then
             self.Parent:NotifyOfDroneDeath(self.Drone)
             table.removeByValue(self.Parent.DroneTable, self)
             self.Parent = nil

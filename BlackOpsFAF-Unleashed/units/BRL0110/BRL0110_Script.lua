@@ -71,7 +71,7 @@ BRL0110 = Class(CWalkingLandUnit) {
     end,
 
     WeaponSetup = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             self.WeaponCheck = Random(1, 4)
             self:ShowBone('XRL0110', true)
             local dummywep = self:GetWeaponByLabel('DummyWeapon')

@@ -572,9 +572,9 @@ UnitBlueprint {
             WeaponCategory = 'Direct Fire',
         },
         {
-            Damage = 100,
+            Damage = 373,
             DamageFriendly = true,
-            DamageRadius = 1,
+            DamageRadius = 0.95,
             DamageType = 'Normal',
             DisplayName = 'Air Crash',
             DummyWeapon = true,

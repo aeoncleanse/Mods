@@ -93,10 +93,10 @@ BSB0405 = Class(SShieldStructureUnit) {
     end,
 
     LambdaEmitter = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             WaitSeconds(0.5)
             -- Are we dead yet, if not spawn lambdaEmitter
-            if not self:IsDead() then
+            if not self.Dead then
 
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
@@ -178,7 +178,7 @@ BSB0405 = Class(SShieldStructureUnit) {
     end,
 
     OnDamage = function(self, instigator, amount, vector, damagetype)
-        if self:IsDead() == false then
+        if self.Dead == false then
             -- Base script for this script function was developed by Gilbot_x
             -- sets the damage resistance of the rebuilder bot to 30%
             local lambdaEmitter_DLS = 0.3
@@ -198,7 +198,7 @@ BSB0405 = Class(SShieldStructureUnit) {
     end,
 
     ResourceThread = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
             -- Check to see if the player has enough mass / energy
@@ -213,16 +213,16 @@ BSB0405 = Class(SShieldStructureUnit) {
     end,
 
     EconomyWaitUnit = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread)
             end
         end
     end,
 
     ResourceThread2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
             -- Check to see if the player has enough mass / energy
@@ -237,9 +237,9 @@ BSB0405 = Class(SShieldStructureUnit) {
     end,
 
     EconomyWaitUnit2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread2)
             end
         end

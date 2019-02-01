@@ -147,7 +147,7 @@ UnitBlueprint {
         },
         FactionName = 'Aeon',
         Icon = 'air',
-        SelectionPriority = 5,
+        SelectionPriority = 1,
         TechLevel = 'RULEUTL_Secret',
         UnitName = '<LOC BAA0401_name>Artemis',
         UnitWeight = 1,
@@ -201,6 +201,7 @@ UnitBlueprint {
         Level4 = 400,
         Level5 = 500,
     },
+    VeteranMassMult = 0.5,
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
@@ -340,7 +341,7 @@ UnitBlueprint {
             CollideFriendly = false,
             Damage = 0,
             DamageFriendly = true,
-            DamageType = 'Artemis',
+            DamageType = 'Nuke',
             DisplayName = 'Golden Retribution',
             FireTargetLayerCapsTable = {
                 Air = 'Land|Water|Seabed',
@@ -407,22 +408,15 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            Damage = 8000,
+            Damage = 3683,
             DamageFriendly = true,
-            DamageRadius = 4,
+            DamageRadius = 4.4,
             DamageType = 'Normal',
             DisplayName = 'Air Crash',
             DummyWeapon = true,
             FiringTolerance = 2,
             Label = 'DeathImpact',
             WeaponCategory = 'Death',
-            FireTargetLayerCapsTable = {
-                Air = 'Land|Water|Seabed',
-                Land = 'Land|Water|Seabed',
-                Seabed = 'Land|Water|Seabed',
-                Sub = 'Land|Water|Seabed',
-                Water = 'Land|Water|Seabed',
-            },
         },
     },
     Wreckage = {

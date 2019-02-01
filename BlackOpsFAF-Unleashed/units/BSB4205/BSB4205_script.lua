@@ -17,7 +17,7 @@ BSB4205 = Class(SStructureUnit) {
     },
 
     RegenBuffThread = function(self)
-        while not self:IsDead() do
+        while not self.Dead do
             -- Get friendly units in the area (including self)
             local units = AIUtils.GetOwnUnitsAroundPoint(self:GetAIBrain(), categories.ALLUNITS, self:GetPosition(), self:GetBlueprint().RegenAura.RegenRadius)
 

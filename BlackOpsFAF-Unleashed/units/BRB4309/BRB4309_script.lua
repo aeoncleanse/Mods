@@ -51,9 +51,9 @@ BRB4309 = Class(CStructureUnit) {
     end,
 
     antiteleportEmitter = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             WaitSeconds(0.5)
-            if not self:IsDead() then
+            if not self.Dead then
                 local platOrient = self:GetOrientation()
                 -- Gets the current position of the platform in the game world
                 local location = self:GetPosition('Shaft')
@@ -86,7 +86,7 @@ BRB4309 = Class(CStructureUnit) {
     end,
 
         ResourceThread = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
             -- Check to see if the player has enough mass / energy
@@ -101,16 +101,16 @@ BRB4309 = Class(CStructureUnit) {
     end,
 
     EconomyWaitUnit = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread)
             end
         end
     end,
 
     ResourceThread2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
             -- Check to see if the player has enough mass / energy
@@ -124,9 +124,9 @@ BRB4309 = Class(CStructureUnit) {
     end,
 
     EconomyWaitUnit2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread2)
             end
         end

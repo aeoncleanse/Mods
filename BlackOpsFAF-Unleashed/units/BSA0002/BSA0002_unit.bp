@@ -214,6 +214,7 @@ UnitBlueprint {
         },
         FactionName = 'Seraphim',
         Icon = 'air',
+        SelectionPriority = 3,
         TechLevel = 'RULEUTL_Advanced',
         UnitName = '<LOC bsa0002_name>Winker',
         UnitWeight = 1,

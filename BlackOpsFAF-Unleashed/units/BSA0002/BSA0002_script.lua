@@ -40,7 +40,7 @@ BSA0002 = Class(SConstructionUnit) {
             'RULEUCC_Stop',
         }
         self.MoveToParent = false
-        while self and not self:IsDead() do
+        while self and not self.Dead do
             local dronePos = self:GetPosition()
             local parentPos = self.Parent:GetPosition()
             local parentDist = VDist2(dronePos[1], dronePos[3], parentPos[1], parentPos[3])
@@ -75,7 +75,7 @@ BSA0002 = Class(SConstructionUnit) {
     end,
 
     Patrolplatform = function(self, override)
-        if override or (not self:IsDead() and not self.Parent:IsDead() and self:IsIdleState()) then
+        if override or (not self.Dead and not self.Parent.Dead and self:IsIdleState()) then
             local location = self.Parent:GetPosition()
             IssueClearCommands({self})
             local patroltable = {
@@ -103,13 +103,13 @@ BSA0002 = Class(SConstructionUnit) {
     end,
 
     OnDamage = function(self, instigator, amount, vector, damagetype)
-        if self:IsDead() == false then
+        if self.Dead == false then
             -- Base script for this script function was developed by Gilbot_x
             -- sets the damage resistance of the rebuilder bot to 30%
             -- local rebuilerBot_DLS = 0.3
             -- amount = math.ceil(amount*rebuilerBot_DLS)
         end
-        if not self:IsDead() and instigator and IsUnit(instigator) and not instigator:IsDead() and not self.EvadeThread then
+        if not self.Dead and instigator and IsUnit(instigator) and not instigator.Dead and not self.EvadeThread then
             self.EvadeThread = self:ForkThread(function()
                 self:SetSpeedMult(2.0)
                 self:SetAccMult(2.0)
@@ -130,7 +130,7 @@ BSA0002 = Class(SConstructionUnit) {
         IssueClearCommands({self})
 
         -- Notifies parent of RebuilderBot death and clears the dead unit from the parents table
-        if not self.Parent:IsDead() then
+        if not self.Parent.Dead then
             table.removeByValue(self.Parent.RepairDroneTable, self)
             self.Parent:NotifyOfRepairDroneDeath()
         end
@@ -140,7 +140,7 @@ BSA0002 = Class(SConstructionUnit) {
 
     LaunchEffects = function(self)
         -- Are we dead?
-        if not self:IsDead() then
+        if not self.Dead then
             -- Force patrol order
             self:ForkThread(self.Patrolplatform, true)
             -- Attaches effects to drone during launch

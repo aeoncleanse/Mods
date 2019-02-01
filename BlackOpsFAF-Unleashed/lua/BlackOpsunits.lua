@@ -64,7 +64,7 @@ AirDroneCarrier = Class() {
     end,
 
     KillAllDrones = function(self, instigator)
-        if next(self.DroneTable) then
+        if next(self.DroneTable or {}) then
             for name, drone in self.DroneTable do
                 IssueClearCommands({drone})
                 IssueKillSelf({drone})
@@ -332,7 +332,7 @@ AirDroneCarrier = Class() {
     end,
     -- Recalls all drones to the carrier at 2x speed under temp command lockdown
     RecallDrones = function(self)
-        if next(self.DroneTable) then
+        if next(self.DroneTable or {}) then
             for id, drone in self.DroneTable do
                 drone:DroneRecall()
             end
@@ -340,7 +340,7 @@ AirDroneCarrier = Class() {
     end,
     -- Issues an attack order for all drones
     AssignDroneTarget = function(self, dronetarget)
-        if next(self.DroneTable) then
+        if next(self.DroneTable or {}) then
             for id, drone in self.DroneTable do
                 --if not self.DroneData[self.BuildingDrone].Docked then
                 if drone.AwayFromCarrier == false then
@@ -356,7 +356,7 @@ AirDroneCarrier = Class() {
 
     -- Sets a firestate for all drones
     SetDroneFirestate = function(self, firestate)
-        if next(self.DroneTable) then
+        if next(self.DroneTable or {}) then
             for id, drone in self.DroneTable do
                 if drone and not drone.Dead then
                     drone:SetFireState(firestate)
@@ -368,7 +368,7 @@ AirDroneCarrier = Class() {
     -- Returns a table of dronenames that are currently docked, or false if none
     GetDronesDocked = function(self)
         local docked = {}
-        if next(self.DroneTable) then
+        if next(self.DroneTable or {}) then
             for id, drone in self.DroneTable do
                 if drone and not drone.Dead and self.DroneData[id].Docked then
                     table.insert(docked, id)

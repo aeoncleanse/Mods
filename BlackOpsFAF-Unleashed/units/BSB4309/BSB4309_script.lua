@@ -136,9 +136,9 @@ BSB4309 = Class(SStructureUnit) {
     end,
 
     antiteleportEmitter = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             WaitSeconds(0.5)
-            if not self:IsDead() then
+            if not self.Dead then
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
 
@@ -171,7 +171,7 @@ BSB4309 = Class(SStructureUnit) {
     end,
 
     ResourceThread = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
             -- Check to see if the player has enough mass / energy
             if  energy <= 10 then
@@ -184,16 +184,16 @@ BSB4309 = Class(SStructureUnit) {
     end,
 
     EconomyWaitUnit = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread)
             end
         end
     end,
 
     ResourceThread2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
             -- Check to see if the player has enough mass / energy
@@ -207,9 +207,9 @@ BSB4309 = Class(SStructureUnit) {
     end,
 
     EconomyWaitUnit2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread2)
             end
         end
