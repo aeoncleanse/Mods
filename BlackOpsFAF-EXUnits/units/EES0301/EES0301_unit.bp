@@ -674,7 +674,7 @@ UnitBlueprint {
             Damage = 0,
             DamageFriendly = true,
             DamageRadius = 0,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Tactical Nuclear Missile',
             FireTargetLayerCapsTable = {
                 Water = 'Land|Water|Seabed',

@@ -44,7 +44,7 @@ EEB0402 = Class(TEnergyCreationUnit) {
 
     NotifyOfDroneDeath = function(self)
         ------ Only respawns the drones if the parent unit is not dead
-        if not self:IsDead() then
+        if not self.Dead then
             --local mass = self:GetAIBrain():GetEconomyStored('Mass')
             --local energy = self:GetAIBrain():GetEconomyStored('Energy')
             ------ Check to see if the player has enough mass / energy

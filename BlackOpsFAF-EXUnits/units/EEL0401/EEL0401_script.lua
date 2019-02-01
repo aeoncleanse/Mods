@@ -79,25 +79,6 @@ EEL0401 = Class(TMobileFactoryUnit) {
         end
     end,
 
-    OnMotionHorzEventChange = function(self, new, old)
-        TMobileFactoryUnit.OnMotionHorzEventChange(self, new, old)
-        if self:IsDead() then return end
-        if(not self.IsWaiting) then
-            if(self.Walking) then
-                if(old == 'Stopped') then
-                    if(self.SwitchAnims) then
-                        self.SwitchAnims = false
-                        self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationWalk, true):SetRate(self:GetBlueprint().Display.AnimationWalkRate or 1.1)
-                    else
-                        self.AnimManip:SetRate(2.8)
-                    end
-                elseif(new == 'Stopped') then
-                    self.AnimManip:SetRate(0)
-                end
-            end
-        end
-    end,
-
     OnLayerChange = function(self, new, old)
         TMobileFactoryUnit.OnLayerChange(self, new, old)
         if(old ~= 'None') then
@@ -132,8 +113,6 @@ EEL0401 = Class(TMobileFactoryUnit) {
             --self:SetCollisionShape('Box', bp.CollisionOffsetX or 0,(bp.CollisionOffsetY + (bp.SizeY*1.0)) or 0,bp.CollisionOffsetZ or 0, bp.SizeX * scale, bp.SizeY * scale, bp.SizeZ * scale)
             self.IsWaiting = false
             self:SetImmobile(false)
-            self.SwitchAnims = true
-            self.Walking = true
             self.Trash:Add(self.AnimManip)
         else
             self:SetImmobile(true)
@@ -149,7 +128,6 @@ EEL0401 = Class(TMobileFactoryUnit) {
             self.AnimManip:Destroy()
             self.AnimManip = nil
             self:SetImmobile(false)
-            self.Walking = false
         end
     end,
 }

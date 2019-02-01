@@ -85,7 +85,7 @@ ERS0302 = Class(CSeaUnit) {
 
     OnMotionHorzEventChange = function(self, new, old)
         CSeaUnit.OnMotionHorzEventChange(self, new, old)
-        if self:IsDead() then return end
+        if self.Dead then return end
         if(not self.IsWaiting) then
             if(self.Walking) then
                 if(old == 'Stopped') then

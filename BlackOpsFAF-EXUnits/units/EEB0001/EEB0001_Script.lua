@@ -42,7 +42,7 @@ EEB0001 = Class(SStructureUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         ------ Notifies parent of drone death and clears the offending drone from the parents table
-        if not self.Parent:IsDead() then
+        if not self.Parent.Dead then
             self.Parent:NotifyOfDroneDeath(self.Drone)
             table.removeByValue(self.Parent.StellarCoreTable, self)
             self.Parent = nil

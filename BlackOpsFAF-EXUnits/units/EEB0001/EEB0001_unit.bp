@@ -32,7 +32,6 @@ UnitBlueprint {
     },
     Description = 'Lambda Emitter',
     Display = {
-        AnimationPermOpen = '/mods/BlackOpsFAF-ACUs/units/ESB0001/ESB0001_Activate.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

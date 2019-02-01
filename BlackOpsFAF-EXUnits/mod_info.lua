@@ -1,6 +1,6 @@
 name = "BlackOps FAF: EXUnits"
-uid = "9e8ee941-c406-4751-b367-e10000017000"
-version = 17
+uid = "9e8ee941-c406-4751-b367-e10000018000"
+version = 18
 copyright = "2009 Exavier Macbeth"
 description = "The ultimate unit pack, re-engineered for FAF 3680 or later"
 author = "Exavier Macbeth, lt_hawkeye, orangeknight - Revamped 2016 by IceDreamer and Uveso"
