@@ -155,7 +155,7 @@ Unit = Class(oldUnit) {
     -------------------------------------------------------
 
     EXTeleportChargeEffects = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local bpe = self:GetBlueprint().Economy
             self.EXPhaseEnabled = true
             self.EXPhaseCharge = 1
@@ -195,7 +195,7 @@ Unit = Class(oldUnit) {
     end,
 
     EXTeleportCooldownEffects = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local bp = self:GetBlueprint()
             local bpDisplay = bp.Display
             self.EXPhaseCharge = 0

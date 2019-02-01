@@ -69,7 +69,7 @@ BRL0401 = Class(CWalkingLandUnit) {
                 elseif self.unit.mobileWeapons == 1 then
                         self.unit:SetWeaponEnabledByLabel('MissileRack', false)
                         WaitSeconds(12.5)
-                    if not self.unit:IsDead() then
+                    if not self.unit.Dead then
                         if self.unit.mobileWeapons == 0 then
                         elseif self.unit.mobileWeapons == 1 then
                             self.unit:SetWeaponEnabledByLabel('MissileRack', true)
@@ -100,7 +100,7 @@ BRL0401 = Class(CWalkingLandUnit) {
                 elseif self.unit.mobileWeapons == 0 then
                         self.unit:SetWeaponEnabledByLabel('MissileRack2', false)
                         WaitSeconds(10)
-                    if not self.unit:IsDead() then
+                    if not self.unit.Dead then
                         if self.unit.mobileWeapons == 1 then
                         elseif self.unit.mobileWeapons == 0 then
                             self.unit:SetWeaponEnabledByLabel('MissileRack2', true)

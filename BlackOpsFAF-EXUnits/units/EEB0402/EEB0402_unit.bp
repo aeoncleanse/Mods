@@ -178,7 +178,7 @@ UnitBlueprint {
     SizeX = 8.5,
     SizeY = 2,
     SizeZ = 8.5,
-    StrategicIconName = 'icon_structure3_energy',
+    StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 240,
     Weapon = {
         {
@@ -186,7 +186,7 @@ UnitBlueprint {
             Damage = 0,
             DamageFriendly = true,
             DamageRadius = 0,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Death Nuke',
             FireOnDeath = true,
             FireTargetLayerCapsTable = {
@@ -225,7 +225,7 @@ UnitBlueprint {
             TargetCheckInterval = 9999999,
             TargetRestrictDisallow = 'UNTARGETABLE',
             Turreted = false,
-            WeaponCategory = 'Direct Fire',
+            WeaponCategory = 'Death',
         },
     },
     Wreckage = {

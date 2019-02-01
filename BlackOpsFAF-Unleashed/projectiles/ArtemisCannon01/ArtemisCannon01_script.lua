@@ -42,7 +42,7 @@ ADFReactonCannon01 = Class(ArtemisCannonProjectile) {
     OnCreate = function(self)
         ArtemisCannonProjectile.OnCreate(self)
         local launcher = self:GetLauncher()
-        if launcher and not launcher:IsDead() and launcher.EventCallbacks.ProjectileDamaged then
+        if launcher and not launcher.Dead and launcher.EventCallbacks.ProjectileDamaged then
             self.ProjectileDamaged = {}
             for k, v in launcher.EventCallbacks.ProjectileDamaged do
                 table.insert(self.ProjectileDamaged, v)

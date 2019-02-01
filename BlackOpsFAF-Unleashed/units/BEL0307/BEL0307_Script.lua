@@ -131,7 +131,7 @@ BEL0307 = Class(TLandUnit) {
     end,
 
     UnitLandAmbientEffectThread = function(self)
-        while not self:IsDead() do
+        while not self.Dead do
             local army = self:GetArmy()
 
             for kE, vE in self.AmbientLandExhaustEffects do

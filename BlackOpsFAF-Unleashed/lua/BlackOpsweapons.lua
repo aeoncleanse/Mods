@@ -200,14 +200,14 @@ HawkTractorClaw = Class(DefaultBeamWeapon) {
 
         WaitFor(self.Slider)
 
-        if not target:IsDead() then
+        if not target.Dead then
             target:Kill()
         end
         self.AimControl:SetResetPoseTime(2)
     end,
 
     TractorWatchThread = function(self, target)
-        while not target:IsDead() do
+        while not target.Dead do
             WaitTicks(1)
         end
         KillThread(self.TT1)
@@ -696,14 +696,14 @@ GoliathRocket = Class(DefaultProjectileWeapon) {
             if TableSize >= 1 then
                 if TableSize == f_count then
                     local tar = self.TargetTable[n]
-                    if not tar:BeenDestroyed() and not tar:IsDead() then
+                    if not tar:BeenDestroyed() and not tar.Dead then
                         self:SetTargetEntity(tar)
                         CreateAttachedEmitter(tar, 0, tar:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/targeted_effect_01_emit.bp'):OffsetEmitter(0, 0.5,0)
                     end
                 else
                     local ran = Random(1, TableSize)
                     local tar = self.TargetTable[ran]
-                    if not tar:BeenDestroyed() and not tar:IsDead() then
+                    if not tar:BeenDestroyed() and not tar.Dead then
                         self:SetTargetEntity(tar)
                         if tar.Pointed ~= true then
                             CreateAttachedEmitter(tar, 0, tar:GetArmy(), '/mods/BlackOpsFAF-Unleashed/effects/emitters/targeted_effect_01_emit.bp'):OffsetEmitter(0, 0.5,0)
@@ -800,13 +800,13 @@ BasiliskAAMissile01 = Class(DefaultProjectileWeapon) {
                 if TableSize >= 1 then
                     if TableSize == f_count then
                         local tar = self.TargetTable[n]
-                        if not tar:BeenDestroyed() and not tar:IsDead() then
+                        if not tar:BeenDestroyed() and not tar.Dead then
                             self:SetTargetEntity(tar)
                         end
                     else
                         local ran = Random(1, TableSize)
                         local tar = self.TargetTable[ran]
-                        if not tar:BeenDestroyed() and not tar:IsDead() then
+                        if not tar:BeenDestroyed() and not tar.Dead then
                             self:SetTargetEntity(tar)
                             if tar.Pointed ~= true then
                                 tar.Pointed = true
@@ -914,13 +914,13 @@ CitadelHVMWeapon = Class(DefaultProjectileWeapon) {
             if TableSize >= 1 then
                 if TableSize == f_count then
                     local tar = self.TargetTable[n]
-                    if not tar:BeenDestroyed() and not tar:IsDead() then
+                    if not tar:BeenDestroyed() and not tar.Dead then
                         self:SetTargetEntity(tar)
                     end
                 else
                     local ran = Random(1, TableSize)
                     local tar = self.TargetTable[ran]
-                    if not tar:BeenDestroyed() and not tar:IsDead() then
+                    if not tar:BeenDestroyed() and not tar.Dead then
                         self:SetTargetEntity(tar)
                         if tar.Pointed ~= true then
                             tar.Pointed = true

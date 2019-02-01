@@ -286,6 +286,7 @@ UnitBlueprint {
         Level4 = 120,
         Level5 = 150,
     },
+    VeteranMassMult = 0.5,
     Weapon = {
         {
             AboveWaterFireOnly = true,
@@ -1303,9 +1304,9 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            Damage = 8000,
+            Damage = 10880,
             DamageFriendly = true,
-            DamageRadius = 15,
+            DamageRadius = 13,
             DamageType = 'Normal',
             DisplayName = 'Air Crash',
             DummyWeapon = true,

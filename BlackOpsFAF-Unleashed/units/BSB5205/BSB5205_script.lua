@@ -120,9 +120,9 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         WaitSeconds(2)
 
         -- Are we dead yet, if not spawn drones
-        if not self:IsDead() then
+        if not self.Dead then
             for i = 0, (numcreate -1) do
-                if not self:IsDead() then
+                if not self.Dead then
                     self:ForkThread(self.SpawnDrone)
                     -- Short delay between spawns to spread them out
                     WaitSeconds(2)
@@ -141,9 +141,9 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         WaitSeconds(2)
 
         -- Are we dead yet, if not spawn drones
-        if not self:IsDead() then
+        if not self.Dead then
             for i = 0, (numcreate -1) do
-                if not self:IsDead() then
+                if not self.Dead then
                     self:ForkThread(self.SpawnRepairDrone)
                     -- Short delay between spawns to spread them out
                     WaitSeconds(2)
@@ -156,7 +156,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         WaitSeconds(5)
 
         -- Only respawns the drones if the parent unit is not dead
-        if not self:IsDead() then
+        if not self.Dead then
             -- Sets up local Variables used and spawns a drone at the parents location
             local myOrientation = self:GetOrientation()
 
@@ -260,7 +260,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
         WaitSeconds(3)
 
         -- Only respawns the drones if the parent unit is not dead
-        if not self:IsDead() then
+        if not self.Dead then
             -- Sets up local Variables used and spawns a drone at the parents location
             local myOrientation = self:GetOrientation()
 
@@ -361,7 +361,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
 
     NotifyOfDroneDeath = function(self)
         -- Only respawns the drones if the parent unit is not dead
-        if not self:IsDead() then
+        if not self.Dead then
             local mass = self:GetAIBrain():GetEconomyStored('Mass')
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
@@ -381,7 +381,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
 
     NotifyOfRepairDroneDeath = function(self)
         -- Only respawns the drones if the parent unit is not dead
-        if not self:IsDead() then
+        if not self.Dead then
             local mass = self:GetAIBrain():GetEconomyStored('Mass')
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
 
@@ -400,36 +400,36 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
     end,
 
     EconomyWait = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(4)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.NotifyOfDroneDeath)
             end
         end
     end,
 
     EconomyWait2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(4)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.NotifyOfRepairDroneDeath)
             end
         end
     end,
 
     AssistHeartBeat = function(self)
-        while not self:IsDead() do
+        while not self.Dead do
             WaitSeconds(1)
-            if not self:IsDead() and self.Retaliation == true and self.MyAttacker ~= nil then
+            if not self.Dead and self.Retaliation == true and self.MyAttacker ~= nil then
                 -- Clears flags if there is no longer a target to retaliate against thats in range
-                if self.MyAttacker:IsDead() or self:GetDistanceToAttacker() >= 81 then
+                if self.MyAttacker.Dead or self:GetDistanceToAttacker() >= 81 then
                     -- Clears flag to allow retaliation on another attacker
                     self.MyAttacker = nil
                     self.Retaliation = false
                 end
             end
-            if not self:IsDead() and self.Retaliation == false and table.getn({self.MyAttacker}) > 0 and self:GetDistanceToAttacker() <= 80 then
-                if not self.MyAttacker:IsDead() then
+            if not self.Dead and self.Retaliation == false and table.getn({self.MyAttacker}) > 0 and self:GetDistanceToAttacker() <= 80 then
+                if not self.MyAttacker.Dead then
                     -- Issues the retaliation command to each of the drones on the carriers table
                     if table.getn({self.DroneTable}) > 0 then
                         for k, v in self.DroneTable do
@@ -440,7 +440,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
                         self.Retaliation = true
                     end
                 end
-            elseif not self:IsDead() and self.Retaliation == false and self:GetTargetEntity() then
+            elseif not self.Dead and self.Retaliation == false and self:GetTargetEntity() then
                 -- Updates variable with latest targeting info
                 self.CurrentTarget = self:GetTargetEntity()
                 -- Verifies that the carrier is not dead and that it has a target
@@ -470,7 +470,7 @@ BSB5205 = Class(SAirStagingPlatformUnit) {
 
     OnDamage = function(self, instigator, amount, vector, damagetype)
         -- Check to make sure that the carrier isnt already dead and what just damaged it is a unit we can attack
-        if self:IsDead() == false and damagetype == 'Normal' and self.MyAttacker == nil then
+        if self.Dead == false and damagetype == 'Normal' and self.MyAttacker == nil then
             if IsUnit(instigator) then
                 self.MyAttacker = instigator
             end

@@ -18,7 +18,7 @@ BRB4207 = Class(CShieldStructureUnit) {
     },
 
     OnStopBeingBuilt = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
 
             -- Gets the current orientation of the Factory "A" in the game world
             local myOrientation = self:GetOrientation()

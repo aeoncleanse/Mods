@@ -127,7 +127,7 @@ TorpRedirectField = Class(Entity) {
         Main = function(self)
             if not self or self:BeenDestroyed()
             or not self.EnemyProj or self.EnemyProj:BeenDestroyed()
-            or not self.Owner or self.Owner:IsDead() then
+            or not self.Owner or self.Owner.Dead then
                 return
             end
 

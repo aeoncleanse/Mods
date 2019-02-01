@@ -143,7 +143,7 @@ BRA0409 = Class(AirTransport) {
     end,
 
     MovementAmbientExhaustThread = function(self)
-        while not self:IsDead() do
+        while not self.Dead do
             local ExhaustEffects = {
                 '/effects/emitters/dirty_exhaust_smoke_01_emit.bp',
                 '/effects/emitters/dirty_exhaust_sparks_01_emit.bp',

@@ -77,7 +77,7 @@ UAS0401 = Class(BaseTransport, ASeaUnit, AirDroneCarrier) {
             local unitBuilding = self.UnitBeingBuilt
             local bone = self.BuildAttachBone
             self:DetachAll(bone)
-            if not self.UnitBeingBuilt:IsDead() then
+            if not self.UnitBeingBuilt.Dead then
                 unitBuilding:AttachBoneTo(-2, self, bone)
                 if EntityCategoryContains(categories.ENGINEER + categories.uas0102 + categories.uas0103, unitBuilding) then
                     unitBuilding:SetParentOffset({0,0,1})

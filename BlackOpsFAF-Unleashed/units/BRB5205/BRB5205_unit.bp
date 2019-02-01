@@ -42,7 +42,6 @@ UnitBlueprint {
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
         'CYBRAN',
-        'NAVAL',
         'STRUCTURE',
         'STRATEGIC',
         'DEFENSE',

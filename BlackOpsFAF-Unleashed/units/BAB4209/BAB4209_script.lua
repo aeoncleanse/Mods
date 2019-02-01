@@ -70,10 +70,10 @@ BAB4209 = Class(AStructureUnit) {
 
     antiteleportEmitter = function(self)
         -- Are we dead yet, if not then wait 0.5 second
-        if not self:IsDead() then
+        if not self.Dead then
             WaitSeconds(0.5)
             -- Are we dead yet, if not spawn antiteleportEmitter
-            if not self:IsDead() then
+            if not self.Dead then
 
                 -- Gets the platforms current orientation
                 local platOrient = self:GetOrientation()
@@ -107,7 +107,7 @@ BAB4209 = Class(AStructureUnit) {
     end,
 
     ResourceThread = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
             if  energy <= 10 then
                 self:SetScriptBit('RULEUTC_ShieldToggle', false)
@@ -119,16 +119,16 @@ BAB4209 = Class(AStructureUnit) {
     end,
 
     EconomyWaitUnit = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread)
             end
         end
     end,
 
     ResourceThread2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
             local energy = self:GetAIBrain():GetEconomyStored('Energy')
             if  energy >= 3000 then
                 self:SetScriptBit('RULEUTC_ShieldToggle', true)
@@ -140,9 +140,9 @@ BAB4209 = Class(AStructureUnit) {
     end,
 
     EconomyWaitUnit2 = function(self)
-        if not self:IsDead() then
+        if not self.Dead then
         WaitSeconds(2)
-            if not self:IsDead() then
+            if not self.Dead then
                 self:ForkThread(self.ResourceThread2)
             end
         end

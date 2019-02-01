@@ -40,7 +40,7 @@ BAL0402 = Class(AHoverLandUnit) {
             ReloadThread = function(self)
                 self.unit:SetWeaponEnabledByLabel('MissileRack', false)
                 WaitSeconds(12.5)
-                if not self.unit:IsDead() then
+                if not self.unit.Dead then
                     self.unit:SetWeaponEnabledByLabel('MissileRack', true)
                 end
             end,

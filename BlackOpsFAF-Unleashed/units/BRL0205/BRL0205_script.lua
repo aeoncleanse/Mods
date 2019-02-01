@@ -254,7 +254,7 @@ XRL0205 = Class(CWalkingLandUnit) {
             end
             -- While uncloaked and idle, constantly tick down timer - firing, repairing, and moving all reset the timer
             -- Comment/remove both self.Building checks to allow the bot to recloak while still repairing/assisting
-            while self and not self:IsDead() and self.CloakTimer > -0.1 do
+            while self and not self.Dead and self.CloakTimer > -0.1 do
                 WaitTicks(3) -- Actually waits 2, while 2 waits 1
                 if not self.Building and not self.Moving then
                     self.CloakTimer = self.CloakTimer - 0.2

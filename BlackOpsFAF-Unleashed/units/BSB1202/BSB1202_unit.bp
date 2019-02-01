@@ -192,6 +192,7 @@ UnitBlueprint {
             DisplayName = 'Death Weapon',
             DummyWeapon = true,
             Label = 'DeathWeapon',
+            WeaponCategory = 'Death',
         },
     },
     Wreckage = {

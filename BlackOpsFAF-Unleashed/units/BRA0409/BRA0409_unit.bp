@@ -293,6 +293,7 @@ UnitBlueprint {
         Level4 = 100,
         Level5 = 125,
     },
+    VeteranMassMult = 0.5,
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
@@ -452,7 +453,7 @@ UnitBlueprint {
             },
             Damage = 100,
             DamageRadius = 30,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Head weapon',
             CountedProjectile = true,
             EnergyDrainPerSecond = 0,
@@ -1409,7 +1410,7 @@ UnitBlueprint {
             AboveWaterTargetsOnly = true,
             Damage = 8000,
             DamageFriendly = true,
-            DamageRadius = 13,
+            DamageRadius = 11.7,
             DamageType = 'Normal',
             DisplayName = 'Air Crash',
             DummyWeapon = true,

@@ -11,7 +11,7 @@ STauCannon = Class(ShieldTauCannonProjectile) {
     OnImpact = function(self, TargetType, TargetEntity)
         ShieldTauCannonProjectile.OnImpact(self, TargetType, TargetEntity)
         if TargetType == 'Shield' then
-            if self.Data > TargetEntity:GetHealth() then
+            if self.Data and TargetEntity:GetHealth() > 0 and self.Data > TargetEntity:GetHealth() then
                 Damage(self, {0,0,0}, TargetEntity, TargetEntity:GetHealth(), 'Normal')
             else
                 Damage(self, {0,0,0}, TargetEntity, self.Data, 'Normal')
