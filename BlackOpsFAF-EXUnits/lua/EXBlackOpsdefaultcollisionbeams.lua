@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /lua/defaultcollisionbeams.lua
---**  Author(s):  Gordon Duclos
+-- File     :  /lua/defaultcollisionbeams.lua
+-- Author(s):  Gordon Duclos
 --**
---**  Summary  :  Default definitions collision beams
+-- Summary  :  Default definitions collision beams
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 
 local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')

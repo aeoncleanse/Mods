@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /mods/BlackOpsFAF-EXUnits/effects/Entities/EXBillyEffectController01/EXBillyEffectController01_script.lua
---**  Author(s):  Gordon Duclos
+-- File     :  /mods/BlackOpsFAF-EXUnits/effects/Entities/EXBillyEffectController01/EXBillyEffectController01_script.lua
+-- Author(s):  Gordon Duclos
 --**
---**  Summary  :  Nuclear explosion script
+-- Summary  :  Nuclear explosion script
 --**
---**  Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2005,2006 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local EffectTemplate = import('/lua/EffectTemplates.lua')

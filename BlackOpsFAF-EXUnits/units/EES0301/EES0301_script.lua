@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /cdimage/units/UES0304/UES0304_script.lua
---**  Author(s):  John Comes, David Tomandl
+-- File     :  /cdimage/units/UES0304/UES0304_script.lua
+-- Author(s):  John Comes, David Tomandl
 --**
---**  Summary  :  UEF Strategic Missile Submarine Script
+-- Summary  :  UEF Strategic Missile Submarine Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 
 local TSubUnit = import('/lua/terranunits.lua').TSubUnit
 local WeaponFile = import('/lua/terranweapons.lua')

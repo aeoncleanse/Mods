@@ -82,8 +82,8 @@ HeavyPlasmaGatlingProjectile = Class(SinglePolyTrailProjectile) {
     PolyTrail = ACUsEffectTemplate.HeavyPlasmaGatlingTrail,
 }
 
---  UEF ACU Cluster Missle Pack
-ClusterMissileProjectile = Class(SinglePolyTrailProjectile) {
+--  UEF ACU Cluster Missile Pack
+ClusterMissileProjectileClass = Class(SinglePolyTrailProjectile) {
     DestroyOnImpact = false,
     FxTrails = ACUsEffectTemplate.ClusterMissileTrail,
     FxTrailOffset = -0.3,
@@ -96,7 +96,7 @@ ClusterMissileProjectile = Class(SinglePolyTrailProjectile) {
     FxImpactUnderWater = {},
 }
 
-SmallYieldNukeProjectile = Class(EmitterProjectile) {
+SmallYieldNukeProjectileClass = Class(EmitterProjectile) {
     DestroyOnImpact = false,
     FxTrails = {'/effects/emitters/mortar_munition_01_emit.bp',},
     FxTrailOffset = 0,

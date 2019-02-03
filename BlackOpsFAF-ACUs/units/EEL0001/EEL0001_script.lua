@@ -5,33 +5,36 @@
 -----------------------------------------------------------------
 local Shield = import('/lua/shield.lua').Shield
 local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
-local TerranWeaponFile = import('/lua/terranweapons.lua')
-local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
-local TDFZephyrCannonWeapon = TerranWeaponFile.TDFZephyrCannonWeapon
-local TIFCruiseMissileLauncher = TerranWeaponFile.TIFCruiseMissileLauncher
-local TDFOverchargeWeapon = TerranWeaponFile.TDFOverchargeWeapon
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
+
+local TerranWeaponFile = import('/lua/terranweapons.lua')
+local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
+local TDFZephyrCannonWeapon = TerranWeaponFile.TDFZephyrCannonWeapon
+local TDFOverchargeWeapon = TerranWeaponFile.TDFOverchargeWeapon
+local TIFCruiseMissileLauncher = TerranWeaponFile.TIFCruiseMissileLauncher
+
 local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
 local HeavyPlasmaGatlingWeapon = ACUsWeapons.HeavyPlasmaGatlingWeapon
 local NapalmWeapon = ACUsWeapons.NapalmWeapon
 local AntiMatterWeapon = ACUsWeapons.AntiMatterWeapon
 local PDLaserGrid = ACUsWeapons.PDLaserGrid
-local CEMPArrayBeam01 = ACUsWeapons.CEMPArrayBeam01
+local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam
 
 EEL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
-    rightGunLabel = 'RightZephyr',
+    RightGunLabel = 'RightZephyr',
     RightGunUpgrade = 'JuryRiggedZephyr',
+    RightGunBone = 'Zephyr_Amplifier',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
     FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/eel0001/EEL0001_PhaseShield_mesh',
 
     Weapons = {
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
-        TargetPainter = Class(CEMPArrayBeam01) {},
+        TargetPainter = Class(CEMPArrayBeam) {},
         DeathWeapon = Class(DeathNukeWeapon) {},
         FlameCannon = Class(NapalmWeapon) {},
         TorpedoLauncher = Class(TANTorpedoAngler) {},
@@ -42,38 +45,8 @@ EEL0001 = Class(ACUUnit) {
         EnergyLance02 = Class(PDLaserGrid) {},
         OverCharge = Class(TDFOverchargeWeapon) {},
         AutoOverCharge = Class(TDFOverchargeWeapon) {},
-        TacMissile = Class(TIFCruiseMissileLauncher) {
-            CreateProjectileAtMuzzle = function(self, muzzle)
-                muzzle = self:GetBlueprint().RackBones[1].MuzzleBones[1]
-                self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
-                self.slider:SetGoal(0, 0, 0.22)
-                WaitFor(self.slider)
-
-                local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
-                self.slider:SetGoal(0, 0, 0)
-                WaitFor(self.slider)
-
-                self.slider:Destroy()
-
-                return proj
-            end,
-        },
-        TacNukeMissile = Class(TIFCruiseMissileLauncher) {
-             CreateProjectileAtMuzzle = function(self, muzzle)
-                muzzle = self:GetBlueprint().RackBones[1].MuzzleBones[1]
-                self.slider = CreateSlider(self.unit, 'Back_MissilePack_B02', 0, 0, 0, 0.25, true)
-                self.slider:SetGoal(0, 0, 0.22)
-                WaitFor(self.slider)
-
-                local proj = TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
-                self.slider:SetGoal(0, 0, 0)
-                WaitFor(self.slider)
-
-                self.slider:Destroy()
-
-                return proj
-            end,
-        },
+        TacMissile = Class(TIFCruiseMissileLauncher) {},
+        TacNukeMissile = Class(TIFCruiseMissileLauncher) {},
     },
 
     -- Hooked Functions
@@ -83,7 +56,7 @@ EEL0001 = Class(ACUUnit) {
         self.HasLeftPod = false
         self.HasRightPod = false
         self.SpysatEnabled = false
-        self.ShieldEffectsBag2 = {}
+        self.ShieldEffectsBag = {}
         self.FlamerEffectsBag = {}
     end,
 
@@ -130,11 +103,11 @@ EEL0001 = Class(ACUUnit) {
         if bit == 0 then -- Shield toggle
             self.Rotator1:SetTargetSpeed(0)
             self.Rotator2:SetTargetSpeed(0)
-            if self.ShieldEffectsBag2 then
-                for k, v in self.ShieldEffectsBag2 do
+            if self.ShieldEffectsBag then
+                for k, v in self.ShieldEffectsBag do
                     v:Destroy()
                 end
-                self.ShieldEffectsBag2 = {}
+                self.ShieldEffectsBag = {}
             end
             self:DisableShield()
             self:StopUnitAmbientSound('ActiveLoop')
@@ -151,16 +124,16 @@ EEL0001 = Class(ACUUnit) {
         if bit == 0 then -- Shield toggle
             self.Rotator1:SetTargetSpeed(90)
             self.Rotator2:SetTargetSpeed(-180)
-            if self.ShieldEffectsBag2 then
-                for _, v in self.ShieldEffectsBag2 do
+            if self.ShieldEffectsBag then
+                for _, v in self.ShieldEffectsBag do
                     v:Destroy()
                 end
-                self.ShieldEffectsBag2 = {}
+                self.ShieldEffectsBag = {}
             end
             for _, v in self.ShieldEffects2 do
                 local army = self:GetArmy()
-                for i = 1, 9 do
-                    table.insert(self.ShieldEffectsBag2, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter0' .. i, army, v))
+                for i = 1, 8 do
+                    table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter0' .. i, army, v))
                 end
             end
             self:EnableShield()
@@ -1179,17 +1152,6 @@ EEL0001 = Class(ACUUnit) {
     },
 
     -- New Functions
-    TogglePrimaryGun = function(self, damage, radius)
-        ACUUnit.TogglePrimaryGun(self, damage, radius)
-
-        -- As radius is only passed when turning on, use the bool
-        if radius then
-            self:ShowBone('Zephyr_Amplifier', true)
-        else
-            self:HideBone('Zephyr_Amplifier', true)
-        end
-    end,
-
     RebuildPod = function(self, PodNumber)
         if PodNumber == 1 then
             -- Force pod rebuilds to queue up

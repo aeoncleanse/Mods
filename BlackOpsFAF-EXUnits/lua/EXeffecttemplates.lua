@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /data/lua/modules/EffectTemplates.lua
---**  Author(s):  Gordon Duclos
+-- File     :  /data/lua/modules/EffectTemplates.lua
+-- Author(s):  Gordon Duclos
 --**
---**  Summary  :  Generic templates for commonly used effects
+-- Summary  :  Generic templates for commonly used effects
 --**
---**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2006 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 
 EmtBpPath = '/effects/emitters/'
 EmtBpPath2 = '/mods/BlackOpsFAF-ACUs/effects/emitters/'

@@ -2,13 +2,13 @@
 -- Cluster missile projectile
 -----------------------------
 
-local ClusterMissileProjectile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').ClusterMissileProjectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
+local ClusterMissileProjectileClass = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').ClusterMissileProjectileClass
 
-ClusterMissileProjectile = Class(ClusterMissileProjectile) {
+ClusterMissileProjectile = Class(ClusterMissileProjectileClass) {
     OnCreate = function(self)
-        ClusterMissileProjectile.OnCreate(self)
+        ClusterMissileProjectileClass.OnCreate(self)
 
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)
         self.MoveThread = self:ForkThread(self.MovementThread)
@@ -97,10 +97,10 @@ ClusterMissileProjectile = Class(ClusterMissileProjectile) {
     end,
 
     OnEnterWater = function(self)
-        ClusterMissileProjectile.OnEnterWater(self)
+        ClusterMissileProjectileClass.OnEnterWater(self)
 
         self:SetDestroyOnWater(true)
     end,
 }
 
-TypeClass = ClusterMissle01
+TypeClass = ClusterMissileProjectile

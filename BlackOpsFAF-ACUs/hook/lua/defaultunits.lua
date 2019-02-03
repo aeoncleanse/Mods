@@ -24,7 +24,7 @@ ACUUnit = Class(oldACUUnit) {
         }
 
         for k, v in self.Weapons do
-            if k ~= self.rightGunLabel and not exclude[k] then
+            if k ~= self.RightGunLabel and not exclude[k] then
                 self:SetWeaponEnabledByLabel(k, false)
             end
         end
@@ -123,7 +123,7 @@ ACUUnit = Class(oldACUUnit) {
     SetPainterRange = function(self, enh, newRange)
         self.PainterRange[enh] = newRange
 
-        local range = self:GetWeaponByLabel(self.rightGunLabel):GetBlueprint().MaxRadius
+        local range = self:GetWeaponByLabel(self.RightGunLabel):GetBlueprint().MaxRadius
         for _, new in self.PainterRange do
             range = math.max(range, new)
         end
@@ -133,7 +133,7 @@ ACUUnit = Class(oldACUUnit) {
     end,
 
     TogglePrimaryGun = function(self, damage, radius)
-        local wep = self:GetWeaponByLabel(self.rightGunLabel)
+        local wep = self:GetWeaponByLabel(self.RightGunLabel)
         local oc = self:GetWeaponByLabel('OverCharge')
         local aoc = self:GetWeaponByLabel('AutoOverCharge')
 
@@ -148,6 +148,16 @@ ACUUnit = Class(oldACUUnit) {
         wep:ChangeMaxRadius(wepRadius)
         oc:ChangeMaxRadius(ocRadius)
         aoc:ChangeMaxRadius(aocRadius)
+
+        -- Show or hide bones if needed
+        if self.RightGunBone then
+            -- As radius is only passed when turning on, use the bool
+            if radius then
+                self:ShowBone(self.RightGunBone, true)
+            else
+                self:HideBone(self.RightGunBone, true)
+            end
+        end
 
         self:SetPainterRange(self.RightGunUpgrade, radius)
     end,

@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :
---**  Author(s):  Tpapp & Exavier Macbeth
+-- File     :
+-- Author(s):  Tpapp & Exavier Macbeth
 --**
---**  Summary  :  UEF T4 Stellar Generator Script
+-- Summary  :  UEF T4 Stellar Generator Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 
 local TEnergyCreationUnit = import('/lua/terranunits.lua').TEnergyCreationUnit
 local TerranWeaponFile = import('/lua/terranweapons.lua')

@@ -17,14 +17,15 @@ local Buff = import('/lua/sim/Buff.lua')
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
 local EMPWeapon = ACUsWeapons.EMPWeapon
-local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam01
+local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam
 local CEMPArrayBeam02 = ACUsWeapons.CEMPArrayBeam02
 
 ERL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
-    rightGunLabel = 'RightRipper',
+    RightGunLabel = 'RightRipper',
     RightGunUpgrade = 'JuryRiggedRipper',
+    RightGunBone = 'Right_Upgrade',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
     FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/erl0001/ERL0001_PhaseShield_mesh',
 
@@ -1019,8 +1020,8 @@ ERL0001 = Class(ACUUnit) {
     -- New Functions
 
     -- Overwrite, Cybran changes RateOfFire not Damage
-    TogglePrimaryGun = function(self, damage, radius)
-        local wep = self:GetWeaponByLabel(self.rightGunLabel)
+    TogglePrimaryGun = function(self, rof, radius)
+        local wep = self:GetWeaponByLabel(self.RightGunLabel)
         local oc = self:GetWeaponByLabel('OverCharge')
         local aoc = self:GetWeaponByLabel('AutoOverCharge')
 
@@ -1029,7 +1030,7 @@ ERL0001 = Class(ACUUnit) {
         local aocRadius = radius or aoc:GetBlueprint().MaxRadius
 
         -- Change Damage
-        wep:AddDamageMod(damage)
+        wep:ChangeRateOfFire(rof)
 
         -- Change Radius
         wep:ChangeMaxRadius(wepRadius)

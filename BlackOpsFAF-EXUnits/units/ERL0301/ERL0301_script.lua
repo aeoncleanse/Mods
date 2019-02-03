@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /cdimage/units/DRL0204/DRL0204_script.lua
---**  Author(s):  Dru Staltman, Eric Williamson, Gordon Duclos
+-- File     :  /cdimage/units/DRL0204/DRL0204_script.lua
+-- Author(s):  Dru Staltman, Eric Williamson, Gordon Duclos
 --**
---**  Summary  :  Cybran Rocket Bot Script
+-- Summary  :  Cybran Rocket Bot Script
 --**
---**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2007 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/mods/BlackOpsFAF-EXUnits/lua/EXBlackOpsweapons.lua')
 local CybranShadowSplitterBeam = CybranWeaponsFile.CybranShadowSplitterBeam

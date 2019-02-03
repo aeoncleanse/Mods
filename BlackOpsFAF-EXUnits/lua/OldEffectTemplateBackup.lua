@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /data/lua/EffectTemplates.lua
---**  Author(s):  Gordon Duclos, Greg Kohne, Matt Vainio, Aaron Lundquist
+-- File     :  /data/lua/EffectTemplates.lua
+-- Author(s):  Gordon Duclos, Greg Kohne, Matt Vainio, Aaron Lundquist
 --**
---**  Summary  :  Generic templates for commonly used effects
+-- Summary  :  Generic templates for commonly used effects
 --**
---**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2006 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 

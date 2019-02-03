@@ -1,12 +1,9 @@
---****************************************************************************
---**
---**  File     :  /mods/BlackopsACUs/effects/Entities/EXBillyEffectController01/EXBillyEffectController01_script.lua
---**  Author(s):  Gordon Duclos
---**
---**  Summary  :  Nuclear explosion script
---**
---**  Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-----------------------------------------------------------------------------------------------------------------
+-- File     :  /mods/BlackopsACUs/effects/Entities/EXBillyEffectController01/EXBillyEffectController01_script.lua
+-- Author(s):  Gordon Duclos
+-- Summary  :  Nuclear explosion script
+-- Copyright © 2005,2006 Gas Powered Games, Inc.  All rights reserved.
+-----------------------------------------------------------------------------------------------------------------
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -26,8 +23,6 @@ EXCTorpEffectController01 = Class(NullShell) {
 
 
     -- NOTE: This script has been modified to REQUIRE that data is passed in!  The nuke won't explode until this happens!
-    --OnCreate = function(self)
-
     PassData = function(self, Data)
         if Data.NukeOuterRingDamage then self.NukeOuterRingDamage = Data.NukeOuterRingDamage end
         if Data.NukeOuterRingRadius then self.NukeOuterRingRadius = Data.NukeOuterRingRadius end
@@ -44,11 +39,11 @@ EXCTorpEffectController01 = Class(NullShell) {
     CreateNuclearExplosion = function(self)
         local myBlueprint = self:GetBlueprint()
 
-    -- Create Damage Threads
+        -- Create Damage Threads
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
 
-    -- Create thread that spawns and controls effects
+        -- Create thread that spawns and controls effects
         self:ForkThread(self.EffectThread)
     end,
 

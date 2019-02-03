@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /cdimage/units/UES0103/UES0103_script.lua
---**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+-- File     :  /cdimage/units/UES0103/UES0103_script.lua
+-- Author(s):  John Comes, David Tomandl, Jessica St. Croix
 --**
---**  Summary  :  UEF Frigate Script
+-- Summary  :  UEF Frigate Script
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local Entity = import('/lua/sim/Entity.lua').Entity
 local TSAMLauncher = import('/lua/terranweapons.lua').TSAMLauncher

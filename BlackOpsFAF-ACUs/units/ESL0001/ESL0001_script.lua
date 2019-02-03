@@ -17,20 +17,20 @@ local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
 local RapidCannonWeapon = ACUsWeapons.RapidCannonWeapon
 local QuantumStormWeapon = ACUsWeapons.QuantumStormWeapon
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
-local CEMPArrayBeam01 = ACUsWeapons.CEMPArrayBeam01
+local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam
 local LaanseMissile = ACUsWeapons.LaanseMissile
 
 ESL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
     PainterRange = {},
-    rightGunLabel = 'ChronotronCannon',
+    RightGunLabel = 'ChronotronCannon',
     RightGunUpgrade = 'JuryRiggedChronotron',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
     FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/esl0001/ESL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},
-        TargetPainter = Class(CEMPArrayBeam01) {},
+        TargetPainter = Class(CEMPArrayBeam) {},
         ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
         TorpedoLauncher = Class(SANUallCavitationTorpedo) {},
         BigBallCannon = Class(QuantumStormWeapon) {},
@@ -1013,7 +1013,7 @@ ESL0001 = Class(ACUUnit) {
             local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
-        elseif enh == 'TacticalMisslePack' then
+        elseif enh == 'TacticalMissilePack' then
             if not Buffs['SeraphimCombatHealth2'] then
                 BuffBlueprint {
                     Name = 'SeraphimCombatHealth2',
@@ -1044,7 +1044,7 @@ ESL0001 = Class(ACUUnit) {
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
 
             self:SetWeaponEnabledByLabel('Missile', true)
-        elseif enh == 'TacticalMisslePackRemove' then
+        elseif enh == 'TacticalMissilePackRemove' then
             if Buff.HasBuff(self, 'SeraphimCombatHealth2') then
                 Buff.RemoveBuff(self, 'SeraphimCombatHealth2')
             end

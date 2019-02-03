@@ -2,8 +2,8 @@
 -- UEF Small Yield Nuclear Bomb
 -------------------------------
 
-local SmallYieldNukeProjectile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').SmallYieldNukeProjectile
+local SmallYieldNukeProjectileClass = import('/mods/BlackOpsFAF-ACUs/lua/ACUsProjectiles.lua').SmallYieldNukeProjectileClass
 
-SmallYieldNukeProjectile = Class(TIFSmallYieldNuclearBombProjectile) {}
+SmallYieldNukeProjectile = Class(SmallYieldNukeProjectileClass) {}
 
 TypeClass = SmallYieldNukeProjectile

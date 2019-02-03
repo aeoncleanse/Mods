@@ -1361,7 +1361,7 @@ UnitBlueprint {
             },
             Slot = 'Back',
         },
-        TacticalMisslePack = {
+        TacticalMissilePack = {
             BuildCostEnergy = 180000,
             BuildCostMass = 3000,
             BuildTime = 10800,
@@ -1390,7 +1390,7 @@ UnitBlueprint {
             },
             NewRegenRate = 50,
         },
-        TacticalMisslePackRemove = {
+        TacticalMissilePackRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -1406,11 +1406,11 @@ UnitBlueprint {
             },
             Icon = 'exbbat2',
             Name = 'Remove Tactical Missile System',
-            Prerequisite = 'TacticalMisslePack',
+            Prerequisite = 'TacticalMissilePack',
             RemoveEnhancements = {
                 'ImprovedCombatSystems',
-                'TacticalMisslePack',
-                'TacticalMisslePackRemove',
+                'TacticalMissilePack',
+                'TacticalMissilePackRemove',
             },
             Slot = 'Back',
         },
@@ -1420,7 +1420,7 @@ UnitBlueprint {
             BuildTime = 21600,
             Icon = 'exbbat3',
             Name = 'Overcharge Amplifier (T4)',
-            Prerequisite = 'TacticalMisslePack',
+            Prerequisite = 'TacticalMissilePack',
             NewHealth = 15000,
             OverchargeDamageMod = 8000,
             NewProjectileBlueprint = '/mods/BlackOpsFAF-ACUs/projectiles/OmegaOverchargeProjectile/OmegaOverchargeProjectile_proj.bp',
@@ -1464,7 +1464,7 @@ UnitBlueprint {
             Prerequisite = 'OverchargeAmplifier',
             RemoveEnhancements = {
                 'ImprovedCombatSystems',
-                'TacticalMisslePack',
+                'TacticalMissilePack',
                 'OverchargeAmplifier',
                 'OverchargeAmplifierRemove',
             },
@@ -2317,7 +2317,7 @@ UnitBlueprint {
             DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Laanse Tactical Missile Launcher',
-            EnabledByEnhancement = 'TacticalMisslePack',
+            EnabledByEnhancement = 'TacticalMissilePack',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
                 Seabed = 'Land|Water|Seabed',

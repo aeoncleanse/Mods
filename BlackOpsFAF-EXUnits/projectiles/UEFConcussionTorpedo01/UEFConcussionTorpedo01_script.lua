@@ -1,19 +1,19 @@
---
--- Terran Torpedo Bomb
---
 local TTorpedoSubProjectile = import('/lua/terranprojectiles.lua').TTorpedoSubProjectile
 
 UEFConcussionTorpedo01 = Class(TTorpedoSubProjectile) {
     OnCreate = function(self)
         TTorpedoSubProjectile.OnCreate(self)
+
         self:SetCollisionShape('Sphere', 0, 0, 0, 1)
+        self.effectEntityPath = '/mods/BlackOpsFAF-EXUnits/effects/Entities/EXCTorpEffectController01/EXCTorpEffectController01_proj.bp'
+
         local mytarget = self:GetTrackingTarget()
         if EntityCategoryContains(categories.HOVER, mytarget) then
             self:ForkThread(self.MyTargetRangeCheck)
         end
     end,
 
-    MyTargetRangeCheck = function(self, TargetType, TargetEntity)
+    MyTargetRangeCheck = function(self)
         local mytarget = self:GetTrackingTarget()
         local targetpos = mytarget:GetPosition()
         local mypos = self:GetPosition()

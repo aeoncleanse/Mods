@@ -526,7 +526,7 @@ BuilderGroup {
         Priority = 1600,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
                 {BOUC, 'CanUpgrade', {'ShieldBattery'}},
@@ -562,7 +562,7 @@ BuilderGroup {
         Priority = 1600,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
                 {BOUC, 'CanUpgrade', {'ShieldBattery'}},
@@ -693,7 +693,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR TacticalMisslePack',
+        BuilderName = 'Sorian UEF CDR TacticalMissilePack',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1200,
         BuilderConditions = {
@@ -708,7 +708,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'TacticalMisslePack'},
+            Enhancement = {'TacticalMissilePack'},
         },
     },
     Builder {
@@ -717,7 +717,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ShieldBattery', true}},
@@ -731,7 +731,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR TacticalMisslePack v2',
+        BuilderName = 'Sorian UEF CDR TacticalMissilePack v2',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1200,
         BuilderConditions = {
@@ -746,7 +746,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'TacticalMisslePack'},
+            Enhancement = {'TacticalMissilePack'},
         },
     },
     Builder {
@@ -755,7 +755,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ShieldBattery', true}},
@@ -903,7 +903,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedShieldBattery', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', true}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', true}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedShieldBattery'}},
                 {MIBC, 'FactionIndex', {1, 1}},
             },
@@ -919,7 +919,7 @@ BuilderGroup {
         Priority = 900,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', true}},
@@ -941,7 +941,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedShieldBattery', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', true}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', true}},
                 {BOUC, 'CanUpgrade', {'ImprovedShieldBattery'}},
                 {MIBC, 'FactionIndex', {1, 1}},
             },
@@ -957,7 +957,7 @@ BuilderGroup {
         Priority = 900,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'ClusterMissilePack', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'TacticalNukeSubstitution', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'ActiveShielding', true}},
@@ -2302,7 +2302,7 @@ BuilderGroup {
         Priority = 1600,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
                 {SBC, 'CmdrHasUpgrade', {'ImprovedEngineering', true}},
                 {BOUC, 'CanUpgrade', {'L1Lambda'}},
@@ -2338,7 +2338,7 @@ BuilderGroup {
         Priority = 1600,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
                 {SBC, 'CmdrHasUpgrade', {'CombatEngineering', true}},
                 {BOUC, 'CanUpgrade', {'L1Lambda'}},
@@ -2469,7 +2469,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR TacticalMisslePack',
+        BuilderName = 'Sorian Seraphim CDR TacticalMissilePack',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1200,
         BuilderConditions = {
@@ -2485,7 +2485,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'TacticalMisslePack'},
+            Enhancement = {'TacticalMissilePack'},
         },
     },
     Builder {
@@ -2494,7 +2494,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
                 {SBC, 'CmdrHasUpgrade', {'AdvancedEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'L1Lambda', true}},
@@ -2508,7 +2508,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR TacticalMisslePack v2',
+        BuilderName = 'Sorian Seraphim CDR TacticalMissilePack v2',
         PlatoonTemplate = 'CommanderEnhanceSorian',
         Priority = 1200,
         BuilderConditions = {
@@ -2523,7 +2523,7 @@ BuilderGroup {
         PlatoonAddFunctions = {{SAI, 'BuildOnce'},},
         BuilderType = 'Any',
         BuilderData = {
-            Enhancement = {'TacticalMisslePack'},
+            Enhancement = {'TacticalMissilePack'},
         },
     },
     Builder {
@@ -2532,7 +2532,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
                 {SBC, 'CmdrHasUpgrade', {'AssaultEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'L1Lambda', true}},
@@ -2680,7 +2680,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'L2Lambda', false}},
                 {SBC, 'CmdrHasUpgrade', {'L3Lambda', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', true}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', true}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', true}},
                 {BOUC, 'CanUpgrade', {'L3Lambda'}},
                 {MIBC, 'FactionIndex', {4, 4}},
             },
@@ -2696,7 +2696,7 @@ BuilderGroup {
         Priority = 900,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
                 {SBC, 'CmdrHasUpgrade', {'ExperimentalEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'L2Lambda', true}},
@@ -2718,7 +2718,7 @@ BuilderGroup {
                 {SBC, 'CmdrHasUpgrade', {'L2Lambda', false}},
                 {SBC, 'CmdrHasUpgrade', {'L3Lambda', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', true}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', true}},
                 {BOUC, 'CanUpgrade', {'L3Lambda'}},
                 {MIBC, 'FactionIndex', {4, 4}},
             },
@@ -2734,7 +2734,7 @@ BuilderGroup {
         Priority = 900,
         BuilderConditions = {
                 {SBC, 'CmdrHasUpgrade', {'BasicDefence', false}},
-                {SBC, 'CmdrHasUpgrade', {'TacticalMisslePack', false}},
+                {SBC, 'CmdrHasUpgrade', {'TacticalMissilePack', false}},
                 {SBC, 'CmdrHasUpgrade', {'OverchargeOverdrive', false}},
                 {SBC, 'CmdrHasUpgrade', {'ApocalypticEngineering', true}},
                 {SBC, 'CmdrHasUpgrade', {'L2Lambda', true}},

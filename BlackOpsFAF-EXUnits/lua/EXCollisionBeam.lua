@@ -1,12 +1,12 @@
---****************************************************************************
+-------------------------------------------------------------------------
 --**
---**  File     :  /lua/sim/collisionbeam.lua
---**  Author(s):
+-- File     :  /lua/sim/collisionbeam.lua
+-- Author(s):
 --**
---**  Summary  :
+-- Summary  :
 --**
---**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---****************************************************************************
+-- Copyright ï¿½ 2005 Gas Powered Games, Inc.  All rights reserved.
+-------------------------------------------------------------------------
 --
 -- CollisionBeam is the simulation (gameplay-relevant) portion of a beam. It wraps a special effect
 -- that may or may not exist depending on how the simulation is executing.

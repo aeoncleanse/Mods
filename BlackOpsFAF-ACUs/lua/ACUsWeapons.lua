@@ -5,13 +5,15 @@
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-local WeaponFile = import('/lua/sim/defaultweapons.lua')
-local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
-local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local CollisionBeamFile = import('/mods/BlackOpsFAF-ACUs/lua/ACUsDefaultCollisionBeams.lua')
 local CCannonMolecularWeapon = import('/lua/cybranweapons.lua').CCannonMolecularWeapon
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
+
+local WeaponFile = import('/lua/sim/defaultweapons.lua')
+local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
+local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
+
 local SWeapons = import('/lua/seraphimweapons.lua')
 local SIFLaanseTacticalMissileLauncher = SWeapons.SIFLaanseTacticalMissileLauncher
 local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
