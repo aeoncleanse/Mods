@@ -760,18 +760,22 @@ ERL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'CybranIntelHealth1')
 
-            self:SetIntelRadius('Vision', bp.NewVisionRadius)
-            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
+                self:SetIntelRadius('Vision', bp.NewVisionRadius)
+                self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
+                self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            end
         elseif enh == 'ElectronicsEnhancmentRemove' then
             if Buff.HasBuff(self, 'CybranIntelHealth1') then
                 Buff.RemoveBuff(self, 'CybranIntelHealth1')
             end
 
             local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
-            self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
+                self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+                self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
+                self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            end
         elseif enh == 'ElectronicCountermeasures' then
             if not Buffs['CybranIntelHealth2'] then
                 BuffBlueprint {

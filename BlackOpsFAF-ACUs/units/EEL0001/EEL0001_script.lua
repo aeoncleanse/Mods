@@ -811,11 +811,13 @@ EEL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'UEFIntelHealth1')
 
-            self:SetIntelRadius('Vision', bp.NewVisionRadius)
-            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius)
-            self.RadarDish:SetTargetSpeed(45)
+            if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
+                self:SetIntelRadius('Vision', bp.NewVisionRadius)
+                self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
+                self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            end
 
+            self.RadarDish:SetTargetSpeed(45)
             self:SetWeaponEnabledByLabel('EnergyLance01', true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
             if Buff.HasBuff(self, 'UEFIntelHealth1') then
@@ -823,9 +825,13 @@ EEL0001 = Class(ACUUnit) {
             end
 
             local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
-            self:SetIntelRadius('WaterVision', bpIntel.WaterVisionRadius)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+
+            if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
+                self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+                self:SetIntelRadius('WaterVision', bpIntel.WaterVisionRadius)
+                self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            end
+
             self.RadarDish:SetTargetSpeed(0)
 
             self:SetWeaponEnabledByLabel('EnergyLance01', false)

@@ -294,10 +294,10 @@ UnitBlueprint {
         },
     },
     Economy = {
-        BuildCostEnergy = 5000000,
-        BuildCostMass = 18000,
+        BuildCostEnergy = 350000,
+        BuildCostMass = 2500,
         BuildRate = 10,
-        BuildTime = 60000,
+        BuildTime = 18000,
         BuildableCategory = {
             'BUILTBYCOMMANDER CYBRAN',
             'BUILTBYTIER2COMMANDER CYBRAN',
@@ -1844,7 +1844,7 @@ UnitBlueprint {
             Damage = 0,
             DamageFriendly = true,
             DamageRadius = 0,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Death Nuke',
             FireOnDeath = true,
             FiringTolerance = 2,
