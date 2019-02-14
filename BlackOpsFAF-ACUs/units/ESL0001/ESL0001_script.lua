@@ -120,8 +120,9 @@ ESL0001 = Class(ACUUnit) {
     OnMotionHorzEventChange = function(self, new, old)
         if new ~= 'Stopped' and self.HiddenACU then
             self:SetScriptBit('RULEUTC_CloakToggle', true) -- Disable counter-intel
+        elseif new == 'Stopped' and self:GetAIBrain().BrainType ~= 'Human' then
+            self:SetScriptBit('RULEUTC_CloakToggle', false) -- Enable counter-intel for AI
         end
-
         ACUUnit.OnMotionHorzEventChange(self, new, old)
     end,
 
@@ -896,18 +897,22 @@ ESL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'SeraphimIntelHealth1')
 
-            self:SetIntelRadius('Vision', bp.NewVisionRadius)
-            self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
+                self:SetIntelRadius('Vision', bp.NewVisionRadius)
+                self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
+                self:SetIntelRadius('Omni', bp.NewOmniRadius)
+            end
         elseif enh == 'ElectronicsEnhancmentRemove' then
             if Buff.HasBuff(self, 'SeraphimIntelHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimIntelHealth1')
             end
 
             local bpIntel = self:GetBlueprint().Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius)
-            self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
+                self:SetIntelRadius('Vision', bpIntel.VisionRadius)
+                self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
+                self:SetIntelRadius('Omni', bpIntel.OmniRadius)
+            end
         elseif enh == 'PersonalTeleporter' then
             if not Buffs['SeraphimIntelHealth2'] then
                 BuffBlueprint {
