@@ -2,8 +2,8 @@ local LambdaField = import('/mods/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua').
 
 LambdaUnit = Class(SStructureUnit) {
     ShieldEffects = {
-        '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
         '/effects/emitters/seraphim_shield_generator_t2_03_emit.bp',
+        '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
     },
 
     OnCreate = function(self, builder, layer)
