@@ -1012,6 +1012,10 @@ UnitBlueprint {
             Name = 'Lambda Field Emitters (T2)',
             NewHealth = 6000,
             MaintenanceConsumptionPerSecondEnergy = 200,
+            LambdaFieldSpecs = {
+                Small = {Radius = 2, Probability = 5},
+                Large = {Radius = 4, Probability = 10}
+            },
             ShowBones = {
                 'L_Spinner_B01',
                 'S_Spinner_B01',
@@ -1061,6 +1065,10 @@ UnitBlueprint {
             Prerequisite = 'LambdaFieldEmitters',
             NewHealth = 12000,
             MaintenanceConsumptionPerSecondEnergy = 500,
+            LambdaFieldSpecs = {
+                Small = {Radius = 4, Probability = 10},
+                Large = {Radius = 5, Probability = 20}
+            },
             ShowBones = {
                 'L_Spinner_B01',
                 'S_Spinner_B01',
@@ -1111,6 +1119,10 @@ UnitBlueprint {
             Prerequisite = 'EnhancedLambdaEmitters',
             NewHealth = 20000,
             MaintenanceConsumptionPerSecondEnergy = 1000,
+            LambdaFieldSpecs = {
+                Small = {Radius = 5, Probability = 20},
+                Large = {Radius = 6, Probability = 30}
+            },
             ShowBones = {
                 'L_Spinner_B01',
                 'S_Spinner_B01',

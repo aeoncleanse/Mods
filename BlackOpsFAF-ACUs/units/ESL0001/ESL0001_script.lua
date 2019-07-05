@@ -19,6 +19,7 @@ local QuantumStormWeapon = ACUsWeapons.QuantumStormWeapon
 local SAAOlarisCannonWeapon = SWeapons.SAAOlarisCannonWeapon
 local CEMPArrayBeam = ACUsWeapons.CEMPArrayBeam
 local LaanseMissile = ACUsWeapons.LaanseMissile
+local LambdaField = import('/mods/BlackOpsFAF-ACUs/lua/ACUsAntiProjectile.lua').LambdaField
 
 ESL0001 = Class(ACUUnit) {
     DeathThreadDestructionWaitTime = 2,
@@ -803,15 +804,15 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth1')
 
             -- Create Lambda units and attach
-            self:CreateLambdaUnit('S', '1', '2')
-            self:CreateLambdaUnit('L', '1', '1')
+            self:CreateLambdaField(S_Lambda_B01, bp.LambdaFieldSpecs.Small)
+            self:CreateLambdaField(L_Lambda_B01, bp.LambdaFieldSpecs.Large)
         elseif enh == 'LambdaFieldEmittersRemove' then
             if Buff.HasBuff(self, 'SeraphimLambdaHealth1') then
                 Buff.RemoveBuff(self, 'SeraphimLambdaHealth1')
             end
 
-            self:CreateLambdaUnit('S', '1', '2', true)
-            self:CreateLambdaUnit('L', '1', '1', true)
+            self:RemoveLambdaField(S_Lambda_B01)
+            self:RemoveLambdaField(L_Lambda_B01)
         elseif enh == 'EnhancedLambdaEmitters' then
             if not Buffs['SeraphimLambdaHealth2'] then
                 BuffBlueprint {
@@ -835,15 +836,15 @@ ESL0001 = Class(ACUUnit) {
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth2')
 
 
-            self:CreateLambdaUnit('S', '2', '3')
-            self:CreateLambdaUnit('L', '2', '1')
+            self:CreateLambdaField(S_Lambda_B02, bp.LambdaFieldSpecs.Small)
+            self:CreateLambdaField(L_Lambda_B02, bp.LambdaFieldSpecs.Large)
         elseif enh == 'EnhancedLambdaEmittersRemove' then
             if Buff.HasBuff(self, 'SeraphimLambdaHealth2') then
                 Buff.RemoveBuff(self, 'SeraphimLambdaHealth2')
             end
 
-            self:CreateLambdaUnit('S', '2', '3', true)
-            self:CreateLambdaUnit('L', '2', '1', true)
+            self:RemoveLambdaField(S_Lambda_B02)
+            self:RemoveLambdaField(L_Lambda_B02)
         elseif enh == 'ControlledQuantumRuptures' then
             if not Buffs['SeraphimLambdaHealth3'] then
                 BuffBlueprint {
@@ -862,15 +863,15 @@ ESL0001 = Class(ACUUnit) {
             end
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth3')
 
-            self:CreateLambdaUnit('S', '3', '4')
-            self:CreateLambdaUnit('L', '3', '4')
+            self:CreateLambdaField(S_Lambda_B03, bp.LambdaFieldSpecs.Small)
+            self:CreateLambdaField(L_Lambda_B03, bp.LambdaFieldSpecs.Large)
         elseif enh == 'ControlledQuantumRupturesRemove' then
             if Buff.HasBuff(self, 'SeraphimLambdaHealth3') then
                 Buff.RemoveBuff(self, 'SeraphimLambdaHealth3')
             end
 
-            self:CreateLambdaUnit('S', '3', '4', true)
-            self:CreateLambdaUnit('L', '3', '4', true)
+            self:RemoveLambdaField(S_Lambda_B03)
+            self:RemoveLambdaField(L_Lambda_B03)
 
         -- Intel Systems
 
@@ -1200,32 +1201,24 @@ ESL0001 = Class(ACUUnit) {
         end
     end,
 
-    -- Size is 'L' or 'S', bone is 1 through 4, unit is the unit ID ending
-    CreateLambdaUnit = function(self, size, bone, unit, removal)
-        local boneLabel = size .. '_Lambda_B0' .. bone
+    -- spec is a table of the form {Radius = X, Probability = Y}
+    CreateLambdaField = function(self, bone, spec)
+        local field = LambdaField {
+            Owner = self,
+            AttachBone = bone,
+            Radius = spec.Radius,
+            Probability = spec.Probability
+        }
 
-        -- If this is a removal, take the quick way out
-        if removal and self.lambdaEmitterTable[boneLabel] then
-            IssueClearCommands({self.lambdaEmitterTable[boneLabel]})
-            IssueKillSelf({self.lambdaEmitterTable[boneLabel]})
-            self.lambdaEmitterTable[boneLabel] = nil
-            return
-        end
-
-        local orientation = self:GetOrientation()
-        local boneLocation = self:GetPosition(boneLabel)
-        local unitID = 'esb000' .. unit
-
-        local lambdaUnit = CreateUnit(unitID, self:GetArmy(),
-                                      boneLocation[1], boneLocation[2], boneLocation[3],
-                                      orientation[1], orientation[2], orientation[3], orientation[4], 'Land')
-
-        self.lambdaEmitterTable[boneLabel] = lambdaUnit
-        lambdaUnit:AttachTo(self, boneLabel)
-        lambdaUnit:SetParent(self, 'esl0001')
-        lambdaUnit:SetCreator(self)
-        self.Trash:Add(lambdaUnit)
+        -- Keep track of the field
+        self.lambdaEmitterTable[bone] = field
+        self.Trash:Add(field)
     end,
+
+    RemoveLambdaField = function(self, bone)
+        self.lambdaEmitterTable[bone]:Destroy()
+        self.lambdaEmitterTable[bone] = nil
+    end
 }
 
 TypeClass = ESL0001
