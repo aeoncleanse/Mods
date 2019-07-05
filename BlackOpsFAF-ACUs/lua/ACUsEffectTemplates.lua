@@ -110,7 +110,7 @@ EMPArrayHit = {
     EmtBpPathAlt .. 'emp_shockwave_01_emit.bp',
     EmtBpPathAlt .. 'emp_shockwave_02_emit.bp',
     EmtBpPathAlt .. 'emp_shockwave_03_emit.bp',
-    EmtBpPathAlt .. 'emp_shockwave_07_emit.bp',
+    EmtBpPathAlt .. 'emp_shockwave_04_emit.bp',
 }
 
 -- Seraphim Lambda FX
@@ -118,7 +118,7 @@ LambdaDestroyer = {
     EmtBpPathAlt .. 'lambda_distortion_01.bp',
     EmtBpPathAlt .. 'lambda_destroy_dark_01.bp',
     EmtBpPathAlt .. 'lambda_destroy_dark_02.bp',
-    EmtBpPathAlt .. 'lambda_destroy_dark_03b.bp',
+    EmtBpPathAlt .. 'lambda_destroy_dark_03.bp',
     EmtBpPathAlt .. 'lambda_destroy_dark_04.bp',
     EmtBpPathAlt .. 'lambda_destroy_bright_01.bp',
     EmtBpPathAlt .. 'lambda_destroy_bright_01.bp',
