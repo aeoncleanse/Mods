@@ -42,7 +42,7 @@ LambdaField = Class(Entity) {
             if other.LambdaDetect then return false end
 
             local rand = math.random(0, 100)
-            if rand >= 0 and rand <= self.Probability then
+            if rand <= self.Probability then
                 -- Create Lambda FX
                 for _, v in self.LambdaEffects do
                     table.insert(self.LambdaEffectsBag, CreateEmitterOnEntity(other, self:GetArmy(), v):ScaleEmitter(0.2))
