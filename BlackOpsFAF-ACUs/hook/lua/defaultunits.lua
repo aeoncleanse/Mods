@@ -7,7 +7,11 @@ ACUUnit = Class(oldACUUnit) {
 
         self:SetCapturable(false)
         self:SetupBuildBones()
-        self:DoWarpInEffects(false)
+
+        local bp = self:GetBlueprint()
+        for _, v in bp.Display.WarpInEffect.HideBones do
+            self:HideBone(v, true)
+        end
 
         -- Restrict things that enhancements will enable later
         self:AddBuildRestriction(categories[self.factionCategory] * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
@@ -95,19 +99,6 @@ ACUUnit = Class(oldACUUnit) {
     end,
 
     -- New Functions
-    DoWarpInEffects = function(self, fake)
-        local bp = self:GetBlueprint()
-
-        for _, v in bp.Display.WarpInEffect.HideBones do
-            self:HideBone(v, true)
-        end
-
-        if fake then
-            unit:SetMesh(self.FakeWarpMesh, true)
-            unit:ShowBone(0, true)
-        end
-    end,
-
     SetProduction = function(self, bp)
         local energy = bp.ProductionPerSecondEnergy or 0
         local mass = bp.ProductionPerSecondMass or 0
