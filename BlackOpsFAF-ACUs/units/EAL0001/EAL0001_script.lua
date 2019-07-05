@@ -30,7 +30,6 @@ EAL0001 = Class(ACUUnit) {
     RightGunLabel = 'RightDisruptor',
     RightGunUpgrade = 'DisruptorAmplifier',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
-    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/eal0001/EAL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},

@@ -26,7 +26,6 @@ ESL0001 = Class(ACUUnit) {
     RightGunLabel = 'ChronotronCannon',
     RightGunUpgrade = 'JuryRiggedChronotron',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
-    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/esl0001/ESL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},

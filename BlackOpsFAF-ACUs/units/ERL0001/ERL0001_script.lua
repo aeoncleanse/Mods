@@ -27,7 +27,6 @@ ERL0001 = Class(ACUUnit) {
     RightGunUpgrade = 'JuryRiggedRipper',
     RightGunBone = 'Right_Upgrade',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
-    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/erl0001/ERL0001_PhaseShield_mesh',
 
     Weapons = {
         DeathWeapon = Class(DeathNukeWeapon) {},

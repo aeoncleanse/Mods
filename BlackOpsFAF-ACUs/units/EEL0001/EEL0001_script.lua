@@ -30,7 +30,6 @@ EEL0001 = Class(ACUUnit) {
     RightGunUpgrade = 'JuryRiggedZephyr',
     RightGunBone = 'Zephyr_Amplifier',
     WeaponEnabled = {}, -- Storage for upgrade weapons status
-    FakeWarpMesh = '/mods/BlackOpsFAF-ACUs/units/eel0001/EEL0001_PhaseShield_mesh',
 
     Weapons = {
         RightZephyr = Class(TDFZephyrCannonWeapon) {},
