@@ -11,6 +11,6 @@ Tooltips["exjammer_toggle"] = {
     description = "Toggles the radar blip generator.",
 }
 Tooltips['ACUScryTarget'] = {
-   title = "Scry Targetting",
-   description = "Target Area for scrying",
+   title = "Scry Targeting",
+   description = "Target area for scrying",
 }
