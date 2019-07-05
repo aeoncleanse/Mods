@@ -167,7 +167,7 @@ Cluster01EffectController01 = Class(NullShell) {
             local x = math.sin(i * angle + RandomFloat(-angle / 2, angle / 4)) * magnitude
             local z = math.cos(i * angle + RandomFloat(-angle / 2, angle / 4)) * magnitude
             local velocity = RandomFloat(1, 3) * 0.09375
-            self:CreateProjectile('/mods/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect05/Cluster01Effect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
+            self:CreateProjectile('/mods/BlackOpsFAF-ACUs/effects/Entities/Cluster01Effect04/Cluster01Effect04_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
                 :SetVelocity(x * velocity, 0, z * velocity)
         end
     end,
