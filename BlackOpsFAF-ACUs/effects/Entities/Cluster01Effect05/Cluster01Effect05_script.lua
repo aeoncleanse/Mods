@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- File     :  /effects/Entities/Cluster01Effect02/Cluster01Effect05_script.lua
+-- File     :  /effects/Entities/Cluster01Effect05/Cluster01Effect05_script.lua
 -- Author(s):  Gordon Duclos
 -- Summary  :  Nuclear explosion script
 -- Copyright © 2005, 2006 Gas Powered Games, Inc.  All rights reserved.
