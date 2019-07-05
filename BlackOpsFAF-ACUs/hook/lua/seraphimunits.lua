@@ -39,10 +39,8 @@ LambdaUnit = Class(SStructureUnit) {
     OnKilled = function(self, instigator, type, overkillRatio)
         SStructureUnit.OnKilled(self, instigator, type, overkillRatio)
 
-        if self.ShieldEffectsBag then
-            for _, v in self.ShieldEffectsBag or {} do
-                v:Destroy()
-            end
+        for _, v in self.ShieldEffectsBag or {} do
+            v:Destroy()
         end
     end,
 
