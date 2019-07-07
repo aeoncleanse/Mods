@@ -321,7 +321,7 @@ ESL0001 = Class(ACUUnit) {
                 KillThread(self.RegenThreadHandler)
                 self.RegenThreadHandler = nil
             end
-            self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, enh)
+            self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, bp, 'SeraphimACURegenAura')
             table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             -- Affect the ACU
@@ -408,7 +408,7 @@ ESL0001 = Class(ACUUnit) {
                 KillThread(self.RegenThreadHandler)
                 self.RegenThreadHandler = nil
             end
-            self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, enh)
+            self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, bp, 'SeraphimACUAdvancedRegenAura')
             table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             -- Affect the ACU
@@ -1164,35 +1164,27 @@ ESL0001 = Class(ACUUnit) {
         self.RotatorManipulator2:SetTargetSpeed(-60)
     end,
 
-    GetUnitsToBuff = function(self, bp)
-        local unitCat = ParseEntityCategory(bp.UnitCategory or 'BUILTBYTIER3FACTORY + BUILTBYQUANTUMGATE + NEEDMOBILEBUILD')
-        local brain = self:GetAIBrain()
+    GetUnitsToBuff = function(self, bp, unitCat, brain)
         local all = brain:GetUnitsAroundPoint(unitCat, self:GetPosition(), bp.Radius, 'Ally')
         local units = {}
 
-        for _, u in all do
-            if not u.Dead and not u:IsBeingBuilt() then
-                table.insert(units, u)
+        for _, unit in all do
+            if not unit.Dead and not unit:IsBeingBuilt() then
+                table.insert(units, unit)
             end
         end
 
         return units
     end,
 
-    RegenBuffThread = function(self, enh)
-        local bp = self:GetBlueprint().Enhancements[enh]
-        local buff
-
-        if enh == 'CombatEngineering' then
-            buff = 'SeraphimACURegenAura'
-        elseif enh == 'AssaultEngineering' then
-            buff = 'SeraphimACUAdvancedRegenAura'
-        end
+    RegenBuffThread = function(self, bp, buffName)
+        local unitCat = ParseEntityCategory(bp.UnitCategory)
+        local brain = self:GetAIBrain()
 
         while not self.Dead do
-            local units = self:GetUnitsToBuff(bp)
+            local units = self:GetUnitsToBuff(bp, unitCat, brain)
             for _, unit in units do
-                Buff.ApplyBuff(unit, buff)
+                Buff.ApplyBuff(unit, buffName)
                 unit:RequestRefreshUI()
             end
             WaitSeconds(5)
