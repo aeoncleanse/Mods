@@ -51,7 +51,6 @@ UnitBlueprint {
         'SELECTABLE',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
-        'BUILTBYTIER4COMMANDER',
         'SERAPHIM',
         'MOBILE',
         'NAVAL',
