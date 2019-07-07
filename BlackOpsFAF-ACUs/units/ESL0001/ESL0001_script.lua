@@ -6,6 +6,7 @@
 
 local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
 local Buff = import('/lua/sim/Buff.lua')
+local DefineBasicBuff = import('/lua/sim/BuffDefinitions.lua').DefineBasicBuff
 local SWeapons = import('/lua/seraphimweapons.lua')
 local SDFChronotronCannonWeapon = SWeapons.SDFChronotronCannonWeapon
 local SDFChronotronOverChargeCannonWeapon = SWeapons.SDFChronotronCannonOverChargeWeapon
@@ -162,29 +163,7 @@ ESL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['SERAPHIMACUT2BuildRate'] then
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT2BuildRate',
-                    DisplayName = 'SERAPHIMACUT2BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SERAPHIMACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
@@ -198,29 +177,7 @@ ESL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['SERAPHIMACUT3BuildRate'] then
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT3BuildRate',
-                    DisplayName = 'SERAPHIMCUT3BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SERAPHIMACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
@@ -233,29 +190,7 @@ ESL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['SERAPHIMACUT4BuildRate'] then
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT4BuildRate',
-                    DisplayName = 'SERAPHIMCUT4BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SERAPHIMACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
@@ -285,30 +220,6 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
 
-            if not Buffs['SERAPHIMACUT2BuildCombat'] then -- Self Buff
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT2BuildCombat',
-                    DisplayName = 'SERAPHIMACUT2BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-
             -- Remove existing threads, then re-apply
             if self.RegenFieldFXBag then
                 for k, v in self.RegenFieldFXBag do
@@ -325,6 +236,7 @@ ESL0001 = Class(ACUUnit) {
             table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             -- Affect the ACU
+            DefineBasicBuff('SERAPHIMACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildCombat')
         elseif enh == 'CombatEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT2BuildCombat') then
@@ -372,30 +284,6 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
 
-            if not Buffs['SERAPHIMACUT3BuildCombat'] then -- Self Buff
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT3BuildCombat',
-                    DisplayName = 'SERAPHIMACUT3BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-
             -- Remove existing threads, then re-apply
             if self.RegenFieldFXBag then
                 for k, v in self.RegenFieldFXBag do
@@ -411,7 +299,7 @@ ESL0001 = Class(ACUUnit) {
             self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, bp, 'SeraphimACUAdvancedRegenAura')
             table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
-            -- Affect the ACU
+            DefineBasicBuff('SERAPHIMACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildCombat')
         elseif enh == 'AssaultEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT3BuildCombat') then
@@ -436,30 +324,7 @@ ESL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['SERAPHIMACUT4BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'SERAPHIMACUT4BuildCombat',
-                    DisplayName = 'SERAPHIMACUT4BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
-
+            DefineBasicBuff('SERAPHIMACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildCombat') then
@@ -475,21 +340,7 @@ ESL0001 = Class(ACUUnit) {
         elseif enh == 'JuryRiggedChronotronRemove' then
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'TorpedoLauncher' then
-            if not Buffs['SeraphimTorpHealth1'] then
-                BuffBlueprint {
-                    Name = 'SeraphimTorpHealth1',
-                    DisplayName = 'SeraphimTorpHealth1',
-                    BuffType = 'SeraphimTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimTorpHealth1', 'SeraphimTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimTorpHealth1')
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
@@ -500,21 +351,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'ImprovedReloader' then
-            if not Buffs['SeraphimTorpHealth2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimTorpHealth2',
-                    DisplayName = 'SeraphimTorpHealth2',
-                    BuffType = 'SeraphimTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimTorpHealth2', 'SeraphimTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimTorpHealth2')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -533,21 +370,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'AdvancedWarheads' then
-            if not Buffs['SeraphimTorpHealth3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimTorpHealth3',
-                    DisplayName = 'SeraphimTorpHealth3',
-                    BuffType = 'SeraphimTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimTorpHealth3', 'SeraphimTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimTorpHealth3')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -569,21 +392,7 @@ ESL0001 = Class(ACUUnit) {
         -- Big Cannon Ball
 
         elseif enh == 'QuantumStormCannon' then
-            if not Buffs['SeraphimBallHealth1'] then
-                BuffBlueprint {
-                    Name = 'SeraphimBallHealth1',
-                    DisplayName = 'SeraphimBallHealth1',
-                    BuffType = 'SeraphimBallHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimBallHealth1', 'SeraphimBallHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimBallHealth1')
 
             self:SetWeaponEnabledByLabel('BigBallCannon', true)
@@ -604,21 +413,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetPainterRange('QuantumStormCannon')
         elseif enh == 'PowerConversionEnhancer' then
-            if not Buffs['SeraphimBallHealth2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimBallHealth2',
-                    DisplayName = 'SeraphimBallHealth2',
-                    BuffType = 'SeraphimBallHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimBallHealth2', 'SeraphimBallHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimBallHealth2')
 
             local cannon = self:GetWeaponByLabel('BigBallCannon')
@@ -645,21 +440,7 @@ ESL0001 = Class(ACUUnit) {
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'AdvancedDistortionAlgorithms' then
-            if not Buffs['SeraphimBallHealth3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimBallHealth3',
-                    DisplayName = 'SeraphimBallHealth3',
-                    BuffType = 'SeraphimBallHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimBallHealth3', 'SeraphimBallHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimBallHealth3')
 
             local cannon = self:GetWeaponByLabel('BigBallCannon')
@@ -681,21 +462,7 @@ ESL0001 = Class(ACUUnit) {
         -- Gatling Cannon
 
         elseif enh == 'PlasmaGatlingCannon' then
-            if not Buffs['SeraphimGatlingHealth1'] then
-                BuffBlueprint {
-                    Name = 'SeraphimGatlingHealth1',
-                    DisplayName = 'SeraphimGatlingHealth1',
-                    BuffType = 'SeraphimGatlingHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimGatlingHealth1', 'SeraphimGatlingHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimGatlingHealth1')
 
             self:SetWeaponEnabledByLabel('RapidCannon', true)
@@ -713,21 +480,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetPainterRange('PlasmaGatlingCannon')
         elseif enh == 'PhasedEnergyFields' then
-            if not Buffs['SeraphimGatlingHealth2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimGatlingHealth2',
-                    DisplayName = 'SeraphimGatlingHealth2',
-                    BuffType = 'SeraphimGatlingHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimGatlingHealth2', 'SeraphimGatlingHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimGatlingHealth2')
 
             local gun = self:GetWeaponByLabel('RapidCannon')
@@ -752,21 +505,7 @@ ESL0001 = Class(ACUUnit) {
             -- Turn off main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'SecondaryPowerFeeds' then
-            if not Buffs['SeraphimGatlingHealth3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimGatlingHealth3',
-                    DisplayName = 'SeraphimGatlingHealth3',
-                    BuffType = 'SeraphimGatlingHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimGatlingHealth3', 'SeraphimGatlingHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimGatlingHealth3')
 
             local gun = self:GetWeaponByLabel('RapidCannon')
@@ -782,25 +521,7 @@ ESL0001 = Class(ACUUnit) {
         -- Lambda System
 
         elseif enh == 'LambdaFieldEmitters' then
-            if not Buffs['SeraphimLambdaHealth1'] then
-                BuffBlueprint {
-                    Name = 'SeraphimLambdaHealth1',
-                    DisplayName = 'SeraphimLambdaHealth1',
-                    BuffType = 'SeraphimLambdaHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimLambdaHealth1', 'SeraphimLambdaHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth1')
 
             -- Create Lambda units and attach
@@ -814,25 +535,7 @@ ESL0001 = Class(ACUUnit) {
             self:RemoveLambdaField(S_Lambda_B01)
             self:RemoveLambdaField(L_Lambda_B01)
         elseif enh == 'EnhancedLambdaEmitters' then
-            if not Buffs['SeraphimLambdaHealth2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimLambdaHealth2',
-                    DisplayName = 'SeraphimLambdaHealth2',
-                    BuffType = 'SeraphimLambdaHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimLambdaHealth2', 'SeraphimLambdaHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth2')
 
 
@@ -846,21 +549,7 @@ ESL0001 = Class(ACUUnit) {
             self:RemoveLambdaField(S_Lambda_B02)
             self:RemoveLambdaField(L_Lambda_B02)
         elseif enh == 'ControlledQuantumRuptures' then
-            if not Buffs['SeraphimLambdaHealth3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimLambdaHealth3',
-                    DisplayName = 'SeraphimLambdaHealth3',
-                    BuffType = 'SeraphimLambdaHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimLambdaHealth3', 'SeraphimLambdaHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimLambdaHealth3')
 
             self:CreateLambdaField(S_Lambda_B03, bp.LambdaFieldSpecs.Small)
@@ -876,25 +565,7 @@ ESL0001 = Class(ACUUnit) {
         -- Intel Systems
 
         elseif enh == 'ElectronicsEnhancment' then
-            if not Buffs['SeraphimIntelHealth1'] then
-                BuffBlueprint {
-                    Name = 'SeraphimIntelHealth1',
-                    DisplayName = 'SeraphimIntelHealth1',
-                    BuffType = 'SeraphimIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimIntelHealth1', 'SeraphimIntelHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SeraphimIntelHealth1')
 
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
@@ -914,21 +585,7 @@ ESL0001 = Class(ACUUnit) {
                 self:SetIntelRadius('Omni', bpIntel.OmniRadius)
             end
         elseif enh == 'PersonalTeleporter' then
-            if not Buffs['SeraphimIntelHealth2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimIntelHealth2',
-                    DisplayName = 'SeraphimIntelHealth2',
-                    BuffType = 'SeraphimIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimIntelHealth2', 'SeraphimIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimIntelHealth2')
 
             self:AddCommandCap('RULEUCC_Teleport')
@@ -945,21 +602,7 @@ ESL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'CloakingSubsystems' then
-            if not Buffs['SeraphimIntelHealth3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimIntelHealth3',
-                    DisplayName = 'SeraphimIntelHealth3',
-                    BuffType = 'SeraphimIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimIntelHealth3', 'SeraphimIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'SeraphimIntelHealth3')
 
             if self.IntelEffectsBag then
@@ -984,25 +627,7 @@ ESL0001 = Class(ACUUnit) {
         -- Defensive Systems
 
         elseif enh == 'ImprovedCombatSystems' then
-            if not Buffs['SeraphimCombatHealth1'] then
-                BuffBlueprint {
-                    Name = 'SeraphimCombatHealth1',
-                    DisplayName = 'SeraphimCombatHealth1',
-                    BuffType = 'SeraphimCombatHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimCombatHealth1', 'SeraphimCombatHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SeraphimCombatHealth1')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
@@ -1019,25 +644,7 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'TacticalMissilePack' then
-            if not Buffs['SeraphimCombatHealth2'] then
-                BuffBlueprint {
-                    Name = 'SeraphimCombatHealth2',
-                    DisplayName = 'SeraphimCombatHealth2',
-                    BuffType = 'SeraphimCombatHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimCombatHealth2', 'SeraphimCombatHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SeraphimCombatHealth2')
 
             self:AddCommandCap('RULEUCC_Tactical')
@@ -1066,25 +673,7 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifier' then
-            if not Buffs['SeraphimCombatHealth3'] then
-                BuffBlueprint {
-                    Name = 'SeraphimCombatHealth3',
-                    DisplayName = 'SeraphimCombatHealth3',
-                    BuffType = 'SeraphimCombatHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('SeraphimCombatHealth3', 'SeraphimCombatHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SeraphimCombatHealth3')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')

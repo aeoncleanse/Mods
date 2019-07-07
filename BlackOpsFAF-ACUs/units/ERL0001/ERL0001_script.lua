@@ -14,6 +14,7 @@ local RocketPack = CWeapons.CDFRocketIridiumWeapon02
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 local Buff = import('/lua/sim/Buff.lua')
+local DefineBasicBuff = import('/lua/sim/BuffDefinitions.lua').DefineBasicBuff
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local ACUsWeapons = import('/mods/BlackOpsFAF-ACUs/lua/ACUsWeapons.lua')
 local EMPWeapon = ACUsWeapons.EMPWeapon
@@ -113,29 +114,7 @@ ERL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['CYBRANACUT2BuildRate'] then
-                BuffBlueprint {
-                    Name = 'CYBRANACUT2BuildRate',
-                    DisplayName = 'CYBRANACUT2BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CYBRANACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CYBRANACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT2BuildRate') then
@@ -148,29 +127,7 @@ ERL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['CYBRANACUT3BuildRate'] then
-                BuffBlueprint {
-                    Name = 'CYBRANACUT3BuildRate',
-                    DisplayName = 'CYBRANCUT3BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CYBRANACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CYBRANACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
@@ -183,29 +140,7 @@ ERL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['CYBRANACUT4BuildRate'] then
-                BuffBlueprint {
-                    Name = 'CYBRANACUT4BuildRate',
-                    DisplayName = 'CYBRANCUT4BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CYBRANACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CYBRANACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
@@ -217,29 +152,7 @@ ERL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['CYBRANACUT2BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'CYBRANACUT2BuildCombat',
-                    DisplayName = 'CYBRANACUT2BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CYBRANACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CYBRANACUT2BuildCombat')
 
             self:SetWeaponEnabledByLabel('RocketPack', true)
@@ -254,29 +167,7 @@ ERL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['CYBRANACUT3BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'CYBRANACUT3BuildCombat',
-                    DisplayName = 'CYBRANCUT3BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CYBRANACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CYBRANACUT3BuildCombat')
 
             local gun = self:GetWeaponByLabel('RocketPack')
@@ -300,29 +191,7 @@ ERL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['CYBRANACUT4BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'CYBRANACUT4BuildCombat',
-                    DisplayName = 'CYBRANCUT4BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CYBRANACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CYBRANACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'CYBRANACUT4BuildCombat') then
@@ -341,21 +210,7 @@ ERL0001 = Class(ACUUnit) {
         -- Torpedoes
 
         elseif enh == 'TorpedoLauncher' then
-            if not Buffs['CybranTorpHealth1'] then
-                BuffBlueprint {
-                    Name = 'CybranTorpHealth1',
-                    DisplayName = 'CybranTorpHealth1',
-                    BuffType = 'CybranTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranTorpHealth1', 'CybranTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranTorpHealth1')
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
@@ -368,21 +223,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             self:DisableUnitIntel('Enhancement', 'Sonar')
         elseif enh == 'ImprovedReloader' then
-            if not Buffs['CybranTorpHealth2'] then
-                BuffBlueprint {
-                    Name = 'CybranTorpHealth2',
-                    DisplayName = 'CybranTorpHealth2',
-                    BuffType = 'CybranTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranTorpHealth2', 'CybranTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranTorpHealth2')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -402,21 +243,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'AdvancedWarheads' then
-            if not Buffs['CybranTorpHealth3'] then
-                BuffBlueprint {
-                    Name = 'CybranTorpHealth3',
-                    DisplayName = 'CybranTorpHealth3',
-                    BuffType = 'CybranTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranTorpHealth3', 'CybranTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranTorpHealth3')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -439,21 +266,7 @@ ERL0001 = Class(ACUUnit) {
         -- EMP Array
 
         elseif enh == 'EMPArray' then
-            if not Buffs['CybranEMPHealth1'] then
-                BuffBlueprint {
-                    Name = 'CybranEMPHealth1',
-                    DisplayName = 'CybranEMPHealth1',
-                    BuffType = 'CybranEMPHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranEMPHealth1', 'CybranEMPHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranEMPHealth1')
 
             self:SetWeaponEnabledByLabel('EMPShot01', true)
@@ -472,21 +285,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:SetPainterRange('EMPArray')
         elseif enh == 'AdjustedCrystalMatrix' then
-            if not Buffs['CybranEMPHealth2'] then
-                BuffBlueprint {
-                    Name = 'CybranEMPHealth2',
-                    DisplayName = 'CybranEMPHealth2',
-                    BuffType = 'CybranEMPHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranEMPHealth2', 'CybranEMPHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranEMPHealth2')
 
             self:SetWeaponEnabledByLabel('EMPShot01', false)
@@ -512,21 +311,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'EnhancedLaserEmitters' then
-            if not Buffs['CybranEMPHealth3'] then
-                BuffBlueprint {
-                    Name = 'CybranEMPHealth3',
-                    DisplayName = 'CybranEMPHealth3',
-                    BuffType = 'CybranEMPHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranEMPHealth3', 'CybranEMPHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranEMPHealth3')
 
             self:SetWeaponEnabledByLabel('EMPShot02', false)
@@ -550,21 +335,7 @@ ERL0001 = Class(ACUUnit) {
         -- Mazer
 
         elseif enh == 'Mazer' then
-            if not Buffs['CybranMazerHealth1'] then
-                BuffBlueprint {
-                    Name = 'CybranMazerHealth1',
-                    DisplayName = 'CybranMazerHealth1',
-                    BuffType = 'CybranMazerHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranMazerHealth1', 'CybranMazerHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranMazerHealth1')
 
             self:SetWeaponEnabledByLabel('MLG01', true)
@@ -575,21 +346,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('MLG01', false)
         elseif enh == 'AlternatingLaserAssembly' then
-            if not Buffs['CybranMazerHealth2'] then
-                BuffBlueprint {
-                    Name = 'CybranMazerHealth2',
-                    DisplayName = 'CybranMazerHealth2',
-                    BuffType = 'CybranMazerHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranMazerHealth2', 'CybranMazerHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranMazerHealth2')
 
             self:SetWeaponEnabledByLabel('MLG01', false)
@@ -614,21 +371,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewRoF)
         elseif enh == 'SuperconductivePowerConduits' then
-            if not Buffs['CybranMazerHealth3'] then
-                BuffBlueprint {
-                    Name = 'CybranMazerHealth3',
-                    DisplayName = 'CybranMazerHealth3',
-                    BuffType = 'CybranMazerHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranMazerHealth3', 'CybranMazerHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranMazerHealth3')
 
             self:SetWeaponEnabledByLabel('MLG02', false)
@@ -652,25 +395,7 @@ ERL0001 = Class(ACUUnit) {
         -- Armor System
 
         elseif enh == 'ArmorPlating' then
-            if not Buffs['CybranArmorHealth1'] then
-                BuffBlueprint {
-                    Name = 'CybranArmorHealth1',
-                    DisplayName = 'CybranArmorHealth1',
-                    BuffType = 'CybranArmorHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranArmorHealth1', 'CybranArmorHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranArmorHealth1')
 
             self:SetWeaponEnabledByLabel('AA01', true)
@@ -683,25 +408,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'StructuralIntegrityFields' then
-            if not Buffs['CybranArmorHealth2'] then
-                BuffBlueprint {
-                    Name = 'CybranArmorHealth2',
-                    DisplayName = 'CybranArmorHealth2',
-                    BuffType = 'CybranArmorHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranArmorHealth2', 'CybranArmorHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranArmorHealth2')
 
             self:SetWeaponEnabledByLabel('AA03', true)
@@ -714,25 +421,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AA03', false)
             self:SetWeaponEnabledByLabel('AA04', false)
         elseif enh == 'CompositeMaterials' then
-            if not Buffs['CybranArmorHealth3'] then
-                BuffBlueprint {
-                    Name = 'CybranArmorHealth3',
-                    DisplayName = 'CybranArmorHealth3',
-                    BuffType = 'CybranArmorHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranArmorHealth3', 'CybranArmorHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranArmorHealth3')
         elseif enh == 'CompositeMaterialsRemove' then
             if Buff.HasBuff(self, 'CybranArmorHealth3') then
@@ -742,21 +431,7 @@ ERL0001 = Class(ACUUnit) {
         -- Counter-Intel Systems
 
         elseif enh == 'ElectronicsEnhancment' then
-            if not Buffs['CybranIntelHealth1'] then
-                BuffBlueprint {
-                    Name = 'CybranIntelHealth1',
-                    DisplayName = 'CybranIntelHealth1',
-                    BuffType = 'CybranIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranIntelHealth1', 'CybranIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'CybranIntelHealth1')
 
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
@@ -776,25 +451,7 @@ ERL0001 = Class(ACUUnit) {
                 self:SetIntelRadius('Omni', bpIntel.OmniRadius)
             end
         elseif enh == 'ElectronicCountermeasures' then
-            if not Buffs['CybranIntelHealth2'] then
-                BuffBlueprint {
-                    Name = 'CybranIntelHealth2',
-                    DisplayName = 'CybranIntelHealth2',
-                    BuffType = 'CybranIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranIntelHealth2', 'CybranIntelHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranIntelHealth2')
 
             if self.IntelEffectsBag then
@@ -814,25 +471,7 @@ ERL0001 = Class(ACUUnit) {
             self:DisableUnitIntel('Enhancement', 'RadarStealth')
             self:DisableUnitIntel('Enhancement', 'SonarStealth')
         elseif enh == 'CloakingSubsystems' then
-            if not Buffs['CybranIntelHealth3'] then
-                BuffBlueprint {
-                    Name = 'CybranIntelHealth3',
-                    DisplayName = 'CybranIntelHealth3',
-                    BuffType = 'CybranIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranIntelHealth3', 'CybranIntelHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranIntelHealth3')
 
             self:RemoveToggleCap('RULEUTC_StealthToggle')
@@ -849,25 +488,7 @@ ERL0001 = Class(ACUUnit) {
         -- Mobility Systems
 
         elseif enh == 'ActuatorReplacement' then
-            if not Buffs['CybranMobilityHealth1'] then
-                BuffBlueprint {
-                    Name = 'CybranMobilityHealth1',
-                    DisplayName = 'CybranMobilityHealth1',
-                    BuffType = 'CybranMobilityHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranMobilityHealth1', 'CybranMobilityHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranMobilityHealth1')
 
             self:SetSpeedMult(2)
@@ -878,25 +499,7 @@ ERL0001 = Class(ACUUnit) {
 
             self:SetSpeedMult(1)
         elseif enh == 'AntiAirSubsystem' then
-            if not Buffs['CybranMobilityHealth2'] then
-                BuffBlueprint {
-                    Name = 'CybranMobilityHealth2',
-                    DisplayName = 'CybranMobilityHealth2',
-                    BuffType = 'CybranMobilityHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranMobilityHealth2', 'CybranMobilityHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranMobilityHealth2')
 
             self:AddCommandCap('RULEUCC_Teleport')
@@ -913,25 +516,7 @@ ERL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AA01', false)
             self:SetWeaponEnabledByLabel('AA02', false)
         elseif enh == 'NanoRegenerationSubsystem' then
-            if not Buffs['CybranMobilityHealth3'] then
-                BuffBlueprint {
-                    Name = 'CybranMobilityHealth3',
-                    DisplayName = 'CybranMobilityHealth3',
-                    BuffType = 'CybranMobilityHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('CybranMobilityHealth3', 'CybranMobilityHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'CybranMobilityHealth3')
         elseif enh == 'NanoRegenerationSubsystemRemove' then
             if Buff.HasBuff(self, 'CybranMobilityHealth3') then

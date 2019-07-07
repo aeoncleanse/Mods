@@ -9,6 +9,7 @@ local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
+local DefineBasicBuff = import('/lua/sim/BuffDefinitions.lua').DefineBasicBuff
 
 local TerranWeaponFile = import('/lua/terranweapons.lua')
 local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
@@ -186,29 +187,7 @@ EEL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['UEFACUT2BuildRate'] then
-                BuffBlueprint {
-                    Name = 'UEFACUT2BuildRate',
-                    DisplayName = 'UEFACUT2BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
@@ -221,29 +200,7 @@ EEL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['UEFACUT3BuildRate'] then
-                BuffBlueprint {
-                    Name = 'UEFACUT3BuildRate',
-                    DisplayName = 'UEFCUT3BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
@@ -256,29 +213,7 @@ EEL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['UEFACUT4BuildRate'] then
-                BuffBlueprint {
-                    Name = 'UEFACUT4BuildRate',
-                    DisplayName = 'UEFCUT4BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
@@ -290,29 +225,7 @@ EEL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['UEFACUT2BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'UEFACUT2BuildCombat',
-                    DisplayName = 'UEFACUT2BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT2BuildCombat')
 
             self:SetWeaponEnabledByLabel('FlameCannon', true)
@@ -329,29 +242,7 @@ EEL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['UEFACUT3BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'UEFACUT3BuildCombat',
-                    DisplayName = 'UEFACUT3BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT3BuildCombat')
 
             local gun = self:GetWeaponByLabel('FlameCannon')
@@ -375,29 +266,7 @@ EEL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['UEFACUT4BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'UEFACUT4BuildCombat',
-                    DisplayName = 'UEFACUT4BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'UEFACUT4BuildCombat') then
@@ -415,21 +284,7 @@ EEL0001 = Class(ACUUnit) {
         -- Torpedoes
 
         elseif enh == 'TorpedoLauncher' then
-            if not Buffs['UEFTorpHealth1'] then
-                BuffBlueprint {
-                    Name = 'UEFTorpHealth1',
-                    DisplayName = 'UEFTorpHealth1',
-                    BuffType = 'UEFTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFTorpHealth1', 'UEFTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFTorpHealth1')
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
@@ -440,21 +295,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
         elseif enh == 'ImprovedReloader' then
-            if not Buffs['UEFTorpHealth2'] then
-                BuffBlueprint {
-                    Name = 'UEFTorpHealth2',
-                    DisplayName = 'UEFTorpHealth2',
-                    BuffType = 'UEFTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFTorpHealth2', 'UEFTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFTorpHealth2')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -474,21 +315,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'AdvancedWarheads' then
-            if not Buffs['UEFTorpHealth3'] then
-                BuffBlueprint {
-                    Name = 'UEFTorpHealth3',
-                    DisplayName = 'UEFTorpHealth3',
-                    BuffType = 'UEFTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFTorpHealth3', 'UEFTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFTorpHealth3')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -511,21 +338,7 @@ EEL0001 = Class(ACUUnit) {
         -- AntiMatter Cannon
 
         elseif enh == 'AntiMatterCannon' then
-            if not Buffs['UEFAntimatterHealth1'] then
-                BuffBlueprint {
-                    Name = 'UEFAntimatterHealth1',
-                    DisplayName = 'UEFAntimatterHealth1',
-                    BuffType = 'UEFAntimatterHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFAntimatterHealth1', 'UEFAntimatterHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFAntimatterHealth1')
 
             self:SetWeaponEnabledByLabel('AntiMatterCannon', true)
@@ -544,21 +357,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:SetPainterRange('AntiMatterCannon')
         elseif enh == 'ImprovedParticleAccelerator' then
-            if not Buffs['UEFAntimatterHealth2'] then
-                BuffBlueprint {
-                    Name = 'UEFAntimatterHealth2',
-                    DisplayName = 'UEFAntimatterHealth2',
-                    BuffType = 'UEFAntimatterHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFAntimatterHealth2', 'UEFAntimatterHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFAntimatterHealth2')
 
             -- Buff AntiMatter Gun
@@ -579,21 +378,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'EnhancedMagBottle' then
-            if not Buffs['UEFAntimatterHealth3'] then
-                BuffBlueprint {
-                    Name = 'UEFAntimatterHealth3',
-                    DisplayName = 'UEFAntimatterHealth3',
-                    BuffType = 'UEFAntimatterHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFAntimatterHealth3', 'UEFAntimatterHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFAntimatterHealth3')
 
             local gun = self:GetWeaponByLabel('AntiMatterCannon')
@@ -623,21 +408,7 @@ EEL0001 = Class(ACUUnit) {
         -- Gatling Cannon
 
         elseif enh == 'GatlingEnergyCannon' then
-            if not Buffs['UEFGatlingHeath1'] then
-                BuffBlueprint {
-                    Name = 'UEFGatlingHeath1',
-                    DisplayName = 'UEFGatlingHeath1',
-                    BuffType = 'UEFGatlingHeath',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFGatlingHeath1', 'UEFGatlingHeath', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFGatlingHeath1')
 
             self:SetWeaponEnabledByLabel('GatlingEnergyCannon', true)
@@ -656,21 +427,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:SetPainterRange('GatlingEnergyCannon')
         elseif enh == 'AutomaticBarrelStabalizers' then
-            if not Buffs['UEFGatlingHeath2'] then
-                BuffBlueprint {
-                    Name = 'UEFGatlingHeath2',
-                    DisplayName = 'UEFGatlingHeath2',
-                    BuffType = 'UEFGatlingHeath',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFGatlingHeath2', 'UEFGatlingHeath', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFGatlingHeath2')
 
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
@@ -693,21 +450,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'EnhancedPowerSubsystems' then
-            if not Buffs['UEFGatlingHeath3'] then
-                BuffBlueprint {
-                    Name = 'UEFGatlingHeath3',
-                    DisplayName = 'UEFGatlingHeath3',
-                    BuffType = 'UEFGatlingHeath',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFGatlingHeath3', 'UEFGatlingHeath', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFGatlingHeath3')
 
             local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
@@ -793,21 +536,7 @@ EEL0001 = Class(ACUUnit) {
         -- Intel
 
         elseif enh == 'ElectronicsEnhancment' then
-            if not Buffs['UEFIntelHealth1'] then
-                BuffBlueprint {
-                    Name = 'UEFIntelHealth1',
-                    DisplayName = 'UEFIntelHealth1',
-                    BuffType = 'UEFIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFIntelHealth1', 'UEFIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFIntelHealth1')
 
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
@@ -835,21 +564,7 @@ EEL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('EnergyLance01', false)
         elseif enh == 'SpySat' then
-            if not Buffs['UEFIntelHealth2'] then
-                BuffBlueprint {
-                    Name = 'UEFIntelHealth2',
-                    DisplayName = 'UEFIntelHealth2',
-                    BuffType = 'UEFIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFIntelHealth2', 'UEFIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFIntelHealth2')
 
             self.SpysatEnabled = true
@@ -871,21 +586,7 @@ EEL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('EnergyLance01', false)
             self:SetWeaponEnabledByLabel('EnergyLance02', false)
         elseif enh == 'Teleporter' then
-            if not Buffs['UEFIntelHealth3'] then
-                BuffBlueprint {
-                    Name = 'UEFIntelHealth3',
-                    DisplayName = 'UEFIntelHealth3',
-                    BuffType = 'UEFIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFIntelHealth3', 'UEFIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFIntelHealth3')
 
             self:SetWeaponEnabledByLabel('EnergyLance01', true)
@@ -903,21 +604,7 @@ EEL0001 = Class(ACUUnit) {
         -- Missile System
 
         elseif enh == 'ClusterMissilePack' then
-            if not Buffs['UEFMissileHealth1'] then
-                BuffBlueprint {
-                    Name = 'UEFMissileHealth1',
-                    DisplayName = 'UEFMissileHealth1',
-                    BuffType = 'UEFMissileHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFMissileHealth1', 'UEFMissileHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFMissileHealth1')
 
             self:SetWeaponEnabledByLabel('ClusterMissiles', true)
@@ -947,25 +634,7 @@ EEL0001 = Class(ACUUnit) {
             local wep2 = self:GetWeaponByLabel('TacNukeMissile')
             wep2:ChangeMaxRadius(wep2:GetBlueprint().MaxRadius)
         elseif enh == 'TacticalMissilePack' then
-            if not Buffs['UEFMissileHealth2'] then
-                BuffBlueprint {
-                    Name = 'UEFMissileHealth2',
-                    DisplayName = 'UEFMissileHealth2',
-                    BuffType = 'UEFMissileHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFMissileHealth2', 'UEFMissileHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFMissileHealth2')
 
             -- Enable Tactical Missiles
@@ -993,25 +662,7 @@ EEL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('ClusterMissiles')
             wep:AddDamageMod(bp.ClusterDamageMod)
         elseif enh == 'TacticalNukeSubstitution' then
-            if not Buffs['UEFMissileHealth3'] then
-                BuffBlueprint {
-                    Name = 'UEFMissileHealth3',
-                    DisplayName = 'UEFMissileHealth3',
-                    BuffType = 'UEFMissileHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('UEFMissileHealth3', 'UEFMissileHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFMissileHealth3')
 
             -- Remove Tactical Missile

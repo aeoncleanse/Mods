@@ -1168,6 +1168,7 @@ UnitBlueprint {
             Icon = 'exbint1',
             Name = 'Electronic Enhancment (T2)',
             NewHealth = 2500,
+            NewRegenRate = 50,
             NewVisionRadius = 50,
             NewOmniRadius = 50,
             ShowBones = {
@@ -1188,7 +1189,6 @@ UnitBlueprint {
             UpgradeUnitAmbientBones = {
                 'Body',
             },
-            NewRegenRate = 50,
         },
         ElectronicsEnhancmentRemove = {
             BuildCostEnergy = 1,
