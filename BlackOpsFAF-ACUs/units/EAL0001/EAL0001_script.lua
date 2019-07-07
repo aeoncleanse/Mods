@@ -8,6 +8,7 @@ local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
 local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
+local DefineBasicBuff = import('/lua/sim/BuffDefinitions.lua').DefineBasicBuff
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
 local AWeapons = import('/lua/aeonweapons.lua')
@@ -105,29 +106,7 @@ EAL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['AEONACUT2BuildRate'] then
-                BuffBlueprint {
-                    Name = 'AEONACUT2BuildRate',
-                    DisplayName = 'AEONACUT2BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AEONACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT2BuildRate') then
@@ -140,29 +119,7 @@ EAL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['AEONACUT3BuildRate'] then
-                BuffBlueprint {
-                    Name = 'AEONACUT3BuildRate',
-                    DisplayName = 'AEONCUT3BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AEONACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT3BuildRate') then
@@ -175,29 +132,7 @@ EAL0001 = Class(ACUUnit) {
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
-            if not Buffs['AEONACUT4BuildRate'] then
-                BuffBlueprint {
-                    Name = 'AEONACUT4BuildRate',
-                    DisplayName = 'AEONCUT4BuildRate',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AEONACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT4BuildRate') then
@@ -209,29 +144,7 @@ EAL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['AEONACUT2BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'AEONACUT2BuildCombat',
-                    DisplayName = 'AEONACUT2BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AEONACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT2BuildCombat')
 
             self:SetWeaponEnabledByLabel('ChronoDampener', true)
@@ -251,29 +164,7 @@ EAL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['AEONACUT3BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'AEONACUT3BuildCombat',
-                    DisplayName = 'AEONACUT3BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AEONACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT3BuildCombat')
 
             self:SetWeaponEnabledByLabel('ChronoDampener', false)
@@ -295,29 +186,7 @@ EAL0001 = Class(ACUUnit) {
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
 
-            if not Buffs['AEONACUT4BuildCombat'] then
-                BuffBlueprint {
-                    Name = 'AEONACUT4BuildCombat',
-                    DisplayName = 'AEONACUT4BuildCombat',
-                    BuffType = 'ACUBUILDRATE',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add =  bp.NewBuildRate,
-                            Mult = 1,
-                        },
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AEONACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
             if Buff.HasBuff(self, 'AEONACUT4BuildCombat') then
@@ -340,21 +209,7 @@ EAL0001 = Class(ACUUnit) {
         -- Torpedoes
 
         elseif enh == 'TorpedoLauncher' then
-            if not Buffs['AeonTorpHealth1'] then
-                BuffBlueprint {
-                    Name = 'AeonTorpHealth1',
-                    DisplayName = 'AeonTorpHealth1',
-                    BuffType = 'AeonTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonTorpHealth1', 'AeonTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonTorpHealth1')
 
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
@@ -367,21 +222,7 @@ EAL0001 = Class(ACUUnit) {
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         elseif enh == 'ImprovedTorpLoader' then
-            if not Buffs['AeonTorpHealth2'] then
-                BuffBlueprint {
-                    Name = 'AeonTorpHealth2',
-                    DisplayName = 'AeonTorpHealth2',
-                    BuffType = 'AeonTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonTorpHealth2', 'AeonTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonTorpHealth2')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -400,21 +241,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'AdvancedWarheads' then
-            if not Buffs['AeonTorpHealth3'] then
-                BuffBlueprint {
-                    Name = 'AeonTorpHealth3',
-                    DisplayName = 'AeonTorpHealth3',
-                    BuffType = 'AeonTorpHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonTorpHealth3', 'AeonTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonTorpHealth3')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
@@ -436,21 +263,7 @@ EAL0001 = Class(ACUUnit) {
         -- Artillery
 
         elseif enh == 'DualMiasmaArtillery' then
-            if not Buffs['AeonArtilleryHealth1'] then
-                BuffBlueprint {
-                    Name = 'AeonArtilleryHealth1',
-                    DisplayName = 'AeonArtilleryHealth1',
-                    BuffType = 'AeonArtilleryHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonArtilleryHealth1', 'AeonArtilleryHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonArtilleryHealth1')
 
             self:SetWeaponEnabledByLabel('MiasmaArtillery', true)
@@ -476,21 +289,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:SpecialBones()
         elseif enh == 'AdvancedWarheadCompression' then
-            if not Buffs['AeonArtilleryHealth2'] then
-                BuffBlueprint {
-                    Name = 'AeonArtilleryHealth2',
-                    DisplayName = 'AeonArtilleryHealth2',
-                    BuffType = 'AeonArtilleryHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonArtilleryHealth2', 'AeonArtilleryHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonArtilleryHealth2')
 
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
@@ -507,21 +306,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'ImprovedAutoLoader' then
-            if not Buffs['AeonArtilleryHealth3'] then
-                BuffBlueprint {
-                    Name = 'AeonArtilleryHealth3',
-                    DisplayName = 'AeonArtilleryHealth3',
-                    BuffType = 'AeonArtilleryHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonArtilleryHealth3', 'AeonArtilleryHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonArtilleryHealth3')
 
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
@@ -539,21 +324,7 @@ EAL0001 = Class(ACUUnit) {
         --  Beam Weapon
 
         elseif enh == 'PhasonBeamCannon' then
-            if not Buffs['AeonBeamHealth1'] then
-                BuffBlueprint {
-                    Name = 'AeonBeamHealth1',
-                    DisplayName = 'AeonBeamHealth1',
-                    BuffType = 'AeonBeamHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonBeamHealth1', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonBeamHealth1')
 
             self:SetWeaponEnabledByLabel('PhasonBeam01', true)
@@ -570,21 +341,7 @@ EAL0001 = Class(ACUUnit) {
             beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
             self:SetPainterRange('PhasonBeamCannon')
         elseif enh == 'DualChannelBooster' then
-            if not Buffs['AeonBeamHealth2'] then
-                BuffBlueprint {
-                    Name = 'AeonBeamHealth2',
-                    DisplayName = 'AeonBeamHealth2',
-                    BuffType = 'AeonBeamHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonBeamHealth2', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonBeamHealth2')
 
             self:SetWeaponEnabledByLabel('PhasonBeam01', false)
@@ -606,21 +363,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'EnergizedMolecularInducer' then
-            if not Buffs['AeonBeamHealth3'] then
-                BuffBlueprint {
-                    Name = 'AeonBeamHealth3',
-                    DisplayName = 'AeonBeamHealth3',
-                    BuffType = 'AeonBeamHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonBeamHealth3', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonBeamHealth3')
 
             self:SetWeaponEnabledByLabel('PhasonBeam02', false)
@@ -689,21 +432,7 @@ EAL0001 = Class(ACUUnit) {
         -- Intel
 
         elseif enh == 'ElectronicsEnhancment' then
-            if not Buffs['AeonIntelHealth1'] then
-                BuffBlueprint {
-                    Name = 'AeonIntelHealth1',
-                    DisplayName = 'AeonIntelHealth1',
-                    BuffType = 'AeonIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonIntelHealth1', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonIntelHealth1')
 
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
@@ -728,21 +457,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('AntiMissile', false)
         elseif enh == 'FarsightOptics' then
-            if not Buffs['AeonIntelHealth2'] then
-                BuffBlueprint {
-                    Name = 'AeonIntelHealth2',
-                    DisplayName = 'AeonIntelHealth2',
-                    BuffType = 'AeonIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonIntelHealth2', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonIntelHealth2')
 
             self:ForkThread(self.EnableRemoteViewingButtons)
@@ -753,21 +468,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:ForkThread(self.DisableRemoteViewingButtons)
         elseif enh == 'Teleporter' then
-            if not Buffs['AeonIntelHealth3'] then
-                BuffBlueprint {
-                    Name = 'AeonIntelHealth3',
-                    DisplayName = 'AeonIntelHealth3',
-                    BuffType = 'AeonIntelHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonIntelHealth3', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonIntelHealth3')
 
             self:AddCommandCap('RULEUCC_Teleport')
@@ -808,21 +509,7 @@ EAL0001 = Class(ACUUnit) {
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
             table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
 
-            if not Buffs['AeonMaelstromHealth1'] then
-                BuffBlueprint {
-                    Name = 'AeonMaelstromHealth1',
-                    DisplayName = 'AeonMaelstromHealth1',
-                    BuffType = 'AeonMaelstromHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonMaelstromHealth1', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
 
             self:SetWeaponEnabledByLabel('QuantumMaelstrom', true)
@@ -849,25 +536,7 @@ EAL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh == 'DistortionAmplifier' then
-            if not Buffs['AeonMaelstromHealth2'] then
-                BuffBlueprint {
-                    Name = 'AeonMaelstromHealth2',
-                    DisplayName = 'AeonMaelstromHealth2',
-                    BuffType = 'AeonMaelstromHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonMaelstromHealth2', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth2')
 
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
@@ -893,21 +562,7 @@ EAL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep.CurrentDamage = wep:GetBlueprint().Damage
         elseif enh == 'QuantumInstability' then
-            if not Buffs['AeonMaelstromHealth3'] then
-                BuffBlueprint {
-                    Name = 'AeonMaelstromHealth3',
-                    DisplayName = 'AeonMaelstromHealth3',
-                    BuffType = 'AeonMaelstromHealth',
-                    Stacks = 'STACKS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                    },
-                }
-            end
+            DefineBasicBuff('AeonMaelstromHealth3', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth3')
 
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
