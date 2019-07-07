@@ -2,21 +2,6 @@ local oldACUUnit = ACUUnit
 
 ACUUnit = Class(oldACUUnit) {
     -- Hooked functions
-    OnCreate = function(self)
-        oldACUUnit.OnCreate(self)
-
-        self:SetCapturable(false)
-        self:SetupBuildBones()
-
-        local bp = self:GetBlueprint()
-        for _, v in bp.Display.WarpInEffect.HideBones do
-            self:HideBone(v, true)
-        end
-
-        -- Restrict things that enhancements will enable later
-        self:AddBuildRestriction(categories[self.factionCategory] * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
-    end,
-
     OnStopBeingBuilt = function(self, builder, layer)
         oldACUUnit.OnStopBeingBuilt(self, builder, layer)
 
