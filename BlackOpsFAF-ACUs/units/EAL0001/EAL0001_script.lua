@@ -109,9 +109,8 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
-            if Buff.HasBuff(self, 'AEONACUT2BuildRate') then
-                Buff.RemoveBuff(self, 'AEONACUT2BuildRate')
-            end
+            Buff.RemoveBuff(self, 'AEONACUT2BuildRate')
+
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
         elseif enh == 'AdvancedEngineering' then
@@ -122,9 +121,8 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
-            if Buff.HasBuff(self, 'AEONACUT3BuildRate') then
-                Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
-            end
+            Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
+
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
         elseif enh == 'ExperimentalEngineering' then
@@ -135,9 +133,8 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
-            if Buff.HasBuff(self, 'AEONACUT4BuildRate') then
-                Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
-            end
+            Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
+
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
@@ -151,9 +148,7 @@ EAL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('ChronoDampener')
             wep:ChangeMaxRadius(bp.ChronoRadius)
         elseif enh == 'CombatEngineeringRemove' then
-            if Buff.HasBuff(self, 'AEONACUT2BuildCombat') then
-                Buff.RemoveBuff(self, 'AEONACUT2BuildCombat')
-            end
+            Buff.RemoveBuff(self, 'AEONACUT2BuildCombat')
 
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetWeaponEnabledByLabel('ChronoDampener', false)
@@ -173,9 +168,7 @@ EAL0001 = Class(ACUUnit) {
             local wep = self:GetWeaponByLabel('ChronoDampener2')
             wep:ChangeMaxRadius(bp.NewChronoRadius)
         elseif enh == 'AssaultEngineeringRemove' then
-            if Buff.HasBuff(self, 'AEONACUT3BuildCombat') then
-                Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
-            end
+            Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
 
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
             self:SetWeaponEnabledByLabel('ChronoDampener2', false)
@@ -189,9 +182,7 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
-            if Buff.HasBuff(self, 'AEONACUT4BuildCombat') then
-                Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
-            end
+            Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
 
             self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
 
@@ -215,9 +206,7 @@ EAL0001 = Class(ACUUnit) {
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
             local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', true)
         elseif enh == 'TorpedoLauncherRemove' then
-            if Buff.HasBuff(self, 'AeonTorpHealth1') then
-                Buff.RemoveBuff(self, 'AeonTorpHealth1')
-            end
+            Buff.RemoveBuff(self, 'AeonTorpHealth1')
 
             local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
             local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', false)
@@ -231,9 +220,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'ImprovedTorpLoaderRemove' then
-            if Buff.HasBuff(self, 'AeonTorpHealth2') then
-                Buff.RemoveBuff(self, 'AeonTorpHealth2')
-            end
+            Buff.RemoveBuff(self, 'AeonTorpHealth2')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
@@ -250,9 +237,7 @@ EAL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('RightDisruptor')
             gun:AddDamageMod(bp.GunDamage)
         elseif enh == 'AdvancedWarheadsRemove' then
-            if Buff.HasBuff(self, 'AeonTorpHealth3') then
-                Buff.RemoveBuff(self, 'AeonTorpHealth3')
-            end
+            Buff.RemoveBuff(self, 'AeonTorpHealth3')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.TorpDamage)
@@ -276,9 +261,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:SpecialBones()
         elseif enh == 'DualMiasmaArtilleryRemove' then
-            if Buff.HasBuff(self, 'AeonArtilleryHealth1') then
-                Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
-            end
+            Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
 
             self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
             local wep = self:GetWeaponByLabel('MiasmaArtillery')
@@ -297,9 +280,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'AdvancedWarheadCompressionRemove' then
-            if Buff.HasBuff(self, 'AeonArtilleryHealth2') then
-                Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
-            end
+            Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
 
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
@@ -313,9 +294,7 @@ EAL0001 = Class(ACUUnit) {
             arty:AddDamageMod(bp.ArtilleryDamage)
             arty:ChangeRateOfFire(bp.ArtilleryRoF)
         elseif enh == 'ImprovedAutoLoaderRemove' then
-            if Buff.HasBuff(self, 'AeonArtilleryHealth3') then
-                Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
-            end
+            Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
 
             local arty = self:GetWeaponByLabel('MiasmaArtillery')
             arty:AddDamageMod(bp.ArtilleryDamage)
@@ -332,9 +311,7 @@ EAL0001 = Class(ACUUnit) {
             beam:ChangeMaxRadius(bp.BeamRadius)
             self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'PhasonBeamCannonRemove' then
-            if Buff.HasBuff(self, 'AeonBeamHealth1') then
-                Buff.RemoveBuff(self, 'AeonBeamHealth1')
-            end
+            Buff.RemoveBuff(self, 'AeonBeamHealth1')
 
             self:SetWeaponEnabledByLabel('PhasonBeam01', false)
             local beam = self:GetWeaponByLabel('PhasonBeam01')
@@ -352,9 +329,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'DualChannelBoosterRemove' then
-            if Buff.HasBuff(self, 'AeonBeamHealth2') then
-                Buff.RemoveBuff(self, 'AeonBeamHealth2')
-            end
+            Buff.RemoveBuff(self, 'AeonBeamHealth2')
 
             self:SetWeaponEnabledByLabel('PhasonBeam02', false)
             local beam = self:GetWeaponByLabel('PhasonBeam02')
@@ -372,9 +347,7 @@ EAL0001 = Class(ACUUnit) {
             beam:ChangeMaxRadius(bp.BeamRadius)
             self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'EnergizedMolecularInducerRemove' then
-            if Buff.HasBuff(self, 'AeonBeamHealth3') then
-                Buff.RemoveBuff(self, 'AeonBeamHealth3')
-            end
+            Buff.RemoveBuff(self, 'AeonBeamHealth3')
 
             self:SetWeaponEnabledByLabel('PhasonBeam03', false)
             local beam = self:GetWeaponByLabel('PhasonBeam03')
@@ -443,9 +416,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
-            if Buff.HasBuff(self, 'AeonIntelHealth1') then
-                Buff.RemoveBuff(self, 'AeonIntelHealth1')
-            end
+            Buff.RemoveBuff(self, 'AeonIntelHealth1')
 
             local bpIntel = self:GetBlueprint().Intel
 
@@ -462,9 +433,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:ForkThread(self.EnableRemoteViewingButtons)
         elseif enh == 'FarsightOpticsRemove' then
-            if Buff.HasBuff(self, 'AeonIntelHealth2') then
-                Buff.RemoveBuff(self, 'AeonIntelHealth2')
-            end
+            Buff.RemoveBuff(self, 'AeonIntelHealth2')
 
             self:ForkThread(self.DisableRemoteViewingButtons)
         elseif enh == 'Teleporter' then
@@ -473,9 +442,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:AddCommandCap('RULEUCC_Teleport')
         elseif enh == 'TeleporterRemove' then
-            if Buff.HasBuff(self, 'AeonIntelHealth3') then
-                Buff.RemoveBuff(self, 'AeonIntelHealth3')
-            end
+            Buff.RemoveBuff(self, 'AeonIntelHealth3')
 
             self:RemoveCommandCap('RULEUCC_Teleport')
 
@@ -520,9 +487,7 @@ EAL0001 = Class(ACUUnit) {
             wep.CurrentDamage = wep:GetBlueprint().Damage
             wep.CurrentDamageRadius = wep:GetBlueprint().DamageRadius
         elseif enh == 'MaelstromQuantumRemove' then
-            if Buff.HasBuff(self, 'AeonMaelstromHealth1') then
-                Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
-            end
+            Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
 
             if self.MaelstromEffects01 then
                 for k, v in self.MaelstromEffects01 do
@@ -546,9 +511,7 @@ EAL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'DistortionAmplifierRemove' then
-            if Buff.HasBuff(self, 'AeonMaelstromHealth2') then
-                Buff.RemoveBuff(self, 'AeonMaelstromHealth2')
-            end
+            Buff.RemoveBuff(self, 'AeonMaelstromHealth2')
 
             if self.MaelstromEffects01 then
                 for k, v in self.MaelstromEffects01 do
@@ -572,9 +535,7 @@ EAL0001 = Class(ACUUnit) {
             wep.CurrentDamageRadius = bp.MaelstromRadius
             wep:ChangeMaxRadius(bp.MaelstromRadius)
         elseif enh == 'QuantumInstabilityRemove' then
-            if Buff.HasBuff(self, 'AeonMaelstromHealth3') then
-                Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
-            end
+            Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
 
             if self.MaelstromEffects01 then
                 for k, v in self.MaelstromEffects01 do
