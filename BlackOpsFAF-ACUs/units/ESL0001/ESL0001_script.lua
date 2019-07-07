@@ -47,7 +47,7 @@ ESL0001 = Class(ACUUnit) {
     OnCreate = function(self)
         ACUUnit.OnCreate(self)
 
-        self.RegenFieldFXBag = {}
+        self.RegenFieldEffect = nil
         self.lambdaEmitterTable = {}
         self:StartRotators()
     end,
@@ -220,20 +220,15 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
 
-            -- Remove existing threads, then re-apply
-            if self.RegenFieldFXBag then
-                for k, v in self.RegenFieldFXBag do
-                    v:Destroy()
-                end
-                self.RegenFieldFXBag = {}
-            end
+            -- Refresh the regen aura effect
+            self.RegenFieldEffect:Destroy()
+            self.RegenFieldEffect = CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp')
 
             if self.RegenThreadHandler then
                 KillThread(self.RegenThreadHandler)
                 self.RegenThreadHandler = nil
             end
             self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, bp, 'SeraphimACURegenAura')
-            table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             -- Affect the ACU
             DefineBasicBuff('SERAPHIMACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
@@ -245,11 +240,8 @@ ESL0001 = Class(ACUUnit) {
 
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
-            -- Kill regen aura
-            if self.RegenThreadHandler then
-                KillThread(self.RegenThreadHandler)
-                self.RegenThreadHandler = nil
-            end
+            self.RegenFieldEffect:Destroy()
+            self.RegenFieldEffect = nil
 
             if self.RegenFieldFXBag then
                 for k, v in self.RegenFieldFXBag do
@@ -284,20 +276,15 @@ ESL0001 = Class(ACUUnit) {
                 }
             end
 
-            -- Remove existing threads, then re-apply
-            if self.RegenFieldFXBag then
-                for k, v in self.RegenFieldFXBag do
-                    v:Destroy()
-                end
-                self.RegenFieldFXBag = {}
-            end
+            -- Refresh the regen aura effect
+            self.RegenFieldEffect:Destroy()
+            self.RegenFieldEffect = CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp')
 
             if self.RegenThreadHandler then
                 KillThread(self.RegenThreadHandler)
                 self.RegenThreadHandler = nil
             end
             self.RegenThreadHandler = self:ForkThread(self.RegenBuffThread, bp, 'SeraphimACUAdvancedRegenAura')
-            table.insert(self.RegenFieldFXBag, CreateAttachedEmitter(self, 'XSL0001', self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp'))
 
             DefineBasicBuff('SERAPHIMACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildCombat')
@@ -308,11 +295,8 @@ ESL0001 = Class(ACUUnit) {
 
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
-            -- Kill regen aura
-            if self.RegenThreadHandler then
-                KillThread(self.RegenThreadHandler)
-                self.RegenThreadHandler = nil
-            end
+            self.RegenFieldEffect:Destroy()
+            self.RegenFieldEffect = nil
 
             if self.RegenFieldFXBag then
                 for k, v in self.RegenFieldFXBag do
