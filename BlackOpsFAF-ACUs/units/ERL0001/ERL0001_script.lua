@@ -141,10 +141,10 @@ ERL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT2BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'AdvancedEngineering' then
-            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -176,7 +176,7 @@ ERL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER4COMMANDER))
@@ -211,7 +211,7 @@ ERL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'CYBRANACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER))
@@ -248,10 +248,10 @@ ERL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'CYBRANACUT2BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetWeaponEnabledByLabel('RocketPack', false)
         elseif enh == 'AssaultEngineering' then
-            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
 
             if not Buffs['CYBRANACUT3BuildCombat'] then
@@ -289,7 +289,7 @@ ERL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'CYBRANACUT3BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
             local gun = self:GetWeaponByLabel('RocketPack')
             gun:AddDamageMod(bp.RocketDamageMod)
@@ -329,7 +329,7 @@ ERL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'CYBRANACUT4BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.CYBRAN * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
         -- Jury Rigged Ripper
 

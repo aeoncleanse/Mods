@@ -297,7 +297,6 @@ UnitBlueprint {
             'BUILTBYCOMMANDER SERAPHIM',
             'BUILTBYTIER2COMMANDER SERAPHIM',
             'BUILTBYTIER3COMMANDER SERAPHIM',
-            'BUILTBYTIER4COMMANDER SERAPHIM',
         },
         MaxBuildDistance = 10,
         NaturalProducer = true,

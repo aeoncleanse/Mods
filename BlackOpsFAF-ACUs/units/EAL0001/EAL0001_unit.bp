@@ -310,7 +310,6 @@ UnitBlueprint {
             'BUILTBYCOMMANDER AEON',
             'BUILTBYTIER2COMMANDER AEON',
             'BUILTBYTIER3COMMANDER AEON',
-            'BUILTBYTIER4COMMANDER AEON',
         },
         MaxBuildDistance = 10,
         NaturalProducer = true,

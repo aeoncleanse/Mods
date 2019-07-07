@@ -214,10 +214,10 @@ EEL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'UEFACUT2BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
             end
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'AdvancedEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -249,7 +249,7 @@ EEL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'UEFACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
@@ -284,7 +284,7 @@ EEL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'UEFACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
@@ -322,11 +322,11 @@ EEL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'UEFACUT2BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetWeaponEnabledByLabel('FlameCannon', false)
             self:SortFlameEffects()
         elseif enh == 'AssaultEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
 
             if not Buffs['UEFACUT3BuildCombat'] then
@@ -364,7 +364,7 @@ EEL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
             local gun = self:GetWeaponByLabel('FlameCannon')
             gun:AddDamageMod(bp.FlameDamageMod)
@@ -403,7 +403,7 @@ EEL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'UEFACUT4BuildCombat') then
                 Buff.RemoveBuff(self, 'UEFACUT4BuildCombat')
             end
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
         -- Zephyr Booster
 

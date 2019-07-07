@@ -338,7 +338,6 @@ UnitBlueprint {
             'BUILTBYCOMMANDER UEF',
             'BUILTBYTIER2COMMANDER UEF',
             'BUILTBYTIER3COMMANDER UEF',
-            'BUILTBYTIER4COMMANDER UEF',
         },
         MaxBuildDistance = 10,
         NaturalProducer = true,

@@ -191,10 +191,10 @@ ESL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
             end
 
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'AdvancedEngineering' then
-            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -226,7 +226,7 @@ ESL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
             end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
@@ -261,7 +261,7 @@ ESL0001 = Class(ACUUnit) {
             if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
             end
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER2COMMANDER)
@@ -331,7 +331,7 @@ ESL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
             -- Kill regen aura
             if self.RegenThreadHandler then
@@ -346,7 +346,7 @@ ESL0001 = Class(ACUUnit) {
                 self.RegenFieldFXBag = {}
             end
         elseif enh == 'AssaultEngineering' then
-            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
 
             -- Build buff tables
@@ -418,7 +418,7 @@ ESL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
             -- Kill regen aura
             if self.RegenThreadHandler then
@@ -466,7 +466,7 @@ ESL0001 = Class(ACUUnit) {
                 Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildCombat')
             end
 
-            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
         -- Chronoton Booster
 

@@ -111,10 +111,10 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'ImprovedEngineeringRemove' then
             Buff.RemoveBuff(self, 'AEONACUT2BuildRate')
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetProduction()
         elseif enh == 'AdvancedEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -123,7 +123,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'AdvancedEngineeringRemove' then
             Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetProduction()
         elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
@@ -135,7 +135,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'ExperimentalEngineeringRemove' then
             Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
@@ -150,13 +150,13 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'CombatEngineeringRemove' then
             Buff.RemoveBuff(self, 'AEONACUT2BuildCombat')
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetWeaponEnabledByLabel('ChronoDampener', false)
 
             local wep = self:GetWeaponByLabel('ChronoDampener')
             wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
         elseif enh == 'AssaultEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER - categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
 
             DefineBasicBuff('AEONACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
@@ -170,7 +170,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'AssaultEngineeringRemove' then
             Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetWeaponEnabledByLabel('ChronoDampener2', false)
 
             local wep = self:GetWeaponByLabel('ChronoDampener2')
@@ -184,7 +184,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'ApocalypticEngineeringRemove' then
             Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
 
-            self:AddBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER + categories.BUILTBYTIER4COMMANDER))
+            self:SetDefaultBuildRestrictions()
 
         -- Disruptor Amplifier
 

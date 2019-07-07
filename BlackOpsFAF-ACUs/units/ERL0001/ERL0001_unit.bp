@@ -302,8 +302,6 @@ UnitBlueprint {
             'BUILTBYCOMMANDER CYBRAN',
             'BUILTBYTIER2COMMANDER CYBRAN',
             'BUILTBYTIER3COMMANDER CYBRAN',
-            'BUILTBYTIER4COMMANDER CYBRAN',
-            'URL0001UPGRADE',
         },
         MaxBuildDistance = 10,
         NaturalProducer = true,
