@@ -552,11 +552,9 @@ EAL0001 = Class(ACUUnit) {
 
         -- Remove prerequisites
         if not removal then
-            if bp.RemoveEnhancements then
-                for k, v in bp.RemoveEnhancements do
-                    if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
-                        self:CreateEnhancement(v .. 'Remove', true)
-                    end
+            for _, v in bp.RemoveEnhancements or {} do
+                if string.sub(v, -6) ~= 'Remove' and v ~= string.sub(enh, 0, -7) then
+                    self:CreateEnhancement(v .. 'Remove', true)
                 end
             end
         end
