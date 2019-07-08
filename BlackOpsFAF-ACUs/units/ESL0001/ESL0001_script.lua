@@ -236,12 +236,7 @@ ESL0001 = Class(ACUUnit) {
             self.RegenFieldEffect:Destroy()
             self.RegenFieldEffect = nil
 
-            if self.RegenFieldFXBag then
-                for k, v in self.RegenFieldFXBag do
-                    v:Destroy()
-                end
-                self.RegenFieldFXBag = {}
-            end
+            EffectUtil.CleanupEffectBag(self, 'RegenFieldFXBag')
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
@@ -289,12 +284,7 @@ ESL0001 = Class(ACUUnit) {
             self.RegenFieldEffect:Destroy()
             self.RegenFieldEffect = nil
 
-            if self.RegenFieldFXBag then
-                for k, v in self.RegenFieldFXBag do
-                    v:Destroy()
-                end
-                self.RegenFieldFXBag = {}
-            end
+            EffectUtil.CleanupEffectBag(self, 'RegenFieldFXBag')
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()

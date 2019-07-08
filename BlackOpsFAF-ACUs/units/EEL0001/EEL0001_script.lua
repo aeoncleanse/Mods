@@ -88,12 +88,8 @@ EEL0001 = Class(ACUUnit) {
         if bit == 0 then -- Shield toggle
             self.Rotator1:SetTargetSpeed(0)
             self.Rotator2:SetTargetSpeed(0)
-            if self.ShieldEffectsBag then
-                for k, v in self.ShieldEffectsBag do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag = {}
-            end
+            EffectUtil.CleanupEffectBag(self, 'ShieldEffectsBag')
+
             self:DisableShield()
             self:StopUnitAmbientSound('ActiveLoop')
         elseif bit == 8 then -- Cloak toggle
@@ -109,12 +105,8 @@ EEL0001 = Class(ACUUnit) {
         if bit == 0 then -- Shield toggle
             self.Rotator1:SetTargetSpeed(90)
             self.Rotator2:SetTargetSpeed(-180)
-            if self.ShieldEffectsBag then
-                for _, v in self.ShieldEffectsBag do
-                    v:Destroy()
-                end
-                self.ShieldEffectsBag = {}
-            end
+            EffectUtil.CleanupEffectBag(self, 'ShieldEffectsBag')
+
             for _, v in self.ShieldEffects2 do
                 local army = self:GetArmy()
                 for i = 1, 8 do
@@ -825,11 +817,7 @@ EEL0001 = Class(ACUUnit) {
     end,
 
     SortFlameEffects = function(self, toggle)
-        -- Empty the bag
-        for _, v in self.FlamerEffectsBag do
-            v:Destroy()
-        end
-        self.FlamerEffectsBag = {}
+        EffectUtil.CleanupEffectBag(self, 'FlamerEffectsBag')
 
         -- Fill it if we're turning on
         if toggle then

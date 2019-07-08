@@ -661,10 +661,7 @@ EAL0001 = Class(ACUUnit) {
 
     RefreshMaelstromEffects = function(self, remove)
         -- Remove all current effects and reset the bag
-        for _, v in self.MaelstromEffectsBag or {} do
-            v:Destroy()
-        end
-        self.MaelstromEffectsBag = {}
+        EffectUtil.CleanupEffectBag(self, 'MaelstromEffectsBag')
 
         -- Just return here if we are only removing
         if remove then return end
