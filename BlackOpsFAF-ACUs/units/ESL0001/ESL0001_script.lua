@@ -166,9 +166,7 @@ ESL0001 = Class(ACUUnit) {
             DefineBasicBuff('SERAPHIMACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
-            if Buff.HasBuff(self, 'SERAPHIMACUT2BuildRate') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
-            end
+            Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildRate')
 
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
@@ -180,9 +178,8 @@ ESL0001 = Class(ACUUnit) {
             DefineBasicBuff('SERAPHIMACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
-            if Buff.HasBuff(self, 'SERAPHIMACUT3BuildRate') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
-            end
+            Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildRate')
+
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'ExperimentalEngineering' then
@@ -193,9 +190,8 @@ ESL0001 = Class(ACUUnit) {
             DefineBasicBuff('SERAPHIMACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
-            if Buff.HasBuff(self, 'SERAPHIMACUT4BuildRate') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
-            end
+            Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildRate')
+
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
             self:SetProduction()
         elseif enh == 'CombatEngineering' then
@@ -234,9 +230,7 @@ ESL0001 = Class(ACUUnit) {
             DefineBasicBuff('SERAPHIMACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT2BuildCombat')
         elseif enh == 'CombatEngineeringRemove' then
-            if Buff.HasBuff(self, 'SERAPHIMACUT2BuildCombat') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildCombat')
-            end
+            Buff.RemoveBuff(self, 'SERAPHIMACUT2BuildCombat')
 
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
@@ -289,9 +283,7 @@ ESL0001 = Class(ACUUnit) {
             DefineBasicBuff('SERAPHIMACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT3BuildCombat')
         elseif enh == 'AssaultEngineeringRemove' then
-            if Buff.HasBuff(self, 'SERAPHIMACUT3BuildCombat') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildCombat')
-            end
+            Buff.RemoveBuff(self, 'SERAPHIMACUT3BuildCombat')
 
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
@@ -311,9 +303,7 @@ ESL0001 = Class(ACUUnit) {
             DefineBasicBuff('SERAPHIMACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'SERAPHIMACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
-            if Buff.HasBuff(self, 'SERAPHIMACUT4BuildCombat') then
-                Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildCombat')
-            end
+            Buff.RemoveBuff(self, 'SERAPHIMACUT4BuildCombat')
 
             self:AddBuildRestriction(categories.SERAPHIM * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
 
@@ -329,9 +319,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'TorpedoLauncherRemove' then
-            if Buff.HasBuff(self, 'SeraphimTorpHealth1') then
-                Buff.RemoveBuff(self, 'SeraphimTorpHealth1')
-            end
+            Buff.RemoveBuff(self, 'SeraphimTorpHealth1')
 
             self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
         elseif enh == 'ImprovedReloader' then
@@ -344,9 +332,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'ImprovedReloaderRemove' then
-            if Buff.HasBuff(self, 'SeraphimTorpHealth2') then
-                Buff.RemoveBuff(self, 'SeraphimTorpHealth2')
-            end
+            Buff.RemoveBuff(self, 'SeraphimTorpHealth2')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.NewTorpDamage)
@@ -363,9 +349,7 @@ ESL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('ChronotronCannon')
             gun:AddDamageMod(bp.NewDamage)
         elseif enh == 'AdvancedWarheadsRemove' then
-            if Buff.HasBuff(self, 'SeraphimTorpHealth3') then
-                Buff.RemoveBuff(self, 'SeraphimTorpHealth3')
-            end
+            Buff.RemoveBuff(self, 'SeraphimTorpHealth3')
 
             local torp = self:GetWeaponByLabel('TorpedoLauncher')
             torp:AddDamageMod(bp.NewTorpDamage)
@@ -386,9 +370,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetPainterRange(enh, bp.CannonMaxRadius)
         elseif enh == 'QuantumStormCannonRemove' then
-            if Buff.HasBuff(self, 'SeraphimBallHealth1') then
-                Buff.RemoveBuff(self, 'SeraphimBallHealth1')
-            end
+            Buff.RemoveBuff(self, 'SeraphimBallHealth1')
 
             self:SetWeaponEnabledByLabel('BigBallCannon', false)
 
@@ -410,9 +392,7 @@ ESL0001 = Class(ACUUnit) {
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'PowerConversionEnhancerRemove' then
-            if Buff.HasBuff(self, 'SeraphimBallHealth2') then
-                Buff.RemoveBuff(self, 'SeraphimBallHealth2')
-            end
+            Buff.RemoveBuff(self, 'SeraphimBallHealth2')
 
             local cannon = self:GetWeaponByLabel('BigBallCannon')
             cannon:AddDamageMod(bp.StormDamage)
@@ -433,9 +413,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetPainterRange(enh, bp.StormRange)
         elseif enh == 'AdvancedDistortionAlgorithmsRemove' then
-            if Buff.HasBuff(self, 'SeraphimBallHealth3') then
-                Buff.RemoveBuff(self, 'SeraphimBallHealth3')
-            end
+            Buff.RemoveBuff(self, 'SeraphimBallHealth3')
 
             local cannon = self:GetWeaponByLabel('BigBallCannon')
             cannon:AddDamageMod(bp.StormDamage)
@@ -456,9 +434,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetPainterRange(enh, bp.GatlingRange)
         elseif enh == 'PlasmaGatlingCannonRemove' then
-            if Buff.HasBuff(self, 'SeraphimGatlingHealth1') then
-                Buff.RemoveBuff(self, 'SeraphimGatlingHealth1')
-            end
+            Buff.RemoveBuff(self, 'SeraphimGatlingHealth1')
 
             self:SetWeaponEnabledByLabel('RapidCannon', false)
 
@@ -476,9 +452,7 @@ ESL0001 = Class(ACUUnit) {
             -- Enable main gun upgrade
             self:TogglePrimaryGun(bp.NewDamage, bp.NewRadius)
         elseif enh == 'PhasedEnergyFieldsRemove' then
-            if Buff.HasBuff(self, 'SeraphimGatlingHealth2') then
-                Buff.RemoveBuff(self, 'SeraphimGatlingHealth2')
-            end
+            Buff.RemoveBuff(self, 'SeraphimGatlingHealth2')
 
             local gun = self:GetWeaponByLabel('RapidCannon')
             gun:AddDamageMod(bp.GatlingDamage)
@@ -495,9 +469,7 @@ ESL0001 = Class(ACUUnit) {
             local gun = self:GetWeaponByLabel('RapidCannon')
             gun:AddDamageMod(bp.GatlingDamage)
         elseif enh == 'SecondaryPowerFeedsRemove' then
-            if Buff.HasBuff(self, 'SeraphimGatlingHealth3') then
-                Buff.RemoveBuff(self, 'SeraphimGatlingHealth3')
-            end
+            Buff.RemoveBuff(self, 'SeraphimGatlingHealth3')
 
             local gun = self:GetWeaponByLabel('RapidCannon')
             gun:AddDamageMod(bp.GatlingDamage)
@@ -512,9 +484,7 @@ ESL0001 = Class(ACUUnit) {
             self:CreateLambdaField(S_Lambda_B01, bp.LambdaFieldSpecs.Small)
             self:CreateLambdaField(L_Lambda_B01, bp.LambdaFieldSpecs.Large)
         elseif enh == 'LambdaFieldEmittersRemove' then
-            if Buff.HasBuff(self, 'SeraphimLambdaHealth1') then
-                Buff.RemoveBuff(self, 'SeraphimLambdaHealth1')
-            end
+            Buff.RemoveBuff(self, 'SeraphimLambdaHealth1')
 
             self:RemoveLambdaField(S_Lambda_B01)
             self:RemoveLambdaField(L_Lambda_B01)
@@ -526,9 +496,7 @@ ESL0001 = Class(ACUUnit) {
             self:CreateLambdaField(S_Lambda_B02, bp.LambdaFieldSpecs.Small)
             self:CreateLambdaField(L_Lambda_B02, bp.LambdaFieldSpecs.Large)
         elseif enh == 'EnhancedLambdaEmittersRemove' then
-            if Buff.HasBuff(self, 'SeraphimLambdaHealth2') then
-                Buff.RemoveBuff(self, 'SeraphimLambdaHealth2')
-            end
+            Buff.RemoveBuff(self, 'SeraphimLambdaHealth2')
 
             self:RemoveLambdaField(S_Lambda_B02)
             self:RemoveLambdaField(L_Lambda_B02)
@@ -539,9 +507,7 @@ ESL0001 = Class(ACUUnit) {
             self:CreateLambdaField(S_Lambda_B03, bp.LambdaFieldSpecs.Small)
             self:CreateLambdaField(L_Lambda_B03, bp.LambdaFieldSpecs.Large)
         elseif enh == 'ControlledQuantumRupturesRemove' then
-            if Buff.HasBuff(self, 'SeraphimLambdaHealth3') then
-                Buff.RemoveBuff(self, 'SeraphimLambdaHealth3')
-            end
+            Buff.RemoveBuff(self, 'SeraphimLambdaHealth3')
 
             self:RemoveLambdaField(S_Lambda_B03)
             self:RemoveLambdaField(L_Lambda_B03)
@@ -558,9 +524,7 @@ ESL0001 = Class(ACUUnit) {
                 self:SetIntelRadius('Omni', bp.NewOmniRadius)
             end
         elseif enh == 'ElectronicsEnhancmentRemove' then
-            if Buff.HasBuff(self, 'SeraphimIntelHealth1') then
-                Buff.RemoveBuff(self, 'SeraphimIntelHealth1')
-            end
+            Buff.RemoveBuff(self, 'SeraphimIntelHealth1')
 
             local bpIntel = self:GetBlueprint().Intel
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
@@ -577,9 +541,7 @@ ESL0001 = Class(ACUUnit) {
             self:SetWeaponEnabledByLabel('AA01', true)
             self:SetWeaponEnabledByLabel('AA02', true)
         elseif enh == 'PersonalTeleporterRemove' then
-            if Buff.HasBuff(self, 'SeraphimIntelHealth2') then
-                Buff.RemoveBuff(self, 'SeraphimIntelHealth2')
-            end
+            Buff.RemoveBuff(self, 'SeraphimIntelHealth2')
 
             self:RemoveCommandCap('RULEUCC_Teleport')
 
@@ -597,9 +559,7 @@ ESL0001 = Class(ACUUnit) {
             self:AddToggleCap('RULEUTC_CloakToggle')
             self:SetScriptBit('RULEUTC_CloakToggle', true)
         elseif enh == 'CloakingSubsystemsRemove' then
-            if Buff.HasBuff(self, 'SeraphimIntelHealth3') then
-                Buff.RemoveBuff(self, 'SeraphimIntelHealth3')
-            end
+            Buff.RemoveBuff(self, 'SeraphimIntelHealth3')
 
             if self.IntelEffectsBag then
                 EffectUtil.CleanupEffectBag(self, 'IntelEffectsBag')
@@ -619,9 +579,7 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'ImprovedCombatSystemsRemove' then
-            if Buff.HasBuff(self, 'SeraphimCombatHealth1') then
-                Buff.RemoveBuff(self, 'SeraphimCombatHealth1')
-            end
+            Buff.RemoveBuff(self, 'SeraphimCombatHealth1')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
             local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
@@ -641,9 +599,7 @@ ESL0001 = Class(ACUUnit) {
 
             self:SetWeaponEnabledByLabel('Missile', true)
         elseif enh == 'TacticalMissilePackRemove' then
-            if Buff.HasBuff(self, 'SeraphimCombatHealth2') then
-                Buff.RemoveBuff(self, 'SeraphimCombatHealth2')
-            end
+            Buff.RemoveBuff(self, 'SeraphimCombatHealth2')
 
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
@@ -665,9 +621,7 @@ ESL0001 = Class(ACUUnit) {
             wepOC:AddDamageMod(bp.OverchargeDamageMod)
             wepAutoOC:AddDamageMod(bp.OverchargeDamageMod)
         elseif enh == 'OverchargeAmplifierRemove' then
-            if Buff.HasBuff(self, 'SeraphimCombatHealth3') then
-                Buff.RemoveBuff(self, 'SeraphimCombatHealth3')
-            end
+            Buff.RemoveBuff(self, 'SeraphimCombatHealth3')
 
             local wepOC = self:GetWeaponByLabel('OverCharge')
             local wepAutoOC = self:GetWeaponByLabel('AutoOverCharge')
