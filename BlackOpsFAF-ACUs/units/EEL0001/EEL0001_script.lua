@@ -63,15 +63,6 @@ EEL0001 = Class(ACUUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
-        self.Animator = CreateAnimator(self)
-        self.Animator:SetPrecedence(0)
-        if self.IdleAnim then
-            self.Animator:PlayAnim(self:GetBlueprint().Display.AnimationIdle, true)
-            for _, v in self.DisabledBones do
-                self.Animator:SetBoneEnabled(v, false)
-            end
-        end
-
         self:BuildManipulatorSetEnabled(false)
         self.Rotator1 = CreateRotator(self, 'Back_ShieldPack_Spinner01', 'z', nil, 0, 20, 0)
         self.Rotator2 = CreateRotator(self, 'Back_ShieldPack_Spinner02', 'z', nil, 0, 40, 0)
@@ -79,14 +70,6 @@ EEL0001 = Class(ACUUnit) {
         self.Trash:Add(self.Rotator1)
         self.Trash:Add(self.Rotator2)
         self.Trash:Add(self.RadarDish)
-    end,
-
-    OnStartBuild = function(self, unitBeingBuilt, order)
-        ACUUnit.OnStartBuild(self, unitBeingBuilt, order)
-
-        if self.Animator then
-            self.Animator:SetRate(0)
-        end
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
@@ -155,15 +138,6 @@ EEL0001 = Class(ACUUnit) {
             EffectUtil.CreateDefaultBuildBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
         else
             EffectUtil.CreateUEFCommanderBuildSliceBeams(self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag)
-        end
-    end,
-
-    OnStopBuild = function(self, unitBeingBuilt)
-        ACUUnit.OnStopBuild(self, unitBeingBuilt)
-
-        if self:BeenDestroyed() then return end
-        if self.IdleAnim and not self:IsDead() then
-            self.Animator:PlayAnim(self.IdleAnim, true)
         end
     end,
 
