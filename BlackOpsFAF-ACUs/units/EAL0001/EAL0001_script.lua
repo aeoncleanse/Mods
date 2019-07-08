@@ -58,7 +58,7 @@ EAL0001 = Class(ACUUnit) {
         self.RemoteViewingData.RemoteViewingFunctions = {}
         self.RemoteViewingData.DisableCounter = 0
         self.RemoteViewingData.IntelButton = true
-        self.MaelstromEffects01 = {}
+        self.MaelstromEffectsBag = {}
     end,
 
     OnStopBeingBuilt = function(self, builder, layer)
@@ -449,32 +449,7 @@ EAL0001 = Class(ACUUnit) {
         -- Maelstrom
 
         elseif enh == 'MaelstromQuantum' then
-            if self.MaelstromEffects01 then
-                for k, v in self.MaelstromEffects01 do
-                    v:Destroy()
-                end
-                self.MaelstromEffects01 = {}
-            end
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/maelstrom_aura_01_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/maelstrom_aura_02_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2.75, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
-            table.insert(self.MaelstromEffects01, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+            self:RefreshMaelstromEffects()
 
             DefineBasicBuff('AeonMaelstromHealth1', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
@@ -489,12 +464,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'MaelstromQuantumRemove' then
             Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
 
-            if self.MaelstromEffects01 then
-                for k, v in self.MaelstromEffects01 do
-                    v:Destroy()
-                end
-                self.MaelstromEffects01 = {}
-            end
+            self:RefreshMaelstromEffects(true)
 
             self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
 
@@ -513,12 +483,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'DistortionAmplifierRemove' then
             Buff.RemoveBuff(self, 'AeonMaelstromHealth2')
 
-            if self.MaelstromEffects01 then
-                for k, v in self.MaelstromEffects01 do
-                    v:Destroy()
-                end
-                self.MaelstromEffects01 = {}
-            end
+            self:RefreshMaelstromEffects(true)
 
             self:SetWeaponEnabledByLabel('AntiMissile', false)
 
@@ -537,12 +502,7 @@ EAL0001 = Class(ACUUnit) {
         elseif enh == 'QuantumInstabilityRemove' then
             Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
 
-            if self.MaelstromEffects01 then
-                for k, v in self.MaelstromEffects01 do
-                    v:Destroy()
-                end
-                self.MaelstromEffects01 = {}
-            end
+            self:RefreshMaelstromEffects(true)
 
             local wep = self:GetWeaponByLabel('QuantumMaelstrom')
             wep.CurrentDamage = wep:GetBlueprint().Damage
@@ -698,6 +658,39 @@ EAL0001 = Class(ACUUnit) {
             self:HideBone('ShieldPack_Arty_RArm', true)
             self:HideBone('ShieldPack_Artillery', true)
         end
+    end,
+
+    RefreshMaelstromEffects = function(self, remove)
+        -- Remove all current effects and reset the bag
+        for _, v in self.MaelstromEffectsBag or {} do
+            v:Destroy()
+        end
+        self.MaelstromEffectsBag = {}
+
+        -- Just return here if we are only removing
+        if remove then return end
+
+        -- Create all the many effects we need
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/maelstrom_aura_01_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'Torso', self:GetArmy(), '/mods/BlackOpsFAF-ACUs/effects/emitters/maelstrom_aura_02_emit.bp'):ScaleEmitter(1):OffsetEmitter(0, -2.75, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RArm', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.05, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_RLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LLeg_B01', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.1, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
+        table.insert(self.MaelstromEffectsBag, CreateAttachedEmitter(self, 'DamagePack_LLeg_B02', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp'):ScaleEmitter(0.35):OffsetEmitter(0, -0.15, 0))
     end,
 }
 
