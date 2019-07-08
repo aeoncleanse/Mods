@@ -50,16 +50,10 @@ ERL0001 = Class(ACUUnit) {
     },
 
     -- Hooked Functions
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-
-        self.EMPArrayEffects01 = {}
-    end,
-
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
-        -- Shut off intel to be enabled later
+        -- Disable intel enabled by upgrades
         self:DisableUnitIntel('Enhancement', 'RadarStealth')
         self:DisableUnitIntel('Enhancement', 'SonarStealth')
         self:DisableUnitIntel('Enhancement', 'Cloak')

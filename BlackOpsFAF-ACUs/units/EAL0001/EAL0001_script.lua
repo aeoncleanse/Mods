@@ -51,21 +51,20 @@ EAL0001 = Class(ACUUnit) {
     },
 
     -- Hooked Functions
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-
-        self.RemoteViewingData = {}
-        self.RemoteViewingData.RemoteViewingFunctions = {}
-        self.RemoteViewingData.DisableCounter = 0
-        self.RemoteViewingData.IntelButton = true
-        self.MaelstromEffectsBag = {}
-    end,
-
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
+        -- Remote Viewing ability setup
+        self.RemoteViewingData = {
+            RemoteViewingFunctions = {},
+            DisableCounter = 0,
+            IntelButton = true
+        }
         self.Sync.Abilities = self:GetBlueprint().Abilities
         self.Sync.Abilities.TargetLocation.Active = false
+
+        -- Maelstrom effects
+        self.MaelstromEffectsBag = {}
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)

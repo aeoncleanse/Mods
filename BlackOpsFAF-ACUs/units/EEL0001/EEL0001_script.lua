@@ -50,26 +50,28 @@ EEL0001 = Class(ACUUnit) {
     },
 
     -- Hooked Functions
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-
-        self.HasLeftPod = false
-        self.HasRightPod = false
-        self.SpysatEnabled = false
-        self.ShieldEffectsBag = {}
-        self.FlamerEffectsBag = {}
-    end,
 
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
         self:BuildManipulatorSetEnabled(false)
+
+        -- Shield upgrade animation preparation
         self.Rotator1 = CreateRotator(self, 'Back_ShieldPack_Spinner01', 'z', nil, 0, 20, 0)
         self.Rotator2 = CreateRotator(self, 'Back_ShieldPack_Spinner02', 'z', nil, 0, 40, 0)
         self.RadarDish = CreateRotator(self, 'Back_IntelPack_Dish', 'y', nil, 0, 20, 0)
         self.Trash:Add(self.Rotator1)
         self.Trash:Add(self.Rotator2)
         self.Trash:Add(self.RadarDish)
+
+        -- Engineering pod preparation
+        self.HasLeftPod = false
+        self.HasRightPod = false
+
+        -- Further prep
+        self.SpysatEnabled = false
+        self.ShieldEffectsBag = {}
+        self.FlamerEffectsBag = {}
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)

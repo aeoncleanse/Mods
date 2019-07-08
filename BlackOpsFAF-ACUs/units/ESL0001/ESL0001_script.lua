@@ -44,21 +44,20 @@ ESL0001 = Class(ACUUnit) {
     },
 
     -- Hooked Functions
-    OnCreate = function(self)
-        ACUUnit.OnCreate(self)
-
-        self.RegenFieldEffect = nil
-        self.lambdaEmitterTable = {}
-        self:StartRotators()
-    end,
-
     OnStopBeingBuilt = function(self, builder, layer)
         ACUUnit.OnStopBeingBuilt(self, builder, layer)
 
-        -- Shut off intel to be disabled later
+        -- Disable intel enabled by upgrades
         self:DisableUnitIntel('ToggleBit5', 'RadarStealth')
         self:DisableUnitIntel('ToggleBit5', 'SonarStealth')
         self:DisableUnitIntel('ToggleBit8', 'Cloak')
+
+        -- Additional prep
+        self.RegenFieldEffect = nil
+        self.lambdaEmitterTable = {}
+
+        -- Start the funny rotator things
+        self:StartRotators()
     end,
 
     -- Set custom flag and add Stealth and Cloak toggles to the switch
