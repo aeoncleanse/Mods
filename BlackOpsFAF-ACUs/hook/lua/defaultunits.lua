@@ -129,9 +129,9 @@ ACUUnit = Class(oldACUUnit) {
         if self.RightGunBone then
             -- As radius is only passed when turning on, use the bool
             if radius then
-                self:ShowBone(self.RightGunBone, true)
+                self:ShowBones({self.RightGunBone}, true)
             else
-                self:HideBone(self.RightGunBone, true)
+                self:HideBones({self.RightGunBone}, true)
             end
         end
 
