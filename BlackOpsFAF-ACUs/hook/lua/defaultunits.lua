@@ -5,18 +5,7 @@ ACUUnit = Class(oldACUUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
         oldACUUnit.OnStopBeingBuilt(self, builder, layer)
 
-        local exclude = {
-            DeathWeapon = true,
-            TargetPainter = true,
-            OverCharge = true,
-            AutoOverCharge = true,
-        }
-
-        for k, v in self.Weapons do
-            if k ~= self.RightGunLabel and not exclude[k] then
-                self:SetWeaponEnabledByLabel(k, false)
-            end
-        end
+        self:SetupWeapons()
 
         self:ForkThread(self.GiveInitialResources)
     end,
@@ -99,19 +88,20 @@ ACUUnit = Class(oldACUUnit) {
     SetPainterRange = function(self, enh, newRange)
         self.PainterRange[enh] = newRange
 
-        local range = self:GetWeaponByLabel(self.RightGunLabel):GetBlueprint().MaxRadius
+        local range = self[self.RightGunLabel]:GetBlueprint().MaxRadius
         for _, new in self.PainterRange do
             range = math.max(range, new)
         end
 
-        local wep = self:GetWeaponByLabel('TargetPainter')
-        wep:ChangeMaxRadius(range)
+        self.TargetPainter:ChangeMaxRadius(range)
     end,
 
+    -- Resets range to blueprint when radius is nil
+    -- Called with negative damage when removing an enhancement
     TogglePrimaryGun = function(self, damage, radius)
-        local wep = self:GetWeaponByLabel(self.RightGunLabel)
-        local oc = self:GetWeaponByLabel('OverCharge')
-        local aoc = self:GetWeaponByLabel('AutoOverCharge')
+        local wep = self[self.RightGunLabel]
+        local oc = self.OverCharge
+        local aoc = self.AutoOverCharge
 
         local wepRadius = radius or wep:GetBlueprint().MaxRadius
         local ocRadius = radius or oc:GetBlueprint().MaxRadius
@@ -136,5 +126,23 @@ ACUUnit = Class(oldACUUnit) {
         end
 
         self:SetPainterRange(self.RightGunUpgrade, radius)
+    end,
+
+    SetupWeapons = function(self)
+        local exclude = {
+            DeathWeapon = true,
+            TargetPainter = true,
+            OverCharge = true,
+            AutoOverCharge = true
+        }
+        exclude[self.RightGunLabel] = true
+
+        for name, v in self.Weapons do
+            self[name] = self:GetWeaponByLabel(name)
+
+            if not exclude[name] then
+                self[name]:SetWeaponEnabled(false)
+            end
+        end
     end,
 }
