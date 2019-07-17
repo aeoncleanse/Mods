@@ -108,10 +108,10 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
-            Buff.RemoveBuff(self, 'AEONACUT2BuildRate')
-
             self:SetDefaultBuildRestrictions()
             self:SetProduction()
+
+            Buff.RemoveBuff(self, 'AEONACUT2BuildRate')
         elseif enh == 'AdvancedEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
@@ -120,10 +120,10 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
-            Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
-
             self:SetDefaultBuildRestrictions()
             self:SetProduction()
+
+            Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
         elseif enh == 'ExperimentalEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -132,10 +132,10 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
-            Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
-
             self:SetDefaultBuildRestrictions()
             self:SetProduction()
+
+            Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
         elseif enh == 'CombatEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
             self:updateBuildRestrictions()
@@ -143,17 +143,15 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT2BuildCombat')
 
-            self:SetWeaponEnabledByLabel('ChronoDampener', true)
-            local wep = self:GetWeaponByLabel('ChronoDampener')
-            wep:ChangeMaxRadius(bp.ChronoRadius)
+            self.ChronoDampener:SetWeaponEnabled(true)
+            self.ChronoDampener:ChangeMaxRadius(bp.ChronoRadius)
         elseif enh == 'CombatEngineeringRemove' then
-            Buff.RemoveBuff(self, 'AEONACUT2BuildCombat')
-
             self:SetDefaultBuildRestrictions()
             self:SetWeaponEnabledByLabel('ChronoDampener', false)
 
-            local wep = self:GetWeaponByLabel('ChronoDampener')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            Buff.RemoveBuff(self, 'AEONACUT2BuildCombat')
+
+            self.ChronoDampener:ChangeMaxRadius(self.ChronoDampener:GetBlueprint().MaxRadius)
         elseif enh == 'AssaultEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER))
             self:updateBuildRestrictions()
@@ -161,19 +159,17 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT3BuildCombat')
 
-            self:SetWeaponEnabledByLabel('ChronoDampener', false)
-            self:SetWeaponEnabledByLabel('ChronoDampener2', true)
+            self.ChronoDampener:SetWeaponEnabled(false)
 
-            local wep = self:GetWeaponByLabel('ChronoDampener2')
-            wep:ChangeMaxRadius(bp.NewChronoRadius)
+            self.ChronoDampener2:SetWeaponEnabled(true)
+            self.ChronoDampener2:ChangeMaxRadius(bp.NewChronoRadius)
         elseif enh == 'AssaultEngineeringRemove' then
+            self:SetDefaultBuildRestrictions()
+
             Buff.RemoveBuff(self, 'AEONACUT3BuildCombat')
 
-            self:SetDefaultBuildRestrictions()
-            self:SetWeaponEnabledByLabel('ChronoDampener2', false)
-
-            local wep = self:GetWeaponByLabel('ChronoDampener2')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            self.ChronoDampener2:SetWeaponEnabled(false)
+            self.ChronoDampener2:ChangeMaxRadius(self.ChronoDampener2:GetBlueprint().MaxRadius)
         elseif enh == 'ApocalypticEngineering' then
             self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
             self:updateBuildRestrictions()
@@ -181,12 +177,11 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AEONACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AEONACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
-            Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
-
             self:SetDefaultBuildRestrictions()
 
-        -- Disruptor Amplifier
+            Buff.RemoveBuff(self, 'AEONACUT4BuildCombat')
 
+        -- Disruptor Amplifier
         elseif enh == 'JuryRiggedDisruptor' then
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'JuryRiggedDisruptorRemove' then
@@ -197,76 +192,64 @@ EAL0001 = Class(ACUUnit) {
             self:TogglePrimaryGun(0)
 
         -- Torpedoes
-
         elseif enh == 'TorpedoLauncher' then
             DefineBasicBuff('AeonTorpHealth1', 'AeonTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonTorpHealth1')
 
-            local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
-            local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', true)
+            self.TorpedoLauncher:SetWeaponEnabled(true)
+            self.AntiTorpedo:SetWeaponEnabled(true)
         elseif enh == 'TorpedoLauncherRemove' then
             Buff.RemoveBuff(self, 'AeonTorpHealth1')
 
-            local torp = self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
-            local antiTorp = self:SetWeaponEnabledByLabel('AntiTorpedo', false)
+            self.TorpedoLauncher:SetWeaponEnabled(false)
+            self.AntiTorpedo:SetWeaponEnabled(false)
         elseif enh == 'ImprovedTorpLoader' then
             DefineBasicBuff('AeonTorpHealth2', 'AeonTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonTorpHealth2')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamage)
-            torp:ChangeRateOfFire(bp.TorpRoF)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamage)
+            self.TorpedoLauncher:ChangeRateOfFire(bp.TorpRoF)
 
             self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'ImprovedTorpLoaderRemove' then
             Buff.RemoveBuff(self, 'AeonTorpHealth2')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamage)
-            torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamage)
+            self.TorpedoLauncher:ChangeRateOfFire(self.TorpedoLauncher:GetBlueprint().RateOfFire)
 
             self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'AdvancedWarheads' then
             DefineBasicBuff('AeonTorpHealth3', 'AeonTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonTorpHealth3')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamage)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamage)
 
-            local gun = self:GetWeaponByLabel('RightDisruptor')
-            gun:AddDamageMod(bp.GunDamage)
+            self:TogglePrimaryGun(bp.GunDamage)
         elseif enh == 'AdvancedWarheadsRemove' then
             Buff.RemoveBuff(self, 'AeonTorpHealth3')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamage)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamage)
 
-            local gun = self:GetWeaponByLabel('RightDisruptor')
-            gun:AddDamageMod(bp.GunDamage)
+            self:TogglePrimaryGun(bp.GunDamage)
 
         -- Artillery
-
         elseif enh == 'DualMiasmaArtillery' then
             DefineBasicBuff('AeonArtilleryHealth1', 'AeonArtilleryHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonArtilleryHealth1')
 
-            self:SetWeaponEnabledByLabel('MiasmaArtillery', true)
-
-            local wep = self:GetWeaponByLabel('MiasmaArtillery')
-            wep:ChangeMaxRadius(bp.ArtyRadius)
-            wep:ChangeMinRadius(bp.ArtyMinRadius)
-
+            self.MiasmaArtillery:SetWeaponEnabled(true)
+            self.MiasmaArtillery:ChangeMaxRadius(bp.ArtyRadius)
+            self.MiasmaArtillery:ChangeMinRadius(bp.ArtyMinRadius)
             self:SetPainterRange(enh, bp.ArtyRadius)
 
             self:SpecialBones()
         elseif enh == 'DualMiasmaArtilleryRemove' then
             Buff.RemoveBuff(self, 'AeonArtilleryHealth1')
 
-            self:SetWeaponEnabledByLabel('MiasmaArtillery', false)
-            local wep = self:GetWeaponByLabel('MiasmaArtillery')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            wep:ChangeMinRadius(wep:GetBlueprint().MinRadius)
-
+            local wepBp = self.MiasmaArtillery:GetBlueprint()
+            self.MiasmaArtillery:SetWeaponEnabled(false)
+            self.MiasmaArtillery:ChangeMaxRadius(wepBp.MaxRadius)
+            self.MiasmaArtillery:ChangeMinRadius(wepBp.MinRadius)
             self:SetPainterRange('DualMiasmaArtillery')
 
             self:SpecialBones()
@@ -274,65 +257,56 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AeonArtilleryHealth2', 'AeonArtilleryHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonArtilleryHealth2')
 
-            local arty = self:GetWeaponByLabel('MiasmaArtillery')
-            arty:AddDamageMod(bp.ArtilleryDamage)
+            self.MiasmaArtillery:AddDamageMod(bp.ArtilleryDamage)
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'AdvancedWarheadCompressionRemove' then
             Buff.RemoveBuff(self, 'AeonArtilleryHealth2')
 
-            local arty = self:GetWeaponByLabel('MiasmaArtillery')
-            arty:AddDamageMod(bp.ArtilleryDamage)
+            self.MiasmaArtillery:AddDamageMod(bp.ArtilleryDamage)
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'ImprovedAutoLoader' then
             DefineBasicBuff('AeonArtilleryHealth3', 'AeonArtilleryHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonArtilleryHealth3')
 
-            local arty = self:GetWeaponByLabel('MiasmaArtillery')
-            arty:AddDamageMod(bp.ArtilleryDamage)
-            arty:ChangeRateOfFire(bp.ArtilleryRoF)
+            self.MiasmaArtillery:AddDamageMod(bp.ArtilleryDamage)
+            self.MiasmaArtillery:ChangeRateOfFire(bp.ArtilleryRoF)
         elseif enh == 'ImprovedAutoLoaderRemove' then
             Buff.RemoveBuff(self, 'AeonArtilleryHealth3')
 
-            local arty = self:GetWeaponByLabel('MiasmaArtillery')
-            arty:AddDamageMod(bp.ArtilleryDamage)
-            arty:ChangeRateOfFire(arty:GetBlueprint().RateOfFire)
+            self.MiasmaArtillery:AddDamageMod(bp.ArtilleryDamage)
+            self.MiasmaArtillery:ChangeRateOfFire(self.MiasmaArtillery:GetBlueprint().RateOfFire)
 
         --  Beam Weapon
-
         elseif enh == 'PhasonBeamCannon' then
             DefineBasicBuff('AeonBeamHealth1', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonBeamHealth1')
 
-            self:SetWeaponEnabledByLabel('PhasonBeam01', true)
-            local beam = self:GetWeaponByLabel('PhasonBeam01')
-            beam:ChangeMaxRadius(bp.BeamRadius)
+            self.PhasonBeam01:SetWeaponEnabled(true)
+            self.PhasonBeam01:ChangeMaxRadius(bp.BeamRadius)
             self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'PhasonBeamCannonRemove' then
             Buff.RemoveBuff(self, 'AeonBeamHealth1')
 
-            self:SetWeaponEnabledByLabel('PhasonBeam01', false)
-            local beam = self:GetWeaponByLabel('PhasonBeam01')
-            beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
+            self.PhasonBeam01:SetWeaponEnabled(false)
+            self.PhasonBeam01:ChangeMaxRadius(self.PhasonBeam01:GetBlueprint().MaxRadius)
             self:SetPainterRange('PhasonBeamCannon')
         elseif enh == 'DualChannelBooster' then
             DefineBasicBuff('AeonBeamHealth2', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonBeamHealth2')
 
-            self:SetWeaponEnabledByLabel('PhasonBeam01', false)
-            self:SetWeaponEnabledByLabel('PhasonBeam02', true)
-            local beam = self:GetWeaponByLabel('PhasonBeam02')
-            beam:ChangeMaxRadius(bp.BeamRadius)
+            self.PhasonBeam01:SetWeaponEnabled(false)
+            self.PhasonBeam02:SetWeaponEnabled(true)
+            self.PhasonBeam02:ChangeMaxRadius(bp.BeamRadius)
             self:SetPainterRange(enh, bp.BeamRadius)
 
             self:TogglePrimaryGun(bp.NewDamage)
         elseif enh == 'DualChannelBoosterRemove' then
             Buff.RemoveBuff(self, 'AeonBeamHealth2')
 
-            self:SetWeaponEnabledByLabel('PhasonBeam02', false)
-            local beam = self:GetWeaponByLabel('PhasonBeam02')
-            beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
+            self.PhasonBeam02:SetWeaponEnabled(false)
+            self.PhasonBeam02:ChangeMaxRadius(self.PhasonBeam02:GetBlueprint().MaxRadius)
             self:SetPainterRange('DualChannelBooster')
 
             self:TogglePrimaryGun(bp.NewDamage)
@@ -340,21 +314,19 @@ EAL0001 = Class(ACUUnit) {
             DefineBasicBuff('AeonBeamHealth3', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonBeamHealth3')
 
-            self:SetWeaponEnabledByLabel('PhasonBeam02', false)
-            self:SetWeaponEnabledByLabel('PhasonBeam03', true)
-            local beam = self:GetWeaponByLabel('PhasonBeam03')
-            beam:ChangeMaxRadius(bp.BeamRadius)
+            self.PhasonBeam02:SetWeaponEnabled(false)
+            self.PhasonBeam03:SetWeaponEnabled(true)
+            self.PhasonBeam03:ChangeMaxRadius(bp.BeamRadius)
+
             self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'EnergizedMolecularInducerRemove' then
             Buff.RemoveBuff(self, 'AeonBeamHealth3')
 
-            self:SetWeaponEnabledByLabel('PhasonBeam03', false)
-            local beam = self:GetWeaponByLabel('PhasonBeam03')
-            beam:ChangeMaxRadius(beam:GetBlueprint().MaxRadius)
+            self.PhasonBeam03:SetWeaponEnabled(false)
+            self.PhasonBeam03:ChangeMaxRadius(self.PhasonBeam03:GetBlueprint().MaxRadius)
             self:SetPainterRange('EnergizedMolecularInducer')
 
         -- Shielding
-
         elseif enh == 'ShieldBattery' then
             self:AddToggleCap('RULEUTC_ShieldToggle')
             self:CreateShield(bp)
@@ -372,10 +344,8 @@ EAL0001 = Class(ACUUnit) {
             self:SpecialBones()
         elseif enh == 'ImprovedShieldBattery' then
             self:DestroyShield()
-            ForkThread(function()
-                WaitTicks(1)
-                self:CreateShield(bp)
-            end)
+            ForkThread(function() WaitTicks(1) self:CreateShield(bp) end)
+
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self:OnScriptBitSet(0)
@@ -386,127 +356,112 @@ EAL0001 = Class(ACUUnit) {
             self:OnScriptBitClear(0)
         elseif enh == 'AdvancedShieldBattery' then
             self:DestroyShield()
-            ForkThread(function()
-                WaitTicks(1)
-                self:CreateShield(bp)
-            end)
+            ForkThread(function() WaitTicks(1) self:CreateShield(bp) end)
+
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self:SetWeaponEnabledByLabel('AntiMissile', true)
             self:OnScriptBitSet(0)
+
+            self.AntiMissile:SetWeaponEnabled(true)
         elseif enh == 'AdvancedShieldBatteryRemove' then
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
             self:OnScriptBitClear(0)
 
+            self.AntiMissile:SetWeaponEnabled(false)
+
         -- Intel
-
         elseif enh == 'ElectronicsEnhancment' then
-            DefineBasicBuff('AeonIntelHealth1', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
-            Buff.ApplyBuff(self, 'AeonIntelHealth1')
-
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
                 self:SetIntelRadius('Vision', bp.NewVisionRadius)
                 self:SetIntelRadius('WaterVision', bp.NewVisionRadius)
                 self:SetIntelRadius('Omni', bp.NewOmniRadius)
             end
 
-            self:SetWeaponEnabledByLabel('AntiMissile', true)
+            DefineBasicBuff('AeonIntelHealth1', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
+            Buff.ApplyBuff(self, 'AeonIntelHealth1')
+
+            self.AntiMissile:SetWeaponEnabled(true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
-            Buff.RemoveBuff(self, 'AeonIntelHealth1')
-
             local bpIntel = self:GetBlueprint().Intel
-
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
                 self:SetIntelRadius('Vision', bpIntel.VisionRadius)
                 self:SetIntelRadius('WaterVision', bpIntel.VisionRadius)
                 self:SetIntelRadius('Omni', bpIntel.OmniRadius)
             end
 
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
+            Buff.RemoveBuff(self, 'AeonIntelHealth1')
+
+            self.AntiMissile:SetWeaponEnabled(false)
         elseif enh == 'FarsightOptics' then
+            self:ForkThread(self.EnableRemoteViewingButtons)
+
             DefineBasicBuff('AeonIntelHealth2', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonIntelHealth2')
-
-            self:ForkThread(self.EnableRemoteViewingButtons)
         elseif enh == 'FarsightOpticsRemove' then
-            Buff.RemoveBuff(self, 'AeonIntelHealth2')
-
             self:ForkThread(self.DisableRemoteViewingButtons)
+
+            Buff.RemoveBuff(self, 'AeonIntelHealth2')
         elseif enh == 'Teleporter' then
+            self:AddCommandCap('RULEUCC_Teleport')
+
             DefineBasicBuff('AeonIntelHealth3', 'AeonIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonIntelHealth3')
-
-            self:AddCommandCap('RULEUCC_Teleport')
         elseif enh == 'TeleporterRemove' then
-            Buff.RemoveBuff(self, 'AeonIntelHealth3')
-
             self:RemoveCommandCap('RULEUCC_Teleport')
 
-        -- Maelstrom
+            Buff.RemoveBuff(self, 'AeonIntelHealth3')
 
+        -- Maelstrom
         elseif enh == 'MaelstromQuantum' then
             self:RefreshMaelstromEffects()
 
             DefineBasicBuff('AeonMaelstromHealth1', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth1')
 
-            self:SetWeaponEnabledByLabel('QuantumMaelstrom', true)
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
-            wep:ChangeMaxRadius(bp.MaelstromRadius)
-
-            -- Can't use normal methods here due to how the weapon script works
-            wep.CurrentDamage = wep:GetBlueprint().Damage
-            wep.CurrentDamageRadius = wep:GetBlueprint().DamageRadius
+            self.QuantumMaelstrom:SetWeaponEnabled(true)
+            self.QuantumMaelstrom:ChangeMaxRadius(bp.MaelstromRadius)
         elseif enh == 'MaelstromQuantumRemove' then
-            Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
-
             self:RefreshMaelstromEffects(true)
 
-            self:SetWeaponEnabledByLabel('QuantumMaelstrom', false)
+            Buff.RemoveBuff(self, 'AeonMaelstromHealth1')
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            self.QuantumMaelstrom:SetWeaponEnabled(false)
+            self.QuantumMaelstrom:ChangeMaxRadius(self.QuantumMaelstrom:GetBlueprint().MaxRadius)
         elseif enh == 'DistortionAmplifier' then
             DefineBasicBuff('AeonMaelstromHealth2', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth2')
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
-
             -- Can't use normal methods here due to how the weapon script works
-            wep.CurrentDamage = bp.MaelstromDamage
+            self.QuantumMaelstrom.CurrentDamage = bp.MaelstromDamage
 
-            self:SetWeaponEnabledByLabel('AntiMissile', true)
+            self.AntiMissile:SetWeaponEnabled(true)
         elseif enh == 'DistortionAmplifierRemove' then
-            Buff.RemoveBuff(self, 'AeonMaelstromHealth2')
-
             self:RefreshMaelstromEffects(true)
 
-            self:SetWeaponEnabledByLabel('AntiMissile', false)
+            Buff.RemoveBuff(self, 'AeonMaelstromHealth2')
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
-            wep.CurrentDamage = wep:GetBlueprint().Damage
+            self.QuantumMaelstrom.CurrentDamage = self.QuantumMaelstrom:GetBlueprint().Damage
+
+            self.AntiMissile:SetWeaponEnabled(false)
         elseif enh == 'QuantumInstability' then
             DefineBasicBuff('AeonMaelstromHealth3', 'AeonMaelstromHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'AeonMaelstromHealth3')
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
-
             -- Can't use normal methods here due to how the weapon script works
-            wep.CurrentDamage = bp.MaelstromDamage
-            wep.CurrentDamageRadius = bp.MaelstromRadius
-            wep:ChangeMaxRadius(bp.MaelstromRadius)
+            self.QuantumMaelstrom.CurrentDamage = bp.MaelstromDamage
+            self.QuantumMaelstrom.CurrentDamageRadius = bp.MaelstromRadius
+            self.QuantumMaelstrom:ChangeMaxRadius(bp.MaelstromRadius)
         elseif enh == 'QuantumInstabilityRemove' then
-            Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
-
             self:RefreshMaelstromEffects(true)
 
-            local wep = self:GetWeaponByLabel('QuantumMaelstrom')
-            wep.CurrentDamage = wep:GetBlueprint().Damage
-            wep.CurrentDamageRadius = wep:GetBlueprint().DamageRadius
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            Buff.RemoveBuff(self, 'AeonMaelstromHealth3')
+
+            local wepBlueprint = self.QuantumMaelstrom:GetBlueprint()
+            self.QuantumMaelstrom.CurrentDamage = wepBlueprint.Damage
+            self.QuantumMaelstrom.CurrentDamageRadius = wepBlueprint.DamageRadius
+            self.QuantumMaelstrom:ChangeMaxRadius(wepBlueprint.MaxRadius)
         end
 
         -- Remove prerequisites
