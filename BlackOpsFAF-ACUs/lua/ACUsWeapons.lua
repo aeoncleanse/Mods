@@ -20,6 +20,14 @@ local SDFSinnuntheWeapon = SWeapons.SDFSinnuntheWeapon
 
 -- Aeon
 QuantumMaelstromWeapon = Class(Weapon) {
+    OnCreate = function(self)
+        local bp = self:GetBlueprint()
+        self.CurrentDamage = bp.Damage
+        self.CurrentDamageRadius = bp.DamageRadius
+
+        Weapon.OnCreate(self)
+    end,
+
     OnFire = function(self)
         local blueprint = self:GetBlueprint()
         DamageArea(self.unit, self.unit:GetPosition(), self.CurrentDamageRadius,
