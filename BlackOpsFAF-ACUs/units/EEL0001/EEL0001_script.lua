@@ -3,13 +3,15 @@
 -- Summary  :  BlackOps: Adv Command Unit - UEF ACU
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
-local Shield = import('/lua/shield.lua').Shield
-local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
-local EffectTemplate = import('/lua/EffectTemplates.lua')
+
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
 local DefineBasicBuff = import('/lua/sim/BuffDefinitions.lua').DefineBasicBuff
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+
+local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
+
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 
 local TerranWeaponFile = import('/lua/terranweapons.lua')
 local TANTorpedoAngler = TerranWeaponFile.TANTorpedoAngler
@@ -77,7 +79,6 @@ EEL0001 = Class(ACUUnit) {
     OnKilled = function(self, instigator, type, overkillRatio)
         if self.Satellite and not self.Satellite.Dead and not self.Satellite.IsDying then
             self.Satellite:Kill()
-            self.Satellite:Kill()
             self.Satellite = nil
         end
 
@@ -107,7 +108,7 @@ EEL0001 = Class(ACUUnit) {
             self.Rotator2:SetTargetSpeed(-180)
             EffectUtil.CleanupEffectBag(self, 'ShieldEffectsBag')
 
-            for _, v in self.ShieldEffects2 do
+            for _, v in self.ShieldEffects do
                 local army = self:GetArmy()
                 for i = 1, 8 do
                     table.insert(self.ShieldEffectsBag, CreateAttachedEmitter(self, 'Back_ShieldPack_Emitter0' .. i, army, v))
@@ -151,89 +152,87 @@ EEL0001 = Class(ACUUnit) {
         if not bp then return end
 
         if enh == 'ImprovedEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
             DefineBasicBuff('UEFACUT2BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT2BuildRate')
         elseif enh == 'ImprovedEngineeringRemove' then
-            Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
-
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetProduction()
+
+            Buff.RemoveBuff(self, 'UEFACUT2BuildRate')
         elseif enh == 'AdvancedEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER3COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
             DefineBasicBuff('UEFACUT3BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT3BuildRate')
         elseif enh == 'AdvancedEngineeringRemove' then
-            Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
-
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetProduction()
+
+            Buff.RemoveBuff(self, 'UEFACUT3BuildRate')
         elseif enh == 'ExperimentalEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER4COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
             DefineBasicBuff('UEFACUT4BuildRate', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT4BuildRate')
         elseif enh == 'ExperimentalEngineeringRemove' then
-            Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
-
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            self:SetDefaultBuildRestrictions()
             self:SetProduction()
+
+            Buff.RemoveBuff(self, 'UEFACUT4BuildRate')
         elseif enh == 'CombatEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
 
             DefineBasicBuff('UEFACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT2BuildCombat')
 
-            self:SetWeaponEnabledByLabel('FlameCannon', true)
-            self:SortFlameEffects(true)
+            self.FlameCannon:SetWeaponEnabled(true)
+            self:HandleFlameEffects(true)
         elseif enh == 'CombatEngineeringRemove' then
+            self:SetDefaultBuildRestrictions()
+
             Buff.RemoveBuff(self, 'UEFACUT2BuildCombat')
 
-
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-            self:SetWeaponEnabledByLabel('FlameCannon', false)
-            self:SortFlameEffects()
+            self.FlameCannon:SetWeaponEnabled(false)
+            self:HandleFlameEffects()
         elseif enh == 'AssaultEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER3COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER3COMMANDER)
             self:updateBuildRestrictions()
 
             DefineBasicBuff('UEFACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT3BuildCombat')
 
-            local gun = self:GetWeaponByLabel('FlameCannon')
-            gun:AddDamageMod(bp.FlameDamageMod)
-            gun:ChangeMaxRadius(bp.FlameMaxRadius)
+            self.FlameCannon:AddDamageMod(bp.FlameDamageMod)
+            self.FlameCannon:ChangeMaxRadius(bp.FlameDamageMod)
 
             self:SetPainterRange(enh, bp.FlameMaxRadius)
         elseif enh == 'AssaultEngineeringRemove' then
+            self:SetDefaultBuildRestrictions()
+
             Buff.RemoveBuff(self, 'UEFACUT3BuildCombat')
 
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
-
-            local gun = self:GetWeaponByLabel('FlameCannon')
-            gun:AddDamageMod(bp.FlameDamageMod)
-            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            self.FlameCannon:AddDamageMod(bp.FlameDamageMod)
+            self.FlameCannon:ChangeMaxRadius(self.FlameCannon:GetBlueprint().MaxRadius)
 
             self:SetPainterRange('AssaultEngineering')
         elseif enh == 'ApocalypticEngineering' then
-            self:RemoveBuildRestriction(categories.UEF * (categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.UEF * categories.BUILTBYTIER4COMMANDER)
             self:updateBuildRestrictions()
 
             DefineBasicBuff('UEFACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
             Buff.ApplyBuff(self, 'UEFACUT4BuildCombat')
         elseif enh == 'ApocalypticEngineeringRemove' then
-            Buff.RemoveBuff(self, 'UEFACUT4BuildCombat')
+            self:SetDefaultBuildRestrictions()
 
-            self:AddBuildRestriction(categories.UEF * (categories.BUILTBYTIER2COMMANDER + categories.BUILTBYTIER3COMMANDER))
+            Buff.RemoveBuff(self, 'UEFACUT4BuildCombat')
 
         -- Zephyr Booster
 
@@ -248,47 +247,41 @@ EEL0001 = Class(ACUUnit) {
             DefineBasicBuff('UEFTorpHealth1', 'UEFTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFTorpHealth1')
 
-            self:SetWeaponEnabledByLabel('TorpedoLauncher', true)
+            self.TorpedoLauncher:SetWeaponEnabled(true)
         elseif enh == 'TorpedoLauncherRemove' then
             Buff.RemoveBuff(self, 'UEFTorpHealth1')
 
-            self:SetWeaponEnabledByLabel('TorpedoLauncher', false)
+            self.TorpedoLauncher:SetWeaponEnabled(false)
         elseif enh == 'ImprovedReloader' then
             DefineBasicBuff('UEFTorpHealth2', 'UEFTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFTorpHealth2')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamageMod)
-            torp:ChangeRateOfFire(bp.NewTorpROF)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamageMod)
+            self.TorpedoLauncher:ChangeRateOfFire(bp.NewTorpROF)
 
-            -- Install Zephyr Cannon
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh == 'ImprovedReloaderRemove' then
             Buff.RemoveBuff(self, 'UEFTorpHealth2')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamageMod)
-            torp:ChangeRateOfFire(torp:GetBlueprint().RateOfFire)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamageMod)
+            self.TorpedoLauncher:ChangeRateOfFire(self.TorpedoLauncher:GetBlueprint().RateOfFire)
 
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'AdvancedWarheads' then
             DefineBasicBuff('UEFTorpHealth3', 'UEFTorpHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFTorpHealth3')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamageMod)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamageMod)
 
-            -- Improve Zephyr Cannon
-            local wep = self:GetWeaponByLabel('RightZephyr')
-            wep:AddDamageMod(bp.DamageMod)
+            -- Modify only damage. Not supported by TogglePrimaryGun, which changes radius too
+            self.MainGun:AddDamageMod(bp.DamageMod)
         elseif enh == 'AdvancedWarheadsRemove' then
             Buff.RemoveBuff(self, 'UEFTorpHealth3')
 
-            local torp = self:GetWeaponByLabel('TorpedoLauncher')
-            torp:AddDamageMod(bp.TorpDamageMod)
+            self.TorpedoLauncher:AddDamageMod(bp.TorpDamageMod)
 
-            local wep = self:GetWeaponByLabel('RightZephyr')
-            wep:AddDamageMod(bp.DamageMod)
+            -- Modify only damage. Not supported by TogglePrimaryGun, which changes radius too
+            self.MainGun:AddDamageMod(bp.DamageMod)
 
         -- AntiMatter Cannon
 
@@ -296,63 +289,56 @@ EEL0001 = Class(ACUUnit) {
             DefineBasicBuff('UEFAntimatterHealth1', 'UEFAntimatterHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFAntimatterHealth1')
 
-            self:SetWeaponEnabledByLabel('AntiMatterCannon', true)
-            local gun = self:GetWeaponByLabel('AntiMatterCannon')
-            gun:ChangeMaxRadius(bp.NewMaxRadius)
+            self.AntiMatterCannon:SetWeaponEnabled(true)
+            self.AntiMatterCannon:ChangeMaxRadius(bp.NewMaxRadius)
 
             self:SetPainterRange(enh, bp.NewMaxRadius)
         elseif enh == 'AntiMatterCannonRemove' then
             Buff.RemoveBuff(self, 'UEFAntimatterHealth1')
 
-            self:SetWeaponEnabledByLabel('AntiMatterCannon', false)
-            local gun = self:GetWeaponByLabel('AntiMatterCannon')
-            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            self.AntiMatterCannon:SetWeaponEnabled(false)
+            self.AntiMatterCannon:ChangeMaxRadius(self.AntiMatterCannon:GetBlueprint().MaxRadius)
 
             self:SetPainterRange('AntiMatterCannon')
         elseif enh == 'ImprovedParticleAccelerator' then
             DefineBasicBuff('UEFAntimatterHealth2', 'UEFAntimatterHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFAntimatterHealth2')
 
-            -- Buff AntiMatter Gun
-            local gun = self:GetWeaponByLabel('AntiMatterCannon')
-            gun:AddDamageMod(bp.AntiMatterDamageMod)
-            gun:ChangeDamageRadius(bp.NewDamageArea)
+            self.AntiMatterCannon:AddDamageMod(bp.AntiMatterDamageMod)
+            self.AntiMatterCannon:ChangeDamageRadius(bp.NewDamageArea)
 
-            -- Install Zephyr Cannon
             self:TogglePrimaryGun(bp.DamageMod, bp.NewMaxRadius)
         elseif enh == 'ImprovedParticleAcceleratorRemove' then
             Buff.RemoveBuff(self, 'UEFAntimatterHealth2')
 
-            local gun = self:GetWeaponByLabel('AntiMatterCannon')
-            gun:AddDamageMod(bp.AntiMatterDamageMod)
-            gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
+            self.AntiMatterCannon:AddDamageMod(bp.AntiMatterDamageMod)
+            self.AntiMatterCannon:ChangeDamageRadius(self.AntiMatterCannon:GetBlueprint().DamageRadius)
 
             self:TogglePrimaryGun(bp.DamageMod)
         elseif enh == 'EnhancedMagBottle' then
             DefineBasicBuff('UEFAntimatterHealth3', 'UEFAntimatterHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFAntimatterHealth3')
 
-            local gun = self:GetWeaponByLabel('AntiMatterCannon')
-            gun:AddDamageMod(bp.AntiMatterDamageMod)
-            gun:ChangeDamageRadius(bp.NewDamageArea)
-            gun:ChangeMaxRadius(bp.NewAntiMatterMaxRadius)
+            self.AntiMatterCannon:AddDamageMod(bp.AntiMatterDamageMod)
+            self.AntiMatterCannon:ChangeDamageRadius(bp.NewDamageArea)
+            self.AntiMatterCannon:ChangeMaxRadius(bp.NewAntiMatterMaxRadius)
 
             self:SetPainterRange(enh, bp.NewAntiMatterMaxRadius)
 
-            -- Use toggle function to increase MaxRadius of Zephyr Cannon
-            self:TogglePrimaryGun(0, bp.NewMaxRadius)
+            -- Directly change only primary gun radius
+            self.MainGun:ChangeMaxRadius(bp.NewMaxRadius)
         elseif enh == 'EnhancedMagBottleRemove' then
             Buff.RemoveBuff(self, 'UEFAntimatterHealth3')
 
-            local gun = self:GetWeaponByLabel('AntiMatterCannon')
-            gun:AddDamageMod(bp.AntiMatterDamageMod)
-            gun:ChangeDamageRadius(gun:GetBlueprint().DamageRadius)
-            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            local gunbp = self.AntiMatterCannon:GetBlueprint()
+            self.AntiMatterCannon:AddDamageMod(bp.AntiMatterDamageMod)
+            self.AntiMatterCannon:ChangeDamageRadius(gunbp.DamageRadius)
+            self.AntiMatterCannon:ChangeMaxRadius(gunbp.MaxRadius)
 
             self:SetPainterRange('EnhancedMagBottle')
 
-            -- Remove Zephyr Jury Rigging
-            self:TogglePrimaryGun(0)
+            -- Directly change only primary gun radius
+            self.MainGun:ChangeMaxRadius(self.MainGun:GetBlueprint.MaxRadius)
 
         -- Gatling Cannon
 
@@ -360,26 +346,23 @@ EEL0001 = Class(ACUUnit) {
             DefineBasicBuff('UEFGatlingHeath1', 'UEFGatlingHeath', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFGatlingHeath1')
 
-            self:SetWeaponEnabledByLabel('GatlingEnergyCannon', true)
-            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+            self.GatlingEnergyCannon:SetWeaponEnabled(true)
+            self.GatlingEnergyCannon:ChangeMaxRadius(bp.GatlingMaxRadius)
 
             self:SetPainterRange(enh, bp.GatlingMaxRadius)
         elseif enh == 'GatlingEnergyCannonRemove' then
             Buff.RemoveBuff(self, 'UEFGatlingHeath1')
 
-            self:SetWeaponEnabledByLabel('GatlingEnergyCannon', false)
-            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            self.GatlingEnergyCannon:SetWeaponEnabled(false)
+            self.GatlingEnergyCannon:ChangeMaxRadius(self.GatlingEnergyCannon:GetBlueprint().MaxRadius)
 
             self:SetPainterRange('GatlingEnergyCannon')
         elseif enh == 'AutomaticBarrelStabalizers' then
             DefineBasicBuff('UEFGatlingHeath2', 'UEFGatlingHeath', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFGatlingHeath2')
 
-            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:AddDamageMod(bp.GatlingDamageMod)
-            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+            self.GatlingEnergyCannon:AddDamageMod(bp.GatlingDamageMod)
+            self.GatlingEnergyCannon:ChangeMaxRadius(bp.GatlingMaxRadius)
 
             self:SetPainterRange(enh, bp.GatlingMaxRadius)
 
@@ -387,9 +370,8 @@ EEL0001 = Class(ACUUnit) {
         elseif enh == 'AutomaticBarrelStabalizersRemove' then
             Buff.RemoveBuff(self, 'UEFGatlingHeath2')
 
-            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:AddDamageMod(bp.GatlingDamageMod)
-            gun:ChangeMaxRadius(gun:GetBlueprint().MaxRadius)
+            self.GatlingEnergyCannon:AddDamageMod(bp.GatlingDamageMod)
+            self.GatlingEnergyCannon:ChangeMaxRadius(self.GatlingEnergyCannon:GetBlueprint().MaxRadius)
 
             self:SetPainterRange('AutomaticBarrelStabalizers')
 
@@ -398,17 +380,15 @@ EEL0001 = Class(ACUUnit) {
             DefineBasicBuff('UEFGatlingHeath3', 'UEFGatlingHeath', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFGatlingHeath3')
 
-            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:AddDamageMod(bp.GatlingDamageMod)
-            gun:ChangeMaxRadius(bp.GatlingMaxRadius)
+            self.GatlingEnergyCannon:AddDamageMod(bp.GatlingDamageMod)
+            self.GatlingEnergyCannon:ChangeMaxRadius(bp.GatlingMaxRadius)
 
             self:SetPainterRange(enh, bp.GatlingMaxRadius)
         elseif enh == 'EnhancedPowerSubsystemsRemove' then
             Buff.RemoveBuff(self, 'UEFGatlingHeath3')
 
-            local gun = self:GetWeaponByLabel('GatlingEnergyCannon')
-            gun:AddDamageMod(bp.GatlingDamageMod)
-            gun:ChangeMaxRadius(gun:GetBlueprint().GatlingMaxRadius)
+            self.GatlingEnergyCannon:AddDamageMod(bp.GatlingDamageMod)
+            self.GatlingEnergyCannon:ChangeMaxRadius(self.GatlingEnergyCannon:GetBlueprint().GatlingMaxRadius)
 
             self:SetPainterRange('EnhancedPowerSubsystems')
 
@@ -422,56 +402,50 @@ EEL0001 = Class(ACUUnit) {
             self:OnScriptBitSet(0)
         elseif enh == 'ShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
         elseif enh == 'ImprovedShieldBattery' then
             self:DestroyShield()
-            ForkThread(function()
-                WaitTicks(1)
-                self:CreateShield(bp)
-            end)
+            ForkThread(function() WaitTicks(1) self:CreateShield(bp) end)
+
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self:SetWeaponEnabledByLabel('EnergyLance01', true)
             self:OnScriptBitSet(0)
+
+            self.EnergyLance01:SetWeaponEnabled(true)
         elseif enh == 'ImprovedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ActiveShieldingRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            self:SetWeaponEnabledByLabel('EnergyLance01', false)
             self:OnScriptBitClear(0)
+
+            self.EnergyLance01:SetWeaponEnabled(false)
         elseif enh == 'AdvancedShieldBattery' then
             self:DestroyShield()
-            ForkThread(function()
-                WaitTicks(1)
-                self:CreateShield(bp)
-            end)
+            ForkThread(function() WaitTicks(1) self:CreateShield(bp) end)
+
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
-            self:SetWeaponEnabledByLabel('EnergyLance01', true)
             self:OnScriptBitSet(0)
+
+            self.EnergyLance01:SetWeaponEnabled(true)
         elseif enh == 'AdvancedShieldBatteryRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ImprovedShieldBatteryRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-            self:SetWeaponEnabledByLabel('EnergyLance01', false)
             self:OnScriptBitClear(0)
+
+            self.EnergyLance01:SetWeaponEnabled(false)
         elseif enh == 'ExpandedShieldBubble' then
             self:DestroyShield()
-            ForkThread(function()
-                WaitTicks(1)
-                self:CreateShield(bp)
-            end)
+            ForkThread(function() WaitTicks(1) self:CreateShield(bp) end)
+
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self:OnScriptBitSet(0)
         elseif enh == 'ExpandedShieldBubbleRemove' then
             self:DestroyShield()
-            RemoveUnitEnhancement(self, 'ExpandedShieldBubbleRemove')
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:OnScriptBitClear(0)
@@ -489,12 +463,12 @@ EEL0001 = Class(ACUUnit) {
             end
 
             self.RadarDish:SetTargetSpeed(45)
-            self:SetWeaponEnabledByLabel('EnergyLance01', true)
+
+            self.EnergyLance01:SetWeaponEnabled(true)
         elseif enh == 'ElectronicsEnhancmentRemove' then
             Buff.RemoveBuff(self, 'UEFIntelHealth1')
 
             local bpIntel = self:GetBlueprint().Intel
-
             if ScenarioInfo.Options.OmniCheat ~= "on" or self:GetAIBrain().BrainType == 'Human' then
                 self:SetIntelRadius('Vision', bpIntel.VisionRadius)
                 self:SetIntelRadius('WaterVision', bpIntel.WaterVisionRadius)
@@ -503,7 +477,7 @@ EEL0001 = Class(ACUUnit) {
 
             self.RadarDish:SetTargetSpeed(0)
 
-            self:SetWeaponEnabledByLabel('EnergyLance01', false)
+            self.EnergyLance01:SetWeaponEnabled(false)
         elseif enh == 'SpySat' then
             DefineBasicBuff('UEFIntelHealth2', 'UEFIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFIntelHealth2')
@@ -511,8 +485,8 @@ EEL0001 = Class(ACUUnit) {
             self.SpysatEnabled = true
             self:ForkThread(self.SatSpawn)
 
-            self:SetWeaponEnabledByLabel('EnergyLance01', true)
-            self:SetWeaponEnabledByLabel('EnergyLance02', true)
+            self.EnergyLance01:SetWeaponEnabled(true)
+            self.EnergyLance02:SetWeaponEnabled(true)
         elseif enh == 'SpySatRemove' then
             Buff.RemoveBuff(self, 'UEFIntelHealth2')
 
@@ -522,21 +496,23 @@ EEL0001 = Class(ACUUnit) {
             self.SpysatEnabled = false
             self.Satellite = nil
 
-            self:SetWeaponEnabledByLabel('EnergyLance01', false)
-            self:SetWeaponEnabledByLabel('EnergyLance02', false)
+            self.EnergyLance01:SetWeaponEnabled(false)
+            self.EnergyLance02:SetWeaponEnabled(false)
         elseif enh == 'Teleporter' then
+            self:AddCommandCap('RULEUCC_Teleport')
+
             DefineBasicBuff('UEFIntelHealth3', 'UEFIntelHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFIntelHealth3')
 
-            self:SetWeaponEnabledByLabel('EnergyLance01', true)
-            self:SetWeaponEnabledByLabel('EnergyLance02', true)
-            self:AddCommandCap('RULEUCC_Teleport')
+            self.EnergyLance01:SetWeaponEnabled(true)
+            self.EnergyLance02:SetWeaponEnabled(true)
         elseif enh == 'TeleporterRemove' then
+            self:RemoveCommandCap('RULEUCC_Teleport')
+
             Buff.RemoveBuff(self, 'UEFIntelHealth3')
 
-            self:SetWeaponEnabledByLabel('EnergyLance01', false)
-            self:SetWeaponEnabledByLabel('EnergyLance02', false)
-            self:RemoveCommandCap('RULEUCC_Teleport')
+            self.EnergyLance01:SetWeaponEnabled(false)
+            self.EnergyLance02:SetWeaponEnabled(false)
 
         -- Missile System
 
@@ -544,90 +520,76 @@ EEL0001 = Class(ACUUnit) {
             DefineBasicBuff('UEFMissileHealth1', 'UEFMissileHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFMissileHealth1')
 
-            self:SetWeaponEnabledByLabel('ClusterMissiles', true)
-            local cluster = self:GetWeaponByLabel('ClusterMissiles')
-            cluster:ChangeMaxRadius(bp.ClusterMaxRadius)
+            self.ClusterMissiles:SetWeaponEnabled(true)
+            self.ClusterMissiles:ChangeMaxRadius(bp.ClusterMaxRadius)
 
             self:SetPainterRange(enh, bp.ClusterMaxRadius)
 
             -- Get rid of the range on the missiles to show this weapon's
-            local wep = self:GetWeaponByLabel('TacMissile')
-            wep:ChangeMaxRadius(bp.ClusterMaxRadius)
-            local wep2 = self:GetWeaponByLabel('TacNukeMissile')
-            wep2:ChangeMaxRadius(bp.ClusterMaxRadius)
+            self.TacMissile:ChangeMaxRadius(bp.ClusterMaxRadius)
+            self.TacNukeMissile:ChangeMaxRadius(bp.ClusterMaxRadius)
         elseif enh == 'ClusterMissilePackRemove' then
             Buff.RemoveBuff(self, 'UEFMissileHealth1')
 
-            self:SetWeaponEnabledByLabel('ClusterMissiles', false)
-            local cluster = self:GetWeaponByLabel('ClusterMissiles')
-            cluster:ChangeMaxRadius(cluster:GetBlueprint().MaxRadius)
+            self.ClusterMissiles:SetWeaponEnabled(false)
+            self.ClusterMissiles:ChangeMaxRadius(self.ClusterMissiles:GetBlueprint().MaxRadius)
 
             self:SetPainterRange('ClusterMissilePack')
 
-            local wep = self:GetWeaponByLabel('TacMissile')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
-            local wep2 = self:GetWeaponByLabel('TacNukeMissile')
-            wep2:ChangeMaxRadius(wep2:GetBlueprint().MaxRadius)
+            -- Restore the missile range ring
+            self.TacMissile:ChangeMaxRadius(self.TacMissile:GetBlueprint().MaxRadius)
+            self.TacNukeMissile:ChangeMaxRadius(self.TacNukeMissile:GetBlueprint().MaxRadius)
         elseif enh == 'TacticalMissilePack' then
+            self:AddCommandCap('RULEUCC_Tactical')
+            self:AddCommandCap('RULEUCC_SiloBuildTactical')
+
             DefineBasicBuff('UEFMissileHealth2', 'UEFMissileHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFMissileHealth2')
 
-            -- Enable Tactical Missiles
-            self:AddCommandCap('RULEUCC_Tactical')
-            self:AddCommandCap('RULEUCC_SiloBuildTactical')
-            self:SetWeaponEnabledByLabel('TacMissile', true)
-            local wep = self:GetWeaponByLabel('TacMissile')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            self.TacMissile:SetWeaponEnabled(true)
+            self.TacMissile:ChangeMaxRadius(self.TacMissile:GetBlueprint().MaxRadius)
 
-            -- Buff Cluster Missiles
-            local cluster = self:GetWeaponByLabel('ClusterMissiles')
-            cluster:AddDamageMod(bp.ClusterDamageMod)
+            self.ClusterMissiles:AddDamageMod(bp.ClusterDamageMod)
         elseif enh == 'TacticalMissilePackRemove' then
-            Buff.RemoveBuff(self, 'UEFMissileHealth2')
-
-            local amt = self:GetTacticalSiloAmmoCount()
-            self:RemoveTacticalSiloAmmo(amt or 0)
-            self:StopSiloBuild()
-            self:SetWeaponEnabledByLabel('TacMissile', false)
             self:RemoveCommandCap('RULEUCC_Tactical')
             self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+            self:RemoveTacticalSiloAmmo(self:GetTacticalSiloAmmoCount() or 0)
+            self:StopSiloBuild()
 
-            local wep = self:GetWeaponByLabel('ClusterMissiles')
-            wep:AddDamageMod(bp.ClusterDamageMod)
+            Buff.RemoveBuff(self, 'UEFMissileHealth2')
+
+            self.TacMissile:SetWeaponEnabled(false)
+
+            self.ClusterMissiles:AddDamageMod(bp.ClusterDamageMod)
         elseif enh == 'TacticalNukeSubstitution' then
+            self:RemoveCommandCap('RULEUCC_Tactical')
+            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+            self:RemoveTacticalSiloAmmo(self:GetTacticalSiloAmmoCount() or 0)
+            self:StopSiloBuild()
+
+            self:AddCommandCap('RULEUCC_Nuke')
+            self:AddCommandCap('RULEUCC_SiloBuildNuke')
+
             DefineBasicBuff('UEFMissileHealth3', 'UEFMissileHealth', 'STACKS', nil, bp.NewHealth)
             Buff.ApplyBuff(self, 'UEFMissileHealth3')
 
-            -- Remove Tactical Missile
-            local amt = self:GetTacticalSiloAmmoCount()
-            self:RemoveTacticalSiloAmmo(amt or 0)
-            self:StopSiloBuild()
-            self:SetWeaponEnabledByLabel('TacMissile', false)
-            self:RemoveCommandCap('RULEUCC_Tactical')
-            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+            self.TacMissile:SetWeaponEnabled(false)
 
-            -- Add Nuke Missile
-            self:AddCommandCap('RULEUCC_Nuke')
-            self:AddCommandCap('RULEUCC_SiloBuildNuke')
-            self:SetWeaponEnabledByLabel('TacNukeMissile', true)
-            local wep = self:GetWeaponByLabel('TacNukeMissile')
-            wep:ChangeMaxRadius(wep:GetBlueprint().MaxRadius)
+            self.TacNukeMissile:SetWeaponEnabled(true)
+            self.TacNukeMissile:ChangeMaxRadius(self.TacNukeMissile:GetBlueprint().MaxRadius)
 
-            -- Buff Cluster Missiles
-            local cluster = self:GetWeaponByLabel('ClusterMissiles')
-            cluster:AddDamageMod(bp.ClusterDamageMod)
+            self.ClusterMissiles:AddDamageMod(bp.ClusterDamageMod)
         elseif enh == 'TacticalNukeSubstitutionRemove' then
-            Buff.RemoveBuff(self, 'UEFMissileHealth3')
-
-            local amt = self:GetNukeSiloAmmoCount()
-            self:RemoveNukeSiloAmmo(amt or 0)
-            self:StopSiloBuild()
-            self:SetWeaponEnabledByLabel('TacNukeMissile', false)
             self:RemoveCommandCap('RULEUCC_Nuke')
             self:RemoveCommandCap('RULEUCC_SiloBuildNuke')
+            self:RemoveNukeSiloAmmo(self:GetNukeSiloAmmoCount() or 0)
+            self:StopSiloBuild()
 
-            local wep = self:GetWeaponByLabel('ClusterMissiles')
-            wep:AddDamageMod(bp.ClusterDamageMod)
+            Buff.RemoveBuff(self, 'UEFMissileHealth3')
+
+            self.TacNukeMissile:SetWeaponEnabled(false)
+
+            self.ClusterMissiles:AddDamageMod(bp.ClusterDamageMod)
 
         -- Pod Subsystems
 
@@ -684,13 +646,8 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
 
-    ShieldEffects2 = {
-        '/mods/BlackOpsFAF-ACUs/effects/emitters/uef_shieldgen_01_emit.bp',
-    },
-
-    FlamerEffects = {
-        '/mods/BlackOpsFAF-ACUs/effects/emitters/flamer_torch_01.bp',
-    },
+    ShieldEffects = {'/mods/BlackOpsFAF-ACUs/effects/emitters/uef_shieldgen_01_emit.bp'},
+    FlamerEffects = {'/mods/BlackOpsFAF-ACUs/effects/emitters/flamer_torch_01.bp'},
 
     -- New Functions
     RebuildPod = function(self, PodNumber)
@@ -772,7 +729,7 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
 
-    SortFlameEffects = function(self, toggle)
+    HandleFlameEffects = function(self, toggle)
         EffectUtil.CleanupEffectBag(self, 'FlamerEffectsBag')
 
         -- Fill it if we're turning on
