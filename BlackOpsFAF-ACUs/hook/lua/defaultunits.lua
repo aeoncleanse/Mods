@@ -24,11 +24,6 @@ ACUUnit = Class(oldACUUnit) {
     updateBuildRestrictions = function(self)
         local aiBrain = self:GetAIBrain()
 
-        -- Sanity check.
-        if not self.FactionCategory then
-            return
-        end
-
         self:AddBuildRestriction(categories.SUPPORTFACTORY)
 
         local upgradeNames = {
