@@ -482,43 +482,6 @@ ERL0001 = Class(ACUUnit) {
         end
     end,
 
-    IntelEffects = {
-        Cloak = {
-            {
-                Bones = {
-                    'Head',
-                    'Right_Turret',
-                    'Left_Turret',
-                    'Right_Arm_B01',
-                    'Left_Arm_B01',
-                    'Left_Leg_B01',
-                    'Left_Leg_B02',
-                    'Right_Leg_B01',
-                    'Right_Leg_B02',
-                },
-                Scale = 1.0,
-                Type = 'Cloak01',
-            },
-        },
-        Field = {
-            {
-                Bones = {
-                    'Head',
-                    'Right_Turret',
-                    'Left_Turret',
-                    'Right_Arm_B01',
-                    'Left_Arm_B01',
-                    'Left_Leg_B01',
-                    'Left_Leg_B02',
-                    'Right_Leg_B01',
-                    'Right_Leg_B02',
-                },
-                Scale = 1.6,
-                Type = 'Cloak01',
-            },
-        },
-    },
-
     OnIntelEnabled = function(self)
         ACUUnit.OnIntelEnabled(self)
         if self:HasEnhancement('CloakingSubsystems') and self:IsIntelEnabled('Cloak') then

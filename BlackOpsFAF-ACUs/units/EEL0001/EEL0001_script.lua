@@ -684,50 +684,6 @@ EEL0001 = Class(ACUUnit) {
         end
     end,
 
-    IntelEffects = {
-        Cloak = {
-            {
-                Bones = {
-                    'Head',
-                    'Right_Arm_B01',
-                    'Left_Arm_B01',
-                    'Torso',
-                    'Left_Leg_B01',
-                    'Left_Leg_B02',
-                    'Right_Leg_B01',
-                    'Right_Leg_B02',
-                },
-                Scale = 1.0,
-                Type = 'Cloak01',
-            },
-        },
-        Field = {
-            {
-                Bones = {
-                    'Head',
-                    'Right_Arm_B01',
-                    'Left_Arm_B01',
-                    'Torso',
-                    'Left_Leg_B01',
-                    'Left_Leg_B02',
-                    'Right_Leg_B01',
-                    'Right_Leg_B02',
-                },
-                Scale = 1.6,
-                Type = 'Cloak01',
-            },
-        },
-        Jammer = {
-            {
-                Bones = {
-                    'Torso',
-                },
-                Scale = 0.5,
-                Type = 'Jammer01',
-            },
-        },
-    },
-
     ShieldEffects2 = {
         '/mods/BlackOpsFAF-ACUs/effects/emitters/uef_shieldgen_01_emit.bp',
     },

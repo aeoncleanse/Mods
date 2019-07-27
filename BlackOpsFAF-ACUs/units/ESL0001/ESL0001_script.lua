@@ -628,41 +628,6 @@ ESL0001 = Class(ACUUnit) {
         end
     end,
 
-    IntelEffects = {
-        Cloak = {
-            {
-                Bones = {
-                    'Body',
-                    'Right_Arm_B01',
-                    'Left_Arm_B01',
-                    'Torso',
-                    'Left_Leg_B01',
-                    'Left_Leg_B02',
-                    'Right_Leg_B01',
-                    'Right_Leg_B02',
-                },
-                Scale = 1.0,
-                Type = 'Cloak01',
-            },
-        },
-        Field = {
-            {
-                Bones = {
-                    'Body',
-                    'Right_Arm_B01',
-                    'Left_Arm_B01',
-                    'Torso',
-                    'Left_Leg_B01',
-                    'Left_Leg_B02',
-                    'Right_Leg_B01',
-                    'Right_Leg_B02',
-                },
-                Scale = 1.6,
-                Type = 'Cloak01',
-            },
-        },
-    },
-
     -- New Functions
     StartRotators = function(self)
         if not self.RotatorManipulator1 then
