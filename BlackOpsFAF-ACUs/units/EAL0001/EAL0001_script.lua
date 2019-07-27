@@ -4,12 +4,14 @@
 -- Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 -----------------------------------------------------------------
 
-local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
-local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
 local DefineBasicBuff = import('/lua/sim/BuffDefinitions.lua').DefineBasicBuff
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
+
+local ACUUnit = import('/lua/defaultunits.lua').ACUUnit
+
+local DeathNukeWeapon = import('/lua/sim/defaultweapons.lua').DeathNukeWeapon
 
 local AWeapons = import('/lua/aeonweapons.lua')
 local ADFDisruptorCannonWeapon = AWeapons.ADFDisruptorCannonWeapon
@@ -101,7 +103,7 @@ EAL0001 = Class(ACUUnit) {
         if not bp then return end
 
         if enh == 'ImprovedEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -113,7 +115,7 @@ EAL0001 = Class(ACUUnit) {
 
             Buff.RemoveBuff(self, 'AEONACUT2BuildRate')
         elseif enh == 'AdvancedEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * categories.BUILTBYTIER3COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -125,7 +127,7 @@ EAL0001 = Class(ACUUnit) {
 
             Buff.RemoveBuff(self, 'AEONACUT3BuildRate')
         elseif enh == 'ExperimentalEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * categories.BUILTBYTIER4COMMANDER)
             self:updateBuildRestrictions()
             self:SetProduction(bp)
 
@@ -137,7 +139,7 @@ EAL0001 = Class(ACUUnit) {
 
             Buff.RemoveBuff(self, 'AEONACUT4BuildRate')
         elseif enh == 'CombatEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER2COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * categories.BUILTBYTIER2COMMANDER)
             self:updateBuildRestrictions()
 
             DefineBasicBuff('AEONACUT2BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
@@ -153,7 +155,7 @@ EAL0001 = Class(ACUUnit) {
 
             self.ChronoDampener:ChangeMaxRadius(self.ChronoDampener:GetBlueprint().MaxRadius)
         elseif enh == 'AssaultEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER3COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * categories.BUILTBYTIER3COMMANDER)
             self:updateBuildRestrictions()
 
             DefineBasicBuff('AEONACUT3BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
@@ -171,7 +173,7 @@ EAL0001 = Class(ACUUnit) {
             self.ChronoDampener2:SetWeaponEnabled(false)
             self.ChronoDampener2:ChangeMaxRadius(self.ChronoDampener2:GetBlueprint().MaxRadius)
         elseif enh == 'ApocalypticEngineering' then
-            self:RemoveBuildRestriction(categories.AEON * (categories.BUILTBYTIER4COMMANDER))
+            self:RemoveBuildRestriction(categories.AEON * categories.BUILTBYTIER4COMMANDER)
             self:updateBuildRestrictions()
 
             DefineBasicBuff('AEONACUT4BuildCombat', 'ACUBUILDRATE', 'STACKS', bp.NewBuildRate, bp.NewHealth, bp.NewRegenRate)
@@ -240,6 +242,7 @@ EAL0001 = Class(ACUUnit) {
             self.MiasmaArtillery:SetWeaponEnabled(true)
             self.MiasmaArtillery:ChangeMaxRadius(bp.ArtyRadius)
             self.MiasmaArtillery:ChangeMinRadius(bp.ArtyMinRadius)
+
             self:SetPainterRange(enh, bp.ArtyRadius)
 
             self:SpecialBones()
@@ -250,6 +253,7 @@ EAL0001 = Class(ACUUnit) {
             self.MiasmaArtillery:SetWeaponEnabled(false)
             self.MiasmaArtillery:ChangeMaxRadius(wepBp.MaxRadius)
             self.MiasmaArtillery:ChangeMinRadius(wepBp.MinRadius)
+
             self:SetPainterRange('DualMiasmaArtillery')
 
             self:SpecialBones()
@@ -285,12 +289,14 @@ EAL0001 = Class(ACUUnit) {
 
             self.PhasonBeam01:SetWeaponEnabled(true)
             self.PhasonBeam01:ChangeMaxRadius(bp.BeamRadius)
+
             self:SetPainterRange(enh, bp.BeamRadius)
         elseif enh == 'PhasonBeamCannonRemove' then
             Buff.RemoveBuff(self, 'AeonBeamHealth1')
 
             self.PhasonBeam01:SetWeaponEnabled(false)
             self.PhasonBeam01:ChangeMaxRadius(self.PhasonBeam01:GetBlueprint().MaxRadius)
+
             self:SetPainterRange('PhasonBeamCannon')
         elseif enh == 'DualChannelBooster' then
             DefineBasicBuff('AeonBeamHealth2', 'AeonBeamHealth', 'STACKS', nil, bp.NewHealth)
@@ -299,6 +305,7 @@ EAL0001 = Class(ACUUnit) {
             self.PhasonBeam01:SetWeaponEnabled(false)
             self.PhasonBeam02:SetWeaponEnabled(true)
             self.PhasonBeam02:ChangeMaxRadius(bp.BeamRadius)
+
             self:SetPainterRange(enh, bp.BeamRadius)
 
             self:TogglePrimaryGun(bp.NewDamage)
@@ -307,6 +314,7 @@ EAL0001 = Class(ACUUnit) {
 
             self.PhasonBeam02:SetWeaponEnabled(false)
             self.PhasonBeam02:ChangeMaxRadius(self.PhasonBeam02:GetBlueprint().MaxRadius)
+
             self:SetPainterRange('DualChannelBooster')
 
             self:TogglePrimaryGun(bp.NewDamage)
@@ -324,6 +332,7 @@ EAL0001 = Class(ACUUnit) {
 
             self.PhasonBeam03:SetWeaponEnabled(false)
             self.PhasonBeam03:ChangeMaxRadius(self.PhasonBeam03:GetBlueprint().MaxRadius)
+
             self:SetPainterRange('EnergizedMolecularInducer')
 
         -- Shielding
