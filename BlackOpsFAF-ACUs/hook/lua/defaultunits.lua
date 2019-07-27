@@ -83,7 +83,7 @@ ACUUnit = Class(oldACUUnit) {
     SetPainterRange = function(self, enh, newRange)
         self.PainterRange[enh] = newRange
 
-        local range = self[self.RightGunLabel]:GetBlueprint().MaxRadius
+        local range = self.MainGun:GetBlueprint().MaxRadius
         for _, new in self.PainterRange do
             range = math.max(range, new)
         end
@@ -94,7 +94,7 @@ ACUUnit = Class(oldACUUnit) {
     -- Resets range to blueprint when radius is nil
     -- Called with negative damage when removing an enhancement
     TogglePrimaryGun = function(self, damage, radius)
-        local wep = self[self.RightGunLabel]
+        local wep = self.MainGun
         local oc = self.OverCharge
         local aoc = self.AutoOverCharge
 
@@ -133,7 +133,13 @@ ACUUnit = Class(oldACUUnit) {
         exclude[self.RightGunLabel] = true
 
         for name, v in self.Weapons do
-            self[name] = self:GetWeaponByLabel(name)
+            local wep = self:GetWeaponByLabel(name)
+
+            if name == self.RightGunLabel then
+                self.MainGun = wep
+            else
+                self[name] = wep
+            end
 
             if not exclude[name] then
                 self[name]:SetWeaponEnabled(false)
